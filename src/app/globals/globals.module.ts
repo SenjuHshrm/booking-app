@@ -4,6 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { SearchFiltersComponent } from './search-filters/search-filters.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavComponent } from './nav/nav.component';
 
 
 
@@ -12,7 +15,10 @@ import { SearchFiltersComponent } from './search-filters/search-filters.componen
     LoginComponent,
     SignupComponent,
     GalleryComponent,
-    SearchFiltersComponent
+    SearchFiltersComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavComponent
   ],
   imports: [
     CommonModule

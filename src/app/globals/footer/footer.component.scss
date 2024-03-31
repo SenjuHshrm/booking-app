@@ -1,0 +1,112 @@
+.footer-container {
+    &-wrapper-1 {
+        background-color: black;
+        z-index: 1;
+
+        .footer-text-links {
+            // border: 1px solid white;
+            color: white;
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .footer-text {
+                // border: 1px solid white;
+                flex-basis: 50%;
+
+                .image {
+                    max-width: 25rem;
+                    width: 100%;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+
+            .footer-links {
+                // border: 1px solid white;
+                flex-basis: 50%;
+                font-family: Poppins-Regular;
+
+                .footer-links-wrapper {
+                    display: flex;
+                    // border: 1px solid white;
+                    justify-content: space-between;
+                    .company {
+                        // border: 1px solid white;
+                        width: fit-content;
+                        font-size: 12px;
+                        line-height: 2rem;
+
+                        h1 {
+                            font-size: 14px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    &-wrapper-2 {
+        height: 5rem;
+        // background-color: white;
+
+
+        .wrapper-2-wrapper {
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+            .footer-other-info {
+                flex-basis: 50%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 1rem;
+                height: 100%;
+
+                font-family: Poppins-Regular;
+                font-size: 12px;
+
+                .image {
+                    max-width: 5rem;
+                    margin-top: 1rem;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+
+            .footer-social-media {
+                flex-basis: 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 2rem;
+
+                .social {
+                    max-width: 1rem;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
