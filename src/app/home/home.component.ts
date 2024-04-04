@@ -23,7 +23,8 @@ export class HomeComponent {
 
 
   navigateToMain() {
-    this.router.navigate(['/main']);
+    this.router.navigate(['main/staycation-list']);
+    console.log("Click");
   }
 
 destinations:any = [

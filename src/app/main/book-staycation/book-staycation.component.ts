@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-staycation',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./book-staycation.component.scss']
 })
 export class BookStaycationComponent {
+  constructor(private router: Router) {}
 
+  backToBookingDetails() {
+    this.router.navigate(['main/staycation-details']);
+  }
 }

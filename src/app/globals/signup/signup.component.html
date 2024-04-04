@@ -1,6 +1,8 @@
 <div class="login-container">
     <div class="login-container-wrapper">
-        <div class="close-button close" (click)="closeDialogSign()"><mat-icon>close</mat-icon></div>
+        <div class="close-button close" (click)="closeDialogSign()">
+            <mat-icon aria-hidden="false" aria-label="close" fontIcon="close"></mat-icon>
+        </div>
         <div class="title">Sign up</div>
         <div class="form-wrapper">
             <form>
@@ -19,32 +21,11 @@
                 <div class="termscon">
                     <p>By selecting Agree and continue, I agree to TaraGo’s <br> <a href="#" class="termpri">Terms of Service</a> and acknowledge the <a href="#" class="termpri">Privacy Policy.</a></p>
                 </div>
-                <!-- <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field> -->
-                <!-- <div class="password-wrapper">
-                    <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
-                        placeholder="Password" required><br><br>
-                    <span></span>
-                    <div class="eye" (click)="togglePasswordVisibility()">
-                        <mat-icon *ngIf="showPassword ===true? 'Show':''">visibility</mat-icon>
-                        <mat-icon *ngIf="showPassword ===false? 'Hide':''">visibility_off</mat-icon>
-                    </div>
-                </div> -->
-                <!-- <div class="forgot-pass">Forgot password?</div> -->
+
                 <button class="main-button width-button" type="button"
                     (click)="signup(firstname, lastname)">Aggree and Continue</button>
             </form>
         </div>
-        <!-- <div class="not-aguest">
-                <div>Not a guest? <button class="signup-button">SignUp</button></div>
-            <div>or</div>
-        </div>
-        <div class="google-button main-button-outline ">
-            <img src="./assets/tarago_images/login/google.png" alt="googleicon" width="100px" height="100px" />
-            <div>continue with Google</div>
-        </div> -->
+
     </div>
 </div>

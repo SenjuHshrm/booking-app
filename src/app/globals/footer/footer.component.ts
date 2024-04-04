@@ -5,9 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
+
 export class FooterComponent {
 
- currentDate = new Date();
+  currentDate: Date; // Declare the property here
+
+  constructor() {
+    this.currentDate = new Date();
+  }
 
 
 }

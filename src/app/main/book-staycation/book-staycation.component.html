@@ -1,1 +1,77 @@
-<p>book-staycation works!</p>
+<div class="book-staycation">
+    <div class="book-staycation-book-staycation-wrapper">
+        <section class="booking-title">
+            <button (click)="backToBookingDetails()">
+                <mat-icon>chevron_left</mat-icon>
+                <span>Back</span>
+            </button>
+            <div class="title">Initiate Booking</div>
+        </section>
+        <div class="booking-content">
+
+            <div class="info-details">
+                <section class="your-pay">
+                    <div class="title">Your trip</div>
+                    <div class="date-wrapper">
+                        <div class="checkin-out-dates">
+                            <mat-icon>calendar_today</mat-icon>
+                            <div class="label">Checkin</div>
+                            <div>February 13, 2024</div>
+                        </div>
+                        <div class="checkin-out-dates">
+                            <mat-icon>calendar_today</mat-icon>
+                            <div class="label">Checkout</div>
+                            <div>February 15, 2024</div>
+                        </div>
+                    </div>
+                    <div class="guest-wrapper">
+                        <mat-icon>people</mat-icon>
+                        <div class="label">Guest</div>
+                        <div>3 Guest, 2 Infant, 1 Pet</div>
+                    </div>
+                </section>
+                <section class="payment-method">
+                    <form>
+                        <div class="title-wrapper">
+                            <div class="title">Paywith</div>
+                            <div class="wallet-icons">
+                                <div><img src="../../assets/images/main/book-staycation/visa.png" loading="lazy"
+                                        alt="Avatar" [draggable]="false"></div>
+                                <div><img src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy"
+                                        alt="Avatar" [draggable]="false"></div>
+                                <div><img src="../../assets/images/main/book-staycation/gcash.png" loading="lazy"
+                                        alt="Avatar" [draggable]="false"></div>
+                            </div>
+                        </div>
+                        <div class="payment-card-select custom-select">
+                            <select id="treats" name="treats">
+                                <option value="Credit Card or debit card">Credit Card or debit card</option>
+                                <option value="Gcash">Gcash</option>
+                                <option value="Master Card">Master Card</option>
+                            </select>
+                        </div>
+                        <div class="wrapper">
+                         
+                                <div class="expiration-style">
+                                    <div>Expiration</div>
+                                    <input type="date" name="date" class="custom-date-input">
+                                </div>
+                            
+                            <div class="ccv-input">
+                                <input type="number" alt="ccv" name="ccv" value="" />
+                            </div>
+                        </div>
+                        <div class="zip-code">
+                            <input type="number" alt="ccv" name="ccv" value="" />
+                        </div>
+                     
+                    </form>
+                </section>
+            </div>
+
+            <div class="price-details">
+                <div class="title">Price Details</div>
+            </div>
+        </div>
+    </div>
+</div>

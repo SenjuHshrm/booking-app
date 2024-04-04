@@ -1,1 +1,41 @@
-<p>staycation-list works!</p>
+<div class="staycation-list">
+    <div class="staycation-list-staycation-wrapper">
+        <section class="category-home-button">
+            <button class="tarago-home" (click)="navigateToHome()">
+                <img src="./assets/images/search-filters/homeicon.png" alt="pinicon" />
+                <div>TaraGo</div>
+            </button>
+            <div class="category-wrapper">
+                <button class="tarago-staycations">
+                    <div>Staycations</div>
+                </button>
+                <button class="tarago-eventplace">
+                    <div>Event Place</div>
+                </button>
+            </div>
+        </section>
+        <section class="filters">
+            <app-search-filters></app-search-filters>
+        </section>
+        <section class="content " (click)="navigateToBookStaycation()">
+            <div class="card stacked" *ngFor="let properties of listproperties">
+                <div class="image">
+                    <img [src]="properties.image" />
+                </div>
+                <div class="content__card" >
+                    <div class="info">
+                        <div class="title">{{properties.title}}</div>
+                        <div class="description">{{properties.description}}</div>
+                        <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="seemore">
+            <button class="main-button" >See more</button>
+        </section>
+    </div>
+</div>

@@ -77,7 +77,7 @@
                     h1 {
                         font-family: Poppins-Bold;
                         font-weight: bolder;
-                        font-size: clamp(2rem, 2vw, 8rem);
+                        font-size: clamp(4rem, 2vw, 8rem);
                         // border: 1px solid black;
                         display: block;
                         padding: 0;
@@ -846,9 +846,6 @@
                             line-height: 3.5rem;
                         }
 
-                        p {
-                            font-size: 15px;
-                        }
                     }
 
                     .main-image {

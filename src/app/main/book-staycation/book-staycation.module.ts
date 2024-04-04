@@ -7,7 +7,6 @@ import { BookStaycationComponent } from './book-staycation.component';
 
 @NgModule({
   declarations: [
-    BookStaycationComponent
   ],
   imports: [
     CommonModule,

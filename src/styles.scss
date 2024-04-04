@@ -83,6 +83,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #63AB68;
 }
 
+.close-button-normal {
+  border-radius: 100%;
+   color: black;
+   width: 2rem;
+   height: 2rem;
+   display: flex;
+   justify-content: center;
+   color: #63AB68;
+   cursor: pointer;
+   padding-top:3px;
+ }
+ 
+ .close-button-normal:hover{
+   background-color: black;
+   color: #63AB68;
+ }
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
