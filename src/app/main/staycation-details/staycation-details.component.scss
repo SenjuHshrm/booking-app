@@ -475,12 +475,13 @@
                 }
                 
                 .total-computation-wrapper{
-                    padding:2rem;
+                 
                     .note{
                         font-size: max(min(.8rem), .5vw);
                         font-weight: bold;
                         color:#797979;
                         text-align: center;
+                        margin-bottom:2rem;
                     }
                     .computation{
                         width: 100%;
@@ -490,15 +491,19 @@
                             align-items: center;
                             justify-content: space-between;
                         }
-                           
- 
+                        
                     }
+               
                 }
                 .total{
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
+                       margin:1rem 0 1rem;
+                       display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-weight: bolder;
+                     
                 }
+              
             }
 
         }

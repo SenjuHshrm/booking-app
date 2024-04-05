@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TodayRoutingModule } from './today-routing.module';
 import { TodayComponent } from './today.component';
 import { ComponentsModule } from './components/components.module';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,10 @@ import { ComponentsModule } from './components/components.module';
   imports: [
     CommonModule,
     TodayRoutingModule,
+    ComponentsModule,
+    MatTabsModule,
     ComponentsModule
+    
   ]
 })
 export class TodayModule { }

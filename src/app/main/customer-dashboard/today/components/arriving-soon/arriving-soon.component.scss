@@ -1,0 +1,21 @@
+.today-tabs{
+    &-today-tabs-wrapper{
+
+        .content{
+            background-color: #F7F7F7;
+            height:100vh;
+            max-height:40rem;
+            margin: 3rem 0 3rem;
+            border-radius: 20px;
+            padding:2rem;
+
+              .no-checking{
+
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  height: 100%;
+              }
+        }
+    }
+}

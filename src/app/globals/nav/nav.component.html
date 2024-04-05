@@ -1,7 +1,28 @@
 <nav>
     <div class="nav-wrapper">
-        <div class="header-logo">
+        <div class="header-logo" (click)="gotToHome()">
             <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" />
+        </div>
+        <div class="avatar-account-menu-wrapper">
+            <div class="avatar-account">
+                <div class="name">Juan Dela Cruz</div>
+
+                <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar"
+                    [draggable]="false">
+
+            </div>
+
+            <button class="menu" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Profile</button>
+                <button mat-menu-item>Messages</button>
+                <button mat-menu-item>My Favorite</button>
+                <button mat-menu-item (click)="gotToCustomerDashboard()">Manage Listing</button>
+                <button mat-menu-item>Account</button>
+                <button mat-menu-item>Help</button>
+                <button mat-menu-item>Logout</button>
+            </mat-menu>
+
         </div>
         <div class="header-login-button">
             <button (click)="openLoginDialog()">Login</button>

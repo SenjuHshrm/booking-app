@@ -7,18 +7,18 @@ import { Router } from '@angular/router';
   templateUrl: './staycation-details.component.html',
   styleUrls: ['./staycation-details.component.scss']
 })
+
 export class StaycationDetailsComponent {
   constructor(private router: Router) {}
 
+
   backToMain() {
     this.router.navigate(['main']);
-    console.log("Click");
   }
 
   
   navigateToBookStaycation() {
     this.router.navigate(['main/book-staycation']);
-    console.log("Click");
   }
   
 

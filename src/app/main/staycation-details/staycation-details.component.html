@@ -17,7 +17,7 @@
                <div class="card stacked" *ngFor="let properties of listproperties; let i = index"
                     [class.first-image]="i === 0">
                     <div class="image">
-                         <img [src]="properties.image" />
+                         <img [src]="properties.image" loading="lazy" alt="images" [draggable]="false"/>
                     </div>
                     <div class="content__card">
                          <!-- <div class="details">
@@ -152,7 +152,7 @@
                                         <input type="text" placeholder="Add guest" value="" readonly />
                                    </div>
                               </div>
-                              <button >Reserve</button>
+                              <button>Reserve</button>
                               <div (click)="navigateToBookStaycation()">Reserve</div>
                          </div>
                     </form>
@@ -168,10 +168,11 @@
                                    <td>₱500</td>
                               </div>
                          </div>
-                         <div class="total">
-                              <div>Total before taxes</div>
-                              <div>₱2,500 total</div>
-                         </div>
+
+                    </div>
+                    <div class="total">
+                         <div>Total before taxes</div>
+                         <div>₱2,500 total</div>
                     </div>
                </section>
 

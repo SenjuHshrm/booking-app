@@ -1,0 +1,24 @@
+/* Styles the text color of the tab labels */
+
+
+.today {
+    font-family: Poppins-Regular;
+
+    &-today-wrapper {
+        .content-tab {
+            .mat-tab-label {
+                color: #7f60f0 !important;
+            }
+
+            /* Styles the background color of the active tab label */
+            .mat-tab-label.mat-tab-label-active {
+                background-color: #c51010 !important;
+            }
+
+            /* Styles the background color of the inactive tab labels */
+            .mat-tab-label:not(.mat-tab-label-active) {
+                background-color: #68c45b;
+            }
+        }
+    }
+}

@@ -12,10 +12,56 @@ nav {
         align-items: center;
 
         .header-logo {
+            cursor: pointer;
 
             img {
                 width: 5rem;
                 height: 5rem;
+            }
+        }
+
+        .avatar-account-menu-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            // border: 1px solid black;
+
+            .avatar-account {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                .name {}
+
+
+                img {
+                    height: 35px;
+                    width: 35px;
+                    // border: 1px solid black;
+                }
+
+            }
+
+            .menu {
+                cursor: pointer;
+                background-color: white;
+                box-shadow: 1px 1px 5px #88888877;
+                padding: 10px 10px 5px;
+                border-radius: 100%;
+                color: #63AB68;
+                border: none;
+                outline: none;
+
+                mat-icon {
+                    margin: 0;
+                }
+
+
+            }
+
+            .menu:hover {
+                background-color: black;
+                color: #63AB68;
             }
         }
 
@@ -51,4 +97,3 @@ nav {
         }
     }
 }
-

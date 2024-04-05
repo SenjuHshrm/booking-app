@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,10 @@ import { SignupComponent } from '../signup/signup.component';
 })
 
 export class NavComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router
+    ) {}
 
 //Login
 openLoginDialog(): void {
@@ -37,4 +41,18 @@ openSignupDialog(): void {
   });
 }
 //Sign-Up
+
+
+gotToHome() {
+  this.router.navigate(['']);
+}
+
+
+gotToCustomerDashboard() {
+  this.router.navigate(['main/dashboard']);
+}
+
+
+
+
 }

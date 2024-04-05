@@ -1,1 +1,26 @@
-<p>today works!</p>
+<div class="today">
+    <div class="today-today-wrapper">
+        <header>
+            <h1>Your Reservations</h1>
+        </header>
+         <section class="content-tab">
+                 <mat-tab-group>
+                    <mat-tab label="Checking Out">
+                        <app-checking-out></app-checking-out>
+                    </mat-tab>
+                    <mat-tab label="Currently Proprietor"> 
+                        <app-currently-proprietor></app-currently-proprietor> 
+                    </mat-tab>
+                    <mat-tab label="Arriving Soon">
+                        <app-arriving-soon></app-arriving-soon> 
+                    </mat-tab>
+                    <mat-tab label="Upcoming"> 
+                        <app-upcoming></app-upcoming>
+                    </mat-tab>
+                    <mat-tab label="Pending Review"> 
+                        <app-pending-review></app-pending-review> 
+                    </mat-tab>
+                  </mat-tab-group>
+         </section>
+    </div>
+</div>
