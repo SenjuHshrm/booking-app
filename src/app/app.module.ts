@@ -25,6 +25,7 @@ import { NavComponent } from './globals/nav/nav.component';
 import { FooterComponent } from './globals/footer/footer.component';
 import { LoginComponent } from './globals/login/login.component';
 import { SignupComponent } from './globals/signup/signup.component';
+import { GlobalsModule } from './globals/globals.module';
 
 
 
@@ -67,6 +68,7 @@ export class CustomErrorHandler implements ErrorHandler {
     MatInputModule,
     MatNativeDateModule,
     MatMenuModule,
+    GlobalsModule
   ],
 
   exports:[

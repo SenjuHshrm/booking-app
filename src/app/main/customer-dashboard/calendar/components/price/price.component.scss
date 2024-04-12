@@ -1,0 +1,55 @@
+.price-container {
+    font-family: Poppins-Regular;
+
+    &-price-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top:1rem;
+        gap: 2rem;
+        overflow-y: auto;
+        height:100vh;
+        padding:1rem;
+
+        .card-style {
+            background-color: #F7F7F7;
+            padding: 2rem;
+            border-radius: 1rem;
+
+
+            .title {
+                font-weight: bolder;
+                font-size: clamp(1rem, 1vw, 8rem);
+
+            }
+
+            .input {
+              
+                .sub-title{
+                    margin-top: 1rem;
+                }
+
+                .input-wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    font-size: clamp(1rem, 2vw, 8rem);
+                    font-weight: bolder;
+                    color: #68A86A;
+                    border-bottom: 2px solid #c4c4c4;
+                    
+                  
+
+                    input {
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        font-size: clamp(1rem, 2vw, 8rem);
+                        width: 100%;
+                        font-weight: bolder;
+                        color: #68A86A;
+                    }
+                }
+            }
+        }
+    }
+}

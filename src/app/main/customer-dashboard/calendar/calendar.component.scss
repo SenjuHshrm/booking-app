@@ -1,5 +1,17 @@
-.calendar-container{
-    &-calendar-wrapper{
+.calendar-container {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100%;
+    gap: 1rem;
+    margin: 5rem 0 5rem;
+
+    &-calendar-side-info {
+        flex-basis: 25%;
         
+
+    }
+
+    &-calendar-wrapper {
+        flex-basis: 75%;
     }
 }

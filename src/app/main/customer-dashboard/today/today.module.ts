@@ -15,7 +15,6 @@ import {MatTabsModule} from '@angular/material/tabs';
     TodayRoutingModule,
     ComponentsModule,
     MatTabsModule,
-    ComponentsModule
     
   ]
 })
