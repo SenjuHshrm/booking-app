@@ -3,15 +3,22 @@
     flex-direction: row;
     flex-basis: 100%;
     gap: 1rem;
-    margin: 5rem 0 5rem;
+    margin: 2rem 0 2rem;
+    height: 100%;
+    position: relative;
 
     &-calendar-side-info {
-        flex-basis: 25%;
-        
+        flex-basis: 20%;
+
+ 
 
     }
 
     &-calendar-wrapper {
-        flex-basis: 75%;
-    }
+        flex-basis: 78%;
+        full-calendar{
+            position: sticky;
+            top:1rem;
+        }
+    } 
 }
