@@ -1,0 +1,85 @@
+<div class="create-profile-modal">
+    <div>
+        <div class="close-button close" (click)="closeDialogCreateProfile()"><mat-icon>close</mat-icon></div>
+    </div>
+    <div class="create-profile-modal-create-profile-modal-wrapper">
+        <form>
+            <section class="upload-profile-picture">
+                <div class="image-upload">
+                    <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
+                        accept="image/*">
+                    <label for="fileInput" class="custom-file-label">
+                        <div *ngIf="imageUrl" class="preview">
+                            <img [src]="imageUrl" alt="uploaded-image">
+                        </div>
+                        <mat-icon *ngIf="!imageUrl" class="custom-icon">person</mat-icon>
+                        <!-- <img *ngIf="!imageUrl" src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                            alt="camera-Icon" class="custom-icon"> -->
+                    </label>
+                    <label for="fileInput" class="main-button custom-btn">Upload Image</label>
+                </div>
+            </section>
+            <section class="info-details">
+                <div class="title">
+                  About your self
+                </div>
+                <div class="say-something-about-your-profile">
+                    <div class="say-something-about-your-profile-wrapper">
+                        <div class="input-wrapper">
+                            <div class="label">Say something about your profile </div>
+                            <textarea type="text" name="say-something"
+                                placeholder="You’ll have a great time at this comfortable place to stay.."> </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="your-information-about-your-info">
+                    <div class="your-likes">
+                        <div class="title">Your Personal Information</div>
+                    <div class="info">
+                        <div class="input-wrapper">
+                            <div class="label">Name</div>
+                            <input type="text" name="name" value="" placeholder="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Surname</div>
+                            <input type="text" name="surname" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Email</div>
+                            <input type="text" name="email" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Contact Number</div>
+                            <input type="text" name="contact" value="">
+                        </div> 
+                    </div>
+                </div>
+                </div>
+                <div class="your-information-about-your-self">
+                    <div class="your-likes">
+                        <div class="title">Your likes</div>
+                    <div class="info">
+                        <div class="input-wrapper">
+                            <div class="label">Hobbies</div>
+                            <input type="text" name="street" value="" placeholder="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Work</div>
+                            <input type="text" name="barangay" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Favorite Food</div>
+                            <input type="text" name="city" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Favorite Place</div>
+                            <input type="text" name="zipcode" value="">
+                        </div> 
+                    </div>
+                </div>
+                </div>
+                <button class="main-button">Save</button>
+            </section>
+        </form>
+    </div>
+</div>

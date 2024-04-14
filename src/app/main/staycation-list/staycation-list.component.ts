@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { StaycationlistLocationModalComponent } from './component/staycationlist-location-modal/staycationlist-location-modal.component';
+import { StaycationlistAddguestModalComponent } from './component/staycationlist-addguest-modal/staycationlist-addguest-modal.component';
 
 @Component({
   selector: 'app-staycation-list',
@@ -7,8 +10,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./staycation-list.component.scss']
 })
 export class StaycationListComponent {
-  constructor(private router: Router) {}
+  constructor(public dialog:MatDialog ,private router: Router) {}
   
+  showLocationModal(): void {
+    const dialogRefLocation = this.dialog.open(StaycationlistLocationModalComponent, {
+      panelClass: 'custom-location-modal'
+    });
+
+    dialogRefLocation.afterClosed().subscribe(() => {
+    console.log('The dialog was closed');
+  });
+}
+
+    showAddGuestModal(): void {
+      const dialogRefGuest = this.dialog.open(StaycationlistAddguestModalComponent, {
+        panelClass: 'custom-guest-modal'
+      });
+  
+      dialogRefGuest.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
   navigateToBookStaycation() {
     this.router.navigate(['main/staycation-details']);
     console.log("Click");

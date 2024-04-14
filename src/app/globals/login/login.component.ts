@@ -7,16 +7,10 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(
-    public dialogLogin: MatDialogRef<LoginComponent>
-    ) { }
+  constructor(public dialogLogin: MatDialogRef<LoginComponent>) { }
   
+
   dialog: any;
-  
-  closeDialogLogin(): void {
-    this.dialogLogin.close();
-  }
-  
   username:any;
   password: string = '';
   showPassword: boolean = false;
@@ -28,6 +22,12 @@ export class LoginComponent {
     this.dialogLogin.close();
   }
   
+
+  closeDialogLogin(): void {
+    this.dialogLogin.close();
+  }
+  
+
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }

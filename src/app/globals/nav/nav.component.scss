@@ -31,7 +31,11 @@ nav {
                 align-items: center;
                 gap: 1rem;
 
-                .name {}
+                .account-type-btn {
+                    text-decoration: underline;
+                    color: #63AB68;
+                    cursor: pointer;
+                }
 
 
                 img {

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { CreateListingComponent } from 'src/app/globals/create-listing/create-listing.component';
 
 @Component({
   selector: 'app-listing',
@@ -12,8 +14,19 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ListingComponent {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor() {
+  constructor(public createlistingDialog:MatDialog) {
     this.paginator = {} as MatPaginator;
+  }
+
+  
+  openCreateListingDialog(): void {
+    const dialogCreateListing = this.createlistingDialog.open(CreateListingComponent, {
+      panelClass: 'custom-createlisting-modal'
+    });
+  
+    dialogCreateListing.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
   }
 
   dataSource = new MatTableDataSource<any>([

@@ -1,0 +1,61 @@
+<div class="user-profile">
+    <section class="user-profile-user-profile-container">
+        <!-- <router-outlet></router-outlet> -->
+        <div class="user-profile-user-profile-wrapper">
+            <div class="section-1">
+                <div class="profile-picture">
+                    <div class="wrapper">
+                        <div class="profile-picture-img">
+                            <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy"
+                                alt="Avatar" [draggable]="false">
+                        </div>
+                        <div class="profile-info">
+                            <div class="name">Juan Dela Cruz</div>
+                            <div class="label">Proprietor</div>
+                            <div class="duration-at-tarago">7 months on TaraGo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="verification">
+                    <div class="confirm">Juan 's confirmed information not found.</div>
+                </div>
+            </div>
+            <div class="section-2">
+                <div class="header">
+                    <div class="title">About your self</div>
+                    <div class="create-profile" (click)="openCreateProfileDialog()">
+                        <button><span><mat-icon>person_add</mat-icon></span>Complete your profile</button>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="say-something">
+                        Say something about your properties
+                    </div>
+                    <div class="info-details-personal-info">
+                        <div class="title">Your Personal Information</div>
+                        <div class="info-details-wrapper" *ngFor="let personInfos of personalInfos">
+                            <div class="info-details-label">{{personInfos.label}}</div>
+                            <div class="info-details-content">{{personInfos.info}}</div>
+                        </div>
+                    </div>
+                    <div class="info-details-likes">
+                        <div class="title">Your likes</div>
+                        <div class="info-details-wrapper" *ngFor="let personLikes of personalLikes">
+                            <div class="info-details-label">{{personLikes.label}}</div>
+                            <div class="info-details-content">{{personLikes.info}}</div>
+                        </div>
+                    </div>
+                    <div class="info-details-your-listing">
+                        <div class="title">Your Listing Properties</div>
+                        <div class="content">
+                             No Listing Found
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

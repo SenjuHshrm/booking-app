@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-
 /* You can add global styles to this file, and also import other style files */
-*, *::before,*::after {box-sizing:inherit;}
+
+*, *::before,*::after { box-sizing: border-box;}
 html{box-sizing: border-box;}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family:Poppins-Regular}
+
 
 
 
@@ -100,6 +102,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    color: #63AB68;
  }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

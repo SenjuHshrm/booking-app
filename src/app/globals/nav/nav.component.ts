@@ -18,7 +18,7 @@ export class NavComponent {
     private router: Router
     ) {}
 
-//Login
+
 openLoginDialog(): void {
   const dialogRefLogin = this.dialog.open(LoginComponent, {
     panelClass: 'custom-login-modal'
@@ -28,9 +28,9 @@ openLoginDialog(): void {
     console.log('The dialog was closed');
   });
 }
-//Login
 
-//Sign-Up
+
+
 openSignupDialog(): void {
   const dialogRefSignup = this.dialog.open(SignupComponent, {
     panelClass: 'custom-signup-modal'
@@ -40,19 +40,26 @@ openSignupDialog(): void {
     console.log('The dialog was closed');
   });
 }
-//Sign-Up
 
 
-gotToHome() {
+
+goToHome() {
   this.router.navigate(['']);
 }
 
 
-gotToCustomerDashboard() {
+goToCustomerDashboard() {
   this.router.navigate(['main/dashboard']);
 }
 
+goToUserProfile() {
+  this.router.navigate(['main/users-profile']);
+}
 
+
+goToAccountSettings() {
+  this.router.navigate(['main/accounts-settings']);
+}
 
 
 }

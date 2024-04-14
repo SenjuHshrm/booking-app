@@ -30,6 +30,7 @@ import { GlobalsModule } from './globals/globals.module';
 
 
 
+
 export class CustomErrorHandler implements ErrorHandler {
   handleError(error: any) {
     // Custom error handling logic
@@ -46,7 +47,8 @@ export class CustomErrorHandler implements ErrorHandler {
     NavComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    
   ],
 
   imports: [

@@ -1,0 +1,53 @@
+.locations-modal {
+    width:30rem;
+    padding: 1.5rem;
+    &-locations-wrapper-modal {
+        .location-header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            // border: 1px solid black;
+            .title{
+                font-size: clamp(1rem, 1vw, 8rem);
+            }
+        }
+    }
+
+    .search-wrapper {
+        // border: 1px solid black;
+        width:100%;
+   
+        .inputs{
+            display: flex;
+            justify-content: space-between;
+            gap:.5rem;
+            margin:1rem 0 1rem;
+            input{
+                flex: 1;
+            }
+            button{
+                background-color:#68A86A;
+                border: none;
+                color: white;
+                
+            }
+        }
+
+        .address-list{
+            display: flex;
+            flex-direction: column;
+            gap:.8rem;
+            .address-list-item{
+               margin: .2rem 0 .2rem;
+               padding: .2rem 0 .2rem;
+            }
+            .address-list-item:hover{
+                background-color: #68A86A;
+                color: white;
+                cursor: pointer;
+                margin: .2rem 0 .2rem;
+                padding: .2rem 0 .2rem;
+             }
+        }
+    }
+}
