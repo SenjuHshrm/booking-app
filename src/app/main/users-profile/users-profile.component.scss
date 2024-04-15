@@ -1,0 +1,217 @@
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Poppins-Regular;
+    position: relative;
+    
+    &-user-profile-container {
+        flex: 1;
+        padding: 2rem 0 2rem;
+        overflow-y: auto;
+        position: relative;
+
+        .user-profile-user-profile-wrapper {
+            width: 100%;
+            max-width: 70%;
+            margin: 0 auto 0;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 30% 70%;
+            gap: 10px;
+            flex: 1;
+            position: relative;
+          
+          
+            .section-1 {
+                // border: 1px solid black;
+                position: sticky;
+                top:0;
+                bottom: 0;
+                background-color: #F7F7F7;
+                flex-basis: 30%;
+                display: flex;
+                flex-direction: column;
+                padding: 1rem 0 1rem;
+                border-radius: 10px;
+
+
+                .profile-picture {
+                    flex-basis: 50%;
+                    border-bottom: 1px solid rgb(223, 223, 223);
+                    height: 100%;
+                    display: grid;
+                    place-content: center;
+
+                    .wrapper {
+                        // border: 1px solid black;
+                        flex: none;
+                        width: fit-content;
+                        height: fit-content;
+                        display: flex;
+                        flex-direction: column;
+
+                        .profile-picture-img {
+                            margin: auto;
+                            max-width: 10rem;
+
+                            img {
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+
+                        .profile-info {
+                            text-align: center;
+                            flex-basis: 50%;
+
+                            .name {
+                                font-size: clamp(1.2rem, 1.2vw, 8rem);
+                                font-weight: bold;
+                            }
+
+                            .label {
+                                color: #68A86A;
+                                font-size: .8rem;
+                            }
+
+                            .duration-at-tarago {
+                                font-size: .8rem;
+                            }
+                        }
+                    }
+                }
+
+                .verification {
+                    flex-basis: 50%;
+                    text-align: center;
+                    // border: 1px solid black;
+                    display: grid;
+                    place-content: center;
+
+                    .confirm {
+                        text-align: center;
+                        // border: 1px solid black;
+                    }
+                }
+            }
+
+            .section-2 {
+                // border: 1px solid black;
+                flex-basis: 70%;
+                height: 100%;
+                border: 1px solid #e4e4e4;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding: 1rem;
+
+                .header {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    .title {
+                        font-size: clamp(1.5rem, 1.5vw, 8rem);
+                        font-weight: bolder;
+            
+                    }
+
+                    .create-profile {
+                        button {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: .5rem;
+                            background-color: transparent;
+                            color: #68A86A;
+                            border: none;
+                            cursor: pointer;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .content {
+
+                    flex-basis: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3rem;
+
+                    .say-something {
+                        flex-basis: 80%;
+                        background-color: #f5f5f5;
+                        padding: 1rem;
+                        border-radius: 10px;
+                        text-align: left;
+                        display: grid;
+                        place-content: center;
+                        // border: 1px solid black;
+                    }
+
+                    .info-details-personal-info{
+                        
+                       
+                        .title {
+                            font-weight: bolder;
+                            font-size: clamp(1rem, 1vw, 8rem);
+                            margin-bottom:1rem;
+                           
+                        }
+
+                        .info-details-wrapper {
+                            // border: 1px solid black;
+                            color: #575757;
+                            flex-basis: 20%;
+                            display: grid;
+                            grid-template-columns: 50% 50%;
+                            border-bottom: 1px solid rgb(214, 214, 214);
+                            padding:1rem;
+
+                            .info-details-label {
+                                font-weight:bold;
+                               
+                            }
+                        }
+                    }
+
+                    .info-details-likes {
+                        
+                       
+                        .title {
+                            font-weight: bolder;
+                            font-size: clamp(1rem, 1vw, 8rem);
+                            margin-bottom:1rem;
+                           
+                        }
+
+                        .info-details-wrapper {
+                            // border: 1px solid black;
+                            color: #575757;
+                            flex-basis: 20%;
+                            display: grid;
+                            grid-template-columns: 50% 50%;
+                            border-bottom: 1px solid rgb(214, 214, 214);
+                            padding:1rem;
+
+                            .info-details-label {
+                                font-weight: bold;
+                            }
+                        }
+                    }
+
+
+                    .info-details-your-listing {
+                        .title {
+                            font-weight: bolder;
+                            font-size: clamp(1rem, 1vw, 8rem);
+                            margin-bottom:1rem;
+                           
+                        } 
+                    }
+                }
+            }
+        }
+    }
+}

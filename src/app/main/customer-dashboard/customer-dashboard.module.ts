@@ -11,7 +11,7 @@ import { CustomerDashboardComponent } from './customer-dashboard.component';
   ],
   imports: [
     CommonModule,
-    CustomerDashboardRoutingModule
+    CustomerDashboardRoutingModule,
   ]
 })
 export class CustomerDashboardModule { }

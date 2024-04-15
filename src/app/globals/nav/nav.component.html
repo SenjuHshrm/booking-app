@@ -1,0 +1,32 @@
+<nav>
+    <div class="nav-wrapper">
+        <div class="header-logo" (click)="goToHome()">
+            <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" />
+        </div>
+        <div class="avatar-account-menu-wrapper">
+            <div class="avatar-account">
+                <div class="account-type-btn">Switch to traveller</div>
+                <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar"
+                    [draggable]="false">
+
+            </div>
+
+            <button class="menu" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="goToUserProfile()">Profile</button>
+                <button mat-menu-item>Messages</button>
+                <button mat-menu-item>My Favorite</button>
+                <button mat-menu-item (click)="goToCustomerDashboard()">Manage Listing</button>
+                <button mat-menu-item (click)="goToAccountSettings()">Account Setting</button>
+                <button mat-menu-item>Help</button>
+                <button mat-menu-item>Logout</button>
+            </mat-menu>
+
+        </div>
+        <div class="header-login-button">
+            <button (click)="openLoginDialog()">Login</button>
+            <div class="divider"></div>
+            <button class="sign-up" (click)="openSignupDialog()">SignUp</button>
+        </div>
+    </div>
+</nav>

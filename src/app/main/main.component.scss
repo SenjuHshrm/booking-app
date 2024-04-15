@@ -1,0 +1,13 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: Poppins-Regular;
+
+    .content{
+        flex: 1;
+        height: 100%;
+        overflow: auto;
+    }
+   
+}

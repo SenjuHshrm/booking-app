@@ -1,0 +1,226 @@
+<div class="create-listing-container">
+    <div>
+        <div class="close-button close" (click)="closeDialogCreateListing()"><mat-icon>close</mat-icon></div>
+   </div>
+        <div class="create-listing-container-create-listing-wrapper">
+        <form>
+            <div class="form-listing">
+                <section class="describe-your-place">
+                    <div class="title">
+                        Describe your place
+                    </div>
+                    <div class="describe-your-place-wrapper">
+                        <div class="checkbox" *ngFor="let yourPlace of places">
+                            <input type="checkbox" name="house" value="" />
+                            <div class="label">{{yourPlace.placetype}}</div>
+                        </div>
+                    </div>
+                    <div class="others">
+                        <div>Other:</div>
+                        <input type="text" name="house" value="" placeholder="Describe your place" />
+                    </div>
+                </section>
+                <section class="type-of-place">
+                    <div class="title">
+                        Type of place will guest have
+                    </div>
+                    <div class="type-of-place-wrapper">
+                        <div class="checkbox" *ngFor="let typePlace of typeofplace">
+                            <div class="checkbox-wrapper">
+                                <div class="info">
+                                    <div class="label">{{typePlace.label}}</div>
+                                    <div class="desc">{{typePlace.desc}}</div>
+                                </div>
+                                <input type="checkbox" name="house" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="where-is-located">
+                    <div class="title">
+                        Tell the guest where the place is located.
+                    </div>
+                    <div class="where-is-located-wrapper">
+                        <div class="input-wrapper">
+                            <div class="label">Unit No. Street, Subdivision etc.</div>
+                            <input type="text" name="street" value="" placeholder="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Barangay</div>
+                            <input type="text" name="barangay" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">City / Municipality</div>
+                            <input type="text" name="city" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Zip Code</div>
+                            <input type="text" name="zipcode" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Province</div>
+                            <input type="text" name="province" value="">
+                        </div>
+                    </div>
+
+                </section>
+                <section class="share-about-your-place">
+                    <div class="title">
+                        Share some basics about your place
+                    </div>
+                    <div class="share-about-your-place-wrapper">
+                        <div class="input-wrapper">
+                            <div class="label">Guests</div>
+                            <input type="number" name="street" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Bedrooms</div>
+                            <input type="number" name="barangay" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Beds</div>
+                            <input type="number" name="city" value="">
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Bathroom</div>
+                            <input type="number" name="zipcode" value="">
+                        </div>
+                    </div>
+                </section>
+                <section class="inform-your-visitors-amenities-wrapper">
+                    <div class="title">
+                        Inform your visitors about the amenities and features
+                        available at your location.
+                    </div>
+                    <div class="inform-your-visitors-amenities-wrapper">
+                        <div class="checkbox" *ngFor="let yourAmenities of amenities">
+                            <input type="checkbox" name="house" value="" />
+                            <div class="label">{{yourAmenities.placeamenities}}</div>
+                        </div>
+                    </div>
+                    <div class="others">
+                        <div>Other:</div>
+                        <input type="text" name="house" value="" placeholder="Describe your amenities" />
+                    </div>
+                </section>
+                <section class="add-photos-place">
+                    <div class="title">
+                        Add some photos of your house
+                    </div>
+                    <div class="add-photos-place-wrapper">
+                        <div class="container">
+                            <div class="side-panel">
+                                <input type="file" id="fileInput" style="display: none;"
+                                    (change)="onFileSelected($event)" accept="image/*" multiple>
+                                <label for="fileInput" class="custom-file-label">
+                                    <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                                        alt="camera-Icon" class="custom-icon">
+                                    <span>Upload Image</span>
+                                </label>
+                            </div>
+                            <div class="gallery">
+                                <div *ngFor="let image of uploadedImages" class="image">
+                                    <img [src]="image" alt="Uploaded Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="add-property-title">
+                    <div class="title">
+                        Now, let’s give your house a title
+                    </div>
+                    <div class="add-property-title-wrapper">
+                        <div class="input-wrapper">
+                            <div class="label">Your property title</div>
+                            <textarea type="text" name="street" value="" placeholder="Type here.."> </textarea>
+                        </div>
+                    </div>
+                </section>
+                <section class="describe-your-house">
+                    <div class="title">
+                        Let’s describe your house
+                    </div>
+                    <div class="describe-your-house-wrapper">
+                        <div class="checkbox" *ngFor="let describeyourHouse of describehouse">
+                            <input type="checkbox" name="house" value="" />
+                            <div class="label">{{describeyourHouse.describeHouse}}</div>
+                        </div>
+                    </div>
+                    <div class="others">
+                        <div>Other:</div>
+                        <input type="text" name="house" value="" placeholder="Describe your house" />
+                    </div>
+                </section>
+                <section class="create-description-house">
+                    <div class="title">
+                        Create your description of your house
+                    </div>
+                    <div class="create-description-house-wrapper">
+                        <div class="input-wrapper">
+                            <div class="label">Description of your house </div>
+                            <textarea type="text" name="street" value=""
+                                placeholder="You’ll have a great time at this comfortable place to stay.."> </textarea>
+                        </div>
+                    </div>
+                </section>
+                <section class="add-discounts">
+                    <div class="title">
+                        Add discounts
+                    </div>
+                    <div class="add-discounts-wrapper">
+                        <div class="checkbox" *ngFor="let addDiscounts of adddiscounts">
+                            <div class="checkbox-wrapper">
+                                <div class="info">
+                                    <div class="label">{{addDiscounts.label}}<span>%</span></div>
+                                    <div class="desc">{{addDiscounts.desc}}</div>
+                                </div>
+                                <input type="checkbox" name="house" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="does-your-place-have-this">
+                    <div class="title">
+                        Does your place have any of these?
+                    </div>
+                    <div class="does-your-place-have-this-wrapper">
+                        <div class="checkbox" *ngFor="let doesyourPlace of doesyourplace">
+                            <input type="checkbox" name="house" value="" />
+                            <div class="label">{{doesyourPlace.doesyourPlace}}</div>
+                        </div>
+                    </div>
+                </section>
+                <!-- <section class="add-taxes">
+                <div class="title">
+                    Set your price
+                </div>
+                <div class="add-discounts-wrapper">
+                    <div class="input-wrapper">
+                        <div class="label">₱</div>
+                        <input type="number" name="street" value="">
+                    </div>
+                    <div class="taxes">
+                        <div class="taxes-btn">Taxes</div>
+                        <div>Guest price before taxes</div>
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="label">₱</div>
+                        <input class="read-only" type="number" name="street" value="">
+                    </div>
+                </div>
+            </section> -->
+                <section class="important-things-to-know">
+                    <div class="title">Important things to know</div>
+                    <div class="description">
+                        <p>Be sure to comply with your <span>local laws</span> and review TaraGo <span>nondiscrimination
+                                policy</span> and <span>guest and proprietor fees</span>.</p>
+                    </div>
+                </section>
+            </div>
+            <div class="btn-listing">
+                <button class="main-button">Proceed to listing</button>
+            </div>
+        </form>
+    </div>
+</div>

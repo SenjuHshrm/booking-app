@@ -18,6 +18,14 @@ import { PendingReviewComponent } from './pending-review/pending-review.componen
   ],
   imports: [
     CommonModule
+  ],
+
+  exports:[
+    CheckingOutComponent,
+    CurrentlyProprietorComponent,
+    ArrivingSoonComponent,
+    UpcomingComponent,
+    PendingReviewComponent
   ]
 })
 export class ComponentsModule { }

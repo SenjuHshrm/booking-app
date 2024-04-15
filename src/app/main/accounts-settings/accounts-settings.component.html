@@ -1,0 +1,16 @@
+<div class="account-settings">
+    <div class="account-settings-account-settings-wrapper">
+        <section class="account-settings-content">
+            <div class="title">Account Settings</div>
+            <div class="content">
+                <div class="tabs">
+                    <button (click)="goToLoginSecurity()">Login & Security</button>
+                    <button (click)="goToPaymentsWalletSetting()">Payment Settings</button>
+                </div>
+                <div class="info">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

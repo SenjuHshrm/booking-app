@@ -1,1 +1,148 @@
-<p>book-staycation works!</p>
+<div class="book-staycation">
+    <div class="book-staycation-book-staycation-wrapper">
+        <header class="booking-header">
+            <button (click)="backToBookingDetails()">
+                <mat-icon>chevron_left</mat-icon>
+                <span>Back</span>
+            </button>
+            <div class="title">Initiate Booking</div>
+        </header>
+        <section class="booking-content">
+            <div class="info-details">
+                <form>
+                    <div class="your-trip">
+                        <div class="title">Your trip</div>
+                        <div class="date-wrapper">
+                            <div class="checkin-out-dates">
+                                <mat-icon>calendar_today</mat-icon>
+                                <div class="label">Checkin</div>
+                                <div class="date">February 13, 2024</div>
+                            </div>
+                            <div class="checkin-out-dates">
+                                <mat-icon>calendar_today</mat-icon>
+                                <div class="label">Checkout</div>
+                                <div class="date">February 15, 2024</div>
+                            </div>
+                        </div>
+                        <div class="guest-wrapper">
+                            <mat-icon>people</mat-icon>
+                            <div class="label">Guest</div>
+                            <div>3 Guest, 2 Infant, 1 Pet</div>
+                        </div>
+                    </div>
+                    <div class="payment-method">
+
+                        <div class="title-wrapper">
+                            <div class="title">Paywith</div>
+                            <div class="wallet-icons">
+                                <div><img src="../../assets/images/main/book-staycation/visa.png" loading="lazy"
+                                        alt="Avatar" [draggable]="false"></div>
+                                <div><img src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy"
+                                        alt="Avatar" [draggable]="false"></div>
+                                <div><img src="../../assets/images/main/book-staycation/gcash.png" loading="lazy"
+                                        alt="Avatar" [draggable]="false"></div>
+                            </div>
+                        </div>
+                        <div class="payment-card-select custom-select">
+                            <select id="treats" name="treats">
+                                <option value="Credit Card or debit card">Credit Card or debit card</option>
+                                <option value="Gcash">Gcash</option>
+                                <option value="Master Card">Master Card</option>
+                            </select>
+                        </div>
+                        <div class="wrapper">
+
+                            <div class="expiration-style">
+                                <div>Expiration</div>
+                                <input type="date" name="date" class="custom-date-input" placeholder="" />
+                            </div>
+
+                            <div class="ccv-input">
+                                <input type="number" alt="ccv" name="ccv" value="" placeholder="CCV" />
+                            </div>
+                        </div>
+                        <div class="zip-code">
+                            <input type="number" alt="ccv" name="ccv" value="" placeholder="Zipcode" />
+                        </div>
+
+                    </div>
+                    <div class="cancellation-policy">
+                        <div class="title">Cancellation Policy</div>
+                        <div class="subtitle">Message the Host</div>
+                        <div class="description">This Reservation is non-refundable</div>
+                        <div class="seemore">Learn more</div>
+                    </div>
+                    <div class="ground-rules">
+                        <div class="title">Ground Rules</div>
+                        <p class="subtitle">We ask every guest to remember a few simple things about what makes a great
+                            guest.</p>
+                        <ul class="description">
+                            <li>Follow the house rules.</li>
+                            <li>Treat your Host’s home like your own.</li>
+                        </ul>
+                    </div>
+                    <div class="notes">
+                        <div><mat-icon>wb_sunny</mat-icon></div>
+                        <p>
+                            Your reservation won’t be confirmed until the Host accepts your request (within 24
+                            hours). You
+                            won’t be charged until then.
+                        </p>
+                    </div>
+                    <div class="agrees-policy">
+                        <p>By selecting the button below, I agree to the Host's House Rules, <span
+                                class="Ground Rules for guest">Ground rules for
+                                guests</span>, TaraGo's Rebooking and Refund Policy, and that Airbnb can charge my
+                            payment method if
+                            I’m responsible for damage. I agree to pay the total amount shown if the Host accepts my
+                            booking
+                            request.</p>
+                    </div>
+                    <button>Request to book</button>
+                </form>
+            </div>
+            <div class="price-details">
+                <div class="title">Price Details</div>
+                <div class="price-details-card">
+                        <div class="image">
+                            <img src="../../assets/images/main/book-staycation/image.jpg" loading="lazy" alt="images"
+                                [draggable]="false" />
+                        </div>
+                        <div class="title-wrapper">
+                            <div class="title">Condo in Alabang</div>
+                            <div class="heart">
+                                <mat-icon>stars</mat-icon>
+                                <div>Rate</div>
+                                <div>7.00</div>
+                            </div>
+                        </div>
+                        <div class="guest-desc">
+                            <span>3 guests</span> - <span>1 bedroom</span> - <span>2 beds</span> - <span>1 bath</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="total-computation-wrapper">
+                            <div class="note">You won’t be charged yet</div>
+                            <div class="computation">
+                                 <div class="comp">
+                                      <td><span>₱2,000</span> x 2 night</td>
+                                      <td>₱4000</td>
+                                 </div>
+                                 <div class="comp">
+                                      <td>TaraGo Service Fee</td>
+                                      <td>₱500</td>
+                                 </div>
+                            </div>
+                       </div>
+
+                       <div class="total">
+                        <div>Total before taxes</div>
+                        <div>₱2,500 total</div>
+                   </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

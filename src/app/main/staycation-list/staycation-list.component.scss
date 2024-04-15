@@ -1,0 +1,341 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.staycation-list {
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    height: fit-content;
+    font-family: Poppins-Regular;
+
+    &-staycation-wrapper {
+        .category-home-button {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            margin-right: auto;
+            margin-left: auto;
+            height: fit-content;
+            width: 100%;
+        
+            .category-wrapper {
+                display: flex;
+                gap: 1rem;
+            }
+        
+            button {
+                display: flex;
+                align-items: center;
+                gap: .3rem;
+                background-color: white;
+                width: fit-content;
+                border-radius: 1.5rem;
+                font-family: Poppins-Regular;
+                font-size: 15px;
+                font-weight: bold;
+                padding: 10px 20px 10px 20px;
+                box-shadow: 1px 1px 3px #88888877;
+                border: none;
+                cursor: pointer;
+                border: .5px solid rgb(212, 212, 212);
+        
+                img {
+                    width: 1rem;
+                    height: auto;
+        
+                }
+        
+            }
+        
+            button:hover {
+        
+                background-color: black;
+                color: white;
+        
+            }
+        }
+
+        .filters{
+            .search-filters-container {
+                margin-right: auto;
+                margin-left: auto;
+                margin-top:2rem;
+                margin-bottom:2rem;
+            
+                &-layer-2-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    gap: 1.5rem;
+                  
+                    
+                    .location {
+                        font-family: Poppins-Regular;
+                        font-size: 14px;
+                        font-weight: bold;
+                        flex-basis:100%;
+                        max-width:20rem;
+                        background-color: white;
+                        box-shadow: 1px 1px 5px #88888877;
+                        border-radius: 5px;
+                        padding: 8px 10px 8px 10px;
+                        cursor: pointer;
+                       
+                            .location-wrapper {
+                                width:100%;
+                                height: 100%;
+                                background-color: transparent;
+                                border:none;
+                                display: flex;
+                                align-items: center;
+                                gap:.5rem;
+                                
+                                mat-icon{
+                                    color: #68A968;
+                                }
+                              
+                                input{
+                                    outline: none;
+                                    border: none;
+                                    color: #797979;
+                                    cursor: pointer;
+                                }
+                            }
+                        
+                    }
+            
+                    .checkin-out-style {
+                        font-family: Poppins-Regular;
+                        font-size: 14px;
+                        font-weight: bold;
+                        display: flex;
+                        align-items: center;
+                        gap: .5rem;
+                        background-color: white;
+                        box-shadow: 1px 1px 5px #88888877;
+                        padding: 8px;
+                        width: fit-content;
+                        border-radius: 5px;
+            
+            
+                        .custom-date-input {
+                            // -webkit-appearance: none;
+                            //  -moz-appearance: none;
+                            // appearance: none;
+                            padding: 0.5rem .5rem;
+                            border: none;
+                            outline: none;
+                            border-radius: 5px;
+                            background-color: #fff;
+                            color: #797979;
+                            font-family: Arial, sans-serif;
+                            font-size: 14px;
+                            max-width: 150px;
+                            width: 100%;
+                            
+                        }
+            
+                        /* Custom style for the dropdown arrow */
+                        .custom-date-input::-webkit-calendar-picker-indicator {
+                            cursor: pointer;
+                            padding: .5rem;
+                            background-color: transparent;
+                            background-image: url('../../../assets/images/search-filters/v-icon.png'); // Replace with your pin icon
+                            /* You can use background-image here to add a custom image */
+                            
+                        }
+                          /* Custom style for the datepicker popup (Chrome, Safari) */
+                          .custom-date-input::-webkit-calendar-picker-popup {
+                            /* Add your custom styles for the popup */
+                            background-color: #68A968 !important;
+                            color: #68A968 !important;
+                            padding: 2rem;
+                          }
+                          
+                          /* Custom style for the datepicker popup (Firefox) */
+                          .custom-date-input[type="date"]::-moz-calendar-picker-indicator {
+                            /* Add your custom styles for the popup */
+                            background-color: #68A968 !important;
+                            color: #68A968 !important;
+                          }
+            
+            
+                        .calendar-icon {
+                            width: 25px;
+                            height: 25px;
+                            background-image: url('../../../assets/images/search-filters/calendaricon.png'); // Replace with your pin icon
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+            
+                    }
+            
+                    /* Customize the background color of the menu */
+                    .mat-menu-panel {
+                        background-color: #ffffff;
+                        /* Example color */
+                    }
+            
+                    .guest {
+                        font-family: Poppins-Regular;
+                        font-size: 14px;
+                        font-weight: bold;
+                        flex-basis:100%;
+                        max-width:20rem;
+                        background-color: white;
+                        box-shadow: 1px 1px 5px #88888877;
+                        border-radius: 5px;
+                        padding: 8px 10px 8px 10px;
+                        cursor: pointer;
+            
+                        .guest-wrapper{
+                           display: flex;
+                           width:100%;
+                           height: 100%;
+                           background-color: transparent;
+                           border:none;
+                           display: flex;
+                           align-items: center;
+                           gap:1rem;
+                           cursor: pointer;
+                         
+                           mat-icon{
+                            color:#68A968;
+                           }
+                           input{
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                           }
+                        }
+                    }
+                    
+                    button{
+                        background-color: transparent;
+                        padding:1rem;
+                        border: none;
+                        background-color: white;
+                        box-shadow: 1px 1px 5px #88888877;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        mat-icon{
+                            margin: 0px !important;
+                            padding: 0px !important;
+                            color: #68A968;
+                        }
+                    }
+                    button:hover{
+                        background-color:black;
+                    }
+                }
+            }
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            cursor: pointer;
+            margin-top: 5rem;
+
+            .stacked {
+                display: grid;
+
+                * {
+                    grid-column: 1 /.5;
+                    grid-row: 1/.5;
+                }
+            }
+
+            .card {
+                width: fit-content;
+                text-align: center;
+                margin: auto;
+                // box-shadow: -6px 11px 8px rgba(0, 0, 0, 0.3);
+                border-radius: 5%;
+                width: 80%;
+
+                .content__card {
+                    position: relative;
+                    z-index: 2;
+                    align-self: end;
+                    margin-bottom: 1.5rem;
+
+                    .info {
+                        height: fit-content;
+                        text-align: left;
+
+                        .title {
+                            display: inline-flex;
+                            align-items: center;
+                            font-weight: bold;
+                            font-size: max(min(.8rem), .5vw);
+                            color: black;
+                            // border: 1px solid black;
+                            height: fit-content;
+                        }
+
+                        .description {
+                            font-size: max(min(.8rem), .5vw);
+                        }
+
+                        .permonth {
+                            font-size: max(min(.8rem), .5vw);
+                            color: #68A968;
+                            font-weight: bold;
+                        }
+                    }
+
+                }
+
+                .image {
+                    aspect-ratio: 1/1;
+                    border-radius: 15px;
+                    object-fit: cover;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                }
+
+                .image:hover {
+                    opacity: 85%;
+                }
+
+            }
+        }
+
+        .seemore {
+            display: flex;
+            justify-content: center;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .btn {
+        max-width: 120px !important;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .content {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .staycation-list-container {
+        max-width: 93%;
+    }
+}

@@ -1,0 +1,103 @@
+nav {
+    border-bottom: 1px solid #D9D9D9;
+
+    .nav-wrapper {
+        max-width: 70%;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .header-logo {
+            cursor: pointer;
+
+            img {
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+
+        .avatar-account-menu-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            // border: 1px solid black;
+
+            .avatar-account {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                .account-type-btn {
+                    text-decoration: underline;
+                    color: #63AB68;
+                    cursor: pointer;
+                }
+
+
+                img {
+                    height: 35px;
+                    width: 35px;
+                    // border: 1px solid black;
+                }
+
+            }
+
+            .menu {
+                cursor: pointer;
+                background-color: white;
+                box-shadow: 1px 1px 5px #88888877;
+                padding: 10px 10px 5px;
+                border-radius: 100%;
+                color: #63AB68;
+                border: none;
+                outline: none;
+
+                mat-icon {
+                    margin: 0;
+                }
+
+
+            }
+
+            .menu:hover {
+                background-color: black;
+                color: #63AB68;
+            }
+        }
+
+        .header-login-button {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            height: 1.5rem;
+
+            button {
+                font-family: Poppins-Regular;
+                color: #63AB68;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+
+            .sign-up {
+                font-weight: bolder;
+            }
+
+            button:hover {
+                text-decoration: underline;
+            }
+
+            .divider {
+                width: 2px;
+                height: 100%;
+                background-color: #63AB68;
+
+            }
+
+        }
+    }
+}

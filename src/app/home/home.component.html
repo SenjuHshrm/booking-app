@@ -1,1 +1,300 @@
-<p>home works!</p>
+<div class="home-container">
+    <header class="home-container-header">
+           <app-nav></app-nav>
+        <div class="hero">
+            <div class="hero-wrapper">
+                <div class="title">
+                    <h1><span>Discover</span> Hotels, Resorts, Villas, <br /> and More!</h1>
+                    <p class="font-regular">TaraGo the optimal booking site for <br /> your relaxation needs.</p>
+                    <button class="main-button"  (click)="navigateToMain()">View More</button>
+                </div>
+                <div class="main-image">
+                    <swiper class="swiper-height" #swiper 
+                    [slidesPerView]="1" 
+                    [spaceBetween]="25" 
+                    [pagination]="true"
+                    [draggable]="true" 
+                    [loop]="true" 
+                    [autoplay]="true">
+                        >
+                        <ng-template swiperSlide *ngFor="let dest of destinations">
+                            <div class="images">
+                                <img src="./assets/images/home/header/hero/herovisual1.jpg" alt="hero-visual-1" />
+                            </div>
+                        </ng-template>
+                    </swiper>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="home-container-body">
+        <section class="home-container-body-section_1">
+            <div class="section-1-wrapper">
+                <div class="header">
+                    <div class="title">Premier destinations in the Philippines</div>
+                    <div class="subtitle">These popular destinations have a lot to offer</div>
+                </div>
+                <div>
+                    <swiper #swiper [slidesPerView]="4" [spaceBetween]="50" [pagination]="true" (autoplayPause)="true"
+                        [draggable]="true" [loop]="true" [centeredSlides]="true" [breakpoints]="{
+                   
+                    '300': {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                     '500': {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                    '1000': {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    '1500': {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                    }
+                }">
+                        <ng-template swiperSlide *ngFor="let dest of destinations">
+                            <div class="images">
+                                <img src={{dest.images}} alt="images" draggable="false" />
+                                <div class="desc">{{dest.description}}</div>
+                            </div>
+                        </ng-template>
+                    </swiper>
+                </div>
+
+            </div>
+
+        </section>
+        <section class="home-container-body-section_2">
+            <div class="section-2-wrapper">
+                <div class="image">
+                    <img src="./assets/images/home/section2/family.jpg" alt="image" />
+                </div>
+                <div class="info-wrapper">
+                    <div class="info-header">
+                        <div class="title">Make your staycation</div>
+                        <div class="title">
+                            <div><span>hassle-free with</span></div> 
+                            <img src="./assets/images/home/section2/taragologo.png" alt="logo" />
+                        </div>
+                        <div class="title-mobile">
+                               <div>Make your staycation <span>hassle-free with</span></div>
+                               <div><img src="./assets/images/home/section2/taragologo.png" alt="logo" /></div>
+                        </div>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-content-1">
+                            <div class="info-header">
+                                One-to-one guidance from a Proprietor
+                            </div>
+                            <div class="info-paragraph">
+                                We’ll match you with a property owner in your area, who’ll guide you from your first
+                                question to your first guest—by phone, video call, or chat.
+                            </div>
+                        </div>
+                        <div class="info-content-1">
+                            <div class="info-header">
+                                One-to-one guidance from a Proprietor
+                            </div>
+                            <div class="info-paragraph">
+                                We’ll match you with a property owner in your area, who’ll guide you from your first
+                                question to your first guest—by phone, video call, or chat.
+                            </div>
+                        </div>
+                        <div class="info-content-1">
+                            <div class="info-header">
+                                One-to-one guidance from a Proprietor
+                            </div>
+                            <div class="info-paragraph">
+                                We’ll match you with a property owner in your area, who’ll guide you from your first
+                                question to your first guest—by phone, video call, or chat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="home-container-body-section_1">
+            <div class="section-1-wrapper">
+                <div class="header">
+                    <div class="title">Explore properties by type</div>
+                    <div class="subtitle">These property type where able to offer</div>
+                </div>
+                <div>
+                    <swiper #swiper [slidesPerView]="4" [spaceBetween]="50" [pagination]="true" (autoplayPause)="true"
+                        [draggable]="true" [loop]="true" [centeredSlides]="true" [breakpoints]="{
+                   
+                    '300': {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                     '500': {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                    '1000': {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    '1500': {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                    }
+                }">
+                        <ng-template swiperSlide *ngFor="let propertytypes of types">
+                            <div class="images">
+                                <img src={{propertytypes.images}} alt="images" draggable="false" />
+                                <div class="desc">{{propertytypes.description}}</div>
+                            </div>
+                        </ng-template>
+                    </swiper>
+                </div>
+
+            </div>
+
+        </section>
+        <section class="home-container-body-section_3">
+            <div>
+                <mat-card class="section_3-mat-card">
+                    <form>
+                        <div class="section_3-wrapper">
+                            <div class="section_3-wrapper-content">
+                                <div class="inputs-wrapper">
+                                    <div class="address">
+                                        <div class="title">Address or area</div>
+                                        <div class="location-select">
+                                            <select>
+                                                <option value="" disabled selected>Select an address</option>
+                                                <option value="address1">Address 1</option>
+                                                <option value="address2">Address 2</option>
+                                                <!-- Add more options as needed -->
+                                            </select>
+                                            <div class="pin-icon"></div>
+                                        </div>
+                                    </div>
+                                    <div class="typeofspace">
+                                        <mat-radio-group [(ngModel)]="selectedOption">
+                                            <mat-radio-button [value]="'option1'">Entire Space</mat-radio-button>
+                                            <mat-radio-button [value]="'option2'">Private Room</mat-radio-button>
+                                            <!-- Add more radio buttons as needed -->
+                                        </mat-radio-group>
+                                    </div>
+                                    <div class="numbers">
+                                        <div class="numberofnights">
+                                            <div class="title">Nights</div>
+                                            <input type="number" name="nights" placeholder="Number of Nights" />
+                                        </div>
+                                        <div class="numberofbedrooms">
+                                            <div class="title">Bedrooms</div>
+                                            <input type="number" name="bedrooms" placeholder="Number of Bedrooms" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="result-wrapper">
+                                    <div class="estimate-inputs">
+                                        <h1>₱</h1>
+                                        <input type="text" name="result" value="0.00" readonly />
+                                    </div>
+                                    <div class="estimate">Estimate your pontential income with</div>
+                                    <div class="image-logo">
+                                        <img src="./assets/images/home/section2/taragologo.png" alt="logo" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="button-wrapper">
+                                <button class="learn">Learn how we estimate your earnings</button>
+                                <button class="main-button">Estimate</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </mat-card>
+            </div>
+            <div class="airplane_image">
+                <img src="./assets/images/home/section3/lineairplain.png" alt="image" />
+            </div>
+        </section>
+        <section class="home-container-body-section_4">
+            <div class="section_4-wrapper">
+                <div class="title">Your questions, <br><span>answered for you.</span></div>
+                <div class="questions">
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Is my place right for TaraGo?
+                                </mat-panel-title>
+                                <!-- <mat-panel-description>
+                                    Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                </mat-panel-description> -->
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Is my place right for TaraGo?
+                                </mat-panel-title>
+                                <!-- <mat-panel-description>
+                                    Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                </mat-panel-description> -->
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Is my place right for TaraGo?
+                                </mat-panel-title>
+                                <!-- <mat-panel-description>
+                                    Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                </mat-panel-description> -->
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Is my place right for TaraGo?
+                                </mat-panel-title>
+                                <!-- <mat-panel-description>
+                                    Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                </mat-panel-description> -->
+                            </mat-expansion-panel-header>
+                            <p>I'm visible because I am open</p>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+        </section>
+        <section class="home-container-body-section_5">
+            <div class="section_5-wrapper">
+                <div class="girl-image">
+                    <img src="./assets/images/home/section5/girl.png" alt="girl" />
+                </div>
+                <div class="content">
+                    <h1>
+                        Still have questions?
+                    </h1>
+                    <div class="info">
+                        <span>Contact us</span> or get answers from an
+                        experienced proprietor near you.
+                    </div>
+                   <div class="btn">
+                    <button class="main-button">Find property owner</button>
+                </div>
+                </div>
+            </div>
+            <div class="wavecolor-image">
+                <img src="./assets/images/home/section5/wavecolor.png" alt="wavecolor" />
+            </div>
+        </section>
+    </section>
+    <footer class="home-container-footer">
+        <app-footer></app-footer>
+    </footer>
+</div>

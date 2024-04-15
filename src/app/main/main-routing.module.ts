@@ -27,6 +27,14 @@ const routes: Routes = [
         loadChildren: () => import('./customer-dashboard/customer-dashboard.module').then(m => m.CustomerDashboardModule)
       },
       {
+        path: 'users-profile',
+        loadChildren: () => import('./users-profile/users-profile.module').then(m => m.UsersProfileModule)
+      },
+      {
+        path: 'accounts-settings',
+        loadChildren: () => import('./accounts-settings/accounts-settings.module').then(m => m.AccountsSettingsModule)
+      },
+      {
         path: '',
         redirectTo: 'staycation-list',
         pathMatch: 'prefix'

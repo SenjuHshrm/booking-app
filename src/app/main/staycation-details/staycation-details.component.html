@@ -1,1 +1,181 @@
-<p>staycation-details works!</p>
+<div class="staycation-details">
+     <div class="staycation-details-staycation-details-wrapper">
+          <section class="property-title">
+               <button (click)="backToMain()">
+                    <mat-icon>chevron_left</mat-icon>
+                    <span>Back</span>
+               </button>
+               <div class="title-wrapper">
+                    <div class="title">Condo in Alabang</div>
+                    <div class="heart">
+                         <mat-icon>stars</mat-icon>
+                         <div>Wishlist</div>
+                    </div>
+               </div>
+          </section>
+          <section class="image-gallery">
+               <div class="card stacked" *ngFor="let properties of listproperties; let i = index"
+                    [class.first-image]="i === 0">
+                    <div class="image">
+                         <img [src]="properties.image" loading="lazy" alt="images" [draggable]="false"/>
+                    </div>
+                    <div class="content__card">
+                         <!-- <div class="details">
+                      <div class="title">{{properties.title}}</div>
+                      <div class="description">{{properties.description}}</div>
+                      <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
+                  </div> -->
+                    </div>
+               </div>
+          </section>
+          <div class="details-reserve-wrapper">
+               <section class="details-column">
+                    <div class="details-header">
+                         <div class="title">1BR Flat with balcony near U.S. Embassy</div>
+                         <div class="subtitle">3 guests - 1 bedroom - 2 beds - 1 bath</div>
+                         <div class="rate">
+                              <div>Rate</div>
+                              <mat-icon>star</mat-icon>
+                              <div>7.00</div>
+                         </div>
+                    </div>
+                    <div class="details-user-avatar">
+                         <div class="image-avatar">
+                              <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy"
+                                   alt="Avatar" [draggable]="false">
+                         </div>
+                         <div>
+                              <div class="name">Juan Dela Cruz</div>
+                              <div class="years">Proprietor since 2 years</div>
+                         </div>
+                    </div>
+                    <hr>
+                    <div class="details-about">
+                         <div class="title">About this space</div>
+                         <div class="description">
+                              FLAT | 1-BR + Balcony DESIGN | Modern + Nordic LAYOUT | Corner Unit / 31 sqm• Superhost -
+                              Airbnb award for exemplary host• Near U.S. Embassy & Robinsons Mall Manila
+                         </div>
+                         <button>See more</button>
+                    </div>
+                    <hr>
+                    <div class="details-where-you-sleep">
+                         <div class="title-wrapper">
+                              <div class="title">Where you'll sleep</div>
+                              <div class="label">BedRoom</div>
+                              <div class="sublabel">1 double bed, 1 single bed</div>
+                         </div>
+                         <div class="image">
+                              <img src="../../assets/images/main/staycation-details/gallery3.png" loading="lazy"
+                                   alt="Avatar" [draggable]="false">
+                         </div>
+                    </div>
+                    <hr>
+                    <div class="details-whats-offer">
+                         <div class="title">What this place offers</div>
+                         <div class="description">
+                              City skyline view
+                              Kitchen
+                              Wifi
+                              HDTV with standard cable
+                              Elevator
+                              AC - split type ductless system
+                              Private patio or balcony
+                              Hair dryer
+                              Samsung refrigerator
+                              Microwave
+                         </div>
+                    </div>
+                    <hr>
+                    <div class="details-reviews">
+                         <div class="reviews">
+                              <div class="rate-stars">
+                                   <mat-icon>stars</mat-icon>
+                                   <div>4.80</div>
+                              </div>
+                              <div>-</div>
+                              <div class="number-reviews">
+                                   <p>501 <span>reviews</span></p>
+                              </div>
+
+                         </div>
+                         <div class="reviewer">
+                              <div class="avatar-wrapper">
+                                   <div class="avatar">
+                                        <img src="../../assets/images/main/staycation-details/avatarreviewer.png"
+                                             loading="lazy" alt="Avatar" [draggable]="false">
+                                   </div>
+                                   <div class="name-address-wrapper">
+                                        <div class="name">Oliver Belen</div>
+                                        <div class="address">Quezon City, Philippines</div>
+                                   </div>
+                              </div>
+                              <div class="comments">
+                                   We enjoyed our stay! The space is clean and well-organized, providing a comforting
+                                   atmosphere.
+                                   The condo building is accessible to US Embassy, staying here made our embassy
+                                   appointments much
+                                   easier. Robinson’s Manila is also a short walk away. The host is genuinely kind and
+                                   goes out of
+                                   their way to make guests feel welcome. The place is complete with everything we need.
+                                   We were
+                                   able to cook our food. We felt like home. We're definitely looking forward to come
+                                   back!
+                              </div>
+                              <button>See more</button>
+                         </div>
+
+                    </div>
+               </section>
+               <section class="reserve-sticky-column">
+                    <form>
+                         <div class="reserve-sticky-column-wrapper">
+                              <div class="rate-night">
+                                   <p>₱<span> 2,000 </span>night</p>
+                              </div>
+                              <div class="date-checkin-out">
+                                   <div class="checkin-out-style">
+                                        <div>Checkin</div>
+                                        <div class="calendar-icon"></div>
+                                        <input type="date" name="date" class="custom-date-input">
+                                   </div>
+                                   <div class="checkin-out-style">
+                                        <div>Checkout</div>
+                                        <div class="calendar-icon"></div>
+                                        <input type="date" name="date" class="custom-date-input">
+                                   </div>
+                              </div>
+                              <div class="add-guest">
+                                   <div class="guest-wrapper">
+                                        <div class="addguest">Add guest</div>
+                                        <mat-icon aria-hidden="false" aria-label="people" fontIcon="people"></mat-icon>
+                                        <input type="text" placeholder="Add guest" value="" readonly />
+                                   </div>
+                              </div>
+                              <button>Reserve</button>
+                              <div (click)="navigateToBookStaycation()">Reserve</div>
+                         </div>
+                    </form>
+                    <div class="total-computation-wrapper">
+                         <div class="note">You won’t be charged yet</div>
+                         <div class="computation">
+                              <div class="comp">
+                                   <td><span>₱2,000</span> x 2 night</td>
+                                   <td>₱4000</td>
+                              </div>
+                              <div class="comp">
+                                   <td>TaraGo Service Fee</td>
+                                   <td>₱500</td>
+                              </div>
+                         </div>
+
+                    </div>
+                    <div class="total">
+                         <div>Total before taxes</div>
+                         <div>₱2,500 total</div>
+                    </div>
+               </section>
+
+          </div>
+     </div>
+</div>

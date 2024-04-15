@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="login-container-wrapper">
+        <div class="close-button close" (click)="closeDialogLogin()"><mat-icon>close</mat-icon></div>
+        <div class="title">Login</div>
+        <div class="form-wrapper">
+            <form>
+                <div class="email-wrapper">
+                    <input type="text" id="email" name="email" placeholder="Email Address" autocomplete="email"><br><br>
+                </div>
+                <div class="password-wrapper">
+                    <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
+                        placeholder="Password" autocomplete="current-password" required><br><br>
+                    <span></span>
+                    <div class="eye" (click)="togglePasswordVisibility()">
+                        <mat-icon *ngIf="showPassword ===true? 'Show':''">visibility</mat-icon>
+                        <mat-icon *ngIf="showPassword ===false? 'Hide':''">visibility_off</mat-icon>
+                    </div>
+                </div>
+                <div class="forgot-pass">Forgot password?</div>
+                <button class="main-button width-button" type="button"
+                    (click)="login(username, password)">Login</button>
+            </form>
+        </div>
+        <div class="not-aguest">
+                <!-- <div>Not a guest? <button class="signup-button" (click)="openDialogSignup()">SignUp</button></div> -->
+            <div>or</div>
+        </div>
+        <div class="google-button main-button-outline ">
+            <img src="./assets/images/home/login/google.png" alt="googleicon" width="100px" height="100px" />
+            <div>continue with Google</div>
+        </div>
+    </div>
+</div>

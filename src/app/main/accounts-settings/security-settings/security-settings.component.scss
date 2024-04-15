@@ -1,0 +1,92 @@
+.security-settings {
+    &-security-settings-wrapper {
+        .section-1 {
+            // border: 1px solid black;
+            flex-basis: 70%;
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 1rem;
+
+            .header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                .title {
+                    font-size: clamp(1.5rem, 1.5vw, 8rem);
+                    font-weight: bolder;
+
+                }
+
+                .create-profile {
+                    button {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: .5rem;
+                        background-color: transparent;
+                        color: #68A86A;
+                        border: none;
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .content {
+
+                flex-basis: 50%;
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+
+                .info-details-personal-info {
+
+
+                    .title {
+                        font-weight: bolder;
+                        font-size: clamp(1rem, 1vw, 8rem);
+                        margin-bottom: 1rem;
+
+                    }
+
+                    .info-details-wrapper {
+                        // border: 1px solid black;
+                        color: #575757;
+                        flex-basis: 20%;
+                        display: grid;
+                        grid-template-columns: 50% 50%;
+                        border-bottom: 1px solid rgb(214, 214, 214);
+                        padding: 1rem;
+
+                        .info-details-label {
+                            font-weight: bold;
+
+                        }
+                        .info-password{
+                            display: flex;
+                            align-items: center;
+                            input{
+                                background-color: transparent;
+                                border: none;
+                                outline: none;
+                            }
+                            button{
+                                background-color: transparent;
+                                border:none;
+                                cursor: pointer;
+                                mat-icon{
+                                    color: #68A86A;
+                                }
+                            }
+                        }
+                       
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -1,0 +1,634 @@
+.staycation-details {
+    max-width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Poppins-Regular;
+    position: relative;
+
+    &-staycation-details-wrapper {
+
+        .property-title {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-between;
+
+            button {
+                background-color: transparent;
+                border: none;
+                display: flex;
+                align-items: center;
+                gap: .3;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            .title-wrapper {
+                flex-basis: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                .title {
+                    font-weight: bold;
+                    font-size: clamp(1.5rem, 1.5vw, 8rem);
+                }
+
+                .heart {
+                    color: #68A968;
+                    display: flex;
+                    gap: .5rem;
+                    align-items: center;
+                }
+            }
+        }
+
+        .image-gallery {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: .5rem;
+            cursor: pointer;
+            margin-bottom: 5rem;
+
+            .stacked {
+                display: grid;
+
+                * {
+                    grid-column: 1 /1;
+                    grid-row: 1/1;
+                }
+            }
+
+            .first-image {
+                // border: 2px solid red; 
+                grid-row: span 2;
+                grid-column: span 2;
+
+            }
+
+            .card {
+                width: 100%;
+                text-align: center;
+                margin: auto;
+                border-radius: none;
+                width: 80%;
+
+                .content__card {
+                    position: relative;
+                    z-index: 2;
+                    align-self: end;
+                    margin-bottom: 1.5rem;
+
+                    .info {
+                        height: fit-content;
+                        text-align: left;
+
+                        .title {
+                            display: inline-flex;
+                            align-items: center;
+                            font-weight: bold;
+                            font-size: max(min(.8rem), .5vw);
+                            color: black;
+                            // border: 1px solid black;
+                            height: fit-content;
+                        }
+
+                        .description {
+                            font-size: max(min(.8rem), .5vw);
+                        }
+
+                        .permonth {
+                            font-size: max(min(.8rem), .5vw);
+                            color: #68A968;
+                            font-weight: bold;
+                        }
+                    }
+
+                }
+
+                .image {
+                    aspect-ratio: 1/1;
+                    border-radius: none;
+                    object-fit: cover;
+
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+
+                }
+
+                .image:hover {
+                    opacity: 85%;
+                }
+
+            }
+
+            .card,
+            .stacked,
+            .first-image {
+                aspect-ratio: 1/1;
+            }
+        }
+
+        .details-reserve-wrapper {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap:20px;
+
+            .details-column {
+                .details-header {
+                    .title {
+                        font-size: clamp(1rem, 1.2vw, 8rem);
+                    }
+
+                    .subtitle {
+                        margin-top: 2px;
+                        color: #68A968;
+                        font-size: clamp(.8rem, .8vw, 8rem);
+                    }
+
+                    .rate {
+                        display: flex;
+                        color: #68A968;
+
+                        mat-icon {
+                            font-size: 20px;
+                        }
+                    }
+                }
+
+                .details-user-avatar {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    margin: 1rem 0 1rem;
+
+                    .image-avatar {
+                        max-width: 3rem;
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+
+                    .name {
+                        font-size: clamp(1rem, .8vw, 8rem);
+                    }
+
+                    .years {
+                        font-size: .8rem;
+                        color: #68A968;
+                    }
+                }
+
+                .details-about {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1rem;
+
+                    .title {
+                        font-size: clamp(1rem, 1.2vw, 8rem);
+                        margin: 1rem 0 1rem;
+                    }
+
+                    .description {
+                        font-size: clamp(.7rem, .7vw, 8rem);
+                    }
+
+                    button {
+                        color: #68A968;
+                        outline: none;
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                    }
+                }
+
+                .details-where-you-sleep {
+                    margin: 2rem 0 2rem;
+
+                    .title-wrapper {
+                        margin: 1rem 0 1rem;
+
+                        .title {
+                            font-size: clamp(1rem, 1.2vw, 8rem);
+                            margin: 1rem 0 1rem;
+                        }
+
+                        .label {
+                            font-size: 1rem;
+                        }
+
+                        .sublabel {
+                            font-size: .8rem;
+                            color: #68A968;
+                        }
+                    }
+
+                    .image {
+                        max-width: 15rem;
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        margin: 1rem 0 1rem;
+                    }
+                }
+
+                .details-whats-offer {
+                    margin: 2rem 0 2rem;
+
+                    .title {
+                        font-size: clamp(1rem, 1.2vw, 8rem);
+                        margin: 1rem 0 1rem;
+                    }
+
+                    .description {
+                        font-size: clamp(.7rem, .7vw, 8rem);
+                    }
+                }
+
+                .details-reviews {
+                    margin: 2rem 0 2rem;
+
+                    .reviews {
+                        font-weight: bolder;
+                        display: flex;
+                        gap: .3rem;
+                        align-items: center;
+                        font-size: clamp(1.5rem, .7vw, 8rem);
+
+                        .rate-stars {
+                            display: flex;
+                            gap: .3rem;
+                            align-items: center;
+                        }
+
+                        .number-reviews {
+                            p {
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    .reviewer {
+                        .avatar-wrapper {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+                            margin: 1rem 0 1rem;
+
+                            .avatar {
+                                max-width: 3rem;
+
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+
+                            .name-address-wrapper {
+
+                                .name {
+                                    font-size: clamp(1rem, .8vw, 8rem);
+                                }
+
+                                .address {
+                                    font-size: .8rem;
+                                    color: #68A968;
+                                }
+                            }
+                        }
+
+                        .comments {
+                            font-size: clamp(.7rem, .7vw, 8rem);
+                        }
+
+                        button {
+                            color: #68A968;
+                            background-color: transparent;
+                            border: none;
+                            cursor: pointer;
+                        }
+
+                    }
+                }
+            }
+
+            .reserve-sticky-column {
+                position: sticky;
+                top: 2rem;
+                margin-bottom: 2rem;
+                height: fit-content;
+                background-color: white;
+                box-shadow: 1px 1px 5px #88888877;
+                padding:2rem;
+                border-radius:5px;
+
+                .reserve-sticky-column-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap:1rem;
+
+                    .rate-night {
+                        font-size: clamp(1rem, 1vw, 8rem);
+                        font-weight: bolder;
+                    }
+
+                    .date-checkin-out {
+                        display: flex;
+                        
+                        gap:1rem;
+                        align-items: center;
+                        .checkin-out-style {
+                            font-family: Poppins-Regular;
+                            font-size: 14px;
+                            font-weight: bold;
+                            display: flex;
+                            align-items: center;
+                            gap: .5rem;
+                            background-color: white;
+                            box-shadow: 1px 1px 5px #88888877;
+                            padding: 8px;
+                            width: fit-content;
+                            border-radius: 5px;
+
+
+                            .custom-date-input {
+                                // -webkit-appearance: none;
+                                //  -moz-appearance: none;
+                                // appearance: none;
+                                padding: 0.5rem .5rem;
+                                border: none;
+                                outline: none;
+                                border-radius: 5px;
+                                background-color: #fff;
+                                color: #797979;
+                                font-family: Arial, sans-serif;
+                                font-size: 14px;
+                                max-width: 150px;
+                                width: 100%;
+
+                            }
+
+                            /* Custom style for the dropdown arrow */
+                            .custom-date-input::-webkit-calendar-picker-indicator {
+                                cursor: pointer;
+                                padding: .5rem;
+                                background-color: transparent;
+                                background-image: url('../../../assets/images/search-filters/v-icon.png'); // Replace with your pin icon
+                                /* You can use background-image here to add a custom image */
+
+                            }
+
+                            /* Custom style for the datepicker popup (Chrome, Safari) */
+                            .custom-date-input::-webkit-calendar-picker-popup {
+                                /* Add your custom styles for the popup */
+                                background-color: #68A968 !important;
+                                color: #68A968 !important;
+                                padding: 2rem;
+                            }
+
+                            /* Custom style for the datepicker popup (Firefox) */
+                            .custom-date-input[type="date"]::-moz-calendar-picker-indicator {
+                                /* Add your custom styles for the popup */
+                                background-color: #68A968 !important;
+                                color: #68A968 !important;
+                            }
+
+
+                            .calendar-icon {
+                                width: 25px;
+                                height: 25px;
+                                background-image: url('../../../assets/images/search-filters/calendaricon.png'); // Replace with your pin icon
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                            }
+
+                        }
+
+                    }
+                    .add-guest {
+                        font-size: 14px;
+                        font-weight: bold;
+                        flex-basis:100%;
+                        background-color: white;
+                        box-shadow: 1px 1px 5px #88888877;
+                        border-radius: 5px;
+                        padding:1rem;
+                        cursor: pointer;
+            
+                        .guest-wrapper{
+                           display: flex;
+                           width:100%;
+                           height: 100%;
+                           background-color: transparent;
+                           border:none;
+                           display: flex;
+                           align-items: center;
+                           gap:1rem;
+                           cursor: pointer;
+                         .addguest{
+                            text-wrap: nowrap;
+                         }
+                           mat-icon{
+                            color:#68A968;
+                            width:50px;
+                            height:auto;
+                           }
+
+                           input{
+                            width: 90%;
+                            border: 1px solid black;
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                           }
+                        }
+                    }
+                    button{
+                        width:100%;
+                        background-color:#68A968;
+                        border: none;
+                        color: white;
+                        font-size:1rem;
+                        padding:1rem;
+                        font-weight: bold;
+                        border-radius: 10px;
+                        cursor: pointer;
+                    }
+                    button:hover{
+                        background-color:black;
+                        color: #68A968;
+                        font-weight: bold;
+                    }
+
+                }
+                
+                .total-computation-wrapper{
+                 
+                    .note{
+                        font-size: max(min(.8rem), .5vw);
+                        font-weight: bold;
+                        color:#797979;
+                        text-align: center;
+                        margin-bottom:2rem;
+                    }
+                    .computation{
+                        width: 100%;
+
+                        .comp{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+                        
+                    }
+               
+                }
+                .total{
+                       margin:1rem 0 1rem;
+                       display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-weight: bolder;
+                     
+                }
+              
+            }
+
+        }
+
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .staycation-details {
+        &-staycation-details-wrapper {
+            .image-gallery {
+
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+                .first-image {
+                    // border: 2px solid red; 
+                    grid-row: span 3;
+                    grid-column: span 2;
+
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .staycation-details {
+        &-staycation-details-wrapper {
+            .image-gallery {
+
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+                .first-image {
+                    // border: 2px solid red; 
+                    grid-row: span 2;
+                    grid-column: span 2;
+
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .staycation-details {
+        max-width: 95%;
+
+        &-staycation-details-wrapper {
+            .image-gallery {
+
+                grid-template-columns: repeat(auto-fit, minmax(160px, 2fr));
+
+                .first-image {
+                    // border: 2px solid red; 
+                    grid-row: span 1;
+                    grid-column: span 1;
+
+                }
+
+                .card,
+                .stacked,
+                .first-image {
+                    aspect-ratio: 1/0.8;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .staycation-details {
+        max-width: 95%;
+
+        &-staycation-details-wrapper {
+            .image-gallery {
+
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+                .first-image {
+                    // border: 2px solid red; 
+                    grid-row: span 1;
+                    grid-column: span 1;
+
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .staycation-details {
+        max-width: 95%;
+
+        &-staycation-details-wrapper {
+            .image-gallery {
+
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+                .first-image {
+                    // border: 2px solid red; 
+                    grid-row: span 2;
+                    grid-column: span 2;
+
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .staycation-details {
+        max-width: 95%;
+
+        &-staycation-details-wrapper {
+            .image-gallery {
+
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+                .first-image {
+                    // border: 2px solid red; 
+                    grid-row: span 1;
+                    grid-column: span 2;
+
+                }
+            }
+        }
+    }
+}

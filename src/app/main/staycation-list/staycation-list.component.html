@@ -1,1 +1,73 @@
-<p>staycation-list works!</p>
+<div class="staycation-list">
+    <div class="staycation-list-staycation-wrapper">
+        <section class="category-home-button">
+            <button class="tarago-home" (click)="navigateToHome()">
+                <img src="./assets/images/search-filters/homeicon.png" alt="pinicon" />
+                <div>TaraGo</div>
+            </button>
+            <div class="category-wrapper">
+                <button class="tarago-staycations">
+                    <div>Staycations</div>
+                </button>
+                <button class="tarago-eventplace">
+                    <div>Event Place</div>
+                </button>
+            </div>
+        </section>
+
+        <section class="filters">
+           <div class="search-filters-container">
+        <form class="search-filters-container-layer-2-wrapper">
+            <div class="location">
+                <div class="location-wrapper" (click)="showLocationModal()">
+                    <div>Where</div>
+                    <mat-icon aria-hidden="false" aria-label="add_location" fontIcon="add_location"></mat-icon>
+                    <input type="text" name="location" placeholder="Search locations" readonly />
+                </div>
+            </div>
+            <div class="checkin-out-style">
+                <div>Checkin</div>
+                <div class="calendar-icon"></div>
+                <input type="date" name="date" class="custom-date-input">
+            </div>
+            <div class="checkin-out-style">
+                <div>Checkin</div>
+                <div class="calendar-icon"></div>
+                <input type="date" name="date" class="custom-date-input">
+            </div>
+            <div class="guest">
+                <div class="guest-wrapper" (click)="showAddGuestModal()">
+                    <div>Who</div>
+                    <mat-icon aria-hidden="false" aria-label="people" fontIcon="people"></mat-icon>
+                    <input type="text" placeholder="Add guest" value="" readonly />
+                </div>
+            </div>
+            <button type="submit" value="">
+                <mat-icon aria-hidden="false" aria-label="search" fontIcon="search"></mat-icon>
+            </button>
+        </form>
+</div>
+        </section> 
+
+        <section class="content " (click)="navigateToBookStaycation()">
+            <div class="card stacked" *ngFor="let properties of listproperties">
+                <div class="image">
+                    <img [src]="properties.image" />
+                </div>
+                <div class="content__card" >
+                    <div class="info">
+                        <div class="title">{{properties.title}}</div>
+                        <div class="description">{{properties.description}}</div>
+                        <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
+                    </div>
+                    <div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="seemore">
+            <button class="main-button" >See more</button>
+        </section>
+    </div>
+</div>

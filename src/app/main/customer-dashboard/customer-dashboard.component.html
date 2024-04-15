@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<div class="customer-dashboard">
+    <div class="customer-dashboard-customer-dashboard-wrapper">
+        <section class="tab-header">
+            <div class="header-text">
+                <h1>Hey, Juan! Welcome.</h1>
+            </div>
+            <div class="tab-wrapper">
+                <button class="main-button custom-btn" (click)="gotoToday()">Today</button>
+                <button class="main-button custom-btn" (click)="gotoCalendar()">Calendar</button>
+                <button class="main-button custom-btn" (click)="gotoListing()">Liting</button>
+                <button class="main-button custom-btn" (click)="gotoInbox()">Inbox</button>
+            </div>
+        </section>
+        <router-outlet></router-outlet>
+    </div>
+</div>
