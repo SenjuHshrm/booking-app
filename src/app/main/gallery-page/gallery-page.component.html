@@ -1,0 +1,12 @@
+<div class="gallery-page-container">
+    <header class="gallery-header">
+        <button (click)="backToBookingDetails()">
+            <mat-icon>chevron_left</mat-icon>
+            <span>Back</span>
+        </button>
+        <div class="title">Condo in Alabang Photo's</div>
+    </header>
+    <section>
+        <app-gallery [galleryData]="data" [showCount]="true"></app-gallery>
+    </section>
+</div>

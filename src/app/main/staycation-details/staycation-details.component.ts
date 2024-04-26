@@ -16,6 +16,11 @@ export class StaycationDetailsComponent {
     this.router.navigate(['main']);
   }
 
+  gotoGalleryPage() {
+    this.router.navigate(['main/gallery']);
+  }
+
+
   
   navigateToBookStaycation() {
     this.router.navigate(['main/book-staycation']);

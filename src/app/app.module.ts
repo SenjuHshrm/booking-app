@@ -64,13 +64,11 @@ export class CustomErrorHandler implements ErrorHandler {
     FormsModule,
     MatExpansionModule,
     MatDialogModule,
-    MatIconModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    MatMenuModule,
-    GlobalsModule
+    MatMenuModule
   ],
 
   exports:[

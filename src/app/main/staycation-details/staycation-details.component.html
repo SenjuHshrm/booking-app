@@ -13,7 +13,7 @@
                     </div>
                </div>
           </section>
-          <section class="image-gallery">
+          <section class="image-gallery" (click)="gotoGalleryPage()">
                <div class="card stacked" *ngFor="let properties of listproperties; let i = index"
                     [class.first-image]="i === 0">
                     <div class="image">
