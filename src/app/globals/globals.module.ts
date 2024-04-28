@@ -32,11 +32,13 @@ import { MyFavoriteComponent } from './my-favorite/my-favorite.component';
 
   exports: [
     ProfileComponent,
+    MyFavoriteComponent,
     CreateListingComponent,
     NavComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CreateListingComponent
   ]
 
 

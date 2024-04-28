@@ -4,18 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     title: 'TaraGo'
   },
   {
     path: 'main',
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
-    
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule) 
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
   }
- 
- 
-
 ];
 
 @NgModule({
