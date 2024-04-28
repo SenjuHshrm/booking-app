@@ -1,1 +1,19 @@
-
+<div class="gallery-lightbox-container">
+     <!-- <div class="title">Gallery</div> -->
+   <div class="gallery">
+       <div class="gallery-img" *ngFor ="let data of galleryData; let i=index">
+         <img (click)="onPreviewimage(i)" [src]="data.imageSrc" [alt]="data.imageAlt"/>
+       </div>
+   </div>
+   <div class="lightbox" *ngIf="showMask">
+    <span class="count" *ngIf="showCount">{{currentIndex + 1}}/{{totalImageCount}}</span>
+    <div class="close-btn" *ngIf="previewImage" (click)="onClose()">
+     <mat-icon>close</mat-icon>
+    </div>
+    <button class="btn-lightbox-carousel btn-prev" *ngIf="controls" (click)="clickNext()"><mat-icon>chevron_left</mat-icon></button>
+    <button class="btn-lightbox-carousel btn-next" *ngIf="controls" (click)="clickPrev()"><mat-icon>chevron_right</mat-icon></button>
+    <div class="lightbox-img" *ngIf="currentLightboxImage" >
+       <img [src]="currentLightboxImage.imageSrc" [alt]="currentLightboxImage.imageAlt"/>
+    </div>
+</div>
+</div>

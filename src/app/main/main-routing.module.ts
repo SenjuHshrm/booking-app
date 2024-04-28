@@ -35,6 +35,10 @@ const routes: Routes = [
         loadChildren: () => import('./accounts-settings/accounts-settings.module').then(m => m.AccountsSettingsModule)
       },
       {
+        path: 'gallery',
+        loadChildren: () => import('./gallery-page/gallery-page.module').then(m => m.GalleryPageModule)
+      },
+      {
         path: '',
         redirectTo: 'staycation-list',
         pathMatch: 'prefix'

@@ -6,17 +6,12 @@ import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MyFavoriteComponent } from './my-favorite/my-favorite.component';
-import { CreateListingComponent } from './create-listing/create-listing.component';
-
-
-
 
 
 @NgModule({
-
-
   declarations: [
     ProfileComponent,
     MyFavoriteComponent,
@@ -24,7 +19,8 @@ import { CreateListingComponent } from './create-listing/create-listing.componen
     NavComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CreateListingComponent
   ],
 
   imports: [
