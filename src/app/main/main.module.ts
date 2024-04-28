@@ -1,3 +1,4 @@
+import { GlobalsModule } from './../globals/globals.module';
 import { NgModule  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
@@ -18,7 +19,8 @@ import { GalleryPageComponent } from './gallery-page/gallery-page.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    MatIconModule
+    MatIconModule,
+    GlobalsModule
   ],
 
  
