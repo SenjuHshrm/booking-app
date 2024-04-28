@@ -1,3 +1,8 @@
+import { MatMenuModule } from '@angular/material/menu';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,17 +21,26 @@ import { CreateListingComponent } from './create-listing/create-listing.componen
     ProfileComponent,
     MyFavoriteComponent,
     CreateListingComponent,
+    NavComponent,
+    FooterComponent,
+    LoginComponent,
+    SignupComponent
   ],
 
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
 
 
   exports: [
     ProfileComponent,
-    CreateListingComponent
+    CreateListingComponent,
+    NavComponent,
+    FooterComponent,
+    LoginComponent,
+    SignupComponent
   ]
 
 

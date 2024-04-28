@@ -2,12 +2,10 @@
     font-family: Poppins-Regular;
     width: 60rem;
     padding: 2rem;
-
     .close {
         padding-top: 3.5px;
         margin-right:.5rem;
     }
-
     &-create-listing-wrapper {
         overflow-y:auto;
         height: 80vh;
@@ -18,7 +16,6 @@
                 display: flex;
                 flex-direction: column;
                 gap: 5rem;
-
                 .describe-your-place {
                     .title {
                         font-weight: bold;
@@ -26,37 +23,30 @@
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .describe-your-place-wrapper {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                         gap: 1rem;
                         place-content: center;
-                        // border: 1px solid black;
-
                         .checkbox {
                             display: flex;
                             gap: .5rem;
-
                             input {
                                 flex: none;
                                 width: 1.5rem;
                                 height: 1.5rem;
                                 cursor: pointer;
                             }
-
                             .label {
                                 font-weight: medium;
                             }
                         }
                     }
-
                     .others {
                         display: flex;
                         gap: .5rem;
                         align-items: center;
                         margin-top: 1rem;
-
                         input {
                             width: auto;
                             border: none;
@@ -69,24 +59,19 @@
                         }
                     }
                 }
-
                 .type-of-place {
                     width: 100%;
-
-                    // border: 1px solid black;
                     .title {
                         font-weight: bold;
                         font-size: clamp(1rem, 1vw, 8rem);
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .type-of-place-wrapper {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
                         gap: .5rem;
                         width: 100%;
-
                         .checkbox {
                             width: 100%;
                             border: 1px solid #68A86A;
@@ -95,19 +80,15 @@
                             gap: .5rem;
                             border-radius: 5px;
                             padding: .5rem .5rem .5rem;
-
-
                             .checkbox-wrapper {
                                 gap: .5rem;
                                 display: flex;
                                 flex-direction: row-reverse;
-
                                 .info {
                                     .label {
                                         font-weight: bold;
                                     }
                                 }
-
                                 input {
                                     flex: none;
                                     width: 1.5rem;
@@ -116,10 +97,8 @@
                                 }
                             }
                         }
-
                     }
                 }
-
                 .where-is-located {
                     .title {
                         font-weight: bold;
@@ -127,18 +106,15 @@
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .where-is-located-wrapper {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
                         gap: .5rem;
                         width: 100%;
-
                         .input-wrapper {
                             .label {
                                 margin-bottom: .3rem;
                             }
-
                             input {
                                 padding: 1rem;
                                 border: 2px solid #63AB68;
@@ -150,29 +126,23 @@
                         }
                     }
                 }
-
                 .share-about-your-place {
                     margin: 1rem 0 1rem;
-
                     .title {
                         font-weight: bold;
                         font-size: clamp(1rem, 1vw, 8rem);
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .share-about-your-place-wrapper {
-
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(170px, 3fr));
                         gap: .5rem;
                         width: 100%;
-
                         .input-wrapper {
                             .label {
                                 margin-bottom: .3rem;
                             }
-
                             input {
                                 padding: 1rem;
                                 border: 2px solid #63AB68;
@@ -182,10 +152,8 @@
                                 font-size: 15px;
                             }
                         }
-
                     }
                 }
-
                 .inform-your-visitors-amenities-wrapper {
                     .title {
                         font-weight: bold;
@@ -193,37 +161,30 @@
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .inform-your-visitors-amenities-wrapper {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                         gap: 1rem;
                         place-content: center;
-                        // border: 1px solid black;
-
                         .checkbox {
                             display: flex;
                             gap: .5rem;
-
                             input {
                                 flex: none;
                                 width: 1.5rem;
                                 height: 1.5rem;
                                 cursor: pointer;
                             }
-
                             .label {
                                 font-weight: medium;
                             }
                         }
                     }
-
                     .others {
                         display: flex;
                         gap: .5rem;
                         align-items: center;
                         margin-top: 1rem;
-
                         input {
                             width: auto;
                             border: none;
@@ -231,35 +192,24 @@
                             outline: none;
                             border-bottom: 1px solid rgb(226, 226, 226);
                             font-size: 1rem;
-
-
                         }
                     }
                 }
-
                 .add-photos-place {
                     height: 100%;
-
                     .title {
                         font-weight: bold;
                         font-size: clamp(1rem, 1vw, 8rem);
                         color: #68A86A;
                     }
-
                     .add-photos-place-wrapper {
-                        // border: 1px solid black;
                         height: 100%;
-
                         .container {
                             width: 100%;
                             height: 100%;
                             display: flex;
                             flex-wrap: wrap;
-                            // border: 1px solid black;
-
-
                             .side-panel {
-
                                 width: 100%;
                                 display: flex;
                                 flex-direction: column;
@@ -267,33 +217,26 @@
                                 align-items: center;
                                 flex: 0 0 300px; // Fixed width for side panel
                                 padding: 20px; // Adjust padding as needed
-
-
-
                                 .image {
                                     width: calc(33.33% - 10px); // 33.33% width for each image, subtracting margin
                                     margin: 5px; // Margin between images
                                 }
-
                                 .image img {
                                     width: 100%;
                                     height: auto;
                                 }
-
                                 label {
                                     cursor: pointer;
                                     display: flex;
                                     flex-direction: column;
                                     justify-content: center;
                                     align-items: center;
-
                                     img {
                                         width: 5rem;
                                         height: auto;
                                     }
                                 }
                             }
-
                             .gallery {
                                 max-height: 25rem;
                                 overflow-y: auto;
@@ -304,7 +247,6 @@
                                 gap: 1rem;
                                 flex: 1;
                                 height: 100%;
-
                                 .image {
                                     max-width: 15rem;
                                     height: 100%;
@@ -315,12 +257,9 @@
                                     }
                                 }
                             }
-
-
                         }
                     }
                 }
-
                 .add-property-title {
                     .title {
                         font-weight: bold;
@@ -328,13 +267,11 @@
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .add-property-title-wrapper {
                         .input-wrapper {
                             .label {
                                 margin-bottom: .3rem;
                             }
-
                             textarea {
                                 padding: 1rem;
                                 border: 2px solid #63AB68;
@@ -346,10 +283,8 @@
                                 resize: none;
                             }
                         }
-
                     }
                 }
-
                 .describe-your-house {
                     .title {
                         font-weight: bold;
@@ -357,37 +292,30 @@
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .describe-your-house-wrapper {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                         gap: 1rem;
                         place-content: center;
-                        // border: 1px solid black;
-
                         .checkbox {
                             display: flex;
                             gap: .5rem;
-
                             input {
                                 flex: none;
                                 width: 1.5rem;
                                 height: 1.5rem;
                                 cursor: pointer;
                             }
-
                             .label {
                                 font-weight: medium;
                             }
                         }
                     }
-
                     .others {
                         display: flex;
                         gap: .5rem;
                         align-items: center;
                         margin-top: 1rem;
-
                         input {
                             width: auto;
                             border: none;
@@ -400,7 +328,6 @@
                         }
                     }
                 }
-
                 .create-description-house {
                     .title {
                         font-weight: bold;
@@ -408,13 +335,11 @@
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .create-description-house-wrapper {
                         .input-wrapper {
                             .label {
                                 margin-bottom: .3rem;
                             }
-
                             textarea {
                                 padding: 1rem;
                                 border: 2px solid #63AB68;
@@ -426,27 +351,21 @@
                                 resize: none;
                             }
                         }
-
                     }
                 }
-
                 .add-discounts {
                     width: 100%;
-
-                    // border: 1px solid black;
                     .title {
                         font-weight: bold;
                         font-size: clamp(1rem, 1vw, 8rem);
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .add-discounts-wrapper {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
                         gap: .5rem;
                         width: 100%;
-
                         .checkbox {
                             width: 100%;
                             border: 1px solid #68A86A;
@@ -455,20 +374,16 @@
                             gap: .5rem;
                             border-radius: 5px;
                             padding: .5rem .5rem .5rem;
-
-
                             .checkbox-wrapper {
                                 gap: .5rem;
                                 display: flex;
                                 flex-direction: row-reverse;
-
                                 .info {
                                     .label {
                                         font-size: clamp(1rem, 1vw, 8rem);
                                         font-weight: bolder;
                                     }
                                 }
-
                                 input {
                                     flex: none;
                                     width: 1.5rem;
@@ -477,61 +392,47 @@
                                 }
                             }
                         }
-
                     }
                 }
-
                 .does-your-place-have-this {
-
-                    // border:1px solid black;
                     .title {
                         font-weight: bold;
                         font-size: clamp(1rem, 1vw, 8rem);
                         color: #68A86A;
                         margin-bottom: 1rem;
                     }
-
                     .does-your-place-have-this-wrapper {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                         gap: 1rem;
                         place-content: center;
-                        // border: 1px solid black;
-
                         .checkbox {
                             display: flex;
                             align-items: center;
                             gap: .5rem;
-
                             input {
                                 flex: none;
                                 width: 1.5rem;
                                 height: 1.5rem;
                                 cursor: pointer;
                             }
-
                             .label {
                                 font-weight: medium;
                             }
                         }
                     }
                 }
-
                 .important-things-to-know {
                     text-align: center;
-
-                    // border:1px solid black;
                     .title {
                         font-size: 12px;
                         font-weight: bolder;
                     }
-
                     .description {
                         p {
                             margin: 0;
                             padding: 0;
                             font-size: 12px;
-
                             span {
                                 cursor: pointer;
                                 color: #63AB68;
@@ -540,11 +441,8 @@
                     }
                 }
             }
-
             .btn-listing {
-                // border: 1px solid black;
                 margin-top: 1rem;
-
                 button {
                     margin: auto;
                 }

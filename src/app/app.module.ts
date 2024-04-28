@@ -21,10 +21,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { NavComponent } from './globals/nav/nav.component';
-import { FooterComponent } from './globals/footer/footer.component';
-import { LoginComponent } from './globals/login/login.component';
-import { SignupComponent } from './globals/signup/signup.component';
 import { GlobalsModule } from './globals/globals.module';
 
 
@@ -43,11 +39,7 @@ export class CustomErrorHandler implements ErrorHandler {
   declarations: [
     AppComponent,
     HomeComponent,
-    MainComponent,
-    NavComponent,
-    FooterComponent,
-    LoginComponent,
-    SignupComponent,
+    MainComponent
     
   ],
 
@@ -72,16 +64,6 @@ export class CustomErrorHandler implements ErrorHandler {
     MatMenuModule,
     GlobalsModule
   ],
-
-  exports:[
-    NavComponent,
-    FooterComponent,
-    LoginComponent,
-    SignupComponent
-  ],
- 
-
-
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
