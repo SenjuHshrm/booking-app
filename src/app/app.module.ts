@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler } from '@angular/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MainModule } from './main/main.module';
+import { HomeModule } from './home/home.module';
 
 export class CustomErrorHandler implements ErrorHandler {
   handleError(error: any) {
@@ -20,7 +22,7 @@ export class CustomErrorHandler implements ErrorHandler {
 
 
   declarations: [
-    AppComponent,
+    AppComponent
   ],
 
   imports: [
@@ -30,7 +32,9 @@ export class CustomErrorHandler implements ErrorHandler {
     BrowserModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MainModule,
+    HomeModule
   ],
   providers: [
     {
