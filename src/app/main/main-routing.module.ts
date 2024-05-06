@@ -39,6 +39,18 @@ const routes: Routes = [
         loadChildren: () => import('./gallery-page/gallery-page.module').then(m => m.GalleryPageModule)
       },
       {
+        path: 'message',
+        loadChildren: () => import('./message-page/message-page.module').then(m => m.MessagePageModule)
+      },
+      {
+        path: 'notification',
+        loadChildren: () => import('./notification-page/notification-page.module').then(m => m.NotificationPageModule)
+      },
+      {
+        path: 'wishlist',
+        loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule)
+      },
+      {
         path: '',
         redirectTo: 'staycation-list',
         pathMatch: 'prefix'

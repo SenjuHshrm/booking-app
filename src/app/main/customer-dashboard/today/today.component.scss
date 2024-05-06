@@ -1,24 +1,81 @@
-/* Styles the text color of the tab labels */
-
 
 .today {
     font-family: Poppins-Regular;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+   
+        &-content-tab {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+             
+            // mat-tab-group , .custom-tab-group{
+            //     flex: 1;
+            //     display: flex;
+            //     flex-direction: column;
 
-    &-today-wrapper {
-        .content-tab {
-            .mat-tab-label {
-                color: #7f60f0 !important;
-            }
+            //     maxt-tab , .custom-tab{
+            //         flex: 1;
+            //         display: flex;
+            //         flex-direction: column;
+                    
+            //     }
+            // }
+            .custom-tabs {
+                display: flex;
+              }
+              
+              .tab {
+                padding: 10px 20px;
+                cursor: pointer;
+                // border: 1px solid #ccc;
+                border-bottom: none;
+                border-radius: 5px 5px 0 0;
+                margin-right: 10px;
+              }
+              
+              .tab.active {
+                font-weight: bold;
+                color:#63AB68;
+              }
+              .tab:hover {
+                font-weight: bold;
+                color:#63AB68;
+              }
+              
+              .tab-content {
+                // border: 1px solid #ccc;
+                border-radius: 0 0 5px 5px;
+                // padding: 20px;
+             
+              }
 
-            /* Styles the background color of the active tab label */
-            .mat-tab-label.mat-tab-label-active {
-                background-color: #c51010 !important;
-            }
-
-            /* Styles the background color of the inactive tab labels */
-            .mat-tab-label:not(.mat-tab-label-active) {
-                background-color: #68c45b;
-            }
+              .animated-border {
+                border-bottom: none;  /* Remove default border */
+                position: relative;  /* Required for pseudo-element positioning */
+                cursor: pointer;  /* Optional for hover effect */
+              
+                &::after {
+                  content: "";
+                  display: block;
+                  width: 0;
+                  height: 2px;  /* Adjust border thickness here */
+                  background-color: #63AB68;  /* Adjust border color */
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  transition: width 0.3s ease-in-out;
+                }
+              
+                &:hover::after,
+                &.active::after {  /* Target both active and hover states */
+                  width: 100%;  /* Animate width to full width */
+                }
+              }
+     
         }
-    }
+    
 }

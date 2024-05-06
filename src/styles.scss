@@ -102,3 +102,39 @@ body { margin: 0; font-family:Poppins-Regular}
    color: #63AB68;
  }
 
+ 
+        
+ .fc .fc-toolbar-title {
+  /* Your custom color styles here */
+  color: #63AB68 !important ;
+}
+
+.fc .fc-button-primary { /* Styles for primary buttons (like prev, next, today) */
+  color: white ;
+}
+
+
+.fc .fc-header-toolbar {
+  background-color: white ;
+}
+.fc .fc-button-primary .fc-icon { /* Styles for icons within primary buttons */
+  color: #63AB68  ;
+}
+
+.fc .fc-toolbar-title {
+  color:#63AB68 !important; /* Blue title text */
+}
+
+.fc .fc-button-primary {
+  background-color: white;
+  box-shadow: 1px 1px 5px #88888877;
+  border:none;
+  border-radius:2px !important;
+  margin-right:1rem;
+  border-style: none;
+  color: #63AB68 !important; /* Red button text */
+}
+
+.fc .fc-button-primary-active {
+  background-color: white !important;
+}

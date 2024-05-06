@@ -4,15 +4,21 @@
 
 
 .home-container {
-    width: 100%;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    position: relative;
     background-color: #fafafa;
 
     &-header {
+       position: sticky;
+       left: 0;
+       right: 0;
+       top:0;
+       z-index: 5;
+       background-color: rgb(255, 255, 255);
+    }
 
-        .hero {
+    &-body {
+       
+        &-section_1_hero {
             max-width: 70%;
             // border: 1px solid black;
             margin-right: auto;
@@ -126,11 +132,6 @@
             }
         }
 
-    }
-
-    &-body {
-        flex-grow: 1 !important;
-
         &-section_1 {
             // border: 1px solid black;
             padding-top: 2rem;
@@ -140,7 +141,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex-grow: 1 !important;
+            
 
 
             // swiper default css

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
+
+
 @Component({
   selector: 'app-accounts-settings',
   templateUrl: './accounts-settings.component.html',
-  styleUrls: ['./accounts-settings.component.scss']
+  styleUrls: ['./accounts-settings.component.scss'],
+  animations:[fadeInAnimation]
 })
 export class AccountsSettingsComponent {
   constructor(private router: Router) {}

@@ -1,16 +1,14 @@
-<div class="customer-dashboard">
-    <div class="customer-dashboard-customer-dashboard-wrapper">
-        <section class="tab-header">
-            <div class="header-text">
-                <h1>Hey, Juan! Welcome.</h1>
-            </div>
-            <div class="tab-wrapper">
-                <button class="main-button custom-btn" (click)="gotoToday()">Today</button>
-                <button class="main-button custom-btn" (click)="gotoCalendar()">Calendar</button>
-                <button class="main-button custom-btn" (click)="gotoListing()">Liting</button>
-                <button class="main-button custom-btn" (click)="gotoInbox()">Inbox</button>
-            </div>
-        </section>
-        <router-outlet></router-outlet>
-    </div>
+<div class="customer-dashboard" [@fadeInAnimation]>
+    <section class="customer-dashboard-tab-header">
+        <div class="header-text">
+            <h1>Hey, Juan! Welcome.</h1>
+        </div>
+        <div class="tab-wrapper">
+            <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'tab1'}" (click)="gotoToday('tab1')">Today</button>
+            <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'tab2'}" (click)="gotoCalendar('tab2')">Calendar</button>
+            <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'tab3'}" (click)="gotoListing('tab3')">Liting</button>
+            <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'tab4'}" (click)="gotoInbox('tab4')">Inbox</button>
+        </div>
+    </section>
+    <router-outlet></router-outlet>
 </div>

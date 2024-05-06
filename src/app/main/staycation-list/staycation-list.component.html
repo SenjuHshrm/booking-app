@@ -1,4 +1,4 @@
-<div class="staycation-list">
+<div class="staycation-list" [@fadeInAnimation]>
     <div class="staycation-list-staycation-wrapper">
         <section class="category-home-button">
             <button class="tarago-home" (click)="navigateToHome()">
@@ -52,7 +52,7 @@
         <section class="content " (click)="navigateToBookStaycation()">
             <div class="card stacked" *ngFor="let properties of listproperties">
                 <div class="image">
-                    <img [src]="properties.image" />
+                    <img [src]="properties.image" alt="image" />
                 </div>
                 <div class="content__card" >
                     <div class="info">

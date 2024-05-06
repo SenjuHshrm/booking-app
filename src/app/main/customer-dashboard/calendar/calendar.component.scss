@@ -1,3 +1,5 @@
+
+
 .calendar-container {
     display: flex;
     flex-direction: row;
@@ -18,4 +20,71 @@
             top:1rem;
         }
     } 
+
+
+    
+
+    .custom-tabs {
+        display: flex;
+        gap:2%;
+      }
+      
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        // border: 1px solid #ccc;
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        
+      }
+
+      .tab-price{
+        flex-basis: 49%;
+        text-align: center;
+      }
+      
+      .tab-avail{
+        flex-basis: 49%;
+      }
+      
+      .tab.active {
+        font-weight: bold;
+        color:#63AB68;
+      }
+      .tab:hover {
+        font-weight: bold;
+        color:#63AB68;
+      }
+      
+      .tab-content {
+        // border: 1px solid #ccc;
+        border-radius: 0 0 5px 5px;
+        // padding: 20px;
+     
+      }
+
+
+      .animated-border {
+        border-bottom: none;  /* Remove default border */
+        position: relative;  /* Required for pseudo-element positioning */
+        cursor: pointer;  /* Optional for hover effect */
+      
+        &::after {
+          content: "";
+          display: block;
+          width: 0;
+          height: 2px;  /* Adjust border thickness here */
+          background-color: #63AB68;  /* Adjust border color */
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          transition: width 0.3s ease-in-out;
+        }
+      
+        &:hover::after,
+        &.active::after {  /* Target both active and hover states */
+          width: 100%;  /* Animate width to full width */
+        }
+      }
+      
 }

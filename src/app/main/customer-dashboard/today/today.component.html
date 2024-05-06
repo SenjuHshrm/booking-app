@@ -1,26 +1,41 @@
 <div class="today">
-    <div class="today-today-wrapper">
         <header>
             <h1>Your Reservations</h1>
         </header>
-         <section class="content-tab">
-                 <mat-tab-group>
-                    <mat-tab label="Checking Out">
+         <section class="today-content-tab">
+                 <!-- <mat-tab-group class="mat-tab-group">
+                    <mat-tab label="Checking Out" class="mat-tab-label">
                         <app-checking-out></app-checking-out>
                     </mat-tab>
-                    <mat-tab label="Currently Proprietor"> 
+                    <mat-tab label="Currently Proprietor" class="mat-tab-label"> 
                         <app-currently-proprietor></app-currently-proprietor> 
                     </mat-tab>
-                    <mat-tab label="Arriving Soon">
+                    <mat-tab label="Arriving" class="mat-tab-label">
                         <app-arriving-soon></app-arriving-soon> 
                     </mat-tab>
-                    <mat-tab label="Upcoming"> 
+                    <mat-tab label="Upcoming" class="mat-tab-label"> 
                         <app-upcoming></app-upcoming>
                     </mat-tab>
-                    <mat-tab label="Pending Review"> 
+                    <mat-tab label="Pending Review" class="mat-tab-label"> 
                         <app-pending-review></app-pending-review> 
                     </mat-tab>
-                  </mat-tab-group>
+                  </mat-tab-group> -->
+
+                  <div class="custom-tabs  ">
+                    <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab1'}" (click)="selectTab('tab1')">Checking Out</div>
+                    <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab2'}" (click)="selectTab('tab2')">Currently Proprietor</div>
+                    <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab3'}" (click)="selectTab('tab3')">Arriving</div>
+                    <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab4'}" (click)="selectTab('tab4')">Upcoming</div>
+                    <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab5'}" (click)="selectTab('tab5')">Pending Review</div>
+                  </div>
+                
+                  <div class="tab-content">
+                    <div *ngIf="selectedTab === 'tab1'"><app-checking-out></app-checking-out></div>
+                    <div *ngIf="selectedTab === 'tab2'"><app-currently-proprietor></app-currently-proprietor></div>
+                    <div *ngIf="selectedTab === 'tab3'"><app-arriving-soon></app-arriving-soon></div>
+                    <div *ngIf="selectedTab === 'tab4'"><app-upcoming></app-upcoming></div>
+                    <div *ngIf="selectedTab === 'tab5'"><app-pending-review></app-pending-review></div>
+                  </div>
          </section>
     </div>
-</div>
+

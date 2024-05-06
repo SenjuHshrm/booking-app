@@ -1,35 +1,31 @@
 .user-profile {
+    flex:1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     font-family: Poppins-Regular;
-    position: relative;
+
     
     &-user-profile-container {
         flex: 1;
         padding: 2rem 0 2rem;
         overflow-y: auto;
-        position: relative;
+      
 
         .user-profile-user-profile-wrapper {
             width: 100%;
-            max-width: 70%;
             margin: 0 auto 0;
-            width: 100%;
             display: grid;
-            grid-template-columns: 30% 70%;
-            gap: 10px;
+            grid-template-columns: 30% 68%;
+            gap:2%;
             flex: 1;
-            position: relative;
+        
           
           
             .section-1 {
                 // border: 1px solid black;
-                position: sticky;
-                top:0;
-                bottom: 0;
                 background-color: #F7F7F7;
                 flex-basis: 30%;
+                height:50%;
                 display: flex;
                 flex-direction: column;
                 padding: 1rem 0 1rem;
@@ -37,9 +33,9 @@
 
 
                 .profile-picture {
-                    flex-basis: 50%;
+                    
                     border-bottom: 1px solid rgb(223, 223, 223);
-                    height: 100%;
+                    flex-basis: 50%;
                     display: grid;
                     place-content: center;
 
@@ -63,7 +59,7 @@
 
                         .profile-info {
                             text-align: center;
-                            flex-basis: 50%;
+                            
 
                             .name {
                                 font-size: clamp(1.2rem, 1.2vw, 8rem);
@@ -209,6 +205,88 @@
                             margin-bottom:1rem;
                            
                         } 
+                        .content {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                            gap: 2rem;
+                            cursor: pointer;
+                            margin-top: 2rem;
+                            // border:2px solid black;
+                          
+                        
+                            .stacked {
+                                display: grid;
+                         
+                                * {
+                                    grid-column: 1 /.5;
+                                    grid-row: 1/.5;
+                                }
+                            }
+                        
+                            .card {
+                                width: fit-content;
+                                text-align: center;
+                                margin: auto;
+                                // box-shadow: -6px 11px 8px rgba(0, 0, 0, 0.3);
+                                border-radius: 5%;
+                                width: 100%;
+                                // border:2px solid black;
+                        
+                                .content__card {
+                                    position: relative;
+                                    z-index: 2;
+                                    align-self: end;
+                                    margin-bottom: 1.5rem;
+                                    // border:2px solid black;
+                        
+                                    .info {
+                                        height: fit-content;
+                                        text-align: left;
+                        
+                                        .title {
+                                            display: inline-flex;
+                                            align-items: center;
+                                            font-weight: bold;
+                                            font-size: max(min(.8rem), .5vw);
+                                            color: black;
+                                            // border: 1px solid black;
+                                            height: fit-content;
+                                        }
+                        
+                                        .description {
+                                            font-size: max(min(.8rem), .5vw);
+                                        }
+                        
+                                        .permonth {
+                                            font-size: max(min(.8rem), .5vw);
+                                            color: #68A968;
+                                            font-weight: bold;
+                                        }
+                                    }
+                        
+                                }
+                        
+                                .image {
+                                    // border:2px solid rgb(228, 31, 31);
+                                    width: 100%;
+                        
+                                    img {
+                                        aspect-ratio: 1/1;
+                                        border-radius: 15px;
+                                        width: 100%;
+                                        height: auto;
+                                        object-fit: cover;
+                                        object-position: center;
+                                    }
+                        
+                                }
+                        
+                                .image:hover {
+                                    opacity: 85%;
+                                }
+                        
+                            }
+                        }
                     }
                 }
             }

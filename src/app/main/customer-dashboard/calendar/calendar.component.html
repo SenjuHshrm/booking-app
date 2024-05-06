@@ -1,17 +1,27 @@
-<div class="calendar-container">
+<div class="calendar-container" [@fadeInAnimation]>
     <div class="calendar-container-calendar-side-info">
         <section class="content-tab">
-            <mat-tab-group>
+            <!-- <mat-tab-group>
                <mat-tab label="Price">
                    <app-price></app-price>
                </mat-tab>
                <mat-tab label="Availability"> 
                   <app-availability></app-availability>
                </mat-tab>
-             </mat-tab-group>
+             </mat-tab-group> -->
+
+             <div class="custom-tabs ">
+                <div class="tab animated-border tab-price animated-border " [ngClass]="{'active': selectedTab === 'tab1'}" (click)="selectTab('tab1')">Price</div>
+                <div class="tab animated-border tab-avail animated-border " [ngClass]="{'active': selectedTab === 'tab2'}" (click)="selectTab('tab2')">Availability</div>
+              </div>
+            
+              <div class="tab-content">
+                <div *ngIf="selectedTab === 'tab1'"> <app-price></app-price></div>
+                <div *ngIf="selectedTab === 'tab2'"><app-availability></app-availability></div>
+              </div>
     </section>
     </div>
-    <div class="calendar-container-calendar-wrapper">
+    <div class="calendar-container-calendar-wrapper" >
         <full-calendar [options]="calendarOptions"></full-calendar>
     </div>
 </div>

@@ -3,11 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { StaycationlistLocationModalComponent } from './component/staycationlist-location-modal/staycationlist-location-modal.component';
 import { StaycationlistAddguestModalComponent } from './component/staycationlist-addguest-modal/staycationlist-addguest-modal.component';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 @Component({
   selector: 'app-staycation-list',
   templateUrl: './staycation-list.component.html',
-  styleUrls: ['./staycation-list.component.scss']
+  styleUrls: ['./staycation-list.component.scss'],
+  animations:[fadeInAnimation]
 })
 export class StaycationListComponent {
   constructor(public dialog:MatDialog ,private router: Router) {}
@@ -45,7 +47,7 @@ export class StaycationListComponent {
 
   public listproperties = [
     {
-      image: '/assets/images/main/staycation-list/image 0.png',
+      image: '/assets/images/main/staycation-list/images/1.jpg',
       title:'Condo, in Quezon City',
       description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
       permonth:'5,000'
