@@ -1,7 +1,7 @@
 .listing-container {
    
      margin-bottom: 2rem;
-  
+
     &-listing-wrapper {
         .header {
             display: flex;
@@ -106,6 +106,20 @@
                 }
              
             }
+        }
+
+          .img-listing{
+            width:5rem;
+            height: auto;
+            padding:5px;
+
+        }
+
+        .action-btn{
+          border:none;
+          background-color: transparent;
+          outline: none;
+          cursor: pointer;
         }
     }
 

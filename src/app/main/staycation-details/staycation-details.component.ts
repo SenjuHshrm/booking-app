@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 
 @Component({
   selector: 'app-staycation-details',
   templateUrl: './staycation-details.component.html',
-  styleUrls: ['./staycation-details.component.scss']
+  styleUrls: ['./staycation-details.component.scss'],
+  animations:[fadeInAnimation]
 })
 
 export class StaycationDetailsComponent {
@@ -29,31 +31,31 @@ export class StaycationDetailsComponent {
 
   public listproperties = [
     {
-      image: '/assets/images/main/staycation-list/image 0.png',
+      image: '/assets/images/main/staycation-list/images/1.jpg',
       title:'Condo, in Quezon City',
       description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
       permonth:'5,000'
     },
     {
-      image: '/assets/images/main/staycation-list/image 1.png',
+      image: '/assets/images/main/staycation-list/images/2.webp',
       title:'Condo, in Quezon City',
       description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
       permonth:'5,000'
     },
     {
-      image: '/assets/images/main/staycation-list/image 2.png',
+      image: '/assets/images/main/staycation-list/images/3.webp',
       title:'Condo, in Quezon City',
       description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
       permonth:'5,000'
     },
     {
-      image: '/assets/images/main/staycation-list/image 3.png',
+      image: '/assets/images/main/staycation-list/images/4.jpg',
       title:'Condo, in Quezon City',
       description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
       permonth:'5,000'
     },
     {
-      image: '/assets/images/main/staycation-list/image 4.png',
+      image: '/assets/images/main/staycation-list/images/5.webp',
       title:'Condo, in Quezon City',
       description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
       permonth:'5,000'

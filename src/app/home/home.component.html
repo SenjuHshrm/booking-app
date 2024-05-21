@@ -1,33 +1,28 @@
 <div class="home-container">
     <header class="home-container-header">
-           <app-nav></app-nav>
-        <div class="hero">
+        <app-nav></app-nav>
+    </header>
+    <section class="home-container-body"  [@fadeInAnimation]>
+        <section class="home-container-body-section_1_hero">
             <div class="hero-wrapper">
                 <div class="title">
                     <h1><span>Discover</span> Hotels, Resorts, Villas, <br /> and More!</h1>
                     <p class="font-regular">TaraGo the optimal booking site for <br /> your relaxation needs.</p>
-                    <button class="main-button"  (click)="navigateToMain()">View More</button>
+                    <button class="main-button" (click)="navigateToMain()">View More</button>
                 </div>
                 <div class="main-image">
-                    <swiper class="swiper-height" #swiper 
-                    [slidesPerView]="1" 
-                    [spaceBetween]="25" 
-                    [pagination]="true"
-                    [draggable]="true" 
-                    [loop]="true" 
-                    [autoplay]="true">
+                    <swiper class="swiper-height" #swiper [slidesPerView]="1" [spaceBetween]="25" [pagination]="true"
+                        [draggable]="true" [loop]="true" [autoplay]="true">
                         >
-                        <ng-template swiperSlide *ngFor="let dest of destinations">
+                        <ng-template swiperSlide *ngFor="let heroimg of heroImages">
                             <div class="images">
-                                <img src="./assets/images/home/header/hero/herovisual1.jpg" alt="hero-visual-1" />
+                                <img src={{heroimg.images}} alt="hero-visual-1" />
                             </div>
                         </ng-template>
                     </swiper>
                 </div>
             </div>
-        </div>
-    </header>
-    <section class="home-container-body">
+        </section>
         <section class="home-container-body-section_1">
             <div class="section-1-wrapper">
                 <div class="header">
@@ -76,12 +71,12 @@
                     <div class="info-header">
                         <div class="title">Make your staycation</div>
                         <div class="title">
-                            <div><span>hassle-free with</span></div> 
+                            <div><span>hassle-free with</span></div>
                             <img src="./assets/images/home/section2/taragologo.png" alt="logo" />
                         </div>
                         <div class="title-mobile">
-                               <div>Make your staycation <span>hassle-free with</span></div>
-                               <div><img src="./assets/images/home/section2/taragologo.png" alt="logo" /></div>
+                            <div>Make your staycation <span>hassle-free with</span></div>
+                            <div><img src="./assets/images/home/section2/taragologo.png" alt="logo" /></div>
                         </div>
                     </div>
                     <div class="info-content">
@@ -284,9 +279,9 @@
                         <span>Contact us</span> or get answers from an
                         experienced proprietor near you.
                     </div>
-                   <div class="btn">
-                    <button class="main-button">Find property owner</button>
-                </div>
+                    <div class="btn">
+                        <button class="main-button">Find property owner</button>
+                    </div>
                 </div>
             </div>
             <div class="wavecolor-image">

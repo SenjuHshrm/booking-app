@@ -1,0 +1,26 @@
+<section class="property-title">
+    <button (click)="goBack()">
+         <mat-icon>chevron_left</mat-icon>
+         <span>Back</span>
+    </button>
+    <div class="title-wrapper">
+         <div class="title">Wishlist</div>
+    </div>
+</section>
+<section class="content " (click)="navigateToBookStaycation()">
+    <div class="card stacked" *ngFor="let properties of listproperties">
+        <div class="image">
+            <img [src]="properties.image" alt="image" />
+        </div>
+        <div class="content__card" >
+            <div class="info">
+                <div class="title">{{properties.title}}</div>
+                <div class="description">{{properties.description}}</div>
+                <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
+            </div>
+            <div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</section>

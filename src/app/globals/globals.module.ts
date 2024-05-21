@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MyFavoriteComponent } from './my-favorite/my-favorite.component';
 
 
+
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -20,7 +21,7 @@ import { MyFavoriteComponent } from './my-favorite/my-favorite.component';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    CreateListingComponent
+    CreateListingComponent,
   ],
 
   imports: [

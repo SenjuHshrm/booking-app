@@ -2,6 +2,7 @@ import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y,Autoplay } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from '../globals/fadein-animations';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -11,6 +12,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  animations:[fadeInAnimation]
 })
 export class HomeComponent {
   constructor(private router: Router) {}
@@ -26,6 +28,13 @@ export class HomeComponent {
     this.router.navigate(['main/staycation-list']);
     console.log("Click");
   }
+
+heroImages:any=[
+  {images:'../assets/images/home/header/hero/0.jpg'},
+  {images:'../assets/images/home/header/hero/1.jpg'},
+  {images:'../assets/images/home/header/hero/2.jpg'},
+  {images:'../assets/images/home/header/hero/3.jpg'},
+]
 
 destinations:any = [
   {images:'../assets/images/home/section1/Manila.jpg',description:'Manila'},

@@ -14,8 +14,9 @@
             <button class="menu" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="goToUserProfile()">Profile</button>
-                <button mat-menu-item>Messages</button>
-                <button mat-menu-item>My Favorite</button>
+                <button mat-menu-item (click)="goToMessage()">Messages</button>
+                <button mat-menu-item (click)="goToNotification()">Notification</button>
+                <button mat-menu-item (click)="goToWishlist()">Wishlist</button>
                 <button mat-menu-item (click)="goToCustomerDashboard()">Manage Listing</button>
                 <button mat-menu-item (click)="goToAccountSettings()">Account Setting</button>
                 <button mat-menu-item>Help</button>

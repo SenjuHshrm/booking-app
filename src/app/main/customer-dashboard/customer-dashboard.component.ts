@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 @Component({
   selector: 'app-customer-dashboard',
   templateUrl: './customer-dashboard.component.html',
-  styleUrls: ['./customer-dashboard.component.scss']
+  styleUrls: ['./customer-dashboard.component.scss'],
+  animations:[fadeInAnimation]
 })
 export class CustomerDashboardComponent {
  
@@ -12,28 +14,34 @@ export class CustomerDashboardComponent {
   
   isActive: boolean = false;
 
+  selectedTab: string = 'tab1';
+
 
   gotToHome() {
     this.router.navigate(['']);
   }
 
-  gotoToday() {
+  gotoToday(tabName: string) {
+    this.selectedTab = tabName;
     this.router.navigate(['main/dashboard/today']);
   }
 
-  gotoCalendar() {
+  gotoCalendar(tabName: string) {
+    this.selectedTab = tabName;
     this.router.navigate(['main/dashboard/calendar']);
   }
 
-  gotoListing() {
+  gotoListing(tabName: string) {
+    this.selectedTab = tabName;
     this.router.navigate(['main/dashboard/listing']);
   }
   
-  gotoInbox() {
+  gotoInbox(tabName: string) {
+    this.selectedTab = tabName;
     this.router.navigate(['main/dashboard/inbox']);
   }
   
-
+ 
   
   
   

@@ -1,4 +1,4 @@
-<div class="user-profile">
+<div class="user-profile" [@fadeInAnimation]>
     <section class="user-profile-user-profile-container">
         <!-- <router-outlet></router-outlet> -->
         <div class="user-profile-user-profile-wrapper">
@@ -48,9 +48,23 @@
                     </div>
                     <div class="info-details-your-listing">
                         <div class="title">Your Listing Properties</div>
-                        <div class="content">
-                             No Listing Found
-                        </div>
+                        <section class="content " (click)="navigateToBookStaycation()">
+                            <div class="card stacked" *ngFor="let properties of listproperties">
+                                <div class="image">
+                                    <img [src]="properties.image" alt="image" />
+                                </div>
+                                <div class="content__card" >
+                                    <div class="info">
+                                        <div class="title">{{properties.title}}</div>
+                                        <div class="description">{{properties.description}}</div>
+                                        <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
+                                    </div>
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
 

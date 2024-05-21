@@ -62,4 +62,18 @@ goToAccountSettings() {
 }
 
 
+goToMessage() {
+  this.router.navigate(['main/message']);
+}
+
+goToNotification() {
+  this.router.navigate(['main/notification']);
+}
+
+goToWishlist() {
+  this.router.navigate(['main/wishlist']);
+}
+
+
+
 }

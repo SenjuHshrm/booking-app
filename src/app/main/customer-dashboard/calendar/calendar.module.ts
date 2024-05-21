@@ -14,7 +14,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     CommonModule,
     CalendarRoutingModule,
     FullCalendarModule,
-   CalendarcomModule,
+    CalendarcomModule,
     MatTabsModule
   ]
 })

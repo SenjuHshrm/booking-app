@@ -30,22 +30,22 @@ export class ListingComponent {
   }
 
   dataSource = new MatTableDataSource<any>([
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
-    { listingstatus: 'Owner 1', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 0.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 1.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 2.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 3.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 4.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 5.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 6.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 7.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 8.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 9.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
+    { listing: '../assets/images/main/staycation-list/image 10.png', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:'6',beds:'2',bath:'2',location:'Laguna,Philipines',lastmodified:'Yesterday',action:''},
  
     // Add more data as needed
   ]);
 
-  displayedColumns: string[] = ['listingstatus', 'status','todo','instantbook','bedrooms','beds','bath','location','lastmodified','action'];
+  displayedColumns: string[] = ['listing', 'status','todo','instantbook','bedrooms','beds','bath','location','lastmodified','action'];
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -54,8 +54,8 @@ export class ListingComponent {
 
 
 // dataSource = new MatTableDataSource<any>([
-//   { listingstatus: 'Owner 1 ', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:6,beds:2,bath:2, location:'Laguna,Philippines',lastmodified:'Yesterday',action:'' }
+//   { listing: '../assets/images/main/staycation-list/image 0.png ', status: 'Listed',todo:'Update',instantbook:'On',bedrooms:6,beds:2,bath:2, location:'Laguna,Philippines',lastmodified:'Yesterday',action:'' }
 //   // Add more data as needed
 // ]);
 
-// displayedColumns: string[] = ['listingstatus', 'status','todo','instantbook','bedrooms','beds','bath','location','lastmodified','action'];
+// displayedColumns: string[] = ['listing', 'status','todo','instantbook','bedrooms','beds','bath','location','lastmodified','action'];
