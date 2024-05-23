@@ -1,2 +1,51 @@
-<p>home works!</p>
-<router-outlet></router-outlet>
+<div class="home-dashboard-container">
+    <header class="home-dashboard-container-header">
+        <div class="nav-wrapper">
+            <div class="header-logo">
+                <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" />
+                <div class="humburger-btn">
+                    <button (click)="toggleSidebar()" [ngClass]="{'burgerHide': isMinimizedSidebar=== true}"><mat-icon > format_indent_increase</mat-icon></button> 
+                    <button (click)="toggleSidebar()" [ngClass]="{'burgerHide': isMinimizedSidebar === false}"><mat-icon > view_headline</mat-icon></button> 
+                </div>
+            </div>
+            
+            <div class="avatar-account-menu-wrapper">
+                <div class="account-type-btn">Admin</div>
+                <div class="avatar-account" [matMenuTriggerFor]="menu">
+                    <button class="menu" mat-button ><mat-icon>menu</mat-icon></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Home</button>
+                        <button mat-menu-item>Notification</button>
+                        <button mat-menu-item>Account</button>
+                        <button mat-menu-item>Logout</button>
+                    </mat-menu>
+                    <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar"
+                        [draggable]="false">
+            </div>
+    
+            </div>
+            <!-- <div class="header-login-button">
+                <button (click)="openLoginDialog()">Login</button>
+                <div class="divider"></div>
+                <button class="sign-up" (click)="openSignupDialog()">SignUp</button>
+            </div> -->
+        </div>
+    </header>
+        <section class="home-dashboard-container-content">
+            <div class="home-dashboard-container-content-wrapper"[class.minimizedGap]="isMinimizedSidebar">
+                <div class="content_sidebar" [class.minimizedSidebar]="isMinimizedSidebar">
+                    <div class="tablist_btn">
+                         <ul>
+                            <li [ngClass]="{'active': selectedTab === 'dashboard'}" (click)="gotoPage('dashboard')">Dashboard</li>
+                            <li [ngClass]="{'active': selectedTab === 'user-control'}" (click)="gotoPage('user-control')">UserControl</li>
+                            <li [ngClass]="{'active': selectedTab === 'identification'}" (click)="gotoPage('identification')">Identification</li>
+                            <li [ngClass]="{'active': selectedTab === 'reports'}" (click)="gotoPage('reports')">Report</li>
+                         </ul>
+                    </div>
+                </div>
+            <div class="content_maincontent" [class.minimizedContent]="isMinimizedSidebar">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        </section>
+    </div>

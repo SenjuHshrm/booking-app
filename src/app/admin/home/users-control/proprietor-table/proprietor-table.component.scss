@@ -1,0 +1,26 @@
+
+table{
+    overflow-y: auto;
+ }
+ 
+     
+        .img-listing {
+            width: 2.5rem;
+            height: auto;
+            padding: 5px;
+            border-radius: 100%;
+
+        }
+
+        .action-btn {
+            border: none;
+            background-color: transparent;
+            outline: none;
+            cursor: pointer;
+        }
+    
+        .table-pagination{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }

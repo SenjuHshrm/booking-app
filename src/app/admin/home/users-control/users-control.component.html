@@ -1,0 +1,14 @@
+<div class="userscontrol-container">
+     <div class="userscontrol-container-wrapper">
+        <section class="userscontrol-container-wrapper-tab-header">
+            <div class="tab-wrapper">
+                <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'admin'}" (click)="gotoNavigatePage('admin')">Admin</button>
+                <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'guest'}" (click)="gotoNavigatePage('guest')">Guest</button>
+                <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'proprietor'}" (click)="gotoNavigatePage('proprietor')">Proprietor</button>
+            </div>
+        </section>
+        <section class="userscontrol-container-wrapper-content">
+            <router-outlet></router-outlet>
+        </section>
+     </div>
+</div>

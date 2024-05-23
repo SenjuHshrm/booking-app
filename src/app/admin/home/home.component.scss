@@ -1,0 +1,233 @@
+.home-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &-header {
+   border-bottom:1px solid rgb(235, 235, 235);
+    .nav-wrapper {
+      margin-right: auto;
+      margin-left: auto;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      max-width:1366px;
+      padding-left:10px;
+      padding-right:10px;
+      // border:1px solid black;
+
+
+      .header-logo {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:1rem;
+
+        img {
+          width: 5rem;
+          height: 5rem;
+        }
+
+
+        .humburger-btn {
+          cursor: pointer;
+          background-color: white;
+        
+
+          button {
+            background-color: transparent;
+            border: none;
+            color: black;
+            cursor: pointer;
+            box-shadow: 1px 1px 5px #88888877;
+            padding: 10px 10px 5px;
+            border-radius: 100%;
+            color: #63AB68;
+            border: none;
+            outline: none;
+            
+          }
+
+          button:hover {
+            background-color: transparent;
+            border: none;
+            color: #63AB68;
+
+          }
+        }
+
+        .burgerShow{
+          display:block;
+        }
+        .burgerHide{
+          display: none;
+        }
+
+
+
+      }
+      .account-type-btn {
+        text-decoration: underline;
+        color: #63AB68;
+        cursor: pointer;
+      }
+
+      .avatar-account-menu-wrapper {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        // border: 1px solid black;
+
+        .avatar-account {
+        
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          background-color: white;
+          box-shadow: 1px 1px 5px #88888877;
+          padding: 3px 10px 3px;
+          border-radius:100px;
+
+          img {
+            height: 35px;
+            width: 35px;
+            // border: 1px solid black;
+          }
+
+        .menu {
+          cursor: pointer;
+          padding: 7px 7px 3px;
+          border-radius:100%;
+          color: black;
+          border: none;
+          outline: none;
+          background-color: transparent;
+          mat-icon {
+            margin: 0;
+          }
+
+        }
+      
+      }
+      .avatar-account:hover {
+        color: #63AB68;
+      }
+     
+        
+      }
+
+      .header-login-button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        height: 1.5rem;
+
+        button {
+          font-family: Poppins-Regular;
+          color: #63AB68;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+        }
+
+        .sign-up {
+          font-weight: bolder;
+        }
+
+        button:hover {
+          text-decoration: underline;
+        }
+
+        .divider {
+          width: 2px;
+          height: 100%;
+          background-color: #63AB68;
+
+        }
+
+      }
+    }
+  }
+
+  &-content {
+    // border:1px solid black;
+    flex: 1;
+    margin: auto;
+    width: 100%;
+    max-width:1366px;
+    padding-left:10px;
+    padding-right:10px;
+    position: relative;
+
+    &-wrapper {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      gap: 1rem;
+
+      .content_sidebar {
+
+        transition: 0.5s ease;
+        width: 22%;
+        background-color: black;
+        text-align: center;
+
+
+
+        .tablist_btn {
+          ul {
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+
+
+            li {
+              list-style-type: none;
+              color: white;
+              // border-bottom: 1px solid rgb(145, 145, 145);
+              padding: 1rem;
+              font-family: Poppins-Regular;
+              font-size: 1rem;
+              cursor: pointer;
+            }
+
+        
+          }
+
+
+          .active {
+            background-color: #63AB68;
+          }
+        }
+      }
+
+      .content_maincontent {
+        width: 78%;
+        transition: 0.5s ease;
+        // border:1px solid black;
+      }
+
+      .minimizedContent {
+        width: 100%;
+        transition: 0.5s ease;
+        // opacity: 100%;
+      }
+
+      .minimizedSidebar {
+        width: 0%;
+        // opacity: 0;
+        transition: 0.5s ease;
+      }
+    }
+
+    .minimizedGap {
+      gap: 0rem;
+    }
+
+
+  }
+}

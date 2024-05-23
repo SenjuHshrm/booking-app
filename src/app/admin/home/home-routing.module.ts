@@ -8,9 +8,13 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'user-control', loadChildren: () => import('./users-control/users-control.module').then(m => m.UsersControlModule) },
+      { path: 'identification', loadChildren: () => import('./identification/identification.module').then(m => m.IdentificationModule) },
+      { path: 'reports', loadChildren: () => import('./report/report.module').then(m => m.ReportModule) },
       { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
       { path: 'global-statics', loadChildren: () => import('./global-statics/global-statics.module').then(m => m.GlobalStaticsModule) },
       { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
+  
       { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' }
     ]
   }

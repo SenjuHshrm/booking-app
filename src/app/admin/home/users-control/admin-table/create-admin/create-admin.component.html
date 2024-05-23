@@ -1,0 +1,53 @@
+<div class="create-admin-modal">
+    <div>
+        <div class="close-button close" (click)="closeDialogCreateProfile()"><mat-icon>close</mat-icon></div>
+    </div>
+    <div class="create-admin-modal-create-admin-modal-wrapper">
+        <form>
+            <section class="upload-profile-picture">
+                <div class="image-upload">
+                    <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
+                        accept="image/*">
+                    <label for="fileInput" class="custom-file-label">
+                        <div *ngIf="imageUrl" class="preview">
+                            <img [src]="imageUrl" alt="uploaded-image">
+                        </div>
+                        <mat-icon *ngIf="!imageUrl" class="custom-icon">person</mat-icon>
+                        <!-- <img *ngIf="!imageUrl" src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                            alt="camera-Icon" class="custom-icon"> -->
+                    </label>
+                    <label for="fileInput" class="main-button custom-btn">Upload</label>
+                </div>
+            </section>
+            <section class="create-inputs">
+                <div class="title">Create Admin</div>
+
+                <div class="input-wrapper">
+                    <input matInput type="text" id="username" name="username" placeholder="Username">
+                </div>
+                <div class="input-wrapper">
+                    <input matInput type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
+                        placeholder="Password">
+
+                    <div class="eye" (click)="togglePasswordVisibility()">
+                        <mat-icon *ngIf="showPassword ===true? 'Show':''">visibility</mat-icon>
+                        <mat-icon *ngIf="showPassword ===false? 'Hide':''">visibility_off</mat-icon>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <input matInput type="{{ showConPassword ? 'text' : 'password' }}" id="confirmpassword"
+                        name="confirmpassword" placeholder="Confirm Password">
+
+                    <div class="eye" (click)="toggleConfirmPasswordVisibility()">
+                        <mat-icon *ngIf="showConPassword ===true? 'Show':''">visibility</mat-icon>
+                        <mat-icon *ngIf="showConPassword ===false? 'Hide':''">visibility_off</mat-icon>
+                    </div>
+                </div>
+                <div [ngStyle]="{'margin': 'auto'}">
+                    <button class="main-button width-button" type="button"
+                        (click)="login(username, password,confirmpassword)">Create</button>
+                </div>
+            </section>
+        </form>
+    </div>
+</div>
