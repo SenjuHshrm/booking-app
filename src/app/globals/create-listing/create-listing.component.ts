@@ -61,9 +61,9 @@ export class CreateListingComponent {
     ];
 
     doesyourplace:any=[
-      {doesyourPlace:"Security camera’s"},
+      {doesyourPlace:"Security Camera’s"},
       {doesyourPlace:"Weapons"},
-      {doesyourPlace:"Dangerous animals"}
+      {doesyourPlace:"Dangerous Animals"}
     ]
 
     adddiscounts:any=[

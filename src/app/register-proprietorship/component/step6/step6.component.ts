@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./step6.component.scss']
 })
 export class Step6Component {
+  uploadedImages: string[] = [];
 
+    onFileSelected(event: any): void {
+      const files: FileList = event.target.files;
+      if (files && files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.uploadedImages.push(e.target.result);
+          };
+          reader.readAsDataURL(files[i]);
+        }
+      }
+    }
 }

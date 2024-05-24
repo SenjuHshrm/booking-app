@@ -1,1 +1,12 @@
-<p>step1 works!</p>
+<section class="describe-your-place">
+    <div class="describe-your-place-wrapper">
+        <div class="checkbox" *ngFor="let yourPlace of places">
+            <input type="checkbox" name="house" value="" />
+            <div class="label">{{yourPlace.placetype}}</div>
+        </div>
+    </div>
+    <div class="others">
+        <div>Other:</div>
+        <input type="text" name="house" value="" placeholder="Describe your place" />
+    </div>
+</section>

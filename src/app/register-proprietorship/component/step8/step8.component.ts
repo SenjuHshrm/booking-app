@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./step8.component.scss']
 })
 export class Step8Component {
-
+  describehouse:any=[
+    {describeHouse:"Peaceful"},
+    {describeHouse:"Unique"},
+    {describeHouse:"Stylish"},
+    {describeHouse:"Peaceful"},
+    {describeHouse:"Family-friendly"},
+    {describeHouse:"Spacious"}
+  ];
 }

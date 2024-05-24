@@ -1,0 +1,28 @@
+.share-about-your-place {
+    padding:3rem 0 1rem;
+    .title {
+        font-weight: bold;
+        font-size: clamp(1rem, 1vw, 8rem);
+        color: #68A86A;
+        margin-bottom: 1rem;
+    }
+    .share-about-your-place-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 3fr));
+        gap: .5rem;
+        width: 100%;
+        .input-wrapper {
+            .label {
+                margin-bottom: .3rem;
+            }
+            input {
+                padding: 1rem;
+                border: 2px solid #63AB68;
+                max-width: 10rem;
+                border-radius: 10px;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+            }
+        }
+    }
+}

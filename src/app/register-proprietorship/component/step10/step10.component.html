@@ -1,1 +1,11 @@
-<p>step10 works!</p>
+<section class="does-your-place-have-this">
+    <!-- <div class="title">
+        Does your place have any of these?
+    </div> -->
+    <div class="does-your-place-have-this-wrapper">
+        <div class="checkbox" *ngFor="let doesyourPlace of doesyourplace">
+            <input type="checkbox" name="house" value="" />
+            <div class="label">{{doesyourPlace.doesyourPlace}}</div>
+        </div>
+    </div>
+</section>

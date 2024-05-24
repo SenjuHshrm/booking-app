@@ -1,1 +1,163 @@
-<p>register-proprietorship works!</p>
+<div class="register-proprietor-container">
+    <div class="nav-wrapper">
+        <app-nav></app-nav>
+    </div>
+    <div class="register-proprietor-container-content-wrapper">
+        <div class="register-proprietor-intro">
+            <div class="girl-image">
+                <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
+            </div>
+            <div class="content">
+                <h1>
+                    Be a proprietor
+                </h1>
+                <br>
+                <div class="info">
+                    <h1 class="info_title">1. Tell us about your place</h1>
+                    <p class="subinfo">Share some basic info, like where it is and how many
+                        guests can stay.</p>
+                    <h1 class="info_title">2. Make it stand out</h1>
+                    <p class="subinfo">Add 5 or more photos plus a title and description-
+                        we'll help you out.</p>
+                    <h1 class="info_title">3. Finish up and publish</h1>
+                    <p class="subinfo">Choose if you'd like to start with an experienced
+                        guest, set a starting price, and publish your listing.</p>
+                </div>
+                <div class="btn">
+                    <button class="main-button" (click)="scrollToRegProp()">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="register-proprietor-listing-container" #getStarted>
+    <div class="register-proprietor-listing-container-wrapper">
+        <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Describe your place</ng-template>
+                    <app-step1></app-step1>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Type of place will guest have</ng-template>
+                    <app-step2></app-step2>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Tell the guest where the place is located</ng-template>
+                    <app-step3></app-step3>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Share some basics about your place</ng-template>
+                    <app-step4></app-step4>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Inform your visitors about the amenities and features available at your
+                        location.</ng-template>
+                    <app-step5></app-step5>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel> Add some photos of your staycation/event place</ng-template>
+                    <app-step6></app-step6>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Now, let’s give your house a title</ng-template>
+                    <app-step7></app-step7>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Let’s describe your house</ng-template>
+                    <app-step8></app-step8>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Add discounts</ng-template>
+                    <app-step9></app-step9>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Does your place have any of these?</ng-template>
+                    <app-step10></app-step10>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Set your price</ng-template>
+                    <app-step11></app-step11>
+                    <div class="nextprev_btn">
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <section class="important-things-to-know">
+                    <div class="title">Important things to know</div>
+                    <div class="description">
+                        <p>Be sure to comply with your <span>local laws</span> and review TaraGo <span>nondiscrimination
+                                policy</span> and <span>guest and proprietor fees</span>.</p>
+                    </div>
+                </section>
+                <div class="nextprev_btn">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Next</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    
+    </div>
+</div>

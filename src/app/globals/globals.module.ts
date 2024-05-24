@@ -8,14 +8,13 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileComponent } from './profile/profile.component';
-import { MyFavoriteComponent } from './my-favorite/my-favorite.component';
+
 
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    MyFavoriteComponent,
     CreateListingComponent,
     NavComponent,
     FooterComponent,
@@ -33,7 +32,6 @@ import { MyFavoriteComponent } from './my-favorite/my-favorite.component';
 
   exports: [
     ProfileComponent,
-    MyFavoriteComponent,
     CreateListingComponent,
     NavComponent,
     FooterComponent,

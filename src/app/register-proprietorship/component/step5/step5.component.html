@@ -1,1 +1,12 @@
-<p>step5 works!</p>
+<section class="inform-your-visitors-amenities">
+    <div class="inform-your-visitors-amenities-wrapper">
+        <div class="checkbox" *ngFor="let yourAmenities of amenities">
+            <input type="checkbox" name="house" value="" />
+            <div class="label">{{yourAmenities.placeamenities}}</div>
+        </div>
+    </div>
+    <div class="others">
+        <div>Other:</div>
+        <input type="text" name="house" value="" placeholder="Describe your amenities" />
+    </div>
+</section>

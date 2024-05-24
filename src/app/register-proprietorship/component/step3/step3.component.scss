@@ -1,0 +1,29 @@
+.where-is-located {
+    padding:3rem 0 1rem;
+    
+    .title {
+        font-weight: bold;
+        font-size: clamp(1rem, 1vw, 8rem);
+        color: #68A86A;
+        margin-bottom: 1rem;
+    }
+    .where-is-located-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+        gap: .5rem;
+        width: 100%;
+        .input-wrapper {
+            .label {
+                margin-bottom: .3rem;
+            }
+            input {
+                padding: 1rem;
+                border: 2px solid #63AB68;
+                width: 100%;
+                border-radius: 10px;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.inform-your-visitors-amenities {
+    padding:3rem 0 1rem;
+    &-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        place-content: center;
+        .checkbox {
+            display: flex;
+            gap: .5rem;
+            input {
+                flex: none;
+                width: 1.5rem;
+                height: 1.5rem;
+                cursor: pointer;
+            }
+            .label {
+                font-weight: medium;
+            }
+        }
+    }
+    .others {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        margin-top: 1rem;
+        max-width: 40rem;
+        width: 100%;
+        background-color: #F7F7F7;
+        border-radius: .5rem;
+        padding: 1rem;
+    
+        input {
+            width: auto;
+            border: none;
+            background-color: transparent;
+            outline: none;
+            width: 100%;
+    
+    
+        }
+}
+}
+

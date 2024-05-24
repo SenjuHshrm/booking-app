@@ -1,0 +1,48 @@
+  .add-discounts {
+      padding: 3rem 0 1rem;
+      width: 100%;
+
+      .title {
+          font-weight: bold;
+          font-size: clamp(1rem, 1vw, 8rem);
+          color: #68A86A;
+          margin-bottom: 1rem;
+      }
+
+      .add-discounts-wrapper {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+          gap: .5rem;
+          width: 100%;
+
+          .checkbox {
+              width: 100%;
+              border: 1px solid #68A86A;
+              background-color: #F7F7F7;
+              display: flex;
+              gap: .5rem;
+              border-radius: 5px;
+              padding: .5rem .5rem .5rem;
+
+              .checkbox-wrapper {
+                  gap: .5rem;
+                  display: flex;
+                  flex-direction: row-reverse;
+
+                  .info {
+                      .label {
+                          font-size: clamp(1rem, 1vw, 8rem);
+                          font-weight: bolder;
+                      }
+                  }
+
+                  input {
+                      flex: none;
+                      width: 1.5rem;
+                      height: 1.5rem;
+                      cursor: pointer;
+                  }
+              }
+          }
+      }
+  }

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class Step2Component {
 
+  typeofplace:any=[
+    {label:"Entire place", desc:'Guest have the whole place to themselves.'},
+    {label:"Shared room", desc:'Guest sleep in a room or common area that may be shared with you or others.'},
+    {label:"Room only", desc:'Guest have their own room in a home, plus access to shared spaces.'},
+  ]
+
 }

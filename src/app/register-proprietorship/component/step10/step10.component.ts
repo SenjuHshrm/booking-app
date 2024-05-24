@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./step10.component.scss']
 })
 export class Step10Component {
-
+  doesyourplace:any=[
+    {doesyourPlace:"Security camera’s"},
+    {doesyourPlace:"Weapons"},
+    {doesyourPlace:"Dangerous animals"}
+  ]
 }

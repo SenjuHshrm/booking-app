@@ -1,0 +1,26 @@
+.add-property-title {
+    padding:3rem 0 1rem;
+    .title {
+        font-weight: bold;
+        font-size: clamp(1rem, 1vw, 8rem);
+        color: #68A86A;
+        margin-bottom: 1rem;
+    }
+    .add-property-title-wrapper {
+        .input-wrapper {
+            .label {
+                margin-bottom: .3rem;
+            }
+            textarea {
+                padding: 1rem;
+                border: 2px solid #63AB68;
+                width: 50%;
+                height: 8rem;
+                border-radius: 10px;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+                resize: none;
+            }
+        }
+    }
+}

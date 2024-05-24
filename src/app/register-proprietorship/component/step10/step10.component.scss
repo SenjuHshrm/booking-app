@@ -1,0 +1,29 @@
+.does-your-place-have-this {
+    padding:3rem 0 1rem;
+    .title {
+        font-weight: bold;
+        font-size: clamp(1rem, 1vw, 8rem);
+        color: #68A86A;
+        margin-bottom: 1rem;
+    }
+    .does-your-place-have-this-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        place-content: center;
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            input {
+                flex: none;
+                width: 1.5rem;
+                height: 1.5rem;
+                cursor: pointer;
+            }
+            .label {
+                font-weight: medium;
+            }
+        }
+    }
+}

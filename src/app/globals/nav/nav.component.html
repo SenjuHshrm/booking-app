@@ -5,10 +5,11 @@
         </div>
         <div class="avatar-account-menu-wrapper">
             <div class="avatar-account">
-                <div class="account-type-btn">Switch to traveller</div>
+                <!-- <div class="account-type-btn">Switch to proprietor</div> -->
+                <!-- <div class="account-type-btn">Switch to guest</div> -->
+                <div class="account-type-btn" (click)="goToProprietorReg()">Be a proprietor</div>
                 <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar"
                     [draggable]="false">
-
             </div>
 
             <button class="menu" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>

@@ -74,6 +74,11 @@ goToWishlist() {
   this.router.navigate(['main/wishlist']);
 }
 
+goToProprietorReg() {
+  this.router.navigate(['register-proprietorship']);
+}
+
+
 
 
 }

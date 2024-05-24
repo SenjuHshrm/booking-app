@@ -1,0 +1,51 @@
+.add-taxes{
+    padding:3rem 0 1rem;
+    .title {
+        font-weight: bold;
+        font-size: clamp(1rem, 1vw, 8rem);
+        color: #68A86A;
+        margin-bottom: 1rem;
+    }
+    &-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+        gap: .5rem;
+        width: 100%;
+
+        .input-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            .label {
+                font-size: clamp(2rem, 1vw, 8rem);
+                margin-bottom: .3rem;
+                font-weight:200;
+                color: #63AB68;
+            }
+            input {
+                padding: 1rem;
+                border: 2px solid #63AB68;
+                width: 100%;
+                border-radius: 10px;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+            }
+        }
+
+        .taxes{
+            button{
+                 color: white;
+                 font-weight: bold;
+                 text-align: center;
+                 font-size: clamp(1.5rem, 1vw, 8rem);
+                 background-color: #63AB68;
+                 width: 100%;
+                 height: 100%;
+                 border-radius: 10px;
+                 border:none;
+                 cursor: pointer;
+            }
+        }
+    }
+}

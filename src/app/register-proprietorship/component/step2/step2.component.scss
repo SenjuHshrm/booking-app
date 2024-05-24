@@ -1,0 +1,64 @@
+.type-of-place {
+    padding:3rem 0 1rem;
+    width: 100%;
+    .title {
+        font-weight: bold;
+        font-size: clamp(1rem, 1vw, 8rem);
+        color: #68A86A;
+        margin-bottom: 1rem;
+    }
+    .type-of-place-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+        gap: .5rem;
+        width: 100%;
+        .checkbox {
+            width: 100%;
+            border: 1px solid #68A86A;
+            background-color: #F7F7F7;
+            display: flex;
+            gap: .5rem;
+            border-radius: 5px;
+            padding: .5rem .5rem .5rem;
+            .checkbox-wrapper {
+                gap: .5rem;
+                display: flex;
+                flex-direction: row-reverse;
+                .info {
+                    .label {
+                        font-weight: bold;
+                    }
+                }
+                input {
+                    flex: none;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+
+.others {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    margin-top: 1rem;
+    max-width: 40rem;
+    width: 100%;
+    background-color: #F7F7F7;
+    border-radius: .5rem;
+    padding: 1rem;
+
+    input {
+        width: auto;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        width: 100%;
+
+
+    }
+}

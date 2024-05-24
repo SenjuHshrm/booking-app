@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { RegisterProprietorshipRoutingModule } from './register-proprietorship-routing.module';
 import { RegisterProprietorshipComponent } from './register-proprietorship.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Step1Component } from './component/step1/step1.component';
 import { Step2Component } from './component/step2/step2.component';
 import { Step3Component } from './component/step3/step3.component';
@@ -16,7 +20,8 @@ import { Step10Component } from './component/step10/step10.component';
 import { Step11Component } from './component/step11/step11.component';
 import { Step12Component } from './component/step12/step12.component';
 import { Step13Component } from './component/step13/step13.component';
-
+import { GlobalsModule } from '../globals/globals.module';
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,16 @@ import { Step13Component } from './component/step13/step13.component';
   ],
   imports: [
     CommonModule,
-    RegisterProprietorshipRoutingModule
+    RegisterProprietorshipRoutingModule,
+    MatButtonModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatStepperModule,
+    GlobalsModule,
+    MatRippleModule
   ]
 })
 export class RegisterProprietorshipModule { }

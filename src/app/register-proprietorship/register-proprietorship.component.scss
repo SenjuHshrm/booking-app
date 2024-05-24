@@ -1,0 +1,135 @@
+.register-proprietor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Poppins-Regular;
+    width: 100%;
+    height: 100%;
+
+    .nav-wrapper {
+        flex: none;
+        width: 100%;
+    }
+
+    &-content-wrapper {
+        width: 100%;
+        height: 100%;
+        max-width: 1366px;
+        // border: 1px solid black;
+        background-color: #F7F7F7;
+
+        .register-proprietor-intro {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            height: 100%;
+            place-content: center;
+            // border: 1px solid black;
+
+
+            .girl-image {
+                height: 100%;
+                //   transform: translateX(-200px);
+                flex-basis: 60%;
+
+                // border: 1px solid black;
+
+                img {
+                    // border: 1px solid black;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .content {
+                // border: 1px solid black;
+                height: 100%;
+                flex-basis: 40%;
+                padding: 2rem;
+
+                h1 {
+                    font-family: Poppins-Medium;
+                    font-size: clamp(2rem, 2vw, 5rem);
+                    white-space: nowrap;
+
+                }
+
+                .info {
+
+                    font-family: Poppins-Regular;
+                    font-size: 25px;
+                    line-height: 35px;
+
+                    .info_title {
+                        font-weight: bold;
+                        font-size: clamp(1rem, 1vw, 5rem);
+                    }
+
+                    .subinfo {
+                        font-size: clamp(.5rem, .8vw, 5rem);
+                    }
+                }
+
+                button {
+                    margin-top: 2rem;
+                }
+            }
+
+
+            .wavecolor-image {
+                position: absolute;
+                top: auto;
+                bottom: 0;
+                right: 0;
+                transform: translateY(7px);
+            }
+        }
+    }
+}
+
+.register-proprietor-listing-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Poppins-Regular !important;
+    width: 100%;
+    height: 100%;
+
+    &-wrapper {
+        width: 100%;
+        height: 100%;
+        max-width: 1366px;
+        // border: 1px solid black;
+    }
+
+    .nextprev_btn {
+        display: flex;
+        justify-content: flex-end;
+        button{
+            color: #68A86A;
+        }
+    }
+
+}
+
+.important-things-to-know {
+    padding: 3rem 0 1rem;
+    text-align: center;
+    .title {
+        font-size: 15px;
+        font-weight: bolder;
+    }
+    .description {
+        p {
+            margin: 0;
+            padding: 0;
+            font-size:15px;
+            span {
+                cursor: pointer;
+                color: #63AB68;
+            }
+        }
+    }
+}
