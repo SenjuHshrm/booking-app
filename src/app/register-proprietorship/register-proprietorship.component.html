@@ -1,13 +1,13 @@
-<div class="register-proprietor-container">
+<div class="register-proprietor-intro">
     <div class="nav-wrapper">
         <app-nav></app-nav>
     </div>
-    <div class="register-proprietor-container-content-wrapper">
-        <div class="register-proprietor-intro">
-            <div class="girl-image">
-                <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
-            </div>
-            <div class="content">
+    <div class="register-proprietor-intro-wrapper">
+        <div class="girl-image">
+            <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
+        </div>
+        <div class="content">
+            <div class="content-wrapper">
                 <h1>
                     Be a proprietor
                 </h1>
@@ -33,7 +33,7 @@
 <form (ngSubmit)="handleRegProp(regPropForm)" #regPropFormDir="ngForm" [formGroup]="regPropForm">
     <div class="register-proprietor-listing-container" #getStarted>
         <div class="register-proprietor-listing-container-wrapper">
-            <mat-stepper orientation="vertical" [linear]="isLinear" #regPropFormStepper>
+            <mat-stepper orientation="horizontal" [linear]="isLinear" #regPropFormStepper>
                 <mat-step [stepControl]="regPropForm.controls['step1']" errorMessage="Please at least one (1) description of your place">
                     <ng-template matStepLabel>Describe your place</ng-template>
                     <app-step1 formGroupName="step1"></app-step1>
