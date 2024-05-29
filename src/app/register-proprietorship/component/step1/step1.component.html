@@ -1,12 +1,17 @@
-<section class="describe-your-place">
-    <div class="describe-your-place-wrapper">
-        <div class="checkbox" *ngFor="let yourPlace of places">
-            <input type="checkbox" name="house" value="" />
-            <div class="label">{{yourPlace.placetype}}</div>
+<ng-container [formGroup]="formRegPropS1">
+    <section class="describe-your-place">
+        <div class="describe-your-place-wrapper">
+            <div class="checkbox" *ngFor="let yourPlace of places">
+                <input type="checkbox" name="house" [value]="yourPlace.placetype" (change)="handleSelectedPlaceType($event)">
+                <div class="label">{{yourPlace.placetype}}</div>
+            </div>
+            <ng-container *ngFor="let val of validation.descriptionFilter">
+                <span *ngIf="formRegPropS1.controls['descriptionFilter']?.hasError(val.type) && (formRegPropS1.controls['descriptionFilter']?.dirty || formRegPropS1.controls['descriptionFilter']?.touched)">{{ val.msg }}</span>
+            </ng-container>
         </div>
-    </div>
-    <div class="others">
-        <div>Other:</div>
-        <input type="text" name="house" value="" placeholder="Describe your place" />
-    </div>
-</section>
+        <div class="others">
+            <div>Other:</div>
+            <input type="text" name="house" value="" placeholder="Describe your place" formControlName="descriptionFilterOther"/>
+        </div>
+    </section>
+</ng-container>

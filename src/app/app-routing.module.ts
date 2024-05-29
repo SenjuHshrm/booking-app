@@ -17,11 +17,14 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
+    path: 'register-proprietorship',
+    loadChildren: () => import('./register-proprietorship/register-proprietorship.module').then(m => m.RegisterProprietorshipModule)
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  },
-  { path: 'register-proprietorship', loadChildren: () => import('./register-proprietorship/register-proprietorship.module').then(m => m.RegisterProprietorshipModule) },
+  }
   // {
   //   path: '**',
 

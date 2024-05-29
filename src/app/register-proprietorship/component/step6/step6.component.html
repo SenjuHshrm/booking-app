@@ -1,23 +1,25 @@
-<section class="add-photos-place">
-    <!-- <div class="title">
-        Add some photos of your house
-    </div> -->
-    <div class="add-photos-place-wrapper">
-        <div class="container">
-            <div class="side-panel">
-                <input type="file" id="fileInput" style="display: none;"
-                    (change)="onFileSelected($event)" accept="image/*" multiple>
-                <label for="fileInput" class="custom-file-label">
-                    <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
-                        alt="camera-Icon" class="custom-icon">
-                    <span>Upload Image</span>
-                </label>
-            </div>
-            <div class="gallery">
-                <div *ngFor="let image of uploadedImages" class="image">
-                    <img [src]="image" alt="Uploaded Image">
+<ng-container [formGroup]="formRegPropS6">
+    <section class="add-photos-place">
+        <!-- <div class="title">
+            Add some photos of your house
+        </div> -->
+        <div class="add-photos-place-wrapper">
+            <div class="container">
+                <div class="side-panel">
+                    <input type="file" id="fileInput" style="display: none;"
+                        (change)="onFileSelected($event)" accept="image/*" multiple>
+                    <label for="fileInput" class="custom-file-label">
+                        <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                            alt="camera-Icon" class="custom-icon">
+                        <span>Upload Image</span>
+                    </label>
+                </div>
+                <div class="gallery">
+                    <div *ngFor="let image of uploadedImages" class="image">
+                        <img [src]="image" alt="Uploaded Image">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</ng-container>

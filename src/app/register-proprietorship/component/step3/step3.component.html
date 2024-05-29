@@ -1,28 +1,30 @@
-<section class="where-is-located">
-    <!-- <div class="title">
-        Tell the guest where the place is located.
-    </div> -->
-    <div class="where-is-located-wrapper">
-        <div class="input-wrapper">
-            <div class="label">Unit No. Street, Subdivision etc.</div>
-            <input type="text" name="street" value="" placeholder="">
+<ng-container [formGroup]="formRegPropS3">
+    <section class="where-is-located">
+        <!-- <div class="title">
+            Tell the guest where the place is located.
+        </div> -->
+        <div class="where-is-located-wrapper">
+            <div class="input-wrapper">
+                <div class="label">Unit No. Street, Subdivision etc.</div>
+                <input type="text" name="street" value="" placeholder="">
+            </div>
+            <div class="input-wrapper">
+                <div class="label">Barangay</div>
+                <input type="text" name="barangay" value="">
+            </div>
+            <div class="input-wrapper">
+                <div class="label">City / Municipality</div>
+                <input type="text" name="city" value="">
+            </div>
+            <div class="input-wrapper">
+                <div class="label">Zip Code</div>
+                <input type="text" name="zipcode" value="">
+            </div>
+            <div class="input-wrapper">
+                <div class="label">Province</div>
+                <input type="text" name="province" value="">
+            </div>
         </div>
-        <div class="input-wrapper">
-            <div class="label">Barangay</div>
-            <input type="text" name="barangay" value="">
-        </div>
-        <div class="input-wrapper">
-            <div class="label">City / Municipality</div>
-            <input type="text" name="city" value="">
-        </div>
-        <div class="input-wrapper">
-            <div class="label">Zip Code</div>
-            <input type="text" name="zipcode" value="">
-        </div>
-        <div class="input-wrapper">
-            <div class="label">Province</div>
-            <input type="text" name="province" value="">
-        </div>
-    </div>
-
-</section>
+    
+    </section>
+</ng-container>

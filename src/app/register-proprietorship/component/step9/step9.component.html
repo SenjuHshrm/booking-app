@@ -1,16 +1,18 @@
-   <section class="add-discounts">
-                    <!-- <div class="title">
-                        Add discounts
-                    </div> -->
-                    <div class="add-discounts-wrapper">
-                        <div class="checkbox" *ngFor="let addDiscounts of adddiscounts">
-                            <div class="checkbox-wrapper">
-                                <div class="info">
-                                    <div class="label">{{addDiscounts.label}}<span>%</span></div>
-                                    <div class="desc">{{addDiscounts.desc}}</div>
-                                </div>
-                                <input type="checkbox" name="house" value="" />
-                            </div>
-                        </div>
+<ng-container [formGroup]="formRegPropS9">
+    <section class="add-discounts">
+        <!-- <div class="title">
+            Add discounts
+        </div> -->
+        <div class="add-discounts-wrapper">
+            <div class="checkbox" *ngFor="let addDiscounts of adddiscounts">
+                <div class="checkbox-wrapper">
+                    <div class="info">
+                        <div class="label">{{addDiscounts.label}}<span>%</span></div>
+                        <div class="desc">{{addDiscounts.desc}}</div>
                     </div>
-                </section>
+                    <input type="checkbox" name="house" value="" />
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>

@@ -1,12 +1,14 @@
-<section class="describe-your-house">
-    <div class="describe-your-house-wrapper">
-        <div class="checkbox" *ngFor="let describeyourHouse of describehouse">
-            <input type="checkbox" name="house" value="" />
-            <div class="label">{{describeyourHouse.describeHouse}}</div>
+<ng-container [formGroup]="formRegPropS8">
+    <section class="describe-your-house">
+        <div class="describe-your-house-wrapper">
+            <div class="checkbox" *ngFor="let describeyourHouse of describehouse">
+                <input type="checkbox" name="house" value="" />
+                <div class="label">{{describeyourHouse.describeHouse}}</div>
+            </div>
         </div>
-    </div>
-    <div class="others">
-        <div>Other:</div>
-        <input type="text" name="house" value="" placeholder="Describe your house" />
-    </div>
-</section>
+        <div class="others">
+            <div>Other:</div>
+            <input type="text" name="house" value="" placeholder="Describe your house" />
+        </div>
+    </section>
+</ng-container>

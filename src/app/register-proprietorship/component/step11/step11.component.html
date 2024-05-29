@@ -1,18 +1,20 @@
-<section class="add-taxes">
-    <!-- <div class="title">
-        Set your price
-    </div> -->
-    <div class="add-taxes-wrapper">
-        <div class="input-wrapper">
-            <div class="label">₱</div>
-            <input type="number" name="street" value="">
+<ng-container [formGroup]="formRegPropS11">
+    <section class="add-taxes">
+        <!-- <div class="title">
+            Set your price
+        </div> -->
+        <div class="add-taxes-wrapper">
+            <div class="input-wrapper">
+                <div class="label">₱</div>
+                <input type="number" name="street" value="">
+            </div>
+            <div class="taxes">
+                <button matRipple>Taxes</button>
+            </div>
+            <div class="input-wrapper">
+                <div class="label">₱</div>
+                <input class="read-only" type="number" name="street" value="">
+            </div>
         </div>
-        <div class="taxes">
-            <button matRipple>Taxes</button>
-        </div>
-        <div class="input-wrapper">
-            <div class="label">₱</div>
-            <input class="read-only" type="number" name="street" value="">
-        </div>
-    </div>
-</section>
+    </section>
+</ng-container>
