@@ -1,0 +1,42 @@
+<h2>Host Applications</h2>
+<table mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="profile">
+    <th mat-header-cell *matHeaderCellDef>Profile</th>
+    <td mat-cell *matCellDef="let element">
+      <img [src]="element.profile" alt="image" class="img-listing"/>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef>Firstname</th>
+    <td mat-cell *matCellDef="let element">{{ element.firstname }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+      <th mat-header-cell *matHeaderCellDef>Lastname</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastname }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="staycation">
+    <th mat-header-cell *matHeaderCellDef>Staycation Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.staycation }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button class="action-btn" [matMenuTriggerFor]="menu">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>View</button>
+        <button mat-menu-item (click)="handleSetAsHost(element.userId, element.staycationId, element.propAppId)">Give Proprietor Privileges</button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator class="table-pagination" #paginator [length]="total" [pageSizeOptions]="[5, 10, 25]" aria-label="select page" showFirstLastButtons (page)="handlePageChange($event)"></mat-paginator>

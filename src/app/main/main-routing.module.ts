@@ -1,3 +1,6 @@
+import { customerGuard } from './../guards/customer.guard';
+import { hostGuard } from './../guards/host.guard';
+import { authGuard } from './../guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
@@ -24,31 +27,38 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('./customer-dashboard/customer-dashboard.module').then(m => m.CustomerDashboardModule)
+        loadChildren: () => import('./customer-dashboard/customer-dashboard.module').then(m => m.CustomerDashboardModule),
+        canActivate: [authGuard, hostGuard]
       },
       {
         path: 'users-profile',
-        loadChildren: () => import('./users-profile/users-profile.module').then(m => m.UsersProfileModule)
+        loadChildren: () => import('./users-profile/users-profile.module').then(m => m.UsersProfileModule),
+        canActivate: [authGuard]
       },
       {
         path: 'accounts-settings',
-        loadChildren: () => import('./accounts-settings/accounts-settings.module').then(m => m.AccountsSettingsModule)
+        loadChildren: () => import('./accounts-settings/accounts-settings.module').then(m => m.AccountsSettingsModule),
+        canActivate: [authGuard]
       },
       {
         path: 'gallery',
-        loadChildren: () => import('./gallery-page/gallery-page.module').then(m => m.GalleryPageModule)
+        loadChildren: () => import('./gallery-page/gallery-page.module').then(m => m.GalleryPageModule),
+        canActivate: [authGuard, hostGuard]
       },
       {
         path: 'message',
-        loadChildren: () => import('./message-page/message-page.module').then(m => m.MessagePageModule)
+        loadChildren: () => import('./message-page/message-page.module').then(m => m.MessagePageModule),
+        canActivate: [authGuard, customerGuard]
       },
       {
         path: 'notification',
-        loadChildren: () => import('./notification-page/notification-page.module').then(m => m.NotificationPageModule)
+        loadChildren: () => import('./notification-page/notification-page.module').then(m => m.NotificationPageModule),
+        canActivate: [authGuard]
       },
       {
         path: 'wishlist',
-        loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule)
+        loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule),
+        canActivate: [authGuard]
       },
       {
         path: '',

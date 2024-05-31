@@ -3,22 +3,21 @@
         <div class="close-button close" (click)="closeDialogLogin()"><mat-icon>close</mat-icon></div>
         <div class="title">Login</div>
         <div class="form-wrapper">
-            <form>
+            <form (ngSubmit)="login(loginForm)" [formGroup]="loginForm">
                 <div class="email-wrapper">
-                    <input type="text" id="email" name="email" placeholder="Email Address" autocomplete="email"><br><br>
+                    <input type="text" id="email" name="email" placeholder="Email Address" autocomplete="email" formControlName="email"><br><br>
                 </div>
                 <div class="password-wrapper">
                     <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
-                        placeholder="Password" autocomplete="current-password" required><br><br>
+                        placeholder="Password" autocomplete="current-password" formControlName="password" required><br><br>
                     <span></span>
                     <div class="eye" (click)="togglePasswordVisibility()">
-                        <mat-icon *ngIf="showPassword ===true? 'Show':''">visibility</mat-icon>
-                        <mat-icon *ngIf="showPassword ===false? 'Hide':''">visibility_off</mat-icon>
+                        <mat-icon *ngIf="showPassword ===true ? 'Show' : ''">visibility</mat-icon>
+                        <mat-icon *ngIf="showPassword ===false ? 'Hide' : ''">visibility_off</mat-icon>
                     </div>
                 </div>
                 <div class="forgot-pass">Forgot password?</div>
-                <button class="main-button width-button" type="button"
-                    (click)="login(username, password)">Login</button>
+                <button class="main-button width-button" type="submit">Login</button>
             </form>
         </div>
         <div class="not-aguest">

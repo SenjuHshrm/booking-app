@@ -2,13 +2,13 @@
     <section class="inform-your-visitors-amenities">
         <div class="inform-your-visitors-amenities-wrapper">
             <div class="checkbox" *ngFor="let yourAmenities of amenities">
-                <input type="checkbox" name="house" value="" />
+                <input type="checkbox" [name]="yourAmenities.value" [value]="yourAmenities.value" (change)="handleSelectedAmenities($event)"/>
                 <div class="label">{{yourAmenities.placeamenities}}</div>
             </div>
         </div>
         <div class="others">
             <div>Other:</div>
-            <input type="text" name="house" value="" placeholder="Describe your amenities" />
+            <input type="text" name="amenitiesOther" formControlName="amenitiesOther" placeholder="Describe your amenities" />
         </div>
     </section>
 </ng-container>

@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterProprietorshipRoutingModule } from './register-proprietorship-routing.module';
@@ -51,7 +52,8 @@ import {MatRippleModule} from '@angular/material/core';
     MatInputModule,
     MatStepperModule,
     GlobalsModule,
-    MatRippleModule
+    MatRippleModule,
+    MatIconModule
   ]
 })
 export class RegisterProprietorshipModule { }

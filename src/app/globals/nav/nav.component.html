@@ -3,11 +3,11 @@
         <div class="header-logo" (click)="goToHome()">
             <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" />
         </div>
-        <div class="avatar-account-menu-wrapper">
+        <div class="avatar-account-menu-wrapper" *ngIf="isAuth">
             <div class="avatar-account">
                 <!-- <div class="account-type-btn">Switch to proprietor</div> -->
                 <!-- <div class="account-type-btn">Switch to guest</div> -->
-                <div class="account-type-btn" (click)="goToProprietorReg()">Be a proprietor</div>
+                <div class="account-type-btn" (click)="goToProprietorReg()" *ngIf="!isHost">Be a proprietor</div>
                 <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar"
                     [draggable]="false">
             </div>
@@ -21,11 +21,11 @@
                 <button mat-menu-item (click)="goToCustomerDashboard()">Manage Listing</button>
                 <button mat-menu-item (click)="goToAccountSettings()">Account Setting</button>
                 <button mat-menu-item>Help</button>
-                <button mat-menu-item>Logout</button>
+                <button mat-menu-item (click)="logout()">Logout</button>
             </mat-menu>
 
         </div>
-        <div class="header-login-button">
+        <div class="header-login-button" *ngIf="!isAuth">
             <button (click)="openLoginDialog()">Login</button>
             <div class="divider"></div>
             <button class="sign-up" (click)="openSignupDialog()">SignUp</button>

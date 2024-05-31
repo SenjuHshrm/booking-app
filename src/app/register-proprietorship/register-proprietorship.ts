@@ -20,7 +20,7 @@ export interface Step1Form {
 }
 
 export interface Step2Form {
-  placeType: FormControl;
+  placeType: any;
 }
 
 export interface Step3Form {
@@ -40,7 +40,7 @@ export interface Step4Form {
 }
 
 export interface Step5Form {
-  amenities: FormControl;
+  amenities: FormArray<FormGroup>;
   amenitiesOther: FormControl;
 }
 
@@ -53,16 +53,16 @@ export interface Step7Form {
 }
 
 export interface Step8Form {
-  descriptionText: FormControl;
+  descriptionText: FormArray<FormGroup>;
   descriptionTextOther: FormControl;
 }
 
 export interface Step9Form {
-  discounts: FormControl;
+  discounts: FormArray<FormGroup>;
 }
 
 export interface Step10Form {
-  security: FormControl;
+  security: FormArray<FormGroup>;
 }
 
 export interface Step11Form {

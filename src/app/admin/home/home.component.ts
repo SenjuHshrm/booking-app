@@ -1,3 +1,5 @@
+import { TokenService } from './../../services/token.service';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +10,11 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    private _auth: AuthService,
+    private _token: TokenService
+  ) { 
   this.selectedTab =  this.last_Url = this.router.url.split('/')[3];
   }
 
@@ -31,6 +37,14 @@ gotoPage(actives: string) {
   this.router.navigate([`admin/home/${actives}`]);
 }
 
+  logout() {
+    this._auth.logout().subscribe({
+      next: (res: { logout: boolean }) => {
+        this._token.removeToken()
+        window.location.href = '/admin/login'
+      }
+    })
+  }
 
 
 }

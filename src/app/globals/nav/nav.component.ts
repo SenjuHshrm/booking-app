@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { ITokenClaims } from './../../interfaces/token';
+import { TokenService } from './../../services/token.service';
+import { AuthService } from './../../services/auth.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-nav',
@@ -12,11 +15,29 @@ import { Router } from '@angular/router';
 
 })
 
-export class NavComponent {
+export class NavComponent implements OnInit {
+
+  @Input() public isAuth: boolean = false
+
+  public isHost!: boolean
+  
+  private _claims!: ITokenClaims
+  private _redirectTo: string = ''
+
   constructor(
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private _location: Location,
+    private _auth: AuthService,
+    private _token: TokenService
     ) {}
+
+  ngOnInit(): void {
+    this._claims = this._token.decodedToken()
+    this.isHost = this._claims.access.indexOf('host') !== -1
+    console.log(this.isHost)
+    this._redirectTo = this._location.path()
+  }
 
 
 openLoginDialog(): void {
@@ -43,40 +64,49 @@ openSignupDialog(): void {
 
 
 
-goToHome() {
-  this.router.navigate(['']);
-}
+  goToHome() {
+    this.router.navigate(['']);
+  }
 
 
-goToCustomerDashboard() {
-  this.router.navigate(['main/dashboard']);
-}
+  goToCustomerDashboard() {
+    this.router.navigate(['main/dashboard']);
+  }
 
-goToUserProfile() {
-  this.router.navigate(['main/users-profile']);
-}
-
-
-goToAccountSettings() {
-  this.router.navigate(['main/accounts-settings']);
-}
+  goToUserProfile() {
+    this.router.navigate(['main/users-profile']);
+  }
 
 
-goToMessage() {
-  this.router.navigate(['main/message']);
-}
+  goToAccountSettings() {
+    this.router.navigate(['main/accounts-settings']);
+  }
 
-goToNotification() {
-  this.router.navigate(['main/notification']);
-}
 
-goToWishlist() {
-  this.router.navigate(['main/wishlist']);
-}
+  goToMessage() {
+    this.router.navigate(['main/message']);
+  }
 
-goToProprietorReg() {
-  this.router.navigate(['register-proprietorship']);
-}
+  goToNotification() {
+    this.router.navigate(['main/notification']);
+  }
+
+  goToWishlist() {
+    this.router.navigate(['main/wishlist']);
+  }
+
+  goToProprietorReg() {
+    this.router.navigate(['register-proprietorship']);
+  }
+
+  logout() {
+    this._auth.logout().subscribe({
+      next: (res: { logout: boolean }) => {
+        this._token.removeToken()
+        window.location.href = this._redirectTo
+      }
+    })
+  }
 
 
 

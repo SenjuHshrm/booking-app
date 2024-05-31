@@ -6,14 +6,20 @@
         <div class="add-taxes-wrapper">
             <div class="input-wrapper">
                 <div class="label">₱</div>
-                <input type="number" name="street" value="">
+                <input type="number" name="street" formControlName="price" (input)="handlePriceChange($event)" required/>
             </div>
             <div class="taxes">
-                <button matRipple>Taxes</button>
+                <h1>Taxes:</h1>
+                <div *ngFor="let tax of taxList">
+                    <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
+                </div>
             </div>
+            <!-- <div class="taxes">
+                <button matRipple type="button" #tooltip="matTooltip" [matTooltip]="getTaxList()" (click)="tooltip.toggle()">Taxes</button>
+            </div> -->
             <div class="input-wrapper">
                 <div class="label">₱</div>
-                <input class="read-only" type="number" name="street" value="">
+                <input class="read-only" type="number" name="street" formControlName="beforeTax"/>
             </div>
         </div>
     </section>

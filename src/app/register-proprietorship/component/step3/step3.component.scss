@@ -8,10 +8,11 @@
         margin-bottom: 1rem;
     }
     .where-is-located-wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+        display: flex;
+        flex-direction: column;
+        // grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
         gap: .5rem;
-        width: 100%;
+        width: 50%;
         .input-wrapper {
             .label {
                 margin-bottom: .3rem;

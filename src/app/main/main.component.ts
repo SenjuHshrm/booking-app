@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,6 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
 
+  public isAuth!: boolean;
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe({
+      next: (r: any) => {
+        this.isAuth = r.isAuth
+      }
+    })
+  }
 }

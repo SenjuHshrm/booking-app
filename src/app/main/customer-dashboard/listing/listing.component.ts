@@ -1,8 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
+import { BasicUtilService } from './../../../services/basic-util.service';
+import { TokenService } from './../../../services/token.service';
+import { ITokenClaims } from './../../../interfaces/token';
+import { Subscription } from 'rxjs';
+import { StaycationService } from './../../../services/staycation.service';
+import { Component, ViewChild, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateListingComponent } from 'src/app/globals/create-listing/create-listing.component';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-listing',
@@ -11,10 +17,22 @@ import { CreateListingComponent } from 'src/app/globals/create-listing/create-li
 })
 
 
-export class ListingComponent {
+export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
   
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(public createlistingDialog:MatDialog) {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  public hostListing: any = []
+  public total: number = 0;
+
+  private _sub: Subscription = new Subscription()
+  private _claims!: ITokenClaims
+
+  constructor(
+    public createlistingDialog:MatDialog,
+    private _staycation: StaycationService,
+    private _token: TokenService,
+    private _basicUtil: BasicUtilService
+  ) {
     this.paginator = {} as MatPaginator;
   }
 
@@ -45,10 +63,57 @@ export class ListingComponent {
     // Add more data as needed
   ]);
 
-  displayedColumns: string[] = ['listing', 'status','todo','instantbook','bedrooms','beds','bath','location','lastmodified','action'];
+  displayedColumns: string[] = ['listing', 'status','bedrooms','beds','bath','location','lastmodified','action'];
 
   ngOnInit() {
+    this._claims = this._token.decodedToken()
+  }
+
+  ngAfterViewInit(): void {
+    this._getListings(this.paginator.pageIndex + 1, this.paginator.pageSize)
     this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnDestroy(): void {
+    this._sub.unsubscribe()
+  }
+
+  public handlePageChange(e: PageEvent) {
+    this._getListings(e.pageIndex + 1, e.pageSize)
+  }
+
+  public handleToggleListing(id: string, isListed: boolean) {
+    this._sub.add(this._staycation.updateListing(id, !isListed).subscribe({
+      next: (res: any) => {
+        this._getListings(this.paginator.pageIndex + 1, this.paginator.pageSize)
+      }
+    }))
+  }
+
+  private _getListings(p: number, l: number) {
+    this.hostListing = []
+    this.dataSource = new MatTableDataSource<any>()
+    this._sub.add(this._staycation.getHostListing(this._claims.sub, p, l).subscribe({
+      next: (res: any) => {
+        this.total = res.total
+        res.listings.forEach((list: any) => {
+          this.hostListing.push({
+            listing: this._basicUtil.setImgUrl(list.media.cover),
+            status: (list.isListed) ? 'Listed' : 'Not Listed',
+            // todo: '',
+            // instantbook: 'On',
+            bedrooms: list.details.bedrooms,
+            beds: list.details.beds,
+            bath: list.details.bathroom,
+            location: `${list.address.province}, ${list.address.country}`,
+            lastmodified: moment(list.updatedAt).format('MMMM DD, YYYY HH:mm:ss a'),
+            isListed: list.isListed,
+            _id: list._id
+          })
+        })
+        this.dataSource = new MatTableDataSource<any>(this.hostListing)
+      }
+    }))
   }
 }
 

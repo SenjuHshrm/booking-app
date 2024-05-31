@@ -7,10 +7,11 @@
         margin-bottom: 1rem;
     }
     .share-about-your-place-wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(170px, 3fr));
+        display: flex;
+        flex-direction: column;
+        // grid-template-columns: repeat(auto-fill, minmax(170px, 3fr));
         gap: .5rem;
-        width: 100%;
+        width: 20%;
         .input-wrapper {
             .label {
                 margin-bottom: .3rem;

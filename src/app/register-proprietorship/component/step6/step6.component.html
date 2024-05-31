@@ -15,8 +15,11 @@
                     </label>
                 </div>
                 <div class="gallery">
-                    <div *ngFor="let image of uploadedImages" class="image">
-                        <img [src]="image" alt="Uploaded Image">
+                    <div *ngFor="let image of uploadedImages" [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                        <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)">
+                        <button type="button" mat-icon-button color="warn" (click)="handleRemoveImg(image)">
+                            <mat-icon>close</mat-icon>
+                        </button>
                     </div>
                 </div>
             </div>

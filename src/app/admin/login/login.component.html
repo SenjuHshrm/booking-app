@@ -6,34 +6,33 @@
         <div class="header-logo">
             <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" />
         </div>
-        <div class="title">Login Admin</div>
+        <div class="title">Admin Login</div>
         <div class="form-wrapper">
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
                 <div class="email-wrapper">
-                    <input type="text" id="email" name="email" placeholder="Email Address" autocomplete="email">
+                    <input type="text" id="email" name="email" placeholder="Email Address" autocomplete="email" formControlName="email">
                     <br><br>
                 </div>
                 <div class="password-wrapper">
-                    <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
+                    <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" formControlName="password"
                         placeholder="Password" autocomplete="current-password" required><br><br>
                     <span></span>
                     <div class="eye" (click)="togglePasswordVisibility()">
-                        <mat-icon *ngIf="showPassword ===true? 'Show':''">visibility</mat-icon>
-                        <mat-icon *ngIf="showPassword ===false? 'Hide':''">visibility_off</mat-icon>
+                        <mat-icon *ngIf="showPassword === true ? 'Show' : ''">visibility</mat-icon>
+                        <mat-icon *ngIf="showPassword === false ? 'Hide' : ''">visibility_off</mat-icon>
                     </div>
                 </div>
-                <div class="forgot-pass">Forgot password?</div>
-                <button class="main-button width-button" type="button"
-                    (click)="login(username, password)">Login</button>
+                <!-- <div class="forgot-pass">Forgot password?</div> -->
+                <button class="main-button width-button" type="submit">Login</button>
             </form>
         </div>
-        <div class="not-aguest">
+        <!-- <div class="not-aguest"> -->
                 <!-- <div>Not a guest? <button class="signup-button" (click)="openDialogSignup()">SignUp</button></div> -->
-            <div>or</div>
+            <!-- <div>or</div>
         </div>
         <div class="google-button main-button-outline ">
             <img src="./assets/images/home/login/google.png" alt="googleicon" width="100px" height="100px" />
             <div>continue with Google</div>
-        </div>
+        </div> -->
     </div>
 </div>

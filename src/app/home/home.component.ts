@@ -1,7 +1,7 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y,Autoplay } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../globals/fadein-animations';
 
 SwiperCore.use([Autoplay]);
@@ -14,19 +14,26 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   encapsulation: ViewEncapsulation.None,
   animations:[fadeInAnimation]
 })
-export class HomeComponent {
-  constructor(private router: Router) {}
+export class HomeComponent implements OnInit {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
  
   selectedOption: any;
   panelOpenState = false;
  
+  public isAuth!: boolean;
 
+  ngOnInit() {
+    this.activatedRoute.data.subscribe({
+      next: (res: any) => {
+        this.isAuth = res.isAuth
+      }
+    })
+  }
 
   navigateToMain() {
-    this.router.navigate(['main/staycation-list']);
-    console.log("Click");
+    this.router.navigate(['/', 'main', 'staycation-list']);
   }
 
 heroImages:any=[

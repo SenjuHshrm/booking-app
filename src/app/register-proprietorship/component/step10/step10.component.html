@@ -5,7 +5,7 @@
         </div> -->
         <div class="does-your-place-have-this-wrapper">
             <div class="checkbox" *ngFor="let doesyourPlace of doesyourplace">
-                <input type="checkbox" name="house" value="" />
+                <input type="checkbox" name="house" [value]="doesyourPlace.doesyourPlace" (change)="handleSelectedSecurity($event)" />
                 <div class="label">{{doesyourPlace.doesyourPlace}}</div>
             </div>
         </div>

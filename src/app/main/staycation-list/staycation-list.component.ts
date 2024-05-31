@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { BasicUtilService } from './../../services/basic-util.service';
+import { Subscription } from 'rxjs';
+import { StaycationService } from './../../services/staycation.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { StaycationlistLocationModalComponent } from './component/staycationlist-location-modal/staycationlist-location-modal.component';
@@ -11,8 +14,43 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
   styleUrls: ['./staycation-list.component.scss'],
   animations:[fadeInAnimation]
 })
-export class StaycationListComponent {
-  constructor(public dialog:MatDialog ,private router: Router) {}
+export class StaycationListComponent implements OnInit, OnDestroy {
+
+  private _sub: Subscription = new Subscription()
+
+  public page: number = 1;
+  public limit: number = 16;
+  public total: number = 0
+
+  public listproperties: any = [];
+
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private _staycation: StaycationService,
+    private _basicUtil: BasicUtilService
+  ) { }
+
+  ngOnInit(): void {
+    this._sub.add(this._staycation.getOfficialList(this.page, this.limit, 'listed=true').subscribe({
+      next: (res: any) => {
+        this.total = res.total
+        res.listings.forEach((l: any) => {
+          this.listproperties.push({
+            _id: l._id,
+            image: this._basicUtil.setImgUrl(l.media.cover),
+            title: l.name,
+            description: l.descriptionText.join(', '),
+            permonth: `${l.price.common} (Before Tax: ${l.price.beforeTax})`
+          })
+        })
+      }
+    }))
+  }
+
+  ngOnDestroy(): void {
+    this._sub.unsubscribe()
+  }
   
   showLocationModal(): void {
     const dialogRefLocation = this.dialog.open(StaycationlistLocationModalComponent, {
@@ -35,8 +73,8 @@ export class StaycationListComponent {
   }
 
 
-  navigateToBookStaycation() {
-    this.router.navigate(['main/staycation-details']);
+  navigateToBookStaycation(id: string) {
+    this.router.navigate(['main/staycation-details', id]);
     console.log("Click");
   }
 
@@ -45,98 +83,5 @@ export class StaycationListComponent {
     console.log("Click");
   }
 
-  public listproperties = [
-    {
-      image: '/assets/images/main/staycation-list/images/1.jpg',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 1.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 2.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 3.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 4.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 5.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 6.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 7.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 8.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 9.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 10.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 11.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 12.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 13.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 14.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-
- 
-  ];
+  
 }

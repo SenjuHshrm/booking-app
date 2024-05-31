@@ -42,7 +42,7 @@ export class CustomErrorHandler implements ErrorHandler {
       useClass: RequestInterceptor,
       multi: true
     },
-    { provide: ErrorHandler, useClass: CustomErrorHandler }
+    // { provide: ErrorHandler, useClass: CustomErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

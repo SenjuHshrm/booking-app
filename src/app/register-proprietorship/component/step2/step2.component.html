@@ -7,7 +7,7 @@
                         <div class="label">{{typePlace.label}}</div>
                         <div class="desc">{{typePlace.desc}}</div>
                     </div>
-                    <input type="radio" name="house" [value]="typePlace.value" required/>
+                    <input type="radio" [value]="typePlace.value" formControlName="placeType" required/>
                 </div>
             </div>
         </div>

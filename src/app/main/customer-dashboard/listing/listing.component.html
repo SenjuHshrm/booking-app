@@ -46,14 +46,14 @@
                     <th mat-header-cell *matHeaderCellDef>Status</th>
                     <td mat-cell *matCellDef="let element">{{ element.status }}</td>
                 </ng-container>
-                <ng-container matColumnDef="todo">
+                <!-- <ng-container matColumnDef="todo">
                     <th mat-header-cell *matHeaderCellDef>To Do</th>
                     <td mat-cell *matCellDef="let element">{{ element.todo }}</td>
                 </ng-container>
                 <ng-container matColumnDef="instantbook">
                     <th mat-header-cell *matHeaderCellDef>Instant Book</th>
                     <td mat-cell *matCellDef="let element">{{ element.instantbook }}</td>
-                </ng-container>
+                </ng-container> -->
                 <ng-container matColumnDef="bedrooms">
                     <th mat-header-cell *matHeaderCellDef>Instant Book</th>
                     <td mat-cell *matCellDef="let element">{{ element.bedrooms }}</td>
@@ -82,7 +82,8 @@
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item>View</button>
-                        <button mat-menu-item>Delete</button>
+                        <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)" *ngIf="!element.isListed">Add to Listing</button>
+                        <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)" *ngIf="element.isListed">Remove to Listing</button>
                     </mat-menu>
                     </td>
                 </ng-container>
@@ -91,7 +92,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
-            <mat-paginator #paginator [length]="100" [pageSizeOptions]="[5, 10, 25]" aria-label="select page" showFirstLastButtons></mat-paginator>
+            <mat-paginator #paginator [length]="100" [pageSizeOptions]="[5, 10, 25]" aria-label="select page" showFirstLastButtons (page)="handlePageChange($event)"></mat-paginator>
         </section>
     </div>
 </div>

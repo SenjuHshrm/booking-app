@@ -1,23 +1,23 @@
 <div class="staycation-details" [@fadeInAnimation]>
-     <div class="staycation-details-staycation-details-wrapper">
+     <div class="staycation-details-staycation-details-wrapper" *ngIf="details">
           <section class="property-title">
                <button (click)="backToMain()">
                     <mat-icon>chevron_left</mat-icon>
                     <span>Back</span>
                </button>
                <div class="title-wrapper">
-                    <div class="title">Condo in Alabang</div>
+                    <div class="title">{{ details.name }}</div>
                     <div class="heart">
                          <mat-icon>stars</mat-icon>
                          <div>Wishlist</div>
                     </div>
                </div>
           </section>
-          <section class="image-gallery" (click)="gotoGalleryPage()">
-               <div class="card stacked" *ngFor="let properties of listproperties; let i = index"
+          <section class="image-gallery" (click)="gotoGalleryPage(details._id)">
+               <div class="card stacked" *ngFor="let img of gallery; let i = index"
                     [class.first-image]="i === 0">
                     <div class="image">
-                         <img [src]="properties.image" loading="lazy" alt="images" [draggable]="false"/>
+                         <img [src]="img" loading="lazy" alt="images" [draggable]="false"/>
                     </div>
                     <div class="content__card">
                          <!-- <div class="details">
@@ -32,7 +32,7 @@
                <section class="details-column">
                     <div class="details-header">
                          <div class="title">1BR Flat with balcony near U.S. Embassy</div>
-                         <div class="subtitle">3 guests - 1 bedroom - 2 beds - 1 bath</div>
+                         <div class="subtitle">{{ details.details.guests }} guest/s - {{ details.details.bedrooms }} bedroom/s - {{ details.details.beds }} bed/s - {{ details.details.bathroom }} bathroom/s</div>
                          <div class="rate">
                               <div>Rate</div>
                               <mat-icon>star</mat-icon>
@@ -41,11 +41,11 @@
                     </div>
                     <div class="details-user-avatar">
                          <div class="image-avatar">
-                              <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy"
+                              <img [src]="details.host.img" loading="lazy"
                                    alt="Avatar" [draggable]="false">
                          </div>
                          <div>
-                              <div class="name">Juan Dela Cruz</div>
+                              <div class="name">{{ details.host.name }}</div>
                               <div class="years">Proprietor since 2 years</div>
                          </div>
                     </div>
@@ -131,7 +131,7 @@
                     <form>
                          <div class="reserve-sticky-column-wrapper">
                               <div class="rate-night">
-                                   <p>₱<span> 2,000 </span>night</p>
+                                   <p>₱<span> {{ details.price.common }} </span>night</p>
                               </div>
                               <div class="date-checkin-out">
                                    <div class="checkin-out-style">
@@ -160,19 +160,19 @@
                          <div class="note">You won’t be charged yet</div>
                          <div class="computation">
                               <div class="comp">
-                                   <td><span>₱2,000</span> x 2 night</td>
-                                   <td>₱4000</td>
+                                   <td><span>₱ {{ details.price.common }}</span> x 1 night</td>
+                                   <td>₱ {{ details.price.common }}</td>
                               </div>
-                              <div class="comp">
-                                   <td>TaraGo Service Fee</td>
-                                   <td>₱500</td>
+                              <div class="comp" *ngFor="let fee of serviceCharge">
+                                   <td>{{ fee.name }}</td>
+                                   <td>₱ {{ fee.price }}</td>
                               </div>
                          </div>
 
                     </div>
                     <div class="total">
                          <div>Total before taxes</div>
-                         <div>₱2,500 total</div>
+                         <div>₱ {{ details.price.beforeTax }} total</div>
                     </div>
                </section>
 

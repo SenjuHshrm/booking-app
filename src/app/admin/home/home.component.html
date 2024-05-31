@@ -17,7 +17,7 @@
                         <button mat-menu-item>Home</button>
                         <button mat-menu-item>Notification</button>
                         <button mat-menu-item>Account</button>
-                        <button mat-menu-item>Logout</button>
+                        <button mat-menu-item (click)="logout()">Logout</button>
                     </mat-menu>
                     <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar"
                         [draggable]="false">
@@ -39,6 +39,7 @@
                             <li [ngClass]="{'active': selectedTab === 'dashboard'}" (click)="gotoPage('dashboard')">Dashboard</li>
                             <li [ngClass]="{'active': selectedTab === 'user-control'}" (click)="gotoPage('user-control')">UserControl</li>
                             <li [ngClass]="{'active': selectedTab === 'identification'}" (click)="gotoPage('identification')">Identification</li>
+                            <li [ngClass]="{'active': selectedTab === 'proprietor-application'}" (click)="gotoPage('proprietor-application')">Host Application</li>
                             <li [ngClass]="{'active': selectedTab === 'reports'}" (click)="gotoPage('reports')">Report</li>
                          </ul>
                     </div>

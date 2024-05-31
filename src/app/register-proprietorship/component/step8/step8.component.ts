@@ -1,4 +1,5 @@
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, FormGroupDirective, FormArray } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { Step8Form } from '../../register-proprietorship';
 
@@ -12,12 +13,12 @@ export class Step8Component implements OnInit {
   @Input() public formGroupName!: string;
   public formRegPropS8!: FormGroup<Step8Form>;
   public describehouse: any = [
-    { describeHouse:"Peaceful" },
-    { describeHouse:"Unique" },
-    { describeHouse:"Stylish" },
-    { describeHouse:"Peaceful" },
-    { describeHouse:"Family-friendly" },
-    { describeHouse:"Spacious" }
+    { describeHouse: "Peaceful", value: 'Peaceful' },
+    { describeHouse: "Unique", value: 'Unique' },
+    { describeHouse: "Stylish", value: 'Stylish' },
+    { describeHouse: "Peaceful", value: 'Peaceful' },
+    { describeHouse: "Family-friendly", value: 'Family-friendly' },
+    { describeHouse: "Spacious", value: 'Spacious' }
   ];
 
   constructor(
@@ -26,5 +27,22 @@ export class Step8Component implements OnInit {
 
   ngOnInit(): void {
     this.formRegPropS8 = <FormGroup<Step8Form>>this.regPropFormRoot.control.get(this.formGroupName)
+  }
+
+  public handleSelectDesc(e: Event) {
+    const desc: FormArray = <FormArray>this.formRegPropS8.get('descriptionText')
+    let target: HTMLInputElement = <HTMLInputElement>e.target!
+    if(target.checked) {
+      desc.push(new FormControl(target.value))
+    } else {
+      let i: number = 0
+      desc.controls.forEach((ctrl: AbstractControl) => {
+        if(ctrl.value === target.value) {
+          desc.removeAt(i)
+          return
+        }
+        i++
+      })
+    }
   }
 }

@@ -1,3 +1,5 @@
+import { authGuard } from './guards/auth.guard';
+import { authResolver } from './resolvers/auth.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -6,11 +8,17 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    title: 'TaraGo'
+    title: 'TaraGo',
+    resolve: {
+      isAuth: authResolver
+    }
   },
   {
     path: 'main',
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule) 
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+    resolve: {
+      isAuth: authResolver
+    }
   },
   {
     path: 'admin',
@@ -18,7 +26,11 @@ const routes: Routes = [
   },
   {
     path: 'register-proprietorship',
-    loadChildren: () => import('./register-proprietorship/register-proprietorship.module').then(m => m.RegisterProprietorshipModule)
+    loadChildren: () => import('./register-proprietorship/register-proprietorship.module').then(m => m.RegisterProprietorshipModule),
+    canActivate: [authGuard],
+    resolve: {
+      isAuth: authResolver
+    }
   },
   {
     path: '',

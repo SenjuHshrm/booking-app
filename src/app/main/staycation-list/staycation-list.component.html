@@ -49,8 +49,8 @@
 </div>
         </section> 
 
-        <section class="content " (click)="navigateToBookStaycation()">
-            <div class="card stacked" *ngFor="let properties of listproperties">
+        <section class="content">
+            <div class="card stacked" *ngFor="let properties of listproperties" (click)="navigateToBookStaycation(properties._id)">
                 <div class="image">
                     <img [src]="properties.image" alt="image" />
                 </div>

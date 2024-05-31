@@ -1,10 +1,10 @@
 <div class="gallery-page-container" [@fadeInAnimation]>
-    <header class="gallery-header">
-        <button (click)="backToBookingDetails()">
+    <header class="gallery-header" *ngIf="details">
+        <button (click)="backToBookingDetails(id)">
             <mat-icon>chevron_left</mat-icon>
             <span>Back</span>
         </button>
-        <div class="title">Condo in Alabang Photo's</div>
+        <div class="title">{{ details.name }} Photos</div>
     </header>
     <section>
         <app-gallery [galleryData]="data" [showCount]="true"></app-gallery>

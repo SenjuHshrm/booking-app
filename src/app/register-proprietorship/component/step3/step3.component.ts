@@ -11,6 +11,32 @@ export class Step3Component implements OnInit {
   
   @Input() public formGroupName!: string;
   public formRegPropS3!: FormGroup<Step3Form>;
+  public validation: any = {
+    brgy: [
+      {
+        type: 'required',
+        msg: 'Please input barangay'
+      }
+    ],
+    city: [
+      {
+        type: 'required',
+        msg: 'Please input city'
+      }
+    ],
+    province: [
+      {
+        type: 'required',
+        msg: 'Please input province'
+      }
+    ],
+    zip: [
+      {
+        type: 'required',
+        msg: 'Please input zip code'
+      }
+    ]
+  }
 
   constructor(
     public regPropFormRoot: FormGroupDirective

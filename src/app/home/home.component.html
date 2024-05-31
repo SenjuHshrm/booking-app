@@ -1,6 +1,6 @@
 <div class="home-container">
     <header class="home-container-header">
-        <app-nav></app-nav>
+        <app-nav [isAuth]="isAuth"></app-nav>
     </header>
     <section class="home-container-body"  [@fadeInAnimation]>
         <section class="home-container-body-section_1_hero">
@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
                                     <div class="typeofspace">
-                                        <mat-radio-group [(ngModel)]="selectedOption">
+                                        <mat-radio-group [(ngModel)]="selectedOption" name="typeofsource">
                                             <mat-radio-button [value]="'option1'">Entire Space</mat-radio-button>
                                             <mat-radio-button [value]="'option2'">Private Room</mat-radio-button>
                                             <!-- Add more radio buttons as needed -->
