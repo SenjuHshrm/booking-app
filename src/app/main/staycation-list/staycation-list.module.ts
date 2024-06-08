@@ -5,6 +5,7 @@ import { StaycationListComponent } from './staycation-list.component';
 import { MatIconModule } from '@angular/material/icon';
 import { StaycationlistAddguestModalComponent } from './component/staycationlist-addguest-modal/staycationlist-addguest-modal.component';
 import { StaycationlistLocationModalComponent } from './component/staycationlist-location-modal/staycationlist-location-modal.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 
@@ -18,7 +19,8 @@ import { StaycationlistLocationModalComponent } from './component/staycationlist
   imports: [
     CommonModule,
     StaycationListRoutingModule,
-    MatIconModule
+    MatIconModule,
+    SwiperModule
   ],
 
 

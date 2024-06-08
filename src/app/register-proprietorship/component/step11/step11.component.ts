@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Step11Form } from '../../register-proprietorship';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 export const customTooltipOptions = {
   showDelay: 500,
@@ -14,7 +15,8 @@ export const customTooltipOptions = {
 @Component({
   selector: 'app-step11',
   templateUrl: './step11.component.html',
-  styleUrls: ['./step11.component.scss']
+  styleUrls: ['./step11.component.scss'],
+  animations: [fadeInAnimation],
 })
 export class Step11Component implements OnInit {
 

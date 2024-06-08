@@ -1,5 +1,8 @@
-<ng-container [formGroup]="formRegPropS5">
+<ng-container [formGroup]="formRegPropS5" [@fadeInAnimation]>
     <section class="inform-your-visitors-amenities">
+        <div class="title-wrapper">
+            Inform your visitors about the amenities and features available at your location.
+        </div>
         <div class="inform-your-visitors-amenities-wrapper">
             <div class="checkbox" *ngFor="let yourAmenities of amenities">
                 <input type="checkbox" [name]="yourAmenities.value" [value]="yourAmenities.value" (change)="handleSelectedAmenities($event)"/>
@@ -8,7 +11,7 @@
         </div>
         <div class="others">
             <div>Other:</div>
-            <input type="text" name="amenitiesOther" formControlName="amenitiesOther" placeholder="Describe your amenities" />
+            <input type="text" name="amenitiesOther" formControlName="amenitiesOther" placeholder="Describe your amenities here.." />
         </div>
     </section>
 </ng-container>

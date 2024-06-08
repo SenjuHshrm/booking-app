@@ -1,28 +1,29 @@
+import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
+import SwiperCore, { Navigation, Scrollbar, A11y, Autoplay } from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
 import { BasicUtilService } from './../../services/basic-util.service';
 import { Subscription } from 'rxjs';
 import { StaycationService } from './../../services/staycation.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { StaycationlistLocationModalComponent } from './component/staycationlist-location-modal/staycationlist-location-modal.component';
 import { StaycationlistAddguestModalComponent } from './component/staycationlist-addguest-modal/staycationlist-addguest-modal.component';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
+
+SwiperCore.use([Autoplay]);
+SwiperCore.use([Navigation, Scrollbar, A11y]);
+
 @Component({
   selector: 'app-staycation-list',
   templateUrl: './staycation-list.component.html',
   styleUrls: ['./staycation-list.component.scss'],
-  animations:[fadeInAnimation]
+  animations: [fadeInAnimation],
+  encapsulation: ViewEncapsulation.None,
 })
-export class StaycationListComponent implements OnInit, OnDestroy {
-
-  private _sub: Subscription = new Subscription()
-
-  public page: number = 1;
-  public limit: number = 16;
-  public total: number = 0
-
-  public listproperties: any = [];
+export class StaycationListComponent implements OnInit, OnDestroy  {
+  @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
   constructor(
     public dialog: MatDialog,
@@ -30,6 +31,17 @@ export class StaycationListComponent implements OnInit, OnDestroy {
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService
   ) { }
+
+  private _sub: Subscription = new Subscription()
+  public page: number = 1;
+  public limit: number = 16;
+  public total: number = 0
+  public listproperties: any = [];
+
+  public showCat: string = "staycation";
+  currentTitle: string = '';
+
+
 
   ngOnInit(): void {
     this._sub.add(this._staycation.getOfficialList(this.page, this.limit, 'listed=true').subscribe({
@@ -47,27 +59,37 @@ export class StaycationListComponent implements OnInit, OnDestroy {
       }
     }))
   }
+ 
 
   ngOnDestroy(): void {
     this._sub.unsubscribe()
   }
-  
+
+  handleShowCat(catData: any) {
+    this.showCat = catData;
+    this.currentTitle = '';
+  }
+
+  handleBtnCat(btnTitle: string) {
+    this.currentTitle = btnTitle;
+  }
+
   showLocationModal(): void {
     const dialogRefLocation = this.dialog.open(StaycationlistLocationModalComponent, {
       panelClass: 'custom-location-modal'
     });
 
     dialogRefLocation.afterClosed().subscribe(() => {
-    console.log('The dialog was closed');
-  });
-}
+      console.log('The dialog was closed');
+    });
+  }
 
-    showAddGuestModal(): void {
-      const dialogRefGuest = this.dialog.open(StaycationlistAddguestModalComponent, {
-        panelClass: 'custom-guest-modal'
-      });
-  
-      dialogRefGuest.afterClosed().subscribe(() => {
+  showAddGuestModal(): void {
+    const dialogRefGuest = this.dialog.open(StaycationlistAddguestModalComponent, {
+      panelClass: 'custom-guest-modal'
+    });
+
+    dialogRefGuest.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
     });
   }
@@ -83,5 +105,5 @@ export class StaycationListComponent implements OnInit, OnDestroy {
     console.log("Click");
   }
 
-  
+
 }

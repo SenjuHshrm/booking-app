@@ -6,55 +6,195 @@
                 <div>TaraGo</div>
             </button>
             <div class="category-wrapper">
-                <button class="tarago-staycations">
+                <button class="tarago-staycations"
+                    [ngStyle]="{'background-color': showCat === 'staycation' ? '#63AB68' : '', 'color':showCat === 'staycation' ? 'white' : 'black'}"
+                    (click)="handleShowCat('staycation')">
                     <div>Staycations</div>
                 </button>
-                <button class="tarago-eventplace">
+
+                <button class="tarago-eventplace"
+                    [ngStyle]="{'background-color': showCat === 'eventplace' ? '#63AB68' : '', 'color':showCat === 'eventplace' ? 'white' : 'black'}"
+                    (click)="handleShowCat('eventplace')" (click)="handleShowCat('eventplace')">
                     <div>Event Place</div>
                 </button>
             </div>
         </section>
-
-        <section class="filters">
-           <div class="search-filters-container">
-        <form class="search-filters-container-layer-2-wrapper">
-            <div class="location">
-                <div class="location-wrapper" (click)="showLocationModal()">
-                    <div>Where</div>
-                    <mat-icon aria-hidden="false" aria-label="add_location" fontIcon="add_location"></mat-icon>
-                    <input type="text" name="location" placeholder="Search locations" readonly />
+        <section class="categories">
+            <div class="staycations" *ngIf="showCat === 'staycation'">
+                <swiper #swiper class="swiper-container" [slidesPerView]="4" [navigation]="true" (autoplayPause)="true"
+                    [draggable]="true" [loop]="true" [breakpoints]="{
+                    '300': {
+                        slidesPerView: 4,
+                    },
+                     '500': {
+                        slidesPerView: 3,
+                    },
+                    '1000': {
+                        slidesPerView: 4,
+                    },
+                    '1500': {
+                        slidesPerView: 4,
+                    }
+                }">
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Resort' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Resort')">
+                            <div class="wrap">
+                                <img class="svg-icon"
+                                    src="https://img.icons8.com/?size=100&id=44075&format=png&color=1A1A1A"
+                                    alt="icons" />
+                                <div>Resort</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Private' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Private')">
+                            <div class="wrap"><img class="svg-icon"
+                                    src="https://img.icons8.com/?size=100&id=XUZHSBTPqd7b&format=png&color=1A1A1A"
+                                    alt="icons" />
+                                <div>Private Villa</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Service' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Service')">
+                            <div class="wrap"><img class="svg-icon"
+                                    src="https://img.icons8.com/?size=100&id=105289&format=png&color=1A1A1A" />
+                                <div>Service Condominium</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Hotel' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Hotel')">
+                            <div class="wrap"><img class="svg-icon"
+                                    src="https://img.icons8.com/?size=100&id=104383&format=png&color=1A1A1A"
+                                    alt="icons" />
+                                <div>Hotel</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="eventplace" *ngIf="showCat === 'eventplace'">
+                <swiper #swiper class="swiper-container" [slidesPerView]="4" [navigation]="true" (autoplayPause)="true"
+                    [draggable]="true" [loop]="true" [breakpoints]="{
+                 '300': {
+                        slidesPerView: 4,
+                    },
+                     '500': {
+                        slidesPerView: 3,
+                    },
+                    '1000': {
+                        slidesPerView: 4,
+                    },
+                    '1500': {
+                        slidesPerView: 4,
+                    }
+                }">
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Meeting' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Meeting')">
+                            <div class="wrap"><img
+                                    src="https://img.icons8.com/?size=100&id=48779&format=png&color=1A1A1A"
+                                    alt="icons" />
+                                <div>Meeting Room</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Hotel' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Hotel')">
+                            <div class="wrap"><img
+                                    src="https://img.icons8.com/?size=100&id=104367&format=png&color=1A1A1A"
+                                    alt="icons" />
+                                <div>Hotel BallRoom</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Restaurant' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Restaurant')">
+                            <div class="wrap"><img
+                                    src="https://img.icons8.com/?size=100&id=104405&format=png&color=000000"
+                                    alt="icons" />
+                                <div>Restaurant Space</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Pavillion' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Pavillion')">
+                            <div class="wrap"><img
+                                    src="https://img.icons8.com/?size=100&id=49591&format=png&color=000000"
+                                    alt="icons" />
+                                <div>Pavillion</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <div class="categories-btn"
+                            [ngStyle]="{'border-bottom': currentTitle === 'Gymnasium' ? '2px solid #63AB68' : ''}"
+                            (click)="handleBtnCat('Gymnasium')">
+                            <div class="wrap"><img
+                                    src="https://img.icons8.com/?size=100&id=49339&format=png&color=000000"
+                                    alt="icons" />
+                                <div>Gymnasium</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+        </section>
+        <section class="search-filters-container">
+            <form class="search-filters-container-layer-2-wrapper">
+                <div class="location card">
+                    <div class="location-wrapper" (click)="showLocationModal()">
+                        <div>Where</div>
+                        <mat-icon aria-hidden="false" aria-label="add_location" fontIcon="add_location"></mat-icon>
+                        <input type="text" name="location" placeholder="Search locations" readonly />
+                    </div>
                 </div>
-            </div>
-            <div class="checkin-out-style">
-                <div>Checkin</div>
-                <div class="calendar-icon"></div>
-                <input type="date" name="date" class="custom-date-input">
-            </div>
-            <div class="checkin-out-style">
-                <div>Checkin</div>
-                <div class="calendar-icon"></div>
-                <input type="date" name="date" class="custom-date-input">
-            </div>
-            <div class="guest">
-                <div class="guest-wrapper" (click)="showAddGuestModal()">
-                    <div>Who</div>
-                    <mat-icon aria-hidden="false" aria-label="people" fontIcon="people"></mat-icon>
-                    <input type="text" placeholder="Add guest" value="" readonly />
+                <div class="checkin-out-style card">
+                    <div>Checkin</div>
+                    <div class="calendar-icon"></div>
+                    <input type="date" name="date">
                 </div>
-            </div>
-            <button type="submit" value="">
-                <mat-icon aria-hidden="false" aria-label="search" fontIcon="search"></mat-icon>
-            </button>
-        </form>
-</div>
-        </section> 
-
+                <div class="checkin-out-style card">
+                    <div>Checkout</div>
+                    <div class="calendar-icon"></div>
+                    <input type="date" name="date">
+                </div>
+                <div class="guest card">
+                    <div class="guest-wrapper" (click)="showAddGuestModal()">
+                        <div>Who</div>
+                        <mat-icon aria-hidden="false" aria-label="people" fontIcon="people"></mat-icon>
+                        <input type="text" placeholder="Add guest" value="" readonly />
+                    </div>
+                </div>
+                <button type="submit" value="">
+                    <div>Search</div>
+                    <mat-icon aria-hidden="false" aria-label="search" fontIcon="search"></mat-icon>
+                </button>
+            </form>
+        </section>
         <section class="content">
-            <div class="card stacked" *ngFor="let properties of listproperties" (click)="navigateToBookStaycation(properties._id)">
+            <div class="card stacked" *ngFor="let properties of listproperties"
+                (click)="navigateToBookStaycation(properties._id)">
                 <div class="image">
                     <img [src]="properties.image" alt="image" />
                 </div>
-                <div class="content__card" >
+                <div class="content__card">
                     <div class="info">
                         <div class="title">{{properties.title}}</div>
                         <div class="description">{{properties.description}}</div>
@@ -67,7 +207,7 @@
             </div>
         </section>
         <section class="seemore">
-            <button class="main-button" >See more</button>
+            <button class="main-button">See more</button>
         </section>
     </div>
 </div>

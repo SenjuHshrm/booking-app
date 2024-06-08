@@ -1,18 +1,33 @@
 .where-is-located {
-    padding:3rem 0 1rem;
-    
-    .title {
+    flex: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 2rem 2rem;
+    max-width: 50rem;
+    height:fit-content;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px #88888877;
+    background-color: white;
+
+    .title-wrapper {
         font-weight: bold;
-        font-size: clamp(1rem, 1vw, 8rem);
-        color: #68A86A;
-        margin-bottom: 1rem;
+        font-size: clamp(1.3rem, 1.5vw, 8rem);
+        padding: 1rem 0 1rem;
+        text-align: center;
     }
+    
     .where-is-located-wrapper {
         display: flex;
         flex-direction: column;
         // grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
         gap: .5rem;
-        width: 50%;
+        width: 100%;
+        max-width:30rem;
+        margin: auto;
         .input-wrapper {
             .label {
                 margin-bottom: .3rem;

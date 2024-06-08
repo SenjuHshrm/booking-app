@@ -2,32 +2,28 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { FormArray, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { Step1Form } from '../../register-proprietorship';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
-  styleUrls: ['./step1.component.scss']
+  styleUrls: ['./step1.component.scss'],
+  animations: [fadeInAnimation],
 })
 export class Step1Component implements OnInit {
 
   @Input() public formGroupName!: string;
   public formRegPropS1!: FormGroup<Step1Form>;
   public places: any = [
-    { placetype: "House", value: "house" },
-    { placetype: "Appartment", value: "appartment" },
-    { placetype: "Villa", value: "villa" },
+    { placetype: "Resort", value: "resort" },
+    { placetype: "Private Villa", value: "appartment" },
+    { placetype: "Service Condominium", value: "service condominium" },
     { placetype: "Hotel", value: "hotel" },
-    { placetype: "Guest House", value: "guest house" },
-    { placetype: "Resorts", value: "resorts" },
-    { placetype: "Container", value: "container" },
-    { placetype: "Farm", value: "farm" },
-    { placetype: "Cycladic Home", value: "cycladic home" },
-    { placetype: "Casa Partiular", value: "casa partiular" },
-    { placetype: "Bed & Breakfast", value: "bed and breakfast" },
-    { placetype: "Boat", value: "boat" },
-    { placetype: "Cabin", value: "cabin" },
-    { placetype: "Barn", value: "barn" },
-    { placetype: "Camper/RV", value: "camper/rv" },
+    { placetype: "Meeting Room", value: "meeting room" },
+    { placetype: "Hotel Ballroom", value: "hotel ballroom" },
+    { placetype: "Restaurant Space", value: "restaurant space" },
+    { placetype: "Paviilion", value: "pavillion" },
+    { placetype: "Gymnasium", value: "gymnasium" },
   ];
   public validation: any = {
     descriptionFilter: [

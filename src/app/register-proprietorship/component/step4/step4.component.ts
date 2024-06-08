@@ -1,11 +1,13 @@
 import { Step4Form } from './../../register-proprietorship';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 @Component({
   selector: 'app-step4',
   templateUrl: './step4.component.html',
-  styleUrls: ['./step4.component.scss']
+  styleUrls: ['./step4.component.scss'],
+  animations: [fadeInAnimation],
 })
 export class Step4Component implements OnInit {
 
