@@ -1,8 +1,8 @@
-<ng-container [formGroup]="formRegPropS10">
+<ng-container [formGroup]="formRegPropS10" [@fadeInAnimation]>
     <section class="does-your-place-have-this">
-        <!-- <div class="title">
+        <div class="title-wrapper">
             Does your place have any of these?
-        </div> -->
+        </div>
         <div class="does-your-place-have-this-wrapper">
             <div class="checkbox" *ngFor="let doesyourPlace of doesyourplace">
                 <input type="checkbox" name="house" [value]="doesyourPlace.doesyourPlace" (change)="handleSelectedSecurity($event)" />

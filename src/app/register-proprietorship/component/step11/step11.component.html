@@ -1,25 +1,40 @@
-<ng-container [formGroup]="formRegPropS11">
+<ng-container [formGroup]="formRegPropS11" [@fadeInAnimation]>
     <section class="add-taxes">
-        <!-- <div class="title">
+        <div class="title-wrapper">
             Set your price
-        </div> -->
+        </div>
         <div class="add-taxes-wrapper">
             <div class="input-wrapper">
-                <div class="label">₱</div>
-                <input type="number" name="street" formControlName="price" (input)="handlePriceChange($event)" required/>
+                <div class="label">Price w/o taxes ₱</div>
+                <input class="inputs" type="number" name="street" formControlName="price"
+                    (input)="handlePriceChange($event)" required placeholder="0" />
             </div>
-            <div class="taxes">
-                <h1>Taxes:</h1>
-                <div *ngFor="let tax of taxList">
+
+            <!-- <div class="input-wrapper custom-taxes">
+                <div class="label">Taxes:</div>
+                <div class="desc" *ngFor="let tax of taxList">
                     <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
                 </div>
+            </div> -->
+            <div class="input-wrapper">
+                <div class="label">Taxes</div>
+                <div class="wrapper">
+                    <div class="inputs result text-size" *ngFor="let tax of taxList">
+                        <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
+                    </div>
+                </div>
+                <!-- <div class="inputs desc" *ngFor="let tax of taxList">
+                    <p><b>Taxes:</b>&nbsp; ₱&nbsp;4654654</p>
+                    <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
+                </div> -->
             </div>
             <!-- <div class="taxes">
                 <button matRipple type="button" #tooltip="matTooltip" [matTooltip]="getTaxList()" (click)="tooltip.toggle()">Taxes</button>
             </div> -->
             <div class="input-wrapper">
-                <div class="label">₱</div>
-                <input class="read-only" type="number" name="street" formControlName="beforeTax"/>
+                <div class="label">Price w/ taxes ₱</div>
+                <input class="inputs result" type="number" name="street" formControlName="beforeTax" placeholder="0"
+                    readonly />
             </div>
         </div>
     </section>

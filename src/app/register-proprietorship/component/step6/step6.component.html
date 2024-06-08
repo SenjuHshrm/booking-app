@@ -1,11 +1,11 @@
-<ng-container [formGroup]="formRegPropS6">
+<ng-container [formGroup]="formRegPropS6" [@fadeInAnimation]>
     <section class="add-photos-place">
-        <!-- <div class="title">
-            Add some photos of your house
-        </div> -->
+        <div class="title-wrapper">
+            Add some photos of your staycation/event place
+        </div>
         <div class="add-photos-place-wrapper">
             <div class="container">
-                <div class="side-panel">
+                <div class="upload-panel">
                     <input type="file" id="fileInput" style="display: none;"
                         (change)="onFileSelected($event)" accept="image/*" multiple>
                     <label for="fileInput" class="custom-file-label">

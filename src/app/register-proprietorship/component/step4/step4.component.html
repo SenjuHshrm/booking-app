@@ -1,21 +1,24 @@
-<ng-container [formGroup]="formRegPropS4">
+<ng-container [formGroup]="formRegPropS4" [@fadeInAnimation]>
     <section class="share-about-your-place">
+        <div class="title-wrapper">
+            Share some basics about your place
+        </div>
         <div class="share-about-your-place-wrapper">
             <div class="input-wrapper">
                 <div class="label">Guests</div>
-                <input type="number" name="guests" formControlName="guests"/>
+                <input type="number" name="guests" formControlName="guests" placeholder="0"/>
             </div>
             <div class="input-wrapper">
                 <div class="label">Bedrooms</div>
-                <input type="number" name="bedrooms" formControlName="bedrooms"/>
+                <input type="number" name="bedrooms" formControlName="bedrooms"  placeholder="0"/>
             </div>
             <div class="input-wrapper">
                 <div class="label">Beds</div>
-                <input type="number" name="beds" formControlName="beds"/>
+                <input type="number" name="beds" formControlName="beds"  placeholder="0"/>
             </div>
             <div class="input-wrapper">
                 <div class="label">Bathroom</div>
-                <input type="number" name="bathroom" formControlName="bathroom"/>
+                <input type="number" name="bathroom" formControlName="bathroom"  placeholder="0"/>
             </div>
         </div>
     </section>

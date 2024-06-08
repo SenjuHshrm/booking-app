@@ -2,11 +2,13 @@ import { FormControl, AbstractControl } from '@angular/forms';
 import { FormGroup, FormGroupDirective, FormArray } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { Step8Form } from '../../register-proprietorship';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 @Component({
   selector: 'app-step8',
   templateUrl: './step8.component.html',
-  styleUrls: ['./step8.component.scss']
+  styleUrls: ['./step8.component.scss'],
+  animations: [fadeInAnimation],
 })
 export class Step8Component implements OnInit {
 

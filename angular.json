@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/swiper/swiper-bundle.min.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
@@ -103,8 +104,10 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/swiper/swiper-bundle.min.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
+          
             ],
             "scripts": []
           }

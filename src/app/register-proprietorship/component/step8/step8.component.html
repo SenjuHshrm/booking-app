@@ -1,5 +1,8 @@
-<ng-container [formGroup]="formRegPropS8">
+<ng-container [formGroup]="formRegPropS8" [@fadeInAnimation]>
     <section class="describe-your-house">
+        <div class="title-wrapper">
+            Let’s describe your house
+        </div>
         <div class="describe-your-house-wrapper">
             <div class="checkbox" *ngFor="let describeyourHouse of describehouse">
                 <input type="checkbox" name="house" [value]="describeyourHouse.value" (change)="handleSelectDesc($event)"/>
@@ -8,7 +11,7 @@
         </div>
         <div class="others">
             <div>Other:</div>
-            <input type="text" name="house" value="" placeholder="Describe your house" formControlName="descriptionTextOther" />
+            <input type="text" name="house" value="" placeholder="Describe your house here.." formControlName="descriptionTextOther" />
         </div>
     </section>
 </ng-container>

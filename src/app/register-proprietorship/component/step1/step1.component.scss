@@ -1,12 +1,24 @@
 .describe-your-place {
-    padding:3rem 0 1rem;
-   
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 2rem 2rem;
+    max-width: 50rem;
+    height:fit-content;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px #88888877;
+    background-color: white;
 
-    .title {
+
+
+    .title-wrapper {
         font-weight: bold;
-        font-size: clamp(1rem, 1vw, 8rem);
-        color: #68A86A;
-        margin-bottom: 1rem;
+        font-size: clamp(1.3rem, 1.5vw, 8rem);
+        padding: 1rem 0 1rem;
+        text-align: center;
     }
 
     .describe-your-place-wrapper {
@@ -15,8 +27,12 @@
         gap: 1rem;
         place-content: center;
 
+
+
+
         .checkbox {
             display: flex;
+            align-items: center;
             gap: .5rem;
 
             input {
@@ -31,28 +47,25 @@
             }
         }
     }
-}
 
-
-
-.others {
-    display: flex;
-    gap: .5rem;
-    align-items: center;
-    margin-top: 1rem;
-    max-width: 40rem;
-    width: 100%;
-    background-color: #F7F7F7;
-    border-radius: .5rem;
-    padding: 1rem;
-
-    input {
-        width: auto;
-        border: none;
-        background-color: transparent;
-        outline: none;
+    .others {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        margin-top: 1rem;
         width: 100%;
-
-
+        background-color: #F7F7F7;
+        border-radius: .5rem;
+        padding: 1rem;
+    
+        input {
+            width: auto;
+            border: none;
+            background-color: transparent;
+            outline: none;
+            width: 100%;
+        }
     }
 }
+
+

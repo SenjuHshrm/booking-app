@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { ITokenClaims } from './../interfaces/token';
 import { TokenService } from './../services/token.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, AfterViewInit, ChangeDetectorRef, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray, FormGroupDirective } from '@angular/forms';
 import {
   RegisterProprietorshipForm,
@@ -24,7 +24,8 @@ import {
 @Component({
   selector: 'app-register-proprietorship',
   templateUrl: './register-proprietorship.component.html',
-  styleUrls: ['./register-proprietorship.component.scss']
+  styleUrls: ['./register-proprietorship.component.scss'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, OnDestroy {
   

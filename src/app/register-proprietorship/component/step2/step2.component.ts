@@ -2,11 +2,13 @@ import { FormGroup } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
 import { Step2Form } from '../../register-proprietorship';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 @Component({
   selector: 'app-step2',
   templateUrl: './step2.component.html',
-  styleUrls: ['./step2.component.scss']
+  styleUrls: ['./step2.component.scss'],
+  animations: [fadeInAnimation],
 })
 export class Step2Component implements OnInit {
 
