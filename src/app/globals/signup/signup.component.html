@@ -5,25 +5,24 @@
         </div>
         <div class="title">Sign up</div>
         <div class="form-wrapper">
-            <form>
+            <form (ngSubmit)="signup(signupForm)" [formGroup]="signupForm">
                 <div class="notes">Make sure it matches the name on your government ID.</div>
                 <div class="firstname">
-                    <input type="text" id="firstname" name="firstname" placeholder="First Name" required><br><br>
+                    <input type="text" id="firstname" formControlName="fName" name="firstname" placeholder="First Name" required><br><br>
                 </div>
                 <div class="lastname">
-                    <input type="text" id="lastname" name="lastname" placeholder="LastName" required><br><br>
+                    <input type="text" id="lastname" formControlName="lName" name="lastname" placeholder="LastName" required><br><br>
                 </div>
                 <div class="notes">We'll email you trip confirmations and receipts.</div>
                 <div class="email">
-                    <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+                    <input type="email" id="email" formControlName="email" name="email" placeholder="Email" required><br><br>
                 </div>
                
                 <div class="termscon">
                     <p>By selecting Agree and continue, I agree to TaraGo’s <br> <a href="#" class="termpri">Terms of Service</a> and acknowledge the <a href="#" class="termpri">Privacy Policy.</a></p>
                 </div>
 
-                <button class="main-button width-button" type="button"
-                    (click)="signup(firstname, lastname)">Aggree and Continue</button>
+                <button class="main-button width-button" type="submit">Aggree and Continue</button>
             </form>
         </div>
 

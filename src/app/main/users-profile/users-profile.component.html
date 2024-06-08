@@ -1,24 +1,24 @@
 <div class="user-profile" [@fadeInAnimation]>
-    <section class="user-profile-user-profile-container">
+    <section class="user-profile-user-profile-container" *ngIf="profile && auth">
         <!-- <router-outlet></router-outlet> -->
         <div class="user-profile-user-profile-wrapper">
             <div class="section-1">
                 <div class="profile-picture">
                     <div class="wrapper">
                         <div class="profile-picture-img">
-                            <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy"
+                            <img [src]="profile.img" loading="lazy"
                                 alt="Avatar" [draggable]="false">
                         </div>
                         <div class="profile-info">
-                            <div class="name">Juan Dela Cruz</div>
-                            <div class="label">Proprietor</div>
-                            <div class="duration-at-tarago">7 months on TaraGo</div>
+                            <div class="name">{{ fullName }}</div>
+                            <div class="label">{{ auth.access }}</div>
+                            <div class="duration-at-tarago">{{ userDuration }}</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="verification">
-                    <div class="confirm">Juan 's confirmed information not found.</div>
+                    <div class="confirm">{{ profile.name.fName }}'s confirmed information not found.</div>
                 </div>
             </div>
             <div class="section-2">
@@ -30,26 +30,58 @@
                 </div>
                 <div class="content">
                     <div class="say-something">
-                        Say something about your properties
+                        {{ (profile.desc) ? profile.desc.description : 'Say something about your profile' }}
                     </div>
                     <div class="info-details-personal-info">
                         <div class="title">Your Personal Information</div>
-                        <div class="info-details-wrapper" *ngFor="let personInfos of personalInfos">
+                        <!-- <div class="info-details-wrapper" *ngFor="let personInfos of personalInfos">
                             <div class="info-details-label">{{personInfos.label}}</div>
                             <div class="info-details-content">{{personInfos.info}}</div>
+                        </div> -->
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Name</div>
+                            <div class="info-details-content">{{ profile.name.fName }}</div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Surname</div>
+                            <div class="info-details-content">{{ profile.name.lName }}</div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label"> Email</div>
+                            <div class="info-details-content">{{ auth.email }}</div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Contact Number</div>
+                            <div class="info-details-content">{{ profile.contact || 'No contact number' }}</div>
                         </div>
                     </div>
                     <div class="info-details-likes">
                         <div class="title">Your likes</div>
-                        <div class="info-details-wrapper" *ngFor="let personLikes of personalLikes">
+                        <!-- <div class="info-details-wrapper" *ngFor="let personLikes of personalLikes">
                             <div class="info-details-label">{{personLikes.label}}</div>
                             <div class="info-details-content">{{personLikes.info}}</div>
+                        </div> -->
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Hobbies</div>
+                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.hobbies.join(',') : 'No hobbies' }}</div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Work</div>
+                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.work : 'No work' }}</div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Favorite Food</div>
+                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.favFood : 'No favorite food' }}</div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Favorite Place</div>
+                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.favPlace : 'No favorite place' }}</div>
                         </div>
                     </div>
-                    <div class="info-details-your-listing">
+                    <div class="info-details-your-listing" *ngIf="properties">
                         <div class="title">Your Listing Properties</div>
-                        <section class="content " (click)="navigateToBookStaycation()">
-                            <div class="card stacked" *ngFor="let properties of listproperties">
+                        <section class="content" *ngIf="properties.length > 0" (click)="navigateToBookStaycation()">
+                            <div class="card stacked" *ngFor="let prop of properties">
                                 <div class="image">
                                     <img [src]="properties.image" alt="image" />
                                 </div>
@@ -65,11 +97,12 @@
                                 </div>
                             </div>
                         </section>
+                        <section class="content">
+                            <p>You don't have properties for rent.</p>
+                        </section>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
 </div>

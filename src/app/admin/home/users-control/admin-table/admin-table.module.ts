@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminTableRoutingModule } from './admin-table-routing.module';
@@ -25,7 +26,9 @@ import { CreateAdminComponent } from './create-admin/create-admin.component';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminTableModule { }

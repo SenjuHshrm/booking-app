@@ -27,4 +27,20 @@ export class UserService {
   public setAsHost(userId: string, staycationId: string, propAppId: string): Observable<{ success: boolean }> {
     return this._http.put<{ success: boolean }>(`${environment.api}/api/user/put/set-as-host/${propAppId}`, { userId, staycationId })
   }
+
+  public addAdminAcct(fd: FormData): Observable<{ success: boolean }> {
+    return this._http.post<{ success: boolean }>(`${environment.api}/api/user/post/add/admin`, fd)
+  }
+
+  public getUserProfile(id: string): Observable<any> {
+    return this._http.get(`${environment.api}/api/user/get/profile/${id}`)
+  }
+
+  public updateUserProfile(fd: FormData, id: string): Observable<any> {
+    return this._http.put(`${environment.api}/api/user/put/update-profile/${id}`, fd)
+  }
+
+  public getUserWishlist(id: string): Observable<any> {
+    return this._http.get(`${environment.api}/api/user/get/wishlist/${id}`)
+  }
 }

@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { BasicUtilService } from './../../services/basic-util.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ITokenClaims } from './../../interfaces/token';
+import { TokenService } from './../../services/token.service';
+import { UserService } from './../../services/user.service';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProfileModalComponent } from './component/create-profile-modal/create-profile-modal.component';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
@@ -10,74 +16,78 @@ import { Router } from '@angular/router';
   styleUrls: ['./users-profile.component.scss'],
   animations:[fadeInAnimation]
 })
-export class UsersProfileComponent {
-  constructor(public dialog: MatDialog,private router: Router){}
+export class UsersProfileComponent implements OnInit, OnDestroy {
 
-  personalInfos:any=[
-    {label:"Name",info:"No name found"},
-    {label:"Surname",info:"No surname found"},
-    {label:"Email",info:"No email found"},
-    {label:"Contact Number",info:"No contact number found"},
- 
-  ];
+  public profile!: any;
+  public auth!: any;
+  public properties!: any;
+  public fullName: string = ''
+  public userDuration: string = ''
 
+  private _claims!: ITokenClaims
+  private _sub: Subscription = new Subscription()
 
-  personalLikes:any=[
-    {label:"Hobbies",info:"No Hobbies"},
-    {label:"Work",info:"No Work"},
-    {label:"Favorite Food",info:"No Favorite Food"},
-    {label:"Favorite Place",info:"No BoFavorite Placehol"}
-  ];
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private _user: UserService,
+    private _token: TokenService,
+    private _basicUtil: BasicUtilService
+  ) { }
 
+  ngOnInit(): void {
+    this._claims = this._token.decodedToken()
+    this._getUserProfile(this._claims.sub)
+  }
+
+  ngOnDestroy(): void {
+    this._sub.unsubscribe()
+  }
   
- 
-
   openCreateProfileDialog(): void {
     
     const dialogRefSignup = this.dialog.open(CreateProfileModalComponent, {
-      panelClass: 'custom-signup-modal'
+      // panelClass: 'custom-signup-modal'
+      height: '100%',
+      data: { ...this.profile, email: this.auth.email }
     });
   
     dialogRefSignup.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
+      this._getUserProfile(this._claims.sub)
     });
   }
-
-
 
   navigateToBookStaycation() {
     this.router.navigate(['main/staycation-details']);
     console.log("Click");
   }
-  
 
-  
-  public listproperties = [
-    {
-      image: '/assets/images/main/staycation-list/images/1.jpg',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 1.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 2.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    },
-    {
-      image: '/assets/images/main/staycation-list/image 3.png',
-      title:'Condo, in Quezon City',
-      description:'CHiLLAX1: PS4 Netflix Disney+ BoardGames DanceSing',
-      permonth:'5,000'
-    }
-
- 
-  ];
+  private _getUserProfile(id: string) {
+    this._sub.add(this._user.getUserProfile(id).subscribe({
+      next: (res: any) => {
+        this.profile = {
+          ...res.profile,
+          img: this._basicUtil.setImgUrl(res.profile.img)
+        }
+        this.auth = {
+          email: res.auth.email,
+          access: res.auth.access.join('/')
+        }
+        this.properties = res.properties.map((prop: any) => {
+          return {
+            ...prop,
+            cover: this._basicUtil.setImgUrl(prop.media.cover),
+            imgs: prop.media.imgs.map((img: string) => this._basicUtil.setImgUrl(img))
+          }
+        })
+        this.fullName = this._basicUtil.constructName(res.profile.name)
+        // this.userDuration = moment(res.)
+        this.userDuration = this._basicUtil.calculateUserDuration(res.profile.createdAt)
+      },
+      error: ({ error }: HttpErrorResponse) => {
+        console.log(error)
+      }
+    }))
+  }
 }

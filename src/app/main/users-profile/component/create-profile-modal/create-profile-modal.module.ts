@@ -7,7 +7,7 @@ import { CreateProfileModalComponent } from './create-profile-modal.component';
 
 @NgModule({
   declarations: [
-    CreateProfileModalComponent
+    // CreateProfileModalComponent
   ],
   imports: [
     CommonModule,

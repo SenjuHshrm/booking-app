@@ -3,7 +3,7 @@
         <div class="close-button close" (click)="closeDialogCreateProfile()"><mat-icon>close</mat-icon></div>
     </div>
     <div class="create-admin-modal-create-admin-modal-wrapper">
-        <form>
+        <form (ngSubmit)="login(adminForm)" [formGroup]="adminForm">
             <section class="upload-profile-picture">
                 <div class="image-upload">
                     <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
@@ -21,31 +21,50 @@
             </section>
             <section class="create-inputs">
                 <div class="title">Create Admin</div>
-
                 <div class="input-wrapper">
-                    <input matInput type="text" id="username" name="username" placeholder="Username">
+                    <input matInput type="text" id="firstname" name="firstname" formControlName="firstname" placeholder="First name" required />
+                    <ng-container *ngFor="let val of validation.firstname">
+                        <span class="val-err-msg" *ngIf="adminForm.controls['firstname']?.hasError(val.type) && (adminForm.controls['firstname']?.dirty || adminForm.controls['firstname']?.touched)">{{ val.msg }}</span>
+                    </ng-container>
+                </div>
+                <div class="input-wrapper">
+                    <input matInput type="text" id="lastname" name="lastname" formControlName="lastname" placeholder="Last name" required />
+                    <ng-container *ngFor="let val of validation.lastname">
+                        <span class="val-err-msg" *ngIf="adminForm.controls['lastname']?.hasError(val.type) && (adminForm.controls['lastname']?.dirty || adminForm.controls['lastname']?.touched)">{{ val.msg }}</span>
+                    </ng-container>
+                </div>
+                <div class="input-wrapper">
+                    <input matInput type="email" id="email" name="email" formControlName="email" placeholder="Email" required />
+                    <ng-container *ngFor="let val of validation.email">
+                        <span class="val-err-msg" *ngIf="adminForm.controls['email']?.hasError(val.type) && (adminForm.controls['email']?.dirty || adminForm.controls['email']?.touched)">{{ val.msg }}</span>
+                    </ng-container>
                 </div>
                 <div class="input-wrapper">
                     <input matInput type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
-                        placeholder="Password">
+                        formControlName="password" placeholder="Password" required />
+                        <ng-container *ngFor="let val of validation.password">
+                        <span class="val-err-msg" *ngIf="adminForm.controls['password']?.hasError(val.type) && (adminForm.controls['password']?.dirty || adminForm.controls['password']?.touched)">{{ val.msg }}</span>
+                    </ng-container>
 
                     <div class="eye" (click)="togglePasswordVisibility()">
-                        <mat-icon *ngIf="showPassword ===true? 'Show':''">visibility</mat-icon>
-                        <mat-icon *ngIf="showPassword ===false? 'Hide':''">visibility_off</mat-icon>
+                        <mat-icon *ngIf="showPassword === true ? 'Show' : ''">visibility</mat-icon>
+                        <mat-icon *ngIf="showPassword === false ? 'Hide' : ''">visibility_off</mat-icon>
                     </div>
                 </div>
                 <div class="input-wrapper">
-                    <input matInput type="{{ showConPassword ? 'text' : 'password' }}" id="confirmpassword"
-                        name="confirmpassword" placeholder="Confirm Password">
+                    <input matInput type="{{ showConPassword ? 'text' : 'password' }}" id="authpass"
+                        name="authpass" formControlName="authpass" placeholder="Confirm Password" required />
+                        <ng-container *ngFor="let val of validation.authpass">
+                        <span class="val-err-msg" *ngIf="adminForm.controls['authpass']?.hasError(val.type) && (adminForm.controls['authpass']?.dirty || adminForm.controls['authpass']?.touched)">{{ val.msg }}</span>
+                    </ng-container>
 
                     <div class="eye" (click)="toggleConfirmPasswordVisibility()">
-                        <mat-icon *ngIf="showConPassword ===true? 'Show':''">visibility</mat-icon>
-                        <mat-icon *ngIf="showConPassword ===false? 'Hide':''">visibility_off</mat-icon>
+                        <mat-icon *ngIf="showConPassword === true ? 'Show' : ''">visibility</mat-icon>
+                        <mat-icon *ngIf="showConPassword === false ? 'Hide' : ''">visibility_off</mat-icon>
                     </div>
                 </div>
                 <div [ngStyle]="{'margin': 'auto'}">
-                    <button class="main-button width-button" type="button"
-                        (click)="login(username, password,confirmpassword)">Create</button>
+                    <button class="main-button width-button" type="submit" [disabled]="!adminForm.valid">Create</button>
                 </div>
             </section>
         </form>

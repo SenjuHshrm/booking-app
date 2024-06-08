@@ -66,7 +66,7 @@ export class AdminTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
     dialogRefLogin.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+      this._getUsers(this.paginator.pageIndex + 1, this.paginator.pageSize)
     });
   }
 

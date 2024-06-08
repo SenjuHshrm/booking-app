@@ -28,12 +28,14 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./customer-dashboard/customer-dashboard.module').then(m => m.CustomerDashboardModule),
-        canActivate: [authGuard, hostGuard]
+        canActivate: [authGuard, hostGuard],
+        title: 'TaraGo | Dashboard'
       },
       {
         path: 'users-profile',
         loadChildren: () => import('./users-profile/users-profile.module').then(m => m.UsersProfileModule),
-        canActivate: [authGuard]
+        title: 'TaraGo | User Profile',
+        canActivate: [authGuard],
       },
       {
         path: 'accounts-settings',
@@ -43,22 +45,26 @@ const routes: Routes = [
       {
         path: 'gallery',
         loadChildren: () => import('./gallery-page/gallery-page.module').then(m => m.GalleryPageModule),
-        canActivate: [authGuard, hostGuard]
+        canActivate: [authGuard, hostGuard],
+        title: 'TaraGo | Gallery'
       },
       {
         path: 'message',
         loadChildren: () => import('./message-page/message-page.module').then(m => m.MessagePageModule),
-        canActivate: [authGuard, customerGuard]
+        canActivate: [authGuard, customerGuard],
+        title: 'TaraGo | Message'
       },
       {
         path: 'notification',
         loadChildren: () => import('./notification-page/notification-page.module').then(m => m.NotificationPageModule),
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        title: 'TaraGo | Notification'
       },
       {
         path: 'wishlist',
         loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule),
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        title: 'TaraGo | Wish List'
       },
       {
         path: '',

@@ -3,7 +3,7 @@
         <div class="close-button close" (click)="closeDialogCreateProfile()"><mat-icon>close</mat-icon></div>
     </div>
     <div class="create-profile-modal-create-profile-modal-wrapper">
-        <form>
+        <form [formGroup]="userProfileForm" (ngSubmit)="updateProfile(userProfileForm)">
             <section class="upload-profile-picture">
                 <div class="image-upload">
                     <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
@@ -21,13 +21,13 @@
             </section>
             <section class="info-details">
                 <div class="title">
-                  About your self
+                  About yourself
                 </div>
                 <div class="say-something-about-your-profile">
                     <div class="say-something-about-your-profile-wrapper">
                         <div class="input-wrapper">
                             <div class="label">Say something about your profile </div>
-                            <textarea type="text" name="say-something"
+                            <textarea type="text" name="desc" formControlName="desc"
                                 placeholder="You’ll have a great time at this comfortable place to stay.."> </textarea>
                         </div>
                     </div>
@@ -37,20 +37,24 @@
                         <div class="title">Your Personal Information</div>
                     <div class="info">
                         <div class="input-wrapper">
-                            <div class="label">Name</div>
-                            <input type="text" name="name" value="" placeholder="">
+                            <div class="label">First name</div>
+                            <input type="text" name="fName" formControlName="fName" required/>
                         </div>
                         <div class="input-wrapper">
-                            <div class="label">Surname</div>
-                            <input type="text" name="surname" value="">
+                            <div class="label">Middle name</div>
+                            <input type="text" name="mName" formControlName="mName" />
                         </div>
                         <div class="input-wrapper">
-                            <div class="label">Email</div>
-                            <input type="text" name="email" value="">
+                            <div class="label">Last name</div>
+                            <input type="text" name="lName" formControlName="lName" required/>
+                        </div>
+                        <div class="input-wrapper">
+                            <div class="label">Ext. name</div>
+                            <input type="text" name="xName" formControlName="xName" />
                         </div>
                         <div class="input-wrapper">
                             <div class="label">Contact Number</div>
-                            <input type="text" name="contact" value="">
+                            <input type="text" name="contact" formControlName="contact" />
                         </div> 
                     </div>
                 </div>
@@ -61,24 +65,24 @@
                     <div class="info">
                         <div class="input-wrapper">
                             <div class="label">Hobbies</div>
-                            <input type="text" name="street" value="" placeholder="">
+                            <input type="text" name="hobbies" formControlName="hobbies" placeholder="Separate with comma if multiple" />
                         </div>
                         <div class="input-wrapper">
                             <div class="label">Work</div>
-                            <input type="text" name="barangay" value="">
+                            <input type="text" name="work" formControlName="work" />
                         </div>
                         <div class="input-wrapper">
                             <div class="label">Favorite Food</div>
-                            <input type="text" name="city" value="">
+                            <input type="text" name="favFood" formControlName="favFood" />
                         </div>
                         <div class="input-wrapper">
                             <div class="label">Favorite Place</div>
-                            <input type="text" name="zipcode" value="">
+                            <input type="text" name="favPlace" formControlName="favPlace" />
                         </div> 
                     </div>
                 </div>
                 </div>
-                <button class="main-button">Save</button>
+                <button class="main-button" type="submit" [disabled]="!userProfileForm.valid">Save</button>
             </section>
         </form>
     </div>

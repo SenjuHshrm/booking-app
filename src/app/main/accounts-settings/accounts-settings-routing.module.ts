@@ -10,12 +10,12 @@ const routes: Routes = [
       {
         path: 'security-settings',
         loadChildren: () => import('./security-settings/security-settings.module').then(m => m.SecuritySettingsModule),
-        title: 'TaraGo | Today'
+        title: 'TaraGo | Security Settings'
       },
       {
         path: 'payment-wallet-settings',
         loadChildren: () => import('./payment-wallet-settings/payment-wallet-settings.module').then(m => m.PaymentWalletSettingsModule),
-        title: 'TaraGo | Calendar'
+        title: 'TaraGo | Payment Method'
       },
       {
         path: '',

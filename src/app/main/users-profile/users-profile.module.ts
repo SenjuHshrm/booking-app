@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersProfileRoutingModule } from './users-profile-routing.module';
@@ -14,7 +15,9 @@ import { CreateProfileModalComponent } from './component/create-profile-modal/cr
   imports: [
     CommonModule,
     UsersProfileRoutingModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersProfileModule { }

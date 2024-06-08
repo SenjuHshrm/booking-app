@@ -16,18 +16,18 @@
                         <div class="info-details-label">Email</div>
                         <div>Juandelacruz@email.com</div>
                     </div>
-                    <div class="info-details-wrapper">
+                    <!-- <div class="info-details-wrapper">
                         <div class="info-details-label">Username</div>
                         <div>Juan Dela Cruz</div>
-                    </div>
+                    </div> -->
                     <div class="info-details-wrapper">
                         <div class="info-details-label">Password</div>
                         <!-- <input type="password" class="info-details-content" value="JuanDelaCruz" readonly/> -->
                         <div class="info-password">
-                            <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password" readonly>
-                            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                            <input matInput type="password" [(ngModel)]="password" readonly>
+                            <!-- <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
                                 <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,9 @@ export class RequestInterceptor implements HttpInterceptor {
     private _auth: AuthService
   ) {
     this.exemptedURL = [
-      `${environment.api}/api/staycation/post/apply`
+      `${environment.api}/api/staycation/post/apply`,
+      `${environment.api}/api/user/post/add/admin`,
+      `${environment.api}/api/user/put/update-profile`
     ]
   }
 
