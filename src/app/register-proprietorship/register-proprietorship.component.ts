@@ -19,19 +19,22 @@ import {
   Step10Form,
   Step11Form
 } from './register-proprietorship';
+import { fadeInAnimation } from '../globals/fadein-animations';
 
 
 @Component({
   selector: 'app-register-proprietorship',
   templateUrl: './register-proprietorship.component.html',
   styleUrls: ['./register-proprietorship.component.scss'],
-  encapsulation: ViewEncapsulation.None 
+  encapsulation: ViewEncapsulation.None ,
+  animations: [fadeInAnimation],
 })
 export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, OnDestroy {
   
   @ViewChild('getStarted') getStarted: ElementRef | any;
   @ViewChild('regPropFormDir') public regPropFormDir!: FormGroupDirective
   public regPropForm!: FormGroup<RegisterProprietorshipForm>;
+  
   public isLinear = false;
   public isAuth!: boolean;
 
@@ -110,6 +113,8 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
   ngOnDestroy(): void {
     this.sub.unsubscribe()
   }
+
+
 
 
   public scrollToRegProp(): void {

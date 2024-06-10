@@ -1,17 +1,25 @@
-<ng-container [formGroup]="formRegPropS8" [@fadeInAnimation]>
-    <section class="describe-your-house">
-        <div class="title-wrapper">
-            Let’s describe your house
-        </div>
-        <div class="describe-your-house-wrapper">
-            <div class="checkbox" *ngFor="let describeyourHouse of describehouse">
-                <input type="checkbox" name="house" [value]="describeyourHouse.value" (change)="handleSelectDesc($event)"/>
-                <div class="label">{{describeyourHouse.describeHouse}}</div>
+<div [@fadeInAnimation]>
+    <ng-container [formGroup]="formRegPropS8">
+        <section class="describe-your-house">
+            <div class="title-wrapper">
+                Let’s describe your house
             </div>
-        </div>
-        <div class="others">
-            <div>Other:</div>
-            <input type="text" name="house" value="" placeholder="Describe your house here.." formControlName="descriptionTextOther" />
-        </div>
-    </section>
-</ng-container>
+            <div class="describe-your-house-wrapper">
+                <div class="checkbox" *ngFor="let describeyourHouse of describehouse; let i = index">
+                    <label class="custom-checkbox">
+                        <input type="checkbox"  [ngClass]="{'checked': isChecked === i}" name="house" [value]="describeyourHouse.value"
+                            (change)="handleSelectDesc($event,i)" />
+                            <span class="checkmark"></span>
+                        <div class="label">{{describeyourHouse.describeHouse}}</div>
+                    </label>
+                </div>
+
+            </div>
+            <div class="others">
+                <div>Other:</div>
+                <input type="text" name="house" value="" placeholder="Describe your house here.."
+                    formControlName="descriptionTextOther" />
+            </div>
+        </section>
+    </ng-container>
+</div>

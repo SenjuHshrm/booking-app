@@ -1,12 +1,16 @@
-<ng-container [formGroup]="formRegPropS5" [@fadeInAnimation]>
+<div [@fadeInAnimation]>
+<ng-container [formGroup]="formRegPropS5">
     <section class="inform-your-visitors-amenities">
         <div class="title-wrapper">
             Inform your visitors about the amenities and features available at your location.
         </div>
         <div class="inform-your-visitors-amenities-wrapper">
-            <div class="checkbox" *ngFor="let yourAmenities of amenities">
-                <input type="checkbox" [name]="yourAmenities.value" [value]="yourAmenities.value" (change)="handleSelectedAmenities($event)"/>
+            <div class="checkbox" *ngFor="let yourAmenities of amenities; let i = index">
+                <label class="custom-checkbox" [ngClass]="{'checked': isChecked === i}">
+                <input type="checkbox" [name]="yourAmenities.value" [value]="yourAmenities.value" (change)="handleSelectedAmenities($event, i)"/>
+                <span class="checkmark"></span>
                 <div class="label">{{yourAmenities.placeamenities}}</div>
+                </label>
             </div>
         </div>
         <div class="others">
@@ -15,3 +19,4 @@
         </div>
     </section>
 </ng-container>
+</div>

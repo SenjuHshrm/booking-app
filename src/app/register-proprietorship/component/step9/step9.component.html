@@ -1,18 +1,23 @@
-<ng-container [formGroup]="formRegPropS9" [@fadeInAnimation]>
-    <section class="add-discounts">
-        <div class="title-wrapper">
-            Add discounts
-        </div>
-        <div class="add-discounts-wrapper">
-            <div class="checkbox" *ngFor="let addDiscounts of adddiscounts">
-                <div class="checkbox-wrapper">
-                    <div class="info">
-                        <div class="label">{{addDiscounts.label}}<span>%</span></div>
-                        <div class="desc">{{addDiscounts.desc}}</div>
+<div [@fadeInAnimation]>
+    <ng-container [formGroup]="formRegPropS9">
+        <section class="add-discounts">
+            <div class="title-wrapper">
+                Add discounts
+            </div>
+            <div class="add-discounts-wrapper">
+                <div class="checkbox" *ngFor="let addDiscounts of adddiscounts; let i = index">
+                    <div class="checkbox-wrapper" (click)="handleRadiobtn(i)">
+                        <div class="radio-button">
+                            <input type="radio" [ngClass]="{'checked': isSelected === i }" [value]="addDiscounts.value"
+                                (change)="handleSelectDiscount($event)" />
+                        </div>
+                        <div class="info">
+                            <div class="label">{{addDiscounts.label}}<span>%</span></div>
+                            <div class="desc">{{addDiscounts.desc}}</div>
+                        </div>
                     </div>
-                    <input type="checkbox" [value]="addDiscounts.value" (change)="handleSelectDiscount($event)" />
                 </div>
             </div>
-        </div>
-    </section>
-</ng-container>
+        </section>
+    </ng-container>
+</div>

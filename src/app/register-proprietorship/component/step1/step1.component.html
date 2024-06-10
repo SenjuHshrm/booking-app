@@ -1,22 +1,28 @@
 
-    <ng-container [formGroup]="formRegPropS1" [@fadeInAnimation]>
-    <section class="describe-your-place">
-        <div class="title-wrapper">
-            Describe your place
-        </div>
-        <div class="describe-your-place-wrapper">
-            <div class="checkbox" *ngFor="let yourPlace of places">
-                <input type="checkbox" name="house" [value]="yourPlace.placetype" (change)="handleSelectedPlaceType($event)">
-                <div class="label">{{yourPlace.placetype}}</div>
+    <ng-container [formGroup]="formRegPropS1" >
+        <section class="describe-your-place">
+            <div class="title-wrapper">
+                Describe your place
             </div>
-            <ng-container *ngFor="let val of validation.descriptionFilter">
-                <span *ngIf="formRegPropS1.controls['descriptionFilter']?.hasError(val.type) && (formRegPropS1.controls['descriptionFilter']?.dirty || formRegPropS1.controls['descriptionFilter']?.touched)">{{ val.msg }}</span>
-            </ng-container>
-        </div>
-        <div class="others">
-            <div>Other:</div>
-            <input type="text" name="house" value="" placeholder="Describe your place here.." formControlName="descriptionFilterOther"/>
-        </div>
-    </section>
-</ng-container>
-
+            <div class="describe-your-place-wrapper">
+                <div class="checkbox" *ngFor="let yourPlace of places; let i = index">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" [ngClass]="{'checked': isChecked === i}" name="house"
+                            [value]="yourPlace.placetype" (change)="handleSelectedPlaceType($event, i)">
+                        <span class="checkmark"></span>
+                        <div class="label">{{yourPlace.placetype}}</div>
+                    </label>
+                </div>
+                <ng-container *ngFor="let val of validation.descriptionFilter">
+                    <span
+                        *ngIf="formRegPropS1.controls['descriptionFilter']?.hasError(val.type) && (formRegPropS1.controls['descriptionFilter']?.dirty || formRegPropS1.controls['descriptionFilter']?.touched)">{{
+                        val.msg }}</span>
+                </ng-container>
+            </div>
+            <div class="others">
+                <div>Other:</div>
+                <input type="text" name="house" value="" placeholder="Describe your place here.."
+                    formControlName="descriptionFilterOther" />
+            </div>
+        </section>
+    </ng-container>

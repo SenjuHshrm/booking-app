@@ -13,6 +13,7 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 export class Step9Component implements OnInit {
 
   @Input() public formGroupName!: string;
+  public isSelected : any = null;
   public formRegPropS9!: FormGroup<Step9Form>;
   public adddiscounts: any = [
     { label: 20, name: '20% Off', desc: 'Offer 20% off your first 3 bookings', value:'discount_1' },
@@ -27,6 +28,11 @@ export class Step9Component implements OnInit {
   ngOnInit(): void {
     this.formRegPropS9 = <FormGroup<Step9Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
+
+  handleRadiobtn(index:any):void{
+    this.isSelected = index;
+    console.log(this.isSelected);
+ }
 
   public handleSelectDiscount(e: Event) {
     const discount: FormArray = <FormArray>this.formRegPropS9.get('discounts')

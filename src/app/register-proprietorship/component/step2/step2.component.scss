@@ -5,7 +5,6 @@
     gap: 2rem;
     padding: 1rem 2rem 2rem;
     max-width: 50rem;
-    height:fit-content;
     margin: auto;
     margin-top: 3rem;
     border-radius: 20px;
@@ -17,13 +16,18 @@
         font-size: clamp(1.3rem, 1.5vw, 8rem);
         padding: 1rem 0 1rem;
         text-align: center;
+       
     }
 
     .type-of-place-wrapper {
+        flex: 1;
         display: grid;
+        place-content: center;
         grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
         gap: .5rem;
         width: 100%;
+        gap:2rem;
+
         .checkbox {
             width: 100%;
             border: 1px solid #68A86A;
@@ -32,20 +36,48 @@
             gap: .5rem;
             border-radius: 5px;
             padding: .5rem .5rem .5rem;
+
             .checkbox-wrapper {
+                width: 100%;
                 gap: .5rem;
                 display: flex;
-                flex-direction: row-reverse;
+                justify-content: flex-start;
+                align-items: flex-start;
+                cursor: pointer;
+                text-align: start;
+                // border: 1px solid black;
+
                 .info {
                     .label {
                         font-weight: bold;
                     }
                 }
+
                 input {
                     flex: none;
                     width: 1.5rem;
                     height: 1.5rem;
                     cursor: pointer;
+                }
+
+                /* Style for the outer circle */
+                .radio-button input[type="radio"] {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 2px solid #ccc;
+                    /* Default color for the border */
+                    outline: none;
+                    cursor: pointer;
+                }
+
+                /* Style for the inner dot when selected */
+                .radio-button input[type="radio"]:checked,.checked {
+                    background-color: #63AB68;
+                    /* Custom color for the inner dot when selected */
                 }
             }
         }
@@ -72,5 +104,18 @@
         width: 100%;
 
 
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .type-of-place {
+        margin-top: 0;
+        max-width: 100% !important;
+        width: 100%;
+        border-radius: 0px;
+
+        .type-of-place-wrapper {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
     }
 }

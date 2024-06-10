@@ -1,41 +1,36 @@
-<ng-container [formGroup]="formRegPropS11" [@fadeInAnimation]>
-    <section class="add-taxes">
-        <div class="title-wrapper">
-            Set your price
-        </div>
-        <div class="add-taxes-wrapper">
-            <div class="input-wrapper">
-                <div class="label">Price w/o taxes ₱</div>
-                <input class="inputs" type="number" name="street" formControlName="price"
-                    (input)="handlePriceChange($event)" required placeholder="0" />
+<div [@fadeInAnimation]>
+    <ng-container [formGroup]="formRegPropS11">
+        <section class="add-taxes">
+            <div class="title-wrapper">
+                Set your price
             </div>
+            <div class="add-taxes-wrapper">
+                <div class="input-price-without-taxes">
+                    <div class="label">Price (₱)</div>
+                    <input class="inputs" type="number" name="price" formControlName="price"
+                        (input)="handlePriceChange($event)" required placeholder="0" />
+                </div>
 
-            <!-- <div class="input-wrapper custom-taxes">
-                <div class="label">Taxes:</div>
-                <div class="desc" *ngFor="let tax of taxList">
-                    <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
-                </div>
-            </div> -->
-            <div class="input-wrapper">
-                <div class="label">Taxes</div>
-                <div class="wrapper">
-                    <div class="inputs result text-size" *ngFor="let tax of taxList">
-                        <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
+                <div class="input-taxes">
+                    <div class="label">Taxes (₱)</div>
+                    <div class="wrapper"  [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
+                        <div class="" *ngFor="let tax of taxList"   [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
+                            <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
+                        </div>
                     </div>
+                    <input class="inputs" type="number" name="taxes" placeholder="0"
+                    [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}"
+                    readonly />
                 </div>
-                <!-- <div class="inputs desc" *ngFor="let tax of taxList">
-                    <p><b>Taxes:</b>&nbsp; ₱&nbsp;4654654</p>
-                    <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
-                </div> -->
-            </div>
-            <!-- <div class="taxes">
+                <!-- <div class="taxes">
                 <button matRipple type="button" #tooltip="matTooltip" [matTooltip]="getTaxList()" (click)="tooltip.toggle()">Taxes</button>
             </div> -->
-            <div class="input-wrapper">
-                <div class="label">Price w/ taxes ₱</div>
-                <input class="inputs result" type="number" name="street" formControlName="beforeTax" placeholder="0"
+                <div class="input-price-with-taxes">
+                    <div class="label">Price w/ taxes (₱)</div>
+                    <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0"
                     readonly />
+                </div>
             </div>
-        </div>
-    </section>
-</ng-container>
+        </section>
+    </ng-container>
+</div>

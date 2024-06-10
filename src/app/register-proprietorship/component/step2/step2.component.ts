@@ -13,6 +13,7 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 export class Step2Component implements OnInit {
 
   @Input() public formGroupName!: string;
+  public isSelected : any = null;
   public formRegPropS2!: FormGroup<Step2Form>;
   public typeofplace: any = [
     { label:"Entire place", desc:'Guest have the whole place to themselves.', value: 'event_place' },
@@ -34,5 +35,10 @@ export class Step2Component implements OnInit {
 
   ngOnInit(): void {
     this.formRegPropS2 = <FormGroup<Step2Form>>this.regPropFormRoot.control.get(this.formGroupName)
+  }
+
+  handleRadiobtn(index:any):void{
+     this.isSelected = index;
+     console.log(this.isSelected);
   }
 }

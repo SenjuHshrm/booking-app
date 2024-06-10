@@ -2,6 +2,7 @@ nav {
     border-bottom: 1px solid #D9D9D9;
     font-family: Poppins-Regular;
     height:4rem;
+    
    
     .nav-wrapper {
         // border: 1px solid black;
@@ -21,7 +22,7 @@ nav {
             cursor: pointer;
             // border: 1px solid black;
             max-width:5rem;
-            max-height:100%;
+            height: auto;
             img {
                 // border: 1px solid black;
                 width: 100%;

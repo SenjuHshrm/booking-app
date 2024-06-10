@@ -19,18 +19,17 @@
     }
 
     &-wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        // border: 1px solid black;
-        // grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: .5rem;
-        width: 60%;
+        width: 90%;
         margin: auto;
+        place-content: start;
+        place-items: start;
 
-        .input-wrapper {
+        .input-price-without-taxes {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 1rem;
@@ -38,53 +37,118 @@
             // border: 1px solid black;
 
             .label {
-                font-size: clamp(1.2rem, 1vw, 8rem);
-                margin-bottom: .3rem;
+                font-size: clamp(1rem, 1vw, 8rem);
                 font-weight: 200;
                 color: #63AB68;
                 width:10rem;
                 text-align: center;
-            }
-            .wrapper{
-                overflow:auto;
-                max-height:12rem;
-                width: 100%;
-          
             }
         
             .inputs {
                 padding: 1rem;
                 border: 2px solid #63AB68;
                 width: 100%;
+                max-width: 40rem;
                 border-radius: 10px;
                 font-family: Poppins-Medium;
-                font-size: clamp(2rem, 1vw, 8rem);
+                font-size: 15px;
             }
-            input::placeholder {
-                font-size: clamp(2rem, 1vw, 8rem);
+     
+
+        } 
+        .input-taxes {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            // border: 1px solid black;
+
+            .label {
+                font-size: clamp(1rem, 1vw, 8rem);
+                font-weight: 200;
+                color: #63AB68;
+                width:10rem;
                 text-align: center;
             }
-        }
+        
+            .wrapper {
+                max-height:15rem;
+                height: 100%;
+                overflow-y: auto;
+                padding: 1.7rem;
+                background-color: #F7F7F7;
+                width: 100%;
+                max-width: 40rem;
+                border-radius: 10px;
+                border: none;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+         
+            }
 
-   
+            .inputs {
+                padding: 1rem;
+                background-color: #F7F7F7;
+                width: 100%;
+                max-width: 40rem;
+                border-radius: 10px;
+                border: none;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+            }
+     
 
-        .result{
-            border:none !important;
-            background-color:#F7F7F7 ;
-        }
+        } 
+        .input-price-with-taxes {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
 
-        .text-size{
-            padding-top: 1.5rem !important;
-            font-size: clamp(.7rem, 1vw, 8rem) !important;
-        }
+
+            .label {
+                font-size: clamp(1rem, 1vw, 8rem);
+                font-weight: 200;
+                color: #63AB68;
+                width:10rem;
+                text-align: center;
+            }
+        
+            .inputs {
+                padding: 1rem;
+                background-color: #F7F7F7;
+                width: 100%;
+                max-width: 40rem;
+                border-radius: 10px;
+                border: none;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+            }
+     
+
+        } 
+
     }
 }
 
-@media only screen and (max-width:550px) {
+@media only screen and (max-width:600px) {
 .add-taxes{
-    margin-top:2rem;
+    margin-top: 0;
     &-wrapper{
         width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 }
 }
+
+@media only screen and (max-width:800px) {
+    .add-taxes{
+        &-wrapper{
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+    }
+    }

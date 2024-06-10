@@ -39,6 +39,54 @@
             .label {
                 font-weight: medium;
             }
+
+            .custom-checkbox {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                user-select: none;
+                padding-left: 35px; /* Adjust as needed */
+            }
+            
+            .custom-checkbox input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+            
+            .custom-checkbox .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 20px; /* Adjust as needed */
+                width: 20px; /* Adjust as needed */
+                background-color: #eee;
+                border-radius: 4px;
+            }
+            
+            .custom-checkbox input:checked ~ .checkmark {
+                background-color: #63AB68;
+            }
+            
+            .custom-checkbox .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+            
+            .custom-checkbox input:checked ~ .checkmark:after {
+                display: block;
+            }
+            
+            .custom-checkbox .checkmark:after {
+                left: 7px; /* Adjust as needed */
+                top: 3px; /* Adjust as needed */
+                width: 5px; /* Adjust as needed */
+                height: 10px; /* Adjust as needed */
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                transform: rotate(45deg);
+            }
         }
     }
     .others {
@@ -57,9 +105,16 @@
             background-color: transparent;
             outline: none;
             width: 100%;
-    
-    
         }
 }
+}
+
+@media only screen and (max-width: 600px) {
+    .inform-your-visitors-amenities{
+        margin-top: 0;
+        max-width:100% !important;
+        width: 100%;
+        border-radius:0px;
+    }
 }
 

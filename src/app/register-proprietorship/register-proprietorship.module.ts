@@ -24,6 +24,7 @@ import { Step13Component } from './component/step13/step13.component';
 import { GlobalsModule } from '../globals/globals.module';
 import {MatRippleModule} from '@angular/material/core';
 
+
 @NgModule({
   declarations: [
     RegisterProprietorshipComponent,
@@ -53,7 +54,8 @@ import {MatRippleModule} from '@angular/material/core';
     MatStepperModule,
     GlobalsModule,
     MatRippleModule,
-    MatIconModule
+    MatIconModule,
+  
   ]
 })
 export class RegisterProprietorshipModule { }
