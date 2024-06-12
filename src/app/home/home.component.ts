@@ -55,6 +55,12 @@ destinations:any = [
   {images:'../assets/images/home/section1/Boracay.jpg',description:'Boracay'},
 ]
 
+staycationguide:any = [
+  {title:'  One-to-one guidance from a Proprietor',description:'We’ll match you with a property owner in your area, who’ll guide you from your first question to your first guest—by phone, video call, or chat.'},
+  {title:'  One-to-one guidance from a Proprietor',description:'We’ll match you with a property owner in your area, who’ll guide you from your first question to your first guest—by phone, video call, or chat.'},
+  {title:'  One-to-one guidance from a Proprietor',description:'We’ll match you with a property owner in your area, who’ll guide you from your first question to your first guest—by phone, video call, or chat.'}
+]
+
 types:any = [
   {images:'../assets/images/home/section1/Manila.jpg',description:'Resorts'},
   {images:'../assets/images/home/section1/Batangas.jpg',description:'Appartments'},

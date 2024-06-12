@@ -2,21 +2,30 @@
     <header class="home-container-header">
         <app-nav [isAuth]="isAuth"></app-nav>
     </header>
-    <section class="home-container-body"  [@fadeInAnimation]>
-        <section class="home-container-body-section_1_hero">
+    <section class="home-container-body">
+        <section class="home-container-body-hero_section">
             <div class="hero-wrapper">
-                <div class="title">
-                    <h1><span>Discover</span> Hotels, Resorts, Villas, <br /> and More!</h1>
-                    <p class="font-regular">TaraGo the optimal booking site for <br /> your relaxation needs.</p>
-                    <button class="main-button" (click)="navigateToMain()">View More</button>
+                <div class="title" [@fadeInAnimation]>
+                    <div>
+                        <h1><span>Discover</span> Hotels, Resorts, Villas, <br /> and More!</h1>
+                        <p class="font-regular">TaraGo the optimal booking site for <br /> your relaxation needs.</p>
+                    </div>
+                    <div>
+                        <h1> <span>Discover</span> Hotels, Resorts, Villas, and More!</h1>
+                        <p class="font-regular">TaraGo the optimal booking site for your relaxation needs.</p>
+                    </div>
+
+                    <div class="custom-main-button">
+                        <button class="main-button" (click)="navigateToMain()">View More</button>
+                    </div>
                 </div>
-                <div class="main-image">
-                    <swiper class="swiper-height" #swiper [slidesPerView]="1" [spaceBetween]="25" [pagination]="true"
-                        [draggable]="true" [loop]="true" [autoplay]="true">
+                <div class="main-image" [@fadeInAnimation]>
+                    <swiper class="swiper-container" #swiper [slidesPerView]="1" [spaceBetween]="25" [pagination]="true"
+                        [draggable]="false" [loop]="true" [autoplay]="true">
                         >
-                        <ng-template swiperSlide *ngFor="let heroimg of heroImages">
+                        <ng-template class="custom-swiper-slide" swiperSlide *ngFor="let heroimg of heroImages">
                             <div class="images">
-                                <img src={{heroimg.images}} alt="hero-visual-1" />
+                                <img src={{heroimg.images}} alt="hero-visual-1" draggable="false" loading="lazy" />
                             </div>
                         </ng-template>
                     </swiper>
@@ -25,24 +34,34 @@
         </section>
         <section class="home-container-body-section_1">
             <div class="section-1-wrapper">
-                <div class="header">
-                    <div class="title">Premier destinations in the Philippines</div>
-                    <div class="subtitle">These popular destinations have a lot to offer</div>
-                </div>
-                <div>
-                    <swiper #swiper [slidesPerView]="4" [spaceBetween]="50" [pagination]="true" (autoplayPause)="true"
-                        [draggable]="true" [loop]="true" [centeredSlides]="true" [breakpoints]="{
-                   
-                    '300': {
+                <div class="wrapper">
+                    <div class="header">
+                        <div class="title">Premier destinations in the Philippines</div>
+                        <div class="subtitle">These popular destinations have a lot to offer</div>
+                    </div>
+                    <div class="swiper-main-container">
+                        <swiper class="swiper-container" #swiper [slidesPerView]="4" [spaceBetween]="50"
+                            [pagination]="true" (autoplayPause)="true" [draggable]="false" [loop]="true" [breakpoints]="{
+                    '200': {
                         slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+
+                    '300': {
+                        slidesPerView: 2,
                         spaceBetween: 10,
                     },
                      '500': {
                         slidesPerView: 2,
                         spaceBetween: 10,
                     },
+                    '700': {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    
                     '1000': {
-                        slidesPerView: 2,
+                        slidesPerView: 4,
                         spaceBetween: 20,
                     },
                     '1500': {
@@ -50,16 +69,17 @@
                         spaceBetween: 30,
                     }
                 }">
-                        <ng-template swiperSlide *ngFor="let dest of destinations">
-                            <div class="images">
-                                <img src={{dest.images}} alt="images" draggable="false" />
-                                <div class="desc">{{dest.description}}</div>
-                            </div>
-                        </ng-template>
-                    </swiper>
+                            <ng-template class="custom-swiper-slide" swiperSlide *ngFor="let dest of destinations">
+                                <div class="images">
+                                    <img src={{dest.images}} alt="images" draggable="false" loading="lazy" />
+                                    <div class="desc">{{dest.description}}</div>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                    </div>
                 </div>
-
             </div>
+
 
         </section>
         <section class="home-container-body-section_2">
@@ -80,31 +100,12 @@
                         </div>
                     </div>
                     <div class="info-content">
-                        <div class="info-content-1">
-                            <div class="info-header">
-                                One-to-one guidance from a Proprietor
-                            </div>
+                        <div class="info-content-1" *ngFor="let staycationGuide of staycationguide">
+                            <h1 class="info-header">
+                                {{staycationGuide.title}}
+                            </h1>
                             <div class="info-paragraph">
-                                We’ll match you with a property owner in your area, who’ll guide you from your first
-                                question to your first guest—by phone, video call, or chat.
-                            </div>
-                        </div>
-                        <div class="info-content-1">
-                            <div class="info-header">
-                                One-to-one guidance from a Proprietor
-                            </div>
-                            <div class="info-paragraph">
-                                We’ll match you with a property owner in your area, who’ll guide you from your first
-                                question to your first guest—by phone, video call, or chat.
-                            </div>
-                        </div>
-                        <div class="info-content-1">
-                            <div class="info-header">
-                                One-to-one guidance from a Proprietor
-                            </div>
-                            <div class="info-paragraph">
-                                We’ll match you with a property owner in your area, who’ll guide you from your first
-                                question to your first guest—by phone, video call, or chat.
+                                {{staycationGuide.description}}
                             </div>
                         </div>
                     </div>
@@ -113,24 +114,34 @@
         </section>
         <section class="home-container-body-section_1">
             <div class="section-1-wrapper">
-                <div class="header">
-                    <div class="title">Explore properties by type</div>
-                    <div class="subtitle">These property type where able to offer</div>
-                </div>
-                <div>
-                    <swiper #swiper [slidesPerView]="4" [spaceBetween]="50" [pagination]="true" (autoplayPause)="true"
-                        [draggable]="true" [loop]="true" [centeredSlides]="true" [breakpoints]="{
-                   
-                    '300': {
+                <div class="wrapper">
+                    <div class="header">
+                        <div class="title">Premier destinations in the Philippines</div>
+                        <div class="subtitle">These popular destinations have a lot to offer</div>
+                    </div>
+                    <div class="swiper-main-container">
+                        <swiper class="swiper-container" #swiper [slidesPerView]="4" [spaceBetween]="50"
+                            [pagination]="true" (autoplayPause)="true" [draggable]="false" [loop]="true" [breakpoints]="{
+                    '200': {
                         slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+
+                    '300': {
+                        slidesPerView: 2,
                         spaceBetween: 10,
                     },
                      '500': {
                         slidesPerView: 2,
                         spaceBetween: 10,
                     },
+                    '700': {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    
                     '1000': {
-                        slidesPerView: 2,
+                        slidesPerView: 4,
                         spaceBetween: 20,
                     },
                     '1500': {
@@ -138,16 +149,17 @@
                         spaceBetween: 30,
                     }
                 }">
-                        <ng-template swiperSlide *ngFor="let propertytypes of types">
-                            <div class="images">
-                                <img src={{propertytypes.images}} alt="images" draggable="false" />
-                                <div class="desc">{{propertytypes.description}}</div>
-                            </div>
-                        </ng-template>
-                    </swiper>
+                            <ng-template class="custom-swiper-slide" swiperSlide *ngFor="let dest of destinations">
+                                <div class="images">
+                                    <img src={{dest.images}} alt="images" draggable="false" loading="lazy" />
+                                    <div class="desc">{{dest.description}}</div>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                    </div>
                 </div>
-
             </div>
+
 
         </section>
         <section class="home-container-body-section_3">
