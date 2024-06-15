@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
  
   selectedOption: any;
   panelOpenState = false;
- 
   public isAuth!: boolean;
+  selectedValue: string = '';
 
   ngOnInit() {
     this.activatedRoute.data.subscribe({
@@ -34,6 +34,11 @@ export class HomeComponent implements OnInit {
 
   navigateToMain() {
     this.router.navigate(['/', 'main', 'staycation-list']);
+  }
+
+  onRadioChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.selectedValue = inputElement.value;
   }
 
 heroImages:any=[
@@ -55,6 +60,13 @@ destinations:any = [
   {images:'../assets/images/home/section1/Boracay.jpg',description:'Boracay'},
 ]
 
+staycationguide:any = [
+  {title:'  One-to-one guidance from a Proprietor',description:'We’ll match you with a property owner in your area, who’ll guide you from your first question to your first guest—by phone, video call, or chat.'},
+  {title:'  One-to-one guidance from a Proprietor',description:'We’ll match you with a property owner in your area, who’ll guide you from your first question to your first guest—by phone, video call, or chat.'},
+  {title:'  One-to-one guidance from a Proprietor',description:'We’ll match you with a property owner in your area, who’ll guide you from your first question to your first guest—by phone, video call, or chat.'}
+]
+
+
 types:any = [
   {images:'../assets/images/home/section1/Manila.jpg',description:'Resorts'},
   {images:'../assets/images/home/section1/Batangas.jpg',description:'Appartments'},
@@ -66,6 +78,12 @@ types:any = [
   {images:'../assets/images/home/section1/Batangas.jpg',description:'Tiny House'},
   {images:'../assets/images/home/section1/Boracay.jpg',description:'Containers'},
 ]
+
+options = [
+  { label: 'Entire Space', value: '1' },
+  { label: 'Private Room', value: '2' },
+];
+
 
 
 
