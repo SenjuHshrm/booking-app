@@ -45,7 +45,7 @@ const routes: Routes = [
       {
         path: 'gallery',
         loadChildren: () => import('./gallery-page/gallery-page.module').then(m => m.GalleryPageModule),
-        canActivate: [authGuard, hostGuard],
+        // canActivate: [authGuard, hostGuard],
         title: 'TaraGo | Gallery'
       },
       {

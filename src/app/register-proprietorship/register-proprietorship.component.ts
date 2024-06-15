@@ -2,7 +2,7 @@ import { StaycationService } from './../services/staycation.service';
 import { Subscription } from 'rxjs';
 import { ITokenClaims } from './../interfaces/token';
 import { TokenService } from './../services/token.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, ElementRef, ViewChild, OnInit, AfterViewInit, ChangeDetectorRef, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray, FormGroupDirective } from '@angular/forms';
 import {
@@ -34,15 +34,18 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
   @ViewChild('getStarted') getStarted: ElementRef | any;
   @ViewChild('regPropFormDir') public regPropFormDir!: FormGroupDirective
   public regPropForm!: FormGroup<RegisterProprietorshipForm>;
-  
+
   public isLinear = false;
   public isAuth!: boolean;
+  public isHiddenintro = false;
+  public isHiddenstepper = false;
 
   private _cover!: File | null;
   private _tokenClaims!: ITokenClaims;
   private sub: Subscription = new Subscription()
 
   constructor(
+    private router: Router,
     private _formBuilder: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _changeDetector: ChangeDetectorRef,
@@ -125,6 +128,17 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
   public handleSetCover(e: number) {
     this._cover = this.regPropForm.controls['step6'].get('img')?.value[e]
   }
+
+  public backToGetstarted() {
+    this.isHiddenintro = false;
+    this.isHiddenstepper = true;
+
+  }
+
+  public toggleGetStarted() {
+    this.isHiddenintro = !this.isHiddenintro;
+  }
+
 
   public handleRegProp(fg: FormGroup<RegisterProprietorshipForm>) {
     console.log(fg.getRawValue())
