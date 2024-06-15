@@ -1,8 +1,15 @@
-<div class="register-proprietor-container">
+<div class="register-proprietor-container ">
     <div class="nav-wrapper">
         <app-nav [isAuth]="isAuth"></app-nav>
     </div>
-    <!-- <div class="register-proprietor-intro">
+    <div class="header_title" [ngStyle]="{'display': isHiddenintro === true ? 'block' : 'none'}">
+        <button (click)="backToGetstarted()">
+            <mat-icon>chevron_left</mat-icon>
+            <span>Back</span>
+        </button>
+        <div class="title"> Create Your Listing</div>
+    </div>
+     <section class="register-proprietor-intro" [ngClass]="{ 'hiddenIntro': isHiddenintro }" [@fadeInAnimation]>
         <div class="register-proprietor-intro-wrapper">
             <div class="girl-image">
                 <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
@@ -25,18 +32,18 @@
                             guest, set a starting price, and publish your listing.</p>
                     </div>
                     <div class="btn">
-                        <button class="main-button" (click)="scrollToRegProp()">Get Started</button>
+                        <button class="main-button" (click)="toggleGetStarted()">Get Started</button>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div> -->
-    <div class="register-proprietor-stepper" #getStarted >
-        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)"
+    </section> 
+    <section class="register-proprietor-stepper " #getStarted  [ngStyle]="{'display': isHiddenintro === true ? 'block' : 'none'}"  [@fadeInAnimation]>
+        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)" 
             #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
-                <mat-horizontal-stepper [linear]="true" #stepper [labelPosition]="'bottom'" [linear]="isLinear"
+                <mat-horizontal-stepper [linear]="true" #stepper [labelPosition]="'bottom'" [linear]="isLinear"  
                     #regPropFormStepper>
                     <mat-step [stepControl]="regPropForm.controls['step1']"
                         errorMessage="Please at least one (1) description of your place">
@@ -200,5 +207,5 @@
                 </mat-horizontal-stepper>
             </div>
         </form>
-    </div>
+    </section>
 </div>
