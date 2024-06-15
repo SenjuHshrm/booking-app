@@ -35,9 +35,13 @@
               padding: .5rem .5rem .5rem;
 
               .checkbox-wrapper {
-                  gap: .5rem;
-                  display: flex;
-                  flex-direction: row-reverse;
+                width: 100%;
+                gap: .5rem;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                cursor: pointer;
+                text-align: start;
 
                   .info {
                       .label {
@@ -52,7 +56,36 @@
                       height: 1.5rem;
                       cursor: pointer;
                   }
+
+                       /* Style for the outer circle */
+                .radio-button input[type="radio"] {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 2px solid #ccc;
+                    /* Default color for the border */
+                    outline: none;
+                    cursor: pointer;
+                }
+
+                /* Style for the inner dot when selected */
+                .radio-button input[type="radio"]:checked,.checked {
+                    background-color: #63AB68;
+                    /* Custom color for the inner dot when selected */
+                }
               }
           }
       }
   }
+
+  @media only screen and (max-width: 600px) {
+    .add-discounts {
+        margin-top: 0;
+        max-width:100% !important;
+        width: 100%;
+        border-radius:0px;
+    }
+}

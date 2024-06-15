@@ -14,13 +14,13 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private _auth: AuthService,
     private _token: TokenService
-  ) { 
-  this.selectedTab =  this.last_Url = this.router.url.split('/')[3];
+  ) {
+    this.selectedTab = this.last_Url = this.router.url.split('/')[3];
   }
 
   isMinimizedSidebar = false;
-  last_Url :any;
-  selectedTab:any;
+  last_Url: any;
+  selectedTab: any;
 
 
   ngOnInit(): void {
@@ -30,12 +30,15 @@ export class HomeComponent implements OnInit {
     this.isMinimizedSidebar = !this.isMinimizedSidebar;
   }
 
+  goToHome() {
+    this.router.navigate(['']);
+  }
 
 
-gotoPage(actives: string) {
-  this.selectedTab = actives;
-  this.router.navigate([`admin/home/${actives}`]);
-}
+  gotoPage(actives: string) {
+    this.selectedTab = actives;
+    this.router.navigate([`admin/home/${actives}`]);
+  }
 
   logout() {
     this._auth.logout().subscribe({

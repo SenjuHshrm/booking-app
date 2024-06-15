@@ -13,6 +13,7 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 export class Step5Component implements OnInit {
   
   @Input() public formGroupName!: string;
+  public isChecked: any = null;
   public formRegPropS5!: FormGroup<Step5Form>;
   public amenities: any = [
     { placeamenities: "Wifi", value: 'Wifi' },
@@ -33,7 +34,9 @@ export class Step5Component implements OnInit {
     this.formRegPropS5 = <FormGroup<Step5Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
 
-  public handleSelectedAmenities(e: Event) {
+  public handleSelectedAmenities(e: Event, indexNum:any) {
+    this.isChecked = (e.target as HTMLInputElement).checked;
+    this.isChecked = indexNum;
     const amenitiesFilter: FormArray = <FormArray>this.formRegPropS5.get('amenities')
     let targetEl: HTMLInputElement = <HTMLInputElement>e.target!
     if(targetEl.checked) {

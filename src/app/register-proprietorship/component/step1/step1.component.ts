@@ -2,18 +2,19 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { FormArray, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { Step1Form } from '../../register-proprietorship';
-import { fadeInAnimation } from 'src/app/globals/fadein-animations';
+
 
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
   styleUrls: ['./step1.component.scss'],
-  animations: [fadeInAnimation],
 })
 export class Step1Component implements OnInit {
 
   @Input() public formGroupName!: string;
   public formRegPropS1!: FormGroup<Step1Form>;
+ 
+  public isChecked: any = null;
   public places: any = [
     { placetype: "Resort", value: "resort" },
     { placetype: "Private Villa", value: "appartment" },
@@ -41,8 +42,11 @@ export class Step1Component implements OnInit {
   ngOnInit(): void {
     this.formRegPropS1 = <FormGroup<Step1Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
+  
 
-  public handleSelectedPlaceType(e: Event) {
+  public handleSelectedPlaceType(e: Event,indexNum:any) {
+    this.isChecked = (e.target as HTMLInputElement).checked;
+    this.isChecked = indexNum;
     const descFilter: FormArray = <FormArray>this.formRegPropS1.get('descriptionFilter')
     let targetEl: HTMLInputElement = <HTMLInputElement>e.target!
     if(targetEl.checked) {

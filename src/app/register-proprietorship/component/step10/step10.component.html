@@ -1,14 +1,20 @@
-<ng-container [formGroup]="formRegPropS10" [@fadeInAnimation]>
-    <section class="does-your-place-have-this">
-        <div class="title-wrapper">
-            Does your place have any of these?
-        </div>
-        <div class="does-your-place-have-this-wrapper">
-            <div class="checkbox" *ngFor="let doesyourPlace of doesyourplace">
-                <input type="checkbox" name="house" [value]="doesyourPlace.doesyourPlace" (change)="handleSelectedSecurity($event)" />
-                <div class="label">{{doesyourPlace.doesyourPlace}}</div>
+<div [@fadeInAnimation]>
+    <ng-container [formGroup]="formRegPropS10">
+        <section class="does-your-place-have-this">
+            <div class="title-wrapper">
+                Does your place have any of these?
             </div>
-        </div>
-    </section>
-    
-</ng-container>
+            <div class="does-your-place-have-this-wrapper">
+                <div class="checkbox" *ngFor="let doesyourPlace of doesyourplace; let i = index">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" [ngClass]="{'checked': isChecked === i}" name="house" 
+                        [value]="doesyourPlace.doesyourPlace"
+                            (change)="handleSelectedSecurity($event, i)" />
+                    <span class="checkmark"></span>
+                    <div class="label">{{doesyourPlace.doesyourPlace}}</div>
+                </label>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+</div>

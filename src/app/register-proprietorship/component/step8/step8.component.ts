@@ -13,6 +13,7 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 export class Step8Component implements OnInit {
 
   @Input() public formGroupName!: string;
+  public isChecked: any = null;
   public formRegPropS8!: FormGroup<Step8Form>;
   public describehouse: any = [
     { describeHouse: "Peaceful", value: 'Peaceful' },
@@ -31,7 +32,9 @@ export class Step8Component implements OnInit {
     this.formRegPropS8 = <FormGroup<Step8Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
 
-  public handleSelectDesc(e: Event) {
+  public handleSelectDesc(e: Event,indexNum:any ) {
+    this.isChecked = (e.target as HTMLInputElement).checked;
+    this.isChecked = indexNum;
     const desc: FormArray = <FormArray>this.formRegPropS8.get('descriptionText')
     let target: HTMLInputElement = <HTMLInputElement>e.target!
     if(target.checked) {

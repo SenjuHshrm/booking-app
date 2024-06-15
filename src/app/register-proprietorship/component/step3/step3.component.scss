@@ -6,7 +6,7 @@
     gap: 2rem;
     padding: 1rem 2rem 2rem;
     max-width: 50rem;
-    height:fit-content;
+    min-height: fit-content;
     margin: auto;
     margin-top: 3rem;
     border-radius: 20px;
@@ -41,5 +41,14 @@
                 font-size: 15px;
             }
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .where-is-located  {
+        margin-top: 0;
+        max-width:100% !important;
+        width: 100%;
+        border-radius:0px;
     }
 }

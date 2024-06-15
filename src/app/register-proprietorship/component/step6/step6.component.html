@@ -1,28 +1,34 @@
-<ng-container [formGroup]="formRegPropS6" [@fadeInAnimation]>
-    <section class="add-photos-place">
-        <div class="title-wrapper">
-            Add some photos of your staycation/event place
-        </div>
-        <div class="add-photos-place-wrapper">
-            <div class="container">
-                <div class="upload-panel">
-                    <input type="file" id="fileInput" style="display: none;"
-                        (change)="onFileSelected($event)" accept="image/*" multiple>
-                    <label for="fileInput" class="custom-file-label">
-                        <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
-                            alt="camera-Icon" class="custom-icon">
-                        <span>Upload Image</span>
-                    </label>
-                </div>
-                <div class="gallery">
-                    <div *ngFor="let image of uploadedImages" [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
-                        <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)">
-                        <button type="button" mat-icon-button color="warn" (click)="handleRemoveImg(image)">
-                            <mat-icon>close</mat-icon>
-                        </button>
+<div [@fadeInAnimation]>
+    <ng-container [formGroup]="formRegPropS6">
+        <section class="add-photos-place">
+            <div class="title-wrapper">
+                Add some photos of your staycation/event place
+            </div>
+            <div class="add-photos-place-wrapper">
+                <div class="container">
+                    <div class="upload-panel">
+                        <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
+                            accept="image/*" multiple>
+                        <label for="fileInput" class="custom-file-label">
+                            <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                                alt="camera-Icon" class="custom-icon">
+                            <span>Upload Image</span>
+                        </label>
+                    </div>
+                    <div class="gallery">
+                        <div *ngFor="let image of uploadedImages"
+                            [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                            <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)" />
+                            <div class="position-btn">
+                                <button type="button" class="close-button close" class="close-button"
+                                    (click)="handleRemoveImg(image)">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</ng-container>
+        </section>
+    </ng-container>
+</div>

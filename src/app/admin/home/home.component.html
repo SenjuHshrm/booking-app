@@ -2,7 +2,7 @@
     <header class="home-dashboard-container-header">
         <div class="nav-wrapper">
             <div class="header-logo">
-                <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" />
+                <div class="img-container" (click)="goToHome()"><img src="./assets/images/home/header/navigation/tarago.png" alt="logo" /></div>
                 <div class="humburger-btn">
                     <button (click)="toggleSidebar()" [ngClass]="{'burgerHide': isMinimizedSidebar=== true}"><mat-icon > format_indent_increase</mat-icon></button> 
                     <button (click)="toggleSidebar()" [ngClass]="{'burgerHide': isMinimizedSidebar === false}"><mat-icon > view_headline</mat-icon></button> 

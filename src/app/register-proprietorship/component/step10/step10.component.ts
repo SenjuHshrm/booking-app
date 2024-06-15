@@ -13,6 +13,7 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 export class Step10Component implements OnInit {
 
   @Input() public formGroupName!: string;
+  public isChecked: any = null;
   public formRegPropS10!: FormGroup<Step10Form>;
   public doesyourplace: any = [
     { doesyourPlace: "Security camera’s" },
@@ -28,7 +29,9 @@ export class Step10Component implements OnInit {
     this.formRegPropS10 = <FormGroup<Step10Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
 
-  public handleSelectedSecurity(e: Event) {
+  public handleSelectedSecurity(e: Event, indexNum:any) {
+    this.isChecked = (e.target as HTMLInputElement).checked;
+    this.isChecked = indexNum;
     const sec: FormArray = <FormArray>this.formRegPropS10.get('security')
     let target: HTMLInputElement = <HTMLInputElement>e.target!
     if(target.checked) {
