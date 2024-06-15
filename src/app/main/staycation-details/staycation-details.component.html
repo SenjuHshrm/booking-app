@@ -13,26 +13,27 @@
                     </div>
                </div>
           </section>
-          <section class="image-gallery" (click)="gotoGalleryPage(details._id)">
-               <div class="card stacked" *ngFor="let img of gallery; let i = index"
-                    [class.first-image]="i === 0">
-                    <div class="image">
-                         <img [src]="img" loading="lazy" alt="images" [draggable]="false"/>
-                    </div>
-                    <div class="content__card">
-                         <!-- <div class="details">
+          <div class="gallery-lightbox-container">
+               <section class="gallery" (click)="gotoGalleryPage(details._id)">
+                    <div class="gallery-img" *ngFor="let img of imageSets; let i = index" [class.first-image]="i === 0" >
+                         <img class="images" [src]="img" loading="lazy" alt="Large Image" draggable="false"  >
+                         <!-- <div class="content__card"> -->
+                              <!-- <div class="details">
                       <div class="title">{{properties.title}}</div>
                       <div class="description">{{properties.description}}</div>
                       <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
                   </div> -->
+                         <!-- </div> -->
                     </div>
-               </div>
-          </section>
+               </section>
+          </div>
           <div class="details-reserve-wrapper">
                <section class="details-column">
                     <div class="details-header">
                          <div class="title">1BR Flat with balcony near U.S. Embassy</div>
-                         <div class="subtitle">{{ details.details.guests }} guest/s - {{ details.details.bedrooms }} bedroom/s - {{ details.details.beds }} bed/s - {{ details.details.bathroom }} bathroom/s</div>
+                         <div class="subtitle">{{ details.details.guests }} guest/s - {{ details.details.bedrooms }}
+                              bedroom/s - {{ details.details.beds }} bed/s - {{ details.details.bathroom }} bathroom/s
+                         </div>
                          <div class="rate">
                               <div>Rate</div>
                               <mat-icon>star</mat-icon>
@@ -41,8 +42,7 @@
                     </div>
                     <div class="details-user-avatar">
                          <div class="image-avatar">
-                              <img [src]="details.host.img" loading="lazy"
-                                   alt="Avatar" [draggable]="false">
+                              <img [src]="details.host.img" loading="lazy" alt="Avatar" [draggable]="false">
                          </div>
                          <div>
                               <div class="name">{{ details.host.name }}</div>

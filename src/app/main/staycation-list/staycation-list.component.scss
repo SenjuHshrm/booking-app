@@ -351,13 +351,14 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             cursor: pointer;
-            margin-top: 2rem;
-            // border:2px solid black;
+            margin-top: 5rem;
+          
 
 
             .stacked {
                 display: grid;
-
+                max-width: 17rem;
+                 
                 * {
                     grid-column: 1 /.5;
                     grid-row: 1/.5;
@@ -390,7 +391,6 @@
                             font-weight: bold;
                             font-size: max(min(.8rem), .5vw);
                             color: black;
-                            border: 1px solid black;
                             height: fit-content;
                         }
 
@@ -428,6 +428,7 @@
 
             }
         }
+        
         .seemore {
             display: flex;
             justify-content: center;

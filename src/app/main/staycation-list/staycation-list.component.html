@@ -192,7 +192,7 @@
             <div class="card stacked" *ngFor="let properties of listproperties"
                 (click)="navigateToBookStaycation(properties._id)">
                 <div class="image">
-                    <img [src]="properties.image" alt="image" />
+                    <img [src]="properties.image" alt="image" draggable="false" loading="lazy" />
                 </div>
                 <div class="content__card">
                     <div class="info">

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
-
+import { limit } from './limit'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-staycation-details',
@@ -19,9 +19,9 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public gallery: string[] = []
   public details: any
   public serviceCharge: any = []
-
   private _sub: Subscription = new Subscription()
-
+  public imageSets:any;
+  
   constructor(
     private router: Router,
     private _activatedRoute: ActivatedRoute,
@@ -87,11 +87,18 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     }))
   }
 
+
+
   private _pushMedia(img: { cover: string, imgs: string[] }) {
     this.gallery.push(this._basicUtil.setImgUrl(img.cover))
     img.imgs.forEach((i: string) => {
       this.gallery.push(this._basicUtil.setImgUrl(i))
     })
+
+    this.imageSets = limit(this.gallery, 5); 
   }
   
+
+
+ 
 }
