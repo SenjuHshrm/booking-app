@@ -1,5 +1,6 @@
 .type-of-place {
-    flex: 1;
+    flex: none !important;
+    width: 100% !important;
     display: flex;
     flex-direction: column;
     gap: 2rem;
