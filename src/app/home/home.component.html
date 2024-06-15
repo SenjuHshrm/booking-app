@@ -186,19 +186,15 @@
                                             <mat-radio-button [value]="'option1'">Entire Space</mat-radio-button>
                                             <mat-radio-button [value]="'option2'">Private Room</mat-radio-button>
                                         </mat-radio-group> -->
-                                        <div class="typeofspace-wrapper" >
+                                        <div class="typeofspace-wrapper">
                                             <label class="custom-radio" *ngFor="let option of options">
-                                              <input
-                                                type="radio"
-                                                [value]="option.value"
-                                                name="customRadio"
-                                                (change)="onRadioChange($event)"
-                                                [checked]="selectedValue === option.value"
-                                              />
-                                              <span class="radio-mark"></span>
-                                              {{ option.label }}
+                                                <input type="radio" [value]="option.value" name="customRadio"
+                                                    (change)="onRadioChange($event)"
+                                                    [checked]="selectedValue === option.value" />
+                                                <span class="radio-mark"></span>
+                                                {{ option.label }}
                                             </label>
-                                          </div>
+                                        </div>
                                     </div>
                                     <div class="numbers">
                                         <div class="numberofnights">
