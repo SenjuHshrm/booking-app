@@ -40,5 +40,6 @@ export class Step2Component implements OnInit {
   handleRadiobtn(index:any):void{
      this.isSelected = index;
      console.log(this.isSelected);
+     this.formRegPropS2.controls['placeType']?.setValue(this.typeofplace[index].value)
   }
 }

@@ -89,7 +89,8 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
         descriptionTextOther: new FormControl('')
       }),
       step9: this._formBuilder.group<Step9Form>({
-        discounts: new FormArray<FormGroup>([])
+        // discounts: new FormArray<FormGroup>([])
+        discounts: new FormControl('', [])
       }),
       step10: this._formBuilder.group<Step10Form>({
         security: new FormArray<FormGroup>([])

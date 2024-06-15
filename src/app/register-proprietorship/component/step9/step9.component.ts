@@ -32,28 +32,29 @@ export class Step9Component implements OnInit {
   handleRadiobtn(index:any):void{
     this.isSelected = index;
     console.log(this.isSelected);
+    this.formRegPropS9.controls['discounts']?.setValue(this.adddiscounts[index].value)
  }
 
   public handleSelectDiscount(e: Event) {
-    const discount: FormArray = <FormArray>this.formRegPropS9.get('discounts')
-    let target: HTMLInputElement = <HTMLInputElement>e.target!
-    if(target.checked) {
-      let i = this.adddiscounts.findIndex((j: any) => j.value === target.value)
-      discount.push(new FormControl({
-        percentage: this.adddiscounts[i].label,
-        name: this.adddiscounts[i].name,
-        description: this.adddiscounts[i].label
-      }))
-    } else{
-      let i: number = 0
-      discount.controls.forEach((ctrl: AbstractControl) => {
-        if(ctrl.value === target.value) {
-          discount.removeAt(i)
-          return
-        }
-        i++
-      })
-    }
+    // const discount: FormArray = <FormArray>this.formRegPropS9.get('discounts')
+    // let target: HTMLInputElement = <HTMLInputElement>e.target!
+    // if(target.checked) {
+    //   let i = this.adddiscounts.findIndex((j: any) => j.value === target.value)
+    //   discount.push(new FormControl({
+    //     percentage: this.adddiscounts[i].label,
+    //     name: this.adddiscounts[i].name,
+    //     description: this.adddiscounts[i].label
+    //   }))
+    // } else{
+    //   let i: number = 0
+    //   discount.controls.forEach((ctrl: AbstractControl) => {
+    //     if(ctrl.value === target.value) {
+    //       discount.removeAt(i)
+    //       return
+    //     }
+    //     i++
+    //   })
+    // }
   }
 
 }

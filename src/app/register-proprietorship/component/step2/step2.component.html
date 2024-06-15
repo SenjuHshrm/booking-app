@@ -8,7 +8,7 @@
                 <div class="checkbox" *ngFor="let typePlace of typeofplace; let i = index">
                     <div class="checkbox-wrapper" (click)="handleRadiobtn(i)">
                         <div class="radio-button">
-                            <input type="radio" [ngClass]="{'checked': isSelected === i }" [value]="typePlace.value" formControlName="placeType" required />
+                            <input type="radio" [ngClass]="{'checked': isSelected === i }" [value]="typePlace.value" required />
                         </div>
                         <div class="info">
                             <div class="label">{{typePlace.label}}</div>

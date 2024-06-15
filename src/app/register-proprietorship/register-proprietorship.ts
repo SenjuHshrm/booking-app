@@ -58,7 +58,8 @@ export interface Step8Form {
 }
 
 export interface Step9Form {
-  discounts: FormArray<FormGroup>;
+  // discounts: FormArray<FormGroup>;
+  discounts: FormControl;
 }
 
 export interface Step10Form {
