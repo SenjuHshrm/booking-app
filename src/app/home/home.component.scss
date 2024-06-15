@@ -17,7 +17,6 @@
     }
 
     &-body {
-      
 
         &-hero_section {
             max-width: 70%;
@@ -148,7 +147,7 @@
         }
 
         &-section_1 {
-            max-width:70%;
+            max-width: 70%;
             margin: auto;
             height: 50rem;
             // border: 1px solid black;
@@ -245,24 +244,24 @@
         }
 
         &-section_2 {
-          width: 100%;
-          background-image: url('../../assets/images/home/section2/map.png');
-          background-repeat: no-repeat;
-          background-position-x: flex-start;
-          background-size: contain;
-          background-position-x: left;
-          height: 100%;
-          width: 100%;
-          flex-basis: 50%;
-          display: flex;
-          justify-content: flex-end;
-        //   border: 2px solid orange;
-          
-          
-            
+            width: 100%;
+            background-image: url('../../assets/images/home/section2/map.png');
+            background-repeat: no-repeat;
+            background-position-x: flex-start;
+            background-size: contain;
+            background-position-x: left;
+            height: 100%;
+            width: 100%;
+            flex-basis: 50%;
+            display: flex;
+            justify-content: flex-end;
+            //   border: 2px solid orange;
+
+
+
             .section-2-wrapper {
                 // border: 2px solid orange;
-                max-width:70%;
+                max-width: 70%;
                 height: 100%;
                 margin: auto;
                 display: flex;
@@ -356,6 +355,7 @@
                         flex-direction: column;
                         justify-content: flex-start;
                         height: 100%;
+                        gap: 1.5rem;
 
                         .info-content-1 {
                             margin-top: 1rem;
@@ -379,8 +379,6 @@
         }
 
         &-section_3 {
-            
-            border:2px solid black;
             height: 100%;
             max-height: 60rem;
 
@@ -456,6 +454,11 @@
                                             }
                                         }
 
+                                        select::placeholder {
+                                            font-family: Poppins-Regular !important;
+                                            font-size: 12px !important;
+                                        }
+
                                         .pin-icon {
                                             position: absolute;
                                             top: 50%;
@@ -471,24 +474,76 @@
                                 }
 
                                 .typeofspace {
+
+                                    font-family: Poppins-Regular !important;
                                     width: 100%;
 
-                                    mat-radio-group {
-                                        display: flex;
-                                        gap: 1rem;
+                                    &-wrapper {
 
-                                        mat-radio-button {
-                                            color: #63AB68 !important;
-                                            width: 100%;
-                                            border-radius: 5px;
-                                            padding: 5px;
-                                            border: 1px solid #63AB68;
-                                            font-family: Poppins-Bold;
+                                        display: grid;
+                                        place-content: center;
+                                        place-items: center;
+                                        grid-template-columns: 49% 49%;
+                                        gap: 2%;
+
+
+
+                                        .custom-radio {
+                                            position: relative;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            height: fit-content;
+                                            cursor: pointer;
                                             font-size: 15px;
+                                            user-select: none;
+                                            width: 100%; // Set the width as needed
+                                            border: 1px solid #63AB68;
+                                            border-radius: 5px;
+                                            padding: .8rem 0 .8rem;
                                         }
 
-                                    }
+                                        .custom-radio input {
+                                            position: relative;
+                                            opacity: 0;
+                                            cursor: pointer;
+                                        }
 
+
+                                        .radio-mark {
+                                            position: absolute;
+                                            bottom: 5;
+                                            left: .7rem;
+                                            height: 35px;
+                                            width: 35px;
+                                            background-color: #eee;
+                                            border-radius: 50%;
+                                            border-color: #63AB68;
+                                        }
+
+                                        .custom-radio input:checked~.radio-mark {
+                                            background-color: #63AB68;
+                                        }
+
+                                        .radio-mark:after {
+                                            content: "";
+                                            position: absolute;
+                                            display: none;
+                                        }
+
+                                        .custom-radio input:checked~.radio-mark:after {
+                                            display: block;
+                                        }
+
+                                        .custom-radio .radio-mark:after {
+                                            top: 14px;
+                                            left: 13px;
+                                            width: 8px;
+                                            height: 8px;
+                                            border-radius: 50%;
+                                            background: white;
+                                        }
+                                    }
                                 }
 
                                 .numbers {
@@ -497,25 +552,14 @@
                                     justify-content: space-between;
                                     gap: 1rem;
 
-                                    .numberofnights {
-                                        flex-basis: 50%;
-
-                                        input {
-                                            font-size: 16px;
-                                            width: 100%;
-                                            border: 1px solid #ccc;
-                                            border-radius: 5px;
-                                            padding: 15px;
-                                            border: 1px solid #63AB68;
-
-                                        }
-                                    }
-
+                                    .numberofnights,
                                     .numberofbedrooms {
+
                                         flex-basis: 50%;
 
                                         input {
-                                            font-size: 16px;
+                                            font-family: Poppins-Regular !important;
+                                            font-size: 15px;
                                             width: 100%;
                                             border: 1px solid #ccc;
                                             border-radius: 5px;
@@ -523,7 +567,13 @@
                                             border: 1px solid #63AB68;
 
                                         }
+
+                                        input::placeholder {
+                                            font-family: Poppins-Regular !important;
+                                            font-size: 12px;
+                                        }
                                     }
+
                                 }
 
                                 .learn {
@@ -644,8 +694,8 @@
             }
 
             .airplane_image {
-                width: 100%;
-                max-width: 70%;
+                width: 70%;
+                padding: 1rem;
                 margin-left: auto;
                 margin-right: auto;
 
@@ -676,7 +726,7 @@
                     color: #63AB68;
                     font-family: Poppins-Medium;
                     font-size: clamp(2rem, 2vw, 5rem);
-                    line-height: 50px;
+                    line-height: 2.7rem;
 
                     span {
                         color: black;
@@ -703,6 +753,7 @@
 
         &-section_5 {
             position: relative;
+            padding-top: 5rem;
 
             .section_5-wrapper {
                 display: flex;
@@ -735,18 +786,21 @@
                 .content {
                     // border: 1px solid black;    
                     flex-basis: 40%;
+                    display: grid;
+                    place-content: center;
+                    gap: 1rem;
 
                     h1 {
-                        font-family: Poppins-Medium;
-                        font-size: clamp(2rem, 2vw, 5rem);
+                        font-size: clamp(1.5rem, 2vw, 5rem);
                         white-space: nowrap;
+                        font-weight: bold;
 
                     }
 
                     .info {
                         font-family: Poppins-Medium;
-                        font-size: 25px;
-                        line-height: 35px;
+                        font-size: clamp(1.3rem, 1vw, 5rem);
+                        line-height: 1.5rem;
 
                         span {
                             color: #63AB68;
@@ -784,7 +838,7 @@
 
 
         &-body {
-            max-width:100%;
+            max-width: 100%;
 
             &-hero_section {
 
@@ -805,7 +859,7 @@
             }
 
             &-section_2 {
-             
+
 
                 .section-2-wrapper {
                     justify-content: center;
@@ -901,12 +955,26 @@
     }
 }
 
+@media screen and (max-width: 1300px) {
+    .home-container {
+
+        &-body {
+            &-section_5 {
+                .section_5-wrapper {
+                    max-width:100%;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .home-container {
 
         &-body {
             &-hero_section {
-                max-width:100%;
+                max-width: 100%;
+
                 .hero-wrapper {
                     flex-wrap: wrap;
                     gap: 2rem;
@@ -935,14 +1003,16 @@
                     }
                 }
             }
+
             &-section_1 {
-                max-width:100%;
+                max-width: 100%;
             }
 
             &-section_2 {
-                background-image: none;
+
+
                 .section-2-wrapper {
-                    max-width:100%;
+                    max-width: 100%;
 
                 }
             }
@@ -951,7 +1021,7 @@
 
                 // border: 1px solid black;
                 .section_3-mat-card {
-                    max-width: 95%;
+                    max-width: 100%;
                     padding: 0rem;
                     padding-bottom: 2rem;
 
@@ -1014,6 +1084,7 @@
     }
 }
 
+
 @media screen and (max-width: 1000px) {
     .home-container {
         &-body {
@@ -1025,16 +1096,31 @@
                 }
             }
 
-         
+
             &-section_2 {
+
+
                 .section-2-wrapper {
                     flex-direction: column !important;
+
+                    .info-wrapper {
+                        margin-top: 20rem;
+                    }
 
                 }
             }
 
+            &-section_3 {
+
+                .airplane_image {
+                    width: 100%;
+                }
+            }
+
             &-section_4 {
+
                 .section_4-wrapper {
+                    max-width: 100%;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -1061,7 +1147,6 @@
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: center;
-                    max-width: 95%;
                     height: fit-content;
 
                     .girl-image {
@@ -1082,24 +1167,15 @@
                         // border: 1px solid black;    
                         flex-basis: auto;
                         text-align: center;
-
-                        h1 {
-                            font-size: clamp(1rem, 2vw, 5rem);
-                            white-space: nowrap;
-
-                        }
-
-                        .info {
-
-                            font-size: clamp(14px, 2vw, 24px);
-                        }
+                        font-family: Poppins-Regular;
 
                         .btn {
                             display: flex;
+                            align-items: center;
                             justify-content: center;
 
                             button {
-                                margin-top: 2rem;
+                                margin: auto;
                             }
                         }
                     }
@@ -1115,6 +1191,14 @@
             &-section_1 {
                 height: 40rem;
             }
+
+            &-section_2 {
+                background-image: url('../../assets/images/home/section2/map.png');
+
+                .info-wrapper {
+                    margin-top: 2rem !important;
+                }
+            }
         }
     }
 }
@@ -1128,7 +1212,7 @@
 
             &-section_2 {
                 .section-2-wrapper {
-                    max-width: 95%;
+
 
                     .image {
                         background-size: cover;
@@ -1184,35 +1268,12 @@
 
             }
 
-            &-section_2 {
-                .section-2-wrapper {
-                    max-width: 95%;
-
-
-                }
-            }
-
-            &-section_3 {
-                .section_3-mat-card {
-                    max-width: 95%;
-                }
 
 
 
-            }
 
-            &-section_4 {
-                .section_4-wrapper {
-                    max-width: 95%;
 
-                }
-            }
 
-            &-section_5 {
-                .section_5-wrapper {
-                    max-width: 95%;
-                }
-            }
         }
     }
 }
@@ -1254,10 +1315,36 @@
 
             &-section_2 {
                 .section-2-wrapper {
-                    max-width: 95%;
+
 
                     .image {
                         background-image: none;
+                    }
+                }
+            }
+
+            &-section_3 {
+                .section_3-mat-card {
+                    form {
+                        .section_3-wrapper {
+                            .section_3-wrapper-content {
+
+
+                                .inputs-wrapper {
+                                    .typeofspace {
+                                        font-family: Poppins-Regular !important;
+                                        width: 100%;
+
+                                        &-wrapper {
+                                            display: flex !important;
+                                            flex-direction: column;
+                                            gap: 1rem;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
                     }
                 }
             }

@@ -182,11 +182,23 @@
                                         </div>
                                     </div>
                                     <div class="typeofspace">
-                                        <mat-radio-group [(ngModel)]="selectedOption" name="typeofsource">
+                                        <!-- <mat-radio-group [(ngModel)]="selectedOption" name="typeofsource">
                                             <mat-radio-button [value]="'option1'">Entire Space</mat-radio-button>
                                             <mat-radio-button [value]="'option2'">Private Room</mat-radio-button>
-                                            <!-- Add more radio buttons as needed -->
-                                        </mat-radio-group>
+                                        </mat-radio-group> -->
+                                        <div class="typeofspace-wrapper" >
+                                            <label class="custom-radio" *ngFor="let option of options">
+                                              <input
+                                                type="radio"
+                                                [value]="option.value"
+                                                name="customRadio"
+                                                (change)="onRadioChange($event)"
+                                                [checked]="selectedValue === option.value"
+                                              />
+                                              <span class="radio-mark"></span>
+                                              {{ option.label }}
+                                            </label>
+                                          </div>
                                     </div>
                                     <div class="numbers">
                                         <div class="numberofnights">
@@ -287,10 +299,10 @@
                     <h1>
                         Still have questions?
                     </h1>
-                    <div class="info">
+                    <p class="info">
                         <span>Contact us</span> or get answers from an
                         experienced proprietor near you.
-                    </div>
+                    </p>
                     <div class="btn">
                         <button class="main-button">Find proprietor</button>
                     </div>
