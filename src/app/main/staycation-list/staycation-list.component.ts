@@ -38,26 +38,16 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
   public total: number = 0
   public listproperties: any = [];
 
+  public placeType: string = 'placeType=room';
+  public description: string = ''
+
   public showCat: string = "staycation";
   currentTitle: string = '';
 
 
 
   ngOnInit(): void {
-    this._sub.add(this._staycation.getOfficialList(this.page, this.limit, 'listed=true').subscribe({
-      next: (res: any) => {
-        this.total = res.total
-        res.listings.forEach((l: any) => {
-          this.listproperties.push({
-            _id: l._id,
-            image: this._basicUtil.setImgUrl(l.media.cover),
-            title: l.name,
-            description: l.descriptionText.join(', '),
-            permonth: `${l.price.common} (Before Tax: ${l.price.beforeTax})`
-          })
-        })
-      }
-    }))
+    this.searchStaycation(this.page, this.limit)
   }
  
 
@@ -68,6 +58,15 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
   handleShowCat(catData: any) {
     this.showCat = catData;
     this.currentTitle = '';
+    // console.log(catData)
+    switch(catData) {
+      case "eventplace":
+        this.placeType = 'placeType=event_place';
+        break;
+      case "staycation":
+        this.placeType = 'placeType=room&placeType=room_shared'
+    }
+    this.searchStaycation(1, this.limit)
   }
 
   handleBtnCat(btnTitle: string) {
@@ -103,6 +102,25 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
   navigateToHome() {
     this.router.navigate(['']);
     console.log("Click");
+  }
+
+  public searchStaycation(p: number, l: number) {
+    let q: string = `listed=true&${this.placeType}`
+    this.listproperties = []
+    this._sub.add(this._staycation.getOfficialList(p, l, q).subscribe({
+      next: (res: any) => {
+        this.total = res.total
+        res.listings.forEach((l: any) => {
+          this.listproperties.push({
+            _id: l._id,
+            image: this._basicUtil.setImgUrl(l.media.cover),
+            title: l.name,
+            description: l.descriptionText.join(', '),
+            permonth: `${l.price.common} (Before Tax: ${l.price.beforeTax})`
+          })
+        })
+      }
+    }))
   }
 
 
