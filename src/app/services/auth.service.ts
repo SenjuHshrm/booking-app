@@ -29,4 +29,8 @@ export class AuthService {
     return this._http.delete<{ logout: boolean }>(`${environment.api}/api/auth/delete/logout`)
   }
 
+  public updatePassword(id: string, password: string): Observable<{ success: boolean }> {
+    return this._http.put<{ success: boolean }>(`${environment.api}/api/auth/put/update-password/${id}`, { password })
+  }
+
 }

@@ -59,6 +59,7 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
     this.showCat = catData;
     this.currentTitle = '';
     // console.log(catData)
+    this.description = ''
     switch(catData) {
       case "eventplace":
         this.placeType = 'placeType=event_place';
@@ -71,6 +72,8 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
 
   handleBtnCat(btnTitle: string) {
     this.currentTitle = btnTitle;
+    this.description = `descriptionFilter=${btnTitle}`
+    this.searchStaycation(1, this.limit)
   }
 
   showLocationModal(): void {
@@ -105,7 +108,7 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
   }
 
   public searchStaycation(p: number, l: number) {
-    let q: string = `listed=true&${this.placeType}`
+    let q: string = `listed=true&${this.placeType}&${this.description}`
     this.listproperties = []
     this._sub.add(this._staycation.getOfficialList(p, l, q).subscribe({
       next: (res: any) => {

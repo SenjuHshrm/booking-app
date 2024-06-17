@@ -1,27 +1,42 @@
 <div class="payment-wallet">
     <div class="payment-wallet-payment-wallet-wrapper">
-        <form>
+        <form (ngSubmit)="handleSubmit(pwForm)" [formGroup]="pwForm">
             <div class="your-information-about-your-info">
                 <div class="your-likes">
                     <!-- <div class="title">Your Personal Information</div> -->
                     <div class="info">
                         <div class="input-wrapper">
                             <div class="label">Current Password</div>
-                            <input type="text" name="name" value="" placeholder="">
+                            <input type="password" name="currentPassword" formControlName="currentPassword" required/>
+                            <ng-container *ngFor="let v of validation.currentPassword">
+                                <span class="val-err-msg" *ngIf="pwForm.controls['currentPassword']?.hasError(v.type) && (pwForm.controls['currentPassword']?.dirty || pwForm.controls['currentPassword']?.touched)">
+                                    {{ v.msg }}
+                                </span>
+                            </ng-container>
                         </div>
                         <div class="input-wrapper">
                             <div class="label">New Password</div>
-                            <input type="text" name="surname" value="">
+                            <input type="password" name="newPassword" formControlName="newPassword" required/>
+                            <ng-container *ngFor="let v of validation.newPassword">
+                                <span class="val-err-msg" *ngIf="pwForm.controls['newPassword']?.hasError(v.type) && (pwForm.controls['newPassword']?.dirty || pwForm.controls['newPassword']?.touched)">
+                                    {{ v.msg }}
+                                </span>
+                            </ng-container>
                         </div>
                         <div class="input-wrapper">
                             <div class="label">Confirm Password</div>
-                            <input type="text" name="email" value="">
+                            <input type="password" name="confirmPassword" formControlName="confirmPassword" required/>
+                            <ng-container *ngFor="let v of validation.confirmPassword">
+                                <span class="val-err-msg" *ngIf="pwForm.controls['confirmPassword']?.hasError(v.type) && (pwForm.controls['confirmPassword']?.dirty || pwForm.controls['confirmPassword']?.touched)">
+                                    {{ v.msg }}
+                                </span>
+                            </ng-container>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="btn-sec">
-                <button class="main-button ">Done</button>
+                <button class="main-button" type="submit" [disabled]="!pwForm.valid">Done</button>
             </div>
         </form>
     </div>
