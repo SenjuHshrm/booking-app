@@ -45,18 +45,6 @@
             <div class="mat-horizontal-stepper-wrapper">
                 <mat-horizontal-stepper [linear]="true" #stepper [labelPosition]="'bottom'" [linear]="isLinear"  
                     #regPropFormStepper>
-                    <mat-step [stepControl]="regPropForm.controls['step1']"
-                        errorMessage="Please at least one (1) description of your place">
-                        <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
-                        <app-step1 formGroupName="step1"></app-step1>
-                        <div class="nextprev_btn-bottom">
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
-                    </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step2']"
                         errorMessage="Please at least one (1) type of place will guest have">
                         <ng-template matStepLabel></ng-template>
@@ -65,6 +53,18 @@
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                         <app-step2 formGroupName="step2"></app-step2>
+                        <div class="nextprev_btn-bottom">
+                            <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step [stepControl]="regPropForm.controls['step1']"
+                        errorMessage="Please at least one (1) description of your place">
+                        <ng-template matStepLabel></ng-template>
+                        <div class="nextprev_btn-top">
+                            <button mat-button type="button" matStepperPrevious>Back</button>
+                            <button mat-button type="button" matStepperNext>Next</button>
+                        </div>
+                        <app-step1 formGroupName="step1" [placetype]="regPropForm.get('step2')?.get('placeType')?.value"></app-step1>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>

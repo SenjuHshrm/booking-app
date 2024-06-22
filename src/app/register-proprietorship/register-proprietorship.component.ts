@@ -1,3 +1,4 @@
+import { BasicUtilService } from './../services/basic-util.service';
 import { StaycationService } from './../services/staycation.service';
 import { Subscription } from 'rxjs';
 import { ITokenClaims } from './../interfaces/token';
@@ -50,7 +51,8 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     private _activatedRoute: ActivatedRoute,
     private _changeDetector: ChangeDetectorRef,
     private _token: TokenService,
-    private _staycation: StaycationService
+    private _staycation: StaycationService,
+    private _basicUtil: BasicUtilService
   ) {}
 
   ngOnInit(): void {
@@ -118,7 +120,9 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     this.sub.unsubscribe()
   }
 
-
+  public handleNextStep() {
+    this._basicUtil.setPlaceType(<string>this.regPropForm.get('step2')?.get('placeType')?.value)
+  }
 
 
   public scrollToRegProp(): void {

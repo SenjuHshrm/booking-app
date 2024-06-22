@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { IUserFullName } from '../interfaces/user';
@@ -48,5 +49,12 @@ export class BasicUtilService {
       res = `${durationYears} ${(durationYears > 1) ? 'years' : 'year'} on TaraGo`
     }
     return res;
+  }
+
+  public placetype: BehaviorSubject<string> = new BehaviorSubject<string>('')
+  public getPlaceType = this.placetype.asObservable()
+
+  public setPlaceType(pt: string) {
+    this.placetype.next(pt)
   }
 }
