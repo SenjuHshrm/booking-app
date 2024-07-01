@@ -38,6 +38,7 @@ export class UsersProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._claims = this._token.decodedToken()
     this._getUserProfile(this._claims.sub)
+  
   }
 
   ngOnDestroy(): void {
@@ -47,15 +48,20 @@ export class UsersProfileComponent implements OnInit, OnDestroy {
   openCreateProfileDialog(): void {
     
     const dialogRefSignup = this.dialog.open(CreateProfileModalComponent, {
-      // panelClass: 'custom-signup-modal'
-      height: '100%',
+      width: '100vw',  // Full width on small screens
+      // maxHeight: '100vh',
+      height: '100vh',
+      maxWidth: '1000px',  // Max width for larger screens
+      panelClass: 'custom-dialog-container',  // Add a custom class for further styling
       data: { ...this.profile, email: this.auth.email }
     });
-  
+    
     dialogRefSignup.afterClosed().subscribe(() => {
       // console.log('The dialog was closed');
       this._getUserProfile(this._claims.sub)
     });
+
+    console.log(this.profile)
   }
 
   navigateToBookStaycation() {

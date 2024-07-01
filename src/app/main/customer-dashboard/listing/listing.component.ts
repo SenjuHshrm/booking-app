@@ -9,11 +9,14 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateListingComponent } from 'src/app/globals/create-listing/create-listing.component';
 import * as moment from 'moment'
+import { Router } from '@angular/router';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 @Component({
   selector: 'app-listing',
   templateUrl: './listing.component.html',
-  styleUrls: ['./listing.component.scss']
+  styleUrls: ['./listing.component.scss'],
+  animations:[fadeInAnimation]
 })
 
 
@@ -28,6 +31,7 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
   private _claims!: ITokenClaims
 
   constructor(
+    private router:Router,
     public createlistingDialog:MatDialog,
     private _staycation: StaycationService,
     private _token: TokenService,
@@ -76,6 +80,12 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._sub.unsubscribe()
+  }
+
+  public handleCreateListing(){
+      this.router.navigate(['register-proprietorship']);
+  
+  
   }
 
   public handlePageChange(e: PageEvent) {

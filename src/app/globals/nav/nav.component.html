@@ -1,7 +1,11 @@
 <nav>
     <div class="nav-wrapper">
-        <div class="header-logo" (click)="goToHome()">
-            <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" />
+        <div class="header-logo" >
+                <img src="./assets/images/home/header/navigation/tarago.png" 
+                alt="logo" 
+                (click)="goToHome()"
+                />
+ 
         </div>
         <div class="avatar-account-menu-wrapper" *ngIf="isAuth">
             <div class="avatar-account">

@@ -42,6 +42,7 @@ body { margin: 0; font-family:Poppins-Regular}
   color:white;
   cursor: pointer;
 }
+
 .main-button:hover{
   background-color: #000000;
   color: #63AB68;
@@ -94,7 +95,7 @@ body { margin: 0; font-family:Poppins-Regular}
    justify-content: center;
    color: #63AB68;
    cursor: pointer;
-   padding-top:3px;
+
  }
  
  .close-button-normal:hover{
@@ -102,7 +103,18 @@ body { margin: 0; font-family:Poppins-Regular}
    color: #63AB68;
  }
 
- 
+ .not-found{
+  font-size: clamp(1rem, 1vw, 5rem);
+  font-weight: bold;
+  font-family: Poppins-Regular;
+  color: rgb(170, 170, 170);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  inset: 0;
+ }
         
  .fc .fc-toolbar-title {
   /* Your custom color styles here */

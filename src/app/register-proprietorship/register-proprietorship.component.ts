@@ -21,7 +21,7 @@ import {
   Step11Form
 } from './register-proprietorship';
 import { fadeInAnimation } from '../globals/fadein-animations';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register-proprietorship',
@@ -47,6 +47,7 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
 
   constructor(
     private router: Router,
+    private location: Location,
     private _formBuilder: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _changeDetector: ChangeDetectorRef,
@@ -137,6 +138,10 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     this.isHiddenintro = false;
     this.isHiddenstepper = true;
 
+  }
+
+  public goExit(): void {
+    this.location.back();
   }
 
   public toggleGetStarted() {

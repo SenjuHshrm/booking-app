@@ -1,18 +1,19 @@
-<div class="listing-container">
+<div class="listing-container" >
     <div class="listing-container-listing-wrapper">
         <header class="header">
             <div class="listing-search card">
                 <div class="icon"><mat-icon>search</mat-icon></div>
                 <input type="text" name="search-listing" placeholder="Search listing" value="" />
             </div>
-            <div class="custom-select-option rooms-and-bed card">
-                <select>
-                    <option value="option1">Rooms and Bed</option>
+            <!-- <div class="custom-select-option rooms-and-bed card">
+                <select name="No. of bed">
+                    <optgroup label="Beds">
+                    <option value="option1">Rooms</option>
                     <option value="option2">Option 2</option>
                     <option value="option3">Option 3</option>
+                   </optgroup>
                 </select>
             </div>
-
             <div class="custom-select-option amenities card">
                 <select>
                     <option value="option1">Amenities</option>
@@ -26,14 +27,16 @@
                     <option value="option2">Option 2</option>
                     <option value="option3">Option 3</option>
                 </select>
-            </div>
-            <div class="create-listing-button card" (click)="openCreateListingDialog()">
+            </div> -->
+            <div class="create-listing-button card" 
+            (click)="handleCreateListing()
+            ">
                 <div class="mat-icon"><mat-icon>note_add</mat-icon></div>
                 <div>Create Listing</div>
             </div>
 
         </header>
-        <section class="table">
+        <section class="table" [@fadeInAnimation]>
             <table mat-table [dataSource]="dataSource">
                 <!-- Define your table columns -->
                 <ng-container matColumnDef="listing">

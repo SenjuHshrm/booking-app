@@ -1,8 +1,9 @@
 <div [@fadeInAnimation]>
     <ng-container [formGroup]="formRegPropS6">
         <section class="add-photos-place">
-            <div class="title-wrapper">
-                Add some photos of your staycation/event place
+            <div class="title_wrapper">
+                <div class="title">Add some photos of your staycation/event place</div>
+                <div class="sub_title">After uploading photos, click on the one you want to use as the cover photo.</div>
             </div>
             <div class="add-photos-place-wrapper">
                 <div class="container">
@@ -19,12 +20,10 @@
                         <div *ngFor="let image of uploadedImages"
                             [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
                             <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)" />
-                            <div class="position-btn">
-                                <button type="button" class="close-button close" class="close-button"
+                                <button type="button" class="close-button close"
                                     (click)="handleRemoveImg(image)">
                                     <mat-icon>close</mat-icon>
                                 </button>
-                            </div>
                         </div>
                     </div>
                 </div>

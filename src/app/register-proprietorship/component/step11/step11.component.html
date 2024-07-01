@@ -5,22 +5,24 @@
                 Set your price
             </div>
             <div class="add-taxes-wrapper">
+                <div class="list-taxes">
+                    <div class="label">Taxes List</div>
+                    <div class="list_taxes_wrapper">
+                        <div [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
+                            <div class="" *ngFor="let tax of taxList"
+                                [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
+                                <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
+                            </div>
+                        </div>
+                        <!-- <input class="inputs" type="number" name="taxes" placeholder="0"
+                            [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}" readonly /> -->
+                    </div>
+                </div>
+
                 <div class="input-price-without-taxes">
                     <div class="label">Price (₱)</div>
                     <input class="inputs" type="number" name="price" formControlName="price"
                         (input)="handlePriceChange($event)" required placeholder="0" />
-                </div>
-
-                <div class="input-taxes">
-                    <div class="label">Taxes (₱)</div>
-                    <div class="wrapper"  [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
-                        <div class="" *ngFor="let tax of taxList"   [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
-                            <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
-                        </div>
-                    </div>
-                    <input class="inputs" type="number" name="taxes" placeholder="0"
-                    [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}"
-                    readonly />
                 </div>
                 <!-- <div class="taxes">
                 <button matRipple type="button" #tooltip="matTooltip" [matTooltip]="getTaxList()" (click)="tooltip.toggle()">Taxes</button>
@@ -28,8 +30,10 @@
                 <div class="input-price-with-taxes">
                     <div class="label">Price w/ taxes (₱)</div>
                     <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0"
-                    readonly />
+                        readonly />
                 </div>
+
+
             </div>
         </section>
     </ng-container>

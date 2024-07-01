@@ -68,15 +68,15 @@ staycationguide:any = [
 
 
 types:any = [
-  {images:'../assets/images/home/section1/Manila.jpg',description:'Resorts'},
-  {images:'../assets/images/home/section1/Batangas.jpg',description:'Appartments'},
-  {images:'../assets/images/home/section1/Boracay.jpg',description:'Villas'},
-  {images:'../assets/images/home/section1/Manila.jpg',description:'Guest House'},
-  {images:'../assets/images/home/section1/Batangas.jpg',description:'Condominium'},
-  {images:'../assets/images/home/section1/Boracay.jpg',description:'Houses'},
-  {images:'../assets/images/home/section1/Manila.jpg',description:'Camping'},
-  {images:'../assets/images/home/section1/Batangas.jpg',description:'Tiny House'},
-  {images:'../assets/images/home/section1/Boracay.jpg',description:'Containers'},
+  {images:'../assets/images/home/section1/type/resorts.png',description:'Resort'},
+  {images:'../assets/images/home/section1/type/villa.png',description:'Private Villa'},
+  {images:'../assets/images/home/section1/type/condo.png',description:'Service Condominium'},
+  {images:'../assets/images/home/section1/type/hotel.png',description:'Hotel'},
+  {images:'../assets/images/home/section1/type/hotel.png',description:'Hotel BallRoom'},
+  {images:'../assets/images/home/section1/type/hotel.png',description:'Restaurant Space'},
+  {images:'../assets/images/home/section1/type/hotel.png',description:'Pavillion'},
+  {images:'../assets/images/home/section1/type/hotel.png',description:'Gymnasium'},
+  {images:'../assets/images/home/section1/type/hotel.png',description:'Meeting Room'},
 ]
 
 options = [

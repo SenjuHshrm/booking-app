@@ -1,29 +1,32 @@
-<section class="property-title">
-    <button (click)="goBack()">
+<section class="wish-list-container">
+    <div class="property-title">
+        <!-- <button (click)="goBack()">
          <mat-icon>chevron_left</mat-icon>
          <span>Back</span>
-    </button>
-    <div class="title-wrapper">
-         <div class="title">Wishlist</div>
-    </div>
-</section>
-<section class="content" *ngIf="listproperties.length > 0">
-    <div class="card stacked" *ngFor="let properties of listproperties" (click)="navigateToBookStaycation(listproperties._id)">
-        <div class="image">
-            <img [src]="properties.image" alt="image" />
-        </div>
-        <div class="content__card" >
-            <div class="info">
-                <div class="title">{{properties.title}}</div>
-                <div class="description">{{properties.description}}</div>
-                <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
-            </div>
-            <div>
-                <div></div>
-            </div>
+    </button> -->
+        <div class="title-wrapper">
+            <div class="title">Wishlist</div>
         </div>
     </div>
-</section>
-<section *ngIf="listproperties.length === 0">
-    <h1 style="text-align: center;">Wishlist is empty</h1>
+    <div class="content" *ngIf="listproperties.length > 0">
+        <div class="card stacked" *ngFor="let properties of listproperties"
+            (click)="navigateToBookStaycation(listproperties._id)">
+            <div class="image">
+                <img [src]="properties.image" alt="image" />
+            </div>
+            <div class="content__card">
+                <div class="info">
+                    <div class="title">{{properties.title}}</div>
+                    <div class="description">{{properties.description}}</div>
+                    <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
+                </div>
+                <div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="listproperties.length === 0">
+        <div class="not-found">Wishlist is empty</div>
+    </div>
 </section>

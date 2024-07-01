@@ -1,8 +1,6 @@
 <div class="create-profile-modal">
-    <div>
-        <div class="close-button close" (click)="closeDialogCreateProfile()"><mat-icon>close</mat-icon></div>
-    </div>
-    <div class="create-profile-modal-create-profile-modal-wrapper">
+    <div class="create-profile-modal-wrapper">
+            <div class="close-button close" (click)="closeDialogCreateProfile()"><mat-icon>close</mat-icon></div>
         <form [formGroup]="userProfileForm" (ngSubmit)="updateProfile(userProfileForm)">
             <section class="upload-profile-picture">
                 <div class="image-upload">
@@ -24,12 +22,14 @@
                   About yourself
                 </div>
                 <div class="say-something-about-your-profile">
-                    <div class="say-something-about-your-profile-wrapper">
                         <div class="input-wrapper">
                             <div class="label">Say something about your profile </div>
-                            <textarea type="text" name="desc" formControlName="desc"
-                                placeholder="You’ll have a great time at this comfortable place to stay.."> </textarea>
-                        </div>
+                            <textarea 
+                            type="text" 
+                            name="desc" 
+                            formControlName="desc" 
+                            placeholder="You’ll have a great time at this comfortable place to stay.."> 
+                            </textarea>
                     </div>
                 </div>
                 <div class="your-information-about-your-info">
@@ -53,8 +53,8 @@
                             <input type="text" name="xName" formControlName="xName" />
                         </div>
                         <div class="input-wrapper">
-                            <div class="label">Contact Number</div>
-                            <input type="text" name="contact" formControlName="contact" />
+                            <div class="label">Contact Number +63</div>
+                            <input type="number" name="contact" formControlName="contact" />
                         </div> 
                     </div>
                 </div>

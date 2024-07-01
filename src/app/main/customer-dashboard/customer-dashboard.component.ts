@@ -14,7 +14,7 @@ export class CustomerDashboardComponent {
   
   isActive: boolean = false;
 
-  selectedTab: string = 'tab1';
+  selectedTab: string = '';
 
 
   gotToHome() {
