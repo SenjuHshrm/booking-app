@@ -8,8 +8,8 @@
                 <!-- <div class="account-type-btn">Switch to proprietor</div> -->
                 <!-- <div class="account-type-btn">Switch to guest</div> -->
                 <div class="account-type-btn" (click)="goToProprietorReg()" *ngIf="!isHost">Be a proprietor</div>
-                <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar"
-                    [draggable]="false">
+                <!-- <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar" [draggable]="false"> -->
+                <img [src]="profileImg" loading="lazy" alt="Avatar" [draggable]="false">
             </div>
 
             <button class="menu" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>

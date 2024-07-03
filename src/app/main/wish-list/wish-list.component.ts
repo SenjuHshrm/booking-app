@@ -27,7 +27,7 @@ export class WishListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this._claims = this._token.decodedToken()
+    this._claims = <ITokenClaims>this._token.decodedToken()
     this._sub.add(this._user.getUserWishlist(this._claims.sub).subscribe({
       next: (res: any) => {
         res.forEach((st: any) => {

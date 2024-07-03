@@ -36,7 +36,7 @@ export class UsersProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this._claims = this._token.decodedToken()
+    this._claims = <ITokenClaims>this._token.decodedToken()
     this._getUserProfile(this._claims.sub)
   }
 

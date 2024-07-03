@@ -9,9 +9,9 @@ export class TokenService {
 
   constructor() { }
 
-  public decodedToken(): ITokenClaims {
+  public decodedToken(): ITokenClaims | string {
     let t: string = <string>localStorage.getItem('ACCESS_TOKEN')
-    return <ITokenClaims>jwtDecode(t)
+    return (t === null) ? '' : <ITokenClaims>jwtDecode(t);
   }
 
   public getToken(): string {

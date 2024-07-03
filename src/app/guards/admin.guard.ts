@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 export const adminGuard = async () => {
   const _token = inject(TokenService)
   const _router = inject(Router)
-  let claims: ITokenClaims = _token.decodedToken()
+  let claims: ITokenClaims = <ITokenClaims>_token.decodedToken()
 
   if(claims.access.includes('admin')) {
     return true;

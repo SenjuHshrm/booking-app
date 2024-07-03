@@ -157,7 +157,7 @@
             </div>
         </section>
         <section class="search-filters-container">
-            <form class="search-filters-container-layer-2-wrapper">
+            <div class="search-filters-container-layer-2-wrapper">
                 <div class="location card">
                     <div class="location-wrapper" (click)="showLocationModal()">
                         <div>Where</div>
@@ -168,12 +168,12 @@
                 <div class="checkin-out-style card">
                     <div>Checkin</div>
                     <div class="calendar-icon"></div>
-                    <input type="date" name="date">
+                    <input type="date" name="startDate" [min]="currentDate" [(ngModel)]="startDate">
                 </div>
                 <div class="checkin-out-style card">
                     <div>Checkout</div>
                     <div class="calendar-icon"></div>
-                    <input type="date" name="date">
+                    <input type="date" name="endDate" [min]="currentDate" [(ngModel)]="endDate">
                 </div>
                 <div class="guest card">
                     <div class="guest-wrapper" (click)="showAddGuestModal()">
@@ -182,11 +182,11 @@
                         <input type="text" placeholder="Add guest" value="" readonly />
                     </div>
                 </div>
-                <button type="submit" value="">
+                <button (click)="handleBtnCat(currentTitle)">
                     <div>Search</div>
                     <mat-icon aria-hidden="false" aria-label="search" fontIcon="search"></mat-icon>
                 </button>
-            </form>
+            </div>
         </section>
         <section class="content">
             <div class="card stacked" *ngFor="let properties of listproperties"

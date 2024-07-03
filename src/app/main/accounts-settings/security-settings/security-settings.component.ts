@@ -26,7 +26,7 @@ export class SecuritySettingsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this._t = this._token.decodedToken()
+    this._t = <ITokenClaims>this._token.decodedToken()
     this._getUserDetails()
   }
 

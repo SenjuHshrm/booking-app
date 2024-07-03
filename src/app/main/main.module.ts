@@ -1,3 +1,4 @@
+import { StaycationListModule } from './staycation-list/staycation-list.module';
 import { MainComponent } from './main.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,13 +21,9 @@ import { GlobalsModule } from './../globals/globals.module';
     CommonModule,
     MainRoutingModule,
     MatIconModule,
-    GlobalsModule
+    GlobalsModule,
+    StaycationListModule
   ],
-
- 
-
-
-
 
 })
 export class MainModule { }

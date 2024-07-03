@@ -66,7 +66,7 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['listing', 'status','bedrooms','beds','bath','location','lastmodified','action'];
 
   ngOnInit() {
-    this._claims = this._token.decodedToken()
+    this._claims = <ITokenClaims>this._token.decodedToken()
   }
 
   ngAfterViewInit(): void {

@@ -52,4 +52,8 @@ export class StaycationService {
   public getStaycationGallery(id: string): Observable<any> {
     return this._http.get(`${environment.api}/api/staycation/get/gallery/${id}`)
   }
+
+  public getRecentSearches(id: string): Observable<any> {
+    return this._http.get(`${environment.api}/api/staycation/get/recent-search/${id}`)
+  }
 }

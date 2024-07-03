@@ -24,9 +24,17 @@
                 <!-- <div>Not a guest? <button class="signup-button" (click)="openDialogSignup()">SignUp</button></div> -->
             <div>or</div>
         </div>
-        <div class="google-button main-button-outline ">
+        <div class="google-button main-button-outline" id="google-login" (click)="loginWithGoogle()">
             <img src="./assets/images/home/login/google.png" alt="googleicon" width="100px" height="100px" />
             <div>continue with Google</div>
         </div>
+        <asl-google-signin-button
+            type="standard"
+            size="large"
+            shape="circle"
+            locale="en"
+            width="250"
+            text="signin_with"
+        ></asl-google-signin-button>
     </div>
 </div>

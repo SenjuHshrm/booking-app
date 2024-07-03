@@ -23,7 +23,22 @@ SwiperCore.use([Navigation, Scrollbar, A11y]);
   encapsulation: ViewEncapsulation.None,
 })
 export class StaycationListComponent implements OnInit, OnDestroy  {
+
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
+  private _sub: Subscription = new Subscription()
+  public page: number = 1;
+  public limit: number = 16;
+  public total: number = 0
+  public listproperties: any = [];
+  public currentDate: string = new Date().toISOString().split("T")[0]
+  public placeType: string = 'placeType=room';
+  public description: string = ''
+  public location: string = ''
+  public startDate: string = '';
+  public endDate: string = '';
+  public guests: string = '';
+  public showCat: string = "staycation";
+  currentTitle: string = '';
 
   constructor(
     public dialog: MatDialog,
@@ -31,20 +46,6 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService
   ) { }
-
-  private _sub: Subscription = new Subscription()
-  public page: number = 1;
-  public limit: number = 16;
-  public total: number = 0
-  public listproperties: any = [];
-
-  public placeType: string = 'placeType=room';
-  public description: string = ''
-
-  public showCat: string = "staycation";
-  currentTitle: string = '';
-
-
 
   ngOnInit(): void {
     this.searchStaycation(this.page, this.limit)
@@ -81,8 +82,8 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
       panelClass: 'custom-location-modal'
     });
 
-    dialogRefLocation.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+    dialogRefLocation.afterClosed().subscribe((res: string) => {
+      this.location = res
     });
   }
 
@@ -91,8 +92,15 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
       panelClass: 'custom-guest-modal'
     });
 
-    dialogRefGuest.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+    dialogRefGuest.afterClosed().subscribe((res: any) => {
+      let obj: any = {};
+      Object.keys(res).forEach((key: string) => {
+        if(res[key] > 0) {
+          obj[key] = res[key]
+        }
+      })
+      this.guests = JSON.stringify(obj) === '{}' ? '' : JSON.stringify(obj);
+      console.log(this.guests)
     });
   }
 
@@ -108,7 +116,7 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
   }
 
   public searchStaycation(p: number, l: number) {
-    let q: string = `listed=true&${this.placeType}&${this.description}`
+    let q: string = `listed=true&${this.placeType}&${this.description}&${this._setSubFilters()}`
     this.listproperties = []
     this._sub.add(this._staycation.getOfficialList(p, l, q).subscribe({
       next: (res: any) => {
@@ -124,6 +132,34 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
         })
       }
     }))
+  }
+
+  private _setSubFilters(): string {
+    let subFilters: any= [
+      {
+        cat: 'location',
+        val: this.location
+      },
+      {
+        cat: 'startDate',
+        val: this.startDate
+      },
+      {
+        cat: 'endDate',
+        val: this.endDate
+      },
+      {
+        cat: 'guests',
+        val: this.guests
+      }
+    ]
+    let str: string = ''
+    subFilters.forEach((filter: any) => {
+      if(filter.val !== '') {
+        str += `${filter.cat}=${filter.val}&`
+      }
+    })
+    return str;
   }
 
 

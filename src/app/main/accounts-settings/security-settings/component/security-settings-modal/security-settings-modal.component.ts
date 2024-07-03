@@ -46,7 +46,7 @@ export class SecuritySettingsModalComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this._t = this._token.decodedToken()
+    this._t = <ITokenClaims>this._token.decodedToken()
     this.pwForm = this._fb.group({
       currentPassword: new FormControl('', [Validators.required]),
       newPassword: new FormControl('', [Validators.required]),

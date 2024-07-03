@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from './../../services/user.service';
 import { ITokenClaims } from './../../interfaces/token';
 import { TokenService } from './../../services/token.service';
 import { AuthService } from './../../services/auth.service';
@@ -20,8 +23,9 @@ export class NavComponent implements OnInit {
   @Input() public isAuth: boolean = false
 
   public isHost!: boolean
+  public profileImg: any
   
-  private _claims!: ITokenClaims
+  private _claims!: ITokenClaims | string
   private _redirectTo: string = ''
 
   constructor(
@@ -29,77 +33,73 @@ export class NavComponent implements OnInit {
     private router: Router,
     private _location: Location,
     private _auth: AuthService,
-    private _token: TokenService
+    private _token: TokenService,
+    private _user: UserService
     ) {}
 
   ngOnInit(): void {
-    this._claims = this._token.decodedToken()
-    this.isHost = this._claims.access.indexOf('host') !== -1
-    console.log(this.isHost)
-    this._redirectTo = this._location.path()
+    this._checkToken()
   }
 
 
-openLoginDialog(): void {
-  const dialogRefLogin = this.dialog.open(LoginComponent, {
-    panelClass: 'custom-login-modal'
-  });
+  public openLoginDialog(): void {
+    const dialogRefLogin = this.dialog.open(LoginComponent, {
+      panelClass: 'custom-login-modal'
+    });
 
-  dialogRefLogin.afterClosed().subscribe(() => {
-    console.log('The dialog was closed');
-  });
-}
+    dialogRefLogin.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+  }
 
+  public openSignupDialog(): void {
+    const dialogRefSignup = this.dialog.open(SignupComponent, {
+      panelClass: 'custom-signup-modal'
+    });
 
-
-openSignupDialog(): void {
-  const dialogRefSignup = this.dialog.open(SignupComponent, {
-    panelClass: 'custom-signup-modal'
-  });
-
-  dialogRefSignup.afterClosed().subscribe(() => {
-    console.log('The dialog was closed');
-  });
-}
+    dialogRefSignup.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+  }
 
 
 
-  goToHome() {
+  public goToHome() {
     this.router.navigate(['']);
   }
 
 
-  goToCustomerDashboard() {
+  public goToCustomerDashboard() {
     this.router.navigate(['main/dashboard']);
   }
 
-  goToUserProfile() {
+  public goToUserProfile() {
     this.router.navigate(['main/users-profile']);
   }
 
 
-  goToAccountSettings() {
+  public goToAccountSettings() {
     this.router.navigate(['main/accounts-settings']);
   }
 
 
-  goToMessage() {
+  public goToMessage() {
     this.router.navigate(['main/message']);
   }
 
-  goToNotification() {
+  public goToNotification() {
     this.router.navigate(['main/notification']);
   }
 
-  goToWishlist() {
+  public goToWishlist() {
     this.router.navigate(['main/wishlist']);
   }
 
-  goToProprietorReg() {
+  public goToProprietorReg() {
     this.router.navigate(['register-proprietorship']);
   }
 
-  logout() {
+  public logout() {
     this._auth.logout().subscribe({
       next: (res: { logout: boolean }) => {
         this._token.removeToken()
@@ -108,7 +108,31 @@ openSignupDialog(): void {
     })
   }
 
+  private _checkToken() {
+    this._claims = <ITokenClaims | string>this._token.decodedToken()
+    if(this._claims !== '') {
+      this.isHost = (<ITokenClaims>this._claims).access.indexOf('host') !== -1
+      // this.profileImg = this._user.getUserProfileImg((<ITokenClaims>this._claims).sub)
+      this._getProfileImg((<ITokenClaims>this._claims).sub)
+    } else {
+      this.isHost = false
+    }
+    this._redirectTo = this._location.path()
+  }
 
-
+  private _getProfileImg(id: string) {
+    this._user.getUserProfileImg(id).subscribe({
+      next: (res: any) => {
+        let reader = new FileReader()
+        reader.readAsDataURL(res)
+        reader.onloadend = () => {
+          this.profileImg = reader.result
+        }
+      },
+      error: ({ error }: HttpErrorResponse) => {
+        console.log(error)
+      }
+    })
+  }
 
 }

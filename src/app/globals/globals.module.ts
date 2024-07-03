@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileComponent } from './profile/profile.component';
+import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt/angularx-social-login'
 
 
 
@@ -29,9 +30,13 @@ import { ProfileComponent } from './profile/profile.component';
     MatIconModule,
     MatMenuModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleSigninButtonModule
   ],
 
+  providers: [
+    GoogleSigninButtonDirective
+  ],
 
   exports: [
     ProfileComponent,

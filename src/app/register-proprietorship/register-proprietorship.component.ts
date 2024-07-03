@@ -56,7 +56,7 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
   ) {}
 
   ngOnInit(): void {
-    this._tokenClaims = this._token.decodedToken()
+    this._tokenClaims = <ITokenClaims>this._token.decodedToken()
     this.regPropForm = this._formBuilder.group<RegisterProprietorshipForm>({
       step1: this._formBuilder.group<Step1Form>({
         descriptionFilter: new FormArray<FormGroup>([], [Validators.required]),

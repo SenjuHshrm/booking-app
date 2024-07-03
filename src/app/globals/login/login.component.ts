@@ -8,6 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { IAuthForm, IAuth } from '../../interfaces/auth';
 import { Location } from '@angular/common'
+import { SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social-login'
 
 @Component({
   selector: 'app-login',
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public dialogLogin: MatDialogRef<LoginComponent>,
     private _location: Location,
     private _fb: FormBuilder,
+    private _socAuth: SocialAuthService,
     private _auth: AuthService,
     private _token: TokenService
   ) { }
@@ -57,6 +59,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this._fb.group<IAuthForm>({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
+    })
+
+    this._socAuth.authState.subscribe({
+      next: (res: any) => {
+        console.log(res)
+      },
+      error: (err: any) => {
+        console.log(err)
+      }
     })
   }
 
@@ -82,6 +93,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }))
   }
   
+  loginWithGoogle() {
+    console.log('Login with Google')
+    this._socAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
+  }
 
   closeDialogLogin(): void {
     this.dialogLogin.close();

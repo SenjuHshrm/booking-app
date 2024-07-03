@@ -1,3 +1,7 @@
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StaycationListRoutingModule } from './staycation-list-routing.module';
@@ -20,7 +24,12 @@ import { SwiperModule } from 'swiper/angular';
     CommonModule,
     StaycationListRoutingModule,
     MatIconModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatSelectModule
   ],
 
 

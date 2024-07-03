@@ -1,3 +1,5 @@
+import { GlobalsModule } from './globals/globals.module';
+import { environment } from './../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +13,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MainModule } from './main/main.module';
 import { HomeModule } from './home/home.module';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider
+} from '@abacritt/angularx-social-login';
 
 export class CustomErrorHandler implements ErrorHandler {
   handleError(error: any) {
@@ -34,7 +41,9 @@ export class CustomErrorHandler implements ErrorHandler {
     MatDatepickerModule,
     MatNativeDateModule,
     MainModule,
-    HomeModule
+    HomeModule,
+    GlobalsModule,
+    SocialLoginModule
   ],
   providers: [
     {
@@ -42,6 +51,22 @@ export class CustomErrorHandler implements ErrorHandler {
       useClass: RequestInterceptor,
       multi: true
     },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        lang: 'en',
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.google_client_id)
+          }
+        ],
+        onError: (err: any) => {
+          console.log(err)
+        }
+      } as SocialAuthServiceConfig
+    }
     // { provide: ErrorHandler, useClass: CustomErrorHandler }
   ],
   bootstrap: [AppComponent]
