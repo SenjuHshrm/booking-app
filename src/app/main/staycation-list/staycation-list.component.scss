@@ -2,16 +2,17 @@
 *::before,
 *::after {
     box-sizing: border-box;
-
 }
 
 .staycation-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 2rem;
     padding-bottom: 2rem;
-    height: fit-content;
     font-family: Poppins-Regular;
 
     &-staycation-wrapper {
@@ -447,7 +448,6 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
     }
 }
-
 @media only screen and (max-width: 600px) {
     .staycation-list-container {
         width: 100%;
@@ -585,6 +585,7 @@
     transform: translateY(5px);
     box-shadow: 1px 1px 3px #88888877;
 }
+
 .swiper-button-prev {
     background-color: white;
     border-radius: 50%;
@@ -596,6 +597,7 @@
     transform: translateY(5px);
     box-shadow: 1px 1px 3px #88888877;
 }
+
 .swiper-button-prev::after,
 .swiper-button-next::after {
     color: #63AB68;

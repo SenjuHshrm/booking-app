@@ -2,19 +2,21 @@
     <div class="nav-wrapper">
         <app-nav [isAuth]="isAuth"></app-nav>
     </div>
-    <div class="header_title" [ngStyle]="{'display': isHiddenintro === true ? 'block' : 'none'}">
-        <button (click)="backToGetstarted()">
+    <section class="register-proprietor-intro" [ngClass]="{ 'hiddenIntro': isHiddenintro }" >
+
+        <button class="custom-exit" (click)="goExit()">
             <mat-icon>chevron_left</mat-icon>
             <span>Back</span>
         </button>
-        <div class="title"> Create Your Listing</div>
-    </div>
-     <section class="register-proprietor-intro" [ngClass]="{ 'hiddenIntro': isHiddenintro }" [@fadeInAnimation]>
+
         <div class="register-proprietor-intro-wrapper">
-            <div class="girl-image">
-                <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
-            </div>
-            <div class="content">
+                <div class="girl_image" [@fadeInAnimation]>
+                    <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
+                </div>
+                <div class="girl_top" [@fadeInAnimation]>
+                    <img src="./assets/images/proprietor-registration/girl-top.png" alt="logo" draggable="false" />
+                </div>
+            <div class="content" [@fadeInAnimation]>
                 <div class="content-wrapper">
                     <h1>
                         Be a proprietor
@@ -31,19 +33,31 @@
                         <p class="subinfo">Choose if you'd like to start with an experienced
                             guest, set a starting price, and publish your listing.</p>
                     </div>
-                    <div class="btn">
-                        <button class="main-button" (click)="toggleGetStarted()">Get Started</button>
+                    <div class="custom_btn_" (click)="toggleGetStarted()">
+                        <div class="custom_button ">Get Started</div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </section> 
-    <section class="register-proprietor-stepper " #getStarted  [ngStyle]="{'display': isHiddenintro === true ? 'block' : 'none'}"  [@fadeInAnimation]>
-        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)" 
+    </section>
+
+    <section class="register-proprietor-stepper" #getStarted
+        [ngStyle]="{'display': isHiddenintro === true ? 'block' : 'none'}" [@fadeInAnimation]>
+        <div class="header_title">
+            <div class="btn">            
+                <button (click)="backToGetstarted()">
+                <mat-icon>chevron_left</mat-icon>
+                <span>Back</span>
+            </button>
+        </div>
+
+            <div class="title"> Create Your Listing</div>
+        </div>
+        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)"
             #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
-                <mat-horizontal-stepper [linear]="true" #stepper [labelPosition]="'bottom'" [linear]="isLinear"  
+                <mat-horizontal-stepper [linear]="true" #stepper [labelPosition]="'bottom'" [linear]="isLinear"
                     #regPropFormStepper>
                     <mat-step [stepControl]="regPropForm.controls['step2']"
                         errorMessage="Please at least one (1) type of place will guest have">
@@ -64,7 +78,8 @@
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
-                        <app-step1 formGroupName="step1" [placetype]="regPropForm.get('step2')?.get('placeType')?.value"></app-step1>
+                        <app-step1 formGroupName="step1"
+                            [placetype]="regPropForm.get('step2')?.get('placeType')?.value"></app-step1>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>
@@ -179,6 +194,18 @@
                         </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step11 formGroupName="step11"></app-step11>
+                        <div class="nextprev_btn-bottom">
+                            <button mat-button type="button" matStepperPrevious>Back</button>
+                            <button mat-button type="submit" matStepperNext>Submit</button>
+                        </div>
+                    </mat-step>
+                    <mat-step [stepControl]="regPropForm.controls['step11']" errorMessage="Please set your indentity">
+                        <div class="nextprev_btn-top">
+                            <button mat-button type="button" matStepperPrevious>Back</button>
+                            <button mat-button type="submit" matStepperNext>Submit</button>
+                        </div>
+                        <ng-template matStepLabel></ng-template>
+                        <app-step12 formGroupName="step11"></app-step12>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="submit" matStepperNext>Submit</button>

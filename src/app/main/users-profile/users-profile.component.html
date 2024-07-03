@@ -1,6 +1,5 @@
 <div class="user-profile" [@fadeInAnimation]>
     <section class="user-profile-user-profile-container" *ngIf="profile && auth">
-        <!-- <router-outlet></router-outlet> -->
         <div class="user-profile-user-profile-wrapper">
             <div class="section-1">
                 <div class="profile-picture">
@@ -25,13 +24,14 @@
                 <div class="header">
                     <div class="title">About your self</div>
                     <div class="create-profile" (click)="openCreateProfileDialog()">
-                        <button><span><mat-icon>person_add</mat-icon></span>Complete your profile</button>
+                        <button><span><mat-icon>person_add</mat-icon></span ><span class="profile-text">Complete your profile</span></button>
                     </div>
                 </div>
                 <div class="content">
-                    <div class="say-something">
-                        {{ (profile.desc) ? profile.desc.description : 'Say something about your profile' }}
+                    <div class="say-something" [ngStyle]="{'color': (profile.desc && profile.desc.description) ? 'initial' : 'rgb(170, 170, 170)'}">
+                        {{ profile.desc && profile.desc.description ? profile.desc.description : 'Say something about your profile.' }}
                     </div>
+                    
                     <div class="info-details-personal-info">
                         <div class="title">Your Personal Information</div>
                         <!-- <div class="info-details-wrapper" *ngFor="let personInfos of personalInfos">
@@ -40,19 +40,39 @@
                         </div> -->
                         <div class="info-details-wrapper">
                             <div class="info-details-label">Name</div>
-                            <div class="info-details-content">{{ profile.name.fName }}</div>
+                            <div class="info-details-content" [ngStyle]="{'color': (profile.name.fName) ? 'initial' : 'rgb(170, 170, 170)'}">
+                                {{ profile.name.fName? profile.name.fName : 'Name not available' }}
+                            </div>
                         </div>
                         <div class="info-details-wrapper">
-                            <div class="info-details-label">Surname</div>
-                            <div class="info-details-content">{{ profile.name.lName }}</div>
+                            <div class="info-details-label">Middlename</div>
+                            <div class="info-details-content" [ngStyle]="{'color': (profile.name.mName) ? 'initial' : 'rgb(170, 170, 170)'}">
+                                {{ profile.name.mName? profile.name.mName : 'Middlename not available' }}
+                            </div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label" >Surname</div>
+                            <div class="info-details-content" [ngStyle]="{'color': (profile.name.lName) ? 'initial' : 'rgb(170, 170, 170)'}">
+                                {{ profile.name.lName? profile.name.lName : 'Surname not available' }}
+                            </div>
+                        </div>
+                        <div class="info-details-wrapper">
+                            <div class="info-details-label">Ext.name</div>
+                            <div class="info-details-content" [ngStyle]="{'color': (profile.name.xName) ? 'initial' : 'rgb(170, 170, 170)'}">
+                                {{ profile.name.xName? profile.name.xName : 'Ext.name not available' }}
+                            </div>
                         </div>
                         <div class="info-details-wrapper">
                             <div class="info-details-label"> Email</div>
-                            <div class="info-details-content">{{ auth.email }}</div>
+                            <div class="info-details-content" [ngStyle]="{'color': (auth.email) ? 'initial' : 'rgb(170, 170, 170)'}">
+                                {{ auth.email? auth.email : 'Email not available' }}
+                            </div>
                         </div>
                         <div class="info-details-wrapper">
-                            <div class="info-details-label">Contact Number</div>
-                            <div class="info-details-content">{{ profile.contact || 'No contact number' }}</div>
+                            <div class="info-details-label">Contact Number +63</div>
+                            <div class="info-details-content" [ngStyle]="{'color': (profile.contact) ? 'initial' : 'rgb(170, 170, 170)'}">
+                                {{ profile.contact || 'Contact number not available' }}
+                            </div>
                         </div>
                     </div>
                     <div class="info-details-likes">
@@ -63,27 +83,37 @@
                         </div> -->
                         <div class="info-details-wrapper">
                             <div class="info-details-label">Hobbies</div>
-                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.hobbies.join(',') : 'No hobbies' }}</div>
+                            <div class="info-details-content">
+                                {{(profile.desc) ? profile.desc.hobbies.join(',') : 'No hobbies'}}
+                            </div>
                         </div>
                         <div class="info-details-wrapper">
                             <div class="info-details-label">Work</div>
-                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.work : 'No work' }}</div>
+                            <div class="info-details-content">
+                                {{ (profile.desc) ? profile.desc.work : 'No work' }}
+                            </div>
                         </div>
                         <div class="info-details-wrapper">
                             <div class="info-details-label">Favorite Food</div>
-                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.favFood : 'No favorite food' }}</div>
+                            <div class="info-details-content">
+                                {{ (profile.desc) ? profile.desc.favFood : 'No favorite food' }}
+                            </div>
                         </div>
                         <div class="info-details-wrapper">
                             <div class="info-details-label">Favorite Place</div>
-                            <div class="info-details-content">{{ (profile.desc) ? profile.desc.favPlace : 'No favorite place' }}</div>
+                            <div class="info-details-content">
+                                {{ (profile.desc) ? profile.desc.favPlace : 'No favorite place' }}
+                            </div>
                         </div>
                     </div>
-                    <div class="info-details-your-listing" *ngIf="properties">
+                    <div class="info-details-your-listing" >
                         <div class="title">Your Listing Properties</div>
-                        <section class="content" *ngIf="properties.length > 0" (click)="navigateToBookStaycation()">
+                        <section class="content" [ngClass]="" *ngIf="properties.length > 0" (click)="navigateToBookStaycation()"
+                             [ngStyle]="{ 'display': properties === 0 ? 'block' : 'none' }"
+                            >
                             <div class="card stacked" *ngFor="let prop of properties">
                                 <div class="image">
-                                    <img [src]="properties.image" alt="image" />
+                                    <img [src]="properties.image" alt="image" loading="lazy" draggable="false" />
                                 </div>
                                 <div class="content__card" >
                                     <div class="info">
@@ -97,8 +127,8 @@
                                 </div>
                             </div>
                         </section>
-                        <section class="content">
-                            <p>You don't have properties for rent.</p>
+                        <section class="not-found-wrapper" [ngStyle]="{ 'display': properties !== 0 ? 'block' : 'none' }">
+                            <p class="not-found custom">You don't have properties for rent.</p>
                         </section>
                     </div>
                 </div>

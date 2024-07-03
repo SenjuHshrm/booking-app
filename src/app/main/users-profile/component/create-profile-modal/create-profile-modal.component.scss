@@ -1,30 +1,58 @@
 .create-profile-modal {
-    height: fit-content;
-    width: 70rem;
     font-family: Poppins-Regular;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    height: 100% !important;
+    padding-top: 3rem;
+   
+
 
     .close {
         padding-top: 4px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
     }
 
-    &-create-profile-modal-wrapper {
+    &-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100% !important;
+        width: 100%;
+
+
         form {
-            margin: 3rem 0 3rem;
-            display: grid;
-            grid-template-columns: 25% 75%;
-            // border: 1px solid black;
-            height: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 2%;
             width: 100%;
+            height: 100% !important;
+      
+
+
+
 
             .upload-profile-picture {
-                // border: 1px solid black;
+           
+                position: sticky;
+                top: 1rem;
+                flex: 0 15rem;
+                // border: 2px solid black;
+                 height: 100%;
 
                 .image-upload {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    margin-top: 20px;
-
+               
                     input[type="file"] {
                         margin-bottom: 10px;
                     }
@@ -77,49 +105,59 @@
             }
 
             .info-details {
-                // border: 1px solid black;
-                padding: 2rem;
+                // border: 2px solid black;
+                flex: 1;
+                overflow-y: auto !important;
+                max-height: 100%;
+                padding: 0rem 1rem 0rem;
+                width: 100%;
+
+
                 .title {
                     font-size: clamp(1.5rem, 1.5vw, 8rem);
                     color: #68A86A;
- 
-                    margin-bottom: 1rem;
-                }    
+                    padding: 5px;
+
+                }
+
                 .say-something-about-your-profile {
-                    margin:1rem 0 1rem;
-                    .say-something-about-your-profile-wrapper {
-                        .input-wrapper {
-                            .label {
-                                margin-bottom: .3rem;
-                            }
+                    margin: 1rem 0 1rem;
+                    // border: 2px solid black;
 
-                            textarea {
-                                padding: 1rem;
-                                border: 2px solid #63AB68;
-                                width: 100%;
-                                height: 8rem;
-                                border-radius: 10px;
-                                font-family: Poppins-Medium;
-                                font-size: 15px;
-                                resize: none;
-
-                            }
-
-                            textarea::placeholder {
-                                color: #d1d1d1;
-                                font-weight: normal;
-                                font-size: .8rem;
-                            }
+                    .input-wrapper {
+                        .label {
+                            margin-bottom: .3rem;
                         }
 
+                        textarea {
+                            padding: 1rem;
+                            border: 2px solid #63AB68;
+                            width: 100%;
+                            height: 8rem;
+                            border-radius: 10px;
+                            font-family: Poppins-Medium;
+                            font-size: 15px;
+                            resize: none;
+
+                        }
+
+                        textarea::placeholder {
+                            color: #d1d1d1;
+                            font-weight: normal;
+                            font-size: .8rem;
+                        }
                     }
+
                 }
+
                 .your-information-about-your-info {
-                    margin:1rem 0 1rem;
+                    margin: 1rem 0 1rem;
+
                     .your-likes {
-                        .title{
+                        .title {
                             font-size: clamp(1rem, 1vw, 8rem);
                         }
+
                         .info {
                             display: grid;
                             grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
@@ -143,12 +181,15 @@
                         }
                     }
                 }
+
                 .your-information-about-your-self {
-                    margin:1rem 0 1rem;
+                    margin: 1rem 0 1rem;
+
                     .your-likes {
-                        .title{
+                        .title {
                             font-size: clamp(1rem, 1vw, 8rem);
                         }
+
                         .info {
                             display: grid;
                             grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
@@ -174,6 +215,25 @@
                 }
 
             }
+        }
+    }
+
+
+
+}
+
+
+@media only screen and (max-width:700px) {
+    .create-profile-modal {
+        height: 100%;
+        padding-top: 0rem;
+        &-wrapper {
+            form {
+                flex-direction: column;
+                gap: 2rem;
+                margin: 0 !important;
+            }
+
         }
     }
 }

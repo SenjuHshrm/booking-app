@@ -10,11 +10,11 @@
     position: relative;
 
     &-calendar-side-info {
-        flex-basis: 20%;
+       
     }
 
     &-calendar-wrapper {
-        flex-basis: 78%;
+        flex-basis: 100%;
         full-calendar{
             position: sticky;
             top:1rem;

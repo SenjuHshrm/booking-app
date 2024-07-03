@@ -1,15 +1,26 @@
 .listing-container {
-   
+     flex: 1;
+     display: flex;
+     flex-direction: column;
      margin-bottom: 2rem;
+     height:72vh;
+    //  border:2px solid rgb(255, 0, 0);
 
     &-listing-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        // border:2px solid rgb(0, 255, 34);
+        height: 100%;
+
         .header {
             display: flex;
             justify-content: space-between;
             gap:1rem;
             width: 100%;
             align-items: center;
-            margin: 2rem 0 2rem;
+            margin: 2rem 0 1rem;
+            // border:2px solid black;
             
             .card {
                 background-color: white;
@@ -54,12 +65,13 @@
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
+                max-width:50%;
                 gap:.1rem;
                 // border:1px solid black;
                 
                 .icon{
                    font-size:50px;
-                   width:20%;
+                   width:5rem;
                    height: 100%;
                    display: flex;
                    justify-content: center;
@@ -92,7 +104,7 @@
             }
 
             .create-listing-button{
-                width: 70%;
+                width:15rem;
                 padding:.8rem .5rem .8rem;
                 display: flex;
                 align-items: center;
@@ -108,18 +120,72 @@
             }
         }
 
-          .img-listing{
-            width:5rem;
-            height: auto;
-            padding:5px;
-
-        }
+    
 
         .action-btn{
           border:none;
           background-color: transparent;
           outline: none;
           cursor: pointer;
+        }
+      
+        .table{
+           
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            overflow: auto;
+            position: relative;
+        
+           
+            th{
+                white-space: pre;
+               
+            }
+            td{
+
+                white-space: pre;
+            }
+
+         
+            .img-listing{
+                
+                width:3rem;
+                height:3rem;
+              
+    
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+    
+            }
+    
+         
+            .mat-mdc-table {
+                width: 100% !important;
+            }
+      
+          
+            .mat-mdc-row{
+                flex: 1;
+                width: 100% !important;
+            }
+
+            mat-paginator{
+                width: 100% !important;
+                position: sticky;
+                top:0;
+                left: 0;
+                right:0;
+                bottom:auto;
+            }
+            
+   
+
+         
         }
     }
 
