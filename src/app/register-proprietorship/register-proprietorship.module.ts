@@ -1,3 +1,4 @@
+import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -55,7 +56,7 @@ import {MatRippleModule} from '@angular/material/core';
     GlobalsModule,
     MatRippleModule,
     MatIconModule,
-  
+    MatRadioModule
   ]
 })
 export class RegisterProprietorshipModule { }

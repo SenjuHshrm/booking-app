@@ -26,6 +26,15 @@ export class Step5Component implements OnInit {
     { placeamenities: "Dedicated workspace", value: 'Dedicated Workspace' },
   ];
 
+  public validation = {
+    amenities: [
+      {
+        type: 'required',
+        msg: 'Please select at least one (1) amenity'
+      }
+    ]
+  }
+
   constructor(
     public regPropFormRoot: FormGroupDirective
   ) { }

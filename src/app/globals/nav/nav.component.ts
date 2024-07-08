@@ -1,3 +1,6 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { BasicUtilService } from './../../services/basic-util.service';
+import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from './../../services/user.service';
@@ -32,10 +35,12 @@ export class NavComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private _location: Location,
+    private _socAuth: SocialAuthService,
     private _auth: AuthService,
     private _token: TokenService,
-    private _user: UserService
-    ) {}
+    private _user: UserService,
+    private _basicUtl: BasicUtilService
+  ) {}
 
   ngOnInit(): void {
     this._checkToken()
@@ -102,6 +107,9 @@ export class NavComponent implements OnInit {
   public logout() {
     this._auth.logout().subscribe({
       next: (res: { logout: boolean }) => {
+        if(localStorage.getItem('GOOGLE_ID_TOKEN') !== null) {
+          localStorage.removeItem('GOOGLE_ID_TOKEN')
+        }
         this._token.removeToken()
         window.location.href = this._redirectTo
       }
@@ -113,26 +121,12 @@ export class NavComponent implements OnInit {
     if(this._claims !== '') {
       this.isHost = (<ITokenClaims>this._claims).access.indexOf('host') !== -1
       // this.profileImg = this._user.getUserProfileImg((<ITokenClaims>this._claims).sub)
-      this._getProfileImg((<ITokenClaims>this._claims).sub)
+      // this._getProfileImg((<ITokenClaims>this._claims).sub)
+      this.profileImg = this._basicUtl.setImgUrl((<ITokenClaims>this._claims).img)
     } else {
       this.isHost = false
     }
     this._redirectTo = this._location.path()
-  }
-
-  private _getProfileImg(id: string) {
-    this._user.getUserProfileImg(id).subscribe({
-      next: (res: any) => {
-        let reader = new FileReader()
-        reader.readAsDataURL(res)
-        reader.onloadend = () => {
-          this.profileImg = reader.result
-        }
-      },
-      error: ({ error }: HttpErrorResponse) => {
-        console.log(error)
-      }
-    })
   }
 
 }

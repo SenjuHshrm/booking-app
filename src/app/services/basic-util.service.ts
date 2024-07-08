@@ -17,8 +17,9 @@ export class BasicUtilService {
   }
 
   public setImgUrl(img: string): string {
-    let matcher = new RegExp(/gravatar/)
-    if(matcher.test(img)) {
+    let gravatarMatcher = new RegExp(/gravatar/gi)
+    let httpsMatcher = new RegExp(/https/gi)
+    if(gravatarMatcher.test(img) || httpsMatcher.test(img)) {
       return img
     }
     return `${environment.api}${img}`

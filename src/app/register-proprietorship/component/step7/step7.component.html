@@ -7,7 +7,10 @@
         <div class="add-property-title-wrapper">
             <div class="input-wrapper">
                 <div class="label">Your property title</div>
-                <textarea type="text" name="street" value="" placeholder="Type here.." formControlName="name"> </textarea>
+                <textarea type="text" name="street" value="" placeholder="Type here.." formControlName="name" required></textarea>
+                <ng-container *ngFor="let val of validation.name">
+                    <span class="val-err-msg" *ngIf="formRegPropS7.controls['name']?.hasError(val.type) && (formRegPropS7.controls['name']?.touched || formRegPropS7.controls['name']?.dirty)">{{ val.msg }}</span>
+                </ng-container>
             </div>
         </div>
     </section>

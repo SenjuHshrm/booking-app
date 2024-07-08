@@ -58,7 +58,6 @@ export class Step1Component implements OnInit {
     private _basicUtil: BasicUtilService
   ) {
     this._basicUtil.getPlaceType.subscribe(pt => {
-      console.log(pt)
       this.pt = pt
       this.places = this.defaultPlaces.filter((p: any) => p.type.match(new RegExp(this.pt)))
     })
@@ -85,5 +84,6 @@ export class Step1Component implements OnInit {
         i++;
       })
     }
+    console.log(descFilter.value)
   } 
 }

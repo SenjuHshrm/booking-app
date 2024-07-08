@@ -59,7 +59,6 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
   handleShowCat(catData: any) {
     this.showCat = catData;
     this.currentTitle = '';
-    // console.log(catData)
     this.description = ''
     switch(catData) {
       case "eventplace":
@@ -100,19 +99,16 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
         }
       })
       this.guests = JSON.stringify(obj) === '{}' ? '' : JSON.stringify(obj);
-      console.log(this.guests)
     });
   }
 
 
   navigateToBookStaycation(id: string) {
     this.router.navigate(['main/staycation-details', id]);
-    console.log("Click");
   }
 
   navigateToHome() {
     this.router.navigate(['']);
-    console.log("Click");
   }
 
   public searchStaycation(p: number, l: number) {

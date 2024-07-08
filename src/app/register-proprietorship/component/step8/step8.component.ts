@@ -19,10 +19,18 @@ export class Step8Component implements OnInit {
     { describeHouse: "Peaceful", value: 'Peaceful' },
     { describeHouse: "Unique", value: 'Unique' },
     { describeHouse: "Stylish", value: 'Stylish' },
-    { describeHouse: "Peaceful", value: 'Peaceful' },
     { describeHouse: "Family-friendly", value: 'Family-friendly' },
     { describeHouse: "Spacious", value: 'Spacious' }
   ];
+
+  public validation: any = {
+    descriptionText: [
+      {
+        type: 'required',
+        msg: 'Please select at least one (1) description'
+      }
+    ]
+  }
 
   constructor(
     public regPropFormRoot: FormGroupDirective

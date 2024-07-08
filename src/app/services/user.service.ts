@@ -45,6 +45,6 @@ export class UserService {
   }
 
   public getUserProfileImg(id: string): Observable<any> {
-    return this._http.get(`${environment.api}/api/user/get/profile-img/${id}`, { responseType: 'blob' })
+    return this._http.get(`${environment.api}/api/user/get/profile-img/${id}`)
   }
 }

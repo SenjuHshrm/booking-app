@@ -2,6 +2,7 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Step6Form } from '../../register-proprietorship';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
+import { environment } from './../../../../environments/environment'
 
 @Component({
   selector: 'app-step6',
@@ -17,6 +18,7 @@ export class Step6Component implements OnInit {
   public formRegPropS6!: FormGroup<Step6Form>;
   public uploadedImages: any = [];
   public imgFile: File[] = []
+  public maxImgSize: number = environment.maxImgSize
 
   constructor(
     public regPropFormRoot: FormGroupDirective
@@ -30,15 +32,17 @@ export class Step6Component implements OnInit {
     const files: FileList = event.target.files;
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
-        this.imgFile.push(files[i])
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.uploadedImages.push({
-            dataFile: e.target.result,
-            isCover: false
-          });
-        };
-        reader.readAsDataURL(files[i]);
+        if(parseFloat((files[i].size / 1024 / 1024).toFixed(4)) <= this.maxImgSize) {
+          this.imgFile.push(files[i])
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.uploadedImages.push({
+              dataFile: e.target.result,
+              isCover: false
+            });
+          };
+          reader.readAsDataURL(files[i]);
+        }
       }
     }
     this.formRegPropS6.get('img')?.setValue(this.imgFile)

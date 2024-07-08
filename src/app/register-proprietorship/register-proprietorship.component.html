@@ -54,17 +54,13 @@
 
             <div class="title"> Create Your Listing</div>
         </div>
-        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)"
-            #regPropFormDir="ngForm" [formGroup]="regPropForm">
+        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)" #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
-                <mat-horizontal-stepper [linear]="true" #stepper [labelPosition]="'bottom'" [linear]="isLinear"
-                    #regPropFormStepper>
-                    <mat-step [stepControl]="regPropForm.controls['step2']"
-                        errorMessage="Please at least one (1) type of place will guest have">
+                <mat-stepper linear [labelPosition]="'bottom'" #regPropFormStepper>
+                    <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
                         <ng-template matStepLabel></ng-template>
                         <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
+                            <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
                         </div>
                         <app-step2 formGroupName="step2"></app-step2>
                         <div class="nextprev_btn-bottom">
@@ -190,25 +186,25 @@
                     <mat-step [stepControl]="regPropForm.controls['step11']" errorMessage="Please set your price">
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="submit" matStepperNext>Submit</button>
+                            <button mat-button type="button" matStepperNext>Submit</button>
                         </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step11 formGroupName="step11"></app-step11>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="submit" matStepperNext>Submit</button>
+                            <button mat-button type="button" matStepperNext>Submit</button>
                         </div>
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step11']" errorMessage="Please set your indentity">
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="submit" matStepperNext>Submit</button>
+                            <button mat-button type="button" (click)="regPropFormDir.ngSubmit.emit()" matStepperNext>Submit</button>
                         </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step12 formGroupName="step11"></app-step12>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="submit" matStepperNext>Submit</button>
+                            <button mat-button type="button" (click)="regPropFormDir.ngSubmit.emit()" matStepperNext>Submit</button>
                         </div>
                     </mat-step>
                     <mat-step>
@@ -231,7 +227,7 @@
                             <button mat-button type="button" routerLink="/home">Back to Home</button>
                         </div>
                     </mat-step>
-                </mat-horizontal-stepper>
+                </mat-stepper>
             </div>
         </form>
     </section>

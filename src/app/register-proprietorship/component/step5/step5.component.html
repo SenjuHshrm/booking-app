@@ -13,6 +13,9 @@
                 </label>
             </div>
         </div>
+        <ng-container *ngFor="let val of validation.amenities">
+            <span class="val-err-msg" *ngIf="formRegPropS5.controls['amenities']?.hasError(val.type) && (formRegPropS5.controls['amenities']?.untouched || formRegPropS5.controls['amenities']?.pristine)">{{ val.msg }}</span>
+        </ng-container>
         <div class="others">
             <div>Other:</div>
             <input type="text" name="amenitiesOther" formControlName="amenitiesOther" placeholder="Describe your amenities here.." />

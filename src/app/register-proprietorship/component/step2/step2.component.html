@@ -8,16 +8,20 @@
                 <div class="checkbox" *ngFor="let typePlace of typeofplace; let i = index">
                     <div class="checkbox-wrapper" (click)="handleRadiobtn(i)">
                         <div class="radio-button">
-                            <input type="radio" [ngClass]="{'checked': isSelected === i }" [value]="typePlace.value" required />
+                            <input type="radio" [ngClass]="{'checked': isSelected === i }" [value]="typePlace.value" />
                         </div>
                         <div class="info">
                             <div class="label">{{typePlace.label}}</div>
                             <div class="desc">{{typePlace.desc}}</div>
                         </div>
-                      
                     </div>
                 </div>
             </div>
+            <ng-container *ngFor="let val of validation.placeType">
+                <span class="val-err-msg" *ngIf="formRegPropS2.controls['placeType']?.hasError(val.type) && formRegPropS2.controls['placeType']?.value === ''">
+                    {{ val.msg }}
+                </span>
+            </ng-container>
         </section>
     </ng-container>
 </div>

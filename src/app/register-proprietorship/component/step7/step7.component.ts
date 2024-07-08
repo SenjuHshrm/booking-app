@@ -14,6 +14,15 @@ export class Step7Component implements OnInit {
   @Input() public formGroupName!: string;
   public formRegPropS7!: FormGroup<Step7Form>;
 
+  public validation: any = {
+    name: [
+      {
+        type: 'required',
+        msg: 'Enter a title for your listing'
+      }
+    ]
+  }
+
   constructor(
     public regPropFormRoot: FormGroupDirective
   ) { }

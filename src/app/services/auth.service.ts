@@ -17,6 +17,11 @@ export class AuthService {
     return this._http.post<{ token: string }>(`${environment.api}/api/auth/post/login`, data)
   }
 
+  public googleLogin(data: { authData: any, userData: any }): Observable<{ token: string }> {
+    let { authData, userData } = data
+    return this._http.post<{ token: string }>(`${environment.api}/api/auth/post/login/google`, { authData, userData })
+  }
+
   public checkUser(): Observable<{ isAuth: boolean } | { code: string }> {
     return this._http.get<{ isAuth: boolean } | { code: string }>(`${environment.api}/api/auth/get/check-user`)
   }

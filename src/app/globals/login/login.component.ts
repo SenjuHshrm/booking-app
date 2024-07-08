@@ -45,6 +45,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   private _redirectTo: string = ''
   private _sub: Subscription = new Subscription()
 
+  private _successLogin = (res: { token: string }) => {
+    this._token.saveToken(res.token)
+    window.location.href = this._redirectTo
+  }
+
+  private _failedLogin = ({ error }: HttpErrorResponse) => {
+    console.log(error)
+  }
+
   constructor(
     public dialogLogin: MatDialogRef<LoginComponent>,
     private _location: Location,
@@ -63,7 +72,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this._socAuth.authState.subscribe({
       next: (res: any) => {
-        console.log(res)
+        let data  = {
+          userData: {
+            firstName: res.firstName,
+            lastName: res.lastName,
+            photoUrl: res.photoUrl
+          },
+          authData: {
+            email: res.email,
+            id: res.id
+          }
+        }
+        this._saveProviderData(data, res.idToken)
       },
       error: (err: any) => {
         console.log(err)
@@ -83,19 +103,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     console.log(fg.value)
     let data: IAuth = <IAuth>fg.value
     this._sub.add(this._auth.login(data).subscribe({
-      next: (res: { token: string }) => {
-        this._token.saveToken(res.token)
-        window.location.href = this._redirectTo
-      },
-      error: ({ error }: HttpErrorResponse) => {
-
-      }
+      next: this._successLogin,
+      error: this._failedLogin
     }))
-  }
-  
-  loginWithGoogle() {
-    console.log('Login with Google')
-    this._socAuth.signIn(GoogleLoginProvider.PROVIDER_ID)
   }
 
   closeDialogLogin(): void {
@@ -106,4 +116,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
+
+  private _saveProviderData(data: { authData: any, userData: any }, token: string) {
+    this._sub.add(this._auth.googleLogin(data).subscribe({
+      next: this._successLogin,
+      error: this._failedLogin,
+      complete: () => {
+        localStorage.setItem('GOOGLE_ID_TOKEN', token)
+      }
+    }))
+  }
+
+  
 }

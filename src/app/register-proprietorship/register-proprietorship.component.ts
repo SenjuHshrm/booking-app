@@ -38,7 +38,7 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
 
   public isLinear = false;
   public isAuth!: boolean;
-  public isHiddenintro = false;
+  public isHiddenintro = true;
   public isHiddenstepper = false;
 
   private _cover!: File | null;
@@ -59,12 +59,12 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
   ngOnInit(): void {
     this._tokenClaims = <ITokenClaims>this._token.decodedToken()
     this.regPropForm = this._formBuilder.group<RegisterProprietorshipForm>({
+      step2: this._formBuilder.group<Step2Form>({
+        placeType: new FormControl('', [Validators.required])
+      }),
       step1: this._formBuilder.group<Step1Form>({
         descriptionFilter: new FormArray<FormGroup>([], [Validators.required]),
         descriptionFilterOther: new FormControl('')
-      }),
-      step2: this._formBuilder.group<Step2Form>({
-        placeType: ['', Validators.required]
       }),
       step3: this._formBuilder.group<Step3Form>({
         unit: new FormControl(''),
@@ -91,7 +91,7 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
          name: new FormControl('')
       }),
       step8: this._formBuilder.group<Step8Form>({
-        descriptionText: new FormArray<FormGroup>([]),
+        descriptionText: new FormArray<FormGroup>([], [Validators.required]),
         descriptionTextOther: new FormControl('')
       }),
       step9: this._formBuilder.group<Step9Form>({
@@ -156,7 +156,7 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     let imgDesc = []
     fd.append('host', this._tokenClaims.sub)
     fd.append('name', data.step7.name)
-    fd.append('serverDirName', (<string>data.step7.name.replace(/\s/, '_')).toLowerCase())
+    fd.append('serverDirName', (<string>data.step7.name.replace(/\s/g, '_')).toLowerCase())
     fd.append('descriptionFilter', JSON.stringify([ ...data.step1.descriptionFilter, ...data.step1.descriptionFilterOther.split(',') ]))
     fd.append('descriptionText', JSON.stringify([ ...data.step8.descriptionText, ...data.step8.descriptionTextOther.split(',') ]))
     fd.append('placeType', <string>data.step2.placeType)

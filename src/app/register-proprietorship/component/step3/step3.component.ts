@@ -17,25 +17,25 @@ export class Step3Component implements OnInit {
     brgy: [
       {
         type: 'required',
-        msg: 'Please input barangay'
+        msg: 'Field required'
       }
     ],
     city: [
       {
         type: 'required',
-        msg: 'Please input city'
+        msg: 'Field required'
       }
     ],
     province: [
       {
         type: 'required',
-        msg: 'Please input province'
+        msg: 'Field required'
       }
     ],
     zip: [
       {
         type: 'required',
-        msg: 'Please input zip code'
+        msg: 'Field required'
       }
     ]
   }
