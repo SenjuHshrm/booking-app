@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 
   gotoPage(actives: string) {
     this.selectedTab = actives;
-    this.router.navigate([`admin/home/${actives}`]);
+    // this.router.navigate([`admin/home/${actives}`]);
   }
 
   logout() {

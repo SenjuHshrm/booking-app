@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent {
-
+  
+  public validation: any = {
+    tax: {
+      feeName: [
+        { type: 'required', msg: 'Field required' }
+      ],
+      price: [
+        { type: 'required', msg: 'Field required' },
+        { type: 'min', msg: 'Value invalid' }
+      ]
+    }
+  }
+  
 }

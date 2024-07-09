@@ -52,6 +52,20 @@ export class BasicUtilService {
     return res;
   }
 
+  public propToReadable(key: string): string {
+    let arr: string[] = key.split('_')
+    let res: string[] = [];
+    arr.forEach((val: string) => {
+      res.push(val.charAt(0).toUpperCase() + val.slice(1))
+    })
+    return res.join(" ")
+  }
+
+  public readableToProp(name: string): string {
+    let lowerCase = name.toLowerCase();
+    return lowerCase.replace(/\s/g, '_')
+  }
+
   public placetype: BehaviorSubject<string> = new BehaviorSubject<string>('')
   public getPlaceType = this.placetype.asObservable()
 

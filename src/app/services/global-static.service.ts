@@ -9,10 +9,18 @@ import { environment } from './../../environments/environment'
 export class GlobalStaticService {
 
   constructor(
-    private http: HttpClient
+    private _http: HttpClient
   ) { }
 
   public getStaticByType(type: string): Observable<{ data: any }> {
-    return this.http.get<{ data: any }>(`${environment.api}/api/global-statics/get/statics/type/${type}`)
+    return this._http.get<{ data: any }>(`${environment.api}/api/global-statics/get/statics/type/${type}`)
+  }
+
+  public addStatic(data: any): Observable<any> {
+    return this._http.post(`${environment.api}/api/global-statics/post/add-static`, data)
+  }
+
+  public deleteValueFromStatic(data: any, type: string): Observable<any> {
+    return this._http.delete(`${environment.api}/api/global-statics/delete/static/${type}`, { body: data })
   }
 }
