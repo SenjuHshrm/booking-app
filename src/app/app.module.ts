@@ -18,6 +18,7 @@ import {
   SocialAuthServiceConfig,
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 export class CustomErrorHandler implements ErrorHandler {
   handleError(error: any) {
@@ -43,7 +44,8 @@ export class CustomErrorHandler implements ErrorHandler {
     MainModule,
     HomeModule,
     GlobalsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatPaginatorModule
   ],
   providers: [
     {

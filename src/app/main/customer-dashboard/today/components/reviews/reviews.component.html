@@ -1,0 +1,79 @@
+<div class="today-tabs" [@fadeInAnimation]>
+    <div class="today-tabs-today-tabs-wrapper">
+        <div class="content">
+            <div class="mat-elevation-z3">
+                <div class="title">Reviews</div>
+                <div class="search">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search here..">
+                    <mat-icon>search</mat-icon>
+                </div>
+                <div class="table-container">
+                    <table mat-table [dataSource]="dataSource" class="mat-table-responsive">
+
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef style="white-space: pre;">ID</th>
+                            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="property">
+                            <th mat-header-cell *matHeaderCellDef style="width:15rem;">Property</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="custom-property">
+                                    <img class="img" src={{element.property}} alt="property" />
+                                    <div class="name">{{element.nameofproperty}}</div>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="guestnames">
+                            <th mat-header-cell *matHeaderCellDef style="white-space: pre; width:15rem;">Booked Guest
+                            </th>
+                            <td mat-cell class="name" *matCellDef="let element">
+                                <div class="custom-guest">
+                                    <img class="img" src={{element.guest}} alt="property" />
+                                    <div class="name">{{element.guestnames}}</div>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="guestrate">
+                            <th mat-header-cell *matHeaderCellDef style="width:fit-content;white-space: pre;">Rate of
+                                Guest</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="rateStar">
+                                    <mat-icon>star</mat-icon>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="guestcomment">
+                            <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Comment of Guest</th>
+                            <td mat-cell *matCellDef="let element"></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Action</th>
+                            <td mat-cell *matCellDef="let element">
+                                <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_horiz</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>View</button>
+                                    <button mat-menu-item>Message guest</button>
+                                </mat-menu>
+                            </td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+                </div>
+            </div>
+            <!-- <div class="no-checking">
+                  <div>You don’t have any upcoming.</div> 
+             </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+.today-tabs {
+    &-today-tabs-wrapper {
+      .content {
+        height: 50vh;
+        max-height: 40rem;
+        margin: 1rem 0 1rem;
+        border-radius: 20px;
+  
+        .title {
+          font-size: 1.2rem;
+          font-weight: bold;
+          padding: 1rem 1rem 0;
+        }
+  
+        .search {
+          display: flex;
+          margin: 1rem 1rem 1rem;
+          width: 100%;
+          max-width: 20rem;
+          padding: .5rem 1rem .5rem;
+          border: 1px solid rgb(190, 190, 190);
+          border-radius: 10px;
+  
+          input {
+            width: 100%;
+            border: none;
+            outline: none;
+  
+          }
+  
+          mat-icon {
+            color: #63AB68;
+          }
+        }
+  
+        .table-container {
+          padding-bottom: 1rem;
+          max-width: 100%;
+          width: 100%;
+          overflow: auto;
+  
+  
+        }
+  
+        .mat-table-responsive {
+          width: 100%;
+          overflow-x: auto;
+          padding-bottom: 1rem !important;
+  
+          .custom-property {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+  
+            .img {
+              width: 2.3rem;
+              height: 2.3rem;
+              object-fit: cover;
+              border: 1px solid #a0a0a0;
+              border-radius: 5px;
+            }
+  
+            .name {
+              flex: none;
+              width: auto;
+              max-width: 15rem;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+  
+          }
+  
+  
+          .custom-guest {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+  
+            .img {
+              width: 2.3rem;
+              height: 2.3rem;
+              object-fit: cover;
+              border: 1px solid #a0a0a0;
+              border-radius: 100%;
+            }
+  
+            .name {
+              flex: none;
+              width: auto;
+              max-width: 12rem;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+  
+          }
+  
+           .rateStar{
+            display: flex;
+            align-items: center;
+            mat-icon{
+                padding: 0;
+                margin: 0;
+                color:#63AB68;
+            }
+           }
+
+        }
+  
+  
+  
+  
+  
+        .action-btn {
+          border: none;
+          background-color: transparent;
+          outline: none;
+          cursor: pointer;
+        }
+  
+  
+  
+        .no-checking {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        }
+  
+  
+  
+  
+      }
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .today-tabs {
+      &-today-tabs-wrapper {
+  
+        .content {
+          .title {
+            margin: auto;
+            width: fit-content;
+          }
+  
+          .search {
+            margin: auto;
+            margin-top: 1rem;
+          }
+  
+          .mat-table-responsive {
+            display: block;
+  
+          }
+        }
+      }
+    }
+  }

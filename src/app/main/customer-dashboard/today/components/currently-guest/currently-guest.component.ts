@@ -7,16 +7,21 @@ import { MatPaginator } from '@angular/material/paginator';
 export interface UserData {
 
   id: string;
-  property: any;
+  propertyimage: any;
   nameofproperty: any;
-  guest:any;
+  guestimage:any;
   guestnames: string;
   numofguest:any;
   bookingdate: Date;
-  checkindate: Date;
-  checkoutdate:Date;
+  checkintime: any;
+  checkouttime:any;
+  reservationindate:any;
+  reseservationoutdate:any;
   interval:any;
   intervalunit:any;
+  checkindate:any;
+  checkoutdate:any;
+  remainingtime:any;
   paymenttype: string;
   paidamount: number;
   balanceamount: number;
@@ -26,7 +31,6 @@ export interface UserData {
 const PROPERTIES: any[] = [
   { image: '../assets/images/main/staycation-details/gallery1.png', nameofproperty: "Alabang Condo Unit" },
   { image: '../assets/images/main/staycation-details/gallery1.png', nameofproperty: "Muntinlupa Condo Unit" },
-
 ];
 const GUESTNAMES: any[] = [
   {image:'../assets/images/avatars/placeholder.png', nameofguest:'Maia B. Bernal'},
@@ -39,11 +43,6 @@ const GUESTNAMES: any[] = [
 const NUMBEROFGUEST: string[] = ['1'];
 const BOOKINGDATE: string[] = [''];
 
-const CHECKINOUTDATE:any[] = [
-  {checkin:new Date()},
-  {checkout:new Date()}
-];
-
 const INTERVAL: any[] = [
   {interval:'1', unit:'day'},
   {interval:'1', unit:'month'},
@@ -53,12 +52,29 @@ const INTERVAL: any[] = [
   {interval:'3', unit:'month'}
 ];
 
-const PAYMENTTYPE: string[] = [
-  'Awaiting payment', 
-  'Fully paid', 
-  'Partial pay'
+const ARRIVALDATE: string[] = [''];
+const RESERVATIONDATE: any[] = [
+  {checkin:new Date()},
+  {checkout:new Date()}
+]
+const CHECKINOUTDATE:any[] = [
+  {checkin:new Date()},
+  {checkout:new Date()}
 ];
 
+const ARRIVALTIME: string[] = ['8'];
+const CHECKINGOUT: string[] = ['10'];
+const REMAININGTIME:string[] = ['0'];
+const PAYMENTTYPE: string[] = ['Fully paid', 'Partial pay'];
+const BALANCEAMOUNT: any[] = [
+  { price: '200' }, 
+  { price: '300' }, 
+  { price: '400' }, 
+  { price: '500' }, 
+  { price: '150' }, 
+  { price: '300' }, 
+  { price: '100' },
+];
 
 const PAIDAMOUNT: any[] = [
   { price: '684' }, 
@@ -70,34 +86,31 @@ const PAIDAMOUNT: any[] = [
   { price: '624' },
 ];
 
-const BALANCEAMOUNT: any[] = [
-  { price: '200' }, 
-  { price: '300' }, 
-  { price: '400' }, 
-  { price: '500' }, 
-  { price: '150' }, 
-  { price: '300' }, 
-  { price: '100' },
-];
 
 
 @Component({
-  selector: 'app-upcoming',
-  templateUrl: './upcoming.component.html',
-  styleUrls: ['./upcoming.component.scss'],
+  selector: 'app-currently-guest',
+  templateUrl: './currently-guest.component.html',
+  styleUrls: ['./currently-guest.component.scss'],
   animations: [fadeInAnimation],
   encapsulation: ViewEncapsulation.None
 })
-export class UpcomingComponent implements OnInit {
-
+export class CurrentlyGuestComponent implements OnInit {
+  
+  dateToday:any = new Date();
   displayedColumns: string[] = [
     'id', 
     'property', 
-    'guestnames',
-    'numofguest', 
+    'guestnames', 
+    'numofguest',
     'bookingdate', 
-    'checkinoutdate', 
-    'interval',
+    'reservationdate',
+    'interval', 
+    'checkindate',
+    'checkoutdate',
+    'checkintime',
+    'checkouttime', 
+    'remainingtime',
     'paymenttype', 
     'paidamount', 
     'balanceamount',
@@ -105,6 +118,7 @@ export class UpcomingComponent implements OnInit {
   ];
 
   dataSource: MatTableDataSource<UserData>;
+
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
 
@@ -130,40 +144,45 @@ export class UpcomingComponent implements OnInit {
 
 function createNewUser(id: number): UserData {
 
-  let property = PROPERTIES[Math.floor(Math.random() * PROPERTIES.length)].image;
+  let propertyImage = PROPERTIES[Math.floor(Math.random() * PROPERTIES.length)].image;
   let propertyName = PROPERTIES[Math.floor(Math.random() * PROPERTIES.length)].nameofproperty;
-  let guest = GUESTNAMES[Math.floor(Math.random() * GUESTNAMES.length)].image;
+  let guestImage = GUESTNAMES[Math.floor(Math.random() * GUESTNAMES.length)].image;
   let guestName = GUESTNAMES[Math.floor(Math.random() * GUESTNAMES.length)].nameofguest;
   let guestNumber = NUMBEROFGUEST[0];
-  let checkInDate = CHECKINOUTDATE[0].checkin;
-  let checkOutDate = CHECKINOUTDATE[1].checkout;
   let interVal = INTERVAL[Math.floor(Math.random() * INTERVAL.length)].interval;
   let interValUnit = INTERVAL[Math.floor(Math.random() * INTERVAL.length)].unit;
-  let paytype = PAYMENTTYPE[Math.floor(Math.random() * PAYMENTTYPE.length)];
+  let reservationInDate = RESERVATIONDATE[0].checkin;
+  let reservationOutDate = RESERVATIONDATE[1].checkout;
+  let checkInDate = CHECKINOUTDATE[0].checkin
+  let checkOutDate = CHECKINOUTDATE[1].checkout
+  let checkTime= ARRIVALTIME[0];
+  let checkoutTime= CHECKINGOUT[0];
+  let remainingTime= REMAININGTIME[0];
+  let paymentType = PAYMENTTYPE[Math.floor(Math.random() * PAYMENTTYPE.length)];
   let paidAmount = PAIDAMOUNT[Math.floor(Math.random() * PAIDAMOUNT.length)].price;
   let balanceAmount = BALANCEAMOUNT[Math.floor(Math.random() * BALANCEAMOUNT.length)].price;
-  
-  if(paytype !== 'Partial pay'){
+  if(paymentType !== 'Partial pay'){
     balanceAmount = 0;
-  }
-
-  if (paytype === "Awaiting payment") {
-    paidAmount = 0;
   }
 
   return {
     id: id.toString(),
-    property: property,
+    propertyimage: propertyImage,
     nameofproperty: propertyName,
-    guest: guest,
+    guestimage: guestImage,
     guestnames: guestName,
     numofguest:guestNumber,
     bookingdate: new Date(),
-    checkindate:checkInDate,
-    checkoutdate:checkOutDate,
     interval:interVal,
     intervalunit:interValUnit,
-    paymenttype: paytype,
+    reservationindate:reservationInDate,
+    reseservationoutdate:reservationOutDate,
+    checkindate:checkInDate,
+    checkoutdate:checkOutDate,
+    checkintime: checkTime,
+    checkouttime: checkoutTime,
+    remainingtime:remainingTime,
+    paymenttype: paymentType,
     paidamount: paidAmount,
     balanceamount:balanceAmount
   };

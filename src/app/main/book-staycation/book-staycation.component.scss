@@ -1,6 +1,9 @@
 .book-staycation {
+    // border: 2px solid green;
+    padding: 0 1rem 0;
+
     &-book-staycation-wrapper {
-        width:100%;
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
 
@@ -51,8 +54,8 @@
 
                         .date-wrapper {
                             margin: 1rem 0 1rem;
-                            display: flex;
-                            justify-content: space-between;
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                             width: 100%;
                             gap: 1rem;
 
@@ -61,6 +64,7 @@
                                 background-color: #ececec;
                                 display: flex;
                                 align-items: center;
+                                flex-wrap: wrap;
                                 gap: .5rem;
                                 padding: 1rem;
                                 border-radius: 10px;
@@ -75,6 +79,7 @@
                                     width: 100%;
                                     // border: 1px solid black;
                                     text-align: center;
+                                    white-space: pre;
                                 }
 
                                 .label {
@@ -88,6 +93,7 @@
                             background-color: #ececec;
                             display: flex;
                             align-items: center;
+                            flex-wrap: wrap;
                             gap: .5rem;
                             padding: 1rem;
                             border-radius: 10px;
@@ -105,7 +111,7 @@
                     }
 
                     .payment-method {
-
+                    
                         margin: 2rem 0 2rem;
 
                         .title-wrapper {
@@ -137,6 +143,7 @@
                         ///////
                         .custom-select {
                             position: relative;
+                            font-family: Poppins-Regular !important;
 
                         }
 
@@ -149,6 +156,7 @@
                             border-radius: 10px;
                             width: 100%;
                             cursor: pointer;
+                            font-family: Poppins-Regular !important;
                         }
 
                         select::-ms-expand {
@@ -195,7 +203,6 @@
                                     background-color: #fff;
                                     color: #797979;
                                     font-family: Arial, sans-serif;
-                                    font-size: 14px;
                                     max-width: 150px;
                                     width: 100%;
 
@@ -277,11 +284,11 @@
                         .subtitle {
                             margin-top: 2px;
                             color: #68A968;
-                            font-size: clamp(.8rem, .8vw, 8rem);
+                       
                         }
 
                         .description {
-                            font-size: clamp(.7rem, .7vw, 8rem);
+                         
                         }
 
                         .seemore {
@@ -291,6 +298,7 @@
                             color: #68A968;
                             font-size: clamp(.7rem, .7vw, 8rem);
                             cursor: pointer;
+                            text-decoration: underline;
                         }
 
 
@@ -307,12 +315,12 @@
                         .subtitle {
                             margin-top: 2px;
                             color: #68A968;
-                            font-size: clamp(.8rem, .8vw, 8rem);
+                         
                         }
 
 
                         .description {
-                            font-size: clamp(.7rem, .7vw, 8rem);
+                       
                         }
                     }
 
@@ -359,122 +367,230 @@
                 }
             }
 
-            .price-details {
-                flex-basis: 50%;
-                margin: 1rem 0 1rem;
-                // border: 1px solid black;
-          
+            .choose-howto-pay {
 
-                .title {
-                    margin: 1rem 0 1rem;
-                    font-size: clamp(1rem, 1.2vw, 8rem);
+
+                font-family: Poppins-Regular !important;
+                width: 100%;
+
+                .title_wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    margin: 2rem 0 0rem;
+
+                    .title {
+                        font-size: clamp(1rem, 1.2vw, 8rem);
+
+                    }
+
+                    .more_info {
+                        text-decoration: underline;
+                        color: #63AB68;
+                        cursor: pointer;
+
+                    }
                 }
 
-                .price-details-card {
-                    height: fit-content;
-                    background-color: white;
-                    box-shadow: 1px 1px 5px #88888877;
-                    padding: 2rem;
-                    border-radius: 5px;
+                &-wrapper {
 
-                    .image{
-                        max-width:100%;
-                        img{
-                            width:100%;
-                            height: auto;
-                        }
-                    }
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    margin: 1rem 0 1rem;
 
-                    .title-wrapper {
+
+                    .custom-radio {
+                        position: relative;
                         display: flex;
-                        height: fit-content;
-                        justify-content: space-between;
-        
-                        .title {
-                            font-weight: bold;
-                            font-size: clamp(1.2rem, 1vw, 8rem);
-                        }
-        
-                        .heart {
-                            color: #68A968;
-                            display: flex;
-                            gap:.5rem;
-                            align-items: center;
-
-                            mat-icon{
-                                margin: 0;
-                                padding: 0;
-                            }
-                        }
-                    }
-
-                    .guest-desc{
-                        color: #68A968;
-                        font-size: clamp(.7rem, .7vw, 8rem);
-            
-                        span{
-                            margin:0;
-                            padding: 0;
-                        
-                        }
-                    }
-
-                    .total-computation-wrapper{
-                       
-                        .note{
-                            font-size: max(min(.8rem), .5vw);
-                            font-weight: bold;
-                            color:#797979;
-                            text-align: center;
-                            margin:1rem 0 1rem;
-                        }
-                        .computation{
-                            width: 100%;
-    
-                            .comp{
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                            }
-                               
-     
-                        }
-            
-                    }
-
-                    .total{
-                        display: flex;
-                        justify-content: space-between;
+                        justify-content: flex-start;
                         align-items: center;
+                        height: fit-content;
+                        cursor: pointer;
+                        font-size: 15px;
+                        user-select: none;
+                        width: 100%; // Set the width as needed
+                        border: 2px solid #63AB68;
+                        border-radius: 5px;
+                        padding: .8rem 0 .8rem;
+                    }
+
+                    .price {
                         font-weight: bolder;
+                    }
+
+                    .custom-radio input {
+                        position: relative;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+
+
+                    .radio-mark {
+                        position: absolute;
+                        bottom: 5;
+                        right: .7rem;
+                        height: 35px;
+                        width: 35px;
+                        background-color: #eee;
+                        border-radius: 50%;
+                        border-color: #63AB68;
+                    }
+
+                    .custom-radio input:checked~.radio-mark {
+                        background-color: #63AB68;
+                    }
+
+                    .radio-mark:after {
+                        content: "";
+                        position: absolute;
+                        display: none;
+                    }
+
+                    .custom-radio input:checked~.radio-mark:after {
+                        display: block;
+                    }
+
+                    .custom-radio .radio-mark:after {
+                        top: 14px;
+                        left: 13px;
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background: white;
+                    }
+                }
+            }
+        }
+
+        .price-details {
+            flex-basis: 50%;
+            margin: 1rem 0 1rem;
+            // border: 1px solid black;
+
+
+            .title {
+                margin: 1rem 0 1rem;
+                font-size: clamp(1rem, 1.2vw, 8rem);
+            }
+
+            .price-details-card {
+                height: fit-content;
+                background-color: white;
+                box-shadow: 1px 1px 5px #88888877;
+                padding: 2rem;
+                border-radius: 5px;
+
+                .image {
+                    max-width: 100%;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                .title-wrapper {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    height: fit-content;
+                    max-width:100%;
+
+                    .title {
+                        font-weight: bold;
+                        font-size: clamp(1.2rem, 1vw, 8rem);
+                        white-space: nowrap;      
+                        overflow: hidden;         
+                        text-overflow: ellipsis;   
+                        flex:1 0;       
+                        min-width:200px;
+                        height:1.5rem;
+                    }
+
+                    .heart {
+                        flex:0;
+                        width: fit-content;
+                        color: #68A968;
+                        display: flex;
+                        gap: .5rem;
+                        align-items: center;
+
+                        mat-icon {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                }
+
+                .guest-desc {
+                    color: #68A968;
+                    font-size: clamp(.7rem, .7vw, 8rem);
+
+                    span {
+                        margin: 0;
+                        padding: 0;
+
+                    }
+                }
+
+                .total-computation-wrapper {
+
+                    .note {
+                        font-size: max(min(.8rem), .5vw);
+                        font-weight: bold;
+                        color: #797979;
+                        text-align: center;
                         margin: 1rem 0 1rem;
                     }
 
-                    
+                    .computation {
+                        width: 100%;
+
+                        .comp {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+
+
+                    }
+
                 }
+
+                .total {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-weight: bolder;
+                    margin: 1rem 0 1rem;
+                }
+
+
             }
         }
     }
 }
 
+
 @media screen and (max-width: 1300px) {
     .book-staycation {
-        .booking-header {
-            
-        }
+        .booking-header {}
+
         .booking-content {
-         gap: 1rem;
-         flex-wrap: wrap-reverse;    
+            gap: 1rem;
+            flex-wrap: wrap-reverse;
 
-         .info-details{
-            margin: 0;
-            flex-basis: 100%;
+            .info-details {
+                margin: 0;
+                flex-basis: 100%;
 
-         }
-         .price-details{
-            margin: 0;
-            flex-basis: 100%;
-         }
+            }
+
+            .price-details {
+                margin: 0;
+                flex-basis: 100%;
+            }
         }
     }
 }
