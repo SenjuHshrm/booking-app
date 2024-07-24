@@ -6,6 +6,7 @@
                     <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab3'}" (click)="selectTab('tab3')">Current Guest</div>
                     <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab4'}" (click)="selectTab('tab4')">Check Out</div>
                     <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab5'}" (click)="selectTab('tab5')">Reviews</div>
+                    <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab6'}" (click)="selectTab('tab6')">Cancelled</div>
                   </div>
                 
                   <div class="tab-content">
@@ -14,6 +15,7 @@
                     <div *ngIf="selectedTab === 'tab3'"><app-currently-guest/></div>
                     <div *ngIf="selectedTab === 'tab4'"><app-checking-out/></div>
                     <div *ngIf="selectedTab === 'tab5'"><app-reviews/></div>
+                    <div *ngIf="selectedTab === 'tab6'"><app-cancelled-booking/></div>
                   </div>
          </section>
     </div>
