@@ -53,10 +53,9 @@
                     <div class="details-about">
                          <div class="title">About this space</div>
                          <div class="description">
-                              FLAT | 1-BR + Balcony DESIGN | Modern + Nordic LAYOUT | Corner Unit / 31 sqm• Superhost -
-                              Airbnb award for exemplary host• Near U.S. Embassy & Robinsons Mall Manila
+                              {{ details.address }}
                          </div>
-                         <button>See more</button>
+                         <!-- <button>See more</button> -->
                     </div>
                     <hr>
                     <div class="details-where-you-sleep">
@@ -74,53 +73,35 @@
                     <div class="details-whats-offer">
                          <div class="title">What this place offers</div>
                          <div class="description">
-                              City skyline view
-                              Kitchen
-                              Wifi
-                              HDTV with standard cable
-                              Elevator
-                              AC - split type ductless system
-                              Private patio or balcony
-                              Hair dryer
-                              Samsung refrigerator
-                              Microwave
+                              {{ details.amenities }}
                          </div>
                     </div>
                     <hr>
                     <div class="details-reviews">
-                         <div class="reviews">
+                         <div class="reviews" *ngIf="totalReviews > 0">
                               <div class="rate-stars">
                                    <mat-icon>stars</mat-icon>
-                                   <div>4.80</div>
+                                   <div>{{ averageStar }}</div>
                               </div>
                               <div>-</div>
                               <div class="number-reviews">
-                                   <p>501 <span>reviews</span></p>
+                                   <p>{{ totalReviews }} <span>reviews</span></p>
                               </div>
 
                          </div>
-                         <div class="reviewer">
+                         <div class="reviewer" *ngIf="latestReview">
                               <div class="avatar-wrapper">
                                    <div class="avatar">
                                         <img src="../../assets/images/main/staycation-details/avatarreviewer.png"
                                              loading="lazy" alt="Avatar" [draggable]="false">
                                    </div>
                                    <div class="name-address-wrapper">
-                                        <div class="name">Oliver Belen</div>
-                                        <div class="address">Quezon City, Philippines</div>
+                                        <div class="name">{{ latestReview.name }}</div>
+                                        <div class="address">{{ latestReview.address }}</div>
                                    </div>
                               </div>
                               <div class="comments">
-                                   We enjoyed our stay! The space is clean and well-organized, providing a comforting
-                                   atmosphere.
-                                   The condo building is accessible to US Embassy, staying here made our embassy
-                                   appointments much
-                                   easier. Robinson’s Manila is also a short walk away. The host is genuinely kind and
-                                   goes out of
-                                   their way to make guests feel welcome. The place is complete with everything we need.
-                                   We were
-                                   able to cook our food. We felt like home. We're definitely looking forward to come
-                                   back!
+                                   {{ latestReview.comment }}
                               </div>
                               <button>See more</button>
                          </div>
@@ -172,7 +153,7 @@
                     </div>
                     <div class="total">
                          <div>Total before taxes</div>
-                         <div>₱ {{ details.price.beforeTax }} total</div>
+                         <div>₱ {{ getTotalBeforeTax(details.price.common) }} total</div>
                     </div>
                </section>
 

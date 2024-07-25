@@ -41,7 +41,10 @@
                     <span class="val-err-msg" *ngIf="formRegPropS3.controls['zip']?.hasError(val.type) && (formRegPropS3.controls['zip']?.dirty || formRegPropS3.controls['zip']?.touched)">{{ val.msg }}</span>
                 </ng-container>
             </div>
-            
+            <div class="input-wrapper">
+                <div class="label">Land Mark</div>
+                <input type="text" name="landmark" formControlName="landmark" />
+            </div>
         </div>
     
     </section>

@@ -66,6 +66,30 @@ export class BasicUtilService {
     return lowerCase.replace(/\s/g, '_')
   }
 
+  public getTotalBeforeTax(total: number, sc: any): number {
+    let res: number = 0
+    sc.forEach((s: any) => {
+      res += s.price
+    })
+    return total + res
+  }
+
+  public constructAddress(addr: any): string {
+    let props: string[] = ['unit', 'street', 'brgy', 'city', 'province', 'country', 'zip']
+    let res: string[] = []
+    
+    for(let i: number = 0; i < props.length; i++) {
+      Object.keys(addr).forEach((key: string) => {
+        if(key === props[i]) {
+          if(addr[key] !== '') {
+            res.push(addr[key])
+          }
+        }
+      })
+    }
+    return res.join(', ')
+  }
+
   public placetype: BehaviorSubject<string> = new BehaviorSubject<string>('')
   public getPlaceType = this.placetype.asObservable()
 

@@ -72,7 +72,8 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
         brgy: new FormControl('', [Validators.required]),
         city: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
-        zip: new FormControl('', [Validators.required])
+        zip: new FormControl('', [Validators.required]),
+        landmark: new FormControl('')
       }),
       step4: this._formBuilder.group<Step4Form>({
         guests: new FormControl(''),
@@ -85,14 +86,17 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
         amenitiesOther: new FormControl('')
       }),
       step6: this._formBuilder.group<Step6Form>({
-        img: new FormControl('')
+        img: new FormControl(''),
+        // bedroom: new FormControl(''),
+        // desc: new FormControl('')
       }),
       step7: this._formBuilder.group<Step7Form>({
          name: new FormControl('')
       }),
       step8: this._formBuilder.group<Step8Form>({
         descriptionText: new FormArray<FormGroup>([], [Validators.required]),
-        descriptionTextOther: new FormControl('')
+        descriptionTextOther: new FormControl(''),
+        detailedDescription: new FormControl('')
       }),
       step9: this._formBuilder.group<Step9Form>({
         // discounts: new FormArray<FormGroup>([])
@@ -159,9 +163,11 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     fd.append('serverDirName', (<string>data.step7.name.replace(/\s/g, '_')).toLowerCase())
     fd.append('descriptionFilter', JSON.stringify([ ...data.step1.descriptionFilter, ...data.step1.descriptionFilterOther.split(',') ]))
     fd.append('descriptionText', JSON.stringify([ ...data.step8.descriptionText, ...data.step8.descriptionTextOther.split(',') ]))
+    fd.append('detailedDescription', data.step8.detailedDescription)
     fd.append('placeType', <string>data.step2.placeType)
     fd.append('location', '')
     fd.append('address', JSON.stringify(data.step3))
+    fd.append('landmark', data.step3.landmark)
     fd.append('details', JSON.stringify({ guests: data.step4.guests, bedrooms: data.step4.bedrooms, beds: data.step4.beds, bathroom: data.step4.bathroom }))
     fd.append('amenities', JSON.stringify([ ...data.step5.amenities, ...data.step5.amenitiesOther.split(',') ]))
     fd.append('reservationConfirmation', 'direct_msg')
