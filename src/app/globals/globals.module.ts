@@ -9,7 +9,10 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileComponent } from './profile/profile.component';
-import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt/angularx-social-login'
+import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import { LearnMoreComponent } from './learn-more/learn-more.component';
+import { BookingTermsComponent } from './booking-terms/booking-terms.component';
+import { ViewTodaysBookingComponent } from './view-todays-booking/view-todays-booking.component'
 
 
 
@@ -23,6 +26,9 @@ import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt
     LoginComponent,
     SignupComponent,
     CreateListingComponent,
+    LearnMoreComponent,
+    BookingTermsComponent,
+    ViewTodaysBookingComponent,
   ],
 
   imports: [

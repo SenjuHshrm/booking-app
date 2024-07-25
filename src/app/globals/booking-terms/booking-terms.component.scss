@@ -1,0 +1,275 @@
+.booking-terms {
+    font-family: Poppins-Regular !important;
+
+    .custom_close {
+        cursor: pointer;
+        padding: 0 1rem 0;
+        margin-top: .5rem;
+        display: flex;
+        justify-content: flex-end;
+
+        mat-icon {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    }
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: bolder;
+    }
+
+    &-wrapper {
+        padding: .8rem 1.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+
+        .booking-terms-wrapper-houserules {
+            border: 1px solid rgb(223, 223, 223);
+            border-radius: 5px;
+
+            .header {
+                padding: .5rem 1rem .5rem;
+                background-color: rgb(223, 223, 223);
+
+                .title {
+                    font-weight: 400px;
+                    font-size: 1.2rem;
+                    font-weight: bolder;
+                    margin-top: .5rem;
+
+                }
+
+                .subtitle {
+                    margin-top: .3rem;
+                    font-size: 1rem;
+
+                }
+            }
+
+            .content {
+                padding: .5rem 1rem .5rem;
+
+                .checkinandout {
+                    margin: 1rem 0 1rem;
+
+                    .title {
+                        font-size: 1rem;
+                    }
+
+                    .checkinandout_wrapper {
+                        margin-top: .5rem;
+
+                        .checkinout {
+                            font-size: 1rem;
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                            gap: 1rem;
+                            margin-top: 1rem;
+
+                            .label {
+                                display: flex;
+                                align-items: center;
+                                gap: 1rem;
+                            }
+
+                            .time {}
+                        }
+                    }
+                }
+
+                .duringstay {
+                    margin: 1rem 0 1rem;
+
+                    .title {
+                        font-size: 1rem;
+                    }
+
+                    .duringstay_wrapper {
+                        margin-top: .5rem;
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 1rem;
+                        padding: 16px 0 16px;
+
+                        .info {
+                            font-size: 1rem;
+                        }
+                    }
+
+                }
+
+                .additionalrules {
+                    margin: 1rem 0 1rem;
+
+                    .title {
+                        font-size: 1rem;
+                    }
+
+                    .additionalrules_wrapper {
+                        margin-top: 1rem;
+
+                        p {
+                            white-space: wrap;
+                            word-break: normal;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .booking-terms-wrapper-damages {
+            border: 1px solid rgb(223, 223, 223);
+
+            border-radius: 5px;
+
+            .header {
+                padding: .5rem 1rem .5rem;
+                background-color: rgb(223, 223, 223);
+
+                .title {
+                    font-weight: 400px;
+                    font-size: 1.2rem;
+                    font-weight: bolder;
+                    margin-top: .5rem;
+
+                }
+
+                .subtitle {
+                    margin-top: .3rem;
+                    font-size: 1rem;
+
+                }
+            }
+
+            .content {
+                padding: .5rem 1rem .5rem;
+
+
+
+                .additionalrules {
+                    margin: 1rem 0 1rem;
+
+                    .wrapper {
+                        margin: 1rem 0 1rem;
+
+                        .title {
+                            font-size: 1rem;
+                        }
+
+                        .description {
+                        
+                            white-space: wrap;
+                            word-break: normal;
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+        .booking-terms-wrapper-taragogroundrules {
+            border: 1px solid rgb(223, 223, 223);
+
+            border-radius: 5px;
+
+            .header {
+                padding: .5rem 1rem .5rem;
+                background-color: rgb(223, 223, 223);
+
+                .title {
+                    font-weight: 400px;
+                    font-size: 1.2rem;
+                    font-weight: bolder;
+                    margin-top: .5rem;
+
+                }
+
+                .subtitle {
+                    margin-top: .3rem;
+                    font-size: 1rem;
+
+                }
+            }
+
+            .content {
+                padding: .5rem 1rem .5rem;
+
+
+
+                .additionalrules {
+                    margin: 1rem 0 1rem;
+
+                    .wrapper {
+                        margin-top: 1rem;
+
+                        .title {
+                            font-size: 1rem;
+                        }
+
+                        .description {
+                            white-space: wrap;
+                            word-break: normal;
+                        }
+                    }
+
+
+                }
+            }
+        }
+        .booking-terms-wrapper-taragogrebookrefund {
+            border: 1px solid rgb(223, 223, 223);
+
+            border-radius: 5px;
+
+            .header {
+                padding: .5rem 1rem .5rem;
+                background-color: rgb(223, 223, 223);
+
+                .title {
+                    font-weight: 400px;
+                    font-size: 1.2rem;
+                    font-weight: bolder;
+                    margin-top: .5rem;
+
+                }
+
+                .subtitle {
+                    margin-top: .3rem;
+                    font-size: 1rem;
+
+                }
+            }
+
+            .content {
+                padding: .5rem 1rem .5rem;
+
+
+
+                .additionalrules {
+                    margin: 1rem 0 1rem;
+
+                    .wrapper {
+                        margin-top: 1rem;
+
+                        .title {
+                            font-size: 1rem;
+                        }
+
+                        .description {
+                            white-space: wrap;
+                            word-break: normal;
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+    }
+}

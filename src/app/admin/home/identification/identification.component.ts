@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class IdentificationComponent implements OnInit{
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  
   constructor() {
     this.paginator = {} as MatPaginator;
   }

@@ -4,11 +4,14 @@ import { CommonModule } from '@angular/common';
 import { BookStaycationRoutingModule } from './book-staycation-routing.module';
 import { BookStaycationComponent } from './book-staycation.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MoreInfoComponent } from './more-info/more-info.component';
+
 
 
 @NgModule({
   declarations: [
-    BookStaycationComponent
+    BookStaycationComponent,
+    MoreInfoComponent
   ],
   imports: [
     CommonModule,

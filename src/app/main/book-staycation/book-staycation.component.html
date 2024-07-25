@@ -27,13 +27,31 @@
                         <div class="guest-wrapper">
                             <mat-icon>people</mat-icon>
                             <div class="label">Guest</div>
-                            <div>3 Guest, 2 Infant, 1 Pet</div>
+                            <div>3 guests - 1 bedroom - 2 beds - 1 bath</div>
+                        </div>
+                    </div>
+                    <div class="choose-howto-pay">
+                        <div class="title_wrapper">
+                            <div class="title">Choose how to pay</div>
+                            <div class="more_info" (click)="onClickMore()">More info</div>
+                        </div>
+                        <div class="choose-howto-pay-wrapper">
+                            <label class="custom-radio" *ngFor="let option of options">
+                                <input type="radio" [value]="option.value" name="customRadio"
+                                    (change)="onRadioChange($event)" [checked]="selectedValue === option.value" />
+                                <div class="radio-mark"></div>
+                                <div class="wrapper">
+                                    <div>{{ option.label }}</div>
+                                    <div class="price">₱{{option.price}} total</div>
+                                    <div>Due Date: {{option.duedate}}</div>
+                                </div>
+                            </label>
                         </div>
                     </div>
                     <div class="payment-method">
 
                         <div class="title-wrapper">
-                            <div class="title">Paywith</div>
+                            <div class="title">Pay with</div>
                             <div class="wallet-icons">
                                 <div><img src="../../assets/images/main/book-staycation/visa.png" loading="lazy"
                                         alt="Avatar" [draggable]="false"></div>
@@ -68,9 +86,10 @@
                     </div>
                     <div class="cancellation-policy">
                         <div class="title">Cancellation Policy</div>
-                        <div class="subtitle">Message the Host</div>
-                        <div class="description">This Reservation is non-refundable</div>
-                        <div class="seemore">Learn more</div>
+                        <!-- <div class="subtitle">Message the Porprierotor</div> -->
+                        <!-- <div class="description">This Reservation is non-refundable</div> -->
+                        <div class="description">This Reservation is refundable</div>
+                        <div class="seemore" (click)="onClickLearnMore()">Learn more</div>
                     </div>
                     <div class="ground-rules">
                         <div class="title">Ground Rules</div>
@@ -78,23 +97,25 @@
                             guest.</p>
                         <ul class="description">
                             <li>Follow the house rules.</li>
-                            <li>Treat your Host’s home like your own.</li>
+                            <li>Treat your Porprierotor’s home like your own.</li>
                         </ul>
                     </div>
                     <div class="notes">
                         <div><mat-icon>wb_sunny</mat-icon></div>
                         <p>
-                            Your reservation won’t be confirmed until the Host accepts your request (within 24
+                            Your reservation won’t be confirmed until the Porprierotor accepts your request (within 24
                             hours). You
                             won’t be charged until then.
                         </p>
                     </div>
                     <div class="agrees-policy">
-                        <p>By selecting the button below, I agree to the Host's House Rules, <span
-                                class="Ground Rules for guest">Ground rules for
-                                guests</span>, TaraGo's Rebooking and Refund Policy, and that Airbnb can charge my
+                        <p>By selecting the button below, I agree to the Proprietor's House Rules, 
+                            <span class="bookingterms" (click)="onClickBookingTerms()">Booking terms</span> 
+                            TaraGo's Rebooking and Refund Policy, and
+                            that TaraGo can charge my
                             payment method if
-                            I’m responsible for damage. I agree to pay the total amount shown if the Host accepts my
+                            I’m responsible for damage. I agree to pay the total amount shown if the Porprierotor
+                            accepts my
                             booking
                             request.</p>
                     </div>
@@ -104,42 +125,42 @@
             <div class="price-details">
                 <div class="title">Price Details</div>
                 <div class="price-details-card">
-                        <div class="image">
-                            <img src="../../assets/images/main/book-staycation/image.jpg" loading="lazy" alt="images"
-                                [draggable]="false" />
+                    <div class="image">
+                        <img src="../../assets/images/main/book-staycation/image.jpg" loading="lazy" alt="images"
+                            [draggable]="false" />
+                    </div>
+                    <div class="title-wrapper">
+                        <div class="title">Condo in Alabang</div>
+                        <div class="heart">
+                            <mat-icon>stars</mat-icon>
+                            <div>Rate</div>
+                            <div>7.00</div>
                         </div>
-                        <div class="title-wrapper">
-                            <div class="title">Condo in Alabang</div>
-                            <div class="heart">
-                                <mat-icon>stars</mat-icon>
-                                <div>Rate</div>
-                                <div>7.00</div>
+                    </div>
+                    <div class="guest-desc">
+                        <span>3 guests</span> - <span>1 bedroom</span> - <span>2 beds</span> - <span>1 bath</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="total-computation-wrapper">
+                        <div class="note">You won’t be charged yet</div>
+                        <div class="computation">
+                            <div class="comp">
+                                <td><span>₱2,000</span> x 2 night</td>
+                                <td>₱4000</td>
+                            </div>
+                            <div class="comp">
+                                <td>TaraGo Service Fee</td>
+                                <td>₱500</td>
                             </div>
                         </div>
-                        <div class="guest-desc">
-                            <span>3 guests</span> - <span>1 bedroom</span> - <span>2 beds</span> - <span>1 bath</span>
-                        </div>
+                    </div>
 
-                        <hr>
-
-                        <div class="total-computation-wrapper">
-                            <div class="note">You won’t be charged yet</div>
-                            <div class="computation">
-                                 <div class="comp">
-                                      <td><span>₱2,000</span> x 2 night</td>
-                                      <td>₱4000</td>
-                                 </div>
-                                 <div class="comp">
-                                      <td>TaraGo Service Fee</td>
-                                      <td>₱500</td>
-                                 </div>
-                            </div>
-                       </div>
-
-                       <div class="total">
+                    <div class="total">
                         <div>Total before taxes</div>
                         <div>₱2,500 total</div>
-                   </div>
+                    </div>
 
                 </div>
             </div>

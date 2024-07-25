@@ -38,8 +38,8 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
 
   public isLinear = false;
   public isAuth!: boolean;
-  public isHiddenintro = true;
-  public isHiddenstepper = false;
+  public isHiddenintro = false;
+  public isHiddenstepper = true;
 
   private _cover!: File | null;
   private _tokenClaims!: ITokenClaims;
