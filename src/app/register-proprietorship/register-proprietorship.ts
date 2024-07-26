@@ -30,6 +30,7 @@ export interface Step3Form {
   city: FormControl;
   province: FormControl;
   zip: FormControl;
+  landmark: FormControl;
 }
 
 export interface Step4Form {
@@ -46,6 +47,8 @@ export interface Step5Form {
 
 export interface Step6Form {
   img: FormControl;
+  // bedroom: FormControl;
+  // desc: FormControl;
 }
 
 export interface Step7Form {
@@ -55,6 +58,7 @@ export interface Step7Form {
 export interface Step8Form {
   descriptionText: FormArray<FormGroup>;
   descriptionTextOther: FormControl;
+  detailedDescription: FormControl;
 }
 
 export interface Step9Form {
@@ -69,4 +73,11 @@ export interface Step10Form {
 export interface Step11Form {
   price: FormControl;
   beforeTax: FormControl;
+}
+
+export interface Step12Form {
+  type: FormControl;
+  idFront: FormControl;
+  idBack: FormControl;
+  contact: FormControl;
 }

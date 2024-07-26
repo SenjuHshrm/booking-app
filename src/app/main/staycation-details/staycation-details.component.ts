@@ -21,6 +21,10 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public serviceCharge: any = []
   private _sub: Subscription = new Subscription()
   public imageSets:any;
+  public totalBeforeTax!: number;
+  public averageStar: number = 0;
+  public totalReviews: number = 0;
+  public latestReview: any;
   
   constructor(
     private router: Router,
@@ -60,12 +64,18 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['main/book-staycation']);
   }
 
+  public getTotalBeforeTax(total: number) {
+    return this._basicUtil.getTotalBeforeTax(total, this.serviceCharge)
+  }
+
   private _getStaycationDetails(id: string) {
     this._sub.add(this._staycation.getStaycationDetails(id).subscribe({
       next: (res: any) => {
         console.log(res)
         this.details = {
           ...res,
+          amenities: res.amenities.join(", "),
+          address: this._basicUtil.constructAddress(res.address),
           host: {
             name: this._basicUtil.constructName(res.host.name),
             img: this._basicUtil.setImgUrl(res.host.img)
@@ -81,7 +91,13 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       next: (res: any) => {
         console.log(res)
         res.data.forEach((r: any) => {
-          this.serviceCharge.push(r)
+          // this.serviceCharge.push(r)
+          Object.keys(r).forEach((key: string) => {
+            this.serviceCharge.push({
+              name: this._basicUtil.propToReadable(key),
+              price: r[key]
+            })
+          })
         })
       }
     }))
