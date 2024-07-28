@@ -1,13 +1,13 @@
 nav {
     border-bottom: 1px solid #D9D9D9;
     font-family: Poppins-Regular;
-    height:4rem;
-    
-   
+    height: 4rem;
+
+
     .nav-wrapper {
         // border: 1px solid black;
         max-width: 70%;
-        height:100%;
+        height: 100%;
         margin-right: auto;
         margin-left: auto;
         display: flex;
@@ -21,11 +21,11 @@ nav {
         .header-logo {
             cursor: pointer;
             // border: 1px solid black;
-            max-width:5rem;
+            max-width: 5rem;
             height: auto;
             display: inline-flex;
-            gap:1rem;
-            
+            gap: 1rem;
+
             img {
                 // border: 1px solid black;
                 width: 100%;
@@ -38,52 +38,47 @@ nav {
             display: flex;
             gap: 1rem;
             align-items: center;
-            // border: 1px solid black;
 
             .avatar-account {
+                cursor: pointer;
                 display: flex;
                 align-items: center;
                 gap: 1rem;
-
-                .account-type-btn {
-                    text-decoration: underline;
-                    color: #63AB68;
-                    cursor: pointer;
-                }
-
+                background-color: white;
+                box-shadow: 1px 1px 5px #88888877;
+                padding: 3px 10px 3px;
+                border-radius: 100px;
 
                 img {
                     height: 35px;
                     width: 35px;
-                    // border: 1px solid black;
                     border-radius: 100%;
-                    object-fit:contain;
-                    object-position: center;
+                    border: 1px solid #63AB68;
+                }
+
+                .menu {
+                    cursor: pointer;
+                    padding: 7px 7px 3px;
+                    border-radius: 100%;
+                    color: black;
+                    border: none;
+                    outline: none;
+                    background-color: transparent;
+
+                    mat-icon {
+                        margin: 0;
+                        color: #63AB68;
+                    }
+
                 }
 
             }
 
-            .menu {
-                cursor: pointer;
-                background-color: white;
-                box-shadow: 1px 1px 5px #88888877;
-                padding: 10px 10px 5px;
-                border-radius: 100%;
-                color: #63AB68;
-                border: none;
-                outline: none;
-
-                mat-icon {
-                    margin: 0;
-                }
-
-
-            }
-
-            .menu:hover {
-                background-color: black;
+            .avatar-account:hover {
                 color: #63AB68;
             }
+
+
         }
 
         .header-login-button {
@@ -120,21 +115,20 @@ nav {
 }
 
 @media only screen and (max-width: 1400px) {
-    nav{
+    nav {
         .nav-wrapper {
 
             max-width: 80%;
-        } 
+        }
     }
 }
 
 @media only screen and (max-width: 1000px) {
-    nav{
+    nav {
         .nav-wrapper {
-            max-height:4rem;
+            max-height: 4rem;
             padding: 0rem 1rem 0rem;
             max-width: 98%;
-        } 
+        }
     }
 }
-

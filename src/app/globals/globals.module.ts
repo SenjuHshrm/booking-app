@@ -12,7 +12,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { LearnMoreComponent } from './learn-more/learn-more.component';
 import { BookingTermsComponent } from './booking-terms/booking-terms.component';
-import { ViewTodaysBookingComponent } from './view-todays-booking/view-todays-booking.component'
+import { ReservationsViewComponent } from './reservations-view/reservations-view.component';
+
 
 
 
@@ -28,7 +29,7 @@ import { ViewTodaysBookingComponent } from './view-todays-booking/view-todays-bo
     CreateListingComponent,
     LearnMoreComponent,
     BookingTermsComponent,
-    ViewTodaysBookingComponent,
+    ReservationsViewComponent,
   ],
 
   imports: [

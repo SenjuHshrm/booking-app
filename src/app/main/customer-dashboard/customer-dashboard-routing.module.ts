@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: 'today',
         loadChildren: () => import('./today/today.module').then(m => m.TodayModule),
-        title: 'TaraGo | Today'
+        title: 'TaraGo | Reservation'
       },
       {
         path: 'calendar',

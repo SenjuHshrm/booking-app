@@ -1,0 +1,93 @@
+<div class="reservation-modal" [@fadeInAnimation]>
+    <section class="reservation-modal-reservation-modal-container">
+        <div class="reservation-modal-reservation-modal-wrapper">
+            <div class="section-1">
+                <div class="profile-picture">
+                    <div class="wrapper">
+                        <div class="profile-picture-img">
+                            <img src="../assets/images/avatars/placeholder.png" loading="lazy" alt="Avatar"
+                                [draggable]="false">
+                        </div>
+                        <div class="profile-info">
+                            <div class="name">Juan A. Dela Cruz</div>
+                            <div class="label">Booked Guest</div>
+                            <div class="duration-at-tarago"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="verification">
+                    <div class="confirm">He's I.D confirmed information not found.</div>
+                </div>
+            </div>
+            <div class="section-2">
+                <div class="header">
+                    <div class="title">Upcoming</div>
+                    <div class="create-profile">
+                        <button><span><mat-icon>person_add</mat-icon></span><span class="profile-text">View your
+                                profile</span></button>
+                    </div>
+                </div>
+                <div class="content">
+
+                    <div class="info-details-personal-info">
+                        <div class="title">Property</div>
+                        <!-- <div class="info-details-wrapper" *ngFor="let personInfos of personalInfos">
+                            <div class="info-details-label">{{personInfos.label}}</div>
+                            <div class="info-details-content">{{personInfos.info}}</div>
+                        </div> -->
+                        <div class="info-details-wrapper info-details-wrapper-custom-flex">
+                            <div class="custom-img">
+                                <img src="../assets/images/customer-dashboard/listing/4.jpg" loading="lazy" alt="Avatar"
+                                    [draggable]="false">
+                            </div>
+                            <div class="info-details-label property-name">Muntinlupa Condo Unit</div>
+                        </div>
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Number of guest</div>
+
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Date Booked</div>
+
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Date of Reservation</div>
+
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Interval</div>
+
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Contact Number +63</div>
+
+                    </div>
+                </div>
+                <div class="info-details-likes">
+                    <div class="title">Your likes</div>
+                    <!-- <div class="info-details-wrapper" *ngFor="let personLikes of personalLikes">
+                            <div class="info-details-label">{{personLikes.label}}</div>
+                            <div class="info-details-content">{{personLikes.info}}</div>
+                        </div> -->
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Hobbies</div>
+
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Work</div>
+
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Favorite Food</div>
+
+                    </div>
+                    <div class="info-details-wrapper">
+                        <div class="info-details-label">Favorite Place</div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
