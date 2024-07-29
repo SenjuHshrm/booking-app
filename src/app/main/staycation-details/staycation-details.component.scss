@@ -1,3 +1,7 @@
+
+
+
+
 .staycation-details {
     width: 100%;
     margin-left: auto;
@@ -6,6 +10,12 @@
     position: relative;
 
     &-staycation-details-wrapper {
+        
+         hr{
+            border: 0;
+            height: 1px;
+            background-color: #ccc !important;
+         }
 
         .property-title {
             margin-top: 2rem;
@@ -44,103 +54,14 @@
             }
         }
 
-        // .image-gallery {
-        //      background-color: #68A968;
-        //     display: grid;
-        //     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        //     gap: .5rem;
-        //     cursor: pointer;
-        //     margin-bottom: 5rem;
-
-        //     .stacked {
-        //         display: grid;
-
-        //         * {
-        //             grid-column: 1 /1;
-        //             grid-row: 1/1;
-        //         }
-        //     }
-
-        //     .first-image {
-        //         // border: 2px solid red; 
-        //         grid-row: span 2;
-        //         grid-column: span 2;
-
-        //     }
-
-        //     .card {
-        //         width: 100%;
-        //         text-align: center;
-        //         margin: auto;
-        //         border-radius: none;
-        //         width: 80%;
-
-        //         .content__card {
-        //             position: relative;
-        //             z-index: 2;
-        //             align-self: end;
-        //             margin-bottom: 1.5rem;
-
-        //             .info {
-        //                 height: fit-content;
-        //                 text-align: left;
-
-        //                 .title {
-        //                     display: inline-flex;
-        //                     align-items: center;
-        //                     font-weight: bold;
-        //                     font-size: max(min(.8rem), .5vw);
-        //                     color: black;
-        //                     // border: 1px solid black;
-        //                     height: fit-content;
-        //                 }
-
-        //                 .description {
-        //                     font-size: max(min(.8rem), .5vw);
-        //                 }
-
-        //                 .permonth {
-        //                     font-size: max(min(.8rem), .5vw);
-        //                     color: #68A968;
-        //                     font-weight: bold;
-        //                 }
-        //             }
-
-        //         }
-
-        //         .image {
-        //             aspect-ratio: 1/1;
-        //             border-radius: none;
-        //             object-fit: cover;
-
-
-        //             img {
-        //                 width: 100%;
-        //                 height: auto;
-        //             }
-
-        //         }
-
-        //         .image:hover {
-        //             opacity: 85%;
-        //         }
-
-        //     }
-
-        //     .card,
-        //     .stacked,
-        //     .first-image {
-        //         aspect-ratio: 1/1;
-        //     }
-        // }
+    
         .gallery-lightbox-container {
             position: relative;
             width: 100%;
-           
             display: inline-block;
             text-align: center;
             align-items: center;
-           
+
 
 
             .gallery {
@@ -152,29 +73,26 @@
                 place-items: center;
                 align-items: center;
 
-
-
-
-                .gallery-img img {
-                     margin: auto;
+                .gallery-img {
+                    margin: auto;
                     width: 100%;
                     height: 20rem;
                     cursor: zoom-in;
-                    border-radius: .35rem;
-                    margin-bottom: 30px;
+                 
+                    margin-bottom: 10px;
 
-                    .images {
+                    img {
+                        object-fit: cover;
+                        width: 100%;
+                        height: 100%;
 
-                        background-size: cover !important;
-                        background-position: center !important;
-                        background-repeat: no-repeat !important;
                     }
 
-    
+
 
                 }
 
-          
+
             }
 
             .lightbox {
@@ -281,8 +199,9 @@
 
         .details-reserve-wrapper {
             display: grid;
-            grid-template-columns: 3fr 2fr;
+            grid-template-columns: auto 40%;
             gap: 20px;
+            margin-top: 2rem;
 
             .details-column {
                 .details-header {
@@ -473,6 +392,7 @@
                 top: 2rem;
                 margin-bottom: 2rem;
                 height: fit-content;
+                width: 100%;
                 background-color: white;
                 box-shadow: 1px 1px 5px #88888877;
                 padding: 2rem;
@@ -490,7 +410,6 @@
 
                     .date-checkin-out {
                         display: flex;
-
                         gap: 1rem;
                         align-items: center;
 
@@ -499,7 +418,9 @@
                             font-size: 14px;
                             font-weight: bold;
                             display: flex;
+                            flex-wrap: wrap;
                             align-items: center;
+                            justify-content: space-between;
                             gap: .5rem;
                             background-color: white;
                             box-shadow: 1px 1px 5px #88888877;
@@ -507,6 +428,9 @@
                             width: fit-content;
                             border-radius: 5px;
 
+                            .title {
+                                white-space: pre;
+                            }
 
                             .custom-date-input {
                                 // -webkit-appearance: none;
@@ -520,41 +444,26 @@
                                 color: #797979;
                                 font-family: Arial, sans-serif;
                                 font-size: 14px;
-                                max-width: 150px;
+                               
                                 width: 100%;
+                                border: 1px solid #ccc; 
+                               
 
                             }
 
-                            /* Custom style for the dropdown arrow */
+        
                             .custom-date-input::-webkit-calendar-picker-indicator {
                                 cursor: pointer;
                                 padding: .5rem;
                                 background-color: transparent;
-                                background-image: url('../../../assets/images/search-filters/v-icon.png'); // Replace with your pin icon
-                                /* You can use background-image here to add a custom image */
+                                background-image: url('../../../assets/images/search-filters/v-icon.png');
 
                             }
-
-                            /* Custom style for the datepicker popup (Chrome, Safari) */
-                            .custom-date-input::-webkit-calendar-picker-popup {
-                                /* Add your custom styles for the popup */
-                                background-color: #68A968 !important;
-                                color: #68A968 !important;
-                                padding: 2rem;
-                            }
-
-                            /* Custom style for the datepicker popup (Firefox) */
-                            .custom-date-input[type="date"]::-moz-calendar-picker-indicator {
-                                /* Add your custom styles for the popup */
-                                background-color: #68A968 !important;
-                                color: #68A968 !important;
-                            }
-
 
                             .calendar-icon {
                                 width: 25px;
                                 height: 25px;
-                                background-image: url('../../../assets/images/search-filters/calendaricon.png'); // Replace with your pin icon
+                                background-image: url('../../../assets/images/search-filters/calendaricon.png'); 
                                 background-size: contain;
                                 background-repeat: no-repeat;
                             }
@@ -601,6 +510,58 @@
                                 border: none;
                                 cursor: pointer;
                                 text-align: center;
+                            }
+                        }
+
+                        .addguest-inputs{
+                            margin-top: 1rem;
+                            .addguest-inputs-add-guest-container {
+                                .addguest-header-wrapper {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    padding-bottom: 1rem;
+                                    // border: 1px solid red;
+                                    
+                                    .addguest-title {
+                                        font-weight: bold;
+                                    }
+                                }
+                        
+                        
+                                .input-addguest {
+                                    display: grid;
+                                    grid-template-columns: repeat(2, 2fr);
+                                    align-content: center;
+                                    align-items: center;
+                                    place-items: center;
+                                    place-self: center;
+                        
+                                    // border: 1px solid red;
+                        
+                                }
+                        
+                        
+                                label {
+                                    // border: 1px solid red;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                        
+                                input[type="number"] {
+                                    padding: 0.5rem;
+                                    border: 1px solid #ccc;
+                                    border-radius: 4px;
+                                    outline: none;
+                                    width: 80%;
+                                    // border: 1px solid red;
+                                }
+                        
+                                .custom-btn{
+                                    margin-top: 1rem;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                }
                             }
                         }
                     }
@@ -699,6 +660,41 @@
         }
     }
 }
+
+@media screen and (max-width: 1285px) {
+    .staycation-details {
+        &-staycation-details-wrapper {
+           
+        .details-reserve-wrapper {
+            display: flex;
+          flex-direction: column;
+            gap: 20px;
+            margin-top: 2rem;
+
+            .reserve-sticky-column {
+                
+                .reserve-sticky-column-wrapper {
+
+                    .date-checkin-out {
+    
+
+                        .checkin-out-style {
+                        
+                            width:100%;
+                         
+                        }
+                     
+
+                        }
+
+                    }
+            }
+        }
+
+        }
+    }
+}
+
 
 @media screen and (max-width: 1200px) {
     .staycation-details {

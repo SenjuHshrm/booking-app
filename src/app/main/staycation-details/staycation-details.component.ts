@@ -25,6 +25,12 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public averageStar: number = 0;
   public totalReviews: number = 0;
   public latestReview: any;
+
+  public guest_adults: number = 0;
+  public guest_children: number = 0;
+  public guest_infants: number = 0;
+  public guest_pets: number = 0;
+
   
   constructor(
     private router: Router,
@@ -111,7 +117,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       this.gallery.push(this._basicUtil.setImgUrl(i))
     })
 
-    this.imageSets = limit(this.gallery, 5); 
+    this.imageSets = limit(this.gallery, 6); 
   }
   
 

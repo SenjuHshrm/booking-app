@@ -92,6 +92,8 @@ const BALANCEAMOUNT: any[] = [
 })
 export class UpcomingComponent implements OnInit {
 
+  public title:string = 'Upcoming';
+
   displayedColumns: string[] = [
     'id', 
     'property', 
@@ -124,9 +126,10 @@ export class UpcomingComponent implements OnInit {
   viewUpcoming(): void {
     const dialogRef = this.dialog.open(ReservationsViewComponent, {
       width: '99vw',
-      maxWidth:'65rem', 
+      maxWidth:'60rem', 
       height: '99vh',
-      maxHeight: '55rem'
+      maxHeight: '47rem',
+      data:this.title
     
     });
 
