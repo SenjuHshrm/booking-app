@@ -25,6 +25,12 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public averageStar: number = 0;
   public totalReviews: number = 0;
   public latestReview: any;
+
+  public guest_adults: number = 0;
+  public guest_children: number = 0;
+  public guest_infants: number = 0;
+  public guest_pets: number = 0;
+
   
   constructor(
     private router: Router,
@@ -32,8 +38,9 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService,
     private _globalStatic: GlobalStaticService
+
   ) {
-    
+  
   }
 
   ngOnInit(): void {
@@ -71,7 +78,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   private _getStaycationDetails(id: string) {
     this._sub.add(this._staycation.getStaycationDetails(id).subscribe({
       next: (res: any) => {
-        console.log(res)
+        console.log( res)
         this.details = {
           ...res,
           amenities: res.amenities.join(", "),
@@ -111,7 +118,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       this.gallery.push(this._basicUtil.setImgUrl(i))
     })
 
-    this.imageSets = limit(this.gallery, 5); 
+    this.imageSets = limit(this.gallery, 6); 
   }
   
 

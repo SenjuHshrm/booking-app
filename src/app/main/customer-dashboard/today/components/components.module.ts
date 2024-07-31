@@ -14,6 +14,7 @@ import { CurrentlyGuestComponent } from './currently-guest/currently-guest.compo
 import { TimeFormatPipe } from './time-format.pipe';
 import { PluralizePipe } from './pluralize-interval.pipe';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { CancelledBookingComponent } from './cancelled-booking/cancelled-booking.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ReviewsComponent } from './reviews/reviews.component';
     CheckingOutComponent,
     TimeFormatPipe,
     PluralizePipe,
-    ReviewsComponent
+    ReviewsComponent,
+    CancelledBookingComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { ReviewsComponent } from './reviews/reviews.component';
     ArrivingSoonComponent,
     UpcomingComponent,
     CurrentlyGuestComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    CancelledBookingComponent
   ]
 })
 export class ComponentsModule { }

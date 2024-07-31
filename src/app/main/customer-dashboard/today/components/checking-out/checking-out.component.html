@@ -8,7 +8,7 @@
                <mat-icon>search</mat-icon>
             </div>
             <div class="table-container">
-               <table mat-table [dataSource]="dataSource" matSort class="mat-table-responsive">
+               <table mat-table [dataSource]="dataSource" class="mat-table-responsive">
 
                   <ng-container matColumnDef="id">
                      <th mat-header-cell *matHeaderCellDef style="white-space: pre;">ID</th>
@@ -104,7 +104,7 @@
                            <mat-icon>more_horiz</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                           <button mat-menu-item>View</button>
+                           <button mat-menu-item>View Guest Profile</button>
                            <button mat-menu-item>Message guest</button>
                         </mat-menu>
                      </td>

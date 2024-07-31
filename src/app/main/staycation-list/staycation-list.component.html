@@ -21,7 +21,7 @@
         </section>
         <section class="categories">
             <div class="staycations" *ngIf="showCat === 'staycation'">
-                <swiper #swiper class="swiper-container" [slidesPerView]="4" [navigation]="true" (autoplayPause)="true"
+                <swiper #swiper class="swiper-container" [slidesPerView]="4" [spaceBetween]="5" [navigation]="false" (autoplayPause)="true"
                     [draggable]="true" [loop]="true" [breakpoints]="{
                     '300': {
                         slidesPerView: 4,
@@ -83,7 +83,7 @@
                 </swiper>
             </div>
             <div class="eventplace" *ngIf="showCat === 'eventplace'">
-                <swiper #swiper class="swiper-container" [slidesPerView]="4" [navigation]="true" (autoplayPause)="true"
+                <swiper #swiper class="swiper-container" [slidesPerView]="4" [navigation]="false" (autoplayPause)="true"
                     [draggable]="true" [loop]="true" [breakpoints]="{
                  '300': {
                         slidesPerView: 4,
@@ -198,7 +198,10 @@
                     <div class="info">
                         <div class="title">{{properties.title}}</div>
                         <div class="description">{{properties.description}}</div>
-                        <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
+                        <div class="permonth">
+                             <div>₱&nbsp;{{properties.permonth}} monthly</div>
+                            <div></div>
+                        </div>
                     </div>
                     <div>
                         <div></div>

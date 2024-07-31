@@ -2,6 +2,8 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { ReservationsViewComponent } from 'src/app/globals/reservations-view/reservations-view.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 export interface UserData {
@@ -90,6 +92,8 @@ const BALANCEAMOUNT: any[] = [
 })
 export class UpcomingComponent implements OnInit {
 
+  public title:string = 'Upcoming';
+
   displayedColumns: string[] = [
     'id', 
     'property', 
@@ -109,7 +113,7 @@ export class UpcomingComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(public dialog:MatDialog) {
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
     this.dataSource = new MatTableDataSource(users);
   }
@@ -117,6 +121,24 @@ export class UpcomingComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+
+  viewUpcoming(): void {
+    const dialogRef = this.dialog.open(ReservationsViewComponent, {
+      width: '99vw',
+      maxWidth:'60rem', 
+      height: '99vh',
+      maxHeight: '47rem',
+      data:this.title
+    
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

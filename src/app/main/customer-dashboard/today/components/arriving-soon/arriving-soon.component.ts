@@ -2,6 +2,8 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { ReservationsViewComponent } from 'src/app/globals/reservations-view/reservations-view.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 export interface UserData {
@@ -90,6 +92,7 @@ const BALANCEAMOUNT: any[] = [
 export class ArrivingSoonComponent implements OnInit {
   
   dateToday:any = new Date();
+  public title:string = 'Arriving';
   displayedColumns: string[] = [
     'id', 
     'property', 
@@ -111,7 +114,7 @@ export class ArrivingSoonComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(public dialog:MatDialog){
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
     this.dataSource = new MatTableDataSource(users);
   }
@@ -119,6 +122,19 @@ export class ArrivingSoonComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  viewArriving(): void {
+    const dialogRef = this.dialog.open(ReservationsViewComponent, {
+      width: '99vw',
+      maxWidth:'60rem', 
+      height: '99vh',
+      maxHeight: '47rem',
+      data:this.title
+    
+    });
+  }
+
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

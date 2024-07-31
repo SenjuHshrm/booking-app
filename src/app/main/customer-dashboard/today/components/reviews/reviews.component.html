@@ -36,6 +36,11 @@
                             </td>
                         </ng-container>
 
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Date</th>
+                            <td mat-cell *matCellDef="let element">{{element.daterate | date:'shortDate'}}</td>
+                         </ng-container>
+
                         <ng-container matColumnDef="guestrate">
                             <th mat-header-cell *matHeaderCellDef style="width:fit-content;white-space: pre;">Rate of
                                 Guest</th>
@@ -46,9 +51,9 @@
                             </td>
                         </ng-container>
 
-                        <ng-container matColumnDef="guestcomment">
+                        <ng-container matColumnDef="guestcomments">
                             <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Comment of Guest</th>
-                            <td mat-cell *matCellDef="let element"></td>
+                            <td mat-cell *matCellDef="let element" class="comments-limit">{{element.guestcomments}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="action">
@@ -58,12 +63,11 @@
                                     <mat-icon>more_horiz</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item>View</button>
+                                    <button mat-menu-item>View Guest Profile</button>
                                     <button mat-menu-item>Message guest</button>
                                 </mat-menu>
                             </td>
                         </ng-container>
-
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

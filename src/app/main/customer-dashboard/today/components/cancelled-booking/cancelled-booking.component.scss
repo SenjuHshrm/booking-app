@@ -1,0 +1,132 @@
+.today-tabs {
+    &-today-tabs-wrapper {
+      .content {
+        height: 50vh;
+        max-height: 40rem;
+        margin: 1rem 0 1rem;
+        border-radius: 20px;
+  
+        .header_title_date {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem 1rem 0;
+  
+          .title {
+            margin: 0;
+            padding: 0;
+          }
+  
+          .date {
+            display: flex;
+            gap: 1rem;
+  
+            .dates {
+              font-weight: bold;
+            }
+          }
+        }
+  
+        .search {
+          display: flex;
+          margin: 1rem 1rem 1rem;
+          width: 100%;
+          max-width: 20rem;
+          padding: .5rem 1rem .5rem;
+          border: 1px solid rgb(190, 190, 190);
+          border-radius: 10px;
+  
+          input {
+            width: 100%;
+            border: none;
+            outline: none;
+  
+          }
+  
+          mat-icon {
+            color: #63AB68;
+          }
+        }
+  
+        .table-container {
+          padding-bottom: 1rem;
+          max-width: 100%;
+          width: 100%;
+          overflow: auto;
+  
+  
+  
+        }
+  
+        .mat-table-responsive {
+          width: 100%;
+          overflow-x: auto;
+          padding-bottom: 1rem !important;
+  
+          .custom-checkinout {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+  
+  
+        }
+  
+        .img {
+          width: 2rem;
+          height: 2rem;
+          object-fit: cover;
+        }
+  
+        .action-btn {
+          border: none;
+          background-color: transparent;
+          outline: none;
+          cursor: pointer;
+        }
+  
+  
+        .no-checking {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        }
+  
+  
+      }
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .today-tabs {
+      &-today-tabs-wrapper {
+  
+        .content {
+  
+          .header_title_date {
+            display: flex;
+            flex-direction: column;
+  
+    
+          }
+  
+          .table-container {
+          
+  
+            .search {
+              margin: auto;
+              margin-top: 1rem;
+            }
+          }
+  
+          .mat-table-responsive {
+            display: block;
+            table-layout: fixed !important;
+  
+          }
+        }
+      }
+    }
+  }

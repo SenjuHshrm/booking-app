@@ -96,6 +96,10 @@ export class NavComponent implements OnInit {
     this.router.navigate(['main/notification']);
   }
 
+  public goToYourTrips() {
+    this.router.navigate(['main/trips']);
+  }
+
   public goToWishlist() {
     this.router.navigate(['main/wishlist']);
   }

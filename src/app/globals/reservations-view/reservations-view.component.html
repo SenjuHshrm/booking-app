@@ -1,0 +1,128 @@
+<div class="reservation-modal" [@fadeInAnimation]>
+    <div class="close-button close" (click)="closeDialog()"><mat-icon>close</mat-icon></div>
+    <section class="reservation-modal-reservation-modal-container">
+        <div class="reservation-modal-reservation-modal-wrapper">
+            <div class="section-1">
+                <div class="profile-picture">
+                    <div class="wrapper">
+                        <div class="profile-picture-img">
+                            <img src="../assets/images/avatars/placeholder.png" loading="lazy" alt="Avatar"
+                                [draggable]="false">
+                        </div>
+                        <div class="profile-info">
+                            <div class="name">Juan A. Dela Cruz</div>
+                            <div class="label">Booked Guest</div>
+                            <div class="duration-at-tarago">+6309123456789</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="verification">
+
+                    <div class="info-verified"
+                        [ngStyle]="{'display': verifiedIdCard || verifiedMobileNumber ? 'block' : 'none'}">
+                        <div class="info-verified-wrapper">
+                            <div>
+                                <div class="id_verfiy">
+                                    <div class="icons">
+                                        <mat-icon>check</mat-icon>
+                                    </div>
+                                    <div>Identification Card Verified</div>
+                                </div>
+                                <div class="id_verfiy">
+                                    <div class="icons">
+                                        <mat-icon>check</mat-icon>
+                                    </div>
+                                    <div>Mobile Number Verified</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-not-verified"
+                        [ngStyle]="{'display': !verifiedIdCard || !verifiedMobileNumber ? 'block' : 'none'}">
+                        This person is not verified.
+                    </div>
+                    <div class="title">Verification</div>
+                </div>
+            </div>
+            <div class="section-2">
+                <div class="header">
+                    <div class="title">{{titleComponent}}</div>
+                    <div class="create-profile">
+                        <button>
+                            <span><mat-icon>close</mat-icon></span>
+                            <span class="profile-text">
+                                Cancel
+                            </span>
+                        </button>
+                        <button>
+                            <span><mat-icon>check</mat-icon></span>
+                            <span class="profile-text">
+                                Accept
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="content">
+
+                    <div class="info-details-booked-info">
+                        <div class="title">Your Property</div>
+                        <div class="subtitle">Guest want's book this property </div>
+                        <!-- <div class="info-details-wrapper" *ngFor="let personInfos of bookedInfos">
+                            <div class="info-details-label">{{personInfos.label}}</div>
+                            <div class="info-details-content">{{personInfos.info}}</div>
+                        </div> -->
+                        <div class="info-details-wrapper info-details-wrapper-custom-flex">
+                            <div class="custom-img">
+                                <img src="../assets/images/customer-dashboard/listing/4.jpg" loading="lazy" alt="Avatar"
+                                    [draggable]="false">
+                            </div>
+                            <div class="info-details-label property-name">Muntinlupa Condo Unit</div>
+                        </div>
+
+                        <div class="info-details-booked-guest-info">
+                            <div>
+                                <div class="title">Your Guest Details</div>
+                                <div class="subtitle">Complete details about this booking</div>
+                            </div>
+                            <div class="info-details-wrapper">
+                                <div class="info-details-label">Date booked</div>
+                                <div class="info-details-label">Sample</div>
+                            </div>
+                            <div class="info-details-wrapper">
+                                <div class="info-details-label">No. of Guest</div>
+                                <div class="info-details-label">Sample</div>
+                            </div>
+                            <div class="info-details-wrapper">
+                                <div class="info-details-label">Reservation Date</div>
+                                <div class="info-details-label">Sample</div>
+
+                            </div>
+                            <div class="info-details-wrapper">
+                                <div class="info-details-label">Interval</div>
+                                <div class="info-details-label">Sample</div>
+
+                            </div>
+                            <div class="info-details-wrapper">
+                                <div class="info-details-label">Payment Type</div>
+                                <div class="info-details-label">Sample</div>
+
+                            </div>
+                            <div class="info-details-wrapper">
+                                <div class="info-details-label">Total Amount</div>
+                                <div class="info-details-label">Sample</div>
+                            </div>
+
+                            <div class="info-details-wrapper">
+                                <div class="info-details-label">Balance</div>
+                                <div class="info-details-label">Sample</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

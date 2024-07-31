@@ -1,33 +1,28 @@
 <nav>
     <div class="nav-wrapper">
-        <div class="header-logo" >
-                <img src="./assets/images/home/header/navigation/tarago.png" 
-                alt="logo" 
-                (click)="goToHome()"
-                />
+        <div class="header-logo">
+            <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" (click)="goToHome()"/>
         </div>
+
         <div class="avatar-account-menu-wrapper" *ngIf="isAuth">
-            <div class="avatar-account">
-                <!-- <div class="account-type-btn">Switch to proprietor</div> -->
-                <!-- <div class="account-type-btn">Switch to guest</div> -->
-                <div class="account-type-btn" (click)="goToProprietorReg()" *ngIf="!isHost">Be a proprietor</div>
-                <!-- <img src="../../assets/images/main/staycation-details/avatar.png" loading="lazy" alt="Avatar" [draggable]="false"> -->
+            <div class="account-type-btn" (click)="goToProprietorReg()" *ngIf="!isHost">Be a proprietor</div>
+            <div class="avatar-account" [matMenuTriggerFor]="menu">
+                <button class="menu" mat-button><mat-icon>menu</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="goToUserProfile()">Profile</button>
+                    <button mat-menu-item (click)="goToMessage()">Messages</button>
+                    <button mat-menu-item (click)="goToNotification()">Notification</button>
+                    <button mat-menu-item (click)="goToYourTrips()">Trips</button>
+                    <button mat-menu-item (click)="goToWishlist()">Wishlist</button>
+                    <button mat-menu-item (click)="goToCustomerDashboard()">Manage Listing</button>
+                    <button mat-menu-item (click)="goToAccountSettings()">Account Setting</button>
+                    <button mat-menu-item>Help</button>
+                    <button mat-menu-item (click)="logout()">Logout</button>
+                </mat-menu>
                 <img [src]="profileImg" loading="lazy" alt="Avatar" [draggable]="false">
             </div>
-
-            <button class="menu" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="goToUserProfile()">Profile</button>
-                <button mat-menu-item (click)="goToMessage()">Messages</button>
-                <button mat-menu-item (click)="goToNotification()">Notification</button>
-                <button mat-menu-item (click)="goToWishlist()">Wishlist</button>
-                <button mat-menu-item (click)="goToCustomerDashboard()">Manage Listing</button>
-                <button mat-menu-item (click)="goToAccountSettings()">Account Setting</button>
-                <button mat-menu-item>Help</button>
-                <button mat-menu-item (click)="logout()">Logout</button>
-            </mat-menu>
-
         </div>
+
         <div class="header-login-button" *ngIf="!isAuth">
             <button (click)="openLoginDialog()">Login</button>
             <div class="divider"></div>

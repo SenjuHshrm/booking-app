@@ -1,0 +1,66 @@
+<section class="your-trips-container">
+    <div class="property-title">
+        <div class="title-wrapper">
+            <div class="title">Your Trips</div>
+        </div>
+        <div class="filter_search">
+            <div class="search">
+                <input type="text" placeholder="Search..." [(ngModel)]="searchInputs"
+                    (input)="filterItems(searchInput.value)" #searchInput>
+                <mat-icon>search</mat-icon>
+            </div>
+            <div class="filter-option">
+                <button mat-button [matMenuTriggerFor]="menu">
+                    Filter <span><mat-icon>keyboard_arrow_down</mat-icon></span>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="filterItems('')">All</button>
+                    <button mat-menu-item (click)="filterItems('Reserved')">Reserved</button>
+                    <button mat-menu-item (click)="filterItems('Pending')">Pending</button>
+                    <button mat-menu-item (click)="filterItems('Recent')">Recent</button>
+                    <button mat-menu-item (click)="filterItems('Not Available')">Not Available</button>
+                </mat-menu>
+            </div>
+        </div>
+
+    </div>
+    <div class="content">
+        <div *ngFor="let properties of filteredItems">
+            <div class="card stacked">
+                <div class="status">
+                    <div>{{properties.status}}</div>
+                    <!-- <div>Approved</div> -->
+                </div>
+                <div class="image">
+                    <img src="{{properties.image}}" alt="image" loading="lazy" draggable="false" />
+                </div>
+                <div class="content__card">
+                    <div class="info">
+                        <div class="title">{{properties.title}}</div>
+                        <div class="description">{{properties.description}}</div>
+                        <div class="permonth">
+                            <div>₱&nbsp;{{properties.permonth}} monthly</div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="not-found custom-not_found" *ngIf="notFound">
+        <div>No trips found!</div>
+   </div>
+
+    <div class="custom-not_found" *ngIf="propertiesTrips.length === 0">
+        <div class="title">
+            No trips booked...yet!
+        </div>
+        <div class="subtitle">
+            Time to dust off your bags and start planning your next adventure.
+        </div>
+        <div class="btn ">
+            <button class="main-button" (click)="goToSeacrhList()">Start Searching</button>
+        </div>
+    </div>
+</section>

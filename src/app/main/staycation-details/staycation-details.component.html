@@ -6,7 +6,7 @@
                     <span>Back</span>
                </button>
                <div class="title-wrapper">
-                    <div class="title">{{ details.name }}</div>
+                    <div class="title"></div>
                     <div class="heart">
                          <mat-icon>stars</mat-icon>
                          <div>Wishlist</div>
@@ -15,10 +15,10 @@
           </section>
           <div class="gallery-lightbox-container">
                <section class="gallery" (click)="gotoGalleryPage(details._id)">
-                    <div class="gallery-img" *ngFor="let img of imageSets; let i = index" [class.first-image]="i === 0" >
-                         <img class="images" [src]="img" loading="lazy" alt="Large Image" draggable="false"  >
+                    <div class="gallery-img" *ngFor="let img of imageSets; let i = index" [class.first-image]="i === 0">
+                         <img [src]="img" loading="lazy" alt="Large Image" draggable="false">
                          <!-- <div class="content__card"> -->
-                              <!-- <div class="details">
+                         <!-- <div class="details">
                       <div class="title">{{properties.title}}</div>
                       <div class="description">{{properties.description}}</div>
                       <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
@@ -30,7 +30,7 @@
           <div class="details-reserve-wrapper">
                <section class="details-column">
                     <div class="details-header">
-                         <div class="title">1BR Flat with balcony near U.S. Embassy</div>
+                         <div class="title">{{ details.name }}</div>
                          <div class="subtitle">{{ details.details.guests }} guest/s - {{ details.details.bedrooms }}
                               bedroom/s - {{ details.details.beds }} bed/s - {{ details.details.bathroom }} bathroom/s
                          </div>
@@ -109,19 +109,19 @@
                     </div>
                </section>
                <section class="reserve-sticky-column">
-                    <!-- <form> -->
+                    <form>
                          <div class="reserve-sticky-column-wrapper">
                               <div class="rate-night">
                                    <p>₱<span> {{ details.price.common }} </span>night</p>
                               </div>
                               <div class="date-checkin-out">
                                    <div class="checkin-out-style">
-                                        <div>Checkin</div>
+                                        <div class="title">Check-in date</div>
                                         <div class="calendar-icon"></div>
                                         <input type="date" name="date" class="custom-date-input">
                                    </div>
                                    <div class="checkin-out-style">
-                                        <div>Checkout</div>
+                                        <div class="title">Check-out date</div>
                                         <div class="calendar-icon"></div>
                                         <input type="date" name="date" class="custom-date-input">
                                    </div>
@@ -130,12 +130,37 @@
                                    <div class="guest-wrapper">
                                         <div class="addguest">Add guest</div>
                                         <mat-icon aria-hidden="false" aria-label="people" fontIcon="people"></mat-icon>
-                                        <input type="text" placeholder="Add guest" value="" readonly />
+                                   </div>
+                                   <hr>
+                                   <div class="addguest-inputs">
+                                        <div class="addguest-inputs-add-guest-container">
+                                             <div class="input-addguest">
+                                                  <label for="adults">Adults (13+ years):</label>
+                                                  <input type="number" [(ngModel)]="guest_adults" id="adults"
+                                                       name="adults" min="0" placeholder="0" required><br>
+                                             </div>
+                                             <div class="input-addguest">
+                                                  <label for="children">Children (2-12 years):</label>
+                                                  <input type="number" [(ngModel)]="guest_children" id="children"
+                                                       name="children" min="0" placeholder="0" required><br>
+                                             </div>
+                                             <div class="input-addguest">
+                                                  <label for="infants">Infants (0-1 years):</label>
+                                                  <input type="number" [(ngModel)]="guest_infants" id="infants"
+                                                       name="infants" min="0" placeholder="0" required><br>
+                                             </div>
+                                             <div class="input-addguest">
+                                                  <label for="pets">Pets:</label>
+                                                  <input type="number" [(ngModel)]="guest_pets" id="pets" name="pets"
+                                                       min="0" placeholder="0" required><br>
+                                             </div>
+
+                                        </div>
                                    </div>
                               </div>
                               <button (click)="navigateToBookStaycation()">Reserve</button>
                          </div>
-                    <!-- </form> -->
+                    </form>
                     <div class="total-computation-wrapper">
                          <div class="note">You won’t be charged yet</div>
                          <div class="computation">

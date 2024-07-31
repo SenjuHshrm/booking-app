@@ -1,10 +1,12 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 
 
 @Component({
   selector: 'app-message-page',
   templateUrl: './message-page.component.html',
   styleUrls: ['./message-page.component.scss'],
+  animations: [fadeInAnimation]
 })
 
 export class MessagePageComponent implements OnInit{

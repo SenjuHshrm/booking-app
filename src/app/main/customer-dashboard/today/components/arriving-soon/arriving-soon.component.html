@@ -1,113 +1,113 @@
 <div class="today-tabs" [@fadeInAnimation]>
-    <div class="today-tabs-today-tabs-wrapper">
-        <div class="content">
-            <div class="mat-elevation-z3">
-                <div class="header_title_date">
-                    <div class="title">Arriving </div>
-                </div>
-                <div class="search">
-                  <input matInput (keyup)="applyFilter($event)" placeholder="Search here..">
-                  <mat-icon>search</mat-icon>
-               </div>
+   <div class="today-tabs-today-tabs-wrapper">
+      <div class="content">
+         <div class="mat-elevation-z3">
+            <div class="header_title_date">
+               <div class="title">Arriving </div>
+            </div>
+            <div class="search">
+               <input matInput (keyup)="applyFilter($event)" placeholder="Search here..">
+               <mat-icon>search</mat-icon>
+            </div>
 
-                <div class="table-container">
-                 
-                    <table mat-table [dataSource]="dataSource" matSort class="mat-table-responsive">
-     
-                       <ng-container matColumnDef="id">
-                          <th mat-header-cell *matHeaderCellDef style="white-space: pre;">ID</th>
-                          <td mat-cell *matCellDef="let element">{{element.id}}</td>
-                       </ng-container>
-     
-                       <ng-container matColumnDef="property">
-                          <th mat-header-cell *matHeaderCellDef style="width:10rem;">Property</th>
-                          <td mat-cell *matCellDef="let element" >
-                             <div class="custom-property">
-                                <img class="img" src={{element.propertyimage}} alt="property" />
-                                <div class="name">{{element.nameofproperty}}</div>
-                             </div>
-                          </td>
-                       </ng-container>
-     
-                       <ng-container matColumnDef="guestnames">
-                          <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Booked guest</th>
-                          <td mat-cell  class="name" *matCellDef="let element">
-                             <div class="custom-guest">
-                                <img class="img" src= {{element.guestimage}} alt="property" />
-                                <div class="name">{{element.guestnames}}</div>
-                             </div>
-                          </td>
-                       </ng-container>
+            <div class="table-container">
 
-                       <ng-container matColumnDef="numofguest">
-                        <th mat-header-cell *matHeaderCellDef style="white-space: pre;">No. of guest</th>
-                        <td mat-cell *matCellDef="let element">{{element.numofguest}}</td>
-                     </ng-container>
-     
-                       <ng-container matColumnDef="bookingdate">
-                          <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Date booked</th>
-                          <td mat-cell *matCellDef="let element">{{element.bookingdate | date:'shortDate'}}</td>
-                       </ng-container>
+               <table mat-table [dataSource]="dataSource" class="mat-table-responsive">
 
-                       <ng-container matColumnDef="checkinoutdate">
-                        <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Reservation Date</th>
-                        <td mat-cell *matCellDef="let element">
-                           <div class="custom-checkinout">
-                              <div>{{element.checkindate | date:'shortDate'}} </div>
-                              <div>-</div>
-                              <div>{{element.checkoutdate | date:'shortDate'}} </div>
-                           </div>
-                        </td>
-                     </ng-container>
+                  <ng-container matColumnDef="id">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">ID</th>
+                     <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                  </ng-container>
 
-                     <ng-container matColumnDef="interval">
-                        <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Interval</th>
-                        <td mat-cell *matCellDef="let element" style="white-space: pre;"> {{ element.interval | pluralize: element.intervalunit }}</td>
-                     </ng-container>
-     
-                       <ng-container matColumnDef="arrivaltime">
-                             <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Arrival time</th>
-                             <td mat-cell *matCellDef="let element">{{element.arrivaltime | date:'shortTime'}}</td>
-                          </ng-container>
+                  <ng-container matColumnDef="property">
+                     <th mat-header-cell *matHeaderCellDef style="width:10rem;">Property</th>
+                     <td mat-cell *matCellDef="let element">
+                        <div class="custom-property">
+                           <img class="img" src={{element.propertyimage}} alt="property" />
+                           <div class="name">{{element.nameofproperty}}</div>
+                        </div>
+                     </td>
+                  </ng-container>
 
-                       <ng-container matColumnDef="paymenttype">
-                          <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Payment type</th>
-                          <td mat-cell *matCellDef="let element">{{element.paymenttype}}</td>
-                       </ng-container>
-     
-                       <ng-container matColumnDef="paidamount">
-                          <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Total Amount</th>
-                          <td mat-cell *matCellDef="let element">{{element.paidamount | currency:'PHP':'symbol'}}</td>
-                       </ng-container>
+                  <ng-container matColumnDef="guestnames">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Booked guest</th>
+                     <td mat-cell class="name" *matCellDef="let element">
+                        <div class="custom-guest">
+                           <img class="img" src={{element.guestimage}} alt="property" />
+                           <div class="name">{{element.guestnames}}</div>
+                        </div>
+                     </td>
+                  </ng-container>
 
-                       
+                  <ng-container matColumnDef="numofguest">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">No. of guest</th>
+                     <td mat-cell *matCellDef="let element">{{element.numofguest}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="bookingdate">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Date booked</th>
+                     <td mat-cell *matCellDef="let element">{{element.bookingdate | date:'shortDate'}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="checkinoutdate">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Reservation Date</th>
+                     <td mat-cell *matCellDef="let element">
+                        <div class="custom-checkinout">
+                           <div>{{element.checkindate | date:'shortDate'}} </div>
+                           <div>-</div>
+                           <div>{{element.checkoutdate | date:'shortDate'}} </div>
+                        </div>
+                     </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="interval">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Interval</th>
+                     <td mat-cell *matCellDef="let element" style="white-space: pre;"> {{ element.interval | pluralize:
+                        element.intervalunit }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="arrivaltime">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Arrival time</th>
+                     <td mat-cell *matCellDef="let element">{{element.arrivaltime | date:'shortTime'}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="paymenttype">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Payment type</th>
+                     <td mat-cell *matCellDef="let element">{{element.paymenttype}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="paidamount">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Total Amount</th>
+                     <td mat-cell *matCellDef="let element">{{element.paidamount | currency:'PHP':'symbol'}}</td>
+                  </ng-container>
+
                   <ng-container matColumnDef="balanceamount">
                      <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Balance</th>
                      <td mat-cell *matCellDef="let element">{{element.balanceamount | currency:'PHP':'symbol'}}</td>
                   </ng-container>
-     
-                       <ng-container matColumnDef="action">
-                          <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Action</th>
-                          <td mat-cell *matCellDef="let element">
-                             <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
-                                <mat-icon>more_horiz</mat-icon>
-                             </button>
-                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item>View</button>
-                                <button mat-menu-item>Message guest</button>
-                             </mat-menu>
-                          </td>
-                       </ng-container>
-     
-                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-                 </div>
+
+                  <ng-container matColumnDef="action">
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Action</th>
+                     <td mat-cell *matCellDef="let element">
+                        <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
+                           <mat-icon>more_horiz</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                           <button mat-menu-item (click)="viewArriving()">View</button>
+                           <button mat-menu-item>Message Guest</button>
+                        </mat-menu>
+                     </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+               </table>
+               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
             </div>
-            <!-- <div class="no-checking">
+         </div>
+         <!-- <div class="no-checking">
                  <div>You don’t have any upcoming.</div> 
             </div> -->
-        </div>
-    </div>
+      </div>
+   </div>
 </div>

@@ -48,11 +48,10 @@ export class UsersProfileComponent implements OnInit, OnDestroy {
   openCreateProfileDialog(): void {
     
     const dialogRefSignup = this.dialog.open(CreateProfileModalComponent, {
-      width: '100vw',  // Full width on small screens
-      // maxHeight: '100vh',
-      height: '100vh',
-      maxWidth: '1000px',  // Max width for larger screens
-      panelClass: 'custom-dialog-container',  // Add a custom class for further styling
+      width: '100%',
+      maxWidth:'65rem', 
+      height: '100%',
+      maxHeight: '55rem',
       data: { ...this.profile, email: this.auth.email }
     });
     
