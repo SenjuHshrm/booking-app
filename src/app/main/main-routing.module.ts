@@ -61,6 +61,12 @@ const routes: Routes = [
         title: 'TaraGo | Notification'
       },
       {
+        path: 'trips',
+        loadChildren: () => import('./your-trips/your-trips.module').then(m => m.YourTripsModule),
+        canActivate: [authGuard],
+        title: 'TaraGo | Your Trips'
+      },
+      {
         path: 'wishlist',
         loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule),
         canActivate: [authGuard],

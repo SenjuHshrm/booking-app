@@ -1,14 +1,18 @@
 <section class="wish-list-container">
     <div class="property-title">
-        <!-- <button (click)="goBack()">
-         <mat-icon>chevron_left</mat-icon>
-         <span>Back</span>
-    </button> -->
         <div class="title-wrapper">
-            <div class="title">Wishlist</div>
+            <div class="title">Your Wishlist</div>
         </div>
+        <div class="filter_search">
+            <div class="search">
+                <input type="text" placeholder="Search..." [(ngModel)]="searchInputs"
+                    (input)="filterItems(searchInput.value)" #searchInput>
+                <mat-icon>search</mat-icon>
+            </div>
+        </div>
+
     </div>
-    <div class="content" *ngIf="listproperties.length > 0">
+    <div class="content" *ngIf="listproperties.length > 0"  [@fadeInAnimation]>
         <div class="card stacked" *ngFor="let properties of listproperties"
             (click)="navigateToBookStaycation(listproperties._id)">
             <div class="image">
@@ -26,7 +30,15 @@
             </div>
         </div>
     </div>
-    <div *ngIf="listproperties.length === 0">
-        <div class="not-found">Wishlist is empty</div>
+        <div class="custom-not-found" *ngIf="listproperties.length === 0">
+            <div class="title">
+                No Wishlist...yet!
+            </div>
+            <div class="subtitle">
+                Save your favorite place for your next adventure.
+            </div>
+            <div class="btn ">
+                 <button class="main-button" (click)="goToSeacrhList()">Start Searching</button>
+            </div>
     </div>
 </section>

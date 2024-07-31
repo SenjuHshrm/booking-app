@@ -38,8 +38,9 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService,
     private _globalStatic: GlobalStaticService
+
   ) {
-    
+  
   }
 
   ngOnInit(): void {
@@ -77,7 +78,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   private _getStaycationDetails(id: string) {
     this._sub.add(this._staycation.getStaycationDetails(id).subscribe({
       next: (res: any) => {
-        console.log(res)
+        console.log( res)
         this.details = {
           ...res,
           amenities: res.amenities.join(", "),

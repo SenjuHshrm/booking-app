@@ -12,7 +12,7 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 2rem;
+    padding:1rem;
     font-family: Poppins-Regular;
 
     &-staycation-wrapper {
@@ -82,11 +82,13 @@
             position: relative;
             height: 4rem;
             margin-top: 1.5rem;
+ 
+          
             .staycations,.eventplace  {
-                box-shadow: 1px 1px 3px #88888877;
+           
+                box-shadow: 2px 2px 5px #88888877;
                 font-size: clamp(10px, 1.5vw, 15px);
                 font-weight: bold;
-                border-radius: 5px;
                 // border: 1px solid black;
                 height: 4rem;
 
@@ -143,12 +145,15 @@
             margin-top: 1.5rem;
             margin-bottom: 2rem;
             width: 100%;
+            height: fit-content;
+
 
             &-layer-2-wrapper {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
                 width: 100%;
+                height: fit-content;
                 gap: 1%;
 
 
@@ -232,9 +237,6 @@
                         background-color: transparent;
                         background-image: url('../../../assets/images/search-filters/v-icon.png'); // Replace with your pin icon
                         /* You can use background-image here to add a custom image */
-
-
-
                     }
 
                     /* Custom style for the datepicker popup (Chrome, Safari) */
@@ -258,7 +260,6 @@
                         text-overflow: ellipsis;
                     }
 
-
                     .calendar-icon {
                         width: 25px;
                         height: 25px;
@@ -277,8 +278,7 @@
                     /* Example color */
                 }
 
-                .guest,
-                .card {
+                .guest,.card {
                     width: 100%;
                     font-size: 14px;
                     font-weight: bold;
@@ -349,16 +349,13 @@
 
         .content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap:1rem;
             cursor: pointer;
-            margin-top: 5rem;
-          
-
-
+           
             .stacked {
                 display: grid;
-                max-width: 17rem;
+                
                  
                 * {
                     grid-column: 1 /.5;
@@ -367,11 +364,13 @@
             }
 
             .card {
-                width: fit-content;
                 text-align: center;
                 margin: auto;
-                // box-shadow: -6px 11px 8px rgba(0, 0, 0, 0.3);
-                border-radius: 5%;
+                margin-top: 0;
+                display:grid;
+                grid-template-rows: 15rem auto;
+                gap:1rem;
+                max-width:15rem;
                 width: 100%;
                 // border:2px solid black;
 
@@ -379,38 +378,49 @@
                     position: relative;
                     z-index: 2;
                     align-self: end;
-                    margin-bottom: 1.5rem;
                     // border:2px solid black;
+                  
 
                     .info {
                         height: fit-content;
                         text-align: left;
 
                         .title {
-                            display: inline-flex;
+                         
                             align-items: center;
                             font-weight: bold;
-                            font-size: max(min(.8rem), .5vw);
+                            font-size: calc(.8em + .2vw);
                             color: black;
-                            height: fit-content;
+                            word-break: break-words;
+                            white-space-collapse:break-spaces;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2; /* Number of lines to show */
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            line-height: 1.5; /* Adjust based on your font-size */
+                            max-height: calc(1.5em * 3); /* line-height * number of lines */
                         }
 
                         .description {
-                            font-size: max(min(.8rem), .5vw);
+                            font-size: calc(.8em + .2vw);
                         }
 
                         .permonth {
-                            font-size: max(min(.8rem), .5vw);
+                            font-size: calc(.7em + .1vw);
                             color: #68A968;
                             font-weight: bold;
+                            
                         }
                     }
 
                 }
 
                 .image {
-                    // border:2px solid rgb(228, 31, 31);
+                    box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.1);
                     width: 100%;
+                    border-radius: 15px;
+                    display: flex;
 
                     img {
                         aspect-ratio: 1/1;
@@ -439,18 +449,10 @@
     }
 }
 
+
 @media only screen and (max-width: 800px) {
     .btn {
         max-width: 120px !important;
-    }
-
-    .content {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-    }
-}
-@media only screen and (max-width: 600px) {
-    .staycation-list-container {
-        width: 100%;
     }
 }
 
@@ -485,6 +487,10 @@
                         padding: .5rem;
                     }
                 }
+            }
+
+            .content{
+                margin-top:5rem;
             }
         }
     }
@@ -569,9 +575,43 @@
                     }
                 }
             }
+
+            .content {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap:1rem;
+                cursor: pointer;
+                margin-top: 5rem;
+               
+    
+                .stacked {
+       
+
+                }
+    
+                .card {
+                    max-width:12rem;
+                    width: 100%;
+                    grid-template-rows: 12rem auto;
+
+                    .image {
+                        max-height:12rem;
+    
+                        img {
+                            width: 100%;
+                            height:100%;
+                        }
+    
+                    }
+    
+    
+                }
+            }
         }
     }
 }
+
+
 
 //Swiper
 .swiper-button-next {

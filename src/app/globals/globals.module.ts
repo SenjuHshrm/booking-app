@@ -13,6 +13,7 @@ import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt
 import { LearnMoreComponent } from './learn-more/learn-more.component';
 import { BookingTermsComponent } from './booking-terms/booking-terms.component';
 import { ReservationsViewComponent } from './reservations-view/reservations-view.component';
+import { LoaderStateComponent } from './loader-state/loader-state.component';
 
 
 
@@ -30,6 +31,7 @@ import { ReservationsViewComponent } from './reservations-view/reservations-view
     LearnMoreComponent,
     BookingTermsComponent,
     ReservationsViewComponent,
+    LoaderStateComponent,
   ],
 
   imports: [
