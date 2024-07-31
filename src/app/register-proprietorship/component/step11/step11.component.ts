@@ -1,3 +1,4 @@
+import { BasicUtilService } from './../../../services/basic-util.service';
 import { GlobalStaticService } from './../../../services/global-static.service';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
@@ -29,7 +30,8 @@ export class Step11Component implements OnInit {
 
   constructor(
     public regPropFormRoot: FormGroupDirective,
-    private globalStatic: GlobalStaticService
+    private globalStatic: GlobalStaticService,
+    private basicUtil: BasicUtilService
   ) { }
 
   ngOnInit(): void {
@@ -49,9 +51,15 @@ export class Step11Component implements OnInit {
   private _getTaxStatic() {
     this.sub.add(this.globalStatic.getStaticByType('service_fee').subscribe({
       next: (res: { data: any }) => {
-        res.data.forEach((f: { name: string, price: number }) => {
-          this.taxList.push(f)
-          this.tax += `${f.name}: ${f.price}\n\n`
+        res.data.forEach((f: any) => {
+          // this.taxList.push(f)
+          // this.tax += `${f.name}: ${f.price}\n\n`
+          Object.keys(f).forEach((key) => {
+            this.taxList.push({
+              name: this.basicUtil.propToReadable(key),
+              price: f[key]
+            })
+          })
         })
       },
       error: ({ error }: HttpErrorResponse) => {

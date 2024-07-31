@@ -8,9 +8,9 @@
                 <div class="list-taxes">
                     <div class="label">Taxes List</div>
                     <div class="list_taxes_wrapper">
-                        <div [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
+                        <div [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}">
                             <div class="" *ngFor="let tax of taxList"
-                                [ngStyle]="{'display': taxList !== null ? 'none' : 'block'}">
+                                [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}">
                                 <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
                             </div>
                         </div>
