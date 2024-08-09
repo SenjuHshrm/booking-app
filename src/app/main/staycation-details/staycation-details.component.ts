@@ -31,6 +31,8 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public guest_infants: number = 0;
   public guest_pets: number = 0;
 
+  public imgS:number = 0;
+
   
   constructor(
     private router: Router,
@@ -54,6 +56,11 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     
+  }
+
+  getId(data:any){
+    this.imgS = data;
+    return
   }
 
 
@@ -118,7 +125,8 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       this.gallery.push(this._basicUtil.setImgUrl(i))
     })
 
-    this.imageSets = limit(this.gallery, 6); 
+    this.imageSets = limit(this.gallery, 5); 
+    console.log(this.imageSets)
   }
   
 

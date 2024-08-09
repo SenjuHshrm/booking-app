@@ -1,3 +1,13 @@
+<div class="gallery-container">
+     <div class="image-grid">
+          <img class="image-grid-col-2 image-grid-row-2" src="../assets/images/main/staycation-details/gallery1.png"
+               alt="architecture">
+          <img src="../assets/images/main/staycation-details/gallery1.png" alt="architecture">
+          <img src="../assets/images/main/staycation-details/gallery1.png" alt="architecture">
+          <img src="../assets/images/main/staycation-details/gallery1.png" alt="architecture">
+          <img src="../assets/images/main/staycation-details/gallery1.png" alt="architecture">
+     </div>
+</div>
 <div class="staycation-details" [@fadeInAnimation]>
      <div class="staycation-details-staycation-details-wrapper" *ngIf="details">
           <section class="property-title">
@@ -13,20 +23,19 @@
                     </div>
                </div>
           </section>
-          <div class="gallery-lightbox-container">
+          <!-- <div class="gallery-lightbox-container">
                <section class="gallery" (click)="gotoGalleryPage(details._id)">
                     <div class="gallery-img" *ngFor="let img of imageSets; let i = index" [class.first-image]="i === 0">
                          <img [src]="img" loading="lazy" alt="Large Image" draggable="false">
-                         <!-- <div class="content__card"> -->
-                         <!-- <div class="details">
-                      <div class="title">{{properties.title}}</div>
-                      <div class="description">{{properties.description}}</div>
-                      <div class="permonth">{{properties.permonth}}<span>&nbsp;monthly</span></div>
-                  </div> -->
-                         <!-- </div> -->
                     </div>
+                    
                </section>
-          </div>
+          </div> -->
+         
+               <div class="image-grid">
+                    <img [ngClass]="imgS === 0 ? 'image-grid-col-2 image-grid-row-2' : ''" [src]="imgS === 0 ? imgS : ''" alt="architecture">
+               </div>
+        
           <div class="details-reserve-wrapper">
                <section class="details-column">
                     <div class="details-header">
