@@ -21,6 +21,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public serviceCharge: any = []
   private _sub: Subscription = new Subscription()
   public imageSets:any;
+  public imgS:number = 0;
   public totalBeforeTax!: number;
   public averageStar: number = 0;
   public totalReviews: number = 0;
@@ -31,7 +32,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public guest_infants: number = 0;
   public guest_pets: number = 0;
 
-  public imgS:number = 0;
+ 
 
   
   constructor(

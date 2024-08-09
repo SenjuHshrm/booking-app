@@ -7,8 +7,10 @@
                 <div class="sub_title">Maximum size of each photo is {{maxImgSize}}MB. Photos exceeding maximum size will be excluded to upload list.</div>
             </div>
             <div class="add-photos-place-wrapper">
-                <div class="container">
-                    <div class="upload-panel">
+                <div class="container" [ngStyle]="{
+                    'display': imgFile.length === 0 ? 'flex' : '',
+                    'place-content': imgFile.length === 0 ? 'center' : '', }">
+                    <div class="upload-panel" >
                         <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
                             accept="image/*" multiple>
                         <label for="fileInput" class="custom-file-label">
@@ -17,8 +19,8 @@
                             <span>Upload Image</span>
                         </label>
                     </div>
-                    <div class="gallery">
-                        <div *ngFor="let image of uploadedImages"
+                    <div class="gallery" [ngStyle]="{display: imgFile.length === 0 ? 'none' : ''}">
+                        <div *ngFor="let image of uploadedImages" 
                             [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
                             <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)" />
                                 <button type="button" class="close-button close"

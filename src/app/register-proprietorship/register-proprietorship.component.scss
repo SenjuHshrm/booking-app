@@ -19,26 +19,34 @@
 
     .register-proprietor-intro {
         width: 100%;
-        height: 100%;
+        height:fit-content;
         flex: 1;
         position: relative;
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-
-
-
-        .custom-exit {
-            position: absolute;
-            top: 3rem;
+      
+        .btn{
+            flex: none;
+            height: fit-content;
             padding-left: 1rem;
-            background-color: transparent;
-            border: none;
-            display: flex;
-            align-items: center;
-            gap: .3;
-            text-decoration: underline;
-            cursor: pointer;
+            width: 100%;
+            margin:1.2rem 0 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background-color: white;
+
+            button {
+               
+                background-color: transparent;
+                border: none;
+                display: flex !important;
+                align-items: center !important;
+                gap: .3;
+                text-decoration: underline;
+                cursor: pointer;
+            }
         }
 
         &-wrapper {
@@ -46,7 +54,6 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
             width: 100%;
             gap: 1rem;
 
@@ -160,9 +167,10 @@
             z-index: 5;
             background-color: white;
 
-
+          .btn{
+            padding-left: 1rem;
             button {
-                padding-left: 1rem;
+               
                 background-color: transparent;
                 border: none;
                 display: flex !important;
@@ -171,6 +179,7 @@
                 text-decoration: underline;
                 cursor: pointer;
             }
+        }
 
 
             .title {
@@ -210,7 +219,7 @@
                     height: 3.5rem;
                     background-color: white;
                     position: sticky !important;
-                    top: 4rem !important;
+                    top: 4rem;
                     padding: 0 2rem 0;
                     z-index: 5;
 
@@ -398,9 +407,7 @@
 @media only screen and (max-width: 860px) {
     .register-proprietor-container {
         .register-proprietor-intro {
-            .custom-exit {
-                top: 1rem;
-            }
+         
 
             &-wrapper {
                 flex: none;
@@ -413,22 +420,20 @@
 
                 .girl_top {
                     display: block;
-                    max-width: 60%;
+                    max-width: 100%;
                     margin: auto;
                 }
 
 
 
                 .content {
-                    flex-basis: 100%;
-                    padding: 2rem;
+                    flex:1;
                     display: grid;
                     place-content: center;
 
 
                     .content-wrapper {
                         background-color: white;
-                        margin-top: 2rem;
                         padding: 1rem;
                         border-radius: 10px;
                         box-shadow: 1px 1px 5px #88888877;
@@ -450,35 +455,74 @@
             }
         }
 
-        .register-proprietor-stepper {
-            .header_title {
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-                flex-direction: column;
 
-                .btn {
-                    width: 100%;
-
-                }
-
-                .title {
-                    text-align: center;
-                    width: 100%;
-                    margin: auto;
-                }
-            }
-
-        }
     }
 }
 
 @media only screen and (max-width: 600px) {
     .register-proprietor-container {
+        .register-proprietor-intro {
+            flex-direction: column;
+       
+
+            .btn {
+                flex: none;
+               margin-top: 1rem;
+               margin-bottom: 1rem;
+               background-color: white;
+            }
+
+            &-wrapper {
+                flex-direction: column-reverse;
+
+                .content {
+                    padding: 0rem;
+            
+                        .content-wrapper {
+                            background-color: white;
+                            border-radius: 0px;
+                        }
+                    }
+                
+            }
+
+        }    
         .register-proprietor-stepper {
+         
+
+            .header_title {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height:fit-content;
+             
+    
+        .btn{
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: fit-content;
+                button {
+                  
+                }
+            }
+    
+                .title {
+                    margin-left: 0 !important;
+                    font-size: 1rem;
+                    width: 100%;
+                    height:fit-content;
+                    text-align: center;
+                  
+                }
+            }
+    
             &-wrapper {
                 .mat-horizontal-stepper-wrapper {
                     .mat-horizontal-content-container {
                         padding: 0 !important;
+                  
 
                     }
 
@@ -489,6 +533,7 @@
                         overflow-y: hidden;
                         padding-left: 1rem;
                         margin-right: 0;
+                        top:0rem;
                     }
 
                     .mat-horizontal-stepper-header {

@@ -4,10 +4,12 @@
     </div>
     <section class="register-proprietor-intro" [ngClass]="{ 'hiddenIntro': isHiddenintro }" >
 
-        <button class="custom-exit" (click)="goExit()">
+        <div class="btn">            
+            <button (click)="goExit()">
             <mat-icon>chevron_left</mat-icon>
             <span>Back</span>
         </button>
+    </div>
 
         <div class="register-proprietor-intro-wrapper">
                 <div class="girl_image" [@fadeInAnimation]>
