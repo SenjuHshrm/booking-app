@@ -23,7 +23,11 @@
         padding: 1rem 0 1rem;
         text-align: center;
     }
-
+    
+.category{
+    font-weight: bold;
+    font-size: clamp(1rem, 1vw, 4rem);
+}
     .describe-your-place-wrapper {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

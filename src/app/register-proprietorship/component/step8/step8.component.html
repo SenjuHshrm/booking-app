@@ -17,11 +17,11 @@
             <ng-container *ngFor="let val of validation.descriptionText">
                 <span class="val-err-msg" *ngIf="formRegPropS8.controls['descriptionText']?.hasError(val.type) && formRegPropS8.controls['descriptionText']?.length === 0">{{ val.msg }}</span>
             </ng-container>
-            <div class="others">
+            <!-- <div class="others">
                 <div>Other:</div>
                 <input type="text" name="house" value="" placeholder="Describe your house here.."
                     formControlName="descriptionTextOther" />
-            </div>
+            </div> -->
             <div class="add-detailed-desc-wrapper">
                 <div class="input-wrapper">
                     <div class="label">Enter your detailed description</div>

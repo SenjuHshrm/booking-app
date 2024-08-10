@@ -4,21 +4,40 @@
             <div class="title-wrapper">
                 Describe your place
             </div>
+            <div class="category">
+                Staycation
+            </div>
             <div class="describe-your-place-wrapper">
-                <div class="checkbox" *ngFor="let yourPlace of places; let i = index">
+                <div class="checkbox" *ngFor="let yourPlaceStay of places.slice(0, 3); let stayNum = index">
                     <label class="custom-checkbox">
-                        <input type="checkbox" [ngClass]="{'checked': isChecked === i}" name="house"[value]="yourPlace.placetype" (change)="handleSelectedPlaceType($event, i)">
+                        <input type="checkbox" [checked]="isCheckedStaycation === stayNum" 
+                        name="staycations" [value]="yourPlaceStay.placetype" 
+                        (change)="handleSelectedPlaceType($event,stayNum,null)">
                         <span class="checkmark"></span>
-                        <div class="label">{{yourPlace.placetype}}</div>
+                        <div class="label">{{yourPlaceStay.placetype}}</div>
+                    </label>
+                </div>
+            </div>
+            <div class="category">
+                Event Place
+            </div>
+            <div class="describe-your-place-wrapper">
+                <div class="checkbox" *ngFor="let yourPlaceEvent of places.slice(4, 8); let eventNum = index">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" [checked]="isCheckedEvents === eventNum" 
+                        name="eventplaces" [value]="yourPlaceEvent.placetype" 
+                        (change)="handleSelectedPlaceType($event,null,eventNum)">
+                        <span class="checkmark"></span>
+                        <div class="label">{{yourPlaceEvent.placetype}}</div>
                     </label>
                 </div>
             </div>
             <ng-container *ngFor="let val of validation.descriptionFilter">
                 <span class="val-err-msg" *ngIf="formRegPropS1.controls['descriptionFilter']?.hasError(val.type) && formRegPropS1.controls['descriptionFilter']?.length === 0">{{val.msg }}</span>
             </ng-container>
-            <div class="others">
+            <!-- <div class="others">
                 <div>Other:</div>
                 <input type="text" name="descriptionFilterOther" placeholder="Describe your place here.." formControlName="descriptionFilterOther" />
-            </div>
+            </div> -->
         </section>
     </ng-container>

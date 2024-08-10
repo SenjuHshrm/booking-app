@@ -2,10 +2,13 @@
     <ng-container [formGroup]="formRegPropS11">
         <section class="add-taxes">
             <div class="title-wrapper">
-                Set your price
+                Now, Set your price
+            </div>
+            <div class="sub_title">
+                You can change it anytime.
             </div>
             <div class="add-taxes-wrapper">
-                <div class="list-taxes">
+                <!-- <div class="list-taxes">
                     <div class="label">Taxes List</div>
                     <div class="list_taxes_wrapper">
                         <div [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}">
@@ -14,23 +17,63 @@
                                 <p><b>{{ tax.name }}:</b>&nbsp; ₱&nbsp;{{ tax.price }}</p>
                             </div>
                         </div>
-                        <!-- <input class="inputs" type="number" name="taxes" placeholder="0"
-                            [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}" readonly /> -->
+                        <input class="inputs" type="number" name="taxes" placeholder="0"
+                            [ngStyle]="{'display': taxList !== null ? 'block' : 'none'}" readonly />
                     </div>
-                </div>
-
+                </div> -->
+                <!-- 
                 <div class="input-price-without-taxes">
                     <div class="label">Price (₱)</div>
                     <input class="inputs" type="number" name="price" formControlName="price"
                         (input)="handlePriceChange($event)" required placeholder="0" />
                 </div>
+                 -->
                 <!-- <div class="taxes">
                 <button matRipple type="button" #tooltip="matTooltip" [matTooltip]="getTaxList()" (click)="tooltip.toggle()">Taxes</button>
             </div> -->
-                <div class="input-price-with-taxes">
+
+                <!-- <div class="input-price-with-taxes">
                     <div class="label">Price w/ taxes (₱)</div>
                     <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0"
                         readonly />
+                </div> -->
+
+                <div class="price-wrapper">
+                    <div class="estimate-inputs">
+                        <h1>₱</h1>
+                        <input class="inputs" type="number" name="price" formControlName="price"
+                        (input)="handlePriceChange($event)" required placeholder="0.00"/>
+                    </div>
+
+                    <div class="estimate_computation_container">
+                        <div class="prices_wrapper">
+                            <div>Base Price</div>
+                            <div><span>₱</span>
+                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            </div>
+                        </div>
+                        <div class="prices_wrapper">
+                            <div>Guest Service Fee</div>
+                            <div><span>₱</span>
+                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            </div>
+                        </div>
+                        <hr style="border: 0; height: 1px; background-color: #cacaca;">
+                        <div class="prices_wrapper">
+                            <div>Guest Price Before taxes</div>
+                            <div><span>₱</span>
+                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="earn_container">
+                        <div class="prices_wrapper">
+                            <div>You earn</div>
+                            <div><span>₱</span>
+                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 

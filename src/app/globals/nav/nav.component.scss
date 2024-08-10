@@ -39,6 +39,20 @@ nav {
             gap: 1rem;
             align-items: center;
 
+            .account-type-btn {
+                cursor: pointer;
+                text-decoration: underline;
+                color: #63AB68;
+                padding:.5rem;
+                
+            }
+            .account-type-btn:hover{
+                background-color: black;
+                padding:.5rem 1rem ;
+                border-radius:20px;
+                text-decoration: none;
+            }
+
             .avatar-account {
                 cursor: pointer;
                 display: flex;
@@ -48,7 +62,7 @@ nav {
                 box-shadow: 1px 1px 5px #88888877;
                 padding: 3px 10px 3px;
                 border-radius: 100px;
-
+  
                 img {
                     height: 35px;
                     width: 35px;
@@ -70,9 +84,12 @@ nav {
                         color: #63AB68;
                     }
 
+     
+
                 }
 
             }
+      
 
             .avatar-account:hover {
                 color: #63AB68;
@@ -80,6 +97,8 @@ nav {
 
 
         }
+
+
 
         .header-login-button {
             display: flex;
@@ -132,3 +151,44 @@ nav {
         }
     }
 }
+
+
+@media only screen and (max-width: 500px) {
+    nav {
+        .nav-wrapper {
+
+            .avatar-account-menu-wrapper {
+    
+                .account-type-btn {
+                display: none;
+                    
+                }
+
+                .be_a_proprietor{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    nav {
+        .nav-wrapper {
+
+            .avatar-account-menu-wrapper {
+    
+                .account-type-btn {
+                display: block;
+                    
+                }
+
+                .be_a_proprietor{
+                    display: none !important;
+                }
+            }
+        }
+    }
+}
+
+

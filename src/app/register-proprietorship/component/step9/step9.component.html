@@ -4,20 +4,43 @@
             <div class="title-wrapper">
                 Add discounts
             </div>
+            <div class="subinfo">
+                 <div>Only one discount will be applied per stay. &nbsp;<span (click)="openLearnmore()">Learn more</span></div>
+            </div>
             <div class="add-discounts-wrapper">
                 <div class="checkbox" *ngFor="let addDiscounts of adddiscounts; let i = index">
-                    <div class="checkbox-wrapper" (click)="handleRadiobtn(i)">
-                        <div class="radio-button">
-                            <input type="radio" [ngClass]="{'checked': isSelected === i }" [value]="addDiscounts.value"
-                                (change)="handleSelectDiscount($event)" />
+                    <div class="checkbox-wrapper">
+                        <div class="label">
+                            <input type="number" name="discount" [value]="addDiscounts.label" [readonly]="i === 0" [ngClass]="{'custom_input': i === 0}" />
+                            <span>%</span>
                         </div>
-                        <div class="info">
-                            <div class="label">{{addDiscounts.label}}<span>%</span></div>
+                        <div class="desc_wrapper" (click)="handleRadiobtn(i)">
                             <div class="desc">{{addDiscounts.desc}}</div>
+                            <div class="radio-button">
+                                <input type="radio" [ngClass]="{'checked': isSelected === i }"
+                                    [value]="addDiscounts.value" (change)="handleSelectDiscount($event)" />
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+            <!-- <div class="custom_percentage">
+                <div class="title">Your Discounted Offer</div>
+                <div class="input_container">
+                    <div class="percent">
+                        <div class="label">Discount</div>
+                        <div class="wrapper">
+                            <input class="custom_input" type="number" name="house" value="" placeholder="0" />
+                            <div class="percentage_icon">%</div>
+                        </div>
+                    </div>
+                    <div class="percent">
+                        <div class="label">Description</div>
+                        <textarea type="text" name="house" value="" placeholder="Descriptions"></textarea>
+                    </div>
+                </div>
+            </div> -->
         </section>
     </ng-container>
 </div>

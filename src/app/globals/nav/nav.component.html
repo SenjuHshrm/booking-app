@@ -5,10 +5,11 @@
         </div>
 
         <div class="avatar-account-menu-wrapper" *ngIf="isAuth">
-            <div class="account-type-btn" (click)="goToProprietorReg()" *ngIf="!isHost">Be a proprietor</div>
+            <div class="account-type-btn" (click)="goToProprietorReg()" *ngIf="!isHost">Become a proprietor</div>
             <div class="avatar-account" [matMenuTriggerFor]="menu">
                 <button class="menu" mat-button><mat-icon>menu</mat-icon></button>
                 <mat-menu #menu="matMenu">
+                    <button mat-menu-item class="be_a_proprietor" (click)="goToProprietorReg()" *ngIf="!isHost">Become a proprietor</button>
                     <button mat-menu-item (click)="goToUserProfile()">Profile</button>
                     <button mat-menu-item (click)="goToMessage()">Messages</button>
                     <button mat-menu-item (click)="goToNotification()">Notification</button>

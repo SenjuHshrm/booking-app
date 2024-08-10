@@ -24,6 +24,7 @@ import { Step12Component } from './component/step12/step12.component';
 import { Step13Component } from './component/step13/step13.component';
 import { GlobalsModule } from '../globals/globals.module';
 import {MatRippleModule} from '@angular/material/core';
+import { LearnMoreComponent } from './component/step9/learn-more/learn-more.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {MatRippleModule} from '@angular/material/core';
     Step10Component,
     Step11Component,
     Step12Component,
-    Step13Component
+    Step13Component,
+    LearnMoreComponent
   ],
   imports: [
     CommonModule,

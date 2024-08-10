@@ -30,7 +30,8 @@ export class Step1Component implements OnInit {
   public pt: string = ''
   public formRegPropS1!: FormGroup<Step1Form>;
  
-  public isChecked: any = null;
+  public isCheckedStaycation: any = null;
+  public isCheckedEvents: any = null;
   public places: any = [];
   public validation: any = {
     descriptionFilter: [
@@ -60,16 +61,21 @@ export class Step1Component implements OnInit {
     this._basicUtil.getPlaceType.subscribe(pt => {
       this.pt = pt
       this.places = this.defaultPlaces.filter((p: any) => p.type.match(new RegExp(this.pt)))
-    })
+    });
+    console.log("This is data" + this.places.placetype);
   }
 
   ngOnInit(): void {
     this.formRegPropS1 = <FormGroup<Step1Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
 
-  public handleSelectedPlaceType(e: Event,indexNum:any) {
-    this.isChecked = (e.target as HTMLInputElement).checked;
-    this.isChecked = indexNum;
+  public handleSelectedPlaceType(e: Event,indexNumStay:any,indexNumEvent:any) {
+    this.isCheckedStaycation = (e.target as HTMLInputElement).checked;
+    this.isCheckedStaycation = indexNumStay;
+
+    this.isCheckedEvents = (e.target as HTMLInputElement).checked;
+    this.isCheckedEvents = indexNumEvent;
+    
     const descFilter: FormArray = <FormArray>this.formRegPropS1.get('descriptionFilter')
     let targetEl: HTMLInputElement = <HTMLInputElement>e.target!
     if(targetEl.checked) {

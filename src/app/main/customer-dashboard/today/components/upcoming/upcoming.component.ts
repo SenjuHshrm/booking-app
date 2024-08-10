@@ -114,7 +114,7 @@ export class UpcomingComponent implements OnInit {
 
 
   constructor(public dialog:MatDialog) {
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
+    const users = Array.from({ length: 1 }, (_, k) => createNewUser(k + 1));
     this.dataSource = new MatTableDataSource(users);
   }
 

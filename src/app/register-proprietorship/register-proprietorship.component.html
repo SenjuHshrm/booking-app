@@ -2,26 +2,26 @@
     <div class="nav-wrapper">
         <app-nav [isAuth]="isAuth"></app-nav>
     </div>
-    <section class="register-proprietor-intro" [ngClass]="{ 'hiddenIntro': isHiddenintro }" >
+    <section class="register-proprietor-intro" [ngClass]="{ 'hiddenIntro': isHiddenintro }">
 
-        <div class="btn">            
+        <div class="btn">
             <button (click)="goExit()">
-            <mat-icon>chevron_left</mat-icon>
-            <span>Back</span>
-        </button>
-    </div>
+                <mat-icon>chevron_left</mat-icon>
+                <span>Back</span>
+            </button>
+        </div>
 
         <div class="register-proprietor-intro-wrapper">
-                <div class="girl_image" [@fadeInAnimation]>
-                    <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
-                </div>
-                <div class="girl_top" [@fadeInAnimation]>
-                    <img src="./assets/images/proprietor-registration/girl-top.png" alt="logo" draggable="false" />
-                </div>
+            <div class="girl_image" [@fadeInAnimation]>
+                <img src="./assets/images/proprietor-registration/girl.png" alt="logo" draggable="false" />
+            </div>
+            <div class="girl_top" [@fadeInAnimation]>
+                <img src="./assets/images/proprietor-registration/girl-top.png" alt="logo" draggable="false" />
+            </div>
             <div class="content" [@fadeInAnimation]>
                 <div class="content-wrapper">
                     <h1>
-                        Be a proprietor
+                        Become a proprietor
                     </h1>
                     <br>
                     <div class="info">
@@ -47,19 +47,21 @@
     <section class="register-proprietor-stepper" #getStarted
         [ngStyle]="{'display': isHiddenintro === true ? 'block' : 'none'}" [@fadeInAnimation]>
         <div class="header_title">
-            <div class="btn">            
+            <div class="btn">
                 <button (click)="backToGetstarted()">
-                <mat-icon>chevron_left</mat-icon>
-                <span>Back</span>
-            </button>
-        </div>
+                    <mat-icon>chevron_left</mat-icon>
+                    <span>Back</span>
+                </button>
+            </div>
 
             <div class="title"> Create Your Listing</div>
         </div>
-        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)" #regPropFormDir="ngForm" [formGroup]="regPropForm">
+        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)"
+            #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
                 <mat-stepper linear [labelPosition]="'bottom'" #regPropFormStepper>
-                    <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
+                    <mat-step [stepControl]="regPropForm.controls['step2']"
+                        errorMessage="Please at least one (1) type of place will guest have">
                         <ng-template matStepLabel></ng-template>
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
@@ -123,7 +125,7 @@
                         </div>
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step6']"
-                        errorMessage="Please at least one (5) photo's of your staycation/event place">
+                        errorMessage="Please provide at least five (5) photos of your staycation/event place.">
                         <ng-template matStepLabel></ng-template>
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -188,25 +190,13 @@
                     <mat-step [stepControl]="regPropForm.controls['step11']" errorMessage="Please set your price">
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Submit</button>
+                            <button mat-button type="button" matStepperNext>Publish</button>
                         </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step11 formGroupName="step11"></app-step11>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Submit</button>
-                        </div>
-                    </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step11']" errorMessage="Please set your indentity">
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" (click)="regPropFormDir.ngSubmit.emit()" matStepperNext>Submit</button>
-                        </div>
-                        <ng-template matStepLabel></ng-template>
-                        <app-step12 formGroupName="step11"></app-step12>
-                        <div class="nextprev_btn-bottom">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" (click)="regPropFormDir.ngSubmit.emit()" matStepperNext>Submit</button>
+                            <button mat-button type="button" matStepperNext>Publish</button>
                         </div>
                     </mat-step>
                     <mat-step>
@@ -216,11 +206,16 @@
                             <button mat-button type="button" routerLink="/home">Back to Home</button>
                         </div>
                         <section class="important-things-to-know">
-                            <div class="title-wrapper">Important things to know</div>
+                            <div class="title-wrapper">Important things to know with</div>
+                            <div class="image-logo">
+                                <img src="./assets/images/home/section2/taragologo.png" alt="logo" />
+                            </div>
                             <div class="description">
-                                <p>Be sure to comply with your <span>local laws</span> and review TaraGo
-                                    <span>nondiscrimination
-                                        policy</span> and <span>guest and proprietor fees</span>.
+                                <p>
+                                    Be sure to comply with your
+                                    <span>local laws</span> and review TaraGo
+                                    <span>non-discrimination policy</span> and
+                                    <span>guest and proprietor fees</span>.
                                 </p>
                             </div>
                         </section>

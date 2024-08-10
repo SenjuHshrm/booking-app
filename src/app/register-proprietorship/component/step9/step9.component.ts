@@ -3,6 +3,8 @@ import { FormGroup, FormGroupDirective, FormArray } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { Step9Form } from '../../register-proprietorship';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
+import { MatDialog } from '@angular/material/dialog';
+import { LearnMoreComponent } from './learn-more/learn-more.component';
 
 @Component({
   selector: 'app-step9',
@@ -13,15 +15,16 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 export class Step9Component implements OnInit {
 
   @Input() public formGroupName!: string;
-  public isSelected : any = null;
+  public isSelected: any = null;
   public formRegPropS9!: FormGroup<Step9Form>;
   public adddiscounts: any = [
-    { label: 20, name: '20% Off', desc: 'Offer 20% off your first 3 bookings', value:'discount_1' },
-    { label: 30, name: '30% Off', desc: 'For stays of 7 nights or more', value:'discount_2' },
-    { label: 50, name: '40% Off', desc: 'For stays of 28 nights or more', value:'discount_3' },
+    { label: 20, name: '20% Off', desc: 'Offer 20% off your first 3 bookings', value: 'discount_1' },
+    { label: 30, name: '30% Off', desc: 'For stays of 7 nights or more', value: 'discount_2' },
+    { label: 50, name: '40% Off', desc: 'For stays of 28 nights or more', value: 'discount_3' },
   ]
 
   constructor(
+    public dialog: MatDialog,
     public regPropFormRoot: FormGroupDirective
   ) { }
 
@@ -29,11 +32,21 @@ export class Step9Component implements OnInit {
     this.formRegPropS9 = <FormGroup<Step9Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
 
-  handleRadiobtn(index:any):void{
+  openLearnmore(): void {
+    const dialogRef = this.dialog.open(LearnMoreComponent, {
+      width: '100%',
+      maxWidth: '32rem'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('');
+    });
+  }
+
+  handleRadiobtn(index: any): void {
     this.isSelected = index;
     console.log(this.isSelected);
     this.formRegPropS9.controls['discounts']?.setValue(this.adddiscounts[index].value)
- }
+  }
 
   public handleSelectDiscount(e: Event) {
     // const discount: FormArray = <FormArray>this.formRegPropS9.get('discounts')
@@ -56,5 +69,9 @@ export class Step9Component implements OnInit {
     //   })
     // }
   }
+
+
+
+
 
 }

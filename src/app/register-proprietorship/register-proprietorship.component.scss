@@ -355,46 +355,65 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             padding: 1rem 5rem 1rem;
             max-width: 45rem;
-            height: 12rem;
-            margin: auto;
-            margin-top: 3rem;
+            height:30rem;
+            margin: 3rem auto auto;
             border-radius: 20px;
             box-shadow: 1px 1px 5px #88888877;
             background-color: white;
             font-weight: bold;
             font-size: clamp(1.3rem, 1.5vw, 8rem);
             text-align: center;
+         
 
             .title-wrapper {
                 font-weight: bold;
                 font-size: clamp(1.3rem, 1.5vw, 8rem);
                 padding: 1rem 0 1rem;
                 text-align: center;
-                // border:1px solid black;
+            }
+
+            .image-logo {
+                margin:2rem 0 2rem;
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center;
+
+                img {
+                    max-width: 15rem;
+                    width: 100%;
+                    height: fit-content;
+                }
             }
 
 
             .description {
+                background-color: #ebebeb77;
+                border-radius: 10px;
+                flex:1;
                 font-weight: normal;
-                // border:1px solid black;
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 gap: .5rem;
                 width: 100%;
+                max-height:12rem;
                 margin: auto;
+                padding: 0 1rem 0;
 
                 p {
                     margin: 0;
                     padding: 0;
-                    font-size: 15px;
+                    font-size: clamp(1rem, 1.1vw, 4rem);
+                    line-height:2rem;
 
                     span {
                         cursor: pointer;
                         color: #63AB68;
+                        text-decoration: underline;
                     }
                 }
             }

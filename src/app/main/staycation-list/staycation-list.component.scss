@@ -348,80 +348,98 @@
         }
 
         .content {
+            padding: 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap:1rem;
-            cursor: pointer;
-           
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+            position: relative;
+            // border:2px solid black;
+    
+    
             .stacked {
                 display: grid;
-                
-                 
+    
                 * {
                     grid-column: 1 /.5;
                     grid-row: 1/.5;
                 }
             }
-
+    
             .card {
                 text-align: center;
                 margin: auto;
-                margin-top: 0;
-                display:grid;
+                margin-top:0;
+                display: grid;
                 grid-template-rows: 15rem auto;
-                gap:1rem;
-                max-width:15rem;
+                gap: 1rem;
+                max-width: 15rem;
                 width: 100%;
-                // border:2px solid black;
-
+                position: relative;
+    
+                .status {
+                    background-color: white;
+                    border-radius: 10px;
+                    max-width: fit-content;
+                    height: fit-content;
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    padding: 3px 10px;
+                    color: #68A968;
+                    box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.281);
+                }
+    
                 .content__card {
                     position: relative;
                     z-index: 2;
                     align-self: end;
                     // border:2px solid black;
-                  
-
+    
                     .info {
                         height: fit-content;
                         text-align: left;
-
+    
                         .title {
-                         
                             align-items: center;
                             font-weight: bold;
                             font-size: calc(.8em + .2vw);
                             color: black;
                             word-break: break-words;
-                            white-space-collapse:break-spaces;
+                            white-space-collapse: break-spaces;
                             display: -webkit-box;
                             -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 2; /* Number of lines to show */
+                            -webkit-line-clamp: 2;
+                            /* Number of lines to show */
                             overflow: hidden;
                             text-overflow: ellipsis;
-                            line-height: 1.5; /* Adjust based on your font-size */
-                            max-height: calc(1.5em * 3); /* line-height * number of lines */
+                            line-height: 1.5;
+                            /* Adjust based on your font-size */
+                            max-height: calc(1.5em * 3);
+                            /* line-height * number of lines */
                         }
-
+    
                         .description {
                             font-size: calc(.8em + .2vw);
                         }
-
+    
                         .permonth {
                             font-size: calc(.7em + .1vw);
                             color: #68A968;
                             font-weight: bold;
-                            
+    
                         }
                     }
-
+    
                 }
-
+    
                 .image {
                     box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.1);
                     width: 100%;
                     border-radius: 15px;
                     display: flex;
-
+                    cursor: pointer;
+    
                     img {
                         aspect-ratio: 1/1;
                         border-radius: 15px;
@@ -430,13 +448,11 @@
                         object-fit: cover;
                         object-position: center;
                     }
-
+    
                 }
-
-                .image:hover {
-                    opacity: 85%;
-                }
-
+    
+    
+    
             }
         }
         
@@ -541,6 +557,7 @@
 }
 @media only screen and (max-width: 500px) {
     .staycation-list {
+        padding:0rem;
         &-staycation-wrapper {
             .category-home-button {
                 justify-content: center;
@@ -576,30 +593,54 @@
                 }
             }
 
+            .search-filters-container {
+                &-layer-2-wrapper {
+                    .location,
+                    .card {
+                        border-radius: 0px;
+                    }
+    
+                    .checkin-out-style,
+                    .card {
+                        border-radius: 0px;
+      
+                        input {
+                            border-radius: 0px;
+                        }
+    
+                    }
+    
+                    .guest,.card {
+                        border-radius: 0px;
+
+                    }
+    
+                    button {
+                        border-radius: 0px;
+                    }
+                }
+            }
+
             .content {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap:1rem;
+                gap: 1rem;
                 cursor: pointer;
-                margin-top: 5rem;
-               
     
-                .stacked {
-       
-
-                }
+    
+                .stacked {}
     
                 .card {
-                    max-width:12rem;
+                    max-width: 12rem;
                     width: 100%;
                     grid-template-rows: 12rem auto;
-
+    
                     .image {
-                        max-height:12rem;
+                        max-height: 12rem;
     
                         img {
                             width: 100%;
-                            height:100%;
+                            height: 100%;
                         }
     
                     }
