@@ -1,42 +1,3 @@
-
-
-.image-grid {
-	--gap: 16px;
-	--num-cols: 4;
-	--row-height: 300px;
-
-	box-sizing: border-box;
-	padding: var(--gap);
-
-	display: grid;
-	grid-template-columns: repeat(var(--num-cols), 1fr);
-	grid-auto-rows: var(--row-height);
-	gap: var(--gap);
-    cursor: pointer;
-}
-
-.image-grid>img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.image-grid-col-2 {
-	grid-column: span 2;
-}
-
-.image-grid-row-2 {
-	grid-row: span 2;
-}
-
-
-@media screen and (max-width: 1024px) {
-	.image-grid {
-		--num-cols: 2;
-		--row-height: 200px;
-	}
-}
-
 .staycation-details {
     width: 100%;
     margin-left: auto;
@@ -44,15 +5,15 @@
     font-family: Poppins-Regular;
     position: relative;
 
-    
+
 
     &-staycation-details-wrapper {
-        
-         hr{
+
+        hr {
             border: 0;
             height: 1px;
             background-color: #ccc !important;
-         }
+        }
 
         .property-title {
             margin-top: 2rem;
@@ -82,16 +43,58 @@
                     font-size: clamp(1.5rem, 1.5vw, 8rem);
                 }
 
-                .heart {
+                .star {
                     color: #68A968;
                     display: flex;
                     gap: .5rem;
                     align-items: center;
+                    cursor: pointer;
                 }
             }
         }
 
-    
+        //image grid start
+        .image-grid {
+
+            --num-cols: 4;
+            --row-height: 300px;
+
+            box-sizing: border-box;
+            padding: var(--gap);
+
+            display: grid;
+            grid-template-columns: repeat(var(--num-cols), 1fr);
+            grid-auto-rows: var(--row-height);
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .image-grid>img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .image-grid-col-2 {
+            grid-column: span 2;
+        }
+
+        .image-grid-row-2 {
+            grid-row: span 2;
+        }
+
+
+        @media screen and (max-width: 1024px) {
+            .image-grid {
+                --num-cols: 2;
+                --row-height: 200px;
+            }
+        }
+
+        //image grid end
+
+
         .details-reserve-wrapper {
             display: grid;
             grid-template-columns: auto 40%;
@@ -101,7 +104,8 @@
             .details-column {
                 .details-header {
                     .title {
-                        font-size: clamp(1rem, 1.2vw, 8rem);
+                        font-size: clamp(1rem, 1vw, 4rem);
+                        font-weight: bold;
                     }
 
                     .subtitle {
@@ -123,41 +127,76 @@
                 .details-user-avatar {
                     display: flex;
                     align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
                     gap: 1rem;
                     margin: 1rem 0 1rem;
 
-                    .image-avatar {
-                        max-width: 3rem;
+                    .wrapper {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
 
-                        img {
-                            width: 100%;
-                            height: auto;
+                        .image-avatar {
+                            img {
+                                border-radius: 100%;
+                                width: 3rem;
+                                height: 3rem;
+                                object-fit: cover;
+                                object-position: center;
+                                border: 1px solid #68A968;
+                            }
+                        }
+
+                        .name {
+                            font-size: clamp(1rem, .8vw, 8rem);
+                        }
+
+                        .years {
+                            font-size: .8rem;
+                            color: #68A968;
                         }
                     }
 
-                    .name {
-                        font-size: clamp(1rem, .8vw, 8rem);
-                    }
+                    .message_proprietor {
+                        button {
+                            cursor: pointer;
+                            border-radius: 10px;
+                            padding: auto 0 auto;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 1rem;
+                            border: 2px solid #68A968;
+                            background-color: transparent;
+                            padding: .5rem 1rem .5rem;
+                            color: #68A968;
+                            font-size: 1rem;
 
-                    .years {
-                        font-size: .8rem;
-                        color: #68A968;
+
+                            mat-icon {
+                                margin: 0;
+                                padding: 0;
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
                     }
                 }
 
                 .details-about {
+                    margin: 2rem 0 2rem;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
-                    gap: 1rem;
+                    gap: .5rem;
 
                     .title {
-                        font-size: clamp(1rem, 1.2vw, 8rem);
-                        margin: 1rem 0 1rem;
+                        font-size: clamp(1rem, 1vw, 4rem);
+                        font-weight: bold;
                     }
 
                     .description {
-                        font-size: clamp(.7rem, .7vw, 8rem);
+                        font-size: clamp(.8rem, .9vw, 4rem);
                     }
 
                     button {
@@ -176,12 +215,13 @@
                         margin: 1rem 0 1rem;
 
                         .title {
-                            font-size: clamp(1rem, 1.2vw, 8rem);
+                            font-size: clamp(1rem, 1vw, 4rem);
                             margin: 1rem 0 1rem;
+                            font-weight: bold;
                         }
 
                         .label {
-                            font-size: 1rem;
+                            font-size: clamp(.8rem, .9vw, 4rem);
                         }
 
                         .sublabel {
@@ -206,17 +246,32 @@
                     margin: 2rem 0 2rem;
 
                     .title {
-                        font-size: clamp(1rem, 1.2vw, 8rem);
+                        font-size: clamp(1rem, 1vw, 4rem);
                         margin: 1rem 0 1rem;
+                        font-weight: bold;
                     }
 
                     .description {
-                        font-size: clamp(.7rem, .7vw, 8rem);
+                        font-size: clamp(.8rem, .9vw, 4rem);
+                        // display: grid;
+                        // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                        // gap:1rem;
+
                     }
                 }
 
                 .details-reviews {
                     margin: 2rem 0 2rem;
+
+                    .title {
+                        font-size: clamp(1rem, 1vw, 4rem);
+                        margin: 1rem 0 1rem;
+                        font-weight: bold;
+                    }
+
+                    p {
+                        font-size: clamp(.8rem, .9vw, 4rem);
+                    }
 
                     .reviews {
                         font-weight: bolder;
@@ -339,14 +394,14 @@
                                 color: #797979;
                                 font-family: Arial, sans-serif;
                                 font-size: 14px;
-                               
+
                                 width: 100%;
-                                border: 1px solid #ccc; 
-                               
+                                border: 1px solid #ccc;
+
 
                             }
 
-        
+
                             .custom-date-input::-webkit-calendar-picker-indicator {
                                 cursor: pointer;
                                 padding: .5rem;
@@ -358,7 +413,7 @@
                             .calendar-icon {
                                 width: 25px;
                                 height: 25px;
-                                background-image: url('../../../assets/images/search-filters/calendaricon.png'); 
+                                background-image: url('../../../assets/images/search-filters/calendaricon.png');
                                 background-size: contain;
                                 background-repeat: no-repeat;
                             }
@@ -408,8 +463,9 @@
                             }
                         }
 
-                        .addguest-inputs{
+                        .addguest-inputs {
                             margin-top: 1rem;
+
                             .addguest-inputs-add-guest-container {
                                 .addguest-header-wrapper {
                                     display: flex;
@@ -417,13 +473,13 @@
                                     align-items: center;
                                     padding-bottom: 1rem;
                                     // border: 1px solid red;
-                                    
+
                                     .addguest-title {
                                         font-weight: bold;
                                     }
                                 }
-                        
-                        
+
+
                                 .input-addguest {
                                     display: grid;
                                     grid-template-columns: repeat(2, 2fr);
@@ -431,18 +487,18 @@
                                     align-items: center;
                                     place-items: center;
                                     place-self: center;
-                        
+
                                     // border: 1px solid red;
-                        
+
                                 }
-                        
-                        
+
+
                                 label {
                                     // border: 1px solid red;
                                     width: 100%;
                                     height: 100%;
                                 }
-                        
+
                                 input[type="number"] {
                                     padding: 0.5rem;
                                     border: 1px solid #ccc;
@@ -451,8 +507,8 @@
                                     width: 80%;
                                     // border: 1px solid red;
                                 }
-                        
-                                .custom-btn{
+
+                                .custom-btn {
                                     margin-top: 1rem;
                                     margin-left: auto;
                                     margin-right: auto;
@@ -561,32 +617,32 @@
 @media screen and (max-width: 1285px) {
     .staycation-details {
         &-staycation-details-wrapper {
-           
-        .details-reserve-wrapper {
-            display: flex;
-          flex-direction: column;
-            gap: 20px;
-            margin-top: 2rem;
 
-            .reserve-sticky-column {
-                
-                .reserve-sticky-column-wrapper {
+            .details-reserve-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 2rem;
 
-                    .date-checkin-out {
-    
+                .reserve-sticky-column {
 
-                        .checkin-out-style {
-                        
-                            width:100%;
-                         
-                        }
-                     
+                    .reserve-sticky-column-wrapper {
+
+                        .date-checkin-out {
+
+
+                            .checkin-out-style {
+
+                                width: 100%;
+
+                            }
+
 
                         }
 
                     }
+                }
             }
-        }
 
         }
     }
@@ -673,6 +729,24 @@
                     grid-row: span 1;
                     grid-column: span 2;
 
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .staycation-details {
+        .details-reserve-wrapper {
+            .reserve-sticky-column {
+                padding: 0rem;
+                box-shadow: none;
+
+                .reserve-sticky-column-wrapper {
+
+                    .date-checkin-out {
+                        flex-wrap: wrap;
+                    }
                 }
             }
         }

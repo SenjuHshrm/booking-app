@@ -7,10 +7,13 @@
                </button>
                <div class="title-wrapper">
                     <div class="title"></div>
-                    <div class="heart">
-                         <mat-icon>stars</mat-icon>
+
+                    <div class="star" (click)="wishListToggle()" >
+                         <mat-icon *ngIf="wishlistIcons === true">flag</mat-icon>
+                         <mat-icon *ngIf="wishlistIcons === false">outlined_flag</mat-icon>
                          <div>Wishlist</div>
                     </div>
+                    
                </div>
           </section>
 
@@ -24,8 +27,8 @@
                <section class="details-column">
                     <div class="details-header">
                          <div class="title">{{ details.name }}</div>
-                         <div class="subtitle">{{ details.details.guests }} guest/s - {{ details.details.bedrooms }}
-                              bedroom/s - {{ details.details.beds }} bed/s - {{ details.details.bathroom }} bathroom/s
+                         <div class="subtitle">{{ details.details.guests }} guest's - {{ details.details.bedrooms }}
+                              bedroom's - {{ details.details.beds }} bed's - {{ details.details.bathroom }} bathroom's
                          </div>
                          <div class="rate">
                               <div>Rate</div>
@@ -34,6 +37,7 @@
                          </div>
                     </div>
                     <div class="details-user-avatar">
+                         <div class="wrapper">
                          <div class="image-avatar">
                               <img [src]="details.host.img" loading="lazy" alt="Avatar" [draggable]="false">
                          </div>
@@ -42,13 +46,35 @@
                               <div class="years">Proprietor since 2 years</div>
                          </div>
                     </div>
+                    <div class="message_proprietor">
+                         <button>
+                              <mat-icon>message</mat-icon>
+                              Message Proprietor
+                         </button>
+                    </div>
+                    </div>
                     <hr>
                     <div class="details-about">
-                         <div class="title">About this space</div>
+                         <div class="title">Cancellation Policy</div>
+                         <div class="description">
+                              <div>Free cancellation before Sep 5</div>
+                              <div> Get a full refund if you change your mind.</div>
+                         </div>
+                    </div>
+                    <hr>
+                    <div class="details-about">
+                         <div class="title">About this place</div>
+                         <div class="description">
+                              Not available
+                         </div>
+                         <!-- <button>See more</button> -->
+                    </div>
+                    <hr>
+                    <div class="details-about">
+                         <div class="title">Address</div>
                          <div class="description">
                               {{ details.address }}
                          </div>
-                         <!-- <button>See more</button> -->
                     </div>
                     <hr>
                     <div class="details-where-you-sleep">
@@ -66,12 +92,18 @@
                     <div class="details-whats-offer">
                          <div class="title">What this place offers</div>
                          <div class="description">
-                              {{ details.amenities }}
+                              <div>
+                                  {{ details.amenities}}
+                              </div>
                          </div>
                     </div>
                     <hr>
                     <div class="details-reviews">
-                         <div class="reviews" *ngIf="totalReviews > 0">
+                         <div class="title">Reviews</div>
+                         <div class="comments" *ngIf="totalReviews === 0 || latestReview ===0">
+                              <p>No reviews yet!</p>
+                         </div>
+                         <div class="comments" *ngIf="totalReviews > 0">
                               <div class="rate-stars">
                                    <mat-icon>stars</mat-icon>
                                    <div>{{ averageStar }}</div>

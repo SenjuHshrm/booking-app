@@ -11,7 +11,7 @@ import { limit } from './limit'; // Adjust the path as necessary
   selector: 'app-staycation-details',
   templateUrl: './staycation-details.component.html',
   styleUrls: ['./staycation-details.component.scss'],
-  animations:[fadeInAnimation]
+  animations: [fadeInAnimation]
 })
 
 export class StaycationDetailsComponent implements OnInit, OnDestroy {
@@ -20,8 +20,8 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public details: any
   public serviceCharge: any = []
   private _sub: Subscription = new Subscription()
-  public imageSets:any;
-  public imgS:number = 0;
+  public imageSets: any;
+  public imgS: number = 0;
   public totalBeforeTax!: number;
   public averageStar: number = 0;
   public totalReviews: number = 0;
@@ -32,9 +32,10 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public guest_infants: number = 0;
   public guest_pets: number = 0;
 
- 
+  public wishlistIcons: boolean = false;
 
-  
+
+
   constructor(
     private router: Router,
     private _activatedRoute: ActivatedRoute,
@@ -43,7 +44,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     private _globalStatic: GlobalStaticService
 
   ) {
-  
+
   }
 
   ngOnInit(): void {
@@ -56,10 +57,15 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    
+  
+  }
+  
+  wishListToggle(){
+    this.wishlistIcons = !this.wishlistIcons;
   }
 
-  getId(data:any){
+
+  getId(data: any) {
     this.imgS = data;
     return
   }
@@ -74,7 +80,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   }
 
 
-  
+
   navigateToBookStaycation() {
     this.router.navigate(['main/book-staycation']);
   }
@@ -86,7 +92,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   private _getStaycationDetails(id: string) {
     this._sub.add(this._staycation.getStaycationDetails(id).subscribe({
       next: (res: any) => {
-        console.log( res)
+        console.log(res)
         this.details = {
           ...res,
           amenities: res.amenities.join(", "),
@@ -126,11 +132,11 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       this.gallery.push(this._basicUtil.setImgUrl(i))
     })
 
-    this.imageSets = limit(this.gallery, 5); 
+    this.imageSets = limit(this.gallery, 5);
     console.log(this.imageSets)
   }
-  
 
 
- 
+
+
 }
