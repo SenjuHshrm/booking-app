@@ -67,7 +67,7 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
     // Add more data as needed
   ]);
 
-  displayedColumns: string[] = ['listing', 'status','bedrooms','beds','bath','location','lastmodified','action'];
+  displayedColumns: string[] = ['listing','bedrooms','beds','bath','location','status','lastmodified','action'];
 
   ngOnInit() {
     this._claims = <ITokenClaims>this._token.decodedToken()
@@ -81,6 +81,10 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this._sub.unsubscribe()
   }
+
+
+  
+  
 
   public handleCreateListing(){
       this.router.navigate(['register-proprietorship']);
@@ -125,7 +129,17 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }))
   }
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
+
 
 
 // dataSource = new MatTableDataSource<any>([

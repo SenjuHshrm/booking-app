@@ -1,11 +1,10 @@
-<div class="listing-container" >
-    <div class="listing-container-listing-wrapper">
-        <header class="header">
-            <div class="listing-search card">
-                <div class="icon"><mat-icon>search</mat-icon></div>
-                <input type="text" name="search-listing" placeholder="Search listing" value="" />
-            </div>
-            <!-- <div class="custom-select-option rooms-and-bed card">
+<div class="listing-container"  [@fadeInAnimation]>
+    <header class="header">
+        <div class="search">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search here..">
+            <mat-icon>search</mat-icon>
+        </div>
+        <!-- <div class="custom-select-option rooms-and-bed card">
                 <select name="No. of bed">
                     <optgroup label="Beds">
                     <option value="option1">Rooms</option>
@@ -28,41 +27,26 @@
                     <option value="option3">Option 3</option>
                 </select>
             </div> -->
-            <div class="create-listing-button card" 
-            (click)="handleCreateListing()
+        <div class="create-listing-button card" (click)="handleCreateListing()
             ">
-                <div class="mat-icon"><mat-icon>note_add</mat-icon></div>
-                <div>Create Listing</div>
-            </div>
-
-        </header>
-        <!-- <section class="table" [@fadeInAnimation]>
-            <table mat-table [dataSource]="dataSource">
-               
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-            </table>
-            <mat-paginator #paginator [length]="100" [pageSizeOptions]="[5, 10, 25]" aria-label="select page" showFirstLastButtons (page)="handlePageChange($event)"></mat-paginator>
-        </section> -->
-
-            <div class="table-container mat-elevation-z3">
-               <table mat-table [dataSource]="dataSource" class="mat-table-responsive">
-                
+            <div class="mat-icon"><mat-icon>note_add</mat-icon></div>
+            <div>Create Listing</div>
+        </div>
+    </header>
+       <div class="content">
+        <div class="mat-elevation-z3">
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" class="mat-table-responsive">
                 <ng-container matColumnDef="listing">
                     <th mat-header-cell *matHeaderCellDef>Listing</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="custom-property">
-                            <img class="img" [src]="[element.listing]"  alt="property" />
-                         </div>
+                            <img class="img" [src]="[element.listing]" alt="property" />
+                        </div>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef>Status</th>
-                    <td mat-cell *matCellDef="let element">{{ element.status }}</td>
-                </ng-container>
                 <ng-container matColumnDef="bedrooms">
-                    <th mat-header-cell *matHeaderCellDef>Instant Book</th>
+                    <th mat-header-cell *matHeaderCellDef>Bedrooms</th>
                     <td mat-cell *matCellDef="let element">{{ element.bedrooms }}</td>
                 </ng-container>
                 <ng-container matColumnDef="beds">
@@ -77,6 +61,10 @@
                     <th mat-header-cell *matHeaderCellDef>Location</th>
                     <td mat-cell *matCellDef="let element">{{ element.location }}</td>
                 </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>Status</th>
+                    <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+                </ng-container>
                 <ng-container matColumnDef="lastmodified">
                     <th mat-header-cell *matHeaderCellDef>Last Modified</th>
                     <td mat-cell *matCellDef="let element">{{ element.lastmodified }}</td>
@@ -84,20 +72,25 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>Action</th>
                     <td mat-cell *matCellDef="let element">
-                     <button class="action-btn"  mat-button [matMenuTriggerFor]="menu">
-                        <mat-icon>more_horiz</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>View</button>
-                        <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)" *ngIf="!element.isListed">Add to Listing</button>
-                        <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)" *ngIf="element.isListed">Remove to Listing</button>
-                    </mat-menu>
+                        <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>View</button>
+                            <button mat-menu-item>Update</button>
+                            <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)"
+                                *ngIf="!element.isListed">Add to Listing</button>
+                            <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)"
+                                *ngIf="element.isListed">Remove to Listing</button>
+                        </mat-menu>
                     </td>
                 </ng-container>
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-               </table>
-               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-            </div>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+            <mat-paginator #paginator [length]="100" [pageSizeOptions]="[5, 10, 25]" aria-label="select page"
+                showFirstLastButtons (page)="handlePageChange($event)"></mat-paginator>
+        </div>
+    </div>
     </div>
 </div>

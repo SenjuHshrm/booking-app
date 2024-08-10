@@ -1,5 +1,6 @@
 .today-tabs {
   &-today-tabs-wrapper {
+    
     .content {
       height: 50vh;
       max-height: 40rem;
@@ -38,8 +39,6 @@
         max-width: 100%;
         width: 100%;
         overflow: auto;
-
-
       }
 
       .mat-table-responsive {
@@ -102,9 +101,6 @@
           gap: 5px;
         }
       }
-
-
-
 
 
       .action-btn {
