@@ -22,6 +22,7 @@ export class GalleryComponent implements OnInit {
   currentIndex = 0;
   controls= true;
   totalImageCount = 0;
+  zIndex:any = 0;
  
   constructor() {}
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class GalleryComponent implements OnInit {
     this.previewImage = true;
     this.currentIndex = index;
     this.currentLightboxImage = this.galleryData[index];
+    this.zIndex = -1;
   }
 
   clickNext():void{
