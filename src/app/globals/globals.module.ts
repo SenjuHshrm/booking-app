@@ -15,6 +15,7 @@ import { BookingTermsComponent } from './booking-terms/booking-terms.component';
 import { ReservationsViewComponent } from './reservations-view/reservations-view.component';
 import { LoaderStateComponent } from './loader-state/loader-state.component';
 import { GalleryViewComponent } from './gallery/gallery-view/gallery-view.component';
+import { MessageProprietorComponent } from './message-proprietor/message-proprietor.component';
 
 
 
@@ -31,7 +32,8 @@ import { GalleryViewComponent } from './gallery/gallery-view/gallery-view.compon
     BookingTermsComponent,
     ReservationsViewComponent,
     LoaderStateComponent,
-    GalleryViewComponent
+    GalleryViewComponent,
+    MessageProprietorComponent
   ],
 
   imports: [

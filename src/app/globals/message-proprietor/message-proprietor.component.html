@@ -1,0 +1,42 @@
+<div class="message_modal">
+    <div class="header">
+        <div class="title">
+            Message Proprietor
+        </div>
+        <div class="custom_close" (click)="closeDialogMessage()"><mat-icon>close</mat-icon></div>
+    </div>
+
+    <hr>
+    <div class="message_modal-content">
+
+
+        <div class="details-user-avatar">
+            <div class="wrapper">
+                <div class="image-avatar">
+                    <img src='{{data.img.img}}' loading="lazy" alt="Avatar" [draggable]="false">
+                </div>
+                <div>
+                    <div class="name">{{data.img.name}}</div>
+                    <div class="years">Proprietor since 2 years</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="wrapper">
+            <div class="title">Within</div>
+            <div class="subtitle">
+                48 hours of booking
+            </div>
+            <hr>
+            <div class="title">Full refund</div>
+            <div class="subtitle">
+                Get back 100% of what you paid.
+            </div>
+        </div>
+    </div>
+
+    <div class="footer ">
+        <button class="main-button">Send Message</button>
+    </div>
+</div>

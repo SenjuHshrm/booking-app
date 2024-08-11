@@ -18,7 +18,8 @@ export class Step9Component implements OnInit {
   public isSelected: any = null;
   public formRegPropS9!: FormGroup<Step9Form>;
   public adddiscounts: any = [
-    { label: 20, name: '20% Off', desc: 'Offer 20% off your first 3 bookings', value: 'discount_1' },
+    { label: 0, name: '0%', desc: 'Do not used discounts.', value: 'discount_0' },
+    { label: 20, name: '20% Off', desc: 'Offer discounts for first 3 bookings', value: 'discount_1' },
     { label: 30, name: '30% Off', desc: 'For stays of 7 nights or more', value: 'discount_2' },
     { label: 50, name: '40% Off', desc: 'For stays of 28 nights or more', value: 'discount_3' },
   ]

@@ -15,6 +15,10 @@
             background-color: #ccc !important;
         }
 
+        .not-available {
+            color: #797979;
+        }
+
         .property-title {
             margin-top: 2rem;
             margin-bottom: 2rem;
@@ -22,6 +26,7 @@
             align-items: center;
             gap: 1rem;
             justify-content: space-between;
+            width: 100%;
 
             button {
                 background-color: transparent;
@@ -34,13 +39,23 @@
             }
 
             .title-wrapper {
-                flex-basis: 100%;
                 display: flex;
                 justify-content: space-between;
-
+                width: 100%;
+                
                 .title {
                     font-weight: bold;
-                    font-size: clamp(1.5rem, 1.5vw, 8rem);
+                    font-size: clamp(1rem, 1.5vw, 8rem); 
+                    display:-webkit-box !important;
+                    -webkit-line-clamp: 2 !important;
+                    -webkit-box-orient: vertical !important ;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis !important;
+                    white-space:break-spaces !important;
+                    line-height:2.5rem;
+                    width: 100%;
+                    max-width: 90%;
+                    padding:0 1rem 0;
                 }
 
                 .star {
@@ -55,7 +70,6 @@
 
         //image grid start
         .image-grid {
-
             --num-cols: 4;
             --row-height: 300px;
 
@@ -69,11 +83,15 @@
             cursor: pointer;
         }
 
+        .image-grid:hover{
+          background-color: #f3f3f3;
+        }
+
         .image-grid>img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center left;
         }
 
         .image-grid-col-2 {
@@ -104,8 +122,16 @@
             .details-column {
                 .details-header {
                     .title {
-                        font-size: clamp(1rem, 1vw, 4rem);
+                        font-size: clamp(1rem, .8vw, 4rem);
                         font-weight: bold;
+                        max-width:100%;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;  
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: normal;
+                      
                     }
 
                     .subtitle {
@@ -183,6 +209,84 @@
                     }
                 }
 
+                .important {
+                    margin: 1rem 0 1rem;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    gap: 1rem;
+
+                    mat-icon {
+                        color: #68A968;
+                    }
+
+                    .info {
+                        .title {
+                            font-size: clamp(.8rem, .8vw, 1rem);
+                            font-weight: bold;
+                        }
+
+                        .description {
+                            font-size: clamp(.8rem, .8vw, 1rem);
+                        }
+
+                    }
+                }
+
+                .described_house_container {
+                    margin: 2rem 0 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: .5rem;
+
+                    .title {
+                        font-size: clamp(1rem, .8vw, 4rem);
+                        font-weight: bold;
+                    }
+
+                    .described {
+                        width: 100%;
+                        .title_info {
+                            font-size: clamp(1rem, .8vw, 4rem);
+                        }
+
+                        .info_wrapper {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                            gap:1rem;
+                            margin: 1rem 0 1rem;
+                            border: 1px solid #ccc;
+                            padding: 1rem;
+                            border-radius: 10px;
+
+                            .info {
+                                display: flex;
+                                align-items: center;
+                                font-size: clamp(.8rem, .8vw, 1rem);
+
+                                mat-icon {
+                                    font-size: 1.2rem;
+                                    color: #68A968;
+                                }
+                            }
+                        }
+
+                        .desc_wrapper{
+                            border: 1px solid #ccc;
+                            padding: 1rem;
+                            border-radius: 10px;
+                            margin: 1rem 0 0rem;
+                            font-size: clamp(.8rem, .8vw, 1rem);
+                        }
+
+                    }
+
+                    
+
+             
+                }
+
                 .details-about {
                     margin: 2rem 0 2rem;
                     display: flex;
@@ -191,12 +295,12 @@
                     gap: .5rem;
 
                     .title {
-                        font-size: clamp(1rem, 1vw, 4rem);
+                        font-size: clamp(1rem, .8vw, 4rem);
                         font-weight: bold;
                     }
 
                     .description {
-                        font-size: clamp(.8rem, .9vw, 4rem);
+                        font-size: clamp(.8rem, .8vw, 1rem);
                     }
 
                     button {
@@ -208,6 +312,36 @@
                     }
                 }
 
+                
+                .address {
+                    margin: 2rem 0 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: .5rem;
+
+                    .title {
+                        font-size: clamp(1rem, .8vw, 4rem);
+                        font-weight: bold;
+                    }
+
+                    .description {
+                        display: flex;
+                         align-items: center;
+                         gap: 1rem;
+                        font-size: clamp(.8rem, .8vw, 1rem);
+                        word-break: break-word;
+
+                        mat-icon{
+                            color: #68A968;
+                            flex: none;
+
+                        }
+                    }
+
+                }
+
+
                 .details-where-you-sleep {
                     margin: 2rem 0 2rem;
 
@@ -215,13 +349,13 @@
                         margin: 1rem 0 1rem;
 
                         .title {
-                            font-size: clamp(1rem, 1vw, 4rem);
+                            font-size: clamp(1rem, .8vw, 4rem);
                             margin: 1rem 0 1rem;
                             font-weight: bold;
                         }
 
                         .label {
-                            font-size: clamp(.8rem, .9vw, 4rem);
+                            font-size: clamp(.8rem, .8vw, 1rem);
                         }
 
                         .sublabel {
@@ -246,13 +380,13 @@
                     margin: 2rem 0 2rem;
 
                     .title {
-                        font-size: clamp(1rem, 1vw, 4rem);
+                        font-size: clamp(1rem, .8vw, 4rem);
                         margin: 1rem 0 1rem;
                         font-weight: bold;
                     }
 
                     .description {
-                        font-size: clamp(.8rem, .9vw, 4rem);
+                        font-size: clamp(.8rem, .8vw, 1rem);
                         // display: grid;
                         // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                         // gap:1rem;
@@ -264,13 +398,13 @@
                     margin: 2rem 0 2rem;
 
                     .title {
-                        font-size: clamp(1rem, 1vw, 4rem);
+                        font-size: clamp(1rem, .8vw, 4rem);
                         margin: 1rem 0 1rem;
                         font-weight: bold;
                     }
 
                     p {
-                        font-size: clamp(.8rem, .9vw, 4rem);
+                        font-size: clamp(.8rem, .8vw, 1rem);
                     }
 
                     .reviews {
@@ -544,7 +678,7 @@
                         font-weight: bold;
                         color: #797979;
                         text-align: center;
-                        margin-bottom: 2rem;
+                        margin: 1rem 0rem 2rem;
                     }
 
                     .computation {
@@ -581,6 +715,13 @@
 @media screen and (max-width: 1600px) {
     .staycation-details {
         &-staycation-details-wrapper {
+            .property-title{
+            .title-wrapper {
+                .title {
+                   line-height: 1.5rem !important;
+                }
+            }
+        }
             .image-gallery {
 
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -592,6 +733,7 @@
 
                 }
             }
+
         }
     }
 }
@@ -698,12 +840,10 @@
 @media screen and (max-width: 900px) {
     .staycation-details {
         max-width: 95%;
-
         &-staycation-details-wrapper {
+            
             .image-gallery {
-
                 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-
                 .first-image {
                     // border: 2px solid red; 
                     grid-row: span 2;
@@ -718,8 +858,17 @@
 @media screen and (max-width: 700px) {
     .staycation-details {
         max-width: 95%;
-
         &-staycation-details-wrapper {
+            .property-title{
+                .title-wrapper {
+                    justify-content: end;
+                
+                    .title {
+                        display: none !important;
+                        background-color: #68A968;
+                    }
+                }
+            }
             .image-gallery {
 
                 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));

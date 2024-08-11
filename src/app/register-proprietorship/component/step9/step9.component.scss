@@ -134,13 +134,14 @@
                       border: 2px solid #ccc;
                       /* Default color for the border */
                       outline: none;
-                      cursor: pointer;
+                      cursor:none;
                   }
 
                   /* Style for the inner dot when selected */
                   .radio-button input[type="radio"]:checked,
                   .checked {
                       background-color: #63AB68;
+                     
                       /* Custom color for the inner dot when selected */
                   }
               }

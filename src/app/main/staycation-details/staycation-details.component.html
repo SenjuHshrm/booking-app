@@ -6,14 +6,12 @@
                     <span>Back</span>
                </button>
                <div class="title-wrapper">
-                    <div class="title"></div>
-
-                    <div class="star" (click)="wishListToggle()" >
+                    <div class="title">{{ details.name }} </div>
+                    <div class="star" (click)="wishListToggle()">
                          <mat-icon *ngIf="wishlistIcons === true">flag</mat-icon>
                          <mat-icon *ngIf="wishlistIcons === false">outlined_flag</mat-icon>
                          <div>Wishlist</div>
                     </div>
-                    
                </div>
           </section>
 
@@ -27,7 +25,8 @@
                <section class="details-column">
                     <div class="details-header">
                          <div class="title">{{ details.name }}</div>
-                         <div class="subtitle">{{ details.details.guests }} guest's - {{ details.details.bedrooms }}
+                         <div class="subtitle">
+                              {{ details.details.guests }} guest's - {{ details.details.bedrooms }}
                               bedroom's - {{ details.details.beds }} bed's - {{ details.details.bathroom }} bathroom's
                          </div>
                          <div class="rate">
@@ -38,45 +37,101 @@
                     </div>
                     <div class="details-user-avatar">
                          <div class="wrapper">
-                         <div class="image-avatar">
-                              <img [src]="details.host.img" loading="lazy" alt="Avatar" [draggable]="false">
+                              <div class="image-avatar">
+                                   <img [src]="details.host.img" loading="lazy" alt="Avatar" [draggable]="false">
+                              </div>
+                              <div>
+                                   <div class="name">{{ details.host.name }}</div>
+                                   <div class="years">Proprietor since 2 years</div>
+                              </div>
                          </div>
-                         <div>
-                              <div class="name">{{ details.host.name }}</div>
-                              <div class="years">Proprietor since 2 years</div>
-                         </div>
-                    </div>
-                    <div class="message_proprietor">
-                         <button>
-                              <mat-icon>message</mat-icon>
-                              Message Proprietor
-                         </button>
-                    </div>
-                    </div>
-                    <hr>
-                    <div class="details-about">
-                         <div class="title">Cancellation Policy</div>
-                         <div class="description">
-                              <div>Free cancellation before Sep 5</div>
-                              <div> Get a full refund if you change your mind.</div>
+                         <div class="message_proprietor" (click)="messageProprietor()">
+                              <button>
+                                   <mat-icon>message</mat-icon>
+                                   Message Proprietor
+                              </button>
                          </div>
                     </div>
                     <hr>
-                    <div class="details-about">
-                         <div class="title">About this place</div>
-                         <div class="description">
-                              Not available
-                         </div>
-                         <!-- <button>See more</button> -->
-                    </div>
-                    <hr>
-                    <div class="details-about">
+                    <div class=" address">
                          <div class="title">Address</div>
                          <div class="description">
-                              {{ details.address }}
+                              <mat-icon> my_location</mat-icon>
+                              <div>{{ details.address }}</div>
                          </div>
                     </div>
                     <hr>
+                    <div class="important category">
+                         <div class="icons">
+                              <mat-icon>bookmark_border</mat-icon>
+                         </div>
+                         <div class="info">
+                              <div class="title">Category</div>
+                              <div class="description">Hotel</div>
+                         </div>
+                    </div>
+
+                    <div class="important guest have">
+                         <div class="icons">
+                              <mat-icon>bookmark_border</mat-icon>
+                         </div>
+                         <div class="info">
+                              <div class="title">Place will guest have</div>
+                              <div class="description">Room Only</div>
+                         </div>
+                    </div>
+
+                    <div class="important discounts">
+                         <div class="icons">
+                              <mat-icon>bookmark_border</mat-icon>
+                         </div>
+                         <div class="info">
+                              <div class="title">Discounted Offer's</div>
+                              <div *ngFor="let discount of discountedOffer" class="description">
+                                   <div *ngIf="discount.selected === true">
+                                        <span>{{discount.discount}}% &nbsp;{{discount.description}}</span>
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+                    <div class="important cancellation">
+                         <div class="icons">
+                              <mat-icon>bookmark_border</mat-icon>
+                         </div>
+                         <div class="info">
+                              <div class="title">Free cancellation before Sep 5</div>
+                              <div class="description"> Get a full refund if you change your mind.</div>
+                         </div>
+                    </div>
+                    <hr>
+                    <div class="described_house_container">
+                         <div class="title">About this place</div>
+                         <div class="described ">
+                              <div class="title_info">Ambiance</div>
+                              <div class="info_wrapper">
+                                   <div class="info" *ngFor="let amBiances of ambiance">
+                                        <mat-icon>done_outline</mat-icon>
+                                        <div>{{amBiances.label}}</div>
+                                   </div>
+                              </div>
+
+                         </div>
+                         <div class="described">
+                              <div class="title_info">Detailed description</div>
+                              <div class="desc_wrapper">
+                                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis veniam
+                                        fugiat alias consequatur omnis optio cumque error ipsum iure. Officiis placeat
+                                        expedita maiores nihil! Officiis tempore pariatur maiores illum et!</p>
+                              </div>
+                              <!-- <div class="not-available">
+                                   Proprietor didn't described yet!
+                              </div> -->
+                         </div>
+                         <!-- <button>See more</button> -->
+                          
+                    </div>
+
                     <div class="details-where-you-sleep">
                          <div class="title-wrapper">
                               <div class="title">Where you'll sleep</div>
@@ -93,7 +148,7 @@
                          <div class="title">What this place offers</div>
                          <div class="description">
                               <div>
-                                  {{ details.amenities}}
+                                   {{ details.amenities}}
                               </div>
                          </div>
                     </div>
@@ -101,7 +156,7 @@
                     <div class="details-reviews">
                          <div class="title">Reviews</div>
                          <div class="comments" *ngIf="totalReviews === 0 || latestReview ===0">
-                              <p>No reviews yet!</p>
+                              <p class="not-available">No reviews yet!</p>
                          </div>
                          <div class="comments" *ngIf="totalReviews > 0">
                               <div class="rate-stars">
@@ -114,7 +169,7 @@
                               </div>
 
                          </div>
-                         <div class="reviewer" *ngIf="latestReview">
+                         <div class="reviewer " *ngIf="latestReview">
                               <div class="avatar-wrapper">
                                    <div class="avatar">
                                         <img src="../../assets/images/main/staycation-details/avatarreviewer.png"

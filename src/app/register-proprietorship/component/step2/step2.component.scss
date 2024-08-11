@@ -28,8 +28,10 @@
         gap: .5rem;
         width: 100%;
         gap:2rem;
+        font-family: Poppins-Regular;
 
         .checkbox {
+            font-family: Poppins-Regular;
             width: 100%;
             border: 1px solid #68A86A;
             background-color: #F7F7F7;
@@ -49,12 +51,14 @@
                 // border: 1px solid black;
 
                 .info {
+                    font-family: Poppins-Regular;
                     .label {
                         font-weight: bold;
                     }
                 }
 
                 input {
+                    font-family: Poppins-Regular;
                     flex: none;
                     width: 1.5rem;
                     height: 1.5rem;

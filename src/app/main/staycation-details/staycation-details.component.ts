@@ -6,6 +6,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { limit } from './limit'; // Adjust the path as necessary
+import { MatDialog } from '@angular/material/dialog';
+import { MessageProprietorComponent } from 'src/app/globals/message-proprietor/message-proprietor.component';
 
 @Component({
   selector: 'app-staycation-details',
@@ -16,9 +18,9 @@ import { limit } from './limit'; // Adjust the path as necessary
 
 export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
-  public gallery: string[] = []
-  public details: any
-  public serviceCharge: any = []
+  public gallery: string[] = [];
+  public details: any;
+  public serviceCharge: any = [];
   private _sub: Subscription = new Subscription()
   public imageSets: any;
   public imgS: number = 0;
@@ -35,13 +37,28 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public wishlistIcons: boolean = false;
 
 
+  public ambiance:any = [
+    {label:'Peaceful'},
+    {label:'Unique'},
+    {label:'Stylish'},
+    {label:'Family-friendly'},
+    {label:'Spacious'}
+  ]
+
+  public discountedOffer:any=[
+    {discount:0, description:'No discount is available at this time.', selected:false},
+    {discount:20, description:'Offer discounts for first 3 bookings.', selected:true},
+    {discount:30, description:'For stays of 7 nights or more.', selected:false},
+    {discount:50, description:'For stays of 28 nights or more.', selected:false},
+  ]
 
   constructor(
     private router: Router,
     private _activatedRoute: ActivatedRoute,
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService,
-    private _globalStatic: GlobalStaticService
+    private _globalStatic: GlobalStaticService,
+    public dialog: MatDialog
 
   ) {
 
@@ -53,12 +70,24 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
         this._getStaycationDetails(<string>v.get('id'))
       }
     })
-    this._getGlobalStaticFee()
+    this._getGlobalStaticFee();
   }
 
   ngOnDestroy(): void {
   
   }
+
+
+messageProprietor(): void {
+  this.dialog.open(MessageProprietorComponent, {
+    width: '100%',
+    maxWidth:'35rem',
+    height:'100%',
+    maxHeight:'25rem',
+    data: {img:this.details.host}
+  });
+}
+
   
   wishListToggle(){
     this.wishlistIcons = !this.wishlistIcons;

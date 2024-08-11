@@ -29,6 +29,7 @@
     font-size: clamp(1rem, 1vw, 4rem);
 }
     .describe-your-place-wrapper {
+        font-family: Poppins-Regular;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1rem;
@@ -38,11 +39,13 @@
         // border:1px solid black;
 
         .checkbox {
+            font-family: Poppins-Regular;
             display: flex;
             align-items: center;
             gap: .5rem;
 
             input {
+                font-family: Poppins-Regular;
                 flex: none;
                 width: 1.5rem;
                 height: 1.5rem;
@@ -66,6 +69,7 @@
 
             .label {
                 font-weight: medium;
+                font-family: Poppins-Regular;
             }
 
        
