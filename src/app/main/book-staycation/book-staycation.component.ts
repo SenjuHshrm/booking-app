@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { MatDialog } from '@angular/material/dialog';
 import { MoreInfoComponent } from './more-info/more-info.component';
-import { LearnMoreComponent } from 'src/app/globals/learn-more/learn-more.component';
 import { BookingTermsComponent } from 'src/app/globals/booking-terms/booking-terms.component';
+import { CancelPolicyLearnmoreComponent } from 'src/app/globals/cancel-policy-learnmore/cancel-policy-learnmore.component';
 
 @Component({
   selector: 'app-book-staycation',
@@ -25,7 +25,7 @@ export class BookStaycationComponent {
   }
 
   onClickLearnMore(): void {
-    this.dialog.open(LearnMoreComponent, {
+    this.dialog.open(CancelPolicyLearnmoreComponent, {
       width:'100%',
       maxWidth:'32rem'
     });

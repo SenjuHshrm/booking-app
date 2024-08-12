@@ -77,12 +77,13 @@ body { margin: 0; font-family:Poppins-Regular}
   height: 2rem;
   display: flex;
   justify-content: center;
+   align-items: center;
   color: #63AB68;
+  border:none;
   cursor: pointer;
   
-
   mat-icon{
-    margin-top:4px;
+    margin: 0;
     padding:0;
   }
 
@@ -100,21 +101,24 @@ body { margin: 0; font-family:Poppins-Regular}
    height: 2rem;
    display: flex;
    justify-content: center;
+   align-items: center;
    color: #63AB68;
+   border:none;
    cursor: pointer;
-
+   
    mat-icon{
-    margin-top:4px;
-    padding:0;
-  }
-
-
+     margin: 0 !important;
+     padding:0 !important;
+   }
+ 
  }
  
  .close-button-normal:hover{
    background-color: black;
    color: #63AB68;
  }
+
+
 
  .not-found{
   font-size: clamp(1rem, 1vw, 5rem);
@@ -167,21 +171,51 @@ body { margin: 0; font-family:Poppins-Regular}
 }
 
 
+
+
 mat-icon{
-  margin:0;
-  padding:0;
+  margin:0 !important;
+  padding:0 !important;
 }
 
 .mdc-dialog__container{
+  padding: 0 !important;
+  margin:0 !important ;
+  
   .mat-mdc-dialog-surface , .mdc-dialog__surface{
   background-color: transparent !important;
   box-shadow: none !important;
   padding:0 !important;
   margin:0 !important;
+
 }
 }
 
 .cdk-overlay-backdrop, .cdk-overlay-dark-backdrop, .cdk-overlay-backdrop-showing{
   background-color: #000000af;
   
+}
+
+
+
+/* Custom scrollbar for WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+  height: 6px; /* Height of the scrollbar (for horizontal scrollbars) */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #b1b1b1; /* Color of the track (the background of the scrollbar) */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #646464; /* Color of the scrollbar handle */
+  border-radius: 6px; /* Rounding the corners of the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #363636; /* Color of the scrollbar handle on hover */
 }

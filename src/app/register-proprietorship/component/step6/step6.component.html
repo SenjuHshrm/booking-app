@@ -19,11 +19,13 @@
                             <span>Upload Image</span>
                         </label>
                     </div>
+                    
                     <div class="gallery" [ngStyle]="{display: imgFile.length === 0 ? 'none' : ''}">
                         <div *ngFor="let image of uploadedImages" 
                             [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                            <div class="cover_text" [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo</div>
                             <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)" />
-                                <button type="button" class="close-button close"
+                                <button type="button" class="close-button"
                                     (click)="handleRemoveImg(image)">
                                     <mat-icon>close</mat-icon>
                                 </button>

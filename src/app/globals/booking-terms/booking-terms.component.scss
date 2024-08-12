@@ -1,38 +1,46 @@
 .booking-terms {
     font-family: Poppins-Regular !important;
+    background-color: white;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
+    overflow: auto;
+    max-height: 100%;
+ 
+  
 
-    .custom_close {
-        cursor: pointer;
-        padding: 0 1rem 0;
-        margin-top: .5rem;
+    .header{
         display: flex;
-        justify-content: flex-end;
+        width: 100%;
+        align-items: center;
+        padding: .5rem 1rem .5rem;
+        justify-content: space-between;
 
-        mat-icon {
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-    }
 
     .title {
-        font-size: 1.5rem;
-        font-weight: bolder;
+        font-size:1.5rem;
+        font-weight:bold;
     }
+}
+
 
     &-wrapper {
         padding: .8rem 1.5rem 1rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
-
+   
 
         .booking-terms-wrapper-houserules {
             border: 1px solid rgb(223, 223, 223);
             border-radius: 5px;
+          
 
             .header {
                 padding: .5rem 1rem .5rem;
                 background-color: rgb(223, 223, 223);
+                display: flex;
+                flex-direction: column;
+                text-align: left;
 
                 .title {
                     font-weight: 400px;
@@ -123,12 +131,14 @@
 
         .booking-terms-wrapper-damages {
             border: 1px solid rgb(223, 223, 223);
-
             border-radius: 5px;
 
             .header {
                 padding: .5rem 1rem .5rem;
                 background-color: rgb(223, 223, 223);
+                display: flex;
+                flex-direction: column;
+                text-align: left;
 
                 .title {
                     font-weight: 400px;
@@ -180,6 +190,9 @@
             .header {
                 padding: .5rem 1rem .5rem;
                 background-color: rgb(223, 223, 223);
+                display: flex;
+                flex-direction: column;
+                text-align: left;
 
                 .title {
                     font-weight: 400px;
@@ -223,12 +236,14 @@
         }
         .booking-terms-wrapper-taragogrebookrefund {
             border: 1px solid rgb(223, 223, 223);
-
             border-radius: 5px;
 
             .header {
                 padding: .5rem 1rem .5rem;
                 background-color: rgb(223, 223, 223);
+                display: flex;
+                flex-direction: column;
+                text-align: left;
 
                 .title {
                     font-weight: 400px;

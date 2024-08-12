@@ -60,7 +60,7 @@
             #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
                 <mat-stepper linear [labelPosition]="'bottom'" #regPropFormStepper>
-                    <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
+                   <!-- <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
                         <ng-template matStepLabel></ng-template>
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
@@ -118,8 +118,8 @@
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
-                    </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step6']" errorMessage="Please provide at least five (5) photos of your staycation/event place.">
+                    </mat-step> 
+                 <mat-step [stepControl]="regPropForm.controls['step6']" errorMessage="Please provide at least five (5) photos of your staycation/event place.">
                         <ng-template matStepLabel></ng-template>
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -143,7 +143,7 @@
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
-                    </mat-step>
+                    </mat-step> -->
                     <mat-step [stepControl]="regPropForm.controls['step8']" errorMessage="Please describe your house">
                         <ng-template matStepLabel></ng-template>
                         <div class="nextprev_btn-top">
@@ -179,7 +179,7 @@
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
-                    </mat-step>
+                    </mat-step> 
                     <mat-step [stepControl]="regPropForm.controls['step11']" errorMessage="Please set your price">
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>

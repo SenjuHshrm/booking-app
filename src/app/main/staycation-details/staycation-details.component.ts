@@ -35,6 +35,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
  
   public gallery: string[] = [];
   public details: any;
+  public amenitiesData:any;
   public serviceCharge: any = [];
   private _sub: Subscription = new Subscription()
   public imageSets: any;
@@ -78,6 +79,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     { images: '../assets/images/main/staycation-details/gallery5.png', label: 'Bedroom 5', description: '1 double bed, 1 single bed' },
   ]
 
+
   constructor(
     private router: Router,
     private _activatedRoute: ActivatedRoute,
@@ -86,21 +88,18 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     private _globalStatic: GlobalStaticService,
     public dialog: MatDialog,
     
-
-   
   ) {
 
   }
 
 
   ngOnInit(): void {
-    this._activatedRoute.paramMap.subscribe({
+    this.amenitiesData = this._activatedRoute.paramMap.subscribe({
       next: (v: ParamMap) => {
         this._getStaycationDetails(<string>v.get('id'))
       }
     })
     this._getGlobalStaticFee();
-   
   }
 
   ngOnDestroy(): void {
@@ -180,18 +179,23 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
         console.log(res)
         this.details = {
           ...res,
-          amenities: res.amenities.join(", "),
+          amenities: res.amenities.join(" "),
           address: this._basicUtil.constructAddress(res.address),
           host: {
             name: this._basicUtil.constructName(res.host.name),
             img: this._basicUtil.setImgUrl(res.host.img)
-          }
+          },
+
         }
         this._pushMedia(res.media)
       }
     }))
+
+
+   
   }
 
+ 
   private _getGlobalStaticFee() {
     this._sub.add(this._globalStatic.getStaticByType('service_fee').subscribe({
       next: (res: any) => {

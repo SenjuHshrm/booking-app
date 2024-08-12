@@ -4,6 +4,7 @@
             <div class="title-wrapper">
                 Let’s describe your house
             </div>
+            <div class="_label">Ambiances</div>
             <div class="describe-your-house-wrapper">
                 <div class="checkbox" *ngFor="let describeyourHouse of describehouse; let i = index">
                     <label class="custom-checkbox">
@@ -14,17 +15,22 @@
                     </label>
                 </div>
             </div>
+            <div class="others">
+                <div>Enter other ambiances here</div>
+                <input type="text" name="house" value="" placeholder=""
+                    formControlName="descriptionTextOther" />
+              
+            </div>
+
             <ng-container *ngFor="let val of validation.descriptionText">
                 <span class="val-err-msg" *ngIf="formRegPropS8.controls['descriptionText']?.hasError(val.type) && formRegPropS8.controls['descriptionText']?.length === 0">{{ val.msg }}</span>
             </ng-container>
-            <!-- <div class="others">
-                <div>Other:</div>
-                <input type="text" name="house" value="" placeholder="Describe your house here.."
-                    formControlName="descriptionTextOther" />
-            </div> -->
+         <div><hr style="border: 0; height: 1px; background-color: #cacaca;"></div>
+            <div class="_label">Complete description of your house/property</div>
+            
             <div class="add-detailed-desc-wrapper">
                 <div class="input-wrapper">
-                    <div class="label">Enter your detailed description</div>
+                    <div class="label">Enter description here</div>
                     <textarea type="text" name="detailedDescription" formControlName="detailedDescription"></textarea>
 
                 </div>

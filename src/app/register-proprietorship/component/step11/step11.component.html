@@ -41,36 +41,40 @@
                 <div class="price-wrapper">
                     <div class="estimate-inputs">
                         <h1>₱</h1>
-                        <input class="inputs" type="number" name="price" formControlName="price"
+                        <input type="number" name="price" formControlName="price"
                         (input)="handlePriceChange($event)" required placeholder="0.00"/>
                     </div>
 
                     <div class="estimate_computation_container">
                         <div class="prices_wrapper">
                             <div>Base Price</div>
-                            <div><span>₱</span>
-                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            <div class="wrapper">
+                                <span>₱</span>
+                                <input type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
                             </div>
                         </div>
                         <div class="prices_wrapper">
                             <div>Guest Service Fee</div>
-                            <div><span>₱</span>
-                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            <div class="wrapper">
+                                <span>₱</span>
+                                <input type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
                             </div>
                         </div>
                         <hr style="border: 0; height: 1px; background-color: #cacaca;">
                         <div class="prices_wrapper">
                             <div>Guest Price Before taxes</div>
-                            <div><span>₱</span>
-                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            <div class="wrapper">
+                                <span>₱</span>
+                                <input  type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
                             </div>
                         </div>
                     </div>
                     <div class="earn_container">
                         <div class="prices_wrapper">
                             <div>You earn</div>
-                            <div><span>₱</span>
-                                <input class="inputs" type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                            <div class="wrapper">
+                                <span>₱</span>
+                                <input  type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
                             </div>
                         </div>
                     </div>

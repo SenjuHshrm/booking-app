@@ -22,7 +22,7 @@ export class Step5Component implements OnInit {
     { placeamenities: "Washer", value: 'Washer' },
     { placeamenities: "Free parking on premises", value: 'Free Parking' },
     { placeamenities: "Paid parking on premises", value: 'Paid Parking' },
-    { placeamenities: "Air conditioning", value: 'Air Con' },
+    { placeamenities: "Air Conditioning", value: 'AirConditioning' },
     { placeamenities: "Dedicated workspace", value: 'Dedicated Workspace' },
   ];
 

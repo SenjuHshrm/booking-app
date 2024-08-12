@@ -69,7 +69,7 @@
                               <mat-icon>bookmark_border</mat-icon>
                          </div>
                          <div class="info">
-                              <div class="title">Category</div>
+                              <div class="title">Staycations</div>
                               <div class="description">Hotel</div>
                          </div>
                     </div>
@@ -208,8 +208,9 @@
                     <div class="details-whats-offer">
                          <div class="title">What this place offers</div>
                          <div class="description">
-                              <div>
-                                   {{ details.amenities}}
+                              <div class="offers" *ngFor="let offers of details.amenities.split(' ')">
+                                   <mat-icon *ngIf="offers !== ''">done_outline</mat-icon>
+                                  <div>{{offers}}</div>
                               </div>
                          </div>
                     </div>

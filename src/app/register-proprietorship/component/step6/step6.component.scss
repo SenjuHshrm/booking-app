@@ -36,7 +36,7 @@
 
         // border:1px solid black;
         .container {
-            flex:1;
+            flex: 1;
             display: grid;
             grid-template-columns: 20% 80%;
 
@@ -47,7 +47,7 @@
                 justify-content: center;
                 padding: 20px; // Adjust padding as needed
                 text-align: center;
-                width:100%;
+                width: 100%;
                 height: 100%;
 
                 label {
@@ -58,7 +58,7 @@
                     align-items: center;
 
                     img {
-                        min-width:7rem;
+                        min-width: 7rem;
                         width: 25%;
                         height: auto;
                     }
@@ -72,12 +72,25 @@
                 padding: 1rem;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+                grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
                 grid-auto-flow: auto;
                 margin: auto;
                 gap: 1rem;
                 width: 100%;
                 height: 100%;
-          
+                position: relative;
+
+                .cover_text {
+                    position: absolute;
+                    font-size:.8rem;
+                    color: #68A86A;
+                    background-color:white;
+                    border-radius:10px;
+                    padding:.2rem .5rem;
+                    margin:2px;
+                    
+                }
+
 
                 .image {
                     position: relative;
@@ -85,14 +98,15 @@
                     height: 9rem;
                     border: 3px solid transparent;
                     object-fit: cover;
-                    
+
                     img {
                         width: 100%;
                         height: 100%;
                         border-radius: 5px;
                         object-fit: cover;
-                        
+
                     }
+
                     &:hover {
                         cursor: pointer;
                     }
@@ -105,7 +119,7 @@
                         top: auto;
                         bottom: 0;
                         left: 0;
-                        right:0;
+                        right: 0;
                         margin: auto;
                         transform: translateY(1rem);
 
@@ -140,33 +154,35 @@
         margin-top: 0;
         max-width: 100% !important;
         width: 100%;
+        height: 100%;
         border-radius: 0px;
+        padding: 1rem 0rem 2rem;
 
         .add-photos-place-wrapper {
             .container {
                 display: grid;
-                grid-template-columns:auto;
+                grid-template-columns: auto;
                 grid-template-rows: 10% 90%;
-                max-height:35rem;
-                gap:1rem;
+                max-height: 35rem;
+                gap: 1rem;
 
                 .upload-panel {
-                    flex:none;
+                    flex: none;
                     padding: 0px;
                     height: fit-content !important;
                     // border: 1px solid black;
 
                     label {
-                            // background-color: red;
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            gap: 1rem;
-                            // border: 1px solid black;
-    
+                        // background-color: red;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 1rem;
+                        // border: 1px solid black;
+
                         img {
-                            min-width:4rem;
-                            width:10%;
+                            min-width: 4rem;
+                            width: 10%;
                             height: auto;
                         }
                     }
@@ -174,7 +190,8 @@
                 }
 
                 .gallery {
-                    max-height:35rem;
+                    max-height: 35rem;
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
                 }
             }
         }

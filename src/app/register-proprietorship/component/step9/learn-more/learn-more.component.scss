@@ -1,21 +1,22 @@
 .learn-info{
     font-family: Poppins-Regular !important;
-    .custom_close{
-        cursor: pointer;
-        padding: 0 1rem 0;
-        margin-top: .5rem;
-        display: flex;
-        justify-content: flex-end;
+    background-color: white;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
 
-        mat-icon{
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-    }
+    .header{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: .5rem 1rem .5rem;
+        justify-content: space-between;
+
+
     .title {
         font-size:1.5rem;
         font-weight:bold;
     }
+}
 
     &-wrapper{
         padding:.8rem 1.5rem 1rem;

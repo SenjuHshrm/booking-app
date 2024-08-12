@@ -1,5 +1,7 @@
 <div class="payment-wallet">
-    <div class="close-button close" (click)="closeDialogLogin()"><mat-icon>close</mat-icon></div>
+    <div class="close-button" (click)="closeDialogLogin()">
+        <mat-icon style="margin-top:3px">close</mat-icon>
+    </div>
     <div class="payment-wallet-payment-wallet-wrapper">
         <form (ngSubmit)="handleSubmit(pwForm)" [formGroup]="pwForm">
             <div class="your-information-about-your-info">

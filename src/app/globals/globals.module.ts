@@ -10,7 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
-import { LearnMoreComponent } from './learn-more/learn-more.component';
 import { BookingTermsComponent } from './booking-terms/booking-terms.component';
 import { ReservationsViewComponent } from './reservations-view/reservations-view.component';
 import { LoaderStateComponent } from './loader-state/loader-state.component';
@@ -19,6 +18,7 @@ import { MessageProprietorComponent } from './message-proprietor/message-proprie
 import { WheretoSleepViewComponent } from './whereto-sleep-view/whereto-sleep-view.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsersProfileComponent } from './users-profile/users-profile.component';
+import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel-policy-learnmore.component';
 
 
 
@@ -31,14 +31,14 @@ import { UsersProfileComponent } from './users-profile/users-profile.component';
     LoginComponent,
     SignupComponent,
     CreateListingComponent,
-    LearnMoreComponent,
     BookingTermsComponent,
     ReservationsViewComponent,
     LoaderStateComponent,
     GalleryViewComponent,
     MessageProprietorComponent,
     WheretoSleepViewComponent,
-    UsersProfileComponent
+    UsersProfileComponent,
+    CancelPolicyLearnmoreComponent
   ],
 
   imports: [
