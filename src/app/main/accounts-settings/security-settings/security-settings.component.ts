@@ -36,7 +36,10 @@ export class SecuritySettingsComponent implements OnInit, OnDestroy {
 
   openSecModalDialog(): void {
     const dialogRefSec = this.dialog.open(SecuritySettingsModalComponent, {
-      panelClass: 'custom-login-modal',
+      width:'100%',
+      height:'100%',
+      maxHeight:'35rem',
+      maxWidth:'35rem',
       data: this._t.sub
     });
 

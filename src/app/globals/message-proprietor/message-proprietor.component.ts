@@ -12,6 +12,7 @@ export class MessageProprietorComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
+
   closeDialogMessage(): void {
     this.dialogRef.close();
   }

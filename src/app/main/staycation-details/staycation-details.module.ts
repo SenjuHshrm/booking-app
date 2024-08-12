@@ -4,7 +4,8 @@ import { StaycationDetailsRoutingModule } from './staycation-details-routing.mod
 import { StaycationDetailsComponent } from './staycation-details.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SwiperModule } from 'swiper/angular';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -20,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    SwiperModule,
+    MatDialogModule
   ]
 })
 export class StaycationDetailsModule { }

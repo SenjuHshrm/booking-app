@@ -16,6 +16,9 @@ import { ReservationsViewComponent } from './reservations-view/reservations-view
 import { LoaderStateComponent } from './loader-state/loader-state.component';
 import { GalleryViewComponent } from './gallery/gallery-view/gallery-view.component';
 import { MessageProprietorComponent } from './message-proprietor/message-proprietor.component';
+import { WheretoSleepViewComponent } from './whereto-sleep-view/whereto-sleep-view.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UsersProfileComponent } from './users-profile/users-profile.component';
 
 
 
@@ -33,7 +36,9 @@ import { MessageProprietorComponent } from './message-proprietor/message-proprie
     ReservationsViewComponent,
     LoaderStateComponent,
     GalleryViewComponent,
-    MessageProprietorComponent
+    MessageProprietorComponent,
+    WheretoSleepViewComponent,
+    UsersProfileComponent
   ],
 
   imports: [
@@ -42,7 +47,8 @@ import { MessageProprietorComponent } from './message-proprietor/message-proprie
     MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    MatDialogModule
   ],
 
   providers: [
@@ -56,7 +62,10 @@ import { MessageProprietorComponent } from './message-proprietor/message-proprie
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    CreateListingComponent
+    CreateListingComponent,
+    MessageProprietorComponent,
+    WheretoSleepViewComponent,
+    UsersProfileComponent
   ]
 
 

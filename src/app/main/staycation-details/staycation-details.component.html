@@ -1,4 +1,7 @@
+
+
 <div class="staycation-details" [@fadeInAnimation]>
+     
      <div class="staycation-details-staycation-details-wrapper" *ngIf="details">
           <section class="property-title">
                <button (click)="backToMain()">
@@ -120,29 +123,87 @@
                          <div class="described">
                               <div class="title_info">Detailed description</div>
                               <div class="desc_wrapper">
-                                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis veniam
-                                        fugiat alias consequatur omnis optio cumque error ipsum iure. Officiis placeat
-                                        expedita maiores nihil! Officiis tempore pariatur maiores illum et!</p>
+                                   <div>
+                                        <p *ngIf="fullText.length > 100">
+                                          {{ isExpanded ? fullText : (fullText | slice:0:500) + '...' }}
+                                        </p>
+                                        <p *ngIf="fullText.length < 100">
+                                             {{fullText}}
+                                           </p>
+                                        <button (click)="seemoreText()" *ngIf="fullText.length > 100">
+                                          {{ isExpanded ? 'See less' : 'See more' }}
+                                        </button>
+                                      </div>
                               </div>
-                              <!-- <div class="not-available">
-                                   Proprietor didn't described yet!
-                              </div> -->
                          </div>
-                         <!-- <button>See more</button> -->
-                          
                     </div>
-
-                    <div class="details-where-you-sleep">
+                    <hr>
+    
+                    <div class="details-where-you-sleep"  style="display: block;">
                          <div class="title-wrapper">
                               <div class="title">Where you'll sleep</div>
-                              <div class="label">BedRoom</div>
-                              <div class="sublabel">1 double bed, 1 single bed</div>
                          </div>
-                         <div class="image">
-                              <img src="../../assets/images/main/staycation-list/images/4.jpg" loading="lazy"
-                                   alt="Avatar" [draggable]="false">
-                         </div>
+                              <div class="section-1-wrapper">
+                                   <div class="wrapper"  style="display: block;">
+                                        <div class="swiper-main-container">
+                                             <swiper class="swiper-container"  style="display: block;" #swiper [slidesPerView]="3" [spaceBetween]="30"
+                                                  [navigation]="false" (autoplayPause)="true" [draggable]="true" [loop]="true" [breakpoints]="{
+                                       '200': {
+                                           slidesPerView: 1,
+                                           spaceBetween: 10,
+                                       },
+                         
+                                       '300': {
+                                           slidesPerView: 1,
+                                           spaceBetween: 10,
+                                       },
+                                        '400': {
+                                           slidesPerView: 2,
+                                           spaceBetween: 10,
+                                       },
+                                       '700': {
+                                           slidesPerView: 3,
+                                           spaceBetween: 10,
+                                       },
+                                       '1100': {
+                                        slidesPerView: 4,
+                                        spaceBetween: 10,
+                                    },
+                                       
+                                       '1200': {
+                                           slidesPerView: 4,
+                                           spaceBetween: 20,
+                                       },
+                                       '1290': {
+                                        slidesPerView: 3,
+                                        spaceBetween: 30,
+                                    },
+                                       '1700': {
+                                           slidesPerView: 3,
+                                           spaceBetween: 30,
+                                       }
+                                   }">
+                                                  <ng-template class="custom_swiper_slide"  style="display: block;" swiperSlide *ngFor="let dest of whereYouSleep; let i = index">
+                                                       <div class="_images" (click)="viewImageBedroom(i) ">
+                                                            <img src={{dest.images}} alt="images" draggable="false" loading="lazy" />
+                                                            <div class="label">{{dest.label}}</div>
+                                                            <div class="desc">{{dest.description}}</div>
+                                                       </div>
+                                                  </ng-template>
+                                             </swiper>
+                                             <div class="_buttons">
+                                                  <button (click)="slidePrev()" class="custom-prev-button custom_prev">
+                                                       <mat-icon>navigate_before</mat-icon>
+                                                  </button>
+                                                  <button (click)="slideNext()" class="custom-next-button custom_next">
+                                                       <mat-icon>navigate_next</mat-icon>
+                                                  </button>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
                     </div>
+               
                     <hr>
                     <div class="details-whats-offer">
                          <div class="title">What this place offers</div>

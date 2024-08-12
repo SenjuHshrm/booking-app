@@ -3,40 +3,47 @@
         <div class="title">
             Message Proprietor
         </div>
-        <div class="custom_close" (click)="closeDialogMessage()"><mat-icon>close</mat-icon></div>
+        <div class="close-button-normal" (click)="closeDialogMessage()"><mat-icon>close</mat-icon></div>
     </div>
 
     <hr>
     <div class="message_modal-content">
-
-
         <div class="details-user-avatar">
             <div class="wrapper">
                 <div class="image-avatar">
-                    <img src='{{data.img.img}}' loading="lazy" alt="Avatar" [draggable]="false">
+                    <img src="../assets/images/avatars/placeholder.png" loading="lazy" alt="Avatar" [draggable]="false">
                 </div>
                 <div>
-                    <div class="name">{{data.img.name}}</div>
+                    <div class="name">User Name</div>
+                    <div>Traveller or Prorietor</div>
+                    <div class="years">Duration on TaraGo</div>
+                </div>
+            </div>
+            <div class="forward_icon"><mat-icon>forward</mat-icon></div>
+            <div class="wrapper">
+                <div class="image-avatar">
+                    <img src={{data.proprietorHost.img}} loading="lazy" alt="Avatar" [draggable]="false">
+                </div>
+                <div>
+                    <div class="name">{{data.proprietorHost.name}}</div>
                     <div class="years">Proprietor since 2 years</div>
                 </div>
             </div>
+
         </div>
 
-
-        <div class="wrapper">
-            <div class="title">Within</div>
-            <div class="subtitle">
-                48 hours of booking
-            </div>
-            <hr>
-            <div class="title">Full refund</div>
-            <div class="subtitle">
-                Get back 100% of what you paid.
+        <div class="message_modal_input">
+            <div class="input-wrapper">
+                <div class="label">Type your message here</div>
+                <textarea type="text" name="street" value="" placeholder="Type here.."> </textarea>
             </div>
         </div>
     </div>
 
     <div class="footer ">
-        <button class="main-button">Send Message</button>
+        <button class="main-button">
+            <span>Send Message</span>
+            <mat-icon>send</mat-icon>
+        </button>
     </div>
 </div>

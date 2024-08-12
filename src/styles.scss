@@ -79,6 +79,13 @@ body { margin: 0; font-family:Poppins-Regular}
   justify-content: center;
   color: #63AB68;
   cursor: pointer;
+  
+
+  mat-icon{
+    margin-top:4px;
+    padding:0;
+  }
+
 }
 
 .close-button:hover{
@@ -95,6 +102,12 @@ body { margin: 0; font-family:Poppins-Regular}
    justify-content: center;
    color: #63AB68;
    cursor: pointer;
+
+   mat-icon{
+    margin-top:4px;
+    padding:0;
+  }
+
 
  }
  
@@ -151,4 +164,24 @@ body { margin: 0; font-family:Poppins-Regular}
 
 .val-err-msg {
   color: red;
+}
+
+
+mat-icon{
+  margin:0;
+  padding:0;
+}
+
+.mdc-dialog__container{
+  .mat-mdc-dialog-surface , .mdc-dialog__surface{
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+}
+
+.cdk-overlay-backdrop, .cdk-overlay-dark-backdrop, .cdk-overlay-backdrop-showing{
+  background-color: #000000af;
+  
 }

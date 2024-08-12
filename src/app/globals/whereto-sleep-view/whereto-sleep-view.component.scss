@@ -1,0 +1,105 @@
+.view-image-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+
+    .header {
+        position: absolute;
+        right: 0rem;
+
+        .closeBtn {
+            margin: 1.5rem;
+            cursor: pointer;
+            padding: .3rem;
+
+            mat-icon {
+                color: white;
+                font-size: 2rem;
+                padding: 0;
+                margin: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .closeBtn:hover {
+            background-color: rgba(255, 255, 255, 0.178);
+            border-radius: 100%;
+            padding: .3rem;
+        }
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        margin-top: 5rem;
+
+
+        .wrapper {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            max-width: 45rem;
+            max-height: 45rem;
+
+            .info_wrapper {
+                margin: auto;
+                margin-bottom: 1rem;
+                padding: 1rem;
+                background-color: white;
+                border-radius: 15px;
+                width: fit-content;
+
+                .label {
+                    font-size: clamp(1rem, 1.2vw, 4rem);
+                }
+
+                .desc {
+                    font-size: clamp(.8rem, 1vw, 1rem);
+                    color: #63AB68;
+                    font-family: Poppins-Regular;
+                }
+            }
+
+            .img_wrapper {
+                flex: none;
+
+                img {
+                    flex: none;
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .view-image-container {
+        .content {
+            .wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+
+                .img_wrapper {
+                    width: 100%;
+
+                    img {
+                        width: 100%;
+
+                    }
+                }
+            }
+        }
+    }
+}

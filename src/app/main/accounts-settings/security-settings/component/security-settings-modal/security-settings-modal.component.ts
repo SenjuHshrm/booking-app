@@ -42,7 +42,8 @@ export class SecuritySettingsModalComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) private id: string,
     private _sb: MatSnackBar,
     private _auth: AuthService,
-    private _token: TokenService
+    private _token: TokenService,
+    public dialogLogin: MatDialogRef<SecuritySettingsModalComponent>,
   ) { }
 
   ngOnInit(): void {
@@ -63,6 +64,11 @@ export class SecuritySettingsModalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._sub.unsubscribe()
+  }
+
+
+  closeDialogLogin(): void {
+    this.dialogLogin.close();
   }
 
   public handleSubmit(fg: FormGroup) {
