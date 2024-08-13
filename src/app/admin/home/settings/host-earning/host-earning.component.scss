@@ -1,0 +1,28 @@
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+  gap: .5rem;
+  width: 100%;
+  padding: 3px;
+
+  .input-wrapper {
+    label {
+      margin-bottom: .3rem;
+    }
+    input {
+      padding: 1rem;
+      border: 2px solid #63AB68;
+      width: 100%;
+      border-radius: 10px;
+      font-family: Poppins-Medium;
+      font-size: 15px;
+    }
+  }
+  button {
+    background-color: #63AB68;
+    color: white;
+    margin-top: 20px;
+    height: 57px;
+  }
+  
+}

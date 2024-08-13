@@ -1,3 +1,4 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,12 +10,14 @@ import { CommonModule } from '@angular/common';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings.component';
 import { TaxComponent } from './tax/tax.component';
+import { HostEarningComponent } from './host-earning/host-earning.component';
 
 
 @NgModule({
   declarations: [
     SettingsComponent,
-    TaxComponent
+    TaxComponent,
+    HostEarningComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,8 @@ import { TaxComponent } from './tax/tax.component';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ]
 })
 export class SettingsModule { }
