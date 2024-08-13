@@ -1,0 +1,367 @@
+.groundrules_houserules {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem 2rem;
+    max-width: 50rem;
+    height: fit-content;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px #88888877;
+    background-color: white;
+
+    .header {
+        text-align: center;
+
+
+        ._title_wrapper {
+            font-weight: bold;
+            font-size: clamp(1.3rem, 1.5vw, 8rem);
+            padding: 1rem 0 1rem;
+            text-align: center;
+        }
+
+        ._subinfo {
+            font-size: 15px;
+            color: #8d8d8d;
+            text-align: center;
+            margin: 0;
+            font-weight: normal;
+        }
+
+
+    }
+
+    .custom_title{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    span {
+        color: #63AB68;
+        text-decoration: underline;
+        cursor: pointer;
+        white-space: pre;
+        font-size: 15px;
+        font-weight: normal;
+    }
+
+    .content {
+
+        // .switch_button_container {
+        //     width: 100%;
+        //     border: 1px solid #68A86A;
+        //     background-color: #F7F7F7;
+        //     height: 6.5rem;
+        //     gap: .5rem;
+        //     border-radius: 5px;
+        //     padding: 0rem 1rem 0rem;
+        //     margin-top: 1rem;
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: center;
+
+        //     ._title{
+        //         font-size: clamp(1rem, .9vw, 4rem);
+        //         padding: 0;
+        //         text-align: left;
+        //         font-weight: 500 !important;
+        //     }
+
+        //     .switch_button_wrapper {
+        //         width: 100%;
+        //         display: flex;
+        //         justify-content: space-between;
+        //         align-items: center;
+        //         gap: 2rem;
+        //         cursor: pointer;
+
+
+        //         ._info{
+        //             font-size: 15px;
+        //             text-align: left;
+        //             margin: 0;
+        //             font-weight: normal;
+
+        //         }
+
+        //         .switch {
+        //             position: relative;
+        //             display: inline-block;
+        //             width: 50px;
+        //             height: 24px;
+        //             flex: none;
+        //           }
+
+        //           /* Hide default HTML checkbox */
+        //           .switch input {
+        //             opacity: 0;
+        //             width: 0;
+        //             height: 0;
+        //           }
+
+        //           /* The slider */
+        //           .slider {
+        //             position: absolute;
+        //             cursor: pointer;
+        //             top: 0;
+        //             left: 0;
+        //             right: 0;
+        //             bottom: 0;
+        //             background-color: #ccc;
+        //             -webkit-transition: .4s;
+        //             transition: .4s;
+        //           }
+
+        //           .slider:before {
+        //             position: absolute;
+        //             content: "";
+        //             height: 16px;
+        //             width: 16px;
+        //             left: 4px;
+        //             bottom: 4px;
+        //             background-color: white;
+        //             -webkit-transition: .4s;
+        //             transition: .4s;
+        //           }
+
+        //           input:checked + .slider {
+        //             background-color: #63AB68;
+        //           }
+
+        //           input:focus + .slider {
+        //             box-shadow: 0 0 1px #63ab68d2;
+        //           }
+
+        //           input:checked + .slider:before {
+        //             -webkit-transform: translateX(26px);
+        //             -ms-transform: translateX(26px);
+        //             transform: translateX(26px);
+        //           }
+
+        //           /* Rounded sliders */
+        //           .slider.round {
+        //             border-radius: 34px;
+        //           }
+
+        //           .slider.round:before {
+        //             border-radius: 50%;
+        //           }
+
+
+        //     }
+
+
+        // }
+
+        .describe-your-place-wrapper {
+            font-family: Poppins-Regular;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            place-content: center;
+            width: 100%;
+            gap: 2.5rem;
+            margin-top: 1rem;
+            // border:1px solid black;
+
+            .checkbox {
+                font-family: Poppins-Regular;
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+
+                input {
+                    font-family: Poppins-Regular;
+                    flex: none;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    cursor: pointer;
+                }
+
+                /* Hide the default checkbox */
+                input[type="checkbox"] {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid #ccc;
+                    border-radius: 3px;
+                    display: inline-block;
+                    position: relative;
+                    cursor: pointer;
+                }
+
+
+                .label {
+                    font-weight: medium;
+                    font-family: Poppins-Regular;
+                }
+
+
+
+                .custom-checkbox {
+                    position: relative;
+                    display: inline-block;
+                    cursor: pointer;
+                    user-select: none;
+                    padding-left: 35px;
+                    /* Adjust as needed */
+                }
+
+                .custom-checkbox input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+
+                .custom-checkbox .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 20px;
+                    /* Adjust as needed */
+                    width: 20px;
+                    /* Adjust as needed */
+                    background-color: #eee;
+                    border-radius: 4px;
+                }
+
+                .custom-checkbox input:checked~.checkmark {
+                    background-color: #63AB68;
+                }
+
+                .custom-checkbox .checkmark:after {
+                    content: "";
+                    position: absolute;
+                    display: none;
+                }
+
+                .custom-checkbox input:checked~.checkmark:after {
+                    display: block;
+                }
+
+                .custom-checkbox .checkmark:after {
+                    left: 7px;
+                    /* Adjust as needed */
+                    top: 3px;
+                    /* Adjust as needed */
+                    width: 5px;
+                    /* Adjust as needed */
+                    height: 10px;
+                    /* Adjust as needed */
+                    border: solid white;
+                    border-width: 0 3px 3px 0;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        .add_rules {
+            display: flex;
+            flex-direction: column;
+            // grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+            gap: .5rem;
+            width: 100%;
+            max-width: 40rem;
+            margin: auto;
+
+            .input-wrapper {
+                 display: flex;
+                 gap:.5rem;
+                 align-items: flex-end;
+                 justify-content: flex-end;
+                button {
+                    display: block;
+                    background-color: #63AB68;
+                    border: none;
+                    max-width: fit-content;
+                    height: 100%;
+                    padding: 1rem;
+                    border-radius:5px;
+                    font-family: Poppins-regular;
+                    font-weight: bolder;
+                    white-space: nowrap;
+                    color: white;
+                    cursor: pointer;
+                    white-space: pre;
+                    margin: 0;
+                }
+                .label{
+
+                }
+
+                input {
+                    padding: 1rem;
+                    border: 2px solid #63AB68;
+                    width: 100%;
+                    border-radius: 10px;
+                    font-family: Poppins-Medium;
+                    font-size: 15px;
+                }
+            }
+        }
+
+
+        .add_rules_full {
+            // font-family: Poppins-Regular;
+            // display: grid;
+            // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            // gap: 1rem;
+            // place-content: center;
+            // width: 100%;
+            // gap: 2.5rem;
+            // margin-top: 1rem;
+            // border:1px solid black;
+         
+            width: 100%;
+          
+          
+            .input-wrapper {
+                display: flex;
+                
+                flex-direction: column;
+                gap:.5rem;
+                width: 100%;
+               button {
+                   display: block;
+                   background-color: #63AB68;
+                   border: none;
+                   max-width: fit-content;
+                   height: 100%;
+                   padding: 1rem;
+                   border-radius:5px;
+                   font-family: Poppins-regular;
+                   font-weight: bolder;
+                   white-space: nowrap;
+                   color: white;
+                   cursor: pointer;
+                   white-space: pre;
+                   margin: 0;
+               }
+               .input_wrapper{
+                width: 100%;
+              
+               .label{
+
+               }
+
+               input {
+                flex: 1;
+                   padding: 1rem;
+                   border: 2px solid #63AB68;
+                   width: 100%;
+                   border-radius: 10px;
+                   font-family: Poppins-Medium;
+                   font-size: 15px;
+                   height:5rem;
+               }
+            }
+           }
+        }
+
+    }
+
+}

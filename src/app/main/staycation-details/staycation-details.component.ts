@@ -179,7 +179,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
         console.log(res)
         this.details = {
           ...res,
-          amenities: res.amenities.join(" "),
+          amenities: res.amenities.join(", "),
           address: this._basicUtil.constructAddress(res.address),
           host: {
             name: this._basicUtil.constructName(res.host.name),

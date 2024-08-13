@@ -208,10 +208,11 @@
                     <div class="details-whats-offer">
                          <div class="title">What this place offers</div>
                          <div class="description">
-                              <div class="offers" *ngFor="let offers of details.amenities.split(' ')">
+                              <!-- <div class="offers" *ngFor="let offers of details.amenities.split(' ')">
                                    <mat-icon *ngIf="offers !== ''">done_outline</mat-icon>
                                   <div>{{offers}}</div>
-                              </div>
+                              </div> -->
+                              {{details.amenities}}
                          </div>
                     </div>
                     <hr>

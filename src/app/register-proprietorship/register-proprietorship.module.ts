@@ -25,6 +25,10 @@ import { Step13Component } from './component/step13/step13.component';
 import { GlobalsModule } from '../globals/globals.module';
 import {MatRippleModule} from '@angular/material/core';
 import { LearnMoreComponent } from './component/step9/learn-more/learn-more.component';
+import { StandardLearnmoreComponent } from './component/step12/standard-learnmore/standard-learnmore.component';
+import { LongtermLearnmoreComponent } from './component/step12/longterm-learnmore/longterm-learnmore.component';
+import { NonRefundLearnmoreComponent } from './component/step12/non-refund-learnmore/non-refund-learnmore.component';
+import { Step14Component } from './component/step14/step14.component';
 
 
 @NgModule({
@@ -43,7 +47,11 @@ import { LearnMoreComponent } from './component/step9/learn-more/learn-more.comp
     Step11Component,
     Step12Component,
     Step13Component,
-    LearnMoreComponent
+    LearnMoreComponent,
+    StandardLearnmoreComponent,
+    LongtermLearnmoreComponent,
+    NonRefundLearnmoreComponent,
+    Step14Component
   ],
   imports: [
     CommonModule,

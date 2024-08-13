@@ -1,1 +1,56 @@
-<p>step13 works!</p>
+<div class="groundrules_houserules">
+    <div class="header">
+        <div class="_title_wrapper">House rules</div>
+        <div class="_subinfo ">Guests must agree to your house rules before they book. <br><span>Learn more</span></div>
+    </div>
+    <div class="content">
+        <!-- 
+            <div class="switch_button_container" *ngFor="let childPet of petchildData">
+                <div class="_title">{{childPet.title}}</div>
+                <div class="switch_button_wrapper">
+                    <div class="info_wrapper">
+                        <div class="_info">
+                           {{childPet.description}}
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div> -->
+            <div class="custom_title">Options Rules</div>
+        <div class="describe-your-place-wrapper">
+            <div class="checkbox" *ngFor="let houseRulesDatas of houseRulesData; let i = index ">
+                <label class="custom-checkbox">
+                    <input type="checkbox" typname="staycations">
+                    <span class="checkmark"></span>
+                    <div class="label">{{houseRulesDatas.title}}</div>
+                </label>
+            </div>
+  
+        </div>
+                  
+        <div class="add_rules_full" style="margin-top: 1rem;">
+            <div class="input-wrapper">
+                <div class="input_wrapper">
+                    <div class="label">Type here</div>
+                    <input type="text" name="landmark" formControlName="landmark" />
+                </div>
+                <button>Add Rules</button>
+            </div>
+        </div>
+
+        <div class="custom_title" style="margin-top: 1rem;">Add rules full descriptions</div>
+            <div class="add_rules_full">
+                <div class="input-wrapper">
+                  
+                    <div class="input_wrapper">
+                        <div class="label">Type here</div>
+                        <input type="text" name="landmark" formControlName="landmark" />
+                    </div>
+                    <button>Other Description</button>
+                </div>
+            </div>
+        </div>
+    </div>
