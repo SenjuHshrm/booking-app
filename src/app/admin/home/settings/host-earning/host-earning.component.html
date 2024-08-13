@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Host earning fee</mat-card-title>
+    <mat-card-subtitle>Current fee saved: {{ perc }}%</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <h3>Set Host Earning Fee (For each booking)</h3>
+      <form class="form" [formGroup]="fg" (ngSubmit)="setFeePercentage(fg)">
+        <div class="input-wrapper">
+          <label>Percentage</label>
+          <input formControlName="percentage" type="number" min="1" max="100" required/>
+        </div>
+        <button mat-raised-button type="submit" [disabled]="!fg.valid">Save</button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>
