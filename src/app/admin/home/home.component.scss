@@ -182,13 +182,11 @@
       gap: 1rem;
 
       .content_sidebar {
-
         transition: 0.5s ease;
-        width: 22%;
+        width:100%;
+        max-width:15rem;
         background-color: black;
         text-align: center;
-
-
 
         .tablist_btn {
           ul {
@@ -205,6 +203,19 @@
               font-family: Poppins-Regular;
               font-size: 1rem;
               cursor: pointer;
+              white-space: pre;
+              text-align: left;
+              display: flex;
+              align-items: center;
+              gap:1rem;
+
+              mat-icon{
+                margin: 0;
+                padding:0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
             }
 
 
@@ -218,7 +229,7 @@
       }
 
       .content_maincontent {
-        width: 78%;
+        flex: 1;
         transition: 0.5s ease;
         // border:1px solid black;
       }

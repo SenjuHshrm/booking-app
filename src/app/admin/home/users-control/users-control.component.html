@@ -1,14 +1,28 @@
-<div class="userscontrol-container">
-     <div class="userscontrol-container-wrapper">
-        <section class="userscontrol-container-wrapper-tab-header">
-            <div class="tab-wrapper">
-                <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'admin'}" (click)="gotoNavigatePage('admin')">Admin</button>
-                <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'guest'}" (click)="gotoNavigatePage('guest')">Guest</button>
-                <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'proprietor'}" (click)="gotoNavigatePage('proprietor')">Proprietor</button>
+<div class="userscontrol-container mat-elevation-z3">
+    <div class="userscontrol-container-wrapper">
+
+
+        <div class="users_account_menu_wrapper ">
+            <div class="custom_users_account" [matMenuTriggerFor]="menu">
+                <button class="menu">
+                    <span><mat-icon>supervisor_account</mat-icon></span>
+                    <span class="select">{{btnNames}}</span>
+                    <span><mat-icon> keyboard_arrow_down</mat-icon></span>
+                </button>
+                <mat-menu #menu="matMenu" class="menu_btn">
+                    <button mat-menu-item class="" [ngClass]="{'active': selectedTab === 'admin'}"
+                        (click)="gotoNavigatePage('Admin','admin')">Admin</button>
+                    <button mat-menu-item class="" [ngClass]="{'active': selectedTab === 'guest'}"
+                        (click)="gotoNavigatePage('Guest','guest')">Guest</button>
+                    <button mat-menu-item class="" [ngClass]="{'active': selectedTab === 'proprietor'}"
+                        (click)="gotoNavigatePage('Proprietor','proprietor')">Proprietor</button>
+                </mat-menu>
             </div>
-        </section>
+        </div>
+
+
         <section class="userscontrol-container-wrapper-content">
             <router-outlet></router-outlet>
         </section>
-     </div>
+    </div>
 </div>

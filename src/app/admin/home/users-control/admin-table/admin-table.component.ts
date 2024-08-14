@@ -61,7 +61,10 @@ export class AdminTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   createAdminModal(): void {
     const dialogRefLogin = this.createAdmin.open(CreateAdminComponent, {
-        width: '40rem',
+        width: '100%',
+        maxWidth:'40rem',
+        height:'100%',
+        maxHeight:'40rem'
       });
 
 

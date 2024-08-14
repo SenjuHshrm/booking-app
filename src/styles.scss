@@ -1,11 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 
-*, *::before,*::after { box-sizing: border-box;}
-html{box-sizing: border-box;}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family:Poppins-Regular}
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Poppins-Regular
+}
 
 
 
@@ -14,61 +28,62 @@ body { margin: 0; font-family:Poppins-Regular}
 
 
 @font-face {
-  font-family:Poppins-Regular;
+  font-family: Poppins-Regular;
   src: url(./assets/fonts/Poppins-Regular.ttf);
 }
 
 @font-face {
-  font-family:Poppins-Medium;
+  font-family: Poppins-Medium;
   src: url(./assets/fonts/Poppins-Medium.ttf);
 }
 
 @font-face {
-  font-family:Poppins-Bold;
+  font-family: Poppins-Bold;
   src: url(./assets/fonts/Poppins-Bold.ttf);
 }
 
 
-.main-button{
+.main-button {
   display: block;
   background-color: #63AB68;
   border: none;
-  max-width:fit-content;
+  max-width: fit-content;
   padding: 0.6rem 3rem 0.6rem 3rem;
   border-radius: 5rem;
   font-family: Poppins-regular;
   font-weight: bolder;
   white-space: nowrap;
-  color:white;
+  color: white;
   cursor: pointer;
 }
 
-.main-button:hover{
+.main-button:hover {
   background-color: #000000;
   color: #63AB68;
 }
 
-.main-button-outline{
+.main-button-outline {
   display: block;
   background-color: transparent;
   border: 2px solid #63AB68;
-  width:100%;
+  width: 100%;
   padding: 0.6rem 3rem 0.6rem 3rem;
   border-radius: 5rem;
   font-family: Poppins-regular;
   font-weight: bolder;
   white-space: nowrap;
-  color:black;
+  color: black;
   cursor: pointer;
 }
-.main-button-outline:hover{
+
+.main-button-outline:hover {
   background-color: #000000;
   color: #63AB68;
-  border:2px solid white;
+  border: 2px solid white;
 }
 
 .close-button {
- border-radius: 100%;
+  border-radius: 100%;
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -77,50 +92,48 @@ body { margin: 0; font-family:Poppins-Regular}
   height: 2rem;
   display: flex;
   justify-content: center;
-   align-items: center;
+  align-items: center;
   color: #63AB68;
-  border:none;
+  border: none;
   cursor: pointer;
-  
-  mat-icon{
+
+  mat-icon {
     margin: 0;
-    padding:0;
+    padding: 0;
   }
 
 }
 
-.close-button:hover{
+.close-button:hover {
   background-color: black;
   color: #63AB68;
 }
 
 .close-button-normal {
   border-radius: 100%;
-   color: black;
-   width: 2rem;
-   height: 2rem;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   color: #63AB68;
-   border:none;
-   cursor: pointer;
-   
-   mat-icon{
-     margin: 0 !important;
-     padding:0 !important;
-   }
- 
- }
- 
- .close-button-normal:hover{
-   background-color: black;
-   color: #63AB68;
- }
+  color: black;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #63AB68;
+  border: none;
+  cursor: pointer;
 
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
+}
 
- .not-found{
+.close-button-normal:hover {
+  background-color: black;
+  color: #63AB68;
+}
+
+.not-found {
   font-size: clamp(1rem, 1vw, 5rem);
   font-weight: bold;
   font-family: Poppins-Regular;
@@ -129,93 +142,143 @@ body { margin: 0; font-family:Poppins-Regular}
   width: 100%;
   display: grid;
   place-content: center;
- }
-        
- .fc .fc-toolbar-title {
+}
+
+//Calendar Start
+
+.fc .fc-toolbar-title {
   /* Your custom color styles here */
-  color: #63AB68 !important ;
+  color: #63AB68 !important;
 }
 
-.fc .fc-button-primary { /* Styles for primary buttons (like prev, next, today) */
-  color: white ;
+.fc .fc-button-primary {
+  /* Styles for primary buttons (like prev, next, today) */
+  color: transparent !important;
+  box-shadow: none !important;
+  border-radius: 20px !important;
 }
-
 
 .fc .fc-header-toolbar {
-  background-color: white ;
+  background-color: white;
 }
-.fc .fc-button-primary .fc-icon { /* Styles for icons within primary buttons */
-  color: #63AB68  ;
+
+.fc .fc-button-primary .fc-icon {
+  /* Styles for icons within primary buttons */
+  color: #63AB68;
 }
 
 .fc .fc-toolbar-title {
-  color:#63AB68 !important; /* Blue title text */
+  color: #63AB68 !important;
+  /* Blue title text */
 }
 
 .fc .fc-button-primary {
   background-color: white;
   box-shadow: 1px 1px 5px #88888877;
-  border:none;
-  border-radius:2px !important;
-  margin-right:1rem;
+  border: none;
+  border-radius: 2px !important;
+  margin-right: 1rem;
   border-style: none;
-  color: #63AB68 !important; /* Red button text */
+  color: #63AB68 !important;
+  /* Red button text */
 }
 
 .fc .fc-button-primary-active {
   background-color: white !important;
 }
 
-.val-err-msg {
-  color: red;
+.fc-event-title-container {
+  background-color: #63AB68 !important;
+  border-color: #63AB68 !important;
 }
 
-
-
-
-mat-icon{
-  margin:0 !important;
-  padding:0 !important;
+.fc-event-title,
+.fc-sticky {
+  border-color: #63AB68 !important;
 }
 
-.mdc-dialog__container{
+.fc-event,
+.fc-event-draggable {
+  border-color: #63AB68 !important;
+}
+
+.fc-daygrid-event-dot {
+  border-color: #63AB68 !important;
+}
+
+//Calendar End
+
+
+
+
+//Background Opacity Mat-Dialog Start
+mat-icon {
+  margin: 0 !important;
   padding: 0 !important;
-  margin:0 !important ;
-  
-  .mat-mdc-dialog-surface , .mdc-dialog__surface{
-  background-color: transparent !important;
-  box-shadow: none !important;
-  padding:0 !important;
-  margin:0 !important;
-
-}
 }
 
-.cdk-overlay-backdrop, .cdk-overlay-dark-backdrop, .cdk-overlay-backdrop-showing{
+.mdc-dialog__container {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  .mat-mdc-dialog-surface,
+  .mdc-dialog__surface {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+  }
+}
+
+.cdk-overlay-backdrop,
+.cdk-overlay-dark-backdrop,
+.cdk-overlay-backdrop-showing {
   background-color: #000000af;
-  
 }
+
+//Background Opacity Mat-Dialog End
 
 
 
 /* Custom scrollbar for WebKit-based browsers */
 ::-webkit-scrollbar {
-  width: 6px; /* Width of the scrollbar */
-  height: 6px; /* Height of the scrollbar (for horizontal scrollbars) */
+  width: 6px !important;
+  /* Width of the scrollbar */
+  height: 6px !important;
+  /* Height of the scrollbar (for horizontal scrollbars) */
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #b1b1b1; /* Color of the track (the background of the scrollbar) */
+  background: #b1b1b1 !important;
+  /* Color of the track (the background of the scrollbar) */
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #646464; /* Color of the scrollbar handle */
-  border-radius: 6px; /* Rounding the corners of the scrollbar handle */
+  background: #646464 !important;
+  /* Color of the scrollbar handle */
+  border-radius: 6px !important;
+  /* Rounding the corners of the scrollbar handle */
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #363636; /* Color of the scrollbar handle on hover */
+  background: #363636 !important;
+  /* Color of the scrollbar handle on hover */
+}
+
+/* Custom scrollbar for WebKit-based browsers */
+
+
+
+.mat-mdc-menu-panel
+.mdc-menu-surface 
+.mdc-menu-surface--open
+.mat-mdc-elevation-specific 
+.ng-trigger .ng-trigger-transformMenu
+.ng-tns-c5-1, 
+.menu_btn{
+    width:12.3rem !important;
 }

@@ -36,12 +36,24 @@
                 <div class="content_sidebar" [class.minimizedSidebar]="isMinimizedSidebar">
                     <div class="tablist_btn">
                          <ul>
-                            <li [ngClass]="{'active': selectedTab === 'dashboard'}" (click)="gotoPage('dashboard')" routerLink="/admin/home/dashboard">Dashboard</li>
-                            <li [ngClass]="{'active': selectedTab === 'user-control'}" (click)="gotoPage('user-control')" routerLink="/admin/home/user-control">UserControl</li>
-                            <li [ngClass]="{'active': selectedTab === 'identification'}" (click)="gotoPage('identification')" routerLink="/admin/home/identification">Identification</li>
-                            <li [ngClass]="{'active': selectedTab === 'proprietor-application'}" (click)="gotoPage('proprietor-application')" routerLink="/admin/home/proprietor-application">Host Application</li>
-                            <li [ngClass]="{'active': selectedTab === 'reports'}" (click)="gotoPage('reports')" routerLink="/admin/home/reports">Report</li>
-                            <li [ngClass]="{'active': selectedTab === 'settings'}" (click)="gotoPage('settings')" routerLink="/admin/home/settings">Settings</li>
+                            <li [ngClass]="{'active': selectedTab === 'dashboard'}" (click)="gotoPage('dashboard')" routerLink="/admin/home/dashboard">
+                                <span><mat-icon>dashboard</mat-icon></span>Dashboard
+                            </li>
+                            <li [ngClass]="{'active': selectedTab === 'user-control'}" (click)="gotoPage('user-control')" routerLink="/admin/home/user-control">
+                                <span><mat-icon>supervisor_account</mat-icon></span>UserControl
+                            </li>
+                            <li [ngClass]="{'active': selectedTab === 'identification'}" (click)="gotoPage('identification')" routerLink="/admin/home/identification">
+                                <span><mat-icon>account_box</mat-icon></span>Identification
+                            </li>
+                            <li [ngClass]="{'active': selectedTab === 'proprietor-application'}" (click)="gotoPage('proprietor-application')" routerLink="/admin/home/proprietor-application">
+                                <span><mat-icon>people</mat-icon></span>Host Application
+                            </li>
+                            <li [ngClass]="{'active': selectedTab === 'reports'}" (click)="gotoPage('reports')" routerLink="/admin/home/reports">
+                                <span><mat-icon>report</mat-icon></span>Report
+                            </li>
+                            <li [ngClass]="{'active': selectedTab === 'settings'}" (click)="gotoPage('settings')" routerLink="/admin/home/settings">
+                                <span><mat-icon>settings</mat-icon></span>Settings
+                            </li>
                          </ul>
                     </div>
                 </div>
