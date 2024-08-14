@@ -4,11 +4,8 @@
             <div class="title-wrapper">
                 Describe your place
             </div>
-            <div class="category">
-                Staycation
-            </div>
             <div class="describe-your-place-wrapper">
-                <div class="checkbox" *ngFor="let yourPlaceStay of places.slice(0, 3); let stayNum = index">
+                <div class="checkbox" *ngFor="let yourPlaceStay of places; let stayNum = index">
                     <label class="custom-checkbox">
                         <input type="checkbox" [checked]="isCheckedStaycation === stayNum" 
                         name="staycations" [value]="yourPlaceStay.placetype" 
@@ -18,7 +15,7 @@
                     </label>
                 </div>
             </div>
-            <div class="category">
+            <!-- <div class="category">
                 Event Place
             </div>
             <div class="describe-your-place-wrapper">
@@ -31,7 +28,7 @@
                         <div class="label">{{yourPlaceEvent.placetype}}</div>
                     </label>
                 </div>
-            </div>
+            </div> -->
             <ng-container *ngFor="let val of validation.descriptionFilter">
                 <span class="val-err-msg" *ngIf="formRegPropS1.controls['descriptionFilter']?.hasError(val.type) && formRegPropS1.controls['descriptionFilter']?.length === 0">{{val.msg }}</span>
             </ng-container>

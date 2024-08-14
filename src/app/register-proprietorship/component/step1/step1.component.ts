@@ -60,6 +60,7 @@ export class Step1Component implements OnInit {
   ) {
     this._basicUtil.getPlaceType.subscribe(pt => {
       this.pt = pt
+      // this.places = this.defaultPlaces.filter((p: any) => p.type.includes(this.pt))
       this.places = this.defaultPlaces.filter((p: any) => p.type.match(new RegExp(this.pt)))
     });
     console.log("This is data" + this.places.placetype);

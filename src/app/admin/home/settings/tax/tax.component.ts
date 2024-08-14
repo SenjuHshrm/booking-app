@@ -18,7 +18,7 @@ export class TaxComponent implements OnInit, OnDestroy {
   public addTaxForm!: FormGroup;
   public taxTableList: any = []
   public taxTableDS!: MatTableDataSource<any>;
-  public taxTableDSColumn: string[] = ['name', 'fee', 'actions']
+  public taxTableDSColumn: string[] = ['name', 'fee', 'type', 'actions']
 
   private _sub: Subscription = new Subscription()
 
@@ -40,18 +40,18 @@ export class TaxComponent implements OnInit, OnDestroy {
   public addTax(fg: FormGroup, type: string) {
     let val: any = {
       ...fg.value,
-      name: this._basicUtil.readableToProp(fg.value.feeName)
+      feeName: fg.value.feeName.charAt(0).toUpperCase() + fg.value.feeName.slice(1)
     }
     let data = {
       type,
       values: [
-        { [val.name]: val.price }
+        val
       ]
     }
     this._sub.add(this._gs.addStatic(data).subscribe({
       next: (res: any) => {
         console.log(res)
-        this.taxTableList.push({ name: this._basicUtil.propToReadable(val.name), price: val.price })
+        this.taxTableList.push({ ...val, name: val.feeName})
         this.taxTableDS = new MatTableDataSource<any>(this.taxTableList)
       },
       error: ({ error }: HttpErrorResponse) => {
@@ -61,8 +61,8 @@ export class TaxComponent implements OnInit, OnDestroy {
   }
   
   public removeTax(data: any, i: number) {
-    let fee = { [this._basicUtil.readableToProp(data.name)]: data.price }
-    this._sub.add(this._gs.deleteValueFromStatic(fee, 'service_fee').subscribe({
+    // let fee = { t }
+    this._sub.add(this._gs.deleteValueFromStatic(data, 'service_fee').subscribe({
       next: (res: any) => {
         this.taxTableList.splice(i, 1)
         this.taxTableDS = new MatTableDataSource<any>(this.taxTableList)
@@ -79,12 +79,13 @@ export class TaxComponent implements OnInit, OnDestroy {
       next: (res: any) => {
         if(res.data.length > 0) {
           res.data.forEach((val: any) => {
-            Object.keys(val).forEach(key => {
-              this.taxTableList.push({
-                name: this._basicUtil.propToReadable(key),
-                price: val[key]
-              })
-            })
+            // Object.keys(val).forEach(key => {
+            //   this.taxTableList.push({
+            //     name: this._basicUtil.propToReadable(key),
+            //     price: val[key]
+            //   })
+            // })
+            this.taxTableList.push(val)
           })
           this.taxTableDS = new MatTableDataSource<any>(this.taxTableList)
         }
@@ -98,7 +99,8 @@ export class TaxComponent implements OnInit, OnDestroy {
   private _initForm() {
     this.addTaxForm = this._fb.group({
       feeName: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required, Validators.min(1)])
+      price: new FormControl('', [Validators.required, Validators.min(1)]),
+      type: new FormControl('', [Validators.required])
     })
   }
 

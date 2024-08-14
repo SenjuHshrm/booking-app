@@ -1,7 +1,7 @@
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { Step3Form } from '../../register-proprietorship';
-import { fadeInAnimation } from 'src/app/globals/fadein-animations';
+import { fadeInAnimation } from './../../../globals/fadein-animations';
 
 @Component({
   selector: 'app-step3',

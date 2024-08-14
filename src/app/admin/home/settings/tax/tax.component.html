@@ -5,6 +5,15 @@
   <mat-card-content>
     <div>
       <h3>Add fee</h3>
+      <b>Price Types:</b>
+      <ul>
+        <li>
+          <b>Fixed</b> - Adds directly to the booking price.
+        </li>
+        <li>
+          <b>Percentage</b> - Gets the percentage of the booking price and adding it as fee.
+        </li>
+      </ul>
       <form class="form" [formGroup]="addTaxForm" (ngSubmit)="addTax(addTaxForm, 'service_fee')">
         <div class="input-wrapper">
           <label>Name</label>
@@ -18,6 +27,16 @@
           <input type="number" name="price" formControlName="price" required>
           <ng-container *ngFor="let val of validation.price">
             <span class="val-err-msg" *ngIf="addTaxForm.controls['price']?.hasError(val.type) && (addTaxForm.controls['price']?.touched || addTaxForm.controls['price']?.dirty)">{{ val.msg }}</span>
+          </ng-container>
+        </div>
+        <div class="input-wrapper">
+          <label>Type</label>
+          <select name="type" formControlName="type" required>
+            <option value="fixed">Fixed</option>
+            <option value="percentage">Percentage</option>
+          </select>
+          <ng-container *ngFor="let val of validation.type">
+            <span class="val-err-msg" *ngIf="addTaxForm.controls['type']?.hasError(val.type) && (addTaxForm.controls['type']?.touched || addTaxForm.controls['type']?.dirty)">{{ val.msg }}</span>
           </ng-container>
         </div>
         <button mat-raised-button type="submit" [disabled]="!addTaxForm.valid">Add</button>
@@ -34,6 +53,12 @@
         <th mat-header-cell *matHeaderCellDef>Price</th>
         <td mat-cell *matCellDef="let data">
           {{ data.price }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let data">
+          {{ data.type }}
         </td>
       </ng-container>
       <ng-container matColumnDef="actions">

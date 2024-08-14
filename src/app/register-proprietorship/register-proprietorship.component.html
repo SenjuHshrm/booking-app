@@ -192,25 +192,25 @@
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                     </mat-step>
-                    <mat-step class="step12" >
+                    <mat-step class="step12" [stepControl]="regPropForm.controls['step12']">
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                         <ng-template matStepLabel></ng-template>
-                        <app-step12 formGroupName="step11"></app-step12>
+                        <app-step12 formGroupName="step12"></app-step12>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                     </mat-step>
-                    <mat-step class="step13" >
+                    <mat-step class="step13" [stepControl]="regPropForm.controls['step13']">
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Publish</button>
                         </div>
                         <ng-template matStepLabel></ng-template>
-                        <app-step13 formGroupName="step11"></app-step13>
+                        <app-step13 formGroupName="step13"></app-step13>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Publish</button>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormGroupDirective } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { MatDialog } from '@angular/material/dialog';
 import { NonRefundLearnmoreComponent } from './non-refund-learnmore/non-refund-learnmore.component';
@@ -11,11 +13,19 @@ import { LongtermLearnmoreComponent } from './longterm-learnmore/longterm-learnm
   styleUrls: ['./step12.component.scss'],
   animations: [fadeInAnimation],
 })
-export class Step12Component {
+export class Step12Component implements OnInit {
+
+  @Input() public formGroupName!: string;
+  public formRegPropS12!: FormGroup;
 
   constructor(
+    public regPropFormRoot: FormGroupDirective,
     public dialog: MatDialog
   ) { }
+
+  ngOnInit(): void {
+    this.formRegPropS12 = <FormGroup>this.regPropFormRoot.control.get(this.formGroupName)
+  }
 
   public isSelectedShort: any ;
   public isSelectedLong: any ;
