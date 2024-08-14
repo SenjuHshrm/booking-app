@@ -14,7 +14,10 @@ export class SettingsComponent {
       ],
       price: [
         { type: 'required', msg: 'Field required' },
-        { type: 'min', msg: 'Value invalid' }
+        { type: 'min', msg: 'Value invalid' },
+      ],
+      type: [
+        { type: 'required', msg: 'Field required' }
       ]
     }
   }

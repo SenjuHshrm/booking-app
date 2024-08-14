@@ -18,7 +18,9 @@ import {
   Step8Form,
   Step9Form,
   Step10Form,
-  Step11Form
+  Step11Form,
+  Step12Form,
+  Step13Form
 } from './register-proprietorship';
 import { fadeInAnimation } from '../globals/fadein-animations';
 import { Location } from '@angular/common';
@@ -108,6 +110,12 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
       step11: this._formBuilder.group<Step11Form>({
         price: new FormControl(''),
         beforeTax: new FormControl({ value: '', disabled: true})
+      }),
+      step12: this._formBuilder.group({
+        cancellationPolicy: new FormControl('')
+      }),
+      step13: this._formBuilder.group({
+        houseRules: new FormControl('')
       })
     })
   }
@@ -185,17 +193,17 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     for(let i: number = 0; i < imgDesc.length; i++) {
       fd.append('img', data.step6.img[i], imgDesc[i].filename)
     }
-    this.sub.add(this._staycation.apply(fd).subscribe({
-      next: (e: any) => {
-        if(typeof e === 'number') {
-          console.log(e)
-        } else {
-          if(e !== undefined) {
-            console.log(e)
-          }
-        }
-      }
-    }))
+    // this.sub.add(this._staycation.apply(fd).subscribe({
+    //   next: (e: any) => {
+    //     if(typeof e === 'number') {
+    //       console.log(e)
+    //     } else {
+    //       if(e !== undefined) {
+    //         console.log(e)
+    //       }
+    //     }
+    //   }
+    // }))
   }
 
   public handleRemoveCover() {

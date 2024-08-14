@@ -12,6 +12,8 @@ export interface RegisterProprietorshipForm {
   step9: FormGroup<Step9Form>;
   step10: FormGroup<Step10Form>;
   step11: FormGroup<Step11Form>;
+  step12: FormGroup<Step12Form>;
+  step13: FormGroup<Step13Form>;
 }
 
 export interface Step1Form {
@@ -76,8 +78,16 @@ export interface Step11Form {
 }
 
 export interface Step12Form {
-  type: FormControl;
-  idFront: FormControl;
-  idBack: FormControl;
-  contact: FormControl;
+  cancellationPolicy: FormControl;
 }
+
+export interface Step13Form {
+  houseRules: FormControl;
+}
+
+// export interface Step12Form {
+//   type: FormControl;
+//   idFront: FormControl;
+//   idBack: FormControl;
+//   contact: FormControl;
+// }
