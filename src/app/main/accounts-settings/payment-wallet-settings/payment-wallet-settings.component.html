@@ -1,3 +1,9 @@
 <div class="payment-settings not-found">
-    Payment Settings Ongoing
+    <ng-template [ngIf]="userPaymentMethods.length === 0">
+        Payment Settings Ongoing.
+        <button class="main-button" (click)="addPaymentMethod()">Add payment method</button>
+    </ng-template>
+    <ng-template [ngIf]="userPaymentMethods.length > 0">
+        
+    </ng-template>
 </div>
