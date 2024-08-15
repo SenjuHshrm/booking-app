@@ -18,6 +18,8 @@ export class Step12Component implements OnInit {
   @Input() public formGroupName!: string;
   public formRegPropS12!: FormGroup;
 
+  public enableNonRefundable: boolean = false;
+
   constructor(
     public regPropFormRoot: FormGroupDirective,
     public dialog: MatDialog
@@ -31,15 +33,15 @@ export class Step12Component implements OnInit {
   public isSelectedLong: any ;
 
   public standardData:any =[
-    {cancellTitle:'Flexible', cancellDesc:'Guest get a full refund they cancel up to a day before check-in.', selected:false},
-    {cancellTitle:'Moderate', cancellDesc:'Guest get a full refund if they cancel up to 5 days before check-in.', selected:false},
-    {cancellTitle:'Firm', cancellDesc:'Guest get a full refund if they cancel up to 30 days before check-in, except in certain cases.', selected:false},
-    {cancellTitle:'Strict', cancellDesc:'Guest get a full refund if they cancel within 48 hours of booking and at least 14 days before check-in.', selected:false},
+    {value: 'cancel_policy_standard_1', cancellTitle:'Flexible', cancellDesc:'Guest get a full refund they cancel up to a day before check-in.', selected:false},
+    {value: 'cancel_policy_standard_2', cancellTitle:'Moderate', cancellDesc:'Guest get a full refund if they cancel up to 5 days before check-in.', selected:false},
+    {value: 'cancel_policy_standard_3', cancellTitle:'Firm', cancellDesc:'Guest get a full refund if they cancel up to 30 days before check-in, except in certain cases.', selected:false},
+    {value: 'cancel_policy_standard_4', cancellTitle:'Strict', cancellDesc:'Guest get a full refund if they cancel within 48 hours of booking and at least 14 days before check-in.', selected:false},
   ]
 
   public longtermData:any =[
-    {cancellTitle:'Firm', cancellDesc:'Full refund up to 30 days before check-in. After that, the first 30 days of the stay are non-refundable.', selected:false},
-    {cancellTitle:'Strict', cancellDesc:'Full refund if cancelled within 48 hours of booking and at least 28 days before check-in. After that, the first 30 days of the stay are non-refundable.', selected:false},
+    {value: 'cancel_policy_lt_1', cancellTitle:'Firm', cancellDesc:'Full refund up to 30 days before check-in. After that, the first 30 days of the stay are non-refundable.', selected:false},
+    {value: 'cancel_policy_lt_2', cancellTitle:'Strict', cancellDesc:'Full refund if cancelled within 48 hours of booking and at least 28 days before check-in. After that, the first 30 days of the stay are non-refundable.', selected:false},
   ]
   
   openNonStandardLearnmore(): void {
@@ -79,14 +81,22 @@ export class Step12Component implements OnInit {
     });
   }
 
-
-  selectPolicyShort(indexShort:any){
-    this.isSelectedShort = indexShort;
-  }
-  selectPolicyLong(indexLong:any){
-    this.isSelectedLong = indexLong;
+  public selectPolicy(i: number, policy: string, value: string) {
+    switch(policy) {
+      case 'standard':
+        this.isSelectedShort = i;
+        this.isSelectedLong = -1;
+        break;
+      case 'lt':
+        this.isSelectedLong = i;
+        this.isSelectedShort = -1;
+    }
+    this.formRegPropS12.controls['cancellationPolicy'].setValue(value)
   }
   
-
+  public setNonRefundable(e: boolean) {
+    this.enableNonRefundable = e
+    this.formRegPropS12.controls['nonRefundable'].setValue((this.enableNonRefundable) ? 'yes' : 'no')
+  }
 
 }

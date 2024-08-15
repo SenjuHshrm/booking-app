@@ -96,4 +96,18 @@ export class BasicUtilService {
   public setPlaceType(pt: string) {
     this.placetype.next(pt)
   }
+
+  public taxTotal(price: number, taxes: any): number {
+    let res: number = 0;
+    taxes.forEach((x: any) => {
+      if(x.type === 'fixed') {
+        res += x.price
+      } else {
+        let perc: number = (x.price / 100) * price
+        res += perc
+      }
+    })
+    // return Math.ceil(res)
+    return res
+  }
 }

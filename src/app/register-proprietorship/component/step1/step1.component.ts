@@ -43,15 +43,15 @@ export class Step1Component implements OnInit {
   }
 
   private defaultPlaces: any = [
-    { placetype: "Resort", value: "resort", type: 'room, room_shared' },
-    { placetype: "Private Villa", value: "appartment", type: 'room, room_shared' },
-    { placetype: "Service Condominium", value: "service condominium", type: 'room, room_shared' },
-    { placetype: "Hotel", value: "hotel", type: 'room, room_shared' },
-    { placetype: "Meeting Room", value: "meeting room", type: 'event_place' },
-    { placetype: "Hotel Ballroom", value: "hotel ballroom", type: 'event_place' },
-    { placetype: "Restaurant Space", value: "restaurant space", type: 'event_place' },
-    { placetype: "Paviilion", value: "pavillion", type: 'event_place' },
-    { placetype: "Gymnasium", value: "gymnasium", type: 'event_place' },
+    { placetype: "Resort", value: "Resort", type: 'room, room_shared' },
+    { placetype: "Private Villa", value: "Private Villa", type: 'room, room_shared' },
+    { placetype: "Service Condominium", value: "Service Condominium", type: 'room, room_shared' },
+    { placetype: "Hotel", value: "Hotel", type: 'room, room_shared' },
+    { placetype: "Meeting Room", value: "Meeting Room", type: 'event_place' },
+    { placetype: "Hotel Ballroom", value: "Hotel Ballroom", type: 'event_place' },
+    { placetype: "Restaurant Space", value: "Restaurant Space", type: 'event_place' },
+    { placetype: "Paviilion", value: "Paviilion", type: 'event_place' },
+    { placetype: "Gymnasium", value: "Gymnasium", type: 'event_place' },
   ]
 
   constructor(
@@ -62,6 +62,7 @@ export class Step1Component implements OnInit {
       this.pt = pt
       // this.places = this.defaultPlaces.filter((p: any) => p.type.includes(this.pt))
       this.places = this.defaultPlaces.filter((p: any) => p.type.match(new RegExp(this.pt)))
+      this.isCheckedStaycation = null
     });
     console.log("This is data" + this.places.placetype);
   }
@@ -70,27 +71,31 @@ export class Step1Component implements OnInit {
     this.formRegPropS1 = <FormGroup<Step1Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
 
-  public handleSelectedPlaceType(e: Event,indexNumStay:any,indexNumEvent:any) {
+  public handleSelectedPlaceType(e: Event, i: number, value: string) {
     this.isCheckedStaycation = (e.target as HTMLInputElement).checked;
-    this.isCheckedStaycation = indexNumStay;
+    this.isCheckedStaycation = i;
 
-    this.isCheckedEvents = (e.target as HTMLInputElement).checked;
-    this.isCheckedEvents = indexNumEvent;
+    this.formRegPropS1.controls['descriptionFilter'].setValue(value)
+    console.log(this.formRegPropS1.controls['descriptionFilter'].value)
+
+    // this.isCheckedEvents = (e.target as HTMLInputElement).checked;
+    // this.isCheckedEvents = indexNumEvent;
     
-    const descFilter: FormArray = <FormArray>this.formRegPropS1.get('descriptionFilter')
-    let targetEl: HTMLInputElement = <HTMLInputElement>e.target!
-    if(targetEl.checked) {
-      descFilter.push(new FormControl(targetEl.value))
-    } else{
-      let i: number = 0;
-      descFilter.controls.forEach((ctrl: AbstractControl) => {
-        if(ctrl.value === targetEl.value) {
-          descFilter.removeAt(i)
-          return
-        }
-        i++;
-      })
-    }
-    console.log(descFilter.value)
+    // const descFilter: FormArray = <FormArray>this.formRegPropS1.get('descriptionFilter')
+    // let targetEl: HTMLInputElement = <HTMLInputElement>e.target!
+    // if(targetEl.checked) {
+    //   descFilter.push(new FormControl(targetEl.value))
+    // } else{
+    //   let i: number = 0;
+    //   descFilter.controls.forEach((ctrl: AbstractControl) => {
+    //     if(ctrl.value === targetEl.value) {
+    //       descFilter.removeAt(i)
+    //       return
+    //     }
+    //     i++;
+    //   })
+    // }
+    // console.log(descFilter.value)
+
   } 
 }

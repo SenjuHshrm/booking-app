@@ -167,6 +167,11 @@
             z-index: 5;
             background-color: white;
 
+            mat-progress-spinner {
+                display: flex;
+                justify-self: flex-end;
+            }
+
           .btn{
             padding-left: 1rem;
             button {

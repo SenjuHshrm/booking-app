@@ -2,9 +2,9 @@
     <section class="add-photos-place">
         <div class="title_wrapper">
             <div class="title">Add some photos of your staycation/event place</div>
-            <div class="sub_title">After uploading photos, click on the one you want to use as the cover photo.</div>
+            <!-- <div class="sub_title">After uploading photos, click on the one you want to use as the cover photo.</div>
             <div class="sub_title">Maximum size of each photo is {{maxImgSize}}MB. Photos exceeding maximum size will be
-                excluded to upload list.</div>
+                excluded to upload list.</div> -->
         </div>
         <div class="title_photo">General Photo's</div>
         <div class="add-photos-place-wrapper">
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div class="title_photo">Bedroom Photo's</div>
+        <div class="title_photo">Bedroom Photos</div>
         <div class="add-photos-place-wrapper">
             <div class="container" [ngStyle]="{
                     'display': imgFileBedroom.length === 0 ? 'flex' : '',
@@ -96,12 +96,12 @@
                 </div>
             </div>
        
-        <div class="add_wrapper">
+        <!-- <div class="add_wrapper">
             <button class="square-radius-btn" (click)="addSectionCat()">
                 <mat-icon>add</mat-icon>
                 <span>Add Categorize Photo's</span>
             </button>
-        </div>
+        </div> -->
 
     </section>
 </ng-container>

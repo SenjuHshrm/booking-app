@@ -23,7 +23,7 @@
         <div class="describe-your-place-wrapper">
             <div class="checkbox" *ngFor="let houseRulesDatas of houseRulesData; let i = index ">
                 <label class="custom-checkbox">
-                    <input type="checkbox" typname="staycations">
+                    <input type="checkbox" typname="staycations" [value]="houseRulesDatas.title" (change)="handleSelectedRules($event, i)">
                     <span class="checkmark"></span>
                     <div class="label">{{houseRulesDatas.title}}</div>
                 </label>
@@ -33,8 +33,8 @@
                   
         <div class="others">
             <div>Enter other rules here</div>
-            <input type="text" name="house" [(ngModel)]="textValue"  placeholder="Type here.." formControlName="descriptionTextOther" />
-            <button class="square-radius-btn" (click)="addCheckBox()">
+            <input type="text" name="house" [(ngModel)]="textValue"  placeholder="Type here.." [ngModelOptions]="{ standalone: true }"/>
+            <button type="button" class="square-radius-btn" (click)="addCheckBox()">
                 <mat-icon>add</mat-icon>
                 Add Rules
             </button>
@@ -44,7 +44,7 @@
             <div class="add_rules_full">
                 <div class="input-wrapper">
                     <div class="input_wrapper">
-                        <textarea type="text" name="fulldesc" placeholder="Type here.."></textarea>
+                        <textarea type="text" name="houseRulesDetailed" formControlName="houseRulesDetailed" placeholder="Type here.."></textarea>
                     </div>
                 </div>
             </div>

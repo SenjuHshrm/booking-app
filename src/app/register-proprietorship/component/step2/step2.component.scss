@@ -12,6 +12,20 @@
     box-shadow: 1px 1px 5px #88888877;
     background-color: white;
 
+    .input-wrapper {
+        .label {
+            margin-bottom: .3rem;
+        }
+        input {
+            padding: 1rem;
+            border: 2px solid #63AB68;
+            width: 100%;
+            border-radius: 10px;
+            font-family: Poppins-Medium;
+            font-size: 15px;
+        }
+    }
+
     .title-wrapper {
         font-weight: bold;
         font-size: clamp(1.3rem, 1.5vw, 8rem);

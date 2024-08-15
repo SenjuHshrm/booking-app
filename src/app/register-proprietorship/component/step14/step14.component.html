@@ -8,7 +8,7 @@
         </div>
         <div class="add-discounts-wrapper">
             <div class="checkbox" *ngFor="let addDiscounts of adddiscounts; let i = index">
-                <div class="checkbox-wrapper" (click)="handleRadiobtn(i)">
+                <div class="checkbox-wrapper" (click)="handleRadiobtn(i, addDiscounts.value)">
                     <div class="wrapper">
                         <div class="title_sub ">
                             {{addDiscounts.title}}

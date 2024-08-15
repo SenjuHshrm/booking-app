@@ -1,7 +1,7 @@
 import { FormControl, AbstractControl } from '@angular/forms';
 import { FormGroup, FormGroupDirective, FormArray } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
-import { Step9Form } from '../../register-proprietorship';
+import { Step14Form } from '../../register-proprietorship';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { MatDialog } from '@angular/material/dialog';
 import { LearnMoreComponent } from '../step9/learn-more/learn-more.component';
@@ -16,10 +16,10 @@ export class Step14Component implements OnInit {
 
   @Input() public formGroupName!: string;
   public isSelected: any = null;
-  public formRegPropS9!: FormGroup<Step9Form>;
+  public formRegPropS14!: FormGroup<Step14Form>;
   public adddiscounts: any = [
-    { title: 'Use Instant Book ', desc: 'Guests can book automatically.'},
-    { title: 'Approve or decline requests', desc: 'Guests must ask if they can book.',  },
+    { title: 'Use Instant Book ', desc: 'Guests can book automatically.', value: 'instant'},
+    { title: 'Approve or decline requests', desc: 'Guests must ask if they can book.', value: 'for_approval' },
   ]
 
   constructor(
@@ -28,13 +28,14 @@ export class Step14Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  
+    this.formRegPropS14 = <FormGroup>this.regPropFormRoot.control.get(this.formGroupName)
   }
 
 
 
-  handleRadiobtn(index: any): void {
+  handleRadiobtn(index: any, value: string): void {
     this.isSelected = index;
+    this.formRegPropS14.controls['bookingProcess'].setValue(value)
   }
 
 
