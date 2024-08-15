@@ -19,6 +19,12 @@
           text-align: center;
       }
 
+      .title_sub {
+        font-size: clamp(1rem, .9vw, 8rem);
+        padding: 1rem 0 0;
+        text-align: left;
+    }
+
         .subinfo{
             font-size: 15px;
             color: #8d8d8d;
@@ -31,7 +37,7 @@
                 white-space: pre;
             }
         }
-      
+
 
       .add-discounts-wrapper {
           //   display: grid;
@@ -134,7 +140,7 @@
                       border: 2px solid #ccc;
                       /* Default color for the border */
                       outline: none;
-                      cursor:none;
+                  
                   }
 
                   /* Style for the inner dot when selected */
@@ -147,7 +153,121 @@
               }
           }
 
+          .date-checkin-out {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+    
+            .checkin-out-style {
+                font-family: Poppins-Regular;
+                font-size: 14px;
+                font-weight: bold;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                gap: .5rem;
+                background-color: white;
+                box-shadow: 1px 1px 5px #88888877;
+                padding: 8px;
+                width: fit-content;
+                border-radius: 5px;
+    
+                .title {
+                    white-space: pre;
+                }
+    
+                .custom-date-input {
+                    // -webkit-appearance: none;
+                    //  -moz-appearance: none;
+                    // appearance: none;
+                    padding: 0.5rem .5rem;
+                    border: none;
+                    outline: none;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    color: #797979;
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+    
+                    width: 100%;
+                    border: 1px solid #ccc;
+    
+    
+                }
+    
+    
+                .custom-date-input::-webkit-calendar-picker-indicator {
+                    cursor: pointer;
+                    padding: .5rem;
+                    background-color: transparent;
+                    background-image: url('../../../../assets/images/search-filters/v-icon.png');
+    
+                }
+    
+                .calendar-icon {
+                    width: 25px;
+                    height: 25px;
+                    background-image: url('../../../../assets/images/search-filters/calendaricon.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                }
+    
+            }
+    
+        }
+
+        
+
       }
+
+      .time_wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap:1rem;
+      }
+
+      
+      .time-input-container {
+        font-family: Poppins-Regular;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap:1rem;
+      }
+      
+      .time-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+      
+      .time-input {
+        display: block;
+        margin: 10px 0;
+        padding: 5px;
+        font-size: 16px;
+        border: 2px solid #68A968;
+        border-radius: 5px;
+      }
+      
+      .time-input:hover {
+        border-color: #68A968;
+      }
+      
+      .time-input:focus {
+        outline: none;
+        border-color: #68A968;
+        box-shadow: 0 0 5px #68A968;
+      }
+      
+      .time-description {
+        font-size: 14px;
+        color: #555;
+      }
+  
 
       //   .custom_percentage {
       //       .title {

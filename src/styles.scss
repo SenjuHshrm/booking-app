@@ -43,6 +43,34 @@ body {
 }
 
 
+.square-radius-btn{
+  border: none;
+  border-radius:5px;
+  background-color: transparent;
+  padding:.5rem 1rem .5rem;
+  background-color: #63AB68;
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:1rem;
+  flex-wrap: wrap;
+  color: white;
+  cursor: pointer;
+
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.square-radius-btn:hover{
+  background-color: #63ab68b9;
+}
+
 .main-button {
   display: block;
   background-color: #63AB68;

@@ -1,29 +1,61 @@
-    <ng-container [formGroup]="formRegPropS9">
-        <section class="add-discounts">
-            <div class="title-wrapper">
-                Add discounts
+<ng-container [formGroup]="formRegPropS9">
+    <section class="add-discounts">
+        <div class="title-wrapper">
+            Add discounts
+        </div>
+        <div class="subinfo">
+            <div>Only one discount will be applied per stay. &nbsp;<span (click)="openLearnmore()">Learn more</span>
             </div>
-            <div class="subinfo">
-                 <div>Only one discount will be applied per stay. &nbsp;<span (click)="openLearnmore()">Learn more</span></div>
-            </div>
-            <div class="add-discounts-wrapper">
-                <div class="checkbox" *ngFor="let addDiscounts of adddiscounts; let i = index">
-                    <div class="checkbox-wrapper">
-                        <div class="label">
-                            <input type="number" name="discount" [value]="addDiscounts.label" [readonly]="i === 0" [ngClass]="{'custom_input': i === 0}" />
-                            <span>%</span>
-                        </div>
-                        <div class="desc_wrapper" (click)="handleRadiobtn(i)">
-                            <div class="desc">{{addDiscounts.desc}}</div>
-                            <div class="radio-button">
-                                <input type="radio" [ngClass]="{'checked': isSelected === i  }" readonly disabled
+        </div>
+        <div class="add-discounts-wrapper">
+            <div class="title_sub ">Discounts</div>
+            <div class="checkbox" *ngFor="let addDiscounts of adddiscounts; let i = index">
+                <div class="checkbox-wrapper">
+                    <div class="label">
+                        <input type="number" name="discount" [value]="addDiscounts.label" [readonly]="i === 0"
+                            [ngClass]="{'custom_input': i === 0}" />
+                        <span>%</span>
+                    </div>
+                    <div class="desc_wrapper" (click)="handleRadiobtn(i)">
+                        <div class="desc">{{addDiscounts.desc}}</div>
+                        <div class="radio-button">
+                            <input type="radio" [ngClass]="{'checked': isSelected === i  }" readonly disabled
                                 [value]="addDiscounts.value" (change)="handleSelectDiscount($event)" />
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="custom_percentage">
+            <div class="title_sub ">Discounts Duration</div>
+            <div class="date-checkin-out">
+                <div class="checkin-out-style">
+                    <div class="title">Start date</div>
+                    <div class="calendar-icon"></div>
+                    <input type="date" name="date" class="custom-date-input">
+                </div>
+                <div class="checkin-out-style">
+                    <div class="title">End date</div>
+                    <div class="calendar-icon"></div>
+                    <input type="date" name="date" class="custom-date-input">
+                </div>
+            </div>
+
+        </div>
+        <div class="time_wrapper">
+            <div class="time-input-container">
+                <label for="meeting-time" class="title_sub">Set Start Time:</label>
+                <p class="time-description">.</p>
+                <input type="time" id="meeting-time" class="time-input">
+            </div>
+            <div class="time-input-container">
+                <label for="meeting-time" class="title_sub">Set End Time:</label>
+                <p class="time-description">.</p>
+                <input type="time" id="meeting-time" class="time-input">
+            </div>
+        </div>
+
+
+
+        <!-- <div class="custom_percentage">
                 <div class="title">Your Discounted Offer</div>
                 <div class="input_container">
                     <div class="percent">
@@ -39,5 +71,5 @@
                     </div>
                 </div>
             </div> -->
-        </section>
-    </ng-container>
+    </section>
+</ng-container>

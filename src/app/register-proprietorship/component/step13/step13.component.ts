@@ -41,4 +41,14 @@ export class Step13Component implements OnInit {
     {title:'No events or party', selected:true},
   ]
 
+  public textValue: string = '';
+
+  addCheckBox() {
+    this.houseRulesData.push({describeHouse:this.textValue,value:this.textValue});
+
+    if (this.textValue.trim()) {
+      this.houseRulesData.push({describeHouse:this.textValue,value:this.textValue});
+    }
+    this.textValue = ''; 
+}
 }

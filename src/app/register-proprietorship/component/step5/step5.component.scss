@@ -22,9 +22,12 @@
     
     &-wrapper {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-rows: repeat(auto-fit, minmax(1rem, 1fr));
+        grid-auto-rows:1rem;
+        gap: 1.3rem;
         place-content: center;
+        align-items: center;
         .checkbox {
             display: flex;
             align-items: center;
@@ -90,23 +93,41 @@
         }
     }
     .others {
-        display: flex;
-        gap: .5rem;
-        align-items: center;
-        margin-top: 1rem;
         width: 100%;
-        background-color: #F7F7F7;
-        border-radius: .5rem;
-        padding: 1rem;
+        margin-top: 1rem;
     
         input {
-            width: auto;
-            border: none;
             background-color: transparent;
             outline: none;
             width: 100%;
+            padding: 1rem;
+            border: 2px solid #63AB68;
+            width:100%;
+            height:3rem;
+            border-radius: 10px;
+            font-family: Poppins-Medium;
+            font-size: 15px;
+    
+    
         }
-}
+        button{
+            margin-top: 1rem;
+        }
+    }
+    
+    .input-wrapper {
+        .label {
+            margin-bottom: .3rem;
+        }
+        input {
+            padding: 1rem;
+            border: 2px solid #63AB68;
+            width: 100%;
+            border-radius: 10px;
+            font-family: Poppins-Medium;
+            font-size: 15px;
+        }
+    }
 }
 
 @media only screen and (max-width: 600px) {

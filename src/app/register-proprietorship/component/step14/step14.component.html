@@ -1,1 +1,46 @@
-<p>step14 works!</p>
+<ng-container>
+    <section class="add-discounts">
+        <div class="title-wrapper">
+            Instant Book
+        </div>
+        <div class="subinfo">
+
+        </div>
+        <div class="add-discounts-wrapper">
+            <div class="checkbox" *ngFor="let addDiscounts of adddiscounts; let i = index">
+                <div class="checkbox-wrapper" (click)="handleRadiobtn(i)">
+                    <div class="wrapper">
+                        <div class="title_sub ">
+                            {{addDiscounts.title}}
+                        </div>
+                        <div class="desc">
+                            {{addDiscounts.desc}}
+                        </div>
+                    </div>
+                    <div class="desc_wrapper" >
+                        <div class="radio-button">
+                            <input type="radio" [ngClass]="{'checked': isSelected === i  }" readonly disabled
+                                [value]="addDiscounts.value" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="custom_percentage">
+            <div class="title">Your Discounted Offer</div>
+            <div class="input_container">
+                <div class="percent">
+                    <div class="label">Discount</div>
+                    <div class="wrapper">
+                        <input class="custom_input" type="number" name="house" value="" placeholder="0" />
+                        <div class="percentage_icon">%</div>
+                    </div>
+                </div>
+                <div class="percent">
+                    <div class="label">Description</div>
+                    <textarea type="text" name="house" value="" placeholder="Descriptions"></textarea>
+                </div>
+            </div>
+        </div> -->
+    </section>
+</ng-container>

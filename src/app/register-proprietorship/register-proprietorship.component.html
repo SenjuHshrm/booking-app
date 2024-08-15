@@ -60,7 +60,7 @@
             #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
                 <mat-stepper linear [labelPosition]="'bottom'" #regPropFormStepper>
-                   <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
+                    <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
                         <ng-template matStepLabel></ng-template>
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
@@ -207,10 +207,22 @@
                     <mat-step class="step13" [stepControl]="regPropForm.controls['step13']">
                         <div class="nextprev_btn-top">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Publish</button>
+                            <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step13 formGroupName="step13"></app-step13>
+                        <div class="nextprev_btn-bottom">
+                            <button mat-button type="button" matStepperPrevious>Back</button>
+                            <button mat-button type="button" matStepperNext>Next</button>
+                        </div>
+                    </mat-step>
+                    <mat-step class="step14" >
+                        <div class="nextprev_btn-top">
+                            <button mat-button type="button" matStepperPrevious>Back</button>
+                            <button mat-button type="button" matStepperNext>Publish</button>
+                        </div>
+                        <ng-template matStepLabel></ng-template>
+                        <app-step14 formGroupName="step13"></app-step14>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
                             <button mat-button type="button" matStepperNext>Publish</button>

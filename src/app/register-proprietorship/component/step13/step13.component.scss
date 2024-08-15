@@ -33,7 +33,7 @@
 
     }
 
-    .custom_title{
+    .custom_title {
         font-size: 1rem;
         font-weight: bold;
     }
@@ -260,19 +260,20 @@
         }
 
         .add_rules {
-            display: flex;
-            flex-direction: column;
-            // grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
-            gap: .5rem;
-            width: 100%;
-            max-width: 40rem;
-            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-rows: repeat(auto-fit, minmax(1rem, 1fr));
+            grid-auto-rows: 1rem;
+            gap: 1.3rem;
+            place-content: center;
+            align-items: center;
 
             .input-wrapper {
-                 display: flex;
-                 gap:.5rem;
-                 align-items: flex-end;
-                 justify-content: flex-end;
+                display: flex;
+                gap: .5rem;
+                align-items: flex-end;
+                justify-content: flex-end;
+
                 button {
                     display: block;
                     background-color: #63AB68;
@@ -280,7 +281,7 @@
                     max-width: fit-content;
                     height: 100%;
                     padding: 1rem;
-                    border-radius:5px;
+                    border-radius: 5px;
                     font-family: Poppins-regular;
                     font-weight: bolder;
                     white-space: nowrap;
@@ -289,9 +290,8 @@
                     white-space: pre;
                     margin: 0;
                 }
-                .label{
 
-                }
+                .label {}
 
                 input {
                     padding: 1rem;
@@ -315,53 +315,63 @@
             // gap: 2.5rem;
             // margin-top: 1rem;
             // border:1px solid black;
-         
+
             width: 100%;
-          
-          
+
+
             .input-wrapper {
                 display: flex;
-                
+                position: relative;
                 flex-direction: column;
-                gap:.5rem;
+                gap: .5rem;
                 width: 100%;
-               button {
-                   display: block;
-                   background-color: #63AB68;
-                   border: none;
-                   max-width: fit-content;
-                   height: 100%;
-                   padding: 1rem;
-                   border-radius:5px;
-                   font-family: Poppins-regular;
-                   font-weight: bolder;
-                   white-space: nowrap;
-                   color: white;
-                   cursor: pointer;
-                   white-space: pre;
-                   margin: 0;
-               }
-               .input_wrapper{
-                width: 100%;
-              
-               .label{
 
-               }
+                .input_wrapper {
+                    width: 100%;
 
-               input {
-                flex: 1;
-                   padding: 1rem;
-                   border: 2px solid #63AB68;
-                   width: 100%;
-                   border-radius: 10px;
-                   font-family: Poppins-Medium;
-                   font-size: 15px;
-                   height:5rem;
-               }
+                    .label {}
+
+                    textarea {
+                        position: relative;
+                        padding: 1rem;
+                        border: 2px solid #63AB68;
+                        width: 100%;
+                        border-radius: 10px;
+                        font-family: Poppins-Medium;
+                        font-size: 15px;
+                        height: 7rem;
+                    }
+
+
+
+                }
             }
-           }
         }
 
+    }
+
+    .others {
+        width: 100%;
+        margin-top: 2rem;
+
+        input {
+            background-color: transparent;
+            outline: none;
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #63AB68;
+            width: 100%;
+            height: 3rem;
+            border-radius: 10px;
+            font-family: Poppins-Medium;
+            font-size: 15px;
+
+
+        }
+
+        button {
+            margin-top: 1rem;
+        }
     }
 
 }

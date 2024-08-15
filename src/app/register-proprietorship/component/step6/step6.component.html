@@ -1,37 +1,107 @@
-
-    <ng-container [formGroup]="formRegPropS6">
-        <section class="add-photos-place">
-            <div class="title_wrapper">
-                <div class="title">Add some photos of your staycation/event place</div>
-                <div class="sub_title">After uploading photos, click on the one you want to use as the cover photo.</div>
-                <div class="sub_title">Maximum size of each photo is {{maxImgSize}}MB. Photos exceeding maximum size will be excluded to upload list.</div>
-            </div>
-            <div class="add-photos-place-wrapper">
-                <div class="container" [ngStyle]="{
+<ng-container [formGroup]="formRegPropS6">
+    <section class="add-photos-place">
+        <div class="title_wrapper">
+            <div class="title">Add some photos of your staycation/event place</div>
+            <div class="sub_title">After uploading photos, click on the one you want to use as the cover photo.</div>
+            <div class="sub_title">Maximum size of each photo is {{maxImgSize}}MB. Photos exceeding maximum size will be
+                excluded to upload list.</div>
+        </div>
+        <div class="title_photo">General Photo's</div>
+        <div class="add-photos-place-wrapper">
+            <div class="container" [ngStyle]="{
                     'display': imgFile.length === 0 ? 'flex' : '',
                     'place-content': imgFile.length === 0 ? 'center' : '', }">
-                    <div class="upload-panel" >
-                        <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
-                            accept="image/*" multiple>
-                        <label for="fileInput" class="custom-file-label">
-                            <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
-                                alt="camera-Icon" class="custom-icon">
-                            <span>Upload Image</span>
-                        </label>
+                <div class="upload-panel">
+                    <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
+                        accept="image/*" multiple>
+                    <label for="fileInput" class="custom-file-label">
+                        <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png" alt="camera-Icon"
+                            class="custom-icon">
+                        <span>Upload Image</span>
+                    </label>
+                </div>
+
+                <div class="gallery" [ngStyle]="{display: imgFile.length === 0 ? 'none' : ''}">
+                    <div *ngFor="let image of uploadedImages" [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                        <div class="cover_text" [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo
+                        </div>
+                        <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)" />
+                        <button type="button" class="close-button" (click)="handleRemoveImg(image)">
+                            <mat-icon>close</mat-icon>
+                        </button>
                     </div>
-                    
-                    <div class="gallery" [ngStyle]="{display: imgFile.length === 0 ? 'none' : ''}">
-                        <div *ngFor="let image of uploadedImages" 
-                            [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
-                            <div class="cover_text" [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo</div>
-                            <img [src]="image.dataFile" alt="Uploaded Image" (click)="handleSetCover($event)" />
-                                <button type="button" class="close-button"
-                                    (click)="handleRemoveImg(image)">
+                </div>
+            </div>
+        </div>
+        <div class="title_photo">Bedroom Photo's</div>
+        <div class="add-photos-place-wrapper">
+            <div class="container" [ngStyle]="{
+                    'display': imgFileBedroom.length === 0 ? 'flex' : '',
+                    'place-content': imgFileBedroom.length === 0 ? 'center' : '', }">
+                <div class="upload-panel">
+                    <input type="file" id="fileInputBedroom" style="display: none;"
+                        (change)="onFileSelectedBedroom($event)" accept="image/*" multiple>
+                    <label for="fileInputBedroom" class="custom-file-label">
+                        <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png" alt="camera-Icon"
+                            class="custom-icon">
+                        <span>Upload Image</span>
+                    </label>
+                </div>
+
+                <div class="gallery" [ngStyle]="{display: imgFileBedroom.length === 0 ? 'none' : ''}">
+                    <div *ngFor="let image of uploadedImagesBedroom"
+                        [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                        <div class="cover_text" [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo
+                        </div>
+                        <img [src]="image.dataFileBedroom" alt="Uploaded Image" />
+                        <button type="button" class="close-button" (click)="handleRemoveImgBedroom(image)">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+            <div class="cat_wrapper" *ngFor="let section of uploadSectionsCatImages; let i = index">
+                <div class="input-wrapper">
+                    <div class="title_photo">Category Title:</div>
+                    <input type="text" name="title" formControlName="" placeholder="Type here.." />
+                </div>
+                <div class="add-photos-place-wrapper">
+                    <div class="container" [ngStyle]="{
+                            'display': imgFileBedroom.length === 0 ? 'flex' : '',
+                            'place-content': imgFileBedroom.length === 0 ? 'center' : '', }">
+                        <div class="upload-panel">
+                            <input type="file" id="fileInputBedroom" style="display: none;"
+                                (change)="onFileSelectedBedroom($event)" accept="image/*" multiple>
+                            <label for="fileInputBedroom" class="custom-file-label">
+                                <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png" alt="camera-Icon"
+                                    class="custom-icon">
+                                <span>Upload Image</span>
+                            </label>
+                        </div>
+        
+                        <div class="gallery" [ngStyle]="{display: imgFileBedroom.length === 0 ? 'none' : ''}">
+                            <div *ngFor="let image of uploadedImagesBedroom"
+                                [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                                <div class="cover_text" [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo
+                                </div>
+                                <img [src]="image.dataFileBedroom" alt="Uploaded Image" />
+                                <button type="button" class="close-button" (click)="handleRemoveImgBedroom(image)">
                                     <mat-icon>close</mat-icon>
                                 </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </ng-container>
+       
+        <div class="add_wrapper">
+            <button class="square-radius-btn" (click)="addSectionCat()">
+                <mat-icon>add</mat-icon>
+                <span>Add Categorize Photo's</span>
+            </button>
+        </div>
+
+    </section>
+</ng-container>

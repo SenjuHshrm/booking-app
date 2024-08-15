@@ -13,8 +13,10 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 export class Step8Component implements OnInit {
 
   @Input() public formGroupName!: string;
+
   public isChecked: any = null;
   public formRegPropS8!: FormGroup<Step8Form>;
+
   public describehouse: any = [
     { describeHouse: "Peaceful", value: 'Peaceful' },
     { describeHouse: "Unique", value: 'Unique' },
@@ -22,6 +24,8 @@ export class Step8Component implements OnInit {
     { describeHouse: "Family-friendly", value: 'Family-friendly' },
     { describeHouse: "Spacious", value: 'Spacious' }
   ];
+
+  public textValue: string = '';
 
   public validation: any = {
     descriptionText: [
@@ -58,4 +62,13 @@ export class Step8Component implements OnInit {
       })
     }
   }
+
+
+
+  addCheckBox() {
+    if (this.textValue.trim()) {
+      this.describehouse.push({describeHouse:this.textValue,value:this.textValue});
+    }
+    this.textValue = ''; 
+}
 }

@@ -17,8 +17,12 @@
             <span class="val-err-msg" *ngIf="formRegPropS5.controls['amenities']?.hasError(val.type) && (formRegPropS5.controls['amenities']?.untouched || formRegPropS5.controls['amenities']?.pristine)">{{ val.msg }}</span>
         </ng-container>
         <div class="others">
-            <div>Other:</div>
-            <input type="text" name="amenitiesOther" formControlName="amenitiesOther" placeholder="Describe your amenities here.." />
+            <div>Enter other ammenities here</div>
+            <input type="text" name="amenities" [(ngModel)]="textValueAmenities"  placeholder="" formControlName="descriptionTextOther" />
+            <button class="square-radius-btn" (click)="checkboxAmenities()">
+                <mat-icon>add</mat-icon>
+                Add ammenities
+            </button>
         </div>
     </section>
 </ng-container>

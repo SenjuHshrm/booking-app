@@ -15,6 +15,9 @@ export class Step5Component implements OnInit {
   @Input() public formGroupName!: string;
   public isChecked: any = null;
   public formRegPropS5!: FormGroup<Step5Form>;
+  
+
+  
   public amenities: any = [
     { placeamenities: "Wifi", value: 'Wifi' },
     { placeamenities: "TV", value: 'TV' },
@@ -26,6 +29,10 @@ export class Step5Component implements OnInit {
     { placeamenities: "Dedicated workspace", value: 'Dedicated Workspace' },
   ];
 
+  public textValueAmenities: any = null;
+
+
+
   public validation = {
     amenities: [
       {
@@ -35,6 +42,8 @@ export class Step5Component implements OnInit {
     ]
   }
 
+  
+
   constructor(
     public regPropFormRoot: FormGroupDirective
   ) { }
@@ -42,6 +51,7 @@ export class Step5Component implements OnInit {
   ngOnInit(): void {
     this.formRegPropS5 = <FormGroup<Step5Form>>this.regPropFormRoot.control.get(this.formGroupName)
   }
+
 
   public handleSelectedAmenities(e: Event, indexNum:any) {
     this.isChecked = (e.target as HTMLInputElement).checked;
@@ -61,5 +71,17 @@ export class Step5Component implements OnInit {
       })
     }
   }
+
+
+    
+  checkboxAmenities() {
+    this.amenities.push({placeamenities:this.textValueAmenities, value:this.textValueAmenities});
+    if (this.textValueAmenities.trim()) {
+      this.amenities.push({placeamenities:this.textValueAmenities, value:this.textValueAmenities});
+    }
+      this.textValueAmenities = ''; 
+      
+}
+
 
 }

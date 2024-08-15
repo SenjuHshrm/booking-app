@@ -17,10 +17,13 @@
             </div>
             <div class="others">
                 <div>Enter other ambiances here</div>
-                <input type="text" name="house" value="" placeholder=""
-                    formControlName="descriptionTextOther" />
-              
+                <input type="text" name="house" [(ngModel)]="textValue"  placeholder="" formControlName="descriptionTextOther" />
+                <button class="square-radius-btn" (click)="addCheckBox()">
+                    <mat-icon>add</mat-icon>
+                    Add Ambiances
+                </button>
             </div>
+        
 
             <ng-container *ngFor="let val of validation.descriptionText">
                 <span class="val-err-msg" *ngIf="formRegPropS8.controls['descriptionText']?.hasError(val.type) && formRegPropS8.controls['descriptionText']?.length === 0">{{ val.msg }}</span>
