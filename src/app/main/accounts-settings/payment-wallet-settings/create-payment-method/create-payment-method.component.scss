@@ -1,0 +1,46 @@
+.payment-wallet {
+  background-color: white;
+  &-payment-wallet-wrapper {
+      padding:2rem;
+      form{
+      .your-information-about-your-info {
+          margin: 1rem 0 1rem;
+
+          .your-likes {
+              .title {
+                  font-size: clamp(1rem, 1vw, 8rem);
+              }
+
+              .info {
+                  display: flex;
+                  flex-direction: column;
+                  gap: .5rem;
+                  width: 100%;
+
+                  .input-wrapper {
+                      .label {
+                          margin-bottom: .3rem;
+                      }
+
+                      input, select {
+                          padding: 1rem;
+                          border: 2px solid #63AB68;
+                          width: 100%;
+                          border-radius: 10px;
+                          font-family: Poppins-Medium;
+                          font-size: 15px;
+                       
+                      }
+                  }
+              }
+          }
+
+      }
+      .btn-sec{
+          display: grid;
+          place-content: center;
+          // border:1px solid black;
+        }
+  }
+  }
+}
