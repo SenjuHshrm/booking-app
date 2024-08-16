@@ -18,7 +18,8 @@ export class ProprietorApplicationComponent implements OnInit, AfterViewInit, On
   public appList: any = []
   public dataSource!: MatTableDataSource<any>
 
-  public displayedColumns: string[] = ['profile', 'firstname', 'lastname', 'staycation', 'action']
+  public displayedColumns: string[] = ['profile', 'firstname', 'lastname', 'approved', 'staycation', 'action']
+  // public displayedColumns: string[] = ['profile', 'firstname', 'lastname', 'action']
 
   private _sub: Subscription = new Subscription()
 
@@ -59,15 +60,29 @@ export class ProprietorApplicationComponent implements OnInit, AfterViewInit, On
     this.dataSource = new MatTableDataSource<any>()
     this._sub.add(this._user.getProprietorApplications(p, l).subscribe({
       next: (res: any) => {
-        this.total = res.total
-        res.propApp.forEach((prop: any) => {
+        let { paginatedResults, totalCount } = res[0]
+        // this.total = res.total
+        // res.propApp.forEach((prop: any) => {
+        //   this.appList.push({
+        //     profile: this._basicUtil.setImgUrl(prop.userId.img),
+        //     firstname: prop.userId.name.fName,
+        //     lastname: prop.userId.name.lName,
+        //     staycation: prop.staycationId.name,
+        //     userId: prop.userId._id,
+        //     staycationId: prop.staycationId._id,
+        //     propAppId: prop._id
+        //   })
+        // })
+        this.total = totalCount[0].count
+        paginatedResults.forEach((prop: any) => {
           this.appList.push({
-            profile: this._basicUtil.setImgUrl(prop.userId.img),
-            firstname: prop.userId.name.fName,
-            lastname: prop.userId.name.lName,
-            staycation: prop.staycationId.name,
-            userId: prop.userId._id,
-            staycationId: prop.staycationId._id,
+            profile: this._basicUtil.setImgUrl(prop.user[0].img),
+            firstname: prop.user[0].name.fName,
+            lastname: prop.user[0].name.lName,
+            // staycation: prop.staycationId.name,
+            approved: (prop.user[0].approvedAsProprietorOn !== '') ? true : false,
+            userId: prop.userId,
+            // staycationId: prop.staycationId._id,
             propAppId: prop._id
           })
         })

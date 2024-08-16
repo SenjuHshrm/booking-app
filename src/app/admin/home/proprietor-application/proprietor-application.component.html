@@ -18,9 +18,18 @@
       <td mat-cell *matCellDef="let element">{{ element.lastname }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="approved">
+    <th mat-header-cell *matHeaderCellDef>Aproved as Proprietor</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon [fontIcon]="(element.approved) ? 'check_circle' : 'close'"></mat-icon>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="staycation">
-    <th mat-header-cell *matHeaderCellDef>Staycation Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.staycation }}</td>
+    <th mat-header-cell *matHeaderCellDef>Listings</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button mat-stroked-button>View Listings</button>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="action">
