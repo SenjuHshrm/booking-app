@@ -1,0 +1,28 @@
+<div class="phonenumber_container">
+    <div class="header">
+        <div class="title_wrapper">
+            <div class="info_title">Phone Number</div>
+            <div class="sub_title">This is how your first name will appear to Hosts and guests.</div>
+        </div>
+        <div class="close-button-normal" (click)="closeDialog()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
+    </div>
+    <div class="content">
+    <form>
+        <div class="input-wrapper">
+            <div class="label">Phone Number</div>
+            <div class="phone-input">
+                <div class="country-code"><span>+63</span></div>
+                <input type="text" name="phoneNumber" placeholder="Enter your phone number" required pattern="\d{10}"
+                    [(ngModel)]="phoneNumber" #phoneNumberInput="ngModel" />
+            </div>
+            <ng-container *ngIf="phoneNumberInput.invalid && (phoneNumberInput.dirty || phoneNumberInput.touched)">
+                <span class="val-err-msg">Please enter a valid 10-digit phone number.</span>
+            </ng-container>
+        </div>
+        <!-- <button class="main-button">Save</button> -->
+        <button class="main-button">Verify</button>
+    </form>
+</div>
+</div>

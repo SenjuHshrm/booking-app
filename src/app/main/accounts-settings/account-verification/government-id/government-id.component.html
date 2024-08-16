@@ -1,0 +1,33 @@
+<div class="governmentId">
+    <div class="header">
+        <div class="title_wrapper">
+            <div class="info_title">Government ID</div>
+            <div class="sub_title">We’ll need you to add an official government ID. This step helps make sure you’re really you.</div>
+        </div>
+        <div class="close-button-normal" (click)="closeDialog()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
+    </div>
+    <section class="governmentId-content-tab">
+             <div class="custom-tabs  ">
+               <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab1'}" (click)="selectTab('tab1')">
+                <mat-icon>cloud_upload</mat-icon>
+                Upload Photo
+            </div>
+               <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab2'}" (click)="selectTab('tab2')">
+                <mat-icon>camera</mat-icon>
+                Take Photo
+            </div>
+             </div>
+           
+             <!-- <div class="tab-content">
+               <div *ngIf="selectedTab === 'tab1'"><app-upcoming/></div>
+               <div *ngIf="selectedTab === 'tab2'"><app-arriving-soon/></div>
+               <div *ngIf="selectedTab === 'tab3'"><app-currently-guest/></div>
+               <div *ngIf="selectedTab === 'tab4'"><app-checking-out/></div>
+               <div *ngIf="selectedTab === 'tab5'"><app-reviews/></div>
+               <div *ngIf="selectedTab === 'tab6'"><app-cancelled-booking/></div>
+             </div> -->
+    </section>
+</div>
+

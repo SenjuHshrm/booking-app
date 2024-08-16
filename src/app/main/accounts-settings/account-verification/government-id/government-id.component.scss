@@ -1,0 +1,133 @@
+.governmentId {
+    font-family: Poppins-Regular;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem;
+
+    
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title_wrapper {
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .sub_title {
+                color: #8f8f8f;
+                max-width:25rem;
+            }
+        }
+    }
+
+  
+    h1 {
+      padding: 1rem 0 1rem;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+  
+    &-content-tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      
+  
+      // mat-tab-group , .custom-tab-group{
+      //     flex: 1;
+      //     display: flex;
+      //     flex-direction: column;
+  
+      //     maxt-tab , .custom-tab{
+      //         flex: 1;
+      //         display: flex;
+      //         flex-direction: column;
+  
+      //     }
+      // }
+      .custom-tabs {
+        display: flex;
+        overflow-x: auto;
+        padding: 1rem 0 0
+      
+      }
+  
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap:1rem;
+        white-space: pre;
+        // border: 1px solid #ccc;
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        margin-right: 10px;
+      }
+  
+      .tab.active {
+        font-weight: bold;
+        color: #63AB68;
+      }
+  
+      .tab:hover {
+        font-weight: bold;
+        color: #63AB68;
+      }
+  
+      .tab-content {
+        // border: 1px solid #ccc;
+        border-radius: 0 0 5px 5px;
+        // padding: 20px;
+  
+      }
+  
+      .animated-border {
+        border-bottom: none;
+        /* Remove default border */
+        position: relative;
+        /* Required for pseudo-element positioning */
+        cursor: pointer;
+        /* Optional for hover effect */
+  
+        &::after {
+          content: "";
+          display: block;
+          width: 0;
+          height: 2px;
+          /* Adjust border thickness here */
+          background-color: #63AB68;
+          /* Adjust border color */
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          transition: width 0.3s ease-in-out;
+        }
+  
+        &:hover::after,
+        &.active::after {
+          /* Target both active and hover states */
+          width: 100%;
+          /* Animate width to full width */
+        }
+      }
+  
+    }
+  
+  }
+  
+  @media only screen and (max-width: 1080px) {
+    .governmentId {
+      h1 {
+        padding-left:1rem;
+      }
+    }
+  
+  }

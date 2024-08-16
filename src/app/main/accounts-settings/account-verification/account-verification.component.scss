@@ -1,0 +1,292 @@
+.account-verification {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+
+        .title {
+            font-size: clamp(1.5rem, 1.5vw, 8rem);
+            font-weight: bolder;
+            color: black;
+        }
+
+        .create-profile {}
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+
+        .title_wrapper {
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                padding: 1rem 0 0;
+                text-align: left;
+                font-weight: bold;
+            }
+            .sub_title{
+                color: #8f8f8f;
+            }
+        }
+
+        .verify_info {
+            .wrapper {
+                display: flex;
+                margin-top: 1rem;
+
+                .verify_title {
+                    flex: 1;
+                    font-size: 1rem;
+                }
+
+                ._btn {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+
+                    button {
+                        max-width: fit-content;
+                    }
+                }
+            }
+
+            .verify_value {
+                color: rgb(136, 136, 136);
+                
+                            }
+            .custom_subtitle_number {
+                color: rgb(136, 136, 136);
+                max-width:30rem;
+            }
+        }
+
+        // .upload_existing_photo {
+        //     margin-top: 1rem;
+        //     display: flex;
+        //     gap: 1rem;
+
+        //     .custom_users_account {
+
+        //         cursor: pointer;
+        //         display: flex;
+        //         gap: 1rem;
+        //         background-color: white;
+        //         box-shadow: 1px 1px 5px #88888877;
+        //         padding: .5rem 0 .5rem;
+        //         border-radius: 5px !important;
+
+
+
+        //         .menu {
+        //             cursor: pointer;
+        //             width: 100vw;
+        //             max-width: 12.3rem;
+        //             color: #68A968 !important;
+        //             border: none;
+        //             outline: none;
+        //             background-color: transparent;
+        //             font-family: Poppins-Regular;
+        //             font-weight: bold;
+        //             font-size: .9rem;
+        //             display: flex;
+        //             align-items: center;
+        //             gap: 1rem;
+
+        //             // mat-icon {
+        //             //     display: flex;
+        //             //     align-items: center;
+        //             //     margin: 0;
+        //             //     padding: 0;
+        //             //     justify-content: center;
+        //             // }
+
+        //             .select {
+        //                 flex: 1;
+
+
+        //             }
+
+
+        //         }
+
+
+
+
+
+        //     }
+
+        // }
+
+        // .valid_select_id {
+
+        //     margin:1rem 0 2rem;
+
+        //     .title-wrapper {
+        //         display: flex;
+        //         align-items: center;
+        //         justify-content: space-between;
+
+        //         .title {
+        //             font-size: clamp(1rem, 1.2vw, 8rem);
+        //             margin: 1rem 0 1rem;
+        //         }
+
+        //         .wallet-icons {
+        //             display: flex;
+        //             gap: 1rem;
+
+        //             div {
+        //                 max-width: 5rem;
+
+        //                 img {
+        //                     width: 100%;
+        //                     height: 1.3rem;
+        //                 }
+
+        //             }
+        //         }
+        //     }
+
+        //     ///////
+        //     .custom-select {
+        //         position: relative;
+        //         font-family: Poppins-Regular !important;
+
+        //     }
+
+        //     select {
+        //         appearance: none;
+        //         -webkit-appearance: none;
+        //         -moz-appearance: none;
+        //         border: 2px solid #68A968;
+        //         padding: 1rem;
+        //         border-radius: 10px;
+        //         width: 100%;
+        //         cursor: pointer;
+        //         font-family: Poppins-Regular !important;
+        //         font-size: 1rem;
+        //     }
+
+        //     select::-ms-expand {
+        //         display: none;
+        //     }
+
+        //     .custom-select::after {
+        //         content: '\25BC';
+        //         /* Unicode character for down arrow */
+        //         position: absolute;
+        //         top: 50%;
+        //         right: 10px;
+        //         transform: translateY(-50%);
+        //         pointer-events: none;
+        //     }
+
+        //     ///////
+        //     .wrapper {
+        //         display: flex;
+        //         justify-content: space-between;
+        //         align-items: center;
+        //         gap: 1rem;
+        //         margin-top: 1rem;
+
+        //         .expiration-style {
+        //             display: flex;
+        //             align-items: center;
+        //             gap: .5rem;
+        //             background-color: white;
+        //             padding-left: 15px;
+        //             border-radius: 10px;
+        //             width: fit-content;
+        //             border: 2px solid #68A968;
+
+
+        //             .custom-date-input {
+        //                 // -webkit-appearance: none;
+        //                 //  -moz-appearance: none;
+        //                 // appearance: none;
+        //                 padding: 0.5rem .5rem;
+        //                 border: none;
+        //                 outline: none;
+        //                 border-radius: 5px;
+        //                 background-color: #fff;
+        //                 color: #797979;
+        //                 font-family: Arial, sans-serif;
+        //                 max-width: 150px;
+        //                 width: 100%;
+
+        //             }
+
+        //             /* Custom style for the dropdown arrow */
+        //             .custom-date-input::-webkit-calendar-picker-indicator {
+        //                 cursor: pointer;
+        //                 padding: .5rem;
+        //                 background-color: transparent;
+        //                 background-image: url('../../../../assets/images/search-filters/v-icon.png'); // Replace with your pin icon
+        //                 /* You can use background-image here to add a custom image */
+
+        //             }
+
+        //             /* Custom style for the datepicker popup (Chrome, Safari) */
+        //             .custom-date-input::-webkit-calendar-picker-popup {
+        //                 /* Add your custom styles for the popup */
+        //                 background-color: #68A968 !important;
+        //                 color: #68A968 !important;
+        //                 padding: 2rem;
+        //             }
+
+        //             /* Custom style for the datepicker popup (Firefox) */
+        //             .custom-date-input[type="date"]::-moz-calendar-picker-indicator {
+        //                 /* Add your custom styles for the popup */
+        //                 background-color: #68A968 !important;
+        //                 color: #68A968 !important;
+        //             }
+
+
+        //             .calendar-icon {
+        //                 width: 25px;
+        //                 height: 25px;
+        //                 background-image: url('../../../../assets/images/search-filters/calendaricon.png'); // Replace with your pin icon
+        //                 background-size: contain;
+        //                 background-repeat: no-repeat;
+        //             }
+
+
+        //         }
+
+        //         .ccv-input {
+        //             width: 100%;
+
+        //             input {
+        //                 width: 100%;
+        //                 padding: 1rem;
+        //                 border-radius: 10px;
+        //                 border: 2px solid #68A968;
+        //                 outline: none;
+        //             }
+        //         }
+        //     }
+
+        //     .zip-code {
+        //         margin-top: 1rem;
+
+        //         input {
+        //             width: 100%;
+        //             padding: 1rem;
+        //             border-radius: 10px;
+        //             border: 2px solid #68A968;
+        //             outline: none;
+        //         }
+        //     }
+
+        // }
+
+
+
+    }
+}

@@ -1,0 +1,85 @@
+.phonenumber_container {
+    background-color: white;
+    padding: 1rem;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title_wrapper {
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .sub_title {
+                color: #8f8f8f;
+            }
+        }
+    }
+
+    .content {
+        margin-top: 1rem;
+
+        form {
+
+            .input-wrapper {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+
+            .label {
+                font-size: 15px;
+                margin-bottom: 5px;
+            }
+
+            .phone-input {
+                display: flex;
+                align-items: center;
+            }
+
+            .country-code {
+                border-radius: 10px 0 0 10px;
+                border: 2px solid #63AB68;
+                border-right: none;
+                height: 4rem;
+                padding: 1rem;
+                font-size: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            input[type="text"] {
+                border-left: none;
+                padding: 1rem;
+                border: 2px solid #63AB68;
+                width: 100%;
+                border-radius: 0px 10px 10px 0px;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+                height: 4rem;
+            }
+
+            input[type="text"]:focus {
+                border-color: #63AB68;
+            }
+
+            .val-err-msg {
+                font-size: 15px;
+                margin-top: 5px;
+                font-family: Poppins-Regular;
+            }
+
+            button {
+                margin-top: 1rem;
+            }
+        }
+    }
+
+
+}

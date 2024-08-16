@@ -9,16 +9,18 @@
 
 html {
   box-sizing: border-box;
+  font-family: Poppins-Regular !important
 }
 
 html,
 body {
   height: 100%;
+  font-family: Poppins-Regular !important
 }
 
 body {
   margin: 0;
-  font-family: Poppins-Regular
+  font-family: Poppins-Regular !important
 }
 
 
@@ -42,6 +44,29 @@ body {
   src: url(./assets/fonts/Poppins-Bold.ttf);
 }
 
+
+////////Default Button//////
+hr{
+  border: 0; 
+  height: 1px; 
+  background-color: #cacaca;
+}
+.remove_default_button{
+  border: none;
+  background-color: transparent;
+  width:100%;
+  cursor: pointer;
+  color:#63AB68;
+  text-decoration: underline;
+
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .square-radius-btn{
   border: none;
@@ -160,6 +185,8 @@ body {
   background-color: black;
   color: #63AB68;
 }
+
+////////Default Button//////
 
 .not-found {
   font-size: clamp(1rem, 1vw, 5rem);

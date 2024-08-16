@@ -1,0 +1,27 @@
+<div class="legal_name_container">
+    <div class="header">
+        <div class="title_wrapper">
+            <div class="info_title">Prefered name</div>
+            <div class="sub_title">This is how your first name will appear to Hosts and guests.</div>
+        </div>
+        <div class="close-button-normal" (click)="closeDialog()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
+    </div>
+    <div class="content">
+        <!-- <div class="info_title">{{verifiedInfo.firstname}}</div>
+        <div class="sub_title">{{verifiedInfo.lastname}}</div> -->
+        <form>
+            <div class="wrapper">
+                <div class="input-wrapper">
+                    <div class="label">Preferred Name</div>
+                    <input type="text" name="preferedname"  placeholder="Enter your prefered name" [(ngModel)]="verifiedInfo" #preferredName="ngModel" required/>
+                    <ng-container *ngIf="preferredName.invalid && (preferredName.dirty || preferredName.touched)">
+                        <span class="val-err-msg">Please enter your prefered name.</span>
+                    </ng-container>
+                </div>
+            </div>
+            <button class="main-button">Save</button>
+        </form>
+    </div>
+</div>

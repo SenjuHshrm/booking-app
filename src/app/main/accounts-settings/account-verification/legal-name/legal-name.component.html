@@ -1,0 +1,35 @@
+<div class="legal_name_container">
+    <div class="header">
+        <div class="title_wrapper">
+            <div class="info_title">Legal name</div>
+            <div class="sub_title">Make sure this matches the name on your government ID.</div>
+        </div>
+        <div class="close-button-normal" (click)="closeDialog()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
+    </div>
+    <div class="content">
+        <!-- <div class="info_title">{{verifiedInfo.firstname}}</div>
+        <div class="sub_title">{{verifiedInfo.lastname}}</div> -->
+        <form>
+            <div class="wrapper">
+                <div class="input-wrapper">
+                    <label for="firstname" class="label">First name</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" [(ngModel)]="verifiedInfo.firstname" #firstName="ngModel" required />
+                    <ng-container *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                        <span class="val-err-msg">Please enter your first name.</span>
+                    </ng-container>
+                </div>
+        
+                <div class="input-wrapper">
+                    <label for="lastname" class="label">Last name</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" [(ngModel)]="verifiedInfo.lastname" #lastName="ngModel" required />
+                    <ng-container *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                        <span class="val-err-msg">Please enter your last name.</span>
+                    </ng-container>
+                </div>
+            </div>
+            <button type="submit" class="main-button">Save</button>
+        </form>
+    </div>
+</div>

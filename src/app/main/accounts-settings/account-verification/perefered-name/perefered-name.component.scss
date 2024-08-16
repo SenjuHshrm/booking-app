@@ -1,0 +1,64 @@
+.legal_name_container {
+    background-color: white;
+    padding: 1rem;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title_wrapper {
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .sub_title {
+                color: #8f8f8f;
+            }
+        }
+    }
+
+    .content {
+        margin-top: 1rem;
+
+        form {
+            .wrapper {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                width: 100%;
+
+                .input-wrapper {
+                    width: 100%;
+
+                    .label {
+                        margin-bottom: .3rem;
+                    }
+
+                    input {
+                        padding: 1rem;
+                        border: 2px solid #63AB68;
+                        width: 100%;
+                        border-radius: 10px;
+                        font-family: Poppins-Medium;
+                        font-size: 15px;
+
+                    }
+                    .val-err-msg {
+                        font-size: 15px;
+                        margin-top: 5px;
+                        font-family: Poppins-Regular;
+                    }
+                }
+            }
+            
+            button{
+                margin-top: 1rem;
+              }
+
+        }
+    }
+}
