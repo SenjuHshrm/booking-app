@@ -8,8 +8,8 @@
                 <div class="checkbox" *ngFor="let yourPlaceStay of places; let stayNum = index">
                     <label class="custom-checkbox">
                         <input type="checkbox" [checked]="isCheckedStaycation === stayNum" 
-                        name="staycations" [value]="yourPlaceStay.placetype" 
-                        (change)="handleSelectedPlaceType($event,stayNum,null)">
+                        name="staycations" [value]="yourPlaceStay.value" 
+                        (change)="handleSelectedPlaceType($event, stayNum, yourPlaceStay.value)">
                         <span class="checkmark"></span>
                         <div class="label">{{yourPlaceStay.placetype}}</div>
                     </label>
@@ -30,7 +30,7 @@
                 </div>
             </div> -->
             <ng-container *ngFor="let val of validation.descriptionFilter">
-                <span class="val-err-msg" *ngIf="formRegPropS1.controls['descriptionFilter']?.hasError(val.type) && formRegPropS1.controls['descriptionFilter']?.length === 0">{{val.msg }}</span>
+                <span class="val-err-msg" *ngIf="formRegPropS1.controls['descriptionFilter']?.hasError(val.type) && formRegPropS1.controls['descriptionFilter']?.value === ''">{{val.msg }}</span>
             </ng-container>
             <!-- <div class="others">
                 <div>Other:</div>

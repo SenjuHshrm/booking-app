@@ -15,28 +15,28 @@
             </div>
             <div class="input-wrapper">
                 <div class="label">Barangay</div>
-                <input type="text" name="barangay" formControlName="brgy" required/>
+                <input type="text" name="barangay" formControlName="brgy" />
                 <ng-container *ngFor="let val of validation.brgy">
                     <span class="val-err-msg" *ngIf="formRegPropS3.controls['brgy']?.hasError(val.type) && (formRegPropS3.controls['brgy']?.dirty || formRegPropS3.controls['brgy']?.touched)">{{ val.msg }}</span>
                 </ng-container>
             </div>
             <div class="input-wrapper">
                 <div class="label">City / Municipality</div>
-                <input type="text" name="city" formControlName="city" required/>
+                <input type="text" name="city" formControlName="city" />
                 <ng-container *ngFor="let val of validation.city">
                     <span class="val-err-msg" *ngIf="formRegPropS3.controls['city']?.hasError(val.type) && (formRegPropS3.controls['city']?.dirty || formRegPropS3.controls['city']?.touched)">{{ val.msg }}</span>
                 </ng-container>
             </div>
             <div class="input-wrapper">
                 <div class="label">Province</div>
-                <input type="text" name="province" formControlName="province" required/>
+                <input type="text" name="province" formControlName="province" />
                 <ng-container *ngFor="let val of validation.province">
                     <span class="val-err-msg" *ngIf="formRegPropS3.controls['province']?.hasError(val.type) && (formRegPropS3.controls['province']?.dirty || formRegPropS3.controls['province']?.touched)">{{ val.msg }}</span>
                 </ng-container>
             </div>
             <div class="input-wrapper">
                 <div class="label">Zip Code</div>
-                <input type="text" name="zipcode" formControlName="zip" required/>
+                <input type="text" name="zipcode" formControlName="zip" />
                 <ng-container *ngFor="let val of validation.zip">
                     <span class="val-err-msg" *ngIf="formRegPropS3.controls['zip']?.hasError(val.type) && (formRegPropS3.controls['zip']?.dirty || formRegPropS3.controls['zip']?.touched)">{{ val.msg }}</span>
                 </ng-container>

@@ -58,7 +58,7 @@ export class Step6Component implements OnInit {
         }
       }
     }
-    this.formRegPropS6.get('img')?.setValue(this.imgFile)
+    this.formRegPropS6.get('genImg')?.setValue(this.imgFile)
   }
 
   public handleSetCover(e: MouseEvent) {
@@ -73,7 +73,7 @@ export class Step6Component implements OnInit {
     let i: number = this.uploadedImages.findIndex((m: { dataFile: string, isCover: boolean }) => m.dataFile === img.dataFile)
     this.uploadedImages.splice(i, 1)
     this.imgFile.splice(i, 1)
-    this.formRegPropS6.get('img')?.setValue(this.imgFile)
+    this.formRegPropS6.get('genImg')?.setValue(this.imgFile)
     if (img.isCover) this.removeCover.emit()
   }
   /////General Photos///
@@ -97,14 +97,14 @@ export class Step6Component implements OnInit {
         }
       }
     }
-    this.formRegPropS6.get('img')?.setValue(this.imgFileBedroom)
+    this.formRegPropS6.get('bedroom')?.setValue(this.imgFileBedroom)
   }
 
   public handleRemoveImgBedroom(img: any) {
     let i: number = this.uploadedImagesBedroom.findIndex((m: { dataFileBedroom: string, isCover: boolean }) => m.dataFileBedroom === img.dataFileBedroom)
     this.uploadedImagesBedroom.splice(i, 1)
     this.imgFileBedroom.splice(i, 1)
-    this.formRegPropS6.get('img')?.setValue(this.imgFileBedroom)
+    this.formRegPropS6.get('bedroom')?.setValue(this.imgFileBedroom)
     if (img.isCover) this.removeCover.emit()
   }
   ///Where to sleep//

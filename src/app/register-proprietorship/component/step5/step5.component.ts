@@ -75,8 +75,8 @@ export class Step5Component implements OnInit {
 
     
   checkboxAmenities() {
-    this.amenities.push({placeamenities:this.textValueAmenities, value:this.textValueAmenities});
-    if (this.textValueAmenities.trim()) {
+    // this.amenities.push({placeamenities:this.textValueAmenities, value:this.textValueAmenities});
+    if (this.textValueAmenities.trim() !== '') {
       this.amenities.push({placeamenities:this.textValueAmenities, value:this.textValueAmenities});
     }
       this.textValueAmenities = ''; 

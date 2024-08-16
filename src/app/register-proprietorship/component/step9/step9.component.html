@@ -12,20 +12,20 @@
             <div class="checkbox" *ngFor="let addDiscounts of adddiscounts; let i = index">
                 <div class="checkbox-wrapper">
                     <div class="label">
-                        <input type="number" name="discount" [value]="addDiscounts.label" [readonly]="i === 0"
+                        <input type="number" name="discount" [value]="addDiscounts.label" (input)="handleCustomLabel($event)" [readonly]="i === 0 || isSelected !== i"
                             [ngClass]="{'custom_input': i === 0}" />
                         <span>%</span>
                     </div>
-                    <div class="desc_wrapper" (click)="handleRadiobtn(i)">
+                    <div class="desc_wrapper" (click)="handleRadiobtn(i, addDiscounts.value)">
                         <div class="desc">{{addDiscounts.desc}}</div>
                         <div class="radio-button">
                             <input type="radio" [ngClass]="{'checked': isSelected === i  }" readonly disabled
-                                [value]="addDiscounts.value" (change)="handleSelectDiscount($event)" />
+                                [value]="addDiscounts.value" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="title_sub ">Discounts Duration</div>
+            <!-- <div class="title_sub ">Discounts Duration</div>
             <div class="date-checkin-out">
                 <div class="checkin-out-style">
                     <div class="title">Start date</div>
@@ -37,10 +37,10 @@
                     <div class="calendar-icon"></div>
                     <input type="date" name="date" class="custom-date-input">
                 </div>
-            </div>
+            </div> -->
 
         </div>
-        <div class="time_wrapper">
+        <!-- <div class="time_wrapper">
             <div class="time-input-container">
                 <label for="meeting-time" class="title_sub">Set Start Time:</label>
                 <p class="time-description">.</p>
@@ -51,7 +51,7 @@
                 <p class="time-description">.</p>
                 <input type="time" id="meeting-time" class="time-input">
             </div>
-        </div>
+        </div> -->
 
 
 

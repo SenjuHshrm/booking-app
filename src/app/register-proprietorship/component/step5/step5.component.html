@@ -18,8 +18,8 @@
         </ng-container>
         <div class="others">
             <div>Enter other ammenities here</div>
-            <input type="text" name="amenities" [(ngModel)]="textValueAmenities"  placeholder="" formControlName="descriptionTextOther" />
-            <button class="square-radius-btn" (click)="checkboxAmenities()">
+            <input type="text" name="amenities" [(ngModel)]="textValueAmenities"  placeholder="" [ngModelOptions]="{ standalone: true }" />
+            <button type="button" class="square-radius-btn" (click)="checkboxAmenities()">
                 <mat-icon>add</mat-icon>
                 Add ammenities
             </button>

@@ -13,7 +13,8 @@
             <span (click)="openNonStandardLearnmore()">Learnmore</span>
         </div>
         <div class="radio_button_container" *ngFor="let cancellPolicy of standardData; let i = index">
-            <div class="radio-button-wrapper"  (click)="selectPolicyShort(i)">
+            <!-- <div class="radio-button-wrapper"  (click)="selectPolicyShort(i)"> -->
+            <div class="radio-button-wrapper"  (click)="selectPolicy(i, 'standard', cancellPolicy.value)">
                 <div class="info_wrapper">
                     <div class="info_title">{{cancellPolicy.cancellTitle}}</div>
                     <div class="_info">
@@ -29,12 +30,13 @@
         <div class="_label">
             Long-term Stay Policy
             <div class="_subinfo">
-                Applies to any stays under 28 nights
+                Applies to any stays 28 nights or longer
             </div>
             <span (click)="openLongTermLearnmore()">Learnmore</span>
         </div>
         <div class="radio_button_container" *ngFor="let cancellPolicy of longtermData; let i = index">
-            <div class="radio-button-wrapper" (click)="selectPolicyLong(i)">
+            <!-- <div class="radio-button-wrapper" (click)="selectPolicyLong(i)"> -->
+            <div class="radio-button-wrapper" (click)="selectPolicy(i, 'lt', cancellPolicy.value)">
                 <div class="info_wrapper">
                     <div class="info_title">{{cancellPolicy.cancellTitle}}</div>
                     <div class="_info">
@@ -63,7 +65,7 @@
                         </div>
                     </div>
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" [checked]="enableNonRefundable" (change)="setNonRefundable(!enableNonRefundable)">
                         <span class="slider round"></span>
                     </label>
                 </div>

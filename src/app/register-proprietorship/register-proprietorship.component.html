@@ -56,15 +56,12 @@
 
             <div class="title"> Create Your Listing</div>
         </div>
-        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm)"
+        <form class="register-proprietor-stepper-wrapper" (ngSubmit)="handleRegProp(regPropForm, regPropFormStepper)"
             #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
                 <mat-stepper linear [labelPosition]="'bottom'" #regPropFormStepper>
                     <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
-                        </div>
                         <app-step2 formGroupName="step2"></app-step2>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
@@ -72,10 +69,6 @@
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step1']" errorMessage="Please at least one (1) description of your place">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step1 formGroupName="step1"
                             [placetype]="regPropForm.get('step2')?.get('placeType')?.value"></app-step1>
                         <div class="nextprev_btn-bottom">
@@ -85,10 +78,6 @@
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step3']" errorMessage="Please at least one (1) tell the guest where the place is located">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step3 formGroupName="step3"></app-step3>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -97,10 +86,6 @@
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step4']" errorMessage="Please at least one (1) share some basics about your place">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step4 formGroupName="step4"></app-step4>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -109,10 +94,6 @@
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step5']" errorMessage="Please at least one (1) inform your visitors about the amenities and features available at your location.">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step5 formGroupName="step5"></app-step5>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -121,10 +102,6 @@
                     </mat-step> 
                  <mat-step [stepControl]="regPropForm.controls['step6']" errorMessage="Please provide at least five (5) photos of your staycation/event place.">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step6 formGroupName="step6" (setCover)="handleSetCover($event)"
                             (removeCover)="handleRemoveCover()"></app-step6>
                         <div class="nextprev_btn-bottom">
@@ -134,10 +111,6 @@
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step7']" errorMessage="Please give your house a title">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step7 formGroupName="step7"></app-step7>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -146,10 +119,6 @@
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step8']" errorMessage="Please describe your house">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step8 formGroupName="step8"></app-step8>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -158,10 +127,6 @@
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step9']" errorMessage="Please add discounts">
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <app-step9 formGroupName="step9"></app-step9>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperPrevious>Back</button>
@@ -169,10 +134,6 @@
                         </div>
                     </mat-step>
                     <mat-step [stepControl]="regPropForm.controls['step10']" errorMessage="Please choose atleast (1)">
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step10 formGroupName="step10"></app-step10>
                         <div class="nextprev_btn-bottom">
@@ -181,10 +142,6 @@
                         </div>
                     </mat-step> 
                     <mat-step [stepControl]="regPropForm.controls['step11']" errorMessage="Please set your price">
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Publish</button>
-                        </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step11 formGroupName="step11"></app-step11>
                         <div class="nextprev_btn-bottom">
@@ -193,10 +150,6 @@
                         </div>
                     </mat-step>
                     <mat-step class="step12" [stepControl]="regPropForm.controls['step12']">
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step12 formGroupName="step12"></app-step12>
                         <div class="nextprev_btn-bottom">
@@ -205,10 +158,6 @@
                         </div>
                     </mat-step>
                     <mat-step class="step13" [stepControl]="regPropForm.controls['step13']">
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Next</button>
-                        </div>
                         <ng-template matStepLabel></ng-template>
                         <app-step13 formGroupName="step13"></app-step13>
                         <div class="nextprev_btn-bottom">
@@ -217,23 +166,19 @@
                         </div>
                     </mat-step>
                     <mat-step class="step14" >
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext>Publish</button>
-                        </div>
                         <ng-template matStepLabel></ng-template>
-                        <app-step14 formGroupName="step13"></app-step14>
-                        <div class="nextprev_btn-bottom">
+                        <app-step14 formGroupName="step14"></app-step14>
+                        <div class="nextprev_btn-bottom" *ngIf="!showProgress">
                             <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" matStepperNext type="submit">Publish</button>
+                            <button mat-button type="submit">Publish</button>
+                        </div>
+                        <div class="nextprev_btn-bottom" *ngIf="showProgress">
+                            <mat-progress-spinner mode="determinate" [value]="uploadProgress" diameter="40"></mat-progress-spinner>
+                            <span>Uploading in progress. Please do not refresh the page.</span>
                         </div>
                     </mat-step>
                     <mat-step>
                         <ng-template matStepLabel></ng-template>
-                        <div class="nextprev_btn-top">
-                            <button mat-button type="button" matStepperPrevious>Back</button>
-                            <button mat-button type="button" routerLink="/home">Back to Home</button>
-                        </div>
                         <section class="important-things-to-know">
                             <div class="title-wrapper">Important things to know with</div>
                             <div class="image-logo">

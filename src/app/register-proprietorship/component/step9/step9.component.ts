@@ -43,10 +43,17 @@ export class Step9Component implements OnInit {
     });
   }
 
-  handleRadiobtn(index: any): void {
+  handleRadiobtn(index: any, value: string): void {
     this.isSelected = index;
-    console.log(this.isSelected);
-    this.formRegPropS9.controls['discounts']?.setValue(this.adddiscounts[index].value)
+    this.formRegPropS9.controls['discounts']?.setValue(value)
+    if(this.isSelected === 0) {
+      this.formRegPropS9.controls['value'].setValue(0)
+    }
+  }
+
+  handleCustomLabel(e: Event) {
+    let target = <HTMLInputElement>e.target!
+    this.formRegPropS9.controls['value'].setValue(target.value)
   }
 
   public handleSelectDiscount(e: Event) {

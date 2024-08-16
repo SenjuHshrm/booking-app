@@ -17,8 +17,8 @@
             </div>
             <div class="others">
                 <div>Enter other ambiances here</div>
-                <input type="text" name="house" [(ngModel)]="textValue"  placeholder="" formControlName="descriptionTextOther" />
-                <button class="square-radius-btn" (click)="addCheckBox()">
+                <input type="text" name="house" [(ngModel)]="textValue"  placeholder="" [ngModelOptions]="{ standalone: true }" />
+                <button type="button" class="square-radius-btn" (click)="addCheckBox()">
                     <mat-icon>add</mat-icon>
                     Add Ambiances
                 </button>

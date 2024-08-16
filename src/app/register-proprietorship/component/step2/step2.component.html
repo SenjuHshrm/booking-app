@@ -22,6 +22,12 @@
                     {{ val.msg }}
                 </span>
             </ng-container>
+            <div *ngIf="formRegPropS2.controls['placeType']?.value === 'room_shared'">
+                <div class="input-wrapper">
+                    <div class="label">Maximum allowed check-ins per day</div>
+                    <input type="number" name="maxBookingAllowedPerDay" formControlName="maxBookingAllowedPerDay" />
+                </div>
+            </div>
         </section>
     </ng-container>
 

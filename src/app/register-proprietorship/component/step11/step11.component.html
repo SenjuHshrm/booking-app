@@ -25,7 +25,7 @@
                 <div class="input-price-without-taxes">
                     <div class="label">Price (₱)</div>
                     <input class="inputs" type="number" name="price" formControlName="price"
-                        (input)="handlePriceChange($event)" required placeholder="0" />
+                        (input)="handlePriceChange($event)"  placeholder="0" />
                 </div>
                  -->
                 <!-- <div class="taxes">
@@ -41,23 +41,22 @@
                 <div class="price-wrapper">
                     <div class="estimate-inputs">
                         <h1>₱</h1>
-                        <input type="number" name="price" formControlName="price"
-                        (input)="handlePriceChange($event)" required placeholder="0.00"/>
+                        <input type="number" name="price" formControlName="price" (input)="handlePriceChange($event)"  placeholder="0.00"/>
                     </div>
 
                     <div class="estimate_computation_container">
-                        <div class="prices_wrapper">
+                        <!-- <div class="prices_wrapper">
                             <div>Base Price</div>
                             <div class="wrapper">
                                 <span>₱</span>
-                                <input type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                                <input type="number" name="price" formControlName="price" placeholder="0.00" readonly />
                             </div>
-                        </div>
+                        </div> -->
                         <div class="prices_wrapper">
-                            <div>Guest Service Fee</div>
+                            <div>Total Fees</div>
                             <div class="wrapper">
                                 <span>₱</span>
-                                <input type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                                <input type="number" [(ngModel)]="tax" [ngModelOptions]="{ standalone: true }" placeholder="0.00" readonly />
                             </div>
                         </div>
                         <hr style="border: 0; height: 1px; background-color: #cacaca;">
@@ -65,7 +64,7 @@
                             <div>Guest Price Before taxes</div>
                             <div class="wrapper">
                                 <span>₱</span>
-                                <input  type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                                <input  type="number" [(ngModel)]="beforeTaxTotal" [ngModelOptions]="{ standalone: true }" placeholder="0.00" readonly />
                             </div>
                         </div>
                     </div>
@@ -74,7 +73,7 @@
                             <div>You earn</div>
                             <div class="wrapper">
                                 <span>₱</span>
-                                <input  type="number" name="price" formControlName="beforeTax" placeholder="0.00" readonly />
+                                <input  type="number" placeholder="0.00" [(ngModel)]="totalEarned" [ngModelOptions]="{ standalone: true }" readonly />
                             </div>
                         </div>
                     </div>

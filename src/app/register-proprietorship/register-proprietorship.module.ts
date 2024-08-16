@@ -9,6 +9,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Step1Component } from './component/step1/step1.component';
 import { Step2Component } from './component/step2/step2.component';
 import { Step3Component } from './component/step3/step3.component';
@@ -22,13 +23,14 @@ import { Step10Component } from './component/step10/step10.component';
 import { Step11Component } from './component/step11/step11.component';
 import { Step12Component } from './component/step12/step12.component';
 import { Step13Component } from './component/step13/step13.component';
+import { Step14Component } from './component/step14/step14.component';
 import { GlobalsModule } from '../globals/globals.module';
 import {MatRippleModule} from '@angular/material/core';
 import { LearnMoreComponent } from './component/step9/learn-more/learn-more.component';
 import { StandardLearnmoreComponent } from './component/step12/standard-learnmore/standard-learnmore.component';
 import { LongtermLearnmoreComponent } from './component/step12/longterm-learnmore/longterm-learnmore.component';
 import { NonRefundLearnmoreComponent } from './component/step12/non-refund-learnmore/non-refund-learnmore.component';
-import { Step14Component } from './component/step14/step14.component';
+
 
 
 
@@ -67,7 +69,8 @@ import { Step14Component } from './component/step14/step14.component';
     GlobalsModule,
     MatRippleModule,
     MatIconModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ]
 })
 export class RegisterProprietorshipModule { }

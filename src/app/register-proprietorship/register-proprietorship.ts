@@ -14,15 +14,16 @@ export interface RegisterProprietorshipForm {
   step11: FormGroup<Step11Form>;
   step12: FormGroup<Step12Form>;
   step13: FormGroup<Step13Form>;
+  step14: FormGroup<Step14Form>;
 }
 
 export interface Step1Form {
-  descriptionFilter: FormArray<FormGroup>;
-  descriptionFilterOther: FormControl;
+  descriptionFilter: FormControl;
 }
 
 export interface Step2Form {
   placeType: any;
+  maxBookingAllowedPerDay: FormControl;
 }
 
 export interface Step3Form {
@@ -44,11 +45,11 @@ export interface Step4Form {
 
 export interface Step5Form {
   amenities: FormArray<FormGroup>;
-  amenitiesOther: FormControl;
 }
 
 export interface Step6Form {
-  img: FormControl;
+  genImg: FormControl;
+  bedroom: FormControl;
   // bedroom: FormControl;
   // desc: FormControl;
 }
@@ -59,13 +60,13 @@ export interface Step7Form {
 
 export interface Step8Form {
   descriptionText: FormArray<FormGroup>;
-  descriptionTextOther: FormControl;
   detailedDescription: FormControl;
 }
 
 export interface Step9Form {
   // discounts: FormArray<FormGroup>;
   discounts: FormControl;
+  value: FormControl;
 }
 
 export interface Step10Form {
@@ -74,15 +75,20 @@ export interface Step10Form {
 
 export interface Step11Form {
   price: FormControl;
-  beforeTax: FormControl;
 }
 
 export interface Step12Form {
   cancellationPolicy: FormControl;
+  nonRefundable: FormControl;
 }
 
 export interface Step13Form {
-  houseRules: FormControl;
+  houseRules: FormArray<FormGroup>;
+  houseRulesDetailed: FormControl;
+}
+
+export interface Step14Form {
+  bookingProcess: FormControl;
 }
 
 // export interface Step12Form {
