@@ -8,28 +8,32 @@
             <mat-icon style="margin-top:3px">close</mat-icon>
         </div>
     </div>
+    <div>
+        <hr>
+    </div>
     <div class="content">
-        <!-- <div class="info_title">{{verifiedInfo.firstname}}</div>
-        <div class="sub_title">{{verifiedInfo.lastname}}</div> -->
         <form>
-            <div class="wrapper">
+            <div class="_wrapper">
                 <div class="input-wrapper">
-                    <label for="firstname" class="label">First name</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" [(ngModel)]="verifiedInfo.firstname" #firstName="ngModel" required />
+                    <div class="label">First Name</div>
+                    <input type="text" name="firstName" placeholder="Enter your first name"
+                        [(ngModel)]="verifiedInfo.firstname" #firstName="ngModel" required />
                     <ng-container *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-                        <span class="val-err-msg">Please enter your first name.</span>
+                        <span class="val-err-msg">Please enter your prefered name.</span>
                     </ng-container>
                 </div>
-        
                 <div class="input-wrapper">
-                    <label for="lastname" class="label">Last name</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" [(ngModel)]="verifiedInfo.lastname" #lastName="ngModel" required />
+                    <div class="label">Last Name</div>
+                    <input type="text" name="lastName" placeholder="Enter your last name"
+                        [(ngModel)]="verifiedInfo.lastname" #lastName="ngModel" required />
                     <ng-container *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-                        <span class="val-err-msg">Please enter your last name.</span>
+                        <span class="val-err-msg">Please enter your prefered name.</span>
                     </ng-container>
                 </div>
             </div>
-            <button type="submit" class="main-button">Save</button>
+            <div class="_btn">
+                <button (click)="onSubmit()" class="main-button">Save</button>
+            </div>
         </form>
     </div>
 </div>

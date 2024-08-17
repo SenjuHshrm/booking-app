@@ -5,6 +5,19 @@ import { Component } from '@angular/core';
   templateUrl: './capture-photo.component.html',
   styleUrls: ['./capture-photo.component.scss']
 })
+
 export class CapturePhotoComponent {
 
+  captureFileFront:any = {}
+  captureFileBack:any = {}
+
+  validIDType: any = [
+    { _ids: 'Passport' },
+    { _ids: "Driver's License" },
+    { _ids: "Identity Card" }
+  ]
+
+  onSubmit() {
+
+  }
 }

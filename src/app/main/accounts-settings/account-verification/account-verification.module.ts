@@ -12,9 +12,12 @@ import { PhoneNumberComponent } from './phone-number/phone-number.component';
 import { GovernmentIdComponent } from './government-id/government-id.component';
 import { AddressComponent } from './address/address.component';
 import { EmergencyContactComponent } from './emergency-contact/emergency-contact.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadPhotoComponent } from './government-id/upload-photo/upload-photo.component';
 import { CapturePhotoComponent } from './government-id/capture-photo/capture-photo.component';
+import { VerificationCodeComponent } from './verification-code/verification-code.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { CapturePhotoComponent } from './government-id/capture-photo/capture-pho
     AddressComponent,
     EmergencyContactComponent,
     UploadPhotoComponent,
-    CapturePhotoComponent
+    CapturePhotoComponent,
+    VerificationCodeComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,12 @@ import { CapturePhotoComponent } from './government-id/capture-photo/capture-pho
     MatMenuModule,
     MatFormFieldModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatTabsModule
+    
+    
   ]
 })
 export class AccountVerificationModule { }

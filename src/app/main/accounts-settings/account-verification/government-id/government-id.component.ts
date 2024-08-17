@@ -1,14 +1,19 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-government-id',
   templateUrl: './government-id.component.html',
-  styleUrls: ['./government-id.component.scss']
+  styleUrls: ['./government-id.component.scss'],
+  encapsulation: ViewEncapsulation.None 
+
 })
 export class GovernmentIdComponent {
+
 
   public verifiedInfo: any;
   public govermentIdSelect: any = [
@@ -31,8 +36,6 @@ export class GovernmentIdComponent {
   selectTab(tabName: string) {
     this.selectedTab = tabName;
   }
-
-
 
 
   closeDialog(): void {

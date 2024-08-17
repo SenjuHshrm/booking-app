@@ -13,6 +13,7 @@
             .header {
                 display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
                 justify-content: space-between;
 
                 .title {
@@ -43,8 +44,11 @@
                 gap: 3rem;
 
                 .info-details-personal-info {
-
-
+                    width: 100%;
+                    display: grid;
+               
+          
+           
                     .title {
                         font-weight: bolder;
                         font-size: clamp(1rem, 1vw, 8rem);
@@ -57,7 +61,7 @@
                         color: #575757;
                         flex-basis: 20%;
                         display: grid;
-                        grid-template-columns: 50% 50%;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                         border-bottom: 1px solid rgb(214, 214, 214);
                         padding: 1rem;
 

@@ -17,6 +17,7 @@ export class PereferedNameComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.verifiedInfo = data;
+    console.log(this.verifiedInfo)
   }
 
   closeDialog(): void {

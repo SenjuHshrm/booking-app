@@ -1,8 +1,14 @@
-.legal_name_container {
+.prefered_name_container {
     background-color: white;
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
 
     .header {
+        flex:0;
+        padding: 1rem;
+        flex: none;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -22,43 +28,58 @@
     }
 
     .content {
-        margin-top: 1rem;
+        
+      padding: 1rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      
 
         form {
-            .wrapper {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+         
+
+            .input-wrapper {
                 width: 100%;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                overflow-y: auto;
+                max-height: 100%;
 
-                .input-wrapper {
+                .label {
+                    margin-bottom: .3rem;
+                }
+
+                input {
+                    padding: 1rem;
+                    border: 2px solid #63AB68;
                     width: 100%;
+                    border-radius: 10px;
+                    font-family: Poppins-Medium;
+                    font-size: 15px;
 
-                    .label {
-                        margin-bottom: .3rem;
-                    }
+                }
 
-                    input {
-                        padding: 1rem;
-                        border: 2px solid #63AB68;
-                        width: 100%;
-                        border-radius: 10px;
-                        font-family: Poppins-Medium;
-                        font-size: 15px;
-
-                    }
-                    .val-err-msg {
-                        font-size: 15px;
-                        margin-top: 5px;
-                        font-family: Poppins-Regular;
-                    }
+                .val-err-msg {
+                    font-size: 15px;
+                    margin-top: 5px;
+                    font-family: Poppins-Regular;
                 }
             }
-            
-            button{
-                margin-top: 1rem;
-              }
 
+            ._btn {
+                flex: none;
+                button {
+                    margin-top: 1rem;
+                }
+            }
         }
+
     }
 }

@@ -67,7 +67,7 @@ export class SecuritySettingsModalComponent implements OnInit, OnDestroy {
   }
 
 
-  closeDialogLogin(): void {
+  closeDialog(): void {
     this.dialogLogin.close();
   }
 

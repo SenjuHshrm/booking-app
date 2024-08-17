@@ -9,17 +9,26 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class LegalNameComponent {
 
-  public verifiedInfo: any;
+  public verifiedInfo: { firstname: string; lastname: string };
 
   constructor(
     public dialog: MatDialogRef<LegalNameComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: { firstname: string; lastname: string }
   ) {
     this.verifiedInfo = data;
-    console.log(this.verifiedInfo)
+    console.log(this.verifiedInfo);
   }
 
   closeDialog(): void {
-    this.dialog.close();
+    if (this.verifiedInfo.firstname && this.verifiedInfo.lastname) {
+      this.dialog.close();
+    }
+  }
+
+  onSubmit(): void {
+    this.dialog.close({
+      firstname: this.verifiedInfo.firstname,
+      lastname: this.verifiedInfo.lastname
+    });
   }
 }

@@ -1,29 +1,28 @@
 <div class="account-verification">
     <div class="header">
         <div class="title">Account Verification</div>
-        <div class="create-profile">
-        </div>
     </div>
     <div class="content">
         <div class="title_wrapper">
             <div class="info_title">Verify your personal information</div>
             <div class="sub_title">Provide personal details and how we can reach you.</div>
         </div>
-
-        <div class="verify_info">
+        <div class="verify_info -legal_name">
             <div class="wrapper">
                 <div class="verify_title">Legal name</div>
                 <div class="_btn">
-                    <button *ngIf="legalName[0].firstname && legalName[0].lastname  === '' " class="remove_default_button" (click)="dialogLegalName()">Add</button>
-                    <button  *ngIf="preferedName !== '' " class="remove_default_button" (click)="dialogLegalName()">Edit</button>
+                    <button *ngIf="legalName[0].firstname ==='' && legalName[0].lastname  === ''" class="remove_default_button" (click)="dialogLegalName()">Add</button>
+                    <button  *ngIf="legalName[0].firstname !=='' || legalName[0].lastname  !== ''" class="remove_default_button" (click)="dialogLegalName()">Edit</button>
                 </div>
             </div>
-            <div class="verify_value">{{legalName[0].firstname}}{{legalName[0].lastname}}</div>
-            <div class="verify_value" *ngIf="legalName[0].firstname && legalName[0].lastname  === '' ">Not Provided</div>
+            <div class="verify_value" *ngIf="legalName[0].firstname !== '' || legalName[0].lastname  !== ''">
+                {{legalName[0].firstname}} 
+                {{legalName[0].lastname}}
+            </div>
+            <div class="verify_value"  *ngIf="legalName[0].firstname === '' && legalName[0].lastname  === ''">Not Provided</div>
             <hr>
         </div>
-
-        <div class="verify_info">
+        <div class="verify_info -prefered_name">
             <div class="wrapper">
                 <div class="verify_title">Prefered name</div>
                 <div class="_btn">
@@ -31,11 +30,23 @@
                     <button  *ngIf="preferedName !== '' " class="remove_default_button" (click)="dialogpreferedName()">Edit</button>
                 </div>
             </div>
-            <div class="verify_value">{{preferedName}}</div>
+            <div class="verify_value">{{preferedName[0].prefered}}</div>
             <div class="verify_value" *ngIf="preferedName  === '' ">Not Provided</div>
             <hr>
         </div>
-        <div class="verify_info">
+        <div class="verify_info -email_address">
+            <div class="wrapper">
+                <div class="verify_title">Email Address</div>
+                <div class="_btn">
+                    <button *ngIf="emailAddress  === '' " class="remove_default_button" (click)="dialogemailAddress()">Add</button>
+                    <button  *ngIf="emailAddress !== '' " class="remove_default_button" (click)="dialogemailAddress()">Edit</button>
+                </div>
+            </div>
+            <div class="verify_value">{{emailAddress[0].pemail}}</div>
+            <div class="verify_value" *ngIf="emailAddress  === '' ">Not Provided</div>
+            <hr>
+        </div>
+        <div class="verify_info -phone_number">
             <div class="wrapper">
                 <div class="verify_title">Phone number</div>
                 <div class="_btn">
@@ -43,12 +54,31 @@
                     <button  *ngIf="phoneNumber !== null " class="remove_default_button" (click)="dialogphoneNumber()">Edit</button>
                 </div>
             </div>
-            <div class="verify_value" *ngIf="phoneNumber  !== null">+63{{phoneNumber}}</div>
+            <div class="verify_value" *ngIf="phoneNumber  !== null">+63{{phoneNumber[0].pnumber}}</div>
             <div class="custom_subtitle_number" *ngIf="phoneNumber  === null ">Add a number so confirmed guests and TaraGo can get in touch. You can add other numbers and choose how they’re used.</div>
             <hr>
         </div>
-        
-        <div class="verify_info">
+        <div class="verify_info -legal_address">
+            <div class="wrapper">
+                <div class="verify_title">Address</div>
+                <div class="_btn">
+                    <button *ngIf="legalName[0].firstname && legalName[0].lastname  === '' " class="remove_default_button" (click)="dialogyourAddress()">Add</button>
+                    <button  *ngIf="preferedName !== '' " class="remove_default_button" (click)="dialogyourAddress()">Edit</button>
+                </div>
+            </div>
+            <div class="verify_value">
+                {{yourAddress[0].unit}}
+                {{yourAddress[1].street}}
+                {{yourAddress[2].barangay}}
+                {{yourAddress[3].city}}
+                {{yourAddress[4].province}}
+                {{yourAddress[5].country}}
+                {{yourAddress[6].zip}}
+            </div>
+            <div class="verify_value" *ngIf="legalName[0].firstname && legalName[0].lastname  === '' ">Not Provided</div>
+            <hr>
+        </div>
+        <div class="verify_info -government_id">
             <div class="wrapper">
                 <div class="verify_title">Government ID</div>
                 <div class="_btn">
@@ -60,7 +90,5 @@
             <div class="verify_value" *ngIf="governmentId === '' ">Not Provided</div>
             <hr>
         </div>
-        
-
     </div>
 </div>
