@@ -22,7 +22,6 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin-top: 1rem;
             margin-right: auto;
             margin-left: auto;
             height: fit-content;
@@ -81,7 +80,7 @@
         .categories {
             position: relative;
             height: 4rem;
-            margin-top: 1.5rem;
+            margin-top:1rem;
  
           
             .staycations,.eventplace  {
@@ -142,8 +141,8 @@
         .search-filters-container {
             margin-right: auto;
             margin-left: auto;
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
+            margin-top:1rem;
+            margin-bottom:2rem;
             width: 100%;
             height: fit-content;
 

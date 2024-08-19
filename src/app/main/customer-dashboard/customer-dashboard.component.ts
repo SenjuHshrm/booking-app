@@ -45,8 +45,7 @@ export class CustomerDashboardComponent {
     this.selectedTab = tabName;
     this.router.navigate(['main/dashboard/inbox']);
   }
-  
- 
+
   
   
   

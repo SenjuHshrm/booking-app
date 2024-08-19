@@ -45,7 +45,9 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
     private router: Router,
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService
-  ) { }
+  ) { 
+  
+  }
 
   ngOnInit(): void {
     this.searchStaycation(this.page, this.limit)

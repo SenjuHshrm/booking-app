@@ -77,7 +77,7 @@
                         </button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item>View</button>
-                            <button mat-menu-item>Update</button>
+                            <button mat-menu-item (click)="updateListing()">Edit Listing</button>
                             <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)"
                                 *ngIf="!element.isListed">Add to Listing</button>
                             <button mat-menu-item (click)="handleToggleListing(element._id, element.isListed)"

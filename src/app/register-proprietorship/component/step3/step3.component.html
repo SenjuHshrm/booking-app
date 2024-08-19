@@ -6,8 +6,8 @@
         </div>
         <div class="where-is-located-wrapper">
             <div class="input-wrapper">
-                <div class="label">Unit No</div>
-                <input type="text" name="unit" formControlName="unit" />
+                <div class="label">Unit No.</div>
+                <input type="number" name="unit" formControlName="unit" />
             </div>
             <div class="input-wrapper">
                 <div class="label">Street / Subdivision etc.</div>
@@ -36,7 +36,7 @@
             </div>
             <div class="input-wrapper">
                 <div class="label">Zip Code</div>
-                <input type="text" name="zipcode" formControlName="zip" />
+                <input type="number" name="zipcode" formControlName="zip" />
                 <ng-container *ngFor="let val of validation.zip">
                     <span class="val-err-msg" *ngIf="formRegPropS3.controls['zip']?.hasError(val.type) && (formRegPropS3.controls['zip']?.dirty || formRegPropS3.controls['zip']?.touched)">{{ val.msg }}</span>
                 </ng-container>

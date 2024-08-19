@@ -209,7 +209,10 @@
                 </div>
             </div>
         </section>
-        <section class="seemore">
+        <div *ngIf="listproperties.lenght < 0">
+            No listings posted yet!
+        </div>
+        <section class="seemore" *ngIf="listproperties.lenght > 0">
             <button class="main-button">See more</button>
         </section>
     </div>
