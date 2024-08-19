@@ -38,7 +38,7 @@ export class SecuritySettingsComponent implements OnInit, OnDestroy {
     const dialogRefSec = this.dialog.open(SecuritySettingsModalComponent, {
       width:'100%',
       height:'100%',
-      maxHeight:'35rem',
+      maxHeight:'30rem',
       maxWidth:'35rem',
       data: this._t.sub
     });

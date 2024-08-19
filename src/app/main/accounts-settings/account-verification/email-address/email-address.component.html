@@ -1,0 +1,27 @@
+
+<div class="email_address_container">
+    <div class="header">
+        <div class="title_wrapper">
+            <div class="info_title">Email address</div>
+            <div class="sub_title">Use an address you’ll always have access to.</div>
+        </div>
+        <div class="close-button-normal" (click)="closeDialog()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
+    </div>
+    <div class="content">
+        <form>
+            <div class="input-wrapper">
+                <div class="label">Preferred Name</div>
+                <input type="text" name="email" placeholder="Enter your email address name" [(ngModel)]="verifiedInfo.pemail"
+                    #emailAddress="ngModel" required />
+                <ng-container *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)">
+                    <span class="val-err-msg">Please enter your prefered name.</span>
+                </ng-container>
+            </div>
+            <div class="_btn">
+            <button class="main-button">Save</button>
+        </div>
+        </form>
+    </div>
+</div>

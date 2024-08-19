@@ -1,0 +1,68 @@
+.verification-code {
+    background-color: white;
+    padding: 1rem;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title_wrapper {
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .sub_title {
+                color: #8f8f8f;
+            }
+        }
+    }
+
+    .content {
+        .code-inputs {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .code-inputs input {
+            width: 4rem;
+            text-align: center;
+            font-size: 2rem;
+            margin-right: 5px;
+        }
+
+        /* Hide the arrows in Chrome, Edge, Safari */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Remove the arrow buttons in Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+    }
+
+    .footer{
+        margin-bottom:1rem;
+        span{
+            color:#68A968 ;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .veri_btn_action {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+
+      
+        }
+    }
+}

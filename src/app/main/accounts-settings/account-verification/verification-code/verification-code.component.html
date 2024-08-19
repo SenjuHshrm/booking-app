@@ -1,0 +1,35 @@
+<div class="verification-code">
+    <div class="header">
+        <div class="title_wrapper">
+            <div class="info_title">Enter your security code</div>
+            <div class="sub_title">Enter the 4-digit code TaraGo just sent<span>+63{{phoneNumber}}</span></div>
+        </div>
+        <div class="close-button-normal" (click)="onCancel()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
+    </div>
+    <div class="content">
+        <div mat-dialog-content>
+            <form [formGroup]="securityCodeForm">
+                <div class="code-inputs">
+                    <input matInput maxlength="1" formControlName="code1" type="number" autofocus>
+                    <input matInput maxlength="1" formControlName="code2" type="number">
+                    <input matInput maxlength="1" formControlName="code3" type="number">
+                    <input matInput maxlength="1" formControlName="code4" type="number">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="sub_title">
+            Didn't get a text? 
+            <span *ngIf="!canResend" [ngClass]="{'disabled': !canResend}">Send again in {{resendTimer}}s</span>
+            <span *ngIf="canResend" (click)="resendCode()">Send again</span>
+        </div>
+        <div class="veri_btn_action" mat-dialog-actions>
+            <button class="main-button" (click)="onCancel()">Cancel</button>
+            <button class="main-button" (click)="onConfirm()">Confirm</button>
+        </div>
+    </div>
+  
+</div>

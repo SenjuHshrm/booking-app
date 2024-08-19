@@ -1,7 +1,14 @@
 <div class="payment-wallet">
-    <div class="close-button" (click)="closeDialogLogin()">
-        <mat-icon style="margin-top:3px">close</mat-icon>
+    <div class="header">
+        <div class="title_wrapper">
+            <div class="info_title">Change your security</div>
+            <!-- <div class="sub_title">Create new password</div> -->
+        </div>
+        <div class="close-button-normal" (click)="closeDialog()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
     </div>
+    <div><hr></div>
     <div class="payment-wallet-payment-wallet-wrapper">
         <form (ngSubmit)="handleSubmit(pwForm)" [formGroup]="pwForm">
             <div class="your-information-about-your-info">
@@ -38,6 +45,7 @@
                     </div>
                 </div>
             </div>
+            <div><hr></div>
             <div class="btn-sec">
                 <button class="main-button" type="submit" [disabled]="!pwForm.valid">Done</button>
             </div>

@@ -1,0 +1,102 @@
+.your_address {
+    max-width: 35rem;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    gap: .5rem;
+    .header {
+        padding: 1rem 1rem .5rem;
+        flex: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .title_wrapper {
+          flex:1;
+
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .sub_title {
+                color: #8f8f8f;
+               
+            }
+        }
+    }
+
+    .where-is-located-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+
+        form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+
+            .wrapper {
+                gap: .5rem;
+                flex: 1;
+                display: flex;
+                max-height:100%;
+                overflow-y: auto;
+                flex-direction: column;
+                gap: .8rem;
+                width: 100%;
+                margin: auto;
+           
+
+                .input-wrapper {
+                    padding: 0 1rem 0;
+
+                    .label {
+                        
+                        margin-bottom: .3rem;
+                    }
+
+                    input {
+                        padding: 1rem;
+                        border: 2px solid #63AB68;
+                        width: 100%;
+                        border-radius: 10px;
+                        font-family: Poppins-Medium;
+                        font-size: 15px;
+                    }
+
+
+                    /* Hide the arrows in Chrome, Edge, Safari */
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    /* Remove the arrow buttons in Firefox */
+                    input[type=number] {
+                        -moz-appearance: textfield;
+                    }
+                }
+            }
+
+            ._btn {
+                flex: none;
+                padding: 1rem 1rem 1rem;
+                button {
+                }
+            }
+        }
+    }
+
+
+}
+
+@media only screen and (max-width: 600px) {}

@@ -1,0 +1,117 @@
+.phonenumber_container {
+    background-color: white;
+    max-width:35rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    
+    .header {
+        padding: 1rem 1rem 0;
+        flex: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap:1rem;
+
+        .title_wrapper {
+            flex: 1;
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .sub_title {
+                color: #8f8f8f;
+            }
+        }
+    }
+
+    .content {
+        padding: 0rem 1rem 1rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    
+
+        form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap:1rem;
+
+            .input-wrapper {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .label {
+                width: 100%;
+                font-size: 15px;
+                margin-bottom: 5px;
+            }
+
+            .phone-input {
+                width: 100%;
+                display: flex;
+                align-items: center;
+            }
+
+            .country-code {
+                border-radius: 10px 0 0 10px;
+                border: 2px solid #63AB68;
+                border-right: none;
+                height: 4rem;
+                padding: 1rem;
+                font-size: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            input[type="number"] {
+                border-left: none;
+                padding: 1rem;
+                border: 2px solid #63AB68;
+                width: 100%;
+                border-radius: 0px 10px 10px 0px;
+                font-family: Poppins-Medium;
+                font-size: 15px;
+                height: 4rem;
+            }
+
+            input[type="number"]:focus {
+                border-color: #63AB68;
+            }
+
+            /* Hide the arrows in Chrome, Edge, Safari */
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Remove the arrow buttons in Firefox */
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+
+            .val-err-msg {
+                width:100%;
+                font-size: 15px;
+                margin-top: 5px;
+                font-family: Poppins-Regular;
+            }
+
+            button {
+            }
+        }
+    }
+
+
+}

@@ -44,7 +44,8 @@
 
 
                     button {
-                        background-color: #F1F1F1;
+                        background-color: white;
+                        box-shadow: 1px 1px 5px #88888877;
                         border: none;
                         cursor: pointer;
                         margin-bottom: 1rem;
@@ -52,12 +53,13 @@
                         border-radius: 10px;
                         font-family: Poppins-Regular;
                         font-weight: bold;
-                        color: #63AB68;
+                        color: black;
+                        border: 1px solid white ;
                     }
 
                     button.active {
                         font-weight: bold;
-                        background-color: black;
+                        border: 1px solid #63AB68 ;
                         color: #63AB68;
                       }
                   
@@ -67,7 +69,8 @@
                 .info {
                     flex: 1;
                     // border: 1px solid black; 
-                    background-color: #F1F1F1;
+                    height: 100%;
+                border: 1px solid #e4e4e4;
                     padding: 1rem;
                     border-radius: 10px;
                   

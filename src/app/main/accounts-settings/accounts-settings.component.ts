@@ -19,7 +19,6 @@ export class AccountsSettingsComponent {
     
   }
   
-
   goToLoginSecurity():void {
     this.router.navigate(['main/accounts-settings/security-settings']);
     
@@ -29,7 +28,11 @@ export class AccountsSettingsComponent {
     this.router.navigate(['main/accounts-settings/payment-wallet-settings']);
   }
 
+  goToAccountVerification():void  {
+    this.router.navigate(['main/accounts-settings/account-verification']);
+  }
 
   
+
 
 }

@@ -1,0 +1,91 @@
+.legal_name_container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    gap:.5rem;
+
+    .header {
+        flex: 0;
+        padding: 1rem;
+        flex: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title_wrapper {
+            .info_title {
+                font-size: clamp(1rem, .9vw, 8rem);
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .sub_title {
+                color: #8f8f8f;
+            }
+        }
+    }
+
+    .content {
+        flex:1;
+        padding: 0rem 1rem 1rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+
+        form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            gap:.5rem;
+
+            ._wrapper {
+                flex-basis: 100%;
+                max-height:100%;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                gap:1rem;
+                padding: .5rem 0 0;
+
+                .input-wrapper {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    .label {
+                        margin-bottom: .3rem;
+                    }
+
+                    input {
+                        padding: 1rem;
+                        border: 2px solid #63AB68;
+                        width: 100%;
+                        border-radius: 10px;
+                        font-family: Poppins-Medium;
+                        font-size: 15px;
+
+                    }
+
+                    .val-err-msg {
+                        font-size: 15px;
+                        margin-top: 5px;
+                        font-family: Poppins-Regular;
+                    }
+                }
+            }
+
+            ._btn {
+                flex: none;
+
+            }
+        }
+
+    }
+}

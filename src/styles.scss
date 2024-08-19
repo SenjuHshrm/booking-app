@@ -9,16 +9,18 @@
 
 html {
   box-sizing: border-box;
+  font-family: Poppins-Regular !important
 }
 
 html,
 body {
   height: 100%;
+  font-family: Poppins-Regular !important
 }
 
 body {
   margin: 0;
-  font-family: Poppins-Regular
+  font-family: Poppins-Regular !important
 }
 
 
@@ -43,17 +45,43 @@ body {
 }
 
 
-.square-radius-btn{
+////////Default Button//////
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #cacaca;
+  padding:0 !important;
+  margin:0 !important;
+}
+
+.remove_default_button {
   border: none;
-  border-radius:5px;
   background-color: transparent;
-  padding:.5rem 1rem .5rem;
+  width: 100%;
+  cursor: pointer;
+  color: #63AB68;
+  text-decoration: underline;
+
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.square-radius-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: .5rem 1rem .5rem;
   background-color: #63AB68;
-  width:100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:1rem;
+  gap: 1rem;
   flex-wrap: wrap;
   color: white;
   cursor: pointer;
@@ -67,7 +95,7 @@ body {
   }
 }
 
-.square-radius-btn:hover{
+.square-radius-btn:hover {
   background-color: #63ab68b9;
 }
 
@@ -161,6 +189,8 @@ body {
   color: #63AB68;
 }
 
+////////Default Button//////
+
 .not-found {
   font-size: clamp(1rem, 1vw, 5rem);
   font-weight: bold;
@@ -237,33 +267,15 @@ body {
 //Calendar End
 
 
-
-
-//Background Opacity Mat-Dialog Start
 mat-icon {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-.mdc-dialog__container {
-  padding: 0 !important;
-  margin: 0 !important;
+//Background Opacity Mat-Dialog Start
 
-  .mat-mdc-dialog-surface,
-  .mdc-dialog__surface {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
 
-  }
-}
 
-.cdk-overlay-backdrop,
-.cdk-overlay-dark-backdrop,
-.cdk-overlay-backdrop-showing {
-  background-color: #000000af;
-}
 
 //Background Opacity Mat-Dialog End
 
@@ -279,13 +291,13 @@ mat-icon {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #b1b1b1 !important;
+  background: #ffffff !important;
   /* Color of the track (the background of the scrollbar) */
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #646464 !important;
+  background: #68A968 !important;
   /* Color of the scrollbar handle */
   border-radius: 6px !important;
   /* Rounding the corners of the scrollbar handle */
@@ -293,24 +305,9 @@ mat-icon {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #363636 !important;
+  background: #68A968 !important;
   /* Color of the scrollbar handle on hover */
 }
 
 /* Custom scrollbar for WebKit-based browsers */
 
-
-
-.mat-mdc-menu-panel
-.mdc-menu-surface 
-.mdc-menu-surface--open
-.mat-mdc-elevation-specific 
-.ng-trigger .ng-trigger-transformMenu
-.ng-tns-c5-1, 
-.menu_btn{
-    width:12.3rem !important;
-}
-
-.val-err-msg {
-  color: red;
-}
