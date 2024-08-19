@@ -1,3 +1,5 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { GlobalStaticService } from './../../services/global-static.service';
 import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
 import SwiperCore, { Navigation, Scrollbar, A11y, Autoplay } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
@@ -25,7 +27,6 @@ SwiperCore.use([Navigation, Scrollbar, A11y]);
 export class StaycationListComponent implements OnInit, OnDestroy  {
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
-  private _sub: Subscription = new Subscription()
   public page: number = 1;
   public limit: number = 16;
   public total: number = 0
@@ -39,17 +40,20 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
   public guests: string = '';
   public showCat: string = "staycation";
   currentTitle: string = '';
+  
+  private taxList: any;
+  private _sub: Subscription = new Subscription()
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private _staycation: StaycationService,
-    private _basicUtil: BasicUtilService
-  ) { 
-  
-  }
+    private _basicUtil: BasicUtilService,
+    private _gs: GlobalStaticService
+  ) { }
 
   ngOnInit(): void {
+    this._getTaxList()
     this.searchStaycation(this.page, this.limit)
   }
  
@@ -120,12 +124,13 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
       next: (res: any) => {
         this.total = res.total
         res.listings.forEach((l: any) => {
+          let tax = this._basicUtil.taxTotal(l.price, this.taxList)
           this.listproperties.push({
             _id: l._id,
-            image: this._basicUtil.setImgUrl(l.media.cover),
+            image: this._basicUtil.setImgUrl(l.cover),
             title: l.name,
             description: l.descriptionText.join(', '),
-            permonth: `${l.price.common} (Before Tax: ${l.price.beforeTax})`
+            permonth: `${l.price} (Before Tax: ${l.price + tax})`
           })
         })
       }
@@ -158,6 +163,17 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
       }
     })
     return str;
+  }
+
+  private _getTaxList() {
+    this._sub.add(this._gs.getStaticByType('service_fee').subscribe({
+      next: (res: any) => {
+        this.taxList = res.data
+      },
+      error: ({ error }: HttpErrorResponse) => {
+        console.log(error)
+      }
+    }))
   }
 
 

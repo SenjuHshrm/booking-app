@@ -54,20 +54,30 @@ export class GalleryPageComponent implements OnInit, OnDestroy {
     this._sub.add(this._staycation.getStaycationDetails(id).subscribe({
       next: (res: any) => {
         this.details = { ...res }
-        this._setGallery(this.details.media)
+        this._setGallery(res.genImgList, res.cover)
       }
     }))
   }
 
-  private _setGallery(data: { cover: string, imgs: string[] }) {
-    this.data.push({ imageSrc: this._basicUtil.setImgUrl(data.cover), imageAlt: 'img-cover' })
-    let i: number = 1
-    data.imgs.forEach((img: string) => {
-      this.data.push({
-        imageSrc: this._basicUtil.setImgUrl(img),
-        imageAlt: `img-${i}`
-      })
-      i++
+  private _setGallery(genImgList: string[], cover: string) {
+    // this.data.push({ imageSrc: this._basicUtil.setImgUrl(cover), imageAlt: 'img-cover' })
+    // let i: number = 1
+    // genImgList.forEach((img: string) => {
+    //   this.data.push({
+    //     imageSrc: this._basicUtil.setImgUrl(img),
+    //     imageAlt: `img-${i}`
+    //   })
+    //   i++
+    // })
+    let c = this._basicUtil.setImgUrl(cover)
+    let gi = genImgList.map((g: string) => this._basicUtil.setImgUrl(g))
+    this.data.push({ imageSrc: c, imageAlt: 'img-cover' })
+    let i = 0
+    gi.forEach((g: string) => {
+      if(g !== c) {
+        this.data.push({ imageSrc: g, imageAlt: `img-${i}` })
+        i++
+      }
     })
   }
 

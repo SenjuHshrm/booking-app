@@ -41,6 +41,10 @@ export class StaycationService {
     return this._http.put(`${environment.api}/api/staycation/put/update-listing/${id}`, { isListed })
   }
 
+  public updateStaycation(id: string, form: any): Observable<any> {
+    return this._http.put(`${environment.api}/api/staycation/put/update-from-admin/${id}`, form)
+  }
+
   public getOfficialList(page: number, limit: number, query: string): Observable<any> {
     return this._http.get(`${environment.api}/api/staycation/get/list/${page}/${limit}?${query}`)
   }

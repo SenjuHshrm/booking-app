@@ -1,0 +1,190 @@
+<div class="check-listing-container">
+  <div class="check-listing-container-wrapper">
+    <div class="close-button close" [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+    </div>
+    <div class="title">Check Listing Inputs</div>
+    <div class="form-wrapper" *ngIf="listingDetails">
+      <div>
+        <div class="input-wrapper">
+          <div class="label">Name</div>
+          <input [(ngModel)]="listingDetails.name" name="name" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Place Type</div>
+          <input [(ngModel)]="listingDetails.placeType" name="placeType" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Description Filter</div>
+          <input [(ngModel)]="listingDetails.descriptionFilter" name="descriptionFilter" readonly />
+        </div>
+
+        <hr/>
+
+        <div class="input-wrapper">
+          <div class="label">House No. / Unit</div>
+          <input [(ngModel)]="listingDetails.address.unit" name="unit" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Street</div>
+          <input [(ngModel)]="listingDetails.address.street" name="street" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Barangay</div>
+          <input [(ngModel)]="listingDetails.address.brgy" name="brgy" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">City</div>
+          <input [(ngModel)]="listingDetails.address.city" name="city" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Province</div>
+          <input [(ngModel)]="listingDetails.address.province" name="province" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Country</div>
+          <input [(ngModel)]="listingDetails.address.country" name="country" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Postal Code</div>
+          <input [(ngModel)]="listingDetails.address.zip" name="zip" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Landmark</div>
+          <input [(ngModel)]="listingDetails.landmark" name="landmark" readonly />
+        </div>
+
+        <hr/>
+
+        <div class="input-wrapper">
+          <div class="label">Amenities</div>
+          <input [(ngModel)]="listingDetails.amenities" name="amenities" readonly />
+        </div>
+
+        <hr/>
+
+        <div class="input-wrapper">
+          <div class="label">Description Tags</div>
+          <input [(ngModel)]="listingDetails.descriptionText" name="descriptionText" readonly />
+        </div>
+        <div class="input-wrapper">
+          <div class="label">Detailed Description</div>
+          <textarea [(ngModel)]="listingDetails.detailedDescription" name="detailedDescription"></textarea>
+          <span>You can edit this part to improve grammar.</span>
+        </div>
+        
+        <hr/>
+
+        <div class="details">
+          <div class="input-wrapper">
+            <div class="label">Guest</div>
+            <input [(ngModel)]="listingDetails.details.guests" name="guests" readonly />
+          </div>
+          <div class="input-wrapper">
+            <div class="label">Bedrooms</div>
+            <input [(ngModel)]="listingDetails.details.bedrooms" name="bedrooms" readonly />
+          </div>
+          <div class="input-wrapper">
+            <div class="label">Beds</div>
+            <input [(ngModel)]="listingDetails.details.beds" name="beds" readonly />
+          </div>
+          <div class="input-wrapper">
+            <div class="label">Bathroom</div>
+            <input [(ngModel)]="listingDetails.details.bathroom" name="bathroom" readonly />
+          </div>
+        </div>
+
+        <hr/>
+
+        <h3>Gallery Photos</h3>
+        <span>Click on the image to set as cover</span>
+        <div class="gallery-photos-wrapper">
+          <div class="gallery-container" [ngStyle]="{
+            'display': genImg.length === 0 ? 'flex' : '',
+            'place-content': genImg.length === 0 ? 'center' : ''
+          }">
+            <div class="gallery" [ngStyle]="{ display: genImg.length === 0 ? 'none' : '' }">
+              <div *ngFor="let img of genImg; let i = index" (click)="setAsCover(i)" [ngClass]="i === coverPhoto ? 'image is-cover' : 'image'">
+                <img [src]="img"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <h3>Bedroom Photos</h3>
+        <div class="gallery-photos-wrapper">
+          <div class="gallery-container" [ngStyle]="{
+            'display': bedrooms.length === 0 ? 'flex' : '',
+            'place-content': bedrooms.length === 0 ? 'center' : ''
+          }">
+            <div class="gallery" [ngStyle]="{ display: bedrooms.length === 0 ? 'none' : '' }">
+              <div class="image" *ngFor="let img of bedrooms">
+                <img [src]="img"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="input-wrapper">
+          <div class="label">Security</div>
+          <input [(ngModel)]="listingDetails.security" name="security" readonly />
+        </div>
+
+        <div class="input-wrapper">
+          <div class="label">House Rules</div>
+          <input [(ngModel)]="listingDetails.houseRules" name="houseRules" readonly />
+        </div>
+
+        <div class="input-wrapper">
+          <div class="label">Detailed rules</div>
+          <input [(ngModel)]="listingDetails.houseRulesDetailed" name="houseRulesDetailed" readonly />
+        </div>
+
+        <hr/>
+
+        <div class="input-wrapper">
+          <div class="label">Base price</div>
+          <input [(ngModel)]="listingDetails.price" name="price" readonly />
+        </div>
+
+        <div class="input-wrapper">
+          <div class="label">Discount %</div>
+          <input [(ngModel)]="listingDetails.discounts.value" name="discountsValue" readonly />
+          <span>{{ listingDetails.discounts.discounts }}</span>
+        </div>
+        
+        <div class="input-wrapper">
+          <div class="label">Cancellation Policy</div>
+          <input [(ngModel)]="listingDetails.cancellationPolicy.cancellationPolicy" name="cancellationPolicy" readonly />
+        </div>
+
+        <div class="input-wrapper">
+          <div class="label">Non-Refundable Policy</div>
+          <input [(ngModel)]="listingDetails.cancellationPolicy.nonRefundable" name="nonRefundable" readonly />
+        </div>
+
+        <div class="input-wrapper">
+          <div class="label">Booking process</div>
+          <input [(ngModel)]="listingDetails.bookingProcess" name="bookingProcess" readonly />
+        </div>
+
+        <hr/>
+
+        <div class="input-wrapper">
+          <div class="label">Actions</div>
+          <select [(ngModel)]="actions">
+            <option value="1">Save Changes</option>
+            <option value="2">Save Changes and Approve Only</option>
+            <option value="3">Save Changes, Approve and Add to Listing</option>
+          </select>
+        </div>
+
+        <button mat-raised-button (click)="updateDetails()" [disabled]="!actions || listingDetails.cover === ''">Update Details</button>
+      </div>
+    </div>
+  </div>
+</div>

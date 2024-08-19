@@ -29,8 +29,8 @@
                     <div class="details-header">
                          <div class="title">{{ details.name }}</div>
                          <div class="subtitle">
-                              {{ details.details.guests }} guest's - {{ details.details.bedrooms }}
-                              bedroom's - {{ details.details.beds }} bed's - {{ details.details.bathroom }} bathroom's
+                              {{ details.details.guests }} guests - {{ details.details.bedrooms }}
+                              bedrooms - {{ details.details.beds }} beds - {{ details.details.bathroom }} bathrooms
                          </div>
                          <div class="rate">
                               <div>Rate</div>
@@ -45,7 +45,7 @@
                               </div>
                               <div>
                                    <div class="name">{{ details.host.name }}</div>
-                                   <div class="years">Proprietor since 2 years</div>
+                                   <div class="years">{{ details.host.approvedAsProprietorOn }}</div>
                               </div>
                          </div>
                          <div class="message_proprietor" (click)="messageProprietor()">
@@ -62,6 +62,10 @@
                               <mat-icon> my_location</mat-icon>
                               <div>{{ details.address }}</div>
                          </div>
+                         <div class="description">
+                              <mat-icon>location_on</mat-icon>
+                              <div>{{ details.landmark }}</div>
+                         </div>
                     </div>
                     <hr>
                     <div class="important category">
@@ -70,7 +74,7 @@
                          </div>
                          <div class="info">
                               <div class="title">Staycations</div>
-                              <div class="description">Hotel</div>
+                              <div class="description">{{ details.descriptionFilter }}</div>
                          </div>
                     </div>
 
@@ -80,7 +84,7 @@
                          </div>
                          <div class="info">
                               <div class="title">Place will guest have</div>
-                              <div class="description">Room Only</div>
+                              <div class="description">{{ details.placeType }}</div>
                          </div>
                     </div>
 
@@ -89,12 +93,17 @@
                               <mat-icon>bookmark_border</mat-icon>
                          </div>
                          <div class="info">
-                              <div class="title">Discounted Offer's</div>
-                              <div *ngFor="let discount of discountedOffer" class="description">
+                              <div class="title">Discount Offer</div>
+                              <div class="description">
+                                   <div>
+                                        <span>{{ details.discounts.value }} % &nbsp;{{ discount.desc }}</span>
+                                   </div>
+                              </div>
+                              <!-- <div *ngFor="let discount of discountedOffer" class="description">
                                    <div *ngIf="discount.selected === true">
                                         <span>{{discount.discount}}% &nbsp;{{discount.description}}</span>
                                    </div>
-                              </div>
+                              </div> -->
 
                          </div>
                     </div>
@@ -103,8 +112,8 @@
                               <mat-icon>bookmark_border</mat-icon>
                          </div>
                          <div class="info">
-                              <div class="title">Free cancellation before Sep 5</div>
-                              <div class="description"> Get a full refund if you change your mind.</div>
+                              <div class="title">Cancellation Policy: {{ cancellation.title }}</div>
+                              <div class="description">{{ cancellation.desc }}</div>
                          </div>
                     </div>
                     <hr>
@@ -113,9 +122,9 @@
                          <div class="described ">
                               <div class="title_info">Ambiance</div>
                               <div class="info_wrapper">
-                                   <div class="info" *ngFor="let amBiances of ambiance">
+                                   <div class="info" *ngFor="let desc of details.descriptionText">
                                         <mat-icon>done_outline</mat-icon>
-                                        <div>{{amBiances.label}}</div>
+                                        <div>{{ desc }}</div>
                                    </div>
                               </div>
 
@@ -124,13 +133,13 @@
                               <div class="title_info">Detailed description</div>
                               <div class="desc_wrapper">
                                    <div>
-                                        <p *ngIf="fullText.length > 100">
-                                          {{ isExpanded ? fullText : (fullText | slice:0:500) + '...' }}
+                                        <p *ngIf="details.detailedDescription.length > 100">
+                                          {{ isExpanded ? details.detailedDescription : (details.detailedDescription | slice:0:500) + '...' }}
                                         </p>
-                                        <p *ngIf="fullText.length < 100">
-                                             {{fullText}}
+                                        <p *ngIf="details.detailedDescription.length < 100">
+                                             {{details.detailedDescription}}
                                            </p>
-                                        <button (click)="seemoreText()" *ngIf="fullText.length > 100">
+                                        <button (click)="seemoreText()" *ngIf="details.detailedDescription.length > 100">
                                           {{ isExpanded ? 'See less' : 'See more' }}
                                         </button>
                                       </div>
@@ -183,11 +192,11 @@
                                            spaceBetween: 30,
                                        }
                                    }">
-                                                  <ng-template class="custom_swiper_slide"  style="display: block;" swiperSlide *ngFor="let dest of whereYouSleep; let i = index">
-                                                       <div class="_images" (click)="viewImageBedroom(i) ">
-                                                            <img src={{dest.images}} alt="images" draggable="false" loading="lazy" />
-                                                            <div class="label">{{dest.label}}</div>
-                                                            <div class="desc">{{dest.description}}</div>
+                                                  <ng-template class="custom_swiper_slide"  style="display: block;" swiperSlide *ngFor="let dest of details.bedroomList; let i = index">
+                                                       <div class="_images" (click)="viewImageBedroom(dest) ">
+                                                            <img src={{dest}} alt="images" draggable="false" loading="lazy" />
+                                                            <!-- <div class="label">{{dest.label}}</div>
+                                                            <div class="desc">{{dest.description}}</div> -->
                                                        </div>
                                                   </ng-template>
                                              </swiper>
@@ -255,19 +264,21 @@
                     <form>
                          <div class="reserve-sticky-column-wrapper">
                               <div class="rate-night">
-                                   <p>₱<span> {{ details.price.common }} </span>night</p>
+                                   <p>₱<span> {{ details.price }} </span>night</p>
                               </div>
                               <div class="date-checkin-out">
-                                   <div class="checkin-out-style">
-                                        <div class="title">Check-in date</div>
-                                        <div class="calendar-icon"></div>
-                                        <input type="date" name="date" class="custom-date-input">
-                                   </div>
-                                   <div class="checkin-out-style">
-                                        <div class="title">Check-out date</div>
-                                        <div class="calendar-icon"></div>
-                                        <input type="date" name="date" class="custom-date-input">
-                                   </div>
+                                   <mat-form-field>
+                                        <mat-label>Check-in | Check-out</mat-label>
+                                        <mat-date-range-input
+                                             [min]="minDate"
+                                             [formGroup]="checkInCheckOut"
+                                             [rangePicker]="cicoPicker">
+                                             <input matStartDate name="start" formControlName="start" class="custom-date-input">
+                                             <input matEndDate name="end" formControlName="end" class="custom-date-input" (dateChange)="handleDateChangeEnd($event)">
+                                        </mat-date-range-input>
+                                        <mat-datepicker-toggle matIconSuffix [for]="cicoPicker"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #cicoPicker [calendarHeaderComponent]="customDatepickerHeader"></mat-date-range-picker>
+                                   </mat-form-field>
                               </div>
                               <div class="add-guest">
                                    <div class="guest-wrapper">
@@ -279,22 +290,21 @@
                                         <div class="addguest-inputs-add-guest-container">
                                              <div class="input-addguest">
                                                   <label for="adults">Adults (13+ years):</label>
-                                                  <input type="number" [(ngModel)]="guest_adults" id="adults"
-                                                       name="adults" min="0" placeholder="0" required><br>
+                                                  <input type="number" [(ngModel)]="guest_adults" name="adults" placeholder="0" [min]="1" [max]="details.details.guests - guest_children" required><br>
                                              </div>
                                              <div class="input-addguest">
                                                   <label for="children">Children (2-12 years):</label>
-                                                  <input type="number" [(ngModel)]="guest_children" id="children"
+                                                  <input type="number" [(ngModel)]="guest_children" id="children" [max]="details.details.guests - guest_adults"
                                                        name="children" min="0" placeholder="0" required><br>
                                              </div>
                                              <div class="input-addguest">
                                                   <label for="infants">Infants (0-1 years):</label>
                                                   <input type="number" [(ngModel)]="guest_infants" id="infants"
-                                                       name="infants" min="0" placeholder="0" required><br>
+                                                       name="infants" placeholder="0" [max]="5" required><br>
                                              </div>
                                              <div class="input-addguest">
                                                   <label for="pets">Pets:</label>
-                                                  <input type="number" [(ngModel)]="guest_pets" id="pets" name="pets"
+                                                  <input type="number" [(ngModel)]="guest_pets" id="pets" name="pets" max="1"
                                                        min="0" placeholder="0" required><br>
                                              </div>
 
@@ -305,22 +315,23 @@
                          </div>
                     </form>
                     <div class="total-computation-wrapper">
-                         <div class="note">You won’t be charged yet</div>
+                         <div class="note" *ngIf="details.bookingProcess === 'for_approval'">You won’t be charged yet</div>
                          <div class="computation">
                               <div class="comp">
-                                   <td><span>₱ {{ details.price.common }}</span> x 1 night</td>
-                                   <td>₱ {{ details.price.common }}</td>
+                                   <td><span>₱ {{ details.price }}</span> x {{ nights }} {{ nights === 1 ? 'night' : 'nights' }}</td>
+                                   <td>₱ {{ basePrice }}</td>
                               </div>
-                              <div class="comp" *ngFor="let fee of serviceCharge">
-                                   <td>{{ fee.name }}</td>
-                                   <td>₱ {{ fee.price }}</td>
+                              <div class="comp">
+                                   <td>Service Charge</td>
+                                   <td>₱ {{ serviceCharge }}</td>
                               </div>
+
                          </div>
 
                     </div>
                     <div class="total">
                          <div>Total before taxes</div>
-                         <div>₱ {{ getTotalBeforeTax(details.price.common) }} total</div>
+                         <div>₱ {{ totalBeforeTax }} total</div>
                     </div>
                </section>
 

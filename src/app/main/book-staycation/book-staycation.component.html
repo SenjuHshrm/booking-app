@@ -16,18 +16,18 @@
                             <div class="checkin-out-dates">
                                 <mat-icon>calendar_today</mat-icon>
                                 <div class="label">Checkin</div>
-                                <div class="date">February 13, 2024</div>
+                                <div class="date">{{ duration.start | date : 'longDate' }}</div>
                             </div>
                             <div class="checkin-out-dates">
                                 <mat-icon>calendar_today</mat-icon>
                                 <div class="label">Checkout</div>
-                                <div class="date">February 15, 2024</div>
+                                <div class="date">{{ duration.end | date : 'longDate' }}</div>
                             </div>
                         </div>
                         <div class="guest-wrapper">
                             <mat-icon>people</mat-icon>
                             <div class="label">Guest</div>
-                            <div>3 guests - 1 bedroom - 2 beds - 1 bath</div>
+                            <div>{{ guests.adult + guests.children }}</div>
                         </div>
                     </div>
                     <div class="choose-howto-pay">

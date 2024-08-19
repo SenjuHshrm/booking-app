@@ -47,4 +47,16 @@ export class UserService {
   public getUserProfileImg(id: string): Observable<any> {
     return this._http.get(`${environment.api}/api/user/get/profile-img/${id}`)
   }
+
+  public addToWishlist(user: string, staycation: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/user/post/add-to-wishlist`, { user, staycation })
+  }
+
+  public removeToWishlist(user: string, staycation: string): Observable<any> {
+    return this._http.delete(`${environment.api}/api/user/delete/remove-to-wishlist/${user}/${staycation}`)
+  }
+
+  public checkInWishlist(user: string, staycation: string) {
+    return this._http.get(`${environment.api}/api/user/get/check-in-wishlist/${user}/${staycation}`)
+  }
 }
