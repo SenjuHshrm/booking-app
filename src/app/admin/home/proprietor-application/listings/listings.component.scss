@@ -1,0 +1,43 @@
+.listing-container {
+  background-color: white;
+  padding: 2em;
+  position: relative;
+
+  &-wrapper {
+    .close {
+      mat-icon {
+        margin-top: 4px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .title {
+      font-family: Poppins-Medium;
+      font-size: 18px;
+      color: #63AB68;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    table {
+      overflow-y: auto;
+
+      
+    }
+  }
+}
+
+.custom-property {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: .3rem 0 .3rem;
+
+  img {
+      width: 2.5rem;
+      height: 2.5rem;
+      object-fit: fill;
+      border: 1px solid #a0a0a0;
+      border-radius: 2px;
+  }
+
+}

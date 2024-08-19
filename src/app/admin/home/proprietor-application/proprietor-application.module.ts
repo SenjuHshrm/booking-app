@@ -1,3 +1,6 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GlobalsModule } from './../../../globals/globals.module';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -8,11 +11,15 @@ import { CommonModule } from '@angular/common';
 import { ProprietorApplicationRoutingModule } from './proprietor-application-routing.module';
 import { ProprietorApplicationComponent } from './proprietor-application.component';
 import { MatButtonModule } from '@angular/material/button';
+import { ListingsComponent } from './listings/listings.component';
+import { CheckListingInputComponent } from './check-listing-input/check-listing-input.component';
 
 
 @NgModule({
   declarations: [
-    ProprietorApplicationComponent
+    ProprietorApplicationComponent,
+    ListingsComponent,
+    CheckListingInputComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +28,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatPaginatorModule,
     MatButtonModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProprietorApplicationModule { }

@@ -1,3 +1,5 @@
+import { ListingsComponent } from './listings/listings.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { BasicUtilService } from './../../../services/basic-util.service';
@@ -24,6 +26,7 @@ export class ProprietorApplicationComponent implements OnInit, AfterViewInit, On
   private _sub: Subscription = new Subscription()
 
   constructor(
+    private _md: MatDialog,
     private _user: UserService,
     private _basicUtil: BasicUtilService,
     private _changeDetector: ChangeDetectorRef
@@ -45,6 +48,15 @@ export class ProprietorApplicationComponent implements OnInit, AfterViewInit, On
 
   public handlePageChange(e: PageEvent) {
     this._getApps(e.pageIndex + 1, e.pageSize)
+  }
+
+  public viewListings(userId: string) {
+    this._md.open(ListingsComponent, {
+      width: '65%',
+      height: '70%',
+      data: userId,
+      disableClose: true
+    })
   }
 
   public handleSetAsHost(userId: string, staycationId: string, propApp: string) {

@@ -68,8 +68,8 @@ export class CustomErrorHandler implements ErrorHandler {
           console.log(err)
         }
       } as SocialAuthServiceConfig
-    }
-    // { provide: ErrorHandler, useClass: CustomErrorHandler }
+    },
+    { provide: ErrorHandler, useClass: CustomErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

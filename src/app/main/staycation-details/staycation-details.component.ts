@@ -1,3 +1,11 @@
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { CancellationService } from './../../services/cancellation.service';
+import { DiscountService } from './../../services/discount.service';
+import { ITokenClaims } from './../../interfaces/token';
+import { TokenService } from './../../services/token.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from './../../services/user.service';
 import { GlobalStaticService } from './../../services/global-static.service';
 import { BasicUtilService } from './../../services/basic-util.service';
 import { StaycationService } from './../../services/staycation.service';
@@ -12,6 +20,9 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 's
 import { SwiperComponent } from 'swiper/angular';
 import { WheretoSleepViewComponent } from 'src/app/globals/whereto-sleep-view/whereto-sleep-view.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { CustomDatepickerHeader } from './custom-datepicker-header';
+import * as moment from 'moment'
 
 
 
@@ -29,56 +40,47 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
-  // @Input() public isAuth: boolean = false
-
-
- 
   public gallery: string[] = [];
   public details: any;
   public amenitiesData:any;
-  public serviceCharge: any = [];
   private _sub: Subscription = new Subscription()
+  private _t!: ITokenClaims
   public imageSets: any;
   public imgS: number = 0;
-  public totalBeforeTax!: number;
   public averageStar: number = 0;
   public totalReviews: number = 0;
   public latestReview: any;
 
-  public guest_adults: number = 0;
+  public guest_adults: number = 1;
   public guest_children: number = 0;
   public guest_infants: number = 0;
   public guest_pets: number = 0;
 
   public wishlistIcons: boolean = false;
+  public wishlistId!: string;
 
-  public fullText: string = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam ullam reiciendis iste iure repellat ipsa, quis laborum dolore et? Esse recusandae molestiae voluptates assumenda saepe veniam commodi vero quo earum.                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam ullam reiciendis iste iure repellat ipsa, quis laborum dolore et? Esse recusandae molestiae voluptates assumenda saepe veniam commodi vero quo earum.                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam ullam reiciendis iste iure repellat ipsa, quis laborum dolore et? Esse recusandae molestiae voluptates assumenda saepe veniam commodi vero quo earum.                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam ullam reiciendis iste iure repellat ipsa, quis laborum dolore et? Esse recusandae molestiae voluptates assumenda saepe veniam commodi vero quo earum.                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam ullam reiciendis iste iure repellat ipsa, quis laborum dolore et? Esse recusandae molestiae voluptates assumenda saepe veniam commodi vero quo earum.                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam ullam reiciendis iste iure repellat ipsa, quis laborum dolore et? Esse recusandae molestiae voluptates assumenda saepe veniam commodi vero quo earum.';
+  public discount: any = {};
+  public cancellation: any;
+
   public isExpanded: boolean = false;
 
+  public basePrice: number = 0
+  public baseServiceCharge: number = 0
+  public nights: number = 1;
+  public serviceCharge: number = 0;
+  public totalBeforeTax: number = 0;
 
-  public ambiance: any = [
-    { label: 'Peaceful' },
-    { label: 'Unique' },
-    { label: 'Stylish' },
-    { label: 'Family-friendly' },
-    { label: 'Spacious' }
-  ]
+  public today = new Date()
+  public month = this.today.getMonth()
+  public year = this.today.getFullYear()
+  public day = this.today.getDate()
+  public minDate: any = new Date()
+  public customDatepickerHeader = CustomDatepickerHeader
 
-  public discountedOffer: any = [
-    { discount: 0, description: 'No discount is available at this time.', selected: false },
-    { discount: 20, description: 'Offer discounts for first 3 bookings.', selected: true },
-    { discount: 30, description: 'For stays of 7 nights or more.', selected: false },
-    { discount: 50, description: 'For stays of 28 nights or more.', selected: false },
-  ]
-
-  whereYouSleep: any = [
-    { images: '../assets/images/main/staycation-details/gallery1.png', label: 'Bedroom 1', description: '1 double bed, 1 single bed' },
-    { images: '../assets/images/main/staycation-details/gallery2.png', label: 'Bedroom 2', description: '1 double bed, 1 single bed' },
-    { images: '../assets/images/main/staycation-details/gallery3.png', label: 'Bedroom 3', description: '1 double bed, 1 single bed' },
-    { images: '../assets/images/main/staycation-details/gallery4.png', label: 'Bedroom 4', description: '1 double bed, 1 single bed' },
-    { images: '../assets/images/main/staycation-details/gallery5.png', label: 'Bedroom 5', description: '1 double bed, 1 single bed' },
-  ]
-
+  public checkInCheckOut = new FormGroup({
+    start: new FormControl(new Date(this.year, this.month, this.day)),
+    end: new FormControl(new Date(this.year, this.month, this.day))
+  })
 
   constructor(
     private router: Router,
@@ -86,14 +88,17 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService,
     private _globalStatic: GlobalStaticService,
+    private _user: UserService,
+    private _token: TokenService,
+    private _discount: DiscountService,
+    private _cancellation: CancellationService,
     public dialog: MatDialog,
-    
   ) {
 
   }
 
-
   ngOnInit(): void {
+    this._t = <ITokenClaims>this._token.decodedToken()
     this.amenitiesData = this._activatedRoute.paramMap.subscribe({
       next: (v: ParamMap) => {
         this._getStaycationDetails(<string>v.get('id'))
@@ -103,7 +108,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this._sub.unsubscribe()
   }
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
@@ -121,13 +126,27 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     this.isExpanded = !this.isExpanded;
   }
 
-  public viewImageBedroom(img:any):void  {
+  public handleDateChangeStart(e: MatDatepickerInputEvent<any, any>) {
+    console.log(e)
+  }
+
+  public handleDateChangeEnd(e: MatDatepickerInputEvent<any, any>) {
+    let { start, end } = this.checkInCheckOut.value
+    let ci = moment(start)
+    let co = moment(end)
+    let diff = co.diff(ci, 'days')
+    console.log(diff)
+    this.nights = (!isNaN(diff)) ? diff : 1
+    this._calculateTotal()
+  }
+
+  public viewImageBedroom(img: string): void  {
     this.dialog.open(WheretoSleepViewComponent, {
       width: '100%',
       height:'100%',
       maxWidth:'100%',
       maxHeight:'100%',
-      data: { bedImages:this.whereYouSleep[img]}
+      data: img
     });
     
   }
@@ -146,7 +165,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
 
   wishListToggle() {
-    this.wishlistIcons = !this.wishlistIcons;
+    (this.wishlistIcons) ? this._removeFromWishlist() : this._addToWishlist()
   }
 
 
@@ -166,70 +185,115 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
 
   navigateToBookStaycation() {
-    this.router.navigate(['main/book-staycation']);
-  }
-
-  public getTotalBeforeTax(total: number) {
-    return this._basicUtil.getTotalBeforeTax(total, this.serviceCharge)
+    let guests = JSON.stringify({ adult: this.guest_adults, children: this.guest_children, infant: this.guest_infants, pets: this.guest_pets })
+    this.router.navigate(['main/book-staycation'], { queryParams: { staycationId: this.details._id, guests, duration: JSON.stringify(this.checkInCheckOut.value) } });
   }
 
   private _getStaycationDetails(id: string) {
     this._sub.add(this._staycation.getStaycationDetails(id).subscribe({
       next: (res: any) => {
-        console.log(res)
         this.details = {
           ...res,
+          placeType: this._setPlaceType(res.placeType),
           amenities: res.amenities.join(", "),
           address: this._basicUtil.constructAddress(res.address),
           host: {
             name: this._basicUtil.constructName(res.host.name),
-            img: this._basicUtil.setImgUrl(res.host.img)
+            img: this._basicUtil.setImgUrl(res.host.img),
+            approvedAsProprietorOn: this._basicUtil.calculateUserDuration(res.host.approvedAsProprietorOn)
           },
-
+          bedroomList: res.bedroomList.map((b: string) =>  this._basicUtil.setImgUrl(b))
         }
-        this._pushMedia(res.media)
+        this.basePrice = res.price
+        this._getDiscountDesc(res.discounts)
+        this._getCancellationPolicy(res.cancellationPolicy)
+        this._checkWishlist(this._t.sub, this.details._id)
+        this._pushMedia(res.genImgList, res.cover)
       }
     }))
-
-
-   
   }
-
  
   private _getGlobalStaticFee() {
     this._sub.add(this._globalStatic.getStaticByType('service_fee').subscribe({
       next: (res: any) => {
-        console.log(res)
-        res.data.forEach((r: any) => {
-          // this.serviceCharge.push(r)
-          Object.keys(r).forEach((key: string) => {
-            this.serviceCharge.push({
-              name: this._basicUtil.propToReadable(key),
-              price: r[key]
-            })
-          })
-        })
+        this.baseServiceCharge = this._basicUtil.taxTotal(this.basePrice, res.data)
+        this.serviceCharge = this.baseServiceCharge * this.nights
+        this.totalBeforeTax = this.basePrice + this.serviceCharge
       }
     }))
   }
 
-
-  private _pushMedia(img: { cover: string, imgs: string[] }) {
-    this.gallery.push(this._basicUtil.setImgUrl(img.cover))
-    img.imgs.forEach((i: string) => {
-      this.gallery.push(this._basicUtil.setImgUrl(i))
+  private _pushMedia(genImgList: string[], cover: string) {
+    let c = this._basicUtil.setImgUrl(cover)
+    let gi = genImgList.map((g: string) => this._basicUtil.setImgUrl(g))
+    this.gallery.push(this._basicUtil.setImgUrl(cover))
+    gi.forEach((i: string) => {
+      if(i !== c) {
+        this.gallery.push(i)
+      }
     })
-
     this.imageSets = limit(this.gallery, 5);
-    console.log(this.imageSets)
   }
 
+  private _addToWishlist() {
+    this._sub.add(this._user.addToWishlist(this._t.sub, this.details._id).subscribe({
+      next: (res: any) => {
+        this.wishlistIcons = true
+      }
+    }))
+  }
 
+  private _removeFromWishlist() {
+    this._sub.add(this._user.removeToWishlist(this._t.sub, this.details._id).subscribe({
+      next: (res: any) => {
+        this.wishlistIcons = false
+      }
+    }))
+  }
 
+  private _checkWishlist(user: string, staycation: string) {
+    this._sub.add(this._user.checkInWishlist(user, staycation).subscribe({
+      next: (res: any) => {
+        this.wishlistIcons = true
+      },
+      error: ({ error }: HttpErrorResponse) => {
+        if(error.code === 'not-found') {
+          this.wishlistIcons = false
+        }
+      }
+    }))
+  }
 
+  private _setPlaceType(placeType: string): string {
+    let res: string = ''
+    switch(placeType) {
+      case 'room':
+        res = 'Room';
+        break;
+      case 'room_shared':
+        res = 'Shared Room';
+        break;
+      default:
+        res = 'Entire Place'
+    }
+    return res
+  }
 
+  private _getDiscountDesc(ds: any) {
+    let { discounts } = this._discount
+    let i = discounts.findIndex((d: any) => d.value === ds.discounts)
+    this.discount = discounts[i]
+  }
 
+  private _getCancellationPolicy(cp: any) {
+    let { cancellationPolicies } = this._cancellation
+    let i = cancellationPolicies.findIndex((c: any) => c.value === cp.cancellationPolicy)
+    this.cancellation = cancellationPolicies[i]
+  }
 
-
-
+  private _calculateTotal() {
+    this.basePrice = this.details.price * this.nights
+    this.serviceCharge = this.baseServiceCharge * this.nights
+    this.totalBeforeTax = this.serviceCharge + this.basePrice
+  }
 }
