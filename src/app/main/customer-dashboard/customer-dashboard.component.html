@@ -5,8 +5,8 @@
         </div>
         <div class="tab-wrapper">
             <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'today'}"
-                (click)="gotoToday('today')">Reservation</button> 
-                <!-- pinalitan ko ng reservation imbis na today -->
+                (click)="gotoToday('today')">Reservation</button>
+            <!-- pinalitan ko ng reservation imbis na today -->
             <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'calendar'}"
                 (click)="gotoCalendar('calendar')">Calendar</button>
             <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'listing'}"
@@ -15,5 +15,7 @@
                 (click)="gotoInbox('inbox')">Inbox</button>
         </div>
     </section>
-    <router-outlet></router-outlet>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
 </div>

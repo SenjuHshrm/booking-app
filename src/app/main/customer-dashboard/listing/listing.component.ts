@@ -83,14 +83,17 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  
-  
 
   public handleCreateListing(){
       this.router.navigate(['register-proprietorship']);
-  
-  
   }
+
+  
+  updateListing() {
+    this.router.navigate(['main/dashboard/update-listing']);
+  }
+  
+ 
 
   public handlePageChange(e: PageEvent) {
     this._getListings(e.pageIndex + 1, e.pageSize)
@@ -125,7 +128,7 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
             _id: list._id
           })
         })
-        this.dataSource = new MatTableDataSource<any>(this.hostListing)
+        this.dataSource = new MatTableDataSource<any>(this.hostListing);
       }
     }))
   }

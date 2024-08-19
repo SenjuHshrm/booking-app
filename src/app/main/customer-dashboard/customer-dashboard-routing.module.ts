@@ -23,6 +23,13 @@ const routes: Routes = [
         title: 'TaraGo | Listing'
       },
       {
+        path: 'update-listing',
+        loadChildren: () => import('./update-listing/update-listing.module').then(m => m.UpdateListingModule),
+        title: 'TaraGo | Listing'
+      },
+      
+      
+      {
         path: 'inbox',
         loadChildren: () => import('./inbox/inbox.module').then(m => m.InboxModule),
         title: 'TaraGo | Inbox'

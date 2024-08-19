@@ -53,6 +53,26 @@ hr {
   padding:0 !important;
   margin:0 !important;
 }
+.button_white_circle{
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  cursor: pointer;
+  color: #63AB68;
+  text-decoration: underline;
+  background-color: white;
+  border-radius: 100%;
+  padding:.5rem;
+  box-shadow: 1px 1px 5px #88888877;
+
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .remove_default_button {
   border: none;
@@ -60,7 +80,7 @@ hr {
   width: 100%;
   cursor: pointer;
   color: #63AB68;
-  text-decoration: underline;
+  
 
   mat-icon {
     margin: 0 !important;
@@ -154,8 +174,8 @@ hr {
   cursor: pointer;
 
   mat-icon {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
 }
@@ -187,6 +207,11 @@ hr {
 .close-button-normal:hover {
   background-color: black;
   color: #63AB68;
+}
+
+mat-icon {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 ////////Default Button//////
@@ -267,10 +292,7 @@ hr {
 //Calendar End
 
 
-mat-icon {
-  margin: 0 !important;
-  padding: 0 !important;
-}
+
 
 //Background Opacity Mat-Dialog Start
 
@@ -311,3 +333,11 @@ mat-icon {
 
 /* Custom scrollbar for WebKit-based browsers */
 
+
+
+.custom_mat_card{
+  background-color: white;
+  box-shadow: 1px 1px 5px #88888877;
+  border: none;
+  border-radius: 5px !important;
+}

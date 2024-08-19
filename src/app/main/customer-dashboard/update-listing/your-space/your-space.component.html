@@ -1,0 +1,180 @@
+<div class="update_left_content_your_space">
+    <div class="custom_mat_card properties_details photo_tour" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab1'}" 
+    (click)="selectTab('tab1')">
+        <div class="wrapper_title">
+            <div class="_title">Photo Tour</div>
+            <div class="_sub_title">Your property images</div>
+        </div>
+        <div class="swiper-main-container">
+            <swiper class="swiper-container" #swiper [slidesPerView]="3" [spaceBetween]="160"
+                [pagination]="false" (autoplayPause)="true" [draggable]="false" [loop]="true"
+                [breakpoints]="{}">
+                <ng-template class="custom-swiper-slide" swiperSlide *ngFor="let eventType of types">
+                    <div class="images">
+                        <img src={{eventType.images}} alt="images" draggable="false" loading="lazy" />
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab2'}" 
+    (click)="selectTab('tab2')">
+        <div class="wrapper_title">
+            <div class="_title">Property title</div>
+            <div class="truncate-multiline _sub_title">Condo in Alabang Condo in Alabang Condo in
+                Alabang Condo in Alabang</div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab3'}" 
+    (click)="selectTab('tab3')">
+        <div class="wrapper_title">
+            <div class="_title">Property type</div>
+            <div class="_sub_title">Entire Place</div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab4'}" 
+    (click)="selectTab('tab4')">
+        <div class="wrapper_title">
+            <div class="_title">Listing type</div>
+            <div class="_sub_title">Hotel</div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab5'}" 
+    (click)="selectTab('tab5')">
+        <div class="wrapper_title">
+            <div class="_title">Pricing</div>
+            <div class="_sub_title">
+                <div>₱<span>1,620</span>&nbsp;per night</div>
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab6'}" 
+    (click)="selectTab('tab6')">
+        <div class="wrapper_title">
+            <div class="_title">Availability</div>
+            <div class="_sub_title">
+                <div><span>1</span>-<span>365</span>&nbsp;nights stays</div>
+            </div>
+            <div class="_title">Same day advance notice.</div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details custom_basics_about" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab7'}" 
+    (click)="selectTab('tab7')">
+        <div class="wrapper_title">
+            <div class="_title">Basics about your place</div>
+            <div class="_sub_title">
+                <div><span>4</span>&nbsp;guests</div>
+                <div><span>2</span>&nbsp;bedsrooms</div>
+                <div><span>2</span>&nbsp;beds</div>
+                <div><span>2</span>&nbsp;bathroom</div>
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab8'}" 
+    (click)="selectTab('tab8')">
+        <div class="wrapper_title">
+            <div class="_title">Description</div>
+            <div class="truncate-multiline _sub_title">This is sample This is sample This is sample This
+                is sample This is sample This is sample</div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details custom_amenities" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab9'}" 
+    (click)="selectTab('tab9')">
+        <div class="wrapper_title">
+            <div class="_title">Amenities</div>
+            <div class="_sub_title">
+                <div class="truncate-multiline custom_bg">Wifi</div>
+                <div class="truncate-multiline custom_bg">Aircon</div>
+                <div class="truncate-multiline custom_bg">Washing Machine</div>
+                <div class="truncate-multiline custom_bg">Refrigerator</div>
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab10'}" 
+    (click)="selectTab('tab10')">
+        <div class="wrapper_title">
+            <div class="_title">Location</div>
+            <div class="_sub_title truncate-multiline">San Pablo City San Pablo City San Pablo City
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab11'}" 
+    (click)="selectTab('tab11')">
+        <div class="wrapper_title">
+            <div class="_title">Confirm Reservations</div>
+            <div class="_sub_title">
+                <div>Instant Book</div>
+                <!-- <div>Approved or decline requests</div> -->
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details custom_house_rules" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab12'}" 
+    (click)="selectTab('tab12')">
+        <div class="wrapper_title">
+            <div class="_title">Your property have these?</div>
+            <div class="_sub_title">
+                <div class="truncate-multiline custom_bg">CCTv Camera</div>
+                <div class="truncate-multiline custom_bg">Weapons</div>
+                <div class="truncate-multiline custom_bg">Dangerous Animals</div>
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details custom_house_rules" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab13'}" 
+    (click)="selectTab('tab13')">
+        <div class="wrapper_title">
+            <div class="_title">Ground / House Rules</div>
+            <div class="_sub_title">
+                <div class="truncate-multiline custom_bg">No events</div>
+                <div class="truncate-multiline custom_bg">No Party</div>
+                <div class="truncate-multiline custom_bg">No Infants</div>
+                <div class="truncate-multiline custom_bg">No Babies</div>
+                <div class="truncate-multiline custom_bg">10 AM Check-In</div>
+                <div class="truncate-multiline custom_bg">10 PM Check-Out</div>
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab14'}" 
+    (click)="selectTab('tab14')">
+        <div class="wrapper_title">
+            <div class="_title">Discount</div>
+            <div class="_sub_title truncate-multiline">
+                <span>20%</span> Offer discounts for first 3 bookings
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab15'}" 
+    (click)="selectTab('tab15')">
+        <div class="wrapper_title">
+            <div class="_title">Cancellation Policy</div>
+            <div class="_sub_title">
+                Flexible
+            </div>
+        </div>
+    </div>
+    <div class="custom_mat_card properties_details" 
+    [ngClass]="{'active_your_space': selectedTab === 'tab16'}" 
+    (click)="selectTab('tab16')">
+        <div class="wrapper_title">
+            <div class="_title">Custom Link</div>
+            <div class="_sub_title">
+                Add Details
+            </div>
+        </div>
+    </div>
+
+</div>

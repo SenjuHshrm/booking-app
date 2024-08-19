@@ -34,23 +34,23 @@
     display: flex;
     flex-direction: column;
 
+
     .custom-tabs {
       display: flex;
+      justify-content: flex-start;
       overflow-x: auto;
-      padding: 1rem 0 0
+      gap:1rem;
+      padding: 1rem 1rem 0;
+      width: 100%;
     }
 
     .tab {
-      padding: 10px 20px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 1rem;
       white-space: pre;
-      // border: 1px solid #ccc;
       border-bottom: none;
-      border-radius: 5px 5px 0 0;
-      margin-right: 10px;
+      padding-bottom:.3rem;
     }
 
     .tab.active {
@@ -120,4 +120,17 @@
     }
   }
 
+}
+
+
+@media only screen and (max-width: 600px) {
+  .governmentId {
+    .governmentId_tab {
+      .custom-tabs {
+        justify-content:center !important;
+      }
+      .tab {
+      }
+      }
+    }
 }

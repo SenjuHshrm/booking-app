@@ -11,9 +11,10 @@ import { MatMenuModule } from '@angular/material/menu';
 
 
 
+
 @NgModule({
   declarations: [
-    ListingComponent
+    ListingComponent,
   ],
   imports: [
     CommonModule,

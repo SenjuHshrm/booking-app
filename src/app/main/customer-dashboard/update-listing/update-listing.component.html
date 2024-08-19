@@ -1,0 +1,72 @@
+<div class="update_listing">
+    <div class="update_wrapper">
+        <div class="update_left_panel"
+        [ngClass]="{'open': isPanelOpen === true, 'close': isPanelOpen === false}">
+            <div class="update_left_header_title custom_vissible" [@fadeInAnimation]>
+                <div class="back_btn" (click)="goBack()">
+                    <button>
+                        <mat-icon>chevron_left</mat-icon>
+                        <span>Back</span>
+                    </button>
+                </div>
+                <div class="close_btn" (click)="closePanel()">
+                    <button class="close-button-normal">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div class="title">
+                    Listing Editor
+                </div>
+            </div>
+            <div class="update_left_content"  [@fadeInAnimation]>
+                <!-- tab header-->
+                <div class="update_left_tab_header">
+                    <button class="remove_default_button  your_space" [ngClass]="{'active_your_space': selectedTab === 'tab1'}"
+                        (click)="selectTab('tab1')">
+                        Your space
+                    </button>
+                    <button class="remove_default_button  your_guide" [ngClass]="{'active_your_guide': selectedTab === 'tab2'}" disabled
+                        (click)="selectTab('tab2')">
+                        Arrival guide
+                    </button>
+                </div>
+                <!---->
+
+                <!-- Your space tab with data start-->
+                <div class="your_space_with_data_container" *ngIf="selectedTab ==='tab1'">
+                    <app-your-space></app-your-space>
+                </div>
+                <!-- end-->
+                <!-- Arrival guide tab with data start-->
+                <div class="your_guide_with_data__container" *ngIf="selectedTab ==='tab2'">
+                    <app-arrival-guide></app-arrival-guide>
+                </div>
+                <!-- end-->
+            </div>
+        </div>
+
+        <div class="update_right_panel"  >
+            <div class="update_header_wrapper">
+                <div class="update_left_header_title">
+                    <div class="back_btn">
+                        <button>
+                            <mat-icon>chevron_left</mat-icon>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                    <div class="title">
+                        Listing Editor
+                    </div>
+                    <div class="burger_btn" (click)="togglePanel()">
+                        <div class="button_white_circle remove_default_button">
+                            <mat-icon>menu</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div [@fadeInAnimation]>Sample</div>
+            </div>
+        </div>
+    </div>
+</div>

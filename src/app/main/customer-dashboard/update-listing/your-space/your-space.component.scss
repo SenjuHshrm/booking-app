@@ -1,0 +1,150 @@
+.update_left_content_your_space {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    padding: .5rem 1rem .5rem;
+
+    /////global////
+
+
+    .properties_details {
+        border: 2px solid white;
+        cursor: pointer;
+        transition: transform 0.2s;
+
+        .wrapper_title {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
+
+            ._title {
+                font-size: clamp(.8rem, .8vw, 6rem);
+                color: #888888
+            }
+
+            ._sub_title {
+                font-weight: bold;
+                font-size: clamp(.8rem, .9vw, 6rem);
+
+            }
+        }
+    }
+
+    .truncate-multiline {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        /* Number of lines to display */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-bottom: .2rem;
+        line-height: 2rem;
+    }
+
+    .custom_bg {
+        padding: 2px 6px 2px;
+        border-radius: 20px;
+        background-color: #eeeeee;
+        text-align: center;
+        color: black;
+    }
+
+    .active_your_space {
+        border: 2px solid #63AB68;
+        animation: smoothZoom 0.4s forwards;
+    }
+
+    @keyframes smoothZoom {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.03);
+        }
+    }
+
+    /////global////
+
+
+    .photo_tour {
+        flex: none;
+        padding: 1rem;
+        height: 17rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        cursor: pointer;
+
+
+        // swiper default start css
+        .swiper-container {
+            width: 100%;
+            height: 90%;
+            position: relative;
+      
+            // border: 3px solid rgb(255, 0, 0);
+        }
+
+        .custom-swiper-slide {
+            position: relative;
+            display: block;
+            margin: auto;
+            height: 100% !important;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            .images {
+                img {
+                    height: 10rem;
+                    width: 10rem;
+                    object-fit: cover;
+                }
+            }
+
+        }
+
+        // swiper default end css
+    }
+
+    .custom_basics_about {
+        ._sub_title {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+
+    .custom_amenities {
+        ._sub_title {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 5px;
+        }
+
+    }
+
+    .properties_details {
+        padding: 1rem;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        cursor: pointer;
+    }
+
+    .custom_house_rules {
+        ._sub_title {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 5px;
+        }
+    }
+}
