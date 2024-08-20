@@ -700,6 +700,90 @@
                     flex-direction: column;
                     gap: 1rem;
 
+                    .cancellation-policy {
+                        font-family: Poppins-Regular !important;
+                        width: 100%;
+
+                        .title-wrapper {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+                            margin: 2rem 0 0rem;
+
+                            .title {
+                                font-size: clamp(1rem, 1.2vw, 8rem);
+
+                            }
+                        }
+
+                        &-wrapper {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1rem;
+                            margin: 1rem 0 1rem;
+
+                            .custom-radio {
+                                position: relative;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                height: fit-content;
+                                cursor: pointer;
+                                font-size: 15px;
+                                user-select: none;
+                                width: 100%; // Set the width as needed
+                                border: 2px solid #63AB68;
+                                border-radius: 5px;
+                                padding: .8rem 0 .8rem;
+                            }
+        
+                            .price {
+                                font-weight: bolder;
+                            }
+        
+                            .custom-radio input {
+                                position: relative;
+                                opacity: 0;
+                                cursor: pointer;
+                            }
+        
+        
+                            .radio-mark {
+                                position: absolute;
+                                bottom: 5;
+                                right: .7rem;
+                                height: 35px;
+                                width: 35px;
+                                background-color: #eee;
+                                border-radius: 50%;
+                                border-color: #63AB68;
+                            }
+        
+                            .custom-radio input:checked~.radio-mark {
+                                background-color: #63AB68;
+                            }
+        
+                            .radio-mark:after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+                            }
+        
+                            .custom-radio input:checked~.radio-mark:after {
+                                display: block;
+                            }
+        
+                            .custom-radio .radio-mark:after {
+                                top: 14px;
+                                left: 13px;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: white;
+                            }
+                        }
+                    }
+
                     .rate-night {
                         font-size: clamp(1rem, 1vw, 8rem);
                         font-weight: bolder;

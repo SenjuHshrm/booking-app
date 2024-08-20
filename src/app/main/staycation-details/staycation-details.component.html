@@ -112,8 +112,8 @@
                               <mat-icon>bookmark_border</mat-icon>
                          </div>
                          <div class="info">
-                              <div class="title">Cancellation Policy: {{ cancellation.title }}</div>
-                              <div class="description">{{ cancellation.desc }}</div>
+                              <div class="title">Cancellation Policy: {{ cancellation[0].title }}</div>
+                              <div class="description">{{ cancellation[0].desc }}</div>
                          </div>
                     </div>
                     <hr>
@@ -280,6 +280,22 @@
                                         <mat-date-range-picker #cicoPicker [calendarHeaderComponent]="customDatepickerHeader"></mat-date-range-picker>
                                    </mat-form-field>
                               </div>
+                              <div class="cancellation-policy" *ngIf="showCancelOpts">
+                                   <div class="title-wrapper">
+                                        <div class="title">Select Cancellation Policy</div>
+                                   </div>
+                                   <div class="cancellation-policy-wrapper">
+                                        <label class="custom-radio" *ngFor="let opt of cancellation">
+                                             <input type="radio" [value]="opt.code" (change)="selectCancellationOption($event, opt.price)" [checked]="selectedCancellationPolicy === opt.code"/>
+                                             <div class="radio-mark"></div>
+                                             <div class="wrapper">
+                                                  <div>{{ opt.title }}</div>
+                                                  <div class="price">₱ {{ opt.price }}</div>
+                                                  <div></div>
+                                             </div>
+                                        </label>
+                                   </div>
+                              </div>
                               <div class="add-guest">
                                    <div class="guest-wrapper">
                                         <div class="addguest">Add guest</div>
@@ -311,11 +327,11 @@
                                         </div>
                                    </div>
                               </div>
-                              <button (click)="navigateToBookStaycation()">Reserve</button>
+                              <button (click)="navigateToBookStaycation()" [disabled]="!checkInCheckOut.valid">Reserve</button>
                          </div>
                     </form>
                     <div class="total-computation-wrapper">
-                         <div class="note" *ngIf="details.bookingProcess === 'for_approval'">You won’t be charged yet</div>
+                         <!-- <div class="note" *ngIf="details.bookingProcess === 'for_approval'">You won’t be charged yet</div> -->
                          <div class="computation">
                               <div class="comp">
                                    <td><span>₱ {{ details.price }}</span> x {{ nights }} {{ nights === 1 ? 'night' : 'nights' }}</td>

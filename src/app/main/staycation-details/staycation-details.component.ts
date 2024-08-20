@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { CancellationService } from './../../services/cancellation.service';
 import { DiscountService } from './../../services/discount.service';
@@ -9,7 +9,7 @@ import { UserService } from './../../services/user.service';
 import { GlobalStaticService } from './../../services/global-static.service';
 import { BasicUtilService } from './../../services/basic-util.service';
 import { StaycationService } from './../../services/staycation.service';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
@@ -60,7 +60,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public wishlistId!: string;
 
   public discount: any = {};
-  public cancellation: any;
+  public cancellation: any = [];
 
   public isExpanded: boolean = false;
 
@@ -74,13 +74,19 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public month = this.today.getMonth()
   public year = this.today.getFullYear()
   public day = this.today.getDate()
-  public minDate: any = new Date()
+  public minDate: any// = new Date()
   public customDatepickerHeader = CustomDatepickerHeader
+  public showCancelOpts: boolean = false
+  public selectedCancellationPolicy: string = '1'
 
   public checkInCheckOut = new FormGroup({
-    start: new FormControl(new Date(this.year, this.month, this.day)),
-    end: new FormControl(new Date(this.year, this.month, this.day))
+    // start: new FormControl(new Date(this.year, this.month, this.day)),
+    // end: new FormControl(new Date(this.year, this.month, this.day))
+    start: new FormControl('', [Validators.required]),
+    end: new FormControl('', [Validators.required])
   })
+
+  public refundOpts: any = []
 
   constructor(
     private router: Router,
@@ -101,14 +107,51 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     this._t = <ITokenClaims>this._token.decodedToken()
     this.amenitiesData = this._activatedRoute.paramMap.subscribe({
       next: (v: ParamMap) => {
-        this._getStaycationDetails(<string>v.get('id'))
+        // this._getStaycationDetails(<string>v.get('id'))
+        this._getDetailsAndTax(<string>v.get('id'))
       }
     })
-    this._getGlobalStaticFee();
+    // this._getGlobalStaticFee();
   }
 
   ngOnDestroy(): void {
     this._sub.unsubscribe()
+  }
+
+  private _getDetailsAndTax(id: string) {
+    let staycation$ = this._staycation.getStaycationDetails(id);
+    let taxes$ = this._globalStatic.getStaticByType('service_fee');
+    forkJoin([staycation$, taxes$]).subscribe({
+      next: ([ staycation, taxes ]) => {
+        this.details = {
+          ...staycation,
+          placeType: this._setPlaceType(staycation.placeType),
+          amenities: staycation.amenities.join(", "),
+          address: this._basicUtil.constructAddress(staycation.address),
+          host: {
+            name: this._basicUtil.constructName(staycation.host.name),
+            img: this._basicUtil.setImgUrl(staycation.host.img),
+            approvedAsProprietorOn: this._basicUtil.calculateUserDuration(staycation.host.approvedAsProprietorOn)
+          },
+          bedroomList: staycation.bedroomList.map((b: string) =>  this._basicUtil.setImgUrl(b))
+        }
+        this.basePrice = staycation.price
+        this._getDiscountDesc(staycation.discounts)
+        
+        this._checkWishlist(this._t.sub, this.details._id)
+        this._pushMedia(staycation.genImgList, staycation.cover)
+
+        this.baseServiceCharge = this._basicUtil.taxTotal(this.basePrice, taxes.data)
+        this.serviceCharge = this.baseServiceCharge * this.nights
+        this.totalBeforeTax = this.basePrice + this.serviceCharge
+
+        this._getCancellationPolicy(staycation.cancellationPolicy)
+
+      },
+      error: ({ error }: HttpErrorResponse) => {
+        console.log(error)
+      }
+    })
   }
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
@@ -131,13 +174,21 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   }
 
   public handleDateChangeEnd(e: MatDatepickerInputEvent<any, any>) {
+    this.showCancelOpts = false
     let { start, end } = this.checkInCheckOut.value
     let ci = moment(start)
     let co = moment(end)
     let diff = co.diff(ci, 'days')
-    console.log(diff)
-    this.nights = (!isNaN(diff)) ? diff : 1
+    this.nights = (!isNaN(diff) && diff !== 0) ? diff : 1
     this._calculateTotal()
+    this._getCancellationPolicy(this.details.cancellationPolicy)
+    if(ci.diff(moment(new Date())) >= 1) this.showCancelOpts = true
+  }
+
+  public selectCancellationOption(e: Event, price: number) {
+    let inputElement = <HTMLInputElement>e.target
+    this.selectedCancellationPolicy = inputElement.value
+    this.totalBeforeTax = price
   }
 
   public viewImageBedroom(img: string): void  {
@@ -186,41 +237,15 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
   navigateToBookStaycation() {
     let guests = JSON.stringify({ adult: this.guest_adults, children: this.guest_children, infant: this.guest_infants, pets: this.guest_pets })
-    this.router.navigate(['main/book-staycation'], { queryParams: { staycationId: this.details._id, guests, duration: JSON.stringify(this.checkInCheckOut.value) } });
-  }
-
-  private _getStaycationDetails(id: string) {
-    this._sub.add(this._staycation.getStaycationDetails(id).subscribe({
-      next: (res: any) => {
-        this.details = {
-          ...res,
-          placeType: this._setPlaceType(res.placeType),
-          amenities: res.amenities.join(", "),
-          address: this._basicUtil.constructAddress(res.address),
-          host: {
-            name: this._basicUtil.constructName(res.host.name),
-            img: this._basicUtil.setImgUrl(res.host.img),
-            approvedAsProprietorOn: this._basicUtil.calculateUserDuration(res.host.approvedAsProprietorOn)
-          },
-          bedroomList: res.bedroomList.map((b: string) =>  this._basicUtil.setImgUrl(b))
-        }
-        this.basePrice = res.price
-        this._getDiscountDesc(res.discounts)
-        this._getCancellationPolicy(res.cancellationPolicy)
-        this._checkWishlist(this._t.sub, this.details._id)
-        this._pushMedia(res.genImgList, res.cover)
+    let cancelInd = this.cancellation.findIndex((cancel: any) => cancel.code === this.selectedCancellationPolicy)
+    this.router.navigate(['main/book-staycation'], {
+      queryParams: { 
+        staycationId: this.details._id,
+        guests,
+        duration: JSON.stringify(this.checkInCheckOut.value),
+        cancellation: JSON.stringify(this.cancellation[cancelInd])
       }
-    }))
-  }
- 
-  private _getGlobalStaticFee() {
-    this._sub.add(this._globalStatic.getStaticByType('service_fee').subscribe({
-      next: (res: any) => {
-        this.baseServiceCharge = this._basicUtil.taxTotal(this.basePrice, res.data)
-        this.serviceCharge = this.baseServiceCharge * this.nights
-        this.totalBeforeTax = this.basePrice + this.serviceCharge
-      }
-    }))
+    });
   }
 
   private _pushMedia(genImgList: string[], cover: string) {
@@ -286,14 +311,25 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   }
 
   private _getCancellationPolicy(cp: any) {
+    this.cancellation = []
     let { cancellationPolicies } = this._cancellation
     let i = cancellationPolicies.findIndex((c: any) => c.value === cp.cancellationPolicy)
-    this.cancellation = cancellationPolicies[i]
+    this.cancellation.push({ ...cancellationPolicies[i], price: this.totalBeforeTax, code: '1' })
+    if(this.details.cancellationPolicy.nonRefundable === 'yes') {
+      this.cancellation.push({
+        value: 'non_refundable',
+        title: 'Non-Refundable',
+        desc: 'This reservation is non-refundable',
+        price: this.totalBeforeTax - (this.totalBeforeTax * .1),
+        code: '2'
+      })
+    }
   }
 
   private _calculateTotal() {
     this.basePrice = this.details.price * this.nights
     this.serviceCharge = this.baseServiceCharge * this.nights
-    this.totalBeforeTax = this.serviceCharge + this.basePrice
+    this.totalBeforeTax =  this.serviceCharge + this.basePrice - this._discount.calculateDiscount(this.serviceCharge + this.basePrice, this.details.discounts.value, this.details.discounts.discounts, 0, this.nights)
   }
+  
 }

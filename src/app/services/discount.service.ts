@@ -26,5 +26,29 @@ export class DiscountService {
 
   constructor() { }
 
+  public calculateDiscount(totalBeforeTax: number, dscVal: number, value: string, bookings: number, nights: number): number {
+    let res: number = 0
+    switch(value) {
+      case 'discount_1':
+        if(bookings <= 3) {
+          res = totalBeforeTax * (dscVal / 100)
+        }
+        break;
+      case 'discount_2':
+        if(nights >= 7) {
+          res = totalBeforeTax * (dscVal / 100)
+        }
+        break;
+      case 'discount_3':
+        if(nights >= 28) {
+          res = totalBeforeTax * (dscVal / 100)
+        }
+        break;
+      default:
+        res = 0;
+    }
+    return res
+  }
+
   
 }

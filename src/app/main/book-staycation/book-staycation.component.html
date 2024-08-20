@@ -9,7 +9,7 @@
         </header>
         <section class="booking-content">
             <div class="info-details">
-                <form>
+                <div>
                     <div class="your-trip">
                         <div class="title">Your trip</div>
                         <div class="date-wrapper">
@@ -62,33 +62,68 @@
                             </div>
                         </div>
                         <div class="payment-card-select custom-select">
-                            <select id="treats" name="treats">
-                                <option value="Credit Card or debit card">Credit Card or debit card</option>
-                                <option value="Gcash">Gcash</option>
-                                <option value="Master Card">Master Card</option>
+                            <select id="treats" name="treats" [(ngModel)]="selectedPaymentType">
+                                <option value="card">Credit Card or debit card</option>
+                                <option value="gcash">Gcash</option>
                             </select>
                         </div>
-                        <div class="wrapper">
-
-                            <div class="expiration-style">
-                                <div>Expiration</div>
-                                <input type="date" name="date" class="custom-date-input" placeholder="" />
+                        <ng-template [ngIf]="selectedPaymentType === 'card'">
+                            <div class="zip-code">
+                                <input type="text" alt="ccv" name="cardNumber" [(ngModel)]="cardPayment.cardNumber" pattern="[0-9]{16}" placeholder="Card Number" maxlength="16" />
                             </div>
-
-                            <div class="ccv-input">
-                                <input type="number" alt="ccv" name="ccv" value="" placeholder="CCV" />
+                            <div class="wrapper">
+    
+                                <div class="expiration-style date-cvv">
+                                    <div>Expiration</div>
+                                    <input type="text" name="expirationMonth" class="custom-date-input" [(ngModel)]="cardPayment.expiration.month" pattern="[0-9]{2}" placeholder="MM" maxlength="2" min="12" />
+                                    <input type="text" name="expirationYear" class="custom-date-input" [(ngModel)]="cardPayment.expiration.year" pattern="[0-9]{2}" placeholder="YY" maxlength="2" min="99" />
+                                </div>
+    
+                                <div class="ccv-input">
+                                    <input type="text" name="ccv" [(ngModel)]="cardPayment.cvv" pattern="[0-9]{3}" placeholder="CVV" max="999" maxlength="3"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="zip-code">
-                            <input type="number" alt="ccv" name="ccv" value="" placeholder="Zipcode" />
-                        </div>
+                            <div class="zip-code">
+                                <input type="text" name="addressLine1" [(ngModel)]="cardPayment.address.line1" placeholder="Address (Line 1)" />
+                            </div>
+                            <div class="zip-code">
+                                <input type="text" name="addressLine2" [(ngModel)]="cardPayment.address.line2" placeholder="Address (Line 2)" />
+                            </div>
+                            <div class="zip-code">
+                                <input type="text" name="addressCity" [(ngModel)]="cardPayment.address.city" placeholder="City" />
+                            </div>
+                            <div class="zip-code">
+                                <input type="text" name="addressState" [(ngModel)]="cardPayment.address.state" placeholder="State" />
+                            </div>
+                            <div class="zip-code">
+                                <input type="number" name="addressZip" [(ngModel)]="cardPayment.address.zip" placeholder="Zipcode" />
+                            </div>
+                            <div class="zip-code">
+                                <input type="text" name="name" [(ngModel)]="cardPayment.name" placeholder="Name on Card" />
+                            </div>
+                            <div class="zip-code">
+                                <input type="text" name="email" [(ngModel)]="cardPayment.email" placeholder="Email" />
+                            </div>
+                            <div class="zip-code">
+                                <input type="text" name="contact" [(ngModel)]="cardPayment.phone" placeholder="Phone Number" />
+                            </div>
+                        </ng-template>
+
+                        <ng-template [ngIf]="selectedPaymentType === 'gcash'">
+                            <div class="zip-code">
+                                <input type="text" name="fullname" [(ngModel)]="gcashPayment.fullName" placeholder="Account name"/>
+                            </div>
+                            <div class="zip-code">
+                                <input type="tel" name="cellnum" [(ngModel)]="gcashPayment.acctNum" placeholder="Account number"/>
+                            </div>
+                        </ng-template>
 
                     </div>
                     <div class="cancellation-policy">
                         <div class="title">Cancellation Policy</div>
                         <!-- <div class="subtitle">Message the Porprierotor</div> -->
                         <!-- <div class="description">This Reservation is non-refundable</div> -->
-                        <div class="description">This Reservation is refundable</div>
+                        <div class="description">{{ selectedCancellation.desc }}</div>
                         <div class="seemore" (click)="onClickLearnMore()">Learn more</div>
                     </div>
                     <div class="ground-rules">
@@ -96,11 +131,11 @@
                         <p class="subtitle">We ask every guest to remember a few simple things about what makes a great
                             guest.</p>
                         <ul class="description">
-                            <li>Follow the house rules.</li>
-                            <li>Treat your Porprierotor’s home like your own.</li>
+                            <li *ngFor="let rule of staycationDetails.houseRules">{{ rule }}</li>
+                            <li>{{ staycationDetails.houseRulesDetailed }}</li>
                         </ul>
                     </div>
-                    <div class="notes">
+                    <div class="notes" *ngIf="staycationDetails.bookingProcess">
                         <div><mat-icon>wb_sunny</mat-icon></div>
                         <p>
                             Your reservation won’t be confirmed until the Porprierotor accepts your request (within 24
@@ -119,47 +154,51 @@
                             booking
                             request.</p>
                     </div>
-                    <button>Request to book</button>
-                </form>
+                    <button (click)="initiatePaymentIntent()">Request to book</button>
+                </div>
             </div>
             <div class="price-details">
                 <div class="title">Price Details</div>
                 <div class="price-details-card">
                     <div class="image">
-                        <img src="../../assets/images/main/book-staycation/image.jpg" loading="lazy" alt="images"
+                        <img [src]="staycationDetails.cover" loading="lazy" alt="images"
                             [draggable]="false" />
                     </div>
                     <div class="title-wrapper">
-                        <div class="title">Condo in Alabang</div>
-                        <div class="heart">
+                        <div class="title">{{ staycationDetails.name }}</div>
+                        <!-- <div class="heart">
                             <mat-icon>stars</mat-icon>
                             <div>Rate</div>
                             <div>7.00</div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="guest-desc">
-                        <span>3 guests</span> - <span>1 bedroom</span> - <span>2 beds</span> - <span>1 bath</span>
+                        <span>{{ staycationDetails.details.guests }} guests</span> - <span>{{ staycationDetails.details.bedrooms }} bedroom</span> - <span>{{ staycationDetails.details.beds }} beds</span> - <span>{{ staycationDetails.details.bathroom }} bath</span>
                     </div>
 
                     <hr>
 
                     <div class="total-computation-wrapper">
-                        <div class="note">You won’t be charged yet</div>
+                        <div class="note" *ngIf="staycationDetails.bookingProcess === 'for_approval'">You won’t be charged yet</div>
                         <div class="computation">
                             <div class="comp">
-                                <td><span>₱2,000</span> x 2 night</td>
-                                <td>₱4000</td>
+                                <td><span>₱ {{ staycationDetails.price }}</span> x {{ nights }} {{ (nights > 1) ? 'nights' : 'night' }}</td>
+                                <td>₱ {{ staycationDetails.price * nights }}</td>
                             </div>
                             <div class="comp">
                                 <td>TaraGo Service Fee</td>
-                                <td>₱500</td>
+                                <td>₱ {{ serviceCharge }}</td>
+                            </div>
+                            <div class="comp">
+                                <td>Discount</td>
+                                <td>{{ discount.value * 100 }}%</td>
                             </div>
                         </div>
                     </div>
 
                     <div class="total">
                         <div>Total before taxes</div>
-                        <div>₱2,500 total</div>
+                        <div>₱ {{ totalBeforeTax }} total</div>
                     </div>
 
                 </div>
