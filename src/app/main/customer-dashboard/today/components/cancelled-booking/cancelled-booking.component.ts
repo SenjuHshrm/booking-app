@@ -28,7 +28,7 @@ const GUESTNAMES: any[] = [
 
 ];
 
-const REASONS: any[] = ['Not pay properly','No response yet','Not arrive on time'];
+const REASONS: any[] = ['Lorem ipsum dolor','Lorem ipsum dolor','Lorem ipsum dolor'];
 
 const DATE: any[] = [
   {cancelleddate:new Date()}

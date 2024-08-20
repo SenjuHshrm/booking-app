@@ -15,6 +15,7 @@ import { TimeFormatPipe } from './time-format.pipe';
 import { PluralizePipe } from './pluralize-interval.pipe';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { CancelledBookingComponent } from './cancelled-booking/cancelled-booking.component';
+import { PendingReviewComponent } from './pending-review/pending-review.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CancelledBookingComponent } from './cancelled-booking/cancelled-booking
     TimeFormatPipe,
     PluralizePipe,
     ReviewsComponent,
-    CancelledBookingComponent
+    CancelledBookingComponent,
+    PendingReviewComponent
   ],
   imports: [
     CommonModule,

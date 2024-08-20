@@ -56,16 +56,14 @@
             #regPropFormDir="ngForm" [formGroup]="regPropForm">
             <div class="mat-horizontal-stepper-wrapper">
                 <mat-stepper linear [labelPosition]="'bottom'" #regPropFormStepper>
-                    <mat-step [stepControl]="regPropForm.controls['step2']"
-                        errorMessage="Please at least one (1) type of place will guest have">
+                    <mat-step [stepControl]="regPropForm.controls['step2']" errorMessage="Please at least one (1) type of place will guest have">
                         <ng-template matStepLabel></ng-template>
                         <app-step2 formGroupName="step2"></app-step2>
                         <div class="nextprev_btn-bottom">
                             <button mat-button type="button" matStepperNext (click)="handleNextStep()">Next</button>
                         </div>
                     </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step1']"
-                        errorMessage="Please at least one (1) description of your place">
+                    <mat-step [stepControl]="regPropForm.controls['step1']" errorMessage="Please at least one (1) description of your place">
                         <ng-template matStepLabel></ng-template>
                         <app-step1 formGroupName="step1"
                             [placetype]="regPropForm.get('step2')?.get('placeType')?.value"></app-step1>
@@ -74,8 +72,7 @@
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                     </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step3']"
-                        errorMessage="Please at least one (1) tell the guest where the place is located">
+                    <mat-step [stepControl]="regPropForm.controls['step3']" errorMessage="Please at least one (1) tell the guest where the place is located">
                         <ng-template matStepLabel></ng-template>
                         <app-step3 formGroupName="step3"></app-step3>
                         <div class="nextprev_btn-bottom">
@@ -83,8 +80,7 @@
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                     </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step4']"
-                        errorMessage="Please at least one (1) share some basics about your place">
+                    <mat-step [stepControl]="regPropForm.controls['step4']" errorMessage="Please at least one (1) share some basics about your place">
                         <ng-template matStepLabel></ng-template>
                         <app-step4 formGroupName="step4"></app-step4>
                         <div class="nextprev_btn-bottom">
@@ -92,8 +88,7 @@
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                     </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step5']"
-                        errorMessage="Please at least one (1) inform your visitors about the amenities and features available at your location.">
+                    <mat-step [stepControl]="regPropForm.controls['step5']" errorMessage="Please at least one (1) inform your visitors about the amenities and features available at your location.">
                         <ng-template matStepLabel></ng-template>
                         <app-step5 formGroupName="step5"></app-step5>
                         <div class="nextprev_btn-bottom">
@@ -101,8 +96,7 @@
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                     </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step6']"
-                        errorMessage="Please provide at least five (5) photos of your staycation/event place.">
+                    <mat-step [stepControl]="regPropForm.controls['step6']" errorMessage="Please provide at least five (5) photos of your staycation/event place.">
                         <ng-template matStepLabel></ng-template>
                         <app-step6 formGroupName="step6" (setCover)="handleSetCover($event)"
                             (removeCover)="handleRemoveCover()"></app-step6>
@@ -111,8 +105,7 @@
                             <button mat-button type="button" matStepperNext>Next</button>
                         </div>
                     </mat-step>
-                    <mat-step [stepControl]="regPropForm.controls['step7']"
-                        errorMessage="Please give your house a title">
+                    <mat-step [stepControl]="regPropForm.controls['step7']" errorMessage="Please give your house a title">
                         <ng-template matStepLabel></ng-template>
                         <app-step7 formGroupName="step7"></app-step7>
                         <div class="nextprev_btn-bottom">

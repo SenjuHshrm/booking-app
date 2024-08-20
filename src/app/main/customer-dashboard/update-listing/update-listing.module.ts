@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SwiperModule } from 'swiper/angular';
 import { YourSpaceComponent } from './your-space/your-space.component';
 import { ArrivalGuideComponent } from './arrival-guide/arrival-guide.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ArrivalGuideComponent } from './arrival-guide/arrival-guide.component';
     CommonModule,
     UpdateListingRoutingModule,
     MatIconModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ]
 })
 export class UpdateListingModule { }

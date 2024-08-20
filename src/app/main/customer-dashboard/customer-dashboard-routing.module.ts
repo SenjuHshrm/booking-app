@@ -8,7 +8,7 @@ const routes: Routes = [
     component: CustomerDashboardComponent,
     children: [
       {
-        path: 'today',
+        path: 'reservation',
         loadChildren: () => import('./today/today.module').then(m => m.TodayModule),
         title: 'TaraGo | Reservation'
       },

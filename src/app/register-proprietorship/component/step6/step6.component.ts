@@ -110,13 +110,9 @@ export class Step6Component implements OnInit {
   ///Where to sleep//
 
   /////Categorarize Uploads///
-
-
   addSectionCat() {
     this.uploadSectionsCatImages.push({image:null
     });
-
-
   }
 
 
