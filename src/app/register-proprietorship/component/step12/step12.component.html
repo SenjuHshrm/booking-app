@@ -14,7 +14,7 @@
         </div>
         <div class="radio_button_container" *ngFor="let cancellPolicy of standardData; let i = index">
             <!-- <div class="radio-button-wrapper"  (click)="selectPolicyShort(i)"> -->
-            <div class="radio-button-wrapper"  (click)="selectPolicy(i, 'standard', cancellPolicy.value)">
+            <div class="radio-button-wrapper" (click)="selectPolicy(i, 'standard', cancellPolicy.value)">
                 <div class="info_wrapper">
                     <div class="info_title">{{cancellPolicy.cancellTitle}}</div>
                     <div class="_info">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="radio_button_input">
-                    <input type="radio"  [ngClass]="{'checked': isSelectedShort === i }" [value]="" disabled />
+                    <input type="radio" [ngClass]="{'checked': isSelectedShort === i }" [value]="" disabled />
                 </div>
             </div>
         </div>
@@ -47,13 +47,13 @@
                     <input type="radio" [ngClass]="{'checked': isSelectedLong === i  }" [value]="" readonly disabled />
                 </div>
             </div>
-        
+
         </div>
         <div>
             <hr style="border: 0; height: 1px; background-color: #cacaca;">
         </div>
-           <!-- Non-Refundable -->
-           <div class="_title_label">
+        <!-- Non-Refundable -->
+        <div class="_title_label">
             Non-Refundable
             <div class="switch_button_container">
                 <div class="switch_button_wrapper">
@@ -65,7 +65,8 @@
                         </div>
                     </div>
                     <label class="switch">
-                        <input type="checkbox" [checked]="enableNonRefundable" (change)="setNonRefundable(!enableNonRefundable)">
+                        <input type="checkbox" [checked]="enableNonRefundable"
+                            (change)="setNonRefundable(!enableNonRefundable)">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -75,3 +76,4 @@
             <hr style="border: 0; height: 1px; background-color: #cacaca;">
         </div>
     </div>
+</section>

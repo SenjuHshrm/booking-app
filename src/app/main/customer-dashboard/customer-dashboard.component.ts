@@ -28,7 +28,7 @@ export class CustomerDashboardComponent {
 
   gotoToday(tabName: string) {
     this.selectedTab = tabName;
-    this.router.navigate(['main/dashboard/today']);
+    this.router.navigate(['main/dashboard/reservation']);
   }
 
   gotoCalendar(tabName: string) {

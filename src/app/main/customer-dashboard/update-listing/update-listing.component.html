@@ -1,7 +1,6 @@
 <div class="update_listing">
     <div class="update_wrapper">
-        <div class="update_left_panel"
-        [ngClass]="{'open': isPanelOpen === true, 'close': isPanelOpen === false}">
+        <div class="update_left_panel" [ngClass]="{'open': isPanelOpen === true, 'close': isPanelOpen === false}">
             <div class="update_left_header_title custom_vissible" [@fadeInAnimation]>
                 <div class="back_btn" (click)="goBack()">
                     <button>
@@ -18,15 +17,15 @@
                     Listing Editor
                 </div>
             </div>
-            <div class="update_left_content"  [@fadeInAnimation]>
+            <div class="update_left_content" [@fadeInAnimation]>
                 <!-- tab header-->
                 <div class="update_left_tab_header">
-                    <button class="remove_default_button  your_space" [ngClass]="{'active_your_space': selectedTab === 'tab1'}"
-                        (click)="selectTab('tab1')">
+                    <button class="remove_default_button  your_space"
+                        [ngClass]="{'active_your_space': selectedTab === 'tab1'}" (click)="selectTab('tab1')">
                         Your space
                     </button>
-                    <button class="remove_default_button  your_guide" [ngClass]="{'active_your_guide': selectedTab === 'tab2'}" disabled
-                        (click)="selectTab('tab2')">
+                    <button class="remove_default_button  your_guide"
+                        [ngClass]="{'active_your_guide': selectedTab === 'tab2'}" disabled (click)="selectTab('tab2')">
                         Arrival guide
                     </button>
                 </div>
@@ -34,7 +33,7 @@
 
                 <!-- Your space tab with data start-->
                 <div class="your_space_with_data_container" *ngIf="selectedTab ==='tab1'">
-                    <app-your-space></app-your-space>
+                    <app-your-space (dataEmitter)="tabListingInfoTab($event)"></app-your-space>
                 </div>
                 <!-- end-->
                 <!-- Arrival guide tab with data start-->
@@ -45,9 +44,9 @@
             </div>
         </div>
 
-        <div class="update_right_panel"  >
+        <div class="update_right_panel">
             <div class="update_header_wrapper">
-                <div class="update_left_header_title">
+                <div class="update_right_header_title">
                     <div class="back_btn">
                         <button>
                             <mat-icon>chevron_left</mat-icon>
@@ -65,7 +64,609 @@
                 </div>
             </div>
             <div class="content">
-                <div [@fadeInAnimation]>Sample</div>
+                <form>
+                    <section class="enter-up-animation Photo tour" *ngIf="tabListingInfo ==='tab1'">
+                        <div class="add-photos-place">
+                            <div class="title_wrapper">
+                                <div class="title">Photo tour</div>
+                                <div class="sub_title">Manage photos and add details. Guests will only see your tour if
+                                    every room has a photo.</div>
+                                <div class="sub_title">Maximum size of each photo is 5MB. Photos exceeding maximum size
+                                    will
+                                    be excluded to upload list.</div>
+                            </div>
+                            <div class="title_info">General Photo's</div>
+                            <div class="add-photos-place-wrapper">
+                                <div class="container" [ngStyle]="{
+                                    'display': imgFileGeneral.length === 0 ? 'flex' : '',
+                                    'place-content': imgFileGeneral.length === 0 ? 'center' : '', }">
+                                    <div class="upload-panel">
+                                        <input type="file" id="fileInputBedroom" style="display: none;" accept="image/*"
+                                            multiple>
+                                        <label for="fileInputBedroom" class="custom-file-label">
+                                            <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                                                alt="camera-Icon" class="custom-icon">
+                                            <span>Upload Image</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="gallery"
+                                        [ngStyle]="{display: imgFileGeneral.length === 0 ? 'none' : ''}">
+                                        <div *ngFor="let image of uploadedImagesGeneral"
+                                            [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                                            <div class="cover_text"
+                                                [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo
+                                            </div>
+                                            <img [src]="image.dataFileGeneral" alt="Uploaded Image" />
+                                            <button type="button" class="close-button">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="title_info">Bedroom Photo's</div>
+                            <div class="add-photos-place-wrapper">
+                                <div class="container" [ngStyle]="{
+                                    'display': imgFileBedroom.length === 0 ? 'flex' : '',
+                                    'place-content': imgFileBedroom.length === 0 ? 'center' : '', }">
+                                    <div class="upload-panel">
+                                        <input type="file" id="fileInputBedroom" style="display: none;" accept="image/*"
+                                            multiple>
+                                        <label for="fileInputBedroom" class="custom-file-label">
+                                            <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                                                alt="camera-Icon" class="custom-icon">
+                                            <span>Upload Image</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="gallery"
+                                        [ngStyle]="{display: imgFileBedroom.length === 0 ? 'none' : ''}">
+                                        <div *ngFor="let image of uploadedImagesGeneral"
+                                            [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                                            <div class="cover_text"
+                                                [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo
+                                            </div>
+                                            <img [src]="image.dataFileBedroom" alt="Uploaded Image" />
+                                            <button type="button" class="close-button">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="title_info">Categorize Photo's</div>
+                            </div>
+                            <div class="cat_wrapper" *ngFor="let section of uploadSectionsCatImages; let i = index">
+                                <div class="input-wrapper">
+                                    <div class="title_photo">Category Title:</div>
+                                    <input type="text" name="title" placeholder="Type here.." />
+                                </div>
+                                <div class="add-photos-place-wrapper">
+                                    <div class="container" [ngStyle]="{
+                                        'display': imgFileOtherCat.length === 0 ? 'flex' : '',
+                                        'place-content': imgFileOtherCat.length === 0 ? 'center' : '', }">
+                                        <div class="upload-panel">
+                                            <input type="file" id="fileInputBedroom" style="display: none;"
+                                                accept="image/*" multiple>
+                                            <label for="fileInputBedroom" class="custom-file-label">
+                                                <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
+                                                    alt="camera-Icon" class="custom-icon">
+                                                <span>Upload Image</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="gallery"
+                                            [ngStyle]="{display: imgFileOtherCat.length === 0 ? 'none' : ''}">
+                                            <div *ngFor="let image of uploadedImagesOtherCat"
+                                                [ngClass]="(image.isCover) ? 'image is-cover' : 'image'">
+                                                <div class="cover_text"
+                                                    [ngStyle]="{display: (image.isCover)? 'block' : 'none'}">Cover Photo
+                                                </div>
+                                                <img [src]="image.dataFileOtherCat" alt="Uploaded Image" />
+                                                <button type="button" class="close-button">
+                                                    <mat-icon>close</mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add_wrapper">
+                                <div class="square-radius-btn" (click)="addSectionCat()">
+                                    <mat-icon>add</mat-icon>
+                                    <span>Add Categorize Photo's</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Property title" *ngIf="tabListingInfo ==='tab2'">
+                        <div class="add-property-title">
+                            <div class="title_wrapper">
+                                <div class="title">Property title</div>
+                            </div>
+                            <div class="add-property-title-wrapper">
+                                <div class="input-wrapper">
+                                    <div class="label">Your property title</div>
+                                    <textarea type="text" name="street" value="" placeholder="Type here.."></textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Property type" *ngIf="tabListingInfo ==='tab3'">
+                        <div class="type-of-place">
+                            <div class="title_wrapper">
+                                <div class="title">Property type</div>
+                            </div>
+                            <div class="type-of-place-wrapper">
+                                <div class="checkbox" *ngFor="let typePlace of typeofplace; let i = index">
+                                    <div class="checkbox-wrapper" (click)="handleRadiobtn(i)">
+                                        <div class="radio-button">
+                                            <input type="radio" [ngClass]="{'checked': isSelected === i }"
+                                                [value]="typePlace.value" />
+                                        </div>
+                                        <div class="info">
+                                            <div class="label">{{typePlace.label}}</div>
+                                            <div class="desc">{{typePlace.desc}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-wrapper">
+                                    <div class="label">Maximum allowed check-ins per day</div>
+                                    <input type="number" name="maxBookingAllowedPerDay" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Listing type" *ngIf="tabListingInfo ==='tab4'">
+                        <section class="describe-your-place">
+                            <div class="wrapper">
+                                <div class="title_wrapper">
+                                    <div class="title">Listing type</div>
+                                </div>
+                                <div class="category">
+                                    Staycations
+                                </div>
+                                <div class="describe-your-place-wrapper">
+                                    <div class="checkbox" *ngFor="let yourPlaceStay of stayCations">
+                                        <label class="custom-checkbox">
+                                            <input type="radio" [checked]="isCheckedStaycation === yourPlaceStay.id"
+                                                name="staycations" [value]="yourPlaceStay.value"
+                                                (change)="handleSelectedPlaceType($event, yourPlaceStay.id, yourPlaceStay.value)">
+                                            <span class="checkmark"></span>
+                                            <div class="label">{{yourPlaceStay.placetype}}</div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <hr>
+                                </div>
+                                <div class="category">
+                                    Events Place
+                                </div>
+                                <div class="describe-your-place-wrapper">
+                                    <div class="checkbox" *ngFor="let yourPlaceEvent of eventsPlaces">
+                                        <label class="custom-checkbox">
+                                            <input type="radio" [checked]="isCheckedStaycation === yourPlaceEvent.id"
+                                                name="eventplaces" [value]="yourPlaceEvent.value"
+                                                (change)="handleSelectedPlaceType($event,yourPlaceEvent.id, yourPlaceEvent.value)">
+                                            <span class="checkmark"></span>
+                                            <div class="label">{{yourPlaceEvent.placetype}}</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="enter-up-animation Pricing" *ngIf="tabListingInfo ==='tab5'">
+
+                        <section class="add-taxes">
+
+                            <div class="add-taxes-wrapper">
+                                <div>
+                                    <div class="title_wrapper">
+                                        <div class="title">Pricing</div>
+                                    </div>
+                                    <div class="sub_title">
+                                        Edit your price here.
+                                    </div>
+                                </div>
+                                <div class="price-wrapper">
+                                    <div class="estimate-inputs">
+                                        <h1>₱</h1>
+                                        <input type="number" name="price" placeholder="0.00" />
+                                    </div>
+
+                                    <div class="estimate_computation_container">
+
+                                        <div class="prices_wrapper">
+                                            <div>Total Fees</div>
+                                            <div class="wrapper">
+                                                <span>₱</span>
+                                                <input type="number" [(ngModel)]="tax"
+                                                    [ngModelOptions]="{ standalone: true }" placeholder="0.00"
+                                                    readonly />
+                                            </div>
+                                        </div>
+                                        <hr style="border: 0; height: 1px; background-color: #cacaca;">
+                                        <div class="prices_wrapper">
+                                            <div>Guest Price Before taxes</div>
+                                            <div class="wrapper">
+                                                <span>₱</span>
+                                                <input type="number" [(ngModel)]="beforeTaxTotal"
+                                                    [ngModelOptions]="{ standalone: true }" placeholder="0.00"
+                                                    readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="earn_container">
+                                        <div class="prices_wrapper">
+                                            <div>You earn</div>
+                                            <div class="wrapper">
+                                                <span>₱</span>
+                                                <input type="number" placeholder="0.00" [(ngModel)]="totalEarned"
+                                                    [ngModelOptions]="{ standalone: true }" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </section>
+                    </section>
+                    <section class="enter-up-animation Basics about your place" *ngIf="tabListingInfo ==='tab7'">
+                        <section class="share-about-your-place">
+                            <div class="wrapper">
+                                <div class="title_wrapper">
+                                    <div class="title">Basics about your place</div>
+                                </div>
+                                <div class="share-about-your-place-wrapper">
+                                    <div class="input-wrapper">
+                                        <div class="label">Guests</div>
+                                        <input type="number" name="guests" placeholder="0" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Bedrooms</div>
+                                        <input type="number" name="bedrooms" placeholder="0" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Beds</div>
+                                        <input type="number" name="beds" placeholder="0" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Bathroom</div>
+                                        <input type="number" name="bathroom" placeholder="0" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="enter-up-animation Description" *ngIf="tabListingInfo ==='tab8'">
+                        <div class="add-property-title">
+                            <div class="title_wrapper">
+                                <div class="title">Description</div>
+                            </div>
+                            <div class="add-property-title-wrapper">
+                                <div class="input-wrapper">
+                                    <div class="label">Edit your description of your property</div>
+                                    <textarea type="text" name="street" value="" placeholder="Type here.."></textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Amenities" *ngIf="tabListingInfo ==='tab9'">
+                        <div class="inform-your-visitors-amenities">
+                            <div class="wrapper">
+                                <div class="title_wrapper">
+                                    <div class="title">Amenities</div>
+                                </div>
+                                <div class="amenities_wrapper">
+                                    <div class="checkbox" *ngFor="let yourAmenities of amenities; let i = index">
+                                        <label class="custom-checkbox" [ngClass]="{'checked': isChecked === i}">
+                                            <input type="checkbox" [name]="yourAmenities.value"
+                                                [value]="yourAmenities.value"
+                                                (change)="handleSelectedAmenities($event, i)" />
+                                            <span class="checkmark"></span>
+                                            <div class="label">{{yourAmenities.placeamenities}}</div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="others">
+                                    <div>Enter other amenities here</div>
+                                    <input type="text" name="amenities" [(ngModel)]="textValueAmenities" placeholder=""
+                                        [ngModelOptions]="{ standalone: true }" />
+                                    <button type="button" class="square-radius-btn" (click)="checkboxAmenities()">
+                                        <mat-icon>add</mat-icon>
+                                        Add amenities
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Location" *ngIf="tabListingInfo ==='tab10'">
+                        <section class="where-is-located">
+                            <div class="wrapper">
+                                <div class="title_wrapper">
+                                    <div class="title">Location</div>
+                                </div>
+                                <div class="where-is-located-wrapper">
+                                    <div class="input-wrapper">
+                                        <div class="label">Unit No.</div>
+                                        <input type="number" name="unit" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Street / Subdivision etc.</div>
+                                        <input type="text" name="street" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Barangay</div>
+                                        <input type="text" name="barangay" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">City / Municipality</div>
+                                        <input type="text" name="city" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Province</div>
+                                        <input type="text" name="province" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Zip Code</div>
+                                        <input type="number" name="zipcode" />
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <div class="label">Land Mark</div>
+                                        <input type="text" name="landmark" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="enter-up-animation Confirm Reservations" *ngIf="tabListingInfo ==='tab11'">
+                        <div class="instant-book">
+                            <div class="wrapper">
+                                <div class="title_wrapper">
+                                    <div class="title">Confirm Reservations</div>
+                                </div>
+                                <div class="instant-book_wrapper">
+                                    <div class="checkbox" *ngFor="let setInstantBooks of setInstantBook; let i = index">
+                                        <div class="checkbox_wrapper"
+                                            (click)="handleRadiobtnBook(i, setInstantBooks.value)">
+                                            <div class="wrapper_info">
+                                                <div class="title_sub ">
+                                                    {{setInstantBooks.title}}
+                                                </div>
+                                                <div class="desc">
+                                                    {{setInstantBooks.desc}}
+                                                </div>
+                                            </div>
+                                            <div class="desc_wrapper">
+                                                <div class="radio-button">
+                                                    <input type="radio" [ngClass]="{'checked': isSelected === i  }"
+                                                        readonly disabled [value]="setInstantBooks.value" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section class="enter-up-animation Your property have these?" *ngIf="tabListingInfo ==='tab12'">
+                        <section class="does-your-place-have-this">
+                            <div class="does-your-place-have-this_content">
+                                <div class="title-wrapper">
+                                    Does your place have any of these?
+                                </div>
+                                <div class="does-your-place-have-this-wrapper">
+                                    <div class="checkbox" *ngFor="let doesyourPlace of doesyourplace; let i = index">
+                                        <label class="custom-checkbox" (click)="handleSelectedSecurity($event, i)">
+                                            <input type="checkbox" [ngClass]="{'checked': isChecked === i}" name="house"
+                                                [value]="doesyourPlace.doesyourPlace"
+                                                (change)="handleSelectedSecurity($event, i)" />
+                                            <span class="checkmark"></span>
+                                            <div class="label">{{doesyourPlace.doesyourPlace}}</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="enter-up-animation Ground / House rules" *ngIf="tabListingInfo ==='tab13'">
+                        <div class="groundrules_houserules">
+                            <div class="groundrules_houserules_content">
+                                <div class="header">
+                                    <div class="_title_wrapper">Ground / House Rules</div>
+                                    <div class="_subinfo ">Guests must agree to your ground / house rules before they
+                                        book.
+                                        <br><span>Learn more</span>
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    <div class="custom_title">Option Rules</div>
+                                    <div class="describe-your-place-wrapper">
+                                        <div class="checkbox"
+                                            *ngFor="let houseRulesDatas of houseRulesData; let i = index ">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" typname="staycations"
+                                                    [value]="houseRulesDatas.title"
+                                                    (change)="handleSelectedRules($event, i)">
+                                                <span class="checkmark"></span>
+                                                <div class="label">{{houseRulesDatas.title}}</div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="others">
+                                        <div>Enter other rules here</div>
+                                        <input type="text" name="house" [(ngModel)]="textValuerules"
+                                            placeholder="Type here.." [ngModelOptions]="{ standalone: true }" />
+                                        <button type="button" class="square-radius-btn" (click)="addCheckBox()">
+                                            <mat-icon>add</mat-icon>
+                                            Add Rules
+                                        </button>
+                                    </div>
+
+                                    <div class="custom_title" style="margin-top: 1rem;">Add full descriptions of the
+                                        rules.</div>
+                                    <div class="add_rules_full">
+                                        <div class="input-wrapper">
+                                            <div class="input_wrapper">
+                                                <textarea type="text" name="houseRulesDetailed"
+                                                    placeholder="Type here.."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Discount" *ngIf="tabListingInfo ==='tab14'">
+                        <div class="add-discounts">
+                            <div class="add-discounts_content">
+                                <div class="title_wrapper">
+                                    <div class="title">Discount</div>
+                                    <div class="subinfo">
+                                        <div>Only one discount will be applied per stay. &nbsp;<span
+                                                (click)="openLearnmore()">Learn more</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-discounts-wrapper">
+                                    <!-- <div class="title_sub ">Discounts</div> -->
+                                    <div class="checkbox" *ngFor="let addDiscounted of addDiscounts; let i = index">
+                                        <div class="checkbox-wrapper">
+                                            <div class="label">
+                                                <input type="number" name="discount" [value]="addDiscounted.label"
+                                                    [readonly]="i === 0 || isCheckeddiscount !== i"
+                                                    [ngClass]="{'custom_input': i === 0}" />
+                                                <span>%</span>
+                                            </div>
+                                            <div class="desc_wrapper"
+                                                (click)="handleRadiobtnDiscounts(i, addDiscounted.value)">
+                                                <div class="desc">{{addDiscounted.desc}}</div>
+                                                <div class="radio-button">
+                                                    <input type="radio" [ngClass]="{'checked': isSelected === i  }"
+                                                        readonly disabled [value]="addDiscounted.value" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Cancellation Policy" *ngIf="tabListingInfo ==='tab15'">
+                        <section class="cancellation-policy">
+                            <div class="cancellation-policy_content">
+                                <div class="title_wrapper">
+                                    <div class="title">Cancellation Policy</div>
+                                </div>
+                                <div class="cancellation-policy-wrapper">
+                                    <!-- Standard Policy -->
+                                    <div class="_label">
+                                        <div class="_title_label">Refundable</div>
+                                        Standard Policy
+                                        <div class="_subinfo">
+                                            Applies to any stays under 28 nights
+                                        </div>
+                                        <span (click)="openNonStandardLearnmore()">Learnmore</span>
+                                    </div>
+                                    <div class="radio_button_container"
+                                        *ngFor="let cancellPolicy of standardData; let i = index">
+                                        <!-- <div class="radio-button-wrapper"  (click)="selectPolicyShort(i)"> -->
+                                        <div class="radio-button-wrapper"
+                                            (click)="selectPolicy(i, 'standard', cancellPolicy.value)">
+                                            <div class="info_wrapper">
+                                                <div class="info_title">{{cancellPolicy.cancellTitle}}</div>
+                                                <div class="_info">
+                                                    {{cancellPolicy.cancellDesc}}
+                                                </div>
+                                            </div>
+                                            <div class="radio_button_input">
+                                                <input type="radio" [ngClass]="{'checked': isSelectedShort === i }"
+                                                    [value]="" disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Long-term Stay Policy -->
+                                    <div class="_label">
+                                        Long-term Stay Policy
+                                        <div class="_subinfo">
+                                            Applies to any stays 28 nights or longer
+                                        </div>
+                                        <span (click)="openLongTermLearnmore()">Learnmore</span>
+                                    </div>
+                                    <div class="radio_button_container"
+                                        *ngFor="let cancellPolicy of longtermData; let i = index">
+                                        <!-- <div class="radio-button-wrapper" (click)="selectPolicyLong(i)"> -->
+                                        <div class="radio-button-wrapper"
+                                            (click)="selectPolicy(i, 'lt', cancellPolicy.value)">
+                                            <div class="info_wrapper">
+                                                <div class="info_title">{{cancellPolicy.cancellTitle}}</div>
+                                                <div class="_info">
+                                                    {{cancellPolicy.cancellDesc}}
+                                                </div>
+                                            </div>
+                                            <div class="radio_button_input">
+                                                <input type="radio" [ngClass]="{'checked': isSelectedLong === i  }"
+                                                    [value]="" readonly disabled />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <hr style="border: 0; height: 1px; background-color: #cacaca;">
+                                    </div>
+                                    <!-- Non-Refundable -->
+                                    <div class="_title_label">
+                                        Non-Refundable
+                                        <div class="switch_button_container">
+                                            <div class="switch_button_wrapper">
+                                                <div class="info_wrapper">
+                                                    <div class="_info">
+                                                        In addition to a flexible option, offer a non-refundable option
+                                                        where guests pay 10% less,
+                                                        but you keep your payout regardless of when they cancel.<span
+                                                            (click)="openNonRefundLearnmore()">Learn more</span>
+                                                    </div>
+                                                </div>
+                                                <label class="switch">
+                                                    <input type="checkbox" [checked]="enableNonRefundable"
+                                                        (change)="setNonRefundable(!enableNonRefundable)">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <hr style="border: 0; height: 1px; background-color: #cacaca;">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="enter-up-animation Availability" *ngIf="tabListingInfo ==='tab6'">
+                        <div class="title_wrapper">
+                            <div class="title">Availability</div>
+                        </div>
+                    </section>
+                    <section class="enter-up-animation Custom Link" *ngIf="tabListingInfo ==='tab16'">
+                        <div class="title_wrapper">
+                            <div class="title">Custom Link</div>
+                        </div>
+                    </section>
+                    <div class="footer">
+                        <button class="main-button">Cancel</button>
+                        <button class="main-button" type="submit">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewEncapsulation, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y,Autoplay } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 
@@ -14,6 +14,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export class YourSpaceComponent {
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
+  @Output() dataEmitter = new EventEmitter<any>();
 
   
 types:any = [
@@ -28,13 +29,15 @@ types:any = [
   {images:'../assets/images/home/section1/type/hotel.png',description:'Meeting Room'},
 ]
 
+selectedTab: any = "tab1";
+closeLeftPanel: boolean = false;
 
-
-selectedTab:any = ""
-
-selectTab(tab:any){
+selectTab(tab:any) {
   this.selectedTab = tab;
+  this.dataEmitter.emit({
+    tab: this.selectedTab,
+    sidePanel: this.closeLeftPanel,
+  });
 }
-
 
 }
