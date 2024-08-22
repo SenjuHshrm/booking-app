@@ -1,39 +1,64 @@
 <div class="legal_name_container">
-    <div class="header">
-        <div class="title_wrapper">
-            <div class="info_title">Legal name</div>
-            <div class="sub_title">Make sure this matches the name on your government ID.</div>
+  <div class="header">
+    <div class="title_wrapper">
+      <div class="info_title">Legal name</div>
+      <div class="sub_title">
+        Make sure this matches the name on your government ID.
+      </div>
+    </div>
+    <div class="close-button-normal" (click)="closeDialog()">
+      <mat-icon style="margin-top: 3px">close</mat-icon>
+    </div>
+  </div>
+  <div>
+    <hr />
+  </div>
+  <div class="content">
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm)">
+      <div class="_wrapper">
+        <div class="input-wrapper">
+          <div class="label">First Name</div>
+          <input
+            [disabled]="isLoading"
+            type="text"
+            name="firstname"
+            placeholder="Enter your first name"
+            formControlName="firstname"
+            required
+          />
+          <ng-container *ngIf="util.isFormInputValid(updateForm, 'firstname')">
+            <app-input-error-message
+              [form]="updateForm"
+              [errors]="firstNameErrors"
+            />
+          </ng-container>
         </div>
-        <div class="close-button-normal" (click)="closeDialog()">
-            <mat-icon style="margin-top:3px">close</mat-icon>
+        <div class="input-wrapper">
+          <div class="label">Last Name</div>
+          <input
+            [disabled]="isLoading"
+            type="text"
+            name="lastname"
+            placeholder="Enter your last name"
+            formControlName="lastname"
+            required
+          />
+          <ng-container *ngIf="util.isFormInputValid(updateForm, 'lastname')">
+            <app-input-error-message
+              [form]="updateForm"
+              [errors]="lastNameErrors"
+            />
+          </ng-container>
         </div>
-    </div>
-    <div>
-        <hr>
-    </div>
-    <div class="content">
-        <form>
-            <div class="_wrapper">
-                <div class="input-wrapper">
-                    <div class="label">First Name</div>
-                    <input type="text" name="firstName" placeholder="Enter your first name"
-                        [(ngModel)]="verifiedInfo.firstname" #firstName="ngModel" required />
-                    <ng-container *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-                        <span class="val-err-msg">Please enter your prefered name.</span>
-                    </ng-container>
-                </div>
-                <div class="input-wrapper">
-                    <div class="label">Last Name</div>
-                    <input type="text" name="lastName" placeholder="Enter your last name"
-                        [(ngModel)]="verifiedInfo.lastname" #lastName="ngModel" required />
-                    <ng-container *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-                        <span class="val-err-msg">Please enter your prefered name.</span>
-                    </ng-container>
-                </div>
-            </div>
-            <div class="_btn">
-                <button (click)="onSubmit()" class="main-button">Save</button>
-            </div>
-        </form>
-    </div>
+      </div>
+      <div class="_btn">
+        <button [disabled]="isLoading" class="main-button">
+          <span *ngIf="isLoading === true"
+            ><mat-spinner [diameter]="20"
+          /></span>
+          <span *ngIf="isLoading === false">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -1,4 +1,3 @@
-
 export interface IUserFullName {
   fName: string;
   mName?: string;

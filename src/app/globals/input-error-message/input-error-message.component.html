@@ -1,0 +1,7 @@
+<div *ngFor="let error of errors">
+  <span
+    *ngIf="form.controls[error.field].errors?.[error.error]"
+    class="val-err-msg"
+    >{{ error.message }}</span
+  >
+</div>

@@ -9,7 +9,10 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileComponent } from './profile/profile.component';
-import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import {
+  GoogleSigninButtonDirective,
+  GoogleSigninButtonModule,
+} from '@abacritt/angularx-social-login';
 import { BookingTermsComponent } from './booking-terms/booking-terms.component';
 import { ReservationsViewComponent } from './reservations-view/reservations-view.component';
 import { LoaderStateComponent } from './loader-state/loader-state.component';
@@ -19,9 +22,7 @@ import { WheretoSleepViewComponent } from './whereto-sleep-view/whereto-sleep-vi
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsersProfileComponent } from './users-profile/users-profile.component';
 import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel-policy-learnmore.component';
-
-
-
+import { InputErrorMessageComponent } from './input-error-message/input-error-message.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel
     MessageProprietorComponent,
     WheretoSleepViewComponent,
     UsersProfileComponent,
-    CancelPolicyLearnmoreComponent
+    CancelPolicyLearnmoreComponent,
+    InputErrorMessageComponent,
   ],
 
   imports: [
@@ -49,12 +51,10 @@ import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel
     FormsModule,
     ReactiveFormsModule,
     GoogleSigninButtonModule,
-    MatDialogModule
+    MatDialogModule,
   ],
 
-  providers: [
-    GoogleSigninButtonDirective
-  ],
+  providers: [GoogleSigninButtonDirective],
 
   exports: [
     ProfileComponent,
@@ -66,9 +66,8 @@ import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel
     CreateListingComponent,
     MessageProprietorComponent,
     WheretoSleepViewComponent,
-    UsersProfileComponent
-  ]
-
-
+    UsersProfileComponent,
+    InputErrorMessageComponent,
+  ],
 })
-export class GlobalsModule { }
+export class GlobalsModule {}

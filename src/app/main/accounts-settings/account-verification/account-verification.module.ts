@@ -18,7 +18,8 @@ import { CapturePhotoComponent } from './government-id/capture-photo/capture-pho
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import { GlobalsModule } from 'src/app/globals/globals.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     EmergencyContactComponent,
     UploadPhotoComponent,
     CapturePhotoComponent,
-    VerificationCodeComponent
+    VerificationCodeComponent,
   ],
   imports: [
     CommonModule,
@@ -43,9 +44,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatTabsModule
-    
-    
-  ]
+    MatTabsModule,
+    GlobalsModule,
+    MatProgressSpinnerModule,
+  ],
 })
-export class AccountVerificationModule { }
+export class AccountVerificationModule {}

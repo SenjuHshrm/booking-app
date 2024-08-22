@@ -6,11 +6,10 @@ import { VerificationCodeComponent } from '../verification-code/verification-cod
 @Component({
   selector: 'app-phone-number',
   templateUrl: './phone-number.component.html',
-  styleUrls: ['./phone-number.component.scss']
+  styleUrls: ['./phone-number.component.scss'],
 })
 export class PhoneNumberComponent {
-
-  public phoneNumber: any;
+  public phoneNumber: string;
 
   constructor(
     public dialogVeri: MatDialog,
@@ -30,11 +29,9 @@ export class PhoneNumberComponent {
       height: 'fit-content',
       maxHeight: 'auto',
       maxWidth: '45rem',
-      data: this.phoneNumber._number
+      data: this.phoneNumber,
     });
 
     this.closeDialog();
   }
-
-  
 }
