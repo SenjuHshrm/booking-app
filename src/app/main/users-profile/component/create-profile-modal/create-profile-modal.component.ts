@@ -35,6 +35,7 @@ export class CreateProfileModalComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.data)
     this._claims = <ITokenClaims>this._token.decodedToken()
     this.userProfileForm = this._fb.group({
       desc: new FormControl((this.data.desc) ? this.data.desc.description : ''),

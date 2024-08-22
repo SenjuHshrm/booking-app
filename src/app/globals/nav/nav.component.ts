@@ -37,7 +37,7 @@ export class NavComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private _location: Location,
-    private _socAuth: SocialAuthService,
+    // private _socAuth: SocialAuthService,
     private _auth: AuthService,
     private _token: TokenService,
     private _user: UserService,

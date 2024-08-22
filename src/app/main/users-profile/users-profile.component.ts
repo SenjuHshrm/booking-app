@@ -60,7 +60,7 @@ export class UsersProfileComponent implements OnInit, OnDestroy {
       this._getUserProfile(this._claims.sub)
     });
 
-    console.log(this.profile)
+    // console.log(this.profile)
   }
 
   navigateToBookStaycation() {
@@ -82,8 +82,8 @@ export class UsersProfileComponent implements OnInit, OnDestroy {
         this.properties = res.properties.map((prop: any) => {
           return {
             ...prop,
-            cover: this._basicUtil.setImgUrl(prop.media.cover),
-            imgs: prop.media.imgs.map((img: string) => this._basicUtil.setImgUrl(img))
+            cover: this._basicUtil.setImgUrl(prop.cover),
+            imgs: prop.genImgList.map((img: string) => this._basicUtil.setImgUrl(img))
           }
         })
         this.fullName = this._basicUtil.constructName(res.profile.name)
