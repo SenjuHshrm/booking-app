@@ -1,0 +1,37 @@
+.form {
+  border-top: 1px solid lightgray;
+  padding: 1rem 1rem 1rem;
+  width: 100%;
+
+  .input-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    .input-form-wrapper {
+      flex: 1;
+      background-color: white;
+      box-shadow: 1px 1px 5px #88888877;
+      border-radius: 5px;
+      input {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        outline: none;
+        font-size: clamp(1rem, 0.8vw, 8rem);
+        background-color: transparent;
+      }
+    }
+
+    .icons-form-wrapper {
+      flex: 0;
+      display: flex;
+      gap: 1rem;
+
+      .mat-icon {
+        color: #68a86a;
+      }
+    }
+  }
+}

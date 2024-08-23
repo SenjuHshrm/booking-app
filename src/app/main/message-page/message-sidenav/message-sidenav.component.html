@@ -1,0 +1,38 @@
+<section class="left-column">
+  <div class="left-column-header">
+    <div class="title_wrapper">
+      <div class="title">Messages</div>
+      <div class="close-button-normal close-icon">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <div class="message-search">
+      <div class="icon"><mat-icon>search</mat-icon></div>
+      <input type="text" name="search-listing" placeholder="Search" value="" />
+    </div>
+  </div>
+
+  <div class="list-card-message">
+    <div
+      class="list-card card-list-message"
+      *ngFor="let messageListed of messageList"
+    >
+      <div class="avatar">
+        <img
+          src="../../assets/images/main/staycation-details/avatarreviewer.png"
+          loading="lazy"
+          alt="Avatar"
+          [draggable]="false"
+        />
+      </div>
+      <div class="message-name">
+        <div class="name">Oliver Belenasdasasasasasasasasasasasasas</div>
+        <div class="message">
+          We enjoyed our stay! The space is clean and well-organized, providing
+          a...
+        </div>
+      </div>
+      <div class="time-sent">Today</div>
+    </div>
+  </div>
+</section>
