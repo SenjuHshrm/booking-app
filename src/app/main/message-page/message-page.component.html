@@ -1,84 +1,30 @@
-<div class="message-container" [@fadeInAnimation]>
-    <div class="message-container-message-wrapper">
-        <section class="left-column " [ngClass]="{'visible-class': isVisible, 'hidden-class': !isVisible}">
-            <div class="left-column-header">
-                <div class="title_wrapper">
-                    <div class="title">Messages</div>
-                    <div class="close-button-normal close-icon" (click)="toggleVisibility()">
-                        <mat-icon>close</mat-icon>
-                    </div>
-                </div>
-                <div class="message-search">
-                    <div class="icon"><mat-icon>search</mat-icon></div>
-                    <input type="text" name="search-listing" placeholder="Search" value="" />
-                </div>
-            </div>
-
-            <div class="list-card-message">
-
-                <div class="list-card card-list-message " *ngFor="let messageListed of messageList "
-                    (click)="toggleVisibility()">
-                    <div class="avatar">
-                        <img src="../../assets/images/main/staycation-details/avatarreviewer.png" loading="lazy"
-                            alt="Avatar" [draggable]="false">
-                    </div>
-                    <div class="message-name">
-                        <div class="name">Oliver Belenasdasasasasasasasasasasasasas</div>
-                        <div class="message">We enjoyed our stay! The space is clean and well-organized, providing a...
-                        </div>
-                    </div>
-                    <div class="time-sent">Today</div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="right-column card">
-            <div class="header">
-                <div class="message-menu" (click)="toggleVisibility()">
-                    <mat-icon>menu</mat-icon>
-                </div>
-                <div class="avatar">
-                    <img src="../../assets/images/main/staycation-details/avatarreviewer.png" loading="lazy"
-                        alt="Avatar" [draggable]="false">
-                </div>
-                <div class="name">Oliver Belen</div>
-            </div>
-
-            <div class="content">
-                <div class="sender ">
-                    <div class="sender-wrapper">
-                        <div class="avatar">
-                            <img src="../../assets/images/main/staycation-details/avatarreviewer.png" loading="lazy"
-                                alt="Avatar" [draggable]="false">
-                        </div>
-                        <div class="message card">
-                            We enjoyed our stay! The space is clean
-                            and well-organized, and well providing amenities
-                        </div>
-                    </div>
-                </div>
-                <div class="receiver ">
-                    <div class="receiver-wrapper">
-                        <div class="message card">
-                            We enjoyed our stay! The space is clean
-                            and well-organized, and well providing amenities
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form">
-                <div class="input-form ">
-                    <div class="input-form-wrapper">
-                        <input type="text" name="input-form" value="" placeholder="Message here..." />
-                    </div>
-                    <div class="icons-form-wrapper">
-                        <div class="mat-icon"><mat-icon>send</mat-icon></div>
-                        <div class="mat-icon"><mat-icon>image</mat-icon></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+<mat-drawer-container class="messenger">
+  <mat-drawer
+    #drawer
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile"
+    class="message-list"
+  >
+    <app-message-sidenav />
+  </mat-drawer>
+  <main class="message-content">
+    <div class="header">
+      <div *ngIf="isMobile" class="message-menu" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </div>
+      <div class="avatar">
+        <img
+          src="../../assets/images/main/staycation-details/avatarreviewer.png"
+          loading="lazy"
+          alt="Avatar"
+          [draggable]="false"
+        />
+      </div>
+      <div class="name">Oliver Belen</div>
     </div>
-</div>
+    <div class="messages">
+      <app-message-content style="flex: 1; overflow: auto" />
+      <app-message-form />
+    </div>
+  </main>
+</mat-drawer-container>

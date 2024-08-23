@@ -1,0 +1,55 @@
+.content {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding: 1rem 3rem 1rem;
+
+  .sender {
+    .sender-wrapper {
+      display: flex;
+      gap: 1rem;
+      max-width: 20rem;
+
+      .avatar {
+        max-width: 35px;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .message {
+        padding: 1rem;
+        background-color: #d9d9d9;
+      }
+    }
+  }
+
+  .receiver {
+    display: flex;
+    justify-content: flex-end;
+
+    .receiver-wrapper {
+      display: flex;
+      gap: 1rem;
+      max-width: 20rem;
+
+      .avatar {
+        max-width: 35px;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .message {
+        background-color: #68a86a;
+        padding: 1rem;
+        color: white;
+      }
+    }
+  }
+}

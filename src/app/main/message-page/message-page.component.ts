@@ -1,47 +1,39 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
-
 
 @Component({
   selector: 'app-message-page',
   templateUrl: './message-page.component.html',
   styleUrls: ['./message-page.component.scss'],
-  animations: [fadeInAnimation]
+  animations: [fadeInAnimation],
 })
+export class MessagePageComponent implements OnInit, OnDestroy {
+  isMobile: boolean = false;
 
-export class MessagePageComponent implements OnInit{
-   
-  constructor(private renderer: Renderer2) {
-    
+  private breakpointSubscription!: Subscription;
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  ngOnInit(): void {
+    this.breakpointSubscription = this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .subscribe((result) => {
+        this.isMobile = result.matches;
+      });
   }
 
-  public currentPath:any;
-  public isVisible:any;
-  public windowWidth: any;
-  public messageList:any = [
-    {},{},{},{},{},{},{},{},{},{},{},
-  ]
-
-  toggleVisibility() {
-    this.isVisible = !this.isVisible;
-  }
-
-
-  ngOnInit() {
-    this.getWindowSize();
-    this.addResizeListener();
-  }
-
-  getWindowSize() {
-    this.windowWidth = window.innerWidth;
-  }
-
-  addResizeListener() {
-    this.renderer.listen('window', 'resize', (event) => {
-      this.windowWidth = window.innerWidth;
-      if(this.windowWidth >= 1000){
-        this.isVisible = false;
-      }
-    });
+  ngOnDestroy(): void {
+    if (this.breakpointSubscription) {
+      this.breakpointSubscription.unsubscribe();
+    }
   }
 }
