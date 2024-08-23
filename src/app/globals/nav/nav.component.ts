@@ -111,6 +111,7 @@ export class NavComponent implements OnInit {
   }
 
   public logout() {
+    
     this._auth.logout().subscribe({
       next: (res: { logout: boolean }) => {
         if(localStorage.getItem('GOOGLE_ID_TOKEN') !== null) {
@@ -120,6 +121,7 @@ export class NavComponent implements OnInit {
         window.location.href = this._redirectTo
       }
     })
+    
   }
 
   private _checkToken() {

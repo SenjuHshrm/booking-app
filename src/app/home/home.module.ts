@@ -13,10 +13,14 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { SwiperModule } from 'swiper/angular';
 import { GlobalsModule } from './../globals/globals.module';
+import { HomeImageGalleryComponent } from '../globals/home-image-gallery/home-image-gallery.component';
+
+
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    HomeImageGalleryComponent,
   ],
   imports: [
     CommonModule,
@@ -32,8 +36,11 @@ import { GlobalsModule } from './../globals/globals.module';
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
-    GlobalsModule
+    GlobalsModule,
+    MatIconModule
   ],
+
+
 
 
 

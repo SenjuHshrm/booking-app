@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../globals/fadein-animations';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../globals/login/login.component';
+import { HomeImageGalleryComponent } from '../globals/home-image-gallery/home-image-gallery.component';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -28,19 +29,37 @@ export class HomeComponent implements OnInit {
   panelOpenState = false;
   public isAuth!: boolean;
   selectedValue: string = '';
+  public imageSets: any;
+  currentImageIndex = 0;
+  intervalId: any;
+  public descriptions: any = "Customer Inquiry";
 
   ngOnInit() {
     this.activatedRoute.data.subscribe({
       next: (res: any) => {
         this.isAuth = res.isAuth
       }
-    })
+    }),
+    this.startSlideshow();
   }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+  }
+
+  startSlideshow() {
+    this.intervalId = setInterval(() => {
+      this.nextImage();
+    }, 3000); // Change image every 3 seconds
+  }
+
+  
+
 
   navigateToMain() {
     if(this.isAuth){
     this.router.navigate(['/', 'main', 'staycation-list']);
-  }{
+  }else{
      this.openLoginDialog();
   }
   }
@@ -103,8 +122,50 @@ options = [
   { label: 'Private Room', value: '2' },
 ];
 
+gallery: any[] = [
+  { imageSrc: '../assets/images/home/gallery/1.jpg', imageAlt: 'Gallery Image 1' },
+  { imageSrc: '../assets/images/home/gallery/2.jpg', imageAlt: 'Gallery Image 2' },
+  { imageSrc: '../assets/images/home/gallery/3.jpg', imageAlt: 'Gallery Image 3' },
+  { imageSrc: '../assets/images/home/gallery/4.jpg', imageAlt: 'Gallery Image 4' },
+  { imageSrc: '../assets/images/home/gallery/5.jpg', imageAlt: 'Gallery Image 5' },
+  { imageSrc: '../assets/images/home/gallery/6.jpg', imageAlt: 'Gallery Image 6' },
+  { imageSrc: '../assets/images/home/gallery/7.jpg', imageAlt: 'Gallery Image 7' },
+  { imageSrc: '../assets/images/home/gallery/8.jpg', imageAlt: 'Gallery Image 8' },
+];
+
+//gallery
 
 
+public openGallery(): void {
+  const dialogRefLogin = this.dialog.open(HomeImageGalleryComponent, {
+     width:'100%',
+     height:'100%',
+     maxWidth:'100rem',
+     data: { images: this.gallery }
+  });
+
+  dialogRefLogin.afterClosed().subscribe(() => {
+    console.log('The dialog was closed');
+  });
+}
+
+
+nextImage(event?: Event) {
+  if (event) {
+    event.stopPropagation();  // Prevent triggering the gallery page click
+    clearInterval(this.intervalId); // Stop the slideshow when manually navigated
+    this.startSlideshow(); // Restart the slideshow
+  }
+  this.currentImageIndex = (this.currentImageIndex + 1) % this.gallery.length;
+}
+
+previousImage(event: Event) {
+  event.stopPropagation();  // Prevent triggering the gallery page click
+  clearInterval(this.intervalId); // Stop the slideshow when manually navigated
+  this.startSlideshow(); // Restart the slideshow
+  this.currentImageIndex = (this.currentImageIndex - 1 + this.gallery.length) % this.gallery.length;
+}
+//gallery
 
 //Swiper
 slideNext() {
@@ -115,4 +176,22 @@ slidePrev() {
 }
 //Swiper
 
+gotoGalleryPage():void{
+  
 }
+
+
+onClickInquire() {
+  const emailUrl = this.generateEmailUrl('ucpitconsultancy@gmail.com', this.descriptions, '');
+  window.open(emailUrl, '_blank');
+}
+
+private generateEmailUrl(to: string, subject: string, body: string): string {
+  const baseUrl = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1';
+  const fullUrl = `${baseUrl}&to=${to}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return fullUrl;
+}
+
+}
+
+

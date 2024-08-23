@@ -111,7 +111,13 @@ export class StaycationListComponent implements OnInit, OnDestroy  {
 
   navigateToBookStaycation(id: string) {
     this.router.navigate(['main/staycation-details', id]);
+    this.scrollToTop();
   }
+
+  private scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
 
   navigateToHome() {
     this.router.navigate(['']);

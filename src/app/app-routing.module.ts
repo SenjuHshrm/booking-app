@@ -33,6 +33,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'help-center',
+    loadChildren: () => import('./help-center/help-center.module').then(m => m.HelpCenterModule),
+    canActivate: [authGuard],
+    resolve: {
+      isAuth: authResolver
+    }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
