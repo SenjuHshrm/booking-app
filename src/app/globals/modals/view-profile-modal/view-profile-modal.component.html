@@ -1,0 +1,220 @@
+<div class="user-profile" [@fadeInAnimation]>
+  <div class="close-button-normal" (click)="closeDialog()">
+    <mat-icon style="margin-top: 3px">close</mat-icon>
+  </div>
+  <section class="user-profile-user-profile-container">
+    <div class="user-profile-user-profile-wrapper">
+      <div class="section-1">
+        <div class="profile-picture">
+          <div class="wrapper">
+            <div class="profile-picture-img">
+              <img
+                [src]="profile.img"
+                loading="lazy"
+                alt="Avatar"
+                [draggable]="false"
+              />
+            </div>
+            <div class="profile-info">
+              <div class="name">{{ util.constructName(profile.name) }}</div>
+              <div class="label">{{ profile.userType }}</div>
+              <div class="duration-at-tarago">
+                {{ util.calculateUserDuration(profile.createdAt) }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="verification">
+          <div class="confirm">
+            {{ profile.name.fName }}'s confirmed information not found.
+          </div>
+        </div>
+      </div>
+      <div class="section-2">
+        <div class="header">
+          <div class="title">About {{ profile.name.fName }}</div>
+        </div>
+        <div class="content">
+          <div
+            class="say-something"
+            [ngStyle]="{
+              color:
+                profile.desc && profile.desc.description
+                  ? 'initial'
+                  : 'rgb(170, 170, 170)'
+            }"
+          >
+            {{
+              profile.desc && profile.desc.description
+                ? profile.desc.description
+                : "Say something about your profile."
+            }}
+          </div>
+
+          <div class="info-details-personal-info">
+            <div class="title">
+              {{ profile.name.fName }}'s Personal Information
+            </div>
+            <!-- <div class="info-details-wrapper" *ngFor="let personInfos of personalInfos">
+                          <div class="info-details-label">{{personInfos.label}}</div>
+                          <div class="info-details-content">{{personInfos.info}}</div>
+                      </div> -->
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Name</div>
+              <div
+                class="info-details-content"
+                [ngStyle]="{
+                  color: profile.name.fName ? 'initial' : 'rgb(170, 170, 170)'
+                }"
+              >
+                {{
+                  profile.name.fName ? profile.name.fName : "Name not available"
+                }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Middlename</div>
+              <div
+                class="info-details-content"
+                [ngStyle]="{
+                  color: profile.name.mName ? 'initial' : 'rgb(170, 170, 170)'
+                }"
+              >
+                {{
+                  profile.name.mName
+                    ? profile.name.mName
+                    : "Middlename not available"
+                }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Surname</div>
+              <div
+                class="info-details-content"
+                [ngStyle]="{
+                  color: profile.name.lName ? 'initial' : 'rgb(170, 170, 170)'
+                }"
+              >
+                {{
+                  profile.name.lName
+                    ? profile.name.lName
+                    : "Surname not available"
+                }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Ext.name</div>
+              <div
+                class="info-details-content"
+                [ngStyle]="{
+                  color: profile.name.xName ? 'initial' : 'rgb(170, 170, 170)'
+                }"
+              >
+                {{
+                  profile.name.xName
+                    ? profile.name.xName
+                    : "Ext.name not available"
+                }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Email</div>
+              <div
+                class="info-details-content"
+                [ngStyle]="{
+                  color: profile.email ? 'initial' : 'rgb(170, 170, 170)'
+                }"
+              >
+                {{ profile.email ? profile.email : "Email not available" }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Contact Number +63</div>
+              <div
+                class="info-details-content"
+                [ngStyle]="{
+                  color: profile.contact ? 'initial' : 'rgb(170, 170, 170)'
+                }"
+              >
+                {{ profile.contact || "Contact number not available" }}
+              </div>
+            </div>
+          </div>
+          <div class="info-details-likes">
+            <div class="title">{{ profile.name.fName }} likes</div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Hobbies</div>
+              <div class="info-details-content">
+                {{ profile.desc ? profile.desc.hobbies : "No hobbies" }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Work</div>
+              <div class="info-details-content">
+                {{ profile.desc ? profile.desc.work : "No work" }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Favorite Food</div>
+              <div class="info-details-content">
+                {{ profile.desc ? profile.desc.favFood : "No favorite food" }}
+              </div>
+            </div>
+            <div class="info-details-wrapper">
+              <div class="info-details-label">Favorite Place</div>
+              <div class="info-details-content">
+                {{ profile.desc ? profile.desc.favPlace : "No favorite place" }}
+              </div>
+            </div>
+          </div>
+          <div class="info-details-your-listing">
+            <div class="title">{{ profile.name.fName }} Listing Properties</div>
+            <section
+              (click)="navigateToBookStaycation()"
+              class="content"
+              [ngClass]=""
+              *ngIf="profile.properties.length > 0"
+              [ngStyle]="{
+                display: profile.properties.length === 0 ? 'block' : 'none'
+              }"
+            >
+              <div class="card stacked" *ngFor="let prop of profile.properties">
+                <div class="image">
+                  <img
+                    [src]="prop.image"
+                    alt="image"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                </div>
+                <div class="content__card">
+                  <div class="info">
+                    <div class="title">{{ prop.title }}</div>
+                    <div class="description">{{ prop.description }}</div>
+                    <div class="permonth">
+                      {{ prop.permonth }}<span>&nbsp;monthly</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section
+              class="not-found-wrapper"
+              [ngStyle]="{
+                display: profile.properties.length === 0 ? 'block' : 'none'
+              }"
+            >
+              <p class="not-found custom">
+                You don't have properties for rent.
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

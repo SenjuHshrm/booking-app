@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UsersProfileComponent } from './users-profile/users-profile.component';
 import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel-policy-learnmore.component';
 import { InputErrorMessageComponent } from './input-error-message/input-error-message.component';
+import { ViewProfileModalComponent } from './modals/view-profile-modal/view-profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { InputErrorMessageComponent } from './input-error-message/input-error-me
     UsersProfileComponent,
     CancelPolicyLearnmoreComponent,
     InputErrorMessageComponent,
+    ViewProfileModalComponent,
   ],
 
   imports: [
