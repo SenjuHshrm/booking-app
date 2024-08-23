@@ -16,7 +16,9 @@
                     </div>
 
                     <div class="custom-main-button">
-                        <button class="main-button" (click)="navigateToMain()">View More</button>
+                        <button class="main-button" (click)="navigateToMain()" [disabled]="isAuth===!isAuth">
+                            View More
+                        </button>
                     </div>
                 </div>
                 <div class="main-image" [@fadeInAnimation]>
@@ -133,16 +135,28 @@
                         slidesPerView: 2,
                         spaceBetween: 10,
                     },
-                    '700': {
+                    '790': {
                         slidesPerView: 3,
                         spaceBetween: 10,
                     },
                     
                     '1000': {
-                        slidesPerView: 4,
+                        slidesPerView: 3,
                         spaceBetween: 20,
                     },
+                    '1100': {
+                        slidesPerView:4 ,
+                        spaceBetween: 20,
+                    },
+                    '1400': {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
                     '1500': {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                    },
+                    '1600': {
                         slidesPerView: 4,
                         spaceBetween: 30,
                     }
@@ -228,6 +242,9 @@
             <div class="airplane_image">
                 <img src="./assets/images/home/section3/lineairplain.png" alt="image" />
             </div>
+        </section>
+        <section class="home-container-body-gallery">
+           
         </section>
         <section class="home-container-body-section_4">
             <div class="section_4-wrapper">

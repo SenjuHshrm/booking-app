@@ -3,6 +3,8 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y,Autoplay } from 'sw
 import { SwiperComponent } from 'swiper/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../globals/fadein-animations';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../globals/login/login.component';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -15,7 +17,10 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   animations:[fadeInAnimation]
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router, 
+    private activatedRoute: ActivatedRoute) {}
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
  
@@ -33,7 +38,21 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToMain() {
+    if(this.isAuth){
     this.router.navigate(['/', 'main', 'staycation-list']);
+  }{
+     this.openLoginDialog();
+  }
+  }
+
+  private openLoginDialog(): void {
+    const dialogRefLogin = this.dialog.open(LoginComponent, {
+      panelClass: 'custom-login-modal'
+    });
+
+    dialogRefLogin.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
   }
 
   onRadioChange(event: Event) {
@@ -72,11 +91,11 @@ types:any = [
   {images:'../assets/images/home/section1/type/villa.png',description:'Private Villa'},
   {images:'../assets/images/home/section1/type/condo.png',description:'Service Condominium'},
   {images:'../assets/images/home/section1/type/hotel.png',description:'Hotel'},
-  {images:'../assets/images/home/section1/type/hotel.png',description:'Hotel BallRoom'},
-  {images:'../assets/images/home/section1/type/hotel.png',description:'Restaurant Space'},
-  {images:'../assets/images/home/section1/type/hotel.png',description:'Pavillion'},
-  {images:'../assets/images/home/section1/type/hotel.png',description:'Gymnasium'},
-  {images:'../assets/images/home/section1/type/hotel.png',description:'Meeting Room'},
+  {images:'../assets/images/home/section1/type/Hotel Ballroom.jpeg',description:'Hotel BallRoom'},
+  {images:'../assets/images/home/section1/type/Restaurant Space.jpeg',description:'Restaurant Space'},
+  {images:'../assets/images/home/section1/type/Pavillion.jpg',description:'Pavillion'},
+  {images:'../assets/images/home/section1/type/Gymnasium.jpeg',description:'Gymnasium'},
+  {images:'../assets/images/home/section1/type/Meeting Room.jpeg',description:'Meeting Room'},
 ]
 
 options = [

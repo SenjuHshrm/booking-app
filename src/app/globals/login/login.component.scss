@@ -44,15 +44,38 @@
                 }
             }
 
+            .singup_forgotpass{
+                display: flex;
+                align-items: flex-start;
+                flex:auto auto;
+                justify-content: space-between;
+                .sign_up{
+                     button{
+                        background-color: transparent;
+                        border: none;
+                        text-align: end;
+                        font-family: Poppins-Regular;
+                        cursor: pointer;
+                        color: #63AB68;
+                        margin:0;
+                        padding: 0;
+                     }
+                }
+        
+
             .forgot-pass {
+                background-color: transparent;
+                border: none;
                 text-align: end;
                 font-family: Poppins-Regular;
                 cursor: pointer;
+                color: #63AB68;
             }
 
             .forgot-pass:hover {
                 color: #63AB68;
             }
+        }
 
             .width-button {
                 max-width: none !important;

@@ -1,27 +1,36 @@
 <div class="login-container">
     <div class="login-container-wrapper">
-        <div class="close-button close" (click)="closeDialogLogin()"><mat-icon>close</mat-icon></div>
+        <div class="close-button" (click)="closeDialogLogin()"><mat-icon>close</mat-icon></div>
         <div class="title">Login</div>
         <div class="form-wrapper">
             <form (ngSubmit)="login(loginForm)" [formGroup]="loginForm">
                 <div class="email-wrapper">
-                    <input type="text" id="email" name="email" placeholder="Email Address" autocomplete="email" formControlName="email"><br><br>
+                    <input type="text" id="email" name="email" placeholder="Email Address" autocomplete="email"
+                        formControlName="email"><br><br>
                 </div>
                 <div class="password-wrapper">
                     <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
-                        placeholder="Password" autocomplete="current-password" formControlName="password" required><br><br>
+                        placeholder="Password" autocomplete="current-password" formControlName="password"
+                        required><br><br>
                     <span></span>
                     <div class="eye" (click)="togglePasswordVisibility()">
                         <mat-icon *ngIf="showPassword ===true ? 'Show' : ''">visibility</mat-icon>
                         <mat-icon *ngIf="showPassword ===false ? 'Hide' : ''">visibility_off</mat-icon>
                     </div>
                 </div>
-                <div class="forgot-pass">Forgot password?</div>
+                <div class="singup_forgotpass">
+                    <div class="sign_up">
+                        <div>Don't have account?</div>
+                        <button  (click)="openSignupDialog()">SignUp</button>
+                    </div>
+                   
+                    <button class="forgot-pass" (click)="handleForgotPass()">Forgot password?</button>
+                </div>
                 <button class="main-button width-button" type="submit">Login</button>
             </form>
         </div>
         <div class="not-aguest">
-                <!-- <div>Not a guest? <button class="signup-button" (click)="openDialogSignup()">SignUp</button></div> -->
+            <!-- <div>Not a guest? <button class="signup-button" (click)="openDialogSignup()">SignUp</button></div> -->
             <div>or</div>
         </div>
         <!-- <div class="google-button main-button-outline" id="google-login" (click)="loginWithGoogle()">
@@ -29,12 +38,7 @@
             <div>continue with Google</div>
         </div> -->
         <div>
-            <asl-google-signin-button
-                type="standard"
-                size="large"
-                shape="circle"
-                locale="en"
-                width="338"
+            <asl-google-signin-button type="standard" size="large" shape="circle" locale="en" width="338"
                 text="continue_with">
             </asl-google-signin-button>
         </div>
