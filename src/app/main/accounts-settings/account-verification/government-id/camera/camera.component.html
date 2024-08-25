@@ -1,0 +1,21 @@
+<div class="camera">
+  <div class="camera-wrapper">
+    <div class="camera-video">
+      <video #video width="320" height="240" autoplay></video>
+      <div class="camera-loading" *ngIf="isLoading">
+        <span><mat-spinner [diameter]="15" />Loading Camera...</span>
+      </div>
+    </div>
+    <canvas #canvas width="320" height="240"></canvas>
+  </div>
+  <div class="button-wrapper">
+    <!-- <button mat-raised-button (click)="startCamera()">Start Camera</button> -->
+    <button mat-raised-button [disabled]="isLoading" (click)="captureImage()">
+      Capture Image
+    </button>
+    <button mat-raised-button [disabled]="isLoading" (click)="uploadImage()">
+      Proceed
+    </button>
+    <button mat-raised-button (click)="cancelCamera()">Cancel</button>
+  </div>
+</div>

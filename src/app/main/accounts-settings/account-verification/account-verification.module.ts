@@ -20,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GlobalsModule } from 'src/app/globals/globals.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CameraComponent } from './government-id/camera/camera.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UploadPhotoComponent,
     CapturePhotoComponent,
     VerificationCodeComponent,
+    CameraComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +50,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTabsModule,
     GlobalsModule,
     MatProgressSpinnerModule,
+    MatButtonModule,
   ],
 })
 export class AccountVerificationModule {}

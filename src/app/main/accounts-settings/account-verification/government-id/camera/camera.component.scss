@@ -1,0 +1,42 @@
+.camera {
+  padding: 1rem;
+  font-family: Poppins-Regular;
+}
+
+.camera-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+
+  .camera-video {
+    position: relative;
+  }
+
+  .camera-loading {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background-color: lightgray;
+    font-weight: bold;
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  button {
+    background-color: #63ab68;
+    color: white;
+  }
+}
