@@ -1,3 +1,4 @@
+import { SocketService } from './../../services/socket.service';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { BasicUtilService } from './../../services/basic-util.service';
 import { environment } from './../../../environments/environment';
@@ -37,7 +38,7 @@ export class NavComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private _location: Location,
-    private _socAuth: SocialAuthService,
+    // private _socAuth: SocialAuthService,
     private _auth: AuthService,
     private _token: TokenService,
     private _user: UserService,
@@ -111,7 +112,8 @@ export class NavComponent implements OnInit {
   }
 
   public logout() {
-    
+    let _socket: SocketService = new SocketService()
+    _socket.disconnect()
     this._auth.logout().subscribe({
       next: (res: { logout: boolean }) => {
         if(localStorage.getItem('GOOGLE_ID_TOKEN') !== null) {

@@ -1,0 +1,40 @@
+<section class="left-column">
+  <div class="left-column-header">
+    <div class="title_wrapper">
+      <div class="title">Messages</div>
+      <div *ngIf="isMobile" (click)="togleDrawer()" class="custom-close-btn">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <div class="message-search">
+      <div class="icon"><mat-icon>search</mat-icon></div>
+      <input type="text" name="search-listing" placeholder="Search" value="" />
+    </div>
+  </div>
+
+  <div class="list-card-message">
+    <div
+      class="list-card card-list-message"
+      *ngFor="let room of messageList"
+      (click)="handleGetRoomMessages(room._id)"
+    >
+      <div class="time-sent">{{ duration(room.lastMsg) }}</div>
+      <div class="list-card-content">
+        <div class="avatar">
+          <img
+            [src]="imgSrc(room.members)"
+            loading="lazy"
+            alt="Avatar"
+            [draggable]="false"
+          />
+        </div>
+        <div class="message-name">
+          <div class="name">{{ fullName(room.members) }}</div>
+          <div class="message">
+            {{ room.msgPrev }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

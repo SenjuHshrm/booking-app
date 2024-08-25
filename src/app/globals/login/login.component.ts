@@ -73,25 +73,25 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: new FormControl('', [Validators.required])
     })
 
-    this._socAuth.authState.subscribe({
-      next: (res: any) => {
-        let data  = {
-          userData: {
-            firstName: res.firstName,
-            lastName: res.lastName,
-            photoUrl: res.photoUrl
-          },
-          authData: {
-            email: res.email,
-            id: res.id
-          }
-        }
-        this._saveProviderData(data, res.idToken)
-      },
-      error: (err: any) => {
-        console.log(err)
-      }
-    })
+    // this._socAuth.authState.subscribe({
+    //   next: (res: any) => {
+    //     let data  = {
+    //       userData: {
+    //         firstName: res.firstName,
+    //         lastName: res.lastName,
+    //         photoUrl: res.photoUrl
+    //       },
+    //       authData: {
+    //         email: res.email,
+    //         id: res.id
+    //       }
+    //     }
+    //     this._saveProviderData(data, res.idToken)
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err)
+    //   }
+    // })
   }
 
   

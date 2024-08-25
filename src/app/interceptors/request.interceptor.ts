@@ -6,11 +6,14 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpContextToken
 } from '@angular/common/http';
 import { BehaviorSubject, Observable, EMPTY, throwError, of } from 'rxjs';
 import { filter, take, switchMap, catchError } from 'rxjs/operators'
 import { environment } from './../../environments/environment'
+
+export const BYPASS_LOG = new HttpContextToken(() => false)
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -31,6 +34,7 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if(request.context.get(BYPASS_LOG) === true) return next.handle(request)
     let authReq = this._addAuthToken(request)
     return next.handle(authReq).pipe(
       catchError((e: HttpErrorResponse): Observable<any> => {

@@ -1,58 +1,95 @@
 <div class="upload_photo_container">
-    <!-- <div class="upload_header">
-        <div class="upload_title_wrapper ">
-            <div class="upload_info_title">Add a photo of your I.D</div>
-            <div class="upload_sub_title">Make sure the photo of your I.D isn't blurry and that it clearly shows your
-                face.
-            </div>
-        </div>
-    </div> -->
-    <div class="upload_content">
-        <form (ngSubmit)="onSubmit()" #idForm="ngForm">
-            <div class="custom-select-wrapper">
-                <select>
-                    <option *ngFor="let selectId of validIDType; let i = index" value={{i}}>
-                        {{selectId._ids}}
-                    </option>
-                </select>
-            </div>
-            <div class="upload_content_wrapper">
-                <div class="upload_photo_front">
-                    <div class="img_btn_title">Upload Front I.D </div>
-                    <div class="form-group">
-                        <label for="frontId">
-                            <div class="_img_wrapper" *ngIf="!frontFile">
-                                <img src="../assets/images/main/account-settings/front.png" alt="image" loading="lazy"
-                                    draggable="false" />
-                            </div>
-                            <div class="_img_wrapper" *ngIf="frontFile">
-                                <img [src]="frontFile" alt="image" loading="lazy" draggable="false" />
-                            </div>
-                        </label>
-                        <input type="file" id="frontId" class="custom-file-input"
-                            (change)="onFileChange($event, 'front')" />
-                    </div>
-                </div>
-                <div class="upload_photo_back">
-                    <div class="img_btn_title">Upload Back I.D </div>
-                    <div class="form-group">
-                        <label for="backId">
-                            <div class="_img_wrapper" *ngIf="!backFile">
-                                <img src="../assets/images/main/account-settings/back.png" alt="image" loading="lazy"
-                                    draggable="false" />
-                            </div>
-                            <div class="_img_wrapper" *ngIf="backFile">
-                                <img [src]="backFile" alt="image" loading="lazy" draggable="false" />
-                            </div>
-                        </label>
-                        <input type="file" id="backId" class="custom-file-input"
-                            (change)="onFileChange($event, 'back')" />
-                    </div>
-                </div>
-            </div>
-            <div class="content_footer">
-                <button class="main-button" type="submit" [disabled]="!frontFile || !backFile">Save</button>
-            </div>
-        </form>
+  <!-- <div class="upload_header">
+    <div class="upload_title_wrapper">
+      <div class="upload_info_title">Add a photo of your I.D</div>
+      <div class="upload_sub_title">
+        Make sure the photo of your I.D isn't blurry and that it clearly shows
+        your face.
+      </div>
     </div>
+  </div> -->
+  <div class="upload_content">
+    <form (ngSubmit)="onSubmit()" #idForm="ngForm">
+      <div class="custom-select-wrapper">
+        <select>
+          <option
+            *ngFor="let selectId of validIDType; let i = index"
+            value="{{ selectId._ids }}"
+            [(ngModel)]="type"
+          >
+            {{ selectId._ids }}
+          </option>
+        </select>
+      </div>
+      <div class="upload_content_wrapper">
+        <div class="upload_photo_front">
+          <div class="img_btn_title">Upload Front I.D</div>
+          <div class="form-group">
+            <label for="frontId">
+              <div class="_img_wrapper" *ngIf="!frontPreview">
+                <img
+                  src="../assets/images/main/account-settings/front.png"
+                  alt="image"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
+              <div class="_img_wrapper" *ngIf="frontPreview">
+                <img
+                  [src]="frontPreview"
+                  alt="image"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
+            </label>
+            <input
+              type="file"
+              id="frontId"
+              class="custom-file-input"
+              (change)="onFileChange($event, 'front')"
+            />
+          </div>
+        </div>
+        <div class="upload_photo_back">
+          <div class="img_btn_title">Upload Back I.D</div>
+          <div class="form-group">
+            <label for="backId">
+              <div class="_img_wrapper" *ngIf="!backPreview">
+                <img
+                  src="../assets/images/main/account-settings/back.png"
+                  alt="image"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
+              <div class="_img_wrapper" *ngIf="backPreview">
+                <img
+                  [src]="backPreview"
+                  alt="image"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
+            </label>
+            <input
+              type="file"
+              id="backId"
+              class="custom-file-input"
+              (change)="onFileChange($event, 'back')"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="content_footer">
+        <button
+          class="main-button"
+          type="submit"
+          [disabled]="!frontFile || !backFile"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

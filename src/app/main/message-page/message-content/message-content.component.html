@@ -1,0 +1,26 @@
+<div class="content" #messageContainer>
+  <div *ngFor="let message of messageList">
+    <div *ngIf="message.from._id !== token.sub" class="sender">
+      <div class="sender-wrapper">
+        <div class="avatar">
+          <img
+            src="{{ imgSrc(message.from.img) }}"
+            loading="lazy"
+            alt="Avatar"
+            [draggable]="false"
+          />
+        </div>
+        <div class="message card">
+          {{ message.text }}
+        </div>
+      </div>
+    </div>
+    <div class="receiver" *ngIf="message.from._id === token.sub">
+      <div class="receiver-wrapper">
+        <div class="message card">
+          {{ message.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

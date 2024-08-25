@@ -6,16 +6,13 @@ import { PayoutSettingsComponent } from './payout-settings/payout-settings.compo
 import { MatIconModule } from '@angular/material/icon';
 
 
-
-
 @NgModule({
-  declarations: [
-    AccountsSettingsComponent
-  ],
   imports: [
     CommonModule,
     AccountsSettingsRoutingModule,
     MatIconModule
-  ]
+  ],
+  declarations: [AccountsSettingsComponent, PaymentAndPayoutComponent],
+  imports: [CommonModule, AccountsSettingsRoutingModule]
 })
-export class AccountsSettingsModule { }
+export class AccountsSettingsModule {}

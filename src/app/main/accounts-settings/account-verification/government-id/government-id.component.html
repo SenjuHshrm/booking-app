@@ -1,32 +1,42 @@
 <div class="governmentId">
-    <div class="header">
-        <div class="title_wrapper">
-            <div class="info_title">Government ID</div>
-            <div class="sub_title">We’ll need you to add an official government ID. This step helps make sure you’re
-                really you.</div>
-        </div>
-        <div class="close-button-normal" (click)="closeDialog()">
-            <mat-icon style="margin-top:3px">close</mat-icon>
-        </div>
+  <div class="header">
+    <div class="title_wrapper">
+      <div class="info_title">Government ID</div>
+      <div class="sub_title">
+        We’ll need you to add an official government ID. This step helps make
+        sure you’re really you.<br />
+        Make sure that your profile details matches the details on your id.
+      </div>
     </div>
-    <section class="governmentId_tab">
-        <div class="custom-tabs  ">
-            <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab1'}" (click)="selectTab('tab1')">
-                <mat-icon>cloud_upload</mat-icon>
-                Upload Photo
-            </div>
-            <div class="tab animated-border" [ngClass]="{'active': selectedTab === 'tab2'}" (click)="selectTab('tab2')">
-                <mat-icon>camera</mat-icon>
-                Take a Photo
-            </div>
-        </div>
-    </section>
+    <!-- <div class="close-button-normal">
+      <mat-icon style="margin-top: 3px">close</mat-icon>
+    </div> -->
+  </div>
+  <section class="governmentId_tab">
+    <div class="custom-tabs">
+      <div
+        class="tab animated-border"
+        [ngClass]="{ active: selectedTab === 'tab1' }"
+        (click)="selectTab('tab1')"
+      >
+        <mat-icon>cloud_upload</mat-icon>
+        Upload Photo
+      </div>
+      <div
+        class="tab animated-border"
+        [ngClass]="{ active: selectedTab === 'tab2' }"
+        (click)="selectTab('tab2')"
+      >
+        <mat-icon>camera</mat-icon>
+        Take a Photo
+      </div>
+    </div>
+  </section>
 
-    <div class="governmentId_upload_photo" *ngIf="selectedTab === 'tab1'">
-        <app-upload-photo></app-upload-photo>
-    </div>
-    <div class="governmentId_capture_photo" *ngIf="selectedTab === 'tab2'">
-        <app-capture-photo></app-capture-photo>
-    </div>
-
+  <div class="governmentId_upload_photo" *ngIf="selectedTab === 'tab1'">
+    <app-upload-photo></app-upload-photo>
+  </div>
+  <div class="governmentId_capture_photo" *ngIf="selectedTab === 'tab2'">
+    <app-capture-photo></app-capture-photo>
+  </div>
 </div>

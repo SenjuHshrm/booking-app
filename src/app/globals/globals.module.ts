@@ -9,7 +9,10 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileComponent } from './profile/profile.component';
-import { GoogleSigninButtonDirective, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import {
+  GoogleSigninButtonDirective,
+  GoogleSigninButtonModule,
+} from '@abacritt/angularx-social-login';
 import { BookingTermsComponent } from './booking-terms/booking-terms.component';
 import { ReservationsViewComponent } from './reservations-view/reservations-view.component';
 import { LoaderStateComponent } from './loader-state/loader-state.component';
@@ -21,10 +24,9 @@ import { UsersProfileComponent } from './users-profile/users-profile.component';
 import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel-policy-learnmore.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeImageGalleryComponent } from './home-image-gallery/home-image-gallery.component';
-
-
-
-
+import { InputErrorMessageComponent } from './input-error-message/input-error-message.component';
+import { ViewProfileModalComponent } from './modals/view-profile-modal/view-profile-modal.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { HomeImageGalleryComponent } from './home-image-gallery/home-image-galle
     CancelPolicyLearnmoreComponent,
     ForgotPasswordComponent,
     HomeImageGalleryComponent
+    InputErrorMessageComponent,
+    ViewProfileModalComponent
   ],
 
   imports: [
@@ -54,12 +58,11 @@ import { HomeImageGalleryComponent } from './home-image-gallery/home-image-galle
     FormsModule,
     ReactiveFormsModule,
     GoogleSigninButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ],
 
-  providers: [
-    GoogleSigninButtonDirective
-  ],
+  providers: [GoogleSigninButtonDirective],
 
   exports: [
     ProfileComponent,
@@ -72,9 +75,9 @@ import { HomeImageGalleryComponent } from './home-image-gallery/home-image-galle
     MessageProprietorComponent,
     WheretoSleepViewComponent,
     UsersProfileComponent,
-    HomeImageGalleryComponent
-  ]
-
+    HomeImageGalleryComponent,
+    InputErrorMessageComponent,
+  ],
 
 })
-export class GlobalsModule { }
+export class GlobalsModule {}

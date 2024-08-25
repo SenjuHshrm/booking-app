@@ -1,0 +1,26 @@
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit(messageForm)">
+  <div class="form">
+    <div class="input-form">
+      <div class="input-form-wrapper">
+        <input
+          [disabled]="isLoading"
+          formControlName="message"
+          type="text"
+          name="input-form"
+          value=""
+          placeholder="Message here..."
+        />
+      </div>
+      <div class="icons-form-wrapper">
+        <button
+          [disabled]="isLoading || selectedRoomId === ''"
+          type="submit"
+          class="mat-icon"
+        >
+          <mat-icon>send</mat-icon>
+        </button>
+        <div class="mat-icon"><mat-icon>image</mat-icon></div>
+      </div>
+    </div>
+  </div>
+</form>

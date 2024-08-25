@@ -9,25 +9,22 @@
 
 html {
   box-sizing: border-box;
-  font-family: Poppins-Regular !important
+  font-family: Poppins-Regular !important;
 }
 
 html,
 body {
   height: 100%;
-  font-family: Poppins-Regular !important
+  font-family: Poppins-Regular !important;
 }
 
 body {
   margin: 0;
-  font-family: Poppins-Regular !important
+  font-family: Poppins-Regular !important;
 }
 
-
-
-@import 'swiper/swiper-bundle.min.css';
+@import "swiper/swiper-bundle.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 
 @font-face {
   font-family: Poppins-Regular;
@@ -44,25 +41,24 @@ body {
   src: url(./assets/fonts/Poppins-Bold.ttf);
 }
 
-
 ////////Default Button//////
 hr {
   border: 0;
   height: 1px;
   background-color: #cacaca;
-  padding:0 !important;
-  margin:0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
-.button_white_circle{
+.button_white_circle {
   border: none;
   background-color: transparent;
   width: 100%;
   cursor: pointer;
-  color: #63AB68;
+  color: #63ab68;
   text-decoration: underline;
   background-color: white;
   border-radius: 100%;
-  padding:.5rem;
+  padding: 0.5rem;
   box-shadow: 1px 1px 5px #88888877;
 
   mat-icon {
@@ -98,8 +94,7 @@ hr {
   background-color: transparent;
   width: 100%;
   cursor: pointer;
-  color: #63AB68;
-  
+  color: #63ab68;
 
   mat-icon {
     margin: 0 !important;
@@ -114,8 +109,8 @@ hr {
   border: none;
   border-radius: 5px;
   background-color: transparent;
-  padding: .5rem 1rem .5rem;
-  background-color: #63AB68;
+  padding: 0.5rem 1rem 0.5rem;
+  background-color: #63ab68;
   width: 100%;
   display: flex;
   align-items: center;
@@ -140,7 +135,7 @@ hr {
 
 .main-button {
   display: block;
-  background-color: #63AB68;
+  background-color: #63ab68;
   border: none;
   max-width: fit-content;
   padding: 0.6rem 3rem 0.6rem 3rem;
@@ -154,13 +149,13 @@ hr {
 
 .main-button:hover {
   background-color: #000000;
-  color: #63AB68;
+  color: #63ab68;
 }
 
 .main-button-outline {
   display: block;
   background-color: transparent;
-  border: 2px solid #63AB68;
+  border: 2px solid #63ab68;
   width: 100%;
   padding: 0.6rem 3rem 0.6rem 3rem;
   border-radius: 5rem;
@@ -173,7 +168,7 @@ hr {
 
 .main-button-outline:hover {
   background-color: #000000;
-  color: #63AB68;
+  color: #63ab68;
   border: 2px solid white;
 }
 
@@ -188,7 +183,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #63AB68;
+  color: #63ab68;
   border: none;
   cursor: pointer;
 
@@ -196,12 +191,11 @@ hr {
     margin: 0 !important;
     padding: 0 !important;
   }
-
 }
 
 .close-button:hover {
   background-color: black;
-  color: #63AB68;
+  color: #63ab68;
 }
 
 .close-button-normal {
@@ -212,7 +206,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #63AB68;
+  color: #63ab68;
   border: none;
   cursor: pointer;
 
@@ -220,12 +214,11 @@ hr {
     margin: 0 !important;
     padding: 0 !important;
   }
-
 }
 
 .close-button-normal:hover {
   background-color: black;
-  color: #63AB68;
+  color: #63ab68;
 }
 
 mat-icon {
@@ -259,7 +252,7 @@ mat-icon {
 
 .fc .fc-toolbar-title {
   /* Your custom color styles here */
-  color: #63AB68 !important;
+  color: #63ab68 !important;
 }
 
 .fc .fc-button-primary {
@@ -275,11 +268,11 @@ mat-icon {
 
 .fc .fc-button-primary .fc-icon {
   /* Styles for icons within primary buttons */
-  color: #63AB68;
+  color: #63ab68;
 }
 
 .fc .fc-toolbar-title {
-  color: #63AB68 !important;
+  color: #63ab68 !important;
   /* Blue title text */
 }
 
@@ -290,7 +283,7 @@ mat-icon {
   border-radius: 2px !important;
   margin-right: 1rem;
   border-style: none;
-  color: #63AB68 !important;
+  color: #63ab68 !important;
   /* Red button text */
 }
 
@@ -299,37 +292,29 @@ mat-icon {
 }
 
 .fc-event-title-container {
-  background-color: #63AB68 !important;
-  border-color: #63AB68 !important;
+  background-color: #63ab68 !important;
+  border-color: #63ab68 !important;
 }
 
 .fc-event-title,
 .fc-sticky {
-  border-color: #63AB68 !important;
+  border-color: #63ab68 !important;
 }
 
 .fc-event,
 .fc-event-draggable {
-  border-color: #63AB68 !important;
+  border-color: #63ab68 !important;
 }
 
 .fc-daygrid-event-dot {
-  border-color: #63AB68 !important;
+  border-color: #63ab68 !important;
 }
 
 //Calendar End
 
-
-
-
 //Background Opacity Mat-Dialog Start
 
-
-
-
 //Background Opacity Mat-Dialog End
-
-
 
 /* Custom scrollbar for WebKit-based browsers */
 ::-webkit-scrollbar {
@@ -347,7 +332,7 @@ mat-icon {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #68A968 !important;
+  background: #68a968 !important;
   /* Color of the scrollbar handle */
   border-radius: 6px !important;
   /* Rounding the corners of the scrollbar handle */
@@ -355,22 +340,27 @@ mat-icon {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #68A968 !important;
+  background: #68a968 !important;
   /* Color of the scrollbar handle on hover */
 }
 
 /* Custom scrollbar for WebKit-based browsers */
 
-
-
-.custom_mat_card{
+.custom_mat_card {
   background-color: white;
   box-shadow: 1px 1px 5px #88888877;
   border: none;
   border-radius: 5px !important;
 }
 
+
 .val-err-msg{
   font-size:.7rem !important;
   color: red;
 }
+
+.custom-view-profile-dialog {
+  max-height: 80vh;
+  width: 100%;
+}
+
