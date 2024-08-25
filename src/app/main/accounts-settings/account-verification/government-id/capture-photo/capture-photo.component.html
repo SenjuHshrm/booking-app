@@ -1,5 +1,5 @@
 <div class="upload_photo_container">
-    <!-- <div class="upload_header">
+  <!-- <div class="upload_header">
         <div class="upload_title_wrapper ">
             <div class="upload_info_title">Add a photo of your I.D</div>
             <div class="upload_sub_title">Make sure the photo of your I.D isn't blurry and that it clearly shows your
@@ -7,40 +7,56 @@
             </div>
         </div>
     </div> -->
-    <div class="upload_content">
-        <form (ngSubmit)="onSubmit()" #idForm="ngForm">
-            <div class="custom-select-wrapper">
-                <select>
-                    <option *ngFor="let selectId of validIDType; let i = index" value={{i}}>
-                        {{selectId._ids}}
-                    </option>
-                </select>
+  <div class="upload_content">
+    <form (ngSubmit)="onSubmit()" #idForm="ngForm">
+      <div class="custom-select-wrapper">
+        <select>
+          <option
+            *ngFor="let selectId of validIDType; let i = index"
+            value="{{ selectId._ids }}"
+            [(ngModel)]="type"
+          >
+            {{ selectId._ids }}
+          </option>
+        </select>
+      </div>
+      <div class="upload_content_wrapper">
+        <div class="upload_photo_front">
+          <div class="img_btn_title">Upload Front I.D</div>
+          <div class="form-group">
+            <div class="_img_wrapper" (click)="handleCaptureCamera('front')">
+              <img
+                [src]="frontPreview || imgPlaceholder"
+                alt="camera-Icon"
+                class="custom-icon"
+              />
+              <span>Capture Front I.D</span>
             </div>
-            <div class="upload_content_wrapper">
-                <div class="upload_photo_front">
-                    <div class="img_btn_title">Upload Front I.D </div>
-                    <div class="form-group">
-                        <div class="_img_wrapper">
-                            <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
-                                alt="camera-Icon" class="custom-icon">
-                            <span>Capture Front I.D</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="upload_photo_back">
-                    <div class="img_btn_title">Upload Back I.D </div>
-                    <div class="form-group">
-                        <div class="_img_wrapper">
-                            <img src="..\..\assets\images\customer-dashboard\create-listing\cameraadd.png"
-                                alt="camera-Icon" class="custom-icon">
-                            <span>Capture Back I.D</span>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <div class="upload_photo_back">
+          <div class="img_btn_title">Upload Back I.D</div>
+          <div class="form-group">
+            <div class="_img_wrapper" (click)="handleCaptureCamera('back')">
+              <img
+                [src]="backPreview || imgPlaceholder"
+                alt="camera-Icon"
+                class="custom-icon"
+              />
+              <span>Capture Back I.D</span>
             </div>
-            <div class="content_footer">
-                <button class="main-button" type="submit" type="submit">Save</button>
-            </div>
-        </form>
-    </div>
+          </div>
+        </div>
+      </div>
+      <div class="content_footer">
+        <button
+          [disabled]="!frontFile || !backFile"
+          class="main-button"
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
