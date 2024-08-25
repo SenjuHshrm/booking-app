@@ -31,6 +31,12 @@
 
       .mat-icon {
         color: #68a86a;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        width: fit-content;
+        height: fit-content;
+        cursor: pointer;
       }
     }
   }

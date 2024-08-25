@@ -4,6 +4,14 @@
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
 
+  .no-message-found {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    color: #808080;
+  }
+
   .message-list {
     width: 20rem;
     max-width: 20rem;
@@ -36,12 +44,27 @@
     padding: 1rem;
     border-bottom: 1px solid rgb(224, 224, 224);
 
+    &-user {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
     .avatar {
       max-width: 35px;
-
+      min-width: 35px;
+      width: 35px;
+      max-height: 35px;
+      min-height: 35px;
+      height: 35px;
+      border-radius: 50%;
+      overflow: hidden;
       img {
         width: 100%;
-        height: auto;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
       }
     }
 
