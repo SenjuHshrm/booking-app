@@ -11,13 +11,17 @@ import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings.component';
 import { TaxComponent } from './tax/tax.component';
 import { HostEarningComponent } from './host-earning/host-earning.component';
+import { FaqsComponent } from './faqs/faqs.component';
+import { ImgCarouselComponent } from './img-carousel/img-carousel.component';
 
 
 @NgModule({
   declarations: [
     SettingsComponent,
     TaxComponent,
-    HostEarningComponent
+    HostEarningComponent,
+    FaqsComponent,
+    ImgCarouselComponent
   ],
   imports: [
     CommonModule,
