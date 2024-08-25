@@ -18,6 +18,11 @@ const routes: Routes = [
         title: 'TaraGo | Payment Method'
       },
       {
+        path: 'payout-settings',
+        loadChildren: () => import('./payout-settings/payout-settings.module').then(m => m.PayoutSettingsModule),
+        title: 'TaraGo | Payment Method'
+      },
+      {
         path: 'account-verification',
         loadChildren: () => import('./account-verification/account-verification.module').then(m => m.AccountVerificationModule),
         title: 'TaraGo | Payment Method'

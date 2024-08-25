@@ -2,6 +2,7 @@ import { PaymentService } from './../../../../services/payment.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-payment-method',
@@ -12,8 +13,12 @@ export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
 
   public piTypes: any = [
     { val: "gcash", txt: "GCash" },
-    
   ]
+  
+  selectedPaymentMethod: string = '';
+  cardNumber: string = '';
+  expirationDate: string = '';
+  ccv: string = '';
 
   private _sub: Subscription = new Subscription()
 
@@ -21,10 +26,18 @@ export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
     private _md: MatDialogRef<CreatePaymentMethodComponent>,
     @Inject(MAT_DIALOG_DATA) private id: string,
     private _payment: PaymentService
-  ) { }
+  ) { 
+
+    this.selectedPaymentMethod = '';
+    this.cardNumber = '';
+    this.expirationDate = '';
+    this.ccv = '';
+  }
 
   ngOnInit(): void {
     this._getMerchantPaymentMethods()
+
+  
   }
 
   ngOnDestroy(): void {
@@ -44,4 +57,11 @@ export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
       }
     }))
   }
+
+  onSubmit(form: any): void {
+    if (form.valid) {
+      console.log('Form Submitted!', form.value);
+    }
+  }
+
 }

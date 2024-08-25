@@ -1,19 +1,15 @@
 <div class="payment-wallet">
-  <div class="close-button" (click)="close()">
-      <mat-icon style="margin-top:3px">close</mat-icon>
-  </div>
-  <div class="payment-wallet-payment-wallet-wrapper">
-      <h3>Add Payment Method</h3>
-      <form>
+    <div class="header">
+        <div class="close-button" (click)="close()">
+            <mat-icon style="margin-top:3px">close</mat-icon>
+        </div>
+        <div class="title">Add card details</div>
+        <div class="subtitle"></div>
+    </div>
+    <!-- <form>
           <div class="your-information-about-your-info">
               <div class="your-likes">
-                  <!-- <div class="title">Your Personal Information</div> -->
                   <div class="info">
-                      <!-- <div class="input-wrapper">
-                          <div class="label">Current Password</div>
-                          <input type="password" name="currentPassword" formControlName="currentPassword" required/>
-                          
-                      </div> -->
                       <div class="input-wrapper">
                         <div class="label">Type</div>
                         <select>
@@ -26,6 +22,73 @@
           <div class="btn-sec">
               <button class="main-button">Done</button>
           </div>
-      </form>
-  </div>
+      </form> -->
+    <div class="payment-method">
+        <div class="title-wrapper">
+            <!-- <div class="title">Pay with</div> -->
+            <div class="wallet-icons">
+                <div><img src="../../assets/images/main/book-staycation/visa.png" loading="lazy" alt="Avatar"
+                        [draggable]="false"></div>
+                <div><img src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy" alt="Avatar"
+                        [draggable]="false"></div>
+                <div><img src="../../assets/images/main/book-staycation/gcash.png" loading="lazy" alt="Avatar"
+                        [draggable]="false"></div>
+                <div><img src="../../assets/images/main/book-staycation/maya.png" loading="lazy" alt="Avatar"
+                        [draggable]="false"></div>
+            </div>
+        </div>
+        <form #paymentForm="ngForm" (ngSubmit)="onSubmit(paymentForm)">
+            <div class="form_content">
+                <div class="custom-select">
+                    <div class="label">Payment Method</div>
+                    <select class="" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" required>
+                        <option value="" disabled selected>Select Payment Method</option>
+                        <option value="Credit Card or debit card">Credit Card or Debit Card</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Master Card">Master Card</option>
+                        <option value="Gcash">Gcash</option>
+                        <option value="Paymaya">Paymaya</option>
+                    </select>
+                </div>
+
+                <div class="input_num">
+                    <div class="label">Card Number</div>
+                    <input type="text" name="cardNumber" placeholder="Card number" [(ngModel)]="cardNumber"
+                        #cardNumberModel="ngModel" required minlength="16" maxlength="16" />
+                    <ng-container *ngIf="cardNumberModel.invalid && (cardNumberModel.dirty || cardNumberModel.touched)">
+                        <span class="val-err-msg">Card number is required and must be 16 digits long.</span>
+                    </ng-container>
+                </div>
+
+                <div class="wrapper">
+                    <div>
+                        <div class="label">Expiration Date</div>
+                        <div class="expiration-style">
+                            <input class="custom-date-input" type="date" name="expirationDate"
+                                [(ngModel)]="expirationDate" #expirationDateModel="ngModel" required />
+                        </div>
+                        <ng-container
+                            *ngIf="expirationDateModel.invalid && (expirationDateModel.dirty || expirationDateModel.touched)">
+                            <span class="val-err-msg">Expiration date is required.</span>
+                        </ng-container>
+                    </div>
+
+                    <div class="ccv-input">
+                        <div class="label">CCV</div>
+                        <input type="text" name="ccv" placeholder="CCV" [(ngModel)]="ccv" #ccvModel="ngModel" required
+                            minlength="3" maxlength="4" />
+                        <ng-container *ngIf="ccvModel.invalid && (ccvModel.dirty || ccvModel.touched)">
+                            <span class="val-err-msg">CCV is required and must be 3 or 4 digits long.</span>
+                        </ng-container>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="form_footer">
+                <button class="main-button" type="submit" [disabled]="paymentForm.invalid">Done</button>
+            </div>
+        </form>
+    </div>
+
 </div>

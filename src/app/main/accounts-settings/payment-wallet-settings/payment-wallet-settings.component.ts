@@ -8,6 +8,17 @@ import { Subscription } from 'rxjs';
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+
+interface Item {
+  _id:number;
+  cardIcon: any;
+  cardName: string;
+  cardNum: any;
+  cardExpi: any;
+  ccvNum: number;
+  default:boolean
+}
+
 @Component({
   selector: 'app-payment-wallet-settings',
   templateUrl: './payment-wallet-settings.component.html',
@@ -19,6 +30,45 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
 
   private _t!: ITokenClaims;
   private _sub: Subscription = new Subscription();
+
+  public cardInfo: Item[] = [
+    {
+      _id: 1,
+      cardIcon: '../../assets/images/main/book-staycation/visa.png',
+      cardName: 'Visa',
+      cardNum: '4111111516982364',
+      cardExpi: '04/06/2025',
+      ccvNum: 123,
+      default:false
+    },
+    {
+      _id: 2,
+      cardIcon: '../../assets/images/main/book-staycation/mastercard.png',
+      cardName: 'Master Card',
+      cardNum: '4111111516982364',
+      cardExpi: '04/06/2025',
+      ccvNum: 123,
+      default:false
+    },
+    {
+      _id: 3,
+      cardIcon: '../../assets/images/main/book-staycation/gcash.png',
+      cardName: 'Gcash',
+      cardNum: '4111111516982364',
+      cardExpi: '04/06/2025',
+      ccvNum: 123,
+      default:false
+    },
+    {
+      _id: 4,
+      cardIcon: '../../assets/images/main/book-staycation/maya.png',
+      cardName: 'Maya',
+      cardNum: '4111111516982364',
+      cardExpi: '04/06/2025',
+      ccvNum: 123,
+      default:false
+    }
+  ];
 
   constructor(
     private _md: MatDialog,
@@ -36,18 +86,29 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
     this._sub.unsubscribe()
   }
 
+  removeItemById(id: number) {
+    this.cardInfo = this.cardInfo.filter(cardInfo => cardInfo._id !== id);
+  }
+
+  setDefault(index: any): void {
+    this.cardInfo.forEach((card, i) => {
+      card.default = i === index;
+    });
+  }
+
   public addPaymentMethod() {
     this._md.open(CreatePaymentMethodComponent, {
-      width: '60%',
-      height: 'auto',
-      data: this._t.sub
+      width: '100%',
+      maxWidth: '35rem',
+      height: '35rem',
+      data: this._t.sub,
     })
   }
 
   private _retrievePaymentMethods() {
     this._sub.add(this._payment.getUserPaymentMethod(this._t.sub).subscribe({
       next: (res: any) => {
-        if(res.length > 0) {
+        if (res.length > 0) {
           this.userPaymentMethods = res
         }
       },

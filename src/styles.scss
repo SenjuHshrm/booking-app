@@ -74,6 +74,25 @@ hr {
   }
 }
 
+.square_button {
+  font-family: Poppins-Regular;
+  margin-bottom: 2rem;
+  width: 100%;
+  background-color: #68A968;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding:.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.square_button:hover {
+  background-color: black;
+  color: #68A968;
+  font-weight: bold;
+}
+
 .remove_default_button {
   border: none;
   background-color: transparent;
@@ -216,11 +235,20 @@ mat-icon {
 
 ////////Default Button//////
 
+.placeholder-message{
+  font-size: clamp(1rem, 1vw, 5rem);
+  font-weight:500;
+  font-family: Poppins-Regular;
+  color: rgb(207, 207, 207);
+  height: 100%;
+  width: 100%;
+}
+
 .not-found {
   font-size: clamp(1rem, 1vw, 5rem);
-  font-weight: bold;
+  font-weight:500;
   font-family: Poppins-Regular;
-  color: rgb(170, 170, 170);
+  color: rgb(207, 207, 207);
   height: 100%;
   width: 100%;
   display: grid;
@@ -340,4 +368,9 @@ mat-icon {
   box-shadow: 1px 1px 5px #88888877;
   border: none;
   border-radius: 5px !important;
+}
+
+.val-err-msg{
+  font-size:.7rem !important;
+  color: red;
 }

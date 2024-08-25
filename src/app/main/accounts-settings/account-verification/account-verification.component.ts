@@ -19,9 +19,13 @@ export class AccountVerificationComponent {
   ) { }
 
   public legalName: any = [{ firstname: 'Juan', lastname: 'Dela Cruz' }];
+  
   public preferedName: any = [{ prefered: 'Juan' }];
+
   public emailAddress: any = [{ pemail: 'sample@gmail.com' }];
+
   public phoneNumber: any = [{ pnumber: 9516909360 }];
+
   public yourAddress: any = [
     { unit: 1707 },
     { street: 'Moon' },
