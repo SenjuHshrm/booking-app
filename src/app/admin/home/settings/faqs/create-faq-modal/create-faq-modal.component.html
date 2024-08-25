@@ -1,0 +1,56 @@
+<div class="faq-modal">
+  <mat-icon (click)="handleClose(false)" class="faq-close-btn">close</mat-icon>
+  <h2>Create FAQ Modal</h2>
+  <hr />
+  <div class="faq-form-container">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+      <div class="input-wrapper">
+        <div class="label">Question:</div>
+        <textarea
+          [disabled]="isLoading"
+          [readOnly]="isLoading"
+          name="question"
+          formControlName="question"
+          placeholder="Enter question here..."
+        ></textarea>
+        <app-input-error-message
+          [errors]="questionErrors"
+          [form]="createForm"
+        />
+      </div>
+      <div class="input-wrapper">
+        <div class="label">Answer:</div>
+        <textarea
+          [disabled]="isLoading"
+          [readOnly]="isLoading"
+          name="answer"
+          formControlName="answer"
+          placeholder="Enter answer here..."
+        ></textarea>
+        <app-input-error-message [errors]="answerErrors" [form]="createForm" />
+      </div>
+      <div class="input-wrapper">
+        <mat-checkbox [disabled]="isLoading" formControlName="isActive"
+          >Is active on home page?</mat-checkbox
+        >
+      </div>
+      <div class="input-wrapper button-wrapper">
+        <button [disabled]="isLoading" type="submit" mat-raised-button>
+          <span *ngIf="isLoading === true"
+            ><mat-spinner [diameter]="20"
+          /></span>
+          <span *ngIf="isLoading === false">Save</span>
+        </button>
+        <button
+          [disabled]="isLoading"
+          class="btn-danger"
+          (click)="handleClose(false)"
+          type="button"
+          mat-raised-button
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

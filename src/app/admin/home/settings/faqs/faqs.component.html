@@ -1,1 +1,85 @@
-<p>faqs works!</p>
+<div class="faqs">
+  <mat-card>
+    <mat-card-content>
+      <h2>Frequently Asked Questions</h2>
+      <hr />
+      <div class="faqs-add">
+        <button
+          (click)="handleCreateFAQModal()"
+          mat-raised-button
+          class="faqs-add-btn"
+        >
+          <mat-icon>add</mat-icon> New FAQ
+        </button>
+      </div>
+      <hr />
+      <div class="faqs-table">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="question">
+            <th mat-header-cell *matHeaderCellDef>Question</th>
+            <td mat-cell *matCellDef="let element" class="faqs-table-td">
+              {{ element.question }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="answer">
+            <th mat-header-cell *matHeaderCellDef>Answer</th>
+            <td mat-cell *matCellDef="let element" class="faqs-table-td">
+              {{ element.answer }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element">
+              <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="handleViewFAQModal(element)">
+                  View
+                </button>
+                <button mat-menu-item (click)="handleUpdateFAQModal(element)">
+                  Update
+                </button>
+                <!-- <button mat-menu-item (click)="handleEnableDisableFAQModal()">
+                  Enable / Disable
+                </button> -->
+                <button mat-menu-item (click)="handleDeleteFAQModal(element)">
+                  Delete
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <!-- Define table rows -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell td-no-value" colspan="4">
+              <span *ngIf="!isLoading">No FAQ Found</span>
+              <span
+                *ngIf="isLoading"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 0.5rem;
+                "
+                ><mat-spinner [diameter]="15" /> Loading data...</span
+              >
+            </td>
+          </tr>
+        </table>
+        <mat-paginator
+          class="table-pagination"
+          #paginator
+          [length]="total"
+          [pageSizeOptions]="[5, 10, 25]"
+          aria-label="select page"
+          showFirstLastButtons
+          (page)="handlePageChange($event)"
+        ></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
