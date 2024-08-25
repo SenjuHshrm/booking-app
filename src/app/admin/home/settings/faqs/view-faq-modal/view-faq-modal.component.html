@@ -1,0 +1,29 @@
+<div class="faq-modal">
+  <mat-icon (click)="handleClose()" class="faq-close-btn">close</mat-icon>
+  <h2>View FAQ Modal</h2>
+  <hr />
+  <div class="faq-form-container">
+    <div class="input-wrapper">
+      <div class="label">Question:</div>
+      <hr />
+      <div class="value">{{ data.question }}</div>
+    </div>
+    <div class="input-wrapper">
+      <div class="label">Answer:</div>
+      <hr />
+      <div class="value">{{ data.answer }}</div>
+    </div>
+    <div class="input-wrapper">
+      <div class="label">Is active on homepage?</div>
+      <hr />
+      <div class="value">{{ data.isActive ? "Yes" : "No" }}</div>
+    </div>
+    <div class="input-wrapper">
+      <div class="label">Added By:</div>
+      <hr />
+      <div class="value profile">
+        <img [src]="imgSrc" /> <span>{{ fullName }}</span>
+      </div>
+    </div>
+  </div>
+</div>
