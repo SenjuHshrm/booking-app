@@ -2,7 +2,7 @@ import { ITokenClaims } from './interfaces/token';
 import { TokenService } from './services/token.service';
 import { SocketService } from './services/socket.service';
 import { Component, OnInit } from '@angular/core';
-import { Subscription, TeardownLogic } from 'rxjs';
+import { Subscription, TeardownLogic, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   private _sub: Subscription = new Subscription();
 
   constructor(
-    private _socket: SocketService,
     private _token: TokenService
   ) { }
 
@@ -32,38 +31,60 @@ export class AppComponent implements OnInit {
   }
 
   private _initSocket() {
-    this._joinRoom()
 
-    let listenDisconnectMain: TeardownLogic = this._socket.listen('MainSocket', 'disconnect').subscribe(() => {
+    let _socket: SocketService = new SocketService()
+
+    this._joinRoom(_socket)
+
+    let listenDisconnectMain: TeardownLogic = _socket.listen('MainSocket', 'disconnect').subscribe(() => {
       this.isDisconnected = true
     })
 
-    let listenDisconnectMsg: TeardownLogic = this._socket.listen('MsgSocket', 'disconnect').subscribe(() => {
+    let listenDisconnectMsg: TeardownLogic = _socket.listen('MsgSocket', 'disconnect').subscribe(() => {
       this.isDisconnected = true
     })
 
-    let listenDisconnectNotif: TeardownLogic = this._socket.listen('NotifSocket', 'disconnect').subscribe(() => {
+    let listenDisconnectNotif: TeardownLogic = _socket.listen('NotifSocket', 'disconnect').subscribe(() => {
       this.isDisconnected = true
     })
 
-    let listenReconnectAttempt: TeardownLogic = this._socket.defaultEvent('reconnect_attempt').subscribe((res: number) => {
-      console.log(res)
+    let listenReconnectedMain: TeardownLogic = _socket.defaultEventMain('reconnect').subscribe(() => {
+      this.isDisconnected = false
+      _socket.emit('MainSocket', 'main:join', this._claims.sub)
     })
 
-    let listenReconnect: TeardownLogic = this._socket.defaultEvent('reconnect').subscribe((res: number) => {
-      this._joinRoom()
+    let listenReconnectedMsg: TeardownLogic = _socket.defaultEventMsg('reconnect').subscribe(() => {
+      this.isDisconnected = false
+      _socket.emit('MsgSocket', 'msg:join', this._claims.sub)
     })
 
-    let socketEvents: TeardownLogic[] = [listenDisconnectMain, listenDisconnectMsg, listenDisconnectNotif, listenReconnect, listenReconnectAttempt]
+    let listenReconnectedNotif: TeardownLogic = _socket.defaultEventNotif('reconnect').subscribe(() => {
+      this.isDisconnected = false
+      _socket.emit('NotifSocket', 'notif:join', this._claims.sub)
+    })
+
+    this._listenReconnect(_socket)
+
+    let socketEvents: TeardownLogic[] = [listenDisconnectMain, listenDisconnectMsg, listenDisconnectNotif, listenReconnectedMain, listenReconnectedMsg, listenReconnectedNotif]
 
     socketEvents.forEach((tdl: TeardownLogic) => this._sub.add(tdl))
 
   }
 
-  private _joinRoom() {
-    this._socket.socketNamspace.forEach((val: { namespace: 'MainSocket' | 'NotifSocket' | 'MsgSocket', eventPrefix: string }) => {
-      this._socket.emit(val.namespace, `${val.eventPrefix}:join`, this._claims.sub)
+  private _joinRoom(_socket: SocketService) {
+    _socket.socketNamspace.forEach((val: { namespace: 'MainSocket' | 'NotifSocket' | 'MsgSocket', eventPrefix: string }) => {
+      _socket.emit(val.namespace, `${val.eventPrefix}:join`, this._claims.sub)
     })
     this.isDisconnected = false
+  }
+
+  private _listenReconnect(_socket: SocketService) {
+    let rMain$ = _socket.defaultEventMain('reconnect_attempt')
+    let rMsg$ = _socket.defaultEventMsg('reconnect_attempt')
+    let rNotif$ = _socket.defaultEventNotif('reconnect_attempt')
+    forkJoin([ rMain$, rMsg$, rNotif$ ]).subscribe(([ main, msg, notif ]) => {
+      console.log(main, msg, notif)
+      this.isDisconnected = true
+    })
   }
 }

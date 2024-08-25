@@ -71,6 +71,30 @@ export class SocketService {
     })
   }
 
+  public defaultEventMain(e: keyof typeof DefaultEventName): Observable<any> {
+    return new Observable((sub: any) => {
+      this.MainSocket.io.on(e, (attempt: number) => {
+        sub.next(attempt)
+      })
+    })
+  }
+
+  public defaultEventMsg(e: keyof typeof DefaultEventName): Observable<any> {
+    return new Observable((sub: any) => {
+      this.MsgSocket.io.on(e, (attempt: number) => {
+        sub.next(attempt)
+      })
+    })
+  }
+
+  public defaultEventNotif(e: keyof typeof DefaultEventName): Observable<any> {
+    return new Observable((sub: any) => {
+      this.NotifSocket.io.on(e, (attempt: number) => {
+        sub.next(attempt)
+      })
+    })
+  }
+
   public emit(namespace: keyof typeof SocketNamespace, e: string, data: any): void {
     this[namespace].emit(e, data)
   }
