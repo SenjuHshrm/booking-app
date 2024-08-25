@@ -55,6 +55,11 @@
                             font-size: 14px;
                             font-weight: bold;
                         }
+
+                        a{
+                            text-decoration: none;
+                            color: white;
+                        }
                     }
                 }
 
@@ -65,8 +70,7 @@
     &-wrapper-2 {
         height: 100%;
         padding-bottom: 1rem;
-   
-
+        
         .wrapper-2-wrapper {
             max-width: 70%;
             margin-left: auto;
@@ -78,6 +82,8 @@
             justify-content: space-between;
             align-items: center;
             height: 100%;
+
+       
 
             .image {
                 width: 5rem;
@@ -110,6 +116,16 @@
                    align-items: center;
                    justify-content: space-between;
                    gap: 1rem;
+
+                   .taragoLink{
+                    color: black;
+                    cursor: pointer;
+
+                    a{
+                        text-decoration: none;
+                        color: black;
+                    }
+                   }
                 }
             }
 
@@ -127,7 +143,12 @@
                         width: 100%;
                         height: auto;
                     }
+
+                    .custom-yt{
+                        width:20px;
+                    }
                 }
+                
             }
         }
     }

@@ -10,31 +10,33 @@
                 <div class="footer-links-wrapper">
                     <div class="company">
                         <h1>Company</h1>
-                        <div>Home</div>
-                        <div>How to book?</div>
-                        <div>Contact Us</div>
-                        <div>About Us</div>
+                        <div style="cursor: pointer;" (click)="scrollToTop()">Home</div>
+                        <div style="cursor: pointer;" (click)="howToBook()">How to book?</div>
+                        <div style="cursor: pointer;" (click)="onClickInquire()">Email Us</div>
                     </div>
                     <div class="company">
                         <h1>Staycation</h1>
-                        <div>Condominium</div>
-                        <div>Villa</div>
+                        <div>Service Condominium</div>
+                        <div>Private Villa</div>
                         <div>Resort</div>
-                        <div>Guest Room</div>
+                        <div>Hotel</div>
                     </div>
                     <div class="company">
                         <h1>Event Place</h1>
-                        <div>Meeting rooms</div>
+                        <div>Meeting room</div>
                         <div>Event hall</div>
-                        <div>Arena</div>
+                        <div>Hotel Ballroom</div>
+                        <div>Restaurant Space</div>
                         <div>Pavillion</div>
                     </div>
                     <div class="company">
                         <h1>Contact Info</h1>
-                        <div>Address</div>
-                        <div>Phone Number</div>
-                        <div>Telephone Number</div>
-                        <div>Email</div>
+                        <div>
+                            <a href="https://www.google.com/maps/dir/14.041088,121.2153856/14.8207997,120.964/@14.4309141,120.7485781,10z/data=!3m1!4b1!4m4!4m3!1m1!4e1!1m0?entry=ttu&g_ep=EgoyMDI0MDgyMS4wIKXMDSoASAFQAw%3D%3D"
+                                target="_blank">Address</a>
+                        </div>
+                        <div><a href="tel:+09199631127">Phone Number</a></div>
+                        <div><a href="tel:+09199631127">Telephone Number</a></div>
                     </div>
                 </div>
             </div>
@@ -44,7 +46,7 @@
     </section>
     <section class="footer-container-wrapper-2">
         <div class="wrapper-2-wrapper">
-            
+
             <div class="image">
                 <img src="./assets/images/home/section2/taragologo.png" alt="logo" />
             </div>
@@ -52,24 +54,33 @@
             <div class="footer-other-info">
                 <div class="terms_links">
                     <div>&copy; {{ currentDate.getFullYear() }}</div>
-                    <div>Privacy</div>
-                    <div>Terms</div>
-                    <div>Sitemap</div>
-                    <div>Company Details</div>
+                    <div class="taragoLink" (click)="privacyPolicy()">Privacy</div>
+                    <div class="taragoLink" (click)="privacyPolicy()">Terms</div>
+                    <div class="taragoLink"><a
+                            href="https://www.google.com/maps/dir/14.041088,121.2153856/14.8207997,120.964/@14.4309141,120.7485781,10z/data=!3m1!4b1!4m4!4m3!1m1!4e1!1m0?entry=ttu&g_ep=EgoyMDI0MDgyMS4wIKXMDSoASAFQAw%3D%3D"
+                            target="_blank">Location</a></div>
+                    <div class="taragoLink" (click)="companyDetails()">Company Details</div>
                 </div>
                 <div class="footer-social-media">
                     <div class="social">
-                        <img src="./assets/images/home/footer/fb.png" alt="fb" />
+                        <a href="https://www.facebook.com/UCPtarago">
+                            <img src="./assets/images/home/footer/fb.png" alt="fb" />
+                        </a>
                     </div>
                     <div class="social">
-                        <img src="./assets/images/home/footer/ig.png" alt="ig" />
+                        <a href="https://www.instagram.com/ucptarago?fbclid=IwY2xjawE1ooFleHRuA2FlbQIxMAABHRn3g5_qJw3IbKl6eLUjo8HoiUCYLBd1P2fEk0WE1bxu7lrAMuu9ZKN_NA_aem_6R9Aycrl0Ibvx7MUDkmU5w"
+                            target="_blank">
+                            <img src="./assets/images/home/footer/ig.png" alt="ig" />
+                        </a>
                     </div>
                     <div class="social">
-                        <img src="./assets/images/home/footer/xtwitter.png" alt="xtwitter" />
+                        <a href="https://www.youtube.com/@TaraGoDestinations" target="_blank">
+                            <img class="custom-yt" src="./assets/images/home/footer/youtube.png" alt="youtube" />
+                        </a>
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </section>
 </div>

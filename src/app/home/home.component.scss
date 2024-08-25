@@ -6,6 +6,7 @@
 .home-container {
     position: relative;
     background-color: #fafafa;
+    font-family: Poppins-Regular !important;
 
     &-header {
         position: sticky;
@@ -19,7 +20,7 @@
     &-body {
 
         &-hero_section {
-            max-width: 70%;
+            max-width: 80%;
             margin-right: auto;
             margin-left: auto;
             margin-top: 3rem;
@@ -147,7 +148,7 @@
         }
 
         &-section_1 {
-            max-width: 70%;
+            max-width: 80%;
             margin: auto;
             height: 50rem;
             // border: 1px solid black;
@@ -161,6 +162,7 @@
                 margin: auto;
 
                 .wrapper {
+
                     // border: 2px solid rgb(238, 14, 14);
                     .header {
                         line-height: 1.8rem;
@@ -180,7 +182,10 @@
                     }
 
                     .swiper-main-container {
-                        margin-top: 3rem;
+
+                        height: 20rem;
+                        // background-color: red;
+
 
                         // swiper default start css
                         .swiper-container {
@@ -202,14 +207,18 @@
                             .images {
                                 padding: 1rem;
                                 width: 100%;
-                                max-height: 600px !important;
+                                height: 100vh;
+                                max-height: 300px !important;
                                 padding-bottom: 3rem;
                                 // border: 2px solid rgb(14, 238, 14);
 
                                 img {
-                                    width: 100%;
-                                    height: 100%;
+                                    width: 250px;
+                                    height: 100% !important;
                                     // border: 2px solid rgb(17, 0, 255);
+                                    border-radius: 20px;
+                                    object-fit: cover;
+                                    object-position: center;
                                 }
 
                                 .desc {
@@ -254,13 +263,14 @@
             flex-basis: 50%;
             display: flex;
             justify-content: flex-end;
+
             //   border: 2px solid orange;
 
 
 
             .section-2-wrapper {
                 // border: 2px solid orange;
-                max-width: 70%;
+                max-width: 80%;
                 height: 100%;
                 margin: auto;
                 display: flex;
@@ -268,6 +278,7 @@
                 align-items: center;
                 justify-content: space-around;
                 gap: 1rem;
+
 
                 .image {
                     // background-image: url('../../assets/images/home/section2/map.png');
@@ -377,17 +388,20 @@
             }
         }
 
+
         &-section_3 {
             height: 100%;
             max-height: 60rem;
+            margin-bottom: 5rem;
 
             .section_3-mat-card {
+                max-width: 80%;
                 background-color: #ffffff;
                 border-radius: 5px;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 padding: 3rem;
                 margin: 10px;
-                max-width: 70%;
+
                 height: auto;
                 margin-right: auto;
                 margin-left: auto;
@@ -437,6 +451,7 @@
                                         padding: 8px;
 
                                         select {
+                                            font-family: Poppins-Regular !important;
                                             appearance: none;
                                             /* Remove default arrow icon */
                                             -webkit-appearance: none;
@@ -706,11 +721,120 @@
 
         }
 
+        &-gallery {
+
+            //image grid start
+            .header {
+                background-color: white;
+                line-height: 1.8rem;
+                text-align: center;
+                padding:2rem 0 0rem;
+                // border: 2px solid rgb(238, 14, 14);
+
+                .title {
+                    font-family: Poppins-Medium;
+                    font-size: clamp(1.3rem, 1.7vw, 8rem) !important;
+                }
+
+                .subtitle {
+                    font-family: Poppins-Regular;
+                    font-size: clamp(.7rem, .8vw, 8rem) !important;
+                    color: #8d8d8d;
+                }
+            }
+
+            .content {
+                background-color: white;
+                padding: 2rem 0 1rem;
+                .image-grid {
+                    --num-cols: 4;
+                    --row-height: 300px;
+                    box-sizing: border-box;
+                    padding: var(--gap);
+                    display: grid;
+                    grid-template-columns: repeat(var(--num-cols), 1fr);
+                    grid-auto-rows: var(--row-height);
+                    gap: 1rem;
+                    cursor: pointer;
+                }
+
+                .image-grid>img,
+                .slideshow-container img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center left;
+                }
+
+                .image-grid-col-2 {
+                    grid-column: span 2;
+                }
+
+                .image-grid-row-2 {
+                    grid-row: span 2;
+                }
+
+                @media screen and (max-width: 1024px) {
+                    .image-grid {
+                        --num-cols: 2;
+                        --row-height: 200px;
+                    }
+                }
+
+                /* Slideshow container */
+                .slideshow-container {
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .slideshow-image {
+                    transition: opacity 0.5s ease-in-out;
+                }
+
+                /* Slideshow controls */
+                .prev,
+                .next {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: white;
+                    cursor: pointer;
+                    user-select: none;
+                    border-radius: 50%;
+                    font-size: 34px;
+                    z-index: 1;
+                    width: 2.2rem;
+
+
+                }
+
+
+                .prev {
+                    left: 10px;
+                }
+
+                .next {
+                    right: 10px;
+                }
+            }
+
+            .view_all {
+                background-color: white;
+                padding: 1rem 0 1rem;
+                button {
+                    margin: auto;
+                }
+            }
+
+
+        }
+
+
         &-section_4 {
             background-color: #e9e9e9;
 
             .section_4-wrapper {
-                max-width: 70%;
+                max-width: 80%;
                 height: 40rem;
                 margin-right: auto;
                 margin-left: auto;
@@ -736,14 +860,23 @@
                     flex-basis: 50%;
 
                     mat-accordion {
-
                         width: 100%;
 
                         mat-expansion-panel {
+
                             background-color: transparent;
                             box-shadow: none;
                             border-bottom: 1px solid rgb(204, 204, 204);
                             padding: 1rem;
+
+                            mat-panel-title {
+                                font-family: Poppins-Regular !important;
+                                font-weight: bold;
+                            }
+
+                            p {
+                                font-family: Poppins-Regular !important;
+                            }
                         }
                     }
                 }
@@ -755,11 +888,12 @@
             padding-top: 5rem;
 
             .section_5-wrapper {
+                max-width: 80%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                max-width: 70%;
+
                 height: 50rem;
                 margin-left: auto;
                 margin-right: auto;
@@ -856,6 +990,7 @@
                 }
 
             }
+
 
             &-section_2 {
 
@@ -954,13 +1089,58 @@
     }
 }
 
+@media screen and (max-width: 1366px) {
+    .home-container {
+
+        &-body {
+            &-hero_section {
+                max-width: 90%;
+            }
+
+            &-section_1 {
+                max-width: 90%;
+            }
+
+            &-section_2 {
+                .section-2-wrapper {
+                    max-width: 90%;
+                }
+            }
+
+            &-section_3 {
+                .section_3-mat-card {
+                    max-width: 90%;
+                }
+
+
+
+            }
+
+            &-section_4 {
+
+                .section_4-wrapper {
+                    max-width: 90%;
+                }
+            }
+
+            &-section_5 {
+                .section_5-wrapper {
+                    max-width: 90%;
+                }
+
+            }
+        }
+
+    }
+}
+
 @media screen and (max-width: 1300px) {
     .home-container {
 
         &-body {
             &-section_5 {
                 .section_5-wrapper {
-                    max-width:100%;
+                    max-width: 100%;
                 }
             }
         }
@@ -1005,6 +1185,7 @@
 
             &-section_1 {
                 max-width: 100%;
+
             }
 
             &-section_2 {
@@ -1082,7 +1263,6 @@
 
     }
 }
-
 
 @media screen and (max-width: 1000px) {
     .home-container {
@@ -1173,10 +1353,9 @@
                             align-items: center;
                             justify-content: center;
                             width: 100%;
+                            margin: auto;
 
-                            button {
-                              
-                            }
+                            button {}
                         }
                     }
                 }
@@ -1253,7 +1432,7 @@
                         .swiper-main-container {
                             margin-top: 0rem !important;
                             // border: 1px solid rgb(255, 0, 242);
-                            height: 20rem !important;
+                            height: 30rem !important;
                             padding: 2px;
 
                             .swiper-pagination {
@@ -1278,12 +1457,81 @@
     }
 }
 
+@media screen and (max-width:550px) {
+    .home-container {
+        &-body {
+            &-section_1 {
+
+                .section-1-wrapper {
+
+
+                    .wrapper {
+                        // border: 2px solid rgb(238, 14, 14);
+
+                        .swiper-main-container {
+                            margin-top: 3rem;
+                            // background-color: red;
+
+
+                            // swiper default start css
+                            .swiper-container {
+                                width: 100%;
+                                height: 100% !important;
+                                // border: 2px solid rgb(14, 212, 238);
+                            }
+
+                            .custom-swiper-slide {
+
+                                .images {
+
+
+                                    img {
+                                        max-width: 170px;
+                                        max-height: 190px;
+                                    }
+
+                                    .desc {
+                                        font-family: Poppins-Regular;
+                                        font-size: 15px;
+                                    }
+                                }
+
+
+
+                            }
+
+                            .swiper-pagination {
+                                position: absolute;
+                                top: auto;
+                                bottom: 0;
+                            }
+
+                            .swiper-pagination-bullet {
+                                background-color: #ccc;
+                            }
+
+                            .swiper-pagination-bullet.swiper-pagination-bullet-active {
+                                background-color: #63AB68;
+                            }
+
+                            // swiper default end css
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 500px) {
     .home-container {
         &-body {
             max-width: 100%;
 
             &-section_1 {
+                margin-top: 5rem;
+
                 .section-1-wrapper {
 
                     .wrapper {
@@ -1295,10 +1543,12 @@
                         // }
                         .swiper-main-container {
                             margin-top: 0rem !important;
+
                             // background-color: red;
 
                             .swiper-container {
-                                height: 90% !important;
+                                height: 70% !important;
+
                                 // background-color: rgb(102, 255, 0);
 
                                 .custom-swiper-slide {
@@ -1356,5 +1606,4 @@
 .custom-login-modal {
     max-width: 25rem !important;
     width: 100% !important;
-
 }

@@ -7,16 +7,18 @@
             <div class="hero-wrapper">
                 <div class="title" [@fadeInAnimation]>
                     <div>
-                        <h1><span>Discover</span> Hotels, Resorts, Villas, <br /> and More!</h1>
+                        <h1><span>Discover Stays:</span> Hotels, Resorts, Villas, <br /> and More!</h1>
                         <p class="font-regular">TaraGo the optimal booking site for <br /> your relaxation needs.</p>
                     </div>
                     <div>
-                        <h1> <span>Discover</span> Hotels, Resorts, Villas, and More!</h1>
+                        <h1> <span>Discover Stays:</span> Hotels, Resorts, Villas, and More!</h1>
                         <p class="font-regular">TaraGo the optimal booking site for your relaxation needs.</p>
                     </div>
 
                     <div class="custom-main-button">
-                        <button class="main-button" (click)="navigateToMain()">View More</button>
+                        <button class="main-button" (click)="navigateToMain()">
+                            View More
+                        </button>
                     </div>
                 </div>
                 <div class="main-image" [@fadeInAnimation]>
@@ -42,7 +44,7 @@
                     <div class="swiper-main-container">
                         <swiper class="swiper-container" #swiper [slidesPerView]="4" [spaceBetween]="50"
                             [pagination]="true" (autoplayPause)="true" [draggable]="false" [loop]="true" [breakpoints]="{
-                    '200': {
+                 '200': {
                         slidesPerView: 1,
                         spaceBetween: 10,
                     },
@@ -55,17 +57,41 @@
                         slidesPerView: 2,
                         spaceBetween: 10,
                     },
-                    '700': {
+                    '790': {
                         slidesPerView: 3,
                         spaceBetween: 10,
                     },
                     
                     '1000': {
-                        slidesPerView: 4,
+                        slidesPerView: 3,
                         spaceBetween: 20,
+                    },
+                    '1100': {
+                        slidesPerView:4 ,
+                        spaceBetween: 20,
+                    },
+                    '1200': {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    '1300': {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    '1400': {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
                     },
                     '1500': {
                         slidesPerView: 4,
+                        spaceBetween: 30,
+                    },
+                    '1550': {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                    },
+                    '1600': {
+                        slidesPerView: 5,
                         spaceBetween: 30,
                     }
                 }">
@@ -133,17 +159,41 @@
                         slidesPerView: 2,
                         spaceBetween: 10,
                     },
-                    '700': {
+                    '790': {
                         slidesPerView: 3,
                         spaceBetween: 10,
                     },
                     
                     '1000': {
-                        slidesPerView: 4,
+                        slidesPerView: 3,
                         spaceBetween: 20,
+                    },
+                    '1100': {
+                        slidesPerView:4 ,
+                        spaceBetween: 20,
+                    },
+                    '1200': {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    '1300': {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    '1400': {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
                     },
                     '1500': {
                         slidesPerView: 4,
+                        spaceBetween: 30,
+                    },
+                    '1550': {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                    },
+                    '1600': {
+                        slidesPerView: 5,
                         spaceBetween: 30,
                     }
                 }">
@@ -229,6 +279,33 @@
                 <img src="./assets/images/home/section3/lineairplain.png" alt="image" />
             </div>
         </section>
+        <section class="home-container-body-gallery">
+            <div class="header">
+                <div class="title">TaraGo's Gallery</div>
+                <div class="subtitle">Explore our collection of exquisite photographs</div>
+            </div>
+            <div class="content">
+                <div class="image-grid" (click)="openGallery()">
+                    <!-- Slideshow for the first image -->
+                    <div class="slideshow-container image-grid-col-2 image-grid-row-2" *ngIf="gallery.length > 0">
+                        <img [src]="gallery[currentImageIndex].imageSrc" alt="slideshow image" loading="lazy"
+                            draggable="false" class="slideshow-image">
+                        <!-- Slideshow controls -->
+                        <a class="prev" (click)="previousImage($event)"><span>&#10094;</span></a>
+                        <a class="next" (click)="nextImage($event)"><span>&#10095;</span></a>
+                    </div>
+
+                    <!-- Static images for the rest -->
+                    <img [src]="img.imageSrc" *ngFor="let img of gallery.slice(1, 5); let i = index" alt="images"
+                        loading="lazy" draggable="false" [class.other]="true">
+                </div>
+            </div>
+            <div class="view_all">
+                <button class="main-button" (click)="openGallery()">
+                    View All
+                </button>
+            </div>
+        </section>
         <section class="home-container-body-section_4">
             <div class="section_4-wrapper">
                 <div class="title">Your questions, <br><span>answered for you.</span></div>
@@ -292,7 +369,7 @@
                         Still have questions?
                     </h1>
                     <p class="info">
-                        <span>Contact us</span> or get answers from an
+                        <span style="cursor:pointer;" (click)="onClickInquire()">Email us</span> or get answers from an
                         experienced proprietor near you.
                     </p>
                     <div class="btn">
@@ -306,6 +383,6 @@
         </section>
     </section>
     <footer class="home-container-footer">
-        <app-footer></app-footer>
+        <app-footer ></app-footer>
     </footer>
 </div>

@@ -14,9 +14,13 @@ import { MatCardModule } from '@angular/material/card';
 import { SwiperModule } from 'swiper/angular';
 import { GlobalsModule } from './../globals/globals.module';
 
+
+
+
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -32,8 +36,11 @@ import { GlobalsModule } from './../globals/globals.module';
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
-    GlobalsModule
+    GlobalsModule,
+    MatIconModule
   ],
+
+
 
 
 

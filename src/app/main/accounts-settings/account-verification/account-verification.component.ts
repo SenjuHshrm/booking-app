@@ -66,6 +66,7 @@ export class AccountVerificationComponent implements OnInit {
     this._getUserProfile(this.token.sub);
   }
 
+
   ngOnInit(): void {}
 
   private _getUserProfile(id: string) {

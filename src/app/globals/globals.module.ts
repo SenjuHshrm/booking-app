@@ -22,6 +22,8 @@ import { WheretoSleepViewComponent } from './whereto-sleep-view/whereto-sleep-vi
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsersProfileComponent } from './users-profile/users-profile.component';
 import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel-policy-learnmore.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { HomeImageGalleryComponent } from './home-image-gallery/home-image-gallery.component';
 import { InputErrorMessageComponent } from './input-error-message/input-error-message.component';
 import { ViewProfileModalComponent } from './modals/view-profile-modal/view-profile-modal.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -43,8 +45,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     WheretoSleepViewComponent,
     UsersProfileComponent,
     CancelPolicyLearnmoreComponent,
+    ForgotPasswordComponent,
+    HomeImageGalleryComponent
     InputErrorMessageComponent,
-    ViewProfileModalComponent,
+    ViewProfileModalComponent
   ],
 
   imports: [
@@ -71,7 +75,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MessageProprietorComponent,
     WheretoSleepViewComponent,
     UsersProfileComponent,
+    HomeImageGalleryComponent,
     InputErrorMessageComponent,
   ],
+
 })
 export class GlobalsModule {}

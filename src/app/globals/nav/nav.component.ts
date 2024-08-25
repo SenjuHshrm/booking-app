@@ -123,6 +123,7 @@ export class NavComponent implements OnInit {
         window.location.href = this._redirectTo
       }
     })
+    
   }
 
   private _checkToken() {

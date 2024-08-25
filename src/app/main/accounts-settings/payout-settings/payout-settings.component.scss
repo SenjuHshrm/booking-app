@@ -1,0 +1,30 @@
+.payout-settings {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow-y: auto;
+    height: 100%;
+
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+   
+        .title {
+            font-size: clamp(1rem, 1.2vw, 8rem);
+            font-weight: bolder;
+            color: black;
+
+        }
+
+        .sub_title {
+            color: #8f8f8f;
+            margin-top: .5rem;
+        }
+
+    }
+}
+

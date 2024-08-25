@@ -4,11 +4,13 @@ import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { IAuthForm, IAuth } from '../../interfaces/auth';
 import { Location } from '@angular/common'
 import { SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social-login'
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,7 @@ import { SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-socia
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  dialog: any;
+  
   username:any;
   password: string = '';
   showPassword: boolean = false;
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogLogin: MatDialogRef<LoginComponent>,
+    public dialog:MatDialog,
     private _location: Location,
     private _fb: FormBuilder,
     private _socAuth: SocialAuthService,
@@ -90,6 +93,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     //   }
     // })
   }
+
+  
 
   ngOnDestroy(): void {
     this._sub.unsubscribe()
@@ -127,5 +132,36 @@ export class LoginComponent implements OnInit, OnDestroy {
     }))
   }
 
+
   
+  handleForgotPass(): void {
+    const dialogRefSec = this.dialog.open(ForgotPasswordComponent, {
+      width:'100%',
+      height:'100%',
+      maxHeight:'30rem',
+      maxWidth:'25rem',
+      data: ''
+    });
+
+    dialogRefSec.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+    console.log("Sample")
+  }
+
+
+  public openSignupDialog(): void {
+    const dialogRefSignup = this.dialog.open(SignupComponent, {
+      panelClass: 'custom-signup-modal'
+    });
+
+    dialogRefSignup.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+
+      this.closeDialogLogin();
+  }
+
+
+
 }

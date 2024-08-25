@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountsSettingsRoutingModule } from './accounts-settings-routing.module';
 import { AccountsSettingsComponent } from './accounts-settings.component';
-import { AccountVerificationComponent } from './account-verification/account-verification.component';
-import { PaymentAndPayoutComponent } from './payment-and-payout/payment-and-payout.component';
+import { PayoutSettingsComponent } from './payout-settings/payout-settings.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
+  imports: [
+    CommonModule,
+    AccountsSettingsRoutingModule,
+    MatIconModule
+  ],
   declarations: [AccountsSettingsComponent, PaymentAndPayoutComponent],
-  imports: [CommonModule, AccountsSettingsRoutingModule],
+  imports: [CommonModule, AccountsSettingsRoutingModule]
 })
 export class AccountsSettingsModule {}

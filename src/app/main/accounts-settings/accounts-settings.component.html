@@ -1,15 +1,22 @@
 <div class="account-settings" [@fadeInAnimation]>
     <div class="account-settings-account-settings-wrapper">
         <section class="account-settings-content">
+            <div class="header">
+                <button class="button_white_circle" *ngIf="isScreenWidthLessThan700px" (click)="toggleSidePanel()">
+                    <mat-icon>menu</mat-icon>
+                </button>
             <div class="title">Account Settings</div>
+        </div>
             <div class="content">
-                <div class="tabs">
+                <div class="tabs" [ngClass]="{'open':togglePanel === false, 'close':togglePanel === true}">
                     <button (click)="goToLoginSecurity()" [routerLinkActive]="'active'" routerLink="security-settings">Login & Security</button>
                     <button (click)="goToPaymentsWalletSetting()" [routerLinkActive]="'active'" routerLink="payment-wallet-settings">Payment Settings</button>
+                    <button (click)="goToPayoutSettings()" [routerLinkActive]="'active'" routerLink="payout-settings">Payout Settings</button>
                     <button (click)="goToAccountVerification()" [routerLinkActive]="'active'" routerLink="account-verification">Account Verification</button>
                 </div>
+                <div class="backdrop" [ngStyle]="{'display':togglePanel? 'none':'block'}"  (click)="toggleSidePanel()"></div>
                 <div class="info">
-                    <router-outlet></router-outlet>
+                    <router-outlet ></router-outlet>
                 </div>
             </div>
         </section>
