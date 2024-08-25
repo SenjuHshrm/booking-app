@@ -1,9 +1,10 @@
 .content {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: flex-end;
   gap: 2rem;
   padding: 1rem 3rem 1rem;
+  height: 100%;
 
   .sender {
     .sender-wrapper {
@@ -13,10 +14,18 @@
 
       .avatar {
         max-width: 35px;
-
+        min-width: 35px;
+        width: 35px;
+        max-height: 35px;
+        min-height: 35px;
+        height: 35px;
+        border-radius: 50%;
+        overflow: hidden;
         img {
+          object-fit: cover;
+          border-radius: 50%;
           width: 100%;
-          height: auto;
+          height: 100%;
         }
       }
 

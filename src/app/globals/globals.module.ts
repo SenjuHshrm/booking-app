@@ -24,6 +24,7 @@ import { UsersProfileComponent } from './users-profile/users-profile.component';
 import { CancelPolicyLearnmoreComponent } from './cancel-policy-learnmore/cancel-policy-learnmore.component';
 import { InputErrorMessageComponent } from './input-error-message/input-error-message.component';
 import { ViewProfileModalComponent } from './modals/view-profile-modal/view-profile-modal.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ViewProfileModalComponent } from './modals/view-profile-modal/view-prof
     ReactiveFormsModule,
     GoogleSigninButtonModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
 
   providers: [GoogleSigninButtonDirective],

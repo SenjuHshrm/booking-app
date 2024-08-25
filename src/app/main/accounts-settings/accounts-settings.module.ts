@@ -5,16 +5,8 @@ import { AccountsSettingsComponent } from './accounts-settings.component';
 import { AccountVerificationComponent } from './account-verification/account-verification.component';
 import { PaymentAndPayoutComponent } from './payment-and-payout/payment-and-payout.component';
 
-
-
 @NgModule({
-  declarations: [
-    AccountsSettingsComponent,
-    PaymentAndPayoutComponent
-  ],
-  imports: [
-    CommonModule,
-    AccountsSettingsRoutingModule,
-  ]
+  declarations: [AccountsSettingsComponent, PaymentAndPayoutComponent],
+  imports: [CommonModule, AccountsSettingsRoutingModule],
 })
-export class AccountsSettingsModule { }
+export class AccountsSettingsModule {}

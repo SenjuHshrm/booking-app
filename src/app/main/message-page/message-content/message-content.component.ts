@@ -2,36 +2,41 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { Message, RoomMember } from 'src/app/interfaces/message';
+import { Fullname } from 'src/app/interfaces/profile';
+import { ITokenClaims } from 'src/app/interfaces/token';
+import { BasicUtilService } from 'src/app/services/basic-util.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-message-content',
   templateUrl: './message-content.component.html',
   styleUrls: ['./message-content.component.scss'],
 })
-export class MessageContentComponent implements AfterViewInit {
-  @ViewChild('messageContainer') private messageContainer!: ElementRef;
+export class MessageContentComponent implements OnInit {
+  @Input() messageList: Message[] = [];
 
-  ngAfterViewInit(): void {
-    const container = this.messageContainer.nativeElement;
-    container.addEventListener('scroll', this.onScroll.bind(this));
-    console.log('2 KEMEBELZ: ', container);
+  public token!: ITokenClaims;
+
+  constructor(private _token: TokenService, private _util: BasicUtilService) {}
+
+  ngOnInit(): void {
+    this.token = <ITokenClaims>this._token.decodedToken();
   }
 
-  private onScroll(): void {
-    const container = this.messageContainer.nativeElement;
-    const scrollTop = container.scrollTop;
-    const scrollHeight = container.scrollHeight;
-    const clientHeight = container.clientHeight;
+  public fullName(name: Fullname): string {
+    return this._util.constructName(name);
+  }
 
-    console.log('Scroll Top:', scrollTop);
-    console.log('Scroll Height:', scrollHeight);
-    console.log('Client Height:', clientHeight);
+  public imgSrc(src: string): string {
+    return this._util.setImgUrl(src);
+  }
 
-    // Calculate the scroll position relative to the bottom:
-    const scrollPositionFromBottom = scrollHeight - (scrollTop + clientHeight);
-    console.log('Scroll Position from Bottom:', scrollPositionFromBottom);
+  public duration(date: string): string {
+    return this._util.calculateMessageDuration(date);
   }
 }

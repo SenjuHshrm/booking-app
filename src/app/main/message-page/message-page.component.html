@@ -5,26 +5,49 @@
     [opened]="!isMobile"
     class="message-list"
   >
-    <app-message-sidenav />
+    <app-message-sidenav
+      [isMobile]="isMobile"
+      [togleDrawer]="drawer.toggle.bind(drawer)"
+      (setMessages)="updateMessages($event)"
+      (setSelectedId)="updateSelectedRoomId($event)"
+      (setRoomDetails)="updateRoomDetails($event)"
+    />
   </mat-drawer>
   <main class="message-content">
     <div class="header">
       <div *ngIf="isMobile" class="message-menu" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </div>
-      <div class="avatar">
-        <img
-          src="../../assets/images/main/staycation-details/avatarreviewer.png"
-          loading="lazy"
-          alt="Avatar"
-          [draggable]="false"
-        />
+      <div *ngIf="selectedRoomId !== ''" class="header-user">
+        <div class="avatar">
+          <img
+            src="{{ imgSrc }}"
+            loading="lazy"
+            alt="Avatar"
+            [draggable]="false"
+          />
+        </div>
+        <div class="name">{{ fullName }}</div>
       </div>
-      <div class="name">Oliver Belen</div>
+      <div *ngIf="selectedRoomId === ''">
+        <div class="name" style="padding: 0.75rem 0">
+          No Selected Conversation Yet.
+        </div>
+      </div>
     </div>
     <div class="messages">
-      <app-message-content style="flex: 1; overflow: auto" />
-      <app-message-form />
+      <app-message-content
+        *ngIf="selectedRoomId !== ''"
+        [messageList]="messageList"
+        style="flex: 1; overflow: auto"
+      />
+      <div *ngIf="selectedRoomId === ''" class="no-message-found">
+        No Message Found.
+      </div>
+      <app-message-form
+        [roomDetails]="roomDetails"
+        [selectedRoomId]="selectedRoomId"
+      />
     </div>
   </main>
 </mat-drawer-container>
