@@ -7,12 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
+  declarations: [
+    AccountsSettingsComponent,
+    // PaymentAndPayoutComponent,
+    PayoutSettingsComponent
+  ],
   imports: [
     CommonModule,
     AccountsSettingsRoutingModule,
     MatIconModule
-  ],
-  declarations: [AccountsSettingsComponent, PaymentAndPayoutComponent],
-  imports: [CommonModule, AccountsSettingsRoutingModule]
+  ]
 })
 export class AccountsSettingsModule {}

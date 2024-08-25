@@ -46,7 +46,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UsersProfileComponent,
     CancelPolicyLearnmoreComponent,
     ForgotPasswordComponent,
-    HomeImageGalleryComponent
+    HomeImageGalleryComponent,
     InputErrorMessageComponent,
     ViewProfileModalComponent
   ],
