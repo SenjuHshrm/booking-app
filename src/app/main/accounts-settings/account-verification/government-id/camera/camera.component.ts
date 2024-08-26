@@ -19,6 +19,7 @@ export class CameraComponent implements OnInit {
   public capturedFile: File | null = null;
   public isLoading: boolean = false;
   public imagePreview: string | null = null;
+  public name: string | null = null;
   private mediaStream: MediaStream | null = null;
 
   constructor(
@@ -48,11 +49,13 @@ export class CameraComponent implements OnInit {
 
     if (context) {
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      console.log(canvas.width, canvas.height);
       canvas.toBlob((blob) => {
         if (blob) {
-          this.capturedFile = new File([blob], 'photo.png', {
+          this.capturedFile = new File([blob], `id-${this.type}.png`, {
             type: 'image/png',
           });
+          this.name = `id-${this.type}.png`;
           this.convertToBase64(blob);
         }
       }, 'image/png');
@@ -62,9 +65,9 @@ export class CameraComponent implements OnInit {
   convertToBase64(blob: Blob) {
     const reader = new FileReader();
     reader.onloadend = () => {
-      this.imagePreview = reader.result as string; // Base64 image
+      this.imagePreview = reader.result as string;
     };
-    reader.readAsDataURL(blob); // Convert blob to base64
+    reader.readAsDataURL(blob);
   }
 
   uploadImage() {
@@ -78,6 +81,7 @@ export class CameraComponent implements OnInit {
       file: this.capturedFile,
       preview: this.imagePreview,
       type: this.type,
+      name: this.name,
     });
   }
 

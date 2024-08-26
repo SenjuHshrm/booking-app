@@ -98,4 +98,23 @@ export class UserService {
       formData
     );
   }
+
+  public verifyAccountById(formData: FormData): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/user/post/upload-verification`,
+      formData
+    );
+  }
+
+  public checkVerificationStatus(id: string): Observable<any> {
+    return this._http.get(
+      `${environment.api}/api/user/get/user-verification-status/${id}`
+    );
+  }
+
+  public getVerificationList(page: number, limit: number): Observable<any> {
+    return this._http.get(
+      `${environment.api}/api/user/get/user-identification/${page}/${limit}`
+    );
+  }
 }

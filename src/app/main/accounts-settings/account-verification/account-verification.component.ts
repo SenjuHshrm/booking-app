@@ -37,6 +37,8 @@ export interface Address {
   styleUrls: ['./account-verification.component.scss'],
 })
 export class AccountVerificationComponent implements OnInit {
+  public status: string = 'loading';
+
   public legalName: LegalName = { fName: '', lName: '' };
   public preferedName: string = '';
   public emailAddress: string = '';
@@ -66,8 +68,19 @@ export class AccountVerificationComponent implements OnInit {
     this._getUserProfile(this.token.sub);
   }
 
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._sub.add(
+      this._user.checkVerificationStatus(this.token.sub).subscribe({
+        next: (res) => {
+          this.status = res.status ? res.status : 'invalid';
+        },
+        error: (error) => {
+          console.log(error);
+          this.status = 'invalid';
+        },
+      })
+    );
+  }
 
   private _getUserProfile(id: string) {
     this._sub.add(
@@ -102,6 +115,10 @@ export class AccountVerificationComponent implements OnInit {
         },
       })
     );
+  }
+
+  handleChangeStatus(newStatus: string): void {
+    this.status = newStatus;
   }
 
   ngOnDestroy(): void {

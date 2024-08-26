@@ -1,169 +1,161 @@
 .upload_photo_container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+
+  .upload_header {
+    flex: 0;
+    flex: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .upload_title_wrapper {
+      .upload_info_title {
+        font-size: clamp(1rem, 0.9vw, 8rem);
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .upload_sub_title {
+        color: #8f8f8f;
+      }
+    }
+  }
+
+  .upload_content {
     flex: 1;
     display: flex;
     flex-direction: column;
     height: 100%;
-    gap: 1rem;
 
-    .upload_header {
-        flex: 0;
-        flex: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
+    .form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
 
-        .upload_title_wrapper {
-            .upload_info_title {
-                font-size: clamp(1rem, .9vw, 8rem);
-                text-align: left;
-                font-weight: bold;
-            }
+      //////select tab option/////
 
-            .upload_sub_title {
-                color: #8f8f8f;
-            }
-        }
-    }
+      /* Container for custom select */
+      .custom-select-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 200px;
+        margin: auto;
 
-    .upload_content {
+        /* Adjust width as needed */
+      }
+
+      /* Style the select box */
+      select {
+        cursor: pointer;
+        font-family: Poppins-Regular;
+        width: 100%;
+        /* Full width of the container */
+        padding: 10px;
+        /* Padding inside the select box */
+        font-size: 16px;
+        /* Font size */
+        border: 1px solid #ccc;
+        /* Border color */
+        border-radius: 5px;
+        /* Rounded corners */
+        background: transparent;
+        /* Ensure background is transparent */
+        appearance: none;
+        /* Remove default styling */
+        -webkit-appearance: none;
+        /* For WebKit browsers */
+        -moz-appearance: none;
+        /* For Firefox */
+      }
+
+      /* Custom arrow */
+      .custom-select-wrapper::after {
+        content: "▼";
+        /* Unicode character for downward arrow */
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        /* Arrow does not interfere with dropdown */
+        font-size: 16px;
+        /* Arrow font size */
+        color: #68a968;
+        /* Arrow color */
+        cursor: pointer;
+      }
+
+      /* Style the select box on focus */
+      select:focus {
+        /* Remove default focus outline */
+      }
+
+      //////////////////////
+
+      .upload_content_wrapper {
         flex: 1;
         display: flex;
         flex-direction: column;
-        height: 100%;
+        gap: 1rem;
 
-        form {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .upload_photo_front,
+        .upload_photo_back {
+          .img_btn_title {
+            font-weight: bold;
+          }
 
-            //////select tab option/////
+          .form-group {
+            border: 2px dashed rgb(212, 212, 212);
+            padding: 1rem;
+            height: 100vh;
+            max-height: 16rem;
+            width: 100%;
 
-            /* Container for custom select */
-            .custom-select-wrapper {
-                position: relative;
-                display: inline-block;
-                width: 200px;
-                margin: auto;
+            ._img_wrapper {
+              cursor: pointer;
+              max-width: 100%;
+              height: 100%;
+              margin: auto;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
 
-                /* Adjust width as needed */
-            }
-
-            /* Style the select box */
-            select {
-                cursor: pointer;
-                font-family: Poppins-Regular;
+              img {
+                max-width: 10rem;
+                max-height: 10rem;
                 width: 100%;
-                /* Full width of the container */
-                padding: 10px;
-                /* Padding inside the select box */
-                font-size: 16px;
-                /* Font size */
-                border: 1px solid #ccc;
-                /* Border color */
-                border-radius: 5px;
-                /* Rounded corners */
-                background: transparent;
-                /* Ensure background is transparent */
-                appearance: none;
-                /* Remove default styling */
-                -webkit-appearance: none;
-                /* For WebKit browsers */
-                -moz-appearance: none;
-                /* For Firefox */
+                height: 100%;
+                object-fit: contain;
+              }
 
+              span {
+              }
             }
-
-            /* Custom arrow */
-            .custom-select-wrapper::after {
-                content: '▼';
-                /* Unicode character for downward arrow */
-                position: absolute;
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                pointer-events: none;
-                /* Arrow does not interfere with dropdown */
-                font-size: 16px;
-                /* Arrow font size */
-                color: #68A968;
-                /* Arrow color */
-                cursor: pointer;
-            }
-
-            /* Style the select box on focus */
-            select:focus {
-
-                /* Remove default focus outline */
-            }
-
-            //////////////////////
-
-            .upload_content_wrapper {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-
-                .upload_photo_front,
-                .upload_photo_back {
-                    .img_btn_title {
-                        font-weight: bold;
-                    }
-
-                    .form-group {
-                        border: 2px dashed rgb(212, 212, 212);
-                        padding: 1rem;
-                        height: 100vh;
-                        max-height: 16rem;
-                        width: 100%;
-
-                        ._img_wrapper {
-                            cursor: pointer;
-                            max-width: 100%;
-                            height: 100%;
-                            margin: auto;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-
-                            img {
-                               
-                                max-width: 10rem;
-                                max-height: 10rem;
-                                width: 100%;
-                                height: 100%;
-                                object-fit: contain;
-                            }
-
-                            span {
-                               
-                            }
-                        }
-
-
-                    }
-                }
-
-                .custom-file-input {
-                    position: absolute;
-                    width: 1px;
-                    height: 1px;
-                    opacity: 0;
-                    overflow: hidden;
-                    clip: rect(0, 0, 0, 0);
-                    border: 0;
-                }
-
-                .content_footer {
-                    flex: 0;
-                    margin-top: 1rem;
-                }
-            }
+          }
         }
+
+        .custom-file-input {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          opacity: 0;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          border: 0;
+        }
+
+        .content_footer {
+          flex: 0;
+          margin-top: 1rem;
+        }
+      }
     }
-
-
+  }
 }
