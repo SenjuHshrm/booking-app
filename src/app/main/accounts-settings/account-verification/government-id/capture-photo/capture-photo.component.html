@@ -8,13 +8,12 @@
         </div>
     </div> -->
   <div class="upload_content">
-    <form (ngSubmit)="onSubmit()" #idForm="ngForm">
+    <div class="form">
       <div class="custom-select-wrapper">
-        <select>
+        <select [(ngModel)]="type" [disabled]="isLoading">
           <option
-            *ngFor="let selectId of validIDType; let i = index"
+            *ngFor="let selectId of validIDType"
             value="{{ selectId._ids }}"
-            [(ngModel)]="type"
           >
             {{ selectId._ids }}
           </option>
@@ -50,13 +49,17 @@
       </div>
       <div class="content_footer">
         <button
+          (click)="onSubmit()"
           [disabled]="!frontFile || !backFile"
           class="main-button"
-          type="submit"
+          type="button"
         >
-          Save
+          <span *ngIf="isLoading === true"
+            ><mat-spinner [diameter]="20"
+          /></span>
+          <span *ngIf="isLoading === false">Save</span>
         </button>
       </div>
-    </form>
+    </div>
   </div>
 </div>

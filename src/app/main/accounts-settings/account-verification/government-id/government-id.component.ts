@@ -1,4 +1,10 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +14,9 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class GovernmentIdComponent {
+  @Output() setNewStatus = new EventEmitter<string>();
+  public isLoading = false;
+
   public verifiedInfo: any;
   public govermentIdSelect: any = [
     { idName: "Driver's License" },
@@ -17,9 +26,18 @@ export class GovernmentIdComponent {
 
   constructor(private router: Router) {}
 
-  selectedTab: string = 'tab2';
+  selectedTab: string = 'tab1';
 
   selectTab(tabName: string) {
+    if (this.isLoading) return;
     this.selectedTab = tabName;
+  }
+
+  handleSetLoading(isLoading: boolean): void {
+    this.isLoading = isLoading;
+  }
+
+  handleSetNewStatus(status: string): void {
+    this.setNewStatus.emit(status);
   }
 }

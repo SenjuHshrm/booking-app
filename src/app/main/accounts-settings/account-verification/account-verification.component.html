@@ -87,6 +87,25 @@
       <div class="verify_value">{{ govIdTextValue }}</div>
       <hr />
     </div> -->
-    <app-government-id />
+    <app-government-id
+      *ngIf="status === 'invalid' || status === 'declined'"
+      (setNewStatus)="handleChangeStatus($event)"
+    />
+    <div *ngIf="status === 'loading'">
+      <span
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 10px;
+        "
+        ><mat-spinner [diameter]="15" /> Checking your account verication
+        status.</span
+      >
+    </div>
+    <div *ngIf="status === 'pending'">
+      Verification of you account is still on process. Please wait for a while.
+    </div>
+    <div *ngIf="status === 'approved'">Your account has been verified</div>
   </div>
 </div>

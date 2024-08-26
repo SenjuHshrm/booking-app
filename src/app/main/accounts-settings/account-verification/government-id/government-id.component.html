@@ -34,9 +34,15 @@
   </section>
 
   <div class="governmentId_upload_photo" *ngIf="selectedTab === 'tab1'">
-    <app-upload-photo></app-upload-photo>
+    <app-upload-photo
+      (setNewStatus)="handleSetNewStatus($event)"
+      (setIsLoading)="handleSetLoading($event)"
+    />
   </div>
   <div class="governmentId_capture_photo" *ngIf="selectedTab === 'tab2'">
-    <app-capture-photo></app-capture-photo>
+    <app-capture-photo
+      (setNewStatus)="handleSetNewStatus($event)"
+      (setIsLoading)="handleSetLoading($event)"
+    />
   </div>
 </div>
