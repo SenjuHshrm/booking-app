@@ -31,8 +31,8 @@ export class IdentificationComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this._getVerifications(
-      this.paginator.pageIndex + 1,
-      this.paginator.pageSize
+      this.paginator.pageSize,
+      this.paginator.pageIndex + 1
     );
     this.dataSource.paginator = this.paginator;
   }
