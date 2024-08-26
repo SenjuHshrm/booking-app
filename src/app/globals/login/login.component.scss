@@ -1,142 +1,142 @@
 .login-container {
-    background-color: white;
-    padding: 2rem;
-    position: relative;
+  background-color: white;
+  padding: 2rem;
+  position: relative;
 
-    &-wrapper {
-        .close{
-            mat-icon{
-                margin-top:4px !important;
-                margin: 0;
-                padding: 0;
-            }
-        }
-        .title {
-            font-family: Poppins-Medium;
-            font-size: 18px;
-            color: #63AB68;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .form-wrapper {
-            input {
-                padding: 1rem;
-                border: 2px solid #63AB68;
-                width: 100%;
-                border-radius: 10px;
-                font-family: Poppins-Medium;
-                font-size: 15px;
-            }
-
-            // .username-wrapper {}
-
-            .password-wrapper {
-                position: relative;
-
-                mat-icon {
-                    position: absolute;
-                    right: 10px;
-                    top: 18px;
-                    z-index: 1;
-                    cursor: pointer;
-                    color: #63AB68;
-                }
-            }
-
-            .singup_forgotpass{
-                display: flex;
-                align-items: flex-start;
-                flex:auto auto;
-                justify-content: space-between;
-                .sign_up{
-                     button{
-                        background-color: transparent;
-                        border: none;
-                        text-align: end;
-                        font-family: Poppins-Regular;
-                        cursor: pointer;
-                        color: #63AB68;
-                        margin:0;
-                        padding: 0;
-                     }
-                }
-        
-
-            .forgot-pass {
-                background-color: transparent;
-                border: none;
-                text-align: end;
-                font-family: Poppins-Regular;
-                cursor: pointer;
-                color: #63AB68;
-            }
-
-            .forgot-pass:hover {
-                color: #63AB68;
-            }
-        }
-
-            .width-button {
-                max-width: none !important;
-                width: 100% !important;
-                margin: 0;
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-            }
-
-        }
-
-        .not-aguest {
-            font-family: Poppins-Regular;
-            font-size: 1rem;
-            color: black;
-            text-align: center;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-
-
-            .signup-button {
-                background-color: transparent;
-                border: none;
-                font-family: Poppins-Bold;
-                font-size: 1rem;
-                color: black;
-                cursor: pointer;
-                border-radius:8px;
-                padding-left:.5rem;
-                padding-right:.5rem;
-            }
-            .signup-button:hover {
-                background-color: black;
-                border: none;
-                color: #63AB68;
-                font-family: Poppins-Bold;
-                font-size: 1rem;
-                cursor: pointer;
-                border-radius:8px;
-                padding-left:.5rem;
-                padding-right:.5rem;
-            }
-        }
-
-        .google-button {
-            background: none !important;
-            border: 2px solid #63AB68 !important;
-            font-size: 18px !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-
-            img {
-                width: 25px !important;
-                height: 25px !important;
-
-            }
-
-        }
+  &-wrapper {
+    .close {
+      mat-icon {
+        margin-top: 4px !important;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .title {
+      font-family: Poppins-Medium;
+      font-size: 18px;
+      color: #63ab68;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
-    
+    .form-wrapper {
+      input {
+        padding: 1rem;
+        border: 2px solid #63ab68;
+        width: 100%;
+        border-radius: 10px;
+        font-family: Poppins-Medium;
+        font-size: 15px;
+      }
+
+      // .username-wrapper {}
+
+      .password-wrapper {
+        position: relative;
+
+        mat-icon {
+          position: absolute;
+          right: 10px;
+          top: 18px;
+          z-index: 1;
+          cursor: pointer;
+          color: #63ab68;
+        }
+      }
+
+      .singup_forgotpass {
+        display: flex;
+        align-items: flex-start;
+        flex: auto auto;
+        justify-content: space-between;
+        .sign_up {
+          button {
+            background-color: transparent;
+            border: none;
+            text-align: end;
+            font-family: Poppins-Regular;
+            cursor: pointer;
+            color: #63ab68;
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        .forgot-pass {
+          background-color: transparent;
+          border: none;
+          text-align: end;
+          font-family: Poppins-Regular;
+          cursor: pointer;
+          color: #63ab68;
+        }
+
+        .forgot-pass:hover {
+          color: #63ab68;
+        }
+      }
+
+      .width-button {
+        max-width: none !important;
+        width: 100% !important;
+        margin: 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: grid;
+        place-items: center;
+        span {
+          mat-spinner {
+            border-top-color: #ff0000; /* Change the spinner color */
+          }
+        }
+      }
+    }
+
+    .not-aguest {
+      font-family: Poppins-Regular;
+      font-size: 1rem;
+      color: black;
+      text-align: center;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+
+      .signup-button {
+        background-color: transparent;
+        border: none;
+        font-family: Poppins-Bold;
+        font-size: 1rem;
+        color: black;
+        cursor: pointer;
+        border-radius: 8px;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .signup-button:hover {
+        background-color: black;
+        border: none;
+        color: #63ab68;
+        font-family: Poppins-Bold;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 8px;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+
+    .google-button {
+      background: none !important;
+      border: 2px solid #63ab68 !important;
+      font-size: 18px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      img {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
 }
