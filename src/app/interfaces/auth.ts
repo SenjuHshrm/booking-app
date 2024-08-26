@@ -7,5 +7,7 @@ export interface IAuthForm {
 
 export interface IAuth {
   email: string;
-  password: string
+  password: string;
+  currentDate: string;
+  role: 'customer' | 'host' | 'admin';
 }
