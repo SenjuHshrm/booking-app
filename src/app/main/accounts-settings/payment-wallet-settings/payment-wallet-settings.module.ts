@@ -7,8 +7,9 @@ import { PaymentWalletSettingsComponent } from './payment-wallet-settings.compon
 import { CreatePaymentMethodComponent } from './create-payment-method/create-payment-method.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MaskCardPipe } from './mask-card.pipe';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { GlobalsModule } from 'src/app/globals/globals.module';
+
 
 
 
@@ -16,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [
     PaymentWalletSettingsComponent, 
     CreatePaymentMethodComponent, 
-    MaskCardPipe
+
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatMenuModule,
     MatFormFieldModule,
+    GlobalsModule
  
 
 

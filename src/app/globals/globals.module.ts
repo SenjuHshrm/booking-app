@@ -27,6 +27,7 @@ import { HomeImageGalleryComponent } from './home-image-gallery/home-image-galle
 import { InputErrorMessageComponent } from './input-error-message/input-error-message.component';
 import { ViewProfileModalComponent } from './modals/view-profile-modal/view-profile-modal.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MaskCardPipe } from './pipes/mask-card.pipe';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ForgotPasswordComponent,
     HomeImageGalleryComponent,
     InputErrorMessageComponent,
-    ViewProfileModalComponent
+    ViewProfileModalComponent,
+    MaskCardPipe
   ],
 
   imports: [
@@ -60,6 +62,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     GoogleSigninButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+  
   ],
 
   providers: [GoogleSigninButtonDirective],
@@ -77,6 +80,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UsersProfileComponent,
     HomeImageGalleryComponent,
     InputErrorMessageComponent,
+    MaskCardPipe
   ],
 
 })
