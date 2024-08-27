@@ -11,7 +11,9 @@
              <div>Debit/Credit</div>
              <div>Wallet</div>
         </div> -->
-        <div class="payment_container">
+        
+        
+        <div class="payment_container_list">
             <!-- <ng-template [ngIf]="userPaymentMethods.length === 0">
                 <button class="main-button" (click)="addPaymentMethod()">Add payment method</button>
             </ng-template> -->
@@ -52,8 +54,10 @@
                 </ng-template>
             </div>
        
-                <button class="square_button" (click)="addPaymentMethod()" [disabled]="cardInfo.length === 4"
-                    [ngStyle]="{'background-color': cardInfo.length === 4 ? 'gray' : ''}">Add payment method</button>
+                <button class="square_button" (click)="addPaymentMethod()" [disabled]="cardInfo.length === 3"
+                    [ngStyle]="{'background-color': cardInfo.length === 3 ? 'gray' : ''}">
+                    Add payment method
+                </button>
             
         </div>
 

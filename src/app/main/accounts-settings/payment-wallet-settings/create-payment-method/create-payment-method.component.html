@@ -3,7 +3,7 @@
         <div class="close-button" (click)="close()">
             <mat-icon style="margin-top:3px">close</mat-icon>
         </div>
-        <div class="title">Add card details</div>
+        <div class="title">Payment details</div>
         <div class="subtitle"></div>
     </div>
     <!-- <form>
@@ -27,68 +27,83 @@
         <div class="title-wrapper">
             <!-- <div class="title">Pay with</div> -->
             <div class="wallet-icons">
-                <div><img src="../../assets/images/main/book-staycation/visa.png" loading="lazy" alt="Avatar"
+                <div *ngIf="defaultPaymentMethod === 0"><img
+                        src="../../assets/images/main/book-staycation/visa.png" loading="lazy" alt="Avatar"
                         [draggable]="false"></div>
-                <div><img src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy" alt="Avatar"
+                <div *ngIf="defaultPaymentMethod === 0"><img
+                        src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy" alt="Avatar"
                         [draggable]="false"></div>
-                <div><img src="../../assets/images/main/book-staycation/gcash.png" loading="lazy" alt="Avatar"
+                <div *ngIf="defaultPaymentMethod === 1"><img
+                        src="../../assets/images/main/book-staycation/gcash.png" loading="lazy" alt="Avatar"
                         [draggable]="false"></div>
-                <div><img src="../../assets/images/main/book-staycation/maya.png" loading="lazy" alt="Avatar"
+                <div *ngIf="defaultPaymentMethod === 2"><img
+                        src="../../assets/images/main/book-staycation/maya.png" loading="lazy" alt="Avatar"
                         [draggable]="false"></div>
             </div>
         </div>
-        <form #paymentForm="ngForm" (ngSubmit)="onSubmit(paymentForm)">
+        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
             <div class="form_content">
                 <div class="custom-select">
                     <div class="label">Payment Method</div>
-                    <select class="" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" required>
-                        <option value="" disabled selected>Select Payment Method</option>
-                        <option value="Credit Card or debit card">Credit Card or Debit Card</option>
-                        <option value="Visa">Visa</option>
-                        <option value="Master Card">Master Card</option>
-                        <option value="Gcash">Gcash</option>
-                        <option value="Paymaya">Paymaya</option>
+                    <select #selectElement formControlName="paymentMethod" (change)="setPayMethod(selectElement)"
+                        required>
+                        <option *ngFor="let paymentMethod of paymentMethodName; let i = index" [value]="i"
+                            [selected]="i === 0">
+                            {{paymentMethod.payMethod}}
+                        </option>
                     </select>
                 </div>
+                <div *ngIf="defaultPaymentMethod === 0">
+                    <div class="custom-select">
+                        <div class="label">Bank Name</div>
+                        <select formControlName="paymentBank" class="" required>
+                            <option value="" disabled>Select Bank Name</option>
+                            <option *ngFor="let bank of bankList" [value]="bank">{{ bank }}</option>
+                        </select>
+                    </div>
 
-                <div class="input_num">
-                    <div class="label">Card Number</div>
-                    <input type="text" name="cardNumber" placeholder="Card number" [(ngModel)]="cardNumber"
-                        #cardNumberModel="ngModel" required minlength="16" maxlength="16" />
-                    <ng-container *ngIf="cardNumberModel.invalid && (cardNumberModel.dirty || cardNumberModel.touched)">
-                        <span class="val-err-msg">Card number is required and must be 16 digits long.</span>
-                    </ng-container>
-                </div>
-
-                <div class="wrapper">
-                    <div>
-                        <div class="label">Expiration Date</div>
-                        <div class="expiration-style">
-                            <input class="custom-date-input" type="date" name="expirationDate"
-                                [(ngModel)]="expirationDate" #expirationDateModel="ngModel" required />
-                        </div>
+                    <div class="input_num">
+                        <div class="label">Card Number</div>
+                        <input type="text" formControlName="cardNumber" placeholder="Card number" />
                         <ng-container
-                            *ngIf="expirationDateModel.invalid && (expirationDateModel.dirty || expirationDateModel.touched)">
-                            <span class="val-err-msg">Expiration date is required.</span>
+                            *ngIf="paymentForm.get('cardNumber')?.invalid && (paymentForm.get('cardNumber')?.dirty || paymentForm.get('cardNumber')?.touched)">
+                            <span class="val-err-msg">Card number is required and must be 16 digits long.</span>
                         </ng-container>
                     </div>
 
-                    <div class="ccv-input">
-                        <div class="label">CCV</div>
-                        <input type="text" name="ccv" placeholder="CCV" [(ngModel)]="ccv" #ccvModel="ngModel" required
-                            minlength="3" maxlength="4" />
-                        <ng-container *ngIf="ccvModel.invalid && (ccvModel.dirty || ccvModel.touched)">
-                            <span class="val-err-msg">CCV is required and must be 3 or 4 digits long.</span>
-                        </ng-container>
+                    <div class="wrapper">
+                        <div>
+                            <div class="label">Expiration Date</div>
+                            <div class="expiration-style">
+                                <input class="custom-date-input" type="date" formControlName="expirationDate" />
+                            </div>
+                            <ng-container
+                                *ngIf="paymentForm.get('expirationDate')?.invalid && (paymentForm.get('expirationDate')?.dirty || paymentForm.get('expirationDate')?.touched)">
+                                <span class="val-err-msg">Expiration date is required.</span>
+                            </ng-container>
+                        </div>
+
+                        <div class="ccv-input">
+                            <div class="label">CCV</div>
+                            <input type="text" formControlName="ccv" placeholder="CCV" />
+                            <ng-container
+                                *ngIf="paymentForm.get('ccv')?.invalid && (paymentForm.get('ccv')?.dirty || paymentForm.get('ccv')?.touched)">
+                                <span class="val-err-msg">CCV is required and must be 3 or 4 digits long.</span>
+                            </ng-container>
+                        </div>
                     </div>
                 </div>
 
-            </div>
-            
-            <div class="form_footer">
-                <button class="main-button" type="submit" [disabled]="paymentForm.invalid">Done</button>
+                <div class="form_footer">
+                    <button class="main-button" type="submit" [disabled]="paymentForm.invalid">
+                        <span *ngIf="defaultPaymentMethod ===  0">Done</span>
+                        <span *ngIf="defaultPaymentMethod === 1">Go to Gcash</span>
+                        <span *ngIf="defaultPaymentMethod === 2">Go to Maya</span>
+                    </button>
+                </div>
             </div>
         </form>
+
     </div>
 
 </div>

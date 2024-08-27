@@ -11,32 +11,47 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
 
+  paymentForm: FormGroup = new FormGroup({}); // Initialize with an empty FormGroup
+  bankList: string[] = ['Bank A', 'Bank B', 'Bank C']; // Example bank list
+ paymentMethodName: any = [
+  {id:0,payMethod:'Credit and Debit Card'},
+  {id:1,payMethod:'Gcash'},
+  {id:2,payMethod:'Maya'},
+ ]
+ defaultPaymentMethod: any = 'Credit and Debit Card'; 
+
   public piTypes: any = [
     { val: "gcash", txt: "GCash" },
   ]
   
-  selectedPaymentMethod: string = '';
-  cardNumber: string = '';
-  expirationDate: string = '';
-  ccv: string = '';
+  
 
   private _sub: Subscription = new Subscription()
 
   constructor(
     private _md: MatDialogRef<CreatePaymentMethodComponent>,
     @Inject(MAT_DIALOG_DATA) private id: string,
-    private _payment: PaymentService
+    private _payment: PaymentService,
+    private fb: FormBuilder
+    
   ) { 
 
-    this.selectedPaymentMethod = '';
-    this.cardNumber = '';
-    this.expirationDate = '';
-    this.ccv = '';
+ 
   }
 
   ngOnInit(): void {
-    this._getMerchantPaymentMethods()
-
+    this._getMerchantPaymentMethods();
+    
+    if (this.paymentMethodName && this.paymentMethodName.length > 0) {
+      this.defaultPaymentMethod = 0; 
+  }
+    this.paymentForm = this.fb.group({
+      paymentMethod: [this.defaultPaymentMethod, Validators.required], 
+      paymentBank: ['', Validators.required],
+      cardNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
+      expirationDate: ['', Validators.required],
+      ccv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]]
+    });
   
   }
 
@@ -58,9 +73,16 @@ export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
     }))
   }
 
-  onSubmit(form: any): void {
-    if (form.valid) {
-      console.log('Form Submitted!', form.value);
+
+  setPayMethod(selectElement: HTMLSelectElement) {
+    const selectedIndex = selectElement.value;
+    this.defaultPaymentMethod = this.paymentMethodName[selectedIndex].id;
+
+  }
+
+  public onSubmit(): void {
+    if (this.paymentForm.valid) {
+      console.log(this.paymentForm.value);
     }
   }
 
