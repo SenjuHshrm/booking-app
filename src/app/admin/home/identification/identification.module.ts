@@ -8,11 +8,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { IdentificationComponent } from './identification.component';
-
+import { ViewVerificationComponent } from './view-verification/view-verification.component';
+import { ApproveDisapproveComponent } from './approve-disapprove/approve-disapprove.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
-    IdentificationComponent
+    IdentificationComponent,
+    ViewVerificationComponent,
+    ApproveDisapproveComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +28,10 @@ import { IdentificationComponent } from './identification.component';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    MatMenuModule
-  ]
+    MatMenuModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+  ],
 })
-export class IdentificationModule { }
+export class IdentificationModule {}

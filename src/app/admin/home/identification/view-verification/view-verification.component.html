@@ -1,0 +1,38 @@
+<div class="modal">
+  <mat-icon (click)="handleClose()" class="modal-close-btn">close</mat-icon>
+  <h2>View Verification Modal</h2>
+  <hr />
+  <div class="modal-content-container">
+    <div class="details">
+      <div class="label">Account Name:</div>
+      <div class="value">{{ fullName }}</div>
+    </div>
+    <div class="details">
+      <div class="label">ID Type:</div>
+      <div class="value">{{ data.type }}</div>
+    </div>
+    <div class="images">
+      <div>
+        <div class="label">ID Front Vew:</div>
+        <img
+          class="image"
+          src="{{ frontIdSrc }}"
+          alt="{{ data.type }}"
+          draggable="false"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <div class="label">ID Back Vew:</div>
+        <img
+          class="image"
+          src="{{ backIdSrc }}"
+          alt="{{ data.type }}"
+          draggable="false"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+  <hr />
+</div>
