@@ -1,0 +1,35 @@
+<div class="report-modal">
+  <mat-icon (click)="handleClose(false)" class="report-close-btn"
+    >close</mat-icon
+  >
+  <h2>{{ modalTitle }} Action Modal</h2>
+  <hr />
+  <div class="report-content">
+    <h3>Are you sure you want to {{ actionName }} this host?</h3>
+    <div class="input-wrapper" style="margin-bottom: 0.5rem">
+      <div class="label">Reported:</div>
+      <div class="value">{{ fullName(data.reportedInfo[0].name) }}</div>
+    </div>
+    <hr />
+    <div class="button-wrapper" style="margin-top: 0.5rem">
+      <button
+        (click)="handleGiveAction()"
+        [disabled]="isLoading"
+        type="button"
+        mat-raised-button
+      >
+        <span *ngIf="isLoading"><mat-spinner [diameter]="20" /></span>
+        <span *ngIf="!isLoading">Proceed</span>
+      </button>
+      <button
+        [disabled]="isLoading"
+        class="btn-danger"
+        (click)="handleClose(false)"
+        type="button"
+        mat-raised-button
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

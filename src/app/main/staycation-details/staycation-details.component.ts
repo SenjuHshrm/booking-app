@@ -29,6 +29,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { CustomDatepickerHeader } from './custom-datepicker-header';
 import * as moment from 'moment';
+import { ReportListingComponent } from './report-listing/report-listing.component';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -358,5 +359,14 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
         0,
         this.nights
       );
+  }
+
+  public handleSendReport(): void {
+    const report = this.dialog.open(ReportListingComponent, {
+      disableClose: true,
+      maxWidth: '40rem',
+      width: '90%',
+      data: this.details,
+    });
   }
 }

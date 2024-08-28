@@ -1,0 +1,19 @@
+<div class="report-modal">
+  <mat-icon (click)="handleClose()" class="report-close-btn">close</mat-icon>
+  <h2>View Report Modal</h2>
+  <hr />
+  <div class="report-content">
+    <div class="input-wrapper">
+      <div class="label">Reporter:</div>
+      <div class="value">{{ fullName(data.reporterInfo[0].name) }}</div>
+    </div>
+    <div class="input-wrapper">
+      <div class="label">Reported:</div>
+      <div class="value">{{ fullName(data.reportedInfo[0].name) }}</div>
+    </div>
+    <div class="input-wrapper">
+      <div class="label">Message:</div>
+      <div class="value">{{ data.msg }}</div>
+    </div>
+  </div>
+</div>

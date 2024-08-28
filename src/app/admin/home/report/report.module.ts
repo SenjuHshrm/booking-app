@@ -8,13 +8,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReportComponent } from './report.component';
-
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ViewReportComponent } from './view-report/view-report.component';
+import { ActionReportComponent } from './action-report/action-report.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    ReportComponent
-  ],
+  declarations: [ReportComponent, ViewReportComponent, ActionReportComponent],
   imports: [
     CommonModule,
     ReportRoutingModule,
@@ -23,7 +23,9 @@ import { ReportComponent } from './report.component';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    MatMenuModule
-  ]
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+  ],
 })
-export class ReportModule { }
+export class ReportModule {}

@@ -1,167 +1,198 @@
-
-
 <div class="staycation-details" [@fadeInAnimation]>
-     
-     <div class="staycation-details-staycation-details-wrapper" *ngIf="details">
-          <section class="property-title">
-               <button (click)="backToMain()">
-                    <mat-icon>chevron_left</mat-icon>
-                    <span>Back</span>
-               </button>
-               <div class="title-wrapper">
-                    <div class="title">{{ details.name }} </div>
-                    <div class="star" (click)="wishListToggle()">
-                         <mat-icon *ngIf="wishlistIcons === true">flag</mat-icon>
-                         <mat-icon *ngIf="wishlistIcons === false">outlined_flag</mat-icon>
-                         <div>Wishlist</div>
-                    </div>
-               </div>
-          </section>
+  <div class="staycation-details-staycation-details-wrapper" *ngIf="details">
+    <section class="property-title">
+      <button (click)="backToMain()">
+        <mat-icon>chevron_left</mat-icon>
+        <span>Back</span>
+      </button>
+      <div class="title-wrapper">
+        <div class="title">{{ details.name }}</div>
+        <div class="star" (click)="wishListToggle()">
+          <mat-icon *ngIf="wishlistIcons === true">flag</mat-icon>
+          <mat-icon *ngIf="wishlistIcons === false">outlined_flag</mat-icon>
+          <div>Wishlist</div>
+        </div>
+      </div>
+    </section>
 
-          <section class="image-grid" (click)="gotoGalleryPage(details._id)">
-               <img [src]="img" *ngFor="let img of imageSets; let i = index" alt="images" loading="lazy"
-                    draggable="false" [class.image-grid-col-2]="i === 0" [class.image-grid-row-2]="i === 0"
-                    [class.other]="i !== 0">
-          </section>
+    <section class="image-grid" (click)="gotoGalleryPage(details._id)">
+      <img
+        [src]="img"
+        *ngFor="let img of imageSets; let i = index"
+        alt="images"
+        loading="lazy"
+        draggable="false"
+        [class.image-grid-col-2]="i === 0"
+        [class.image-grid-row-2]="i === 0"
+        [class.other]="i !== 0"
+      />
+    </section>
 
-          <section class="details-reserve-wrapper">
-               <section class="details-column">
-                    <div class="details-header">
-                         <div class="title">{{ details.name }}</div>
-                         <div class="subtitle">
-                              {{ details.details.guests }} guests - {{ details.details.bedrooms }}
-                              bedrooms - {{ details.details.beds }} beds - {{ details.details.bathroom }} bathrooms
-                         </div>
-                         <div class="rate">
-                              <div>Rate</div>
-                              <mat-icon>star</mat-icon>
-                              <div>7.00</div>
-                         </div>
-                    </div>
-                    <div class="details-user-avatar">
-                         <div class="wrapper">
-                              <div class="image-avatar">
-                                   <img [src]="details.host.img" loading="lazy" alt="Avatar" [draggable]="false">
-                              </div>
-                              <div>
-                                   <div class="name">{{ details.host.name }}</div>
-                                   <div class="years">{{ details.host.approvedAsProprietorOn }}</div>
-                              </div>
-                         </div>
-                         <div class="message_proprietor" (click)="messageProprietor()">
-                              <button>
-                                   <mat-icon>message</mat-icon>
-                                   Message Proprietor
-                              </button>
-                         </div>
-                    </div>
-                    <hr>
-                    <div class=" address">
-                         <div class="title">Address</div>
-                         <div class="description">
-                              <mat-icon> my_location</mat-icon>
-                              <div>{{ details.address }}</div>
-                         </div>
-                         <div class="description">
-                              <mat-icon>location_on</mat-icon>
-                              <div>{{ details.landmark }}</div>
-                         </div>
-                    </div>
-                    <hr>
-                    <div class="important category">
-                         <div class="icons">
-                              <mat-icon>bookmark_border</mat-icon>
-                         </div>
-                         <div class="info">
-                              <div class="title">Staycations</div>
-                              <div class="description">{{ details.descriptionFilter }}</div>
-                         </div>
-                    </div>
+    <section class="details-reserve-wrapper">
+      <section class="details-column">
+        <div class="details-header">
+          <div class="title">{{ details.name }}</div>
+          <div class="subtitle">
+            {{ details.details.guests }} guests -
+            {{ details.details.bedrooms }} bedrooms -
+            {{ details.details.beds }} beds -
+            {{ details.details.bathroom }} bathrooms
+          </div>
+          <div class="rate">
+            <div>Rate</div>
+            <mat-icon>star</mat-icon>
+            <div>7.00</div>
+          </div>
+        </div>
+        <div class="details-user-avatar">
+          <div class="wrapper">
+            <div class="image-avatar">
+              <img
+                [src]="details.host.img"
+                loading="lazy"
+                alt="Avatar"
+                [draggable]="false"
+              />
+            </div>
+            <div>
+              <div class="name">{{ details.host.name }}</div>
+              <div class="years">{{ details.host.approvedAsProprietorOn }}</div>
+            </div>
+          </div>
+          <div class="message_proprietor" (click)="messageProprietor()">
+            <button>
+              <mat-icon>message</mat-icon>
+              Message Proprietor
+            </button>
+          </div>
+        </div>
+        <hr />
+        <div class="address">
+          <div class="title">Address</div>
+          <div class="description">
+            <mat-icon> my_location</mat-icon>
+            <div>{{ details.address }}</div>
+          </div>
+          <div class="description">
+            <mat-icon>location_on</mat-icon>
+            <div>{{ details.landmark }}</div>
+          </div>
+        </div>
+        <hr />
+        <div class="important category">
+          <div class="icons">
+            <mat-icon>bookmark_border</mat-icon>
+          </div>
+          <div class="info">
+            <div class="title">Staycations</div>
+            <div class="description">{{ details.descriptionFilter }}</div>
+          </div>
+        </div>
 
-                    <div class="important guest have">
-                         <div class="icons">
-                              <mat-icon>bookmark_border</mat-icon>
-                         </div>
-                         <div class="info">
-                              <div class="title">Place will guest have</div>
-                              <div class="description">{{ details.placeType }}</div>
-                         </div>
-                    </div>
+        <div class="important guest have">
+          <div class="icons">
+            <mat-icon>bookmark_border</mat-icon>
+          </div>
+          <div class="info">
+            <div class="title">Place will guest have</div>
+            <div class="description">{{ details.placeType }}</div>
+          </div>
+        </div>
 
-                    <div class="important discounts">
-                         <div class="icons">
-                              <mat-icon>bookmark_border</mat-icon>
-                         </div>
-                         <div class="info">
-                              <div class="title">Discount Offer</div>
-                              <div class="description">
-                                   <div>
-                                        <span>{{ details.discounts.value }} % &nbsp;{{ discount.desc }}</span>
-                                   </div>
-                              </div>
-                              <!-- <div *ngFor="let discount of discountedOffer" class="description">
+        <div class="important discounts">
+          <div class="icons">
+            <mat-icon>bookmark_border</mat-icon>
+          </div>
+          <div class="info">
+            <div class="title">Discount Offer</div>
+            <div class="description">
+              <div>
+                <span
+                  >{{ details.discounts.value }} % &nbsp;{{
+                    discount.desc
+                  }}</span
+                >
+              </div>
+            </div>
+            <!-- <div *ngFor="let discount of discountedOffer" class="description">
                                    <div *ngIf="discount.selected === true">
                                         <span>{{discount.discount}}% &nbsp;{{discount.description}}</span>
                                    </div>
                               </div> -->
+          </div>
+        </div>
+        <div class="important cancellation">
+          <div class="icons">
+            <mat-icon>bookmark_border</mat-icon>
+          </div>
+          <div class="info">
+            <div class="title">
+              Cancellation Policy: {{ cancellation[0].title }}
+            </div>
+            <div class="description">{{ cancellation[0].desc }}</div>
+          </div>
+        </div>
+        <hr />
+        <div class="described_house_container">
+          <div class="title">About this place</div>
+          <div class="described">
+            <div class="title_info">Ambiance</div>
+            <div class="info_wrapper">
+              <div class="info" *ngFor="let desc of details.descriptionText">
+                <mat-icon>done_outline</mat-icon>
+                <div>{{ desc }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="described">
+            <div class="title_info">Detailed description</div>
+            <div class="desc_wrapper">
+              <div>
+                <p *ngIf="details.detailedDescription.length > 100">
+                  {{
+                    isExpanded
+                      ? details.detailedDescription
+                      : (details.detailedDescription | slice : 0 : 500) + "..."
+                  }}
+                </p>
+                <p *ngIf="details.detailedDescription.length < 100">
+                  {{ details.detailedDescription }}
+                </p>
+                <button
+                  (click)="seemoreText()"
+                  *ngIf="details.detailedDescription.length > 100"
+                >
+                  {{ isExpanded ? "See less" : "See more" }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
 
-                         </div>
-                    </div>
-                    <div class="important cancellation">
-                         <div class="icons">
-                              <mat-icon>bookmark_border</mat-icon>
-                         </div>
-                         <div class="info">
-                              <div class="title">Cancellation Policy: {{ cancellation[0].title }}</div>
-                              <div class="description">{{ cancellation[0].desc }}</div>
-                         </div>
-                    </div>
-                    <hr>
-                    <div class="described_house_container">
-                         <div class="title">About this place</div>
-                         <div class="described ">
-                              <div class="title_info">Ambiance</div>
-                              <div class="info_wrapper">
-                                   <div class="info" *ngFor="let desc of details.descriptionText">
-                                        <mat-icon>done_outline</mat-icon>
-                                        <div>{{ desc }}</div>
-                                   </div>
-                              </div>
-
-                         </div>
-                         <div class="described">
-                              <div class="title_info">Detailed description</div>
-                              <div class="desc_wrapper">
-                                   <div>
-                                        <p *ngIf="details.detailedDescription.length > 100">
-                                          {{ isExpanded ? details.detailedDescription : (details.detailedDescription | slice:0:500) + '...' }}
-                                        </p>
-                                        <p *ngIf="details.detailedDescription.length < 100">
-                                             {{details.detailedDescription}}
-                                           </p>
-                                        <button (click)="seemoreText()" *ngIf="details.detailedDescription.length > 100">
-                                          {{ isExpanded ? 'See less' : 'See more' }}
-                                        </button>
-                                      </div>
-                              </div>
-                         </div>
-                    </div>
-                    <hr>
-    
-                    <div class="details-where-you-sleep"  style="display: block;">
-                         <div class="title-wrapper">
-                              <div class="title">Where you'll sleep</div>
-                         </div>
-                              <div class="section-1-wrapper">
-                                   <div class="wrapper"  style="display: block;">
-                                        <div class="swiper-main-container">
-                                             <swiper class="swiper-container"  style="display: block;" #swiper [slidesPerView]="3" [spaceBetween]="30"
-                                                  [navigation]="false" (autoplayPause)="true" [draggable]="true" [loop]="true" [breakpoints]="{
+        <div class="details-where-you-sleep" style="display: block">
+          <div class="title-wrapper">
+            <div class="title">Where you'll sleep</div>
+          </div>
+          <div class="section-1-wrapper">
+            <div class="wrapper" style="display: block">
+              <div class="swiper-main-container">
+                <swiper
+                  class="swiper-container"
+                  style="display: block"
+                  #swiper
+                  [slidesPerView]="3"
+                  [spaceBetween]="30"
+                  [navigation]="false"
+                  (autoplayPause)="(true)"
+                  [draggable]="true"
+                  [loop]="true"
+                  [breakpoints]="{
                                        '200': {
                                            slidesPerView: 1,
                                            spaceBetween: 10,
                                        },
-                         
+
                                        '300': {
                                            slidesPerView: 1,
                                            spaceBetween: 10,
@@ -178,7 +209,7 @@
                                         slidesPerView: 4,
                                         spaceBetween: 10,
                                     },
-                                       
+
                                        '1200': {
                                            slidesPerView: 4,
                                            spaceBetween: 20,
@@ -191,166 +222,259 @@
                                            slidesPerView: 3,
                                            spaceBetween: 30,
                                        }
-                                   }">
-                                                  <ng-template class="custom_swiper_slide"  style="display: block;" swiperSlide *ngFor="let dest of details.bedroomList; let i = index">
-                                                       <div class="_images" (click)="viewImageBedroom(dest) ">
-                                                            <img src={{dest}} alt="images" draggable="false" loading="lazy" />
-                                                            <!-- <div class="label">{{dest.label}}</div>
+                                   }"
+                >
+                  <ng-template
+                    class="custom_swiper_slide"
+                    style="display: block"
+                    swiperSlide
+                    *ngFor="let dest of details.bedroomList; let i = index"
+                  >
+                    <div class="_images" (click)="viewImageBedroom(dest)">
+                      <img
+                        src="{{ dest }}"
+                        alt="images"
+                        draggable="false"
+                        loading="lazy"
+                      />
+                      <!-- <div class="label">{{dest.label}}</div>
                                                             <div class="desc">{{dest.description}}</div> -->
-                                                       </div>
-                                                  </ng-template>
-                                             </swiper>
-                                             <div class="_buttons">
-                                                  <button (click)="slidePrev()" class="custom-prev-button custom_prev">
-                                                       <mat-icon>navigate_before</mat-icon>
-                                                  </button>
-                                                  <button (click)="slideNext()" class="custom-next-button custom_next">
-                                                       <mat-icon>navigate_next</mat-icon>
-                                                  </button>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
                     </div>
-               
-                    <hr>
-                    <div class="details-whats-offer">
-                         <div class="title">What this place offers</div>
-                         <div class="description">
-                              <!-- <div class="offers" *ngFor="let offers of details.amenities.split(' ')">
+                  </ng-template>
+                </swiper>
+                <div class="_buttons">
+                  <button
+                    (click)="slidePrev()"
+                    class="custom-prev-button custom_prev"
+                  >
+                    <mat-icon>navigate_before</mat-icon>
+                  </button>
+                  <button
+                    (click)="slideNext()"
+                    class="custom-next-button custom_next"
+                  >
+                    <mat-icon>navigate_next</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div class="details-whats-offer">
+          <div class="title">What this place offers</div>
+          <div class="description">
+            <!-- <div class="offers" *ngFor="let offers of details.amenities.split(' ')">
                                    <mat-icon *ngIf="offers !== ''">done_outline</mat-icon>
                                   <div>{{offers}}</div>
                               </div> -->
-                              {{details.amenities}}
-                         </div>
+            {{ details.amenities }}
+          </div>
+        </div>
+        <hr />
+        <div class="details-reviews">
+          <div class="title">Reviews</div>
+          <div
+            class="comments"
+            *ngIf="totalReviews === 0 || latestReview === 0"
+          >
+            <p class="not-available">No reviews yet!</p>
+          </div>
+          <div class="comments" *ngIf="totalReviews > 0">
+            <div class="rate-stars">
+              <mat-icon>stars</mat-icon>
+              <div>{{ averageStar }}</div>
+            </div>
+            <div>-</div>
+            <div class="number-reviews">
+              <p>{{ totalReviews }} <span>reviews</span></p>
+            </div>
+          </div>
+          <div class="reviewer" *ngIf="latestReview">
+            <div class="avatar-wrapper">
+              <div class="avatar">
+                <img
+                  src="../../assets/images/main/staycation-details/avatarreviewer.png"
+                  loading="lazy"
+                  alt="Avatar"
+                  [draggable]="false"
+                />
+              </div>
+              <div class="name-address-wrapper">
+                <div class="name">{{ latestReview.name }}</div>
+                <div class="address">{{ latestReview.address }}</div>
+              </div>
+            </div>
+            <div class="comments">
+              {{ latestReview.comment }}
+            </div>
+            <button>See more</button>
+          </div>
+        </div>
+      </section>
+      <section class="reserve-sticky-column">
+        <div class="column-container">
+          <form>
+            <div class="reserve-sticky-column-wrapper">
+              <div class="rate-night">
+                <p>
+                  ₱<span> {{ details.price }} </span>night
+                </p>
+              </div>
+              <div class="date-checkin-out">
+                <mat-form-field>
+                  <mat-label>Check-in | Check-out</mat-label>
+                  <mat-date-range-input
+                    [min]="minDate"
+                    [formGroup]="checkInCheckOut"
+                    [rangePicker]="cicoPicker"
+                  >
+                    <input
+                      matStartDate
+                      name="start"
+                      formControlName="start"
+                      class="custom-date-input"
+                    />
+                    <input
+                      matEndDate
+                      name="end"
+                      formControlName="end"
+                      class="custom-date-input"
+                      (dateChange)="handleDateChangeEnd($event)"
+                    />
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="cicoPicker"
+                  ></mat-datepicker-toggle>
+                  <mat-date-range-picker
+                    #cicoPicker
+                    [calendarHeaderComponent]="customDatepickerHeader"
+                  ></mat-date-range-picker>
+                </mat-form-field>
+              </div>
+              <div class="cancellation-policy" *ngIf="showCancelOpts">
+                <div class="title-wrapper">
+                  <div class="title">Select Cancellation Policy</div>
+                </div>
+                <div class="cancellation-policy-wrapper">
+                  <label class="custom-radio" *ngFor="let opt of cancellation">
+                    <input
+                      type="radio"
+                      [value]="opt.code"
+                      (change)="selectCancellationOption($event, opt.price)"
+                      [checked]="selectedCancellationPolicy === opt.code"
+                    />
+                    <div class="radio-mark"></div>
+                    <div class="wrapper">
+                      <div>{{ opt.title }}</div>
+                      <div class="price">₱ {{ opt.price }}</div>
+                      <div></div>
                     </div>
-                    <hr>
-                    <div class="details-reviews">
-                         <div class="title">Reviews</div>
-                         <div class="comments" *ngIf="totalReviews === 0 || latestReview ===0">
-                              <p class="not-available">No reviews yet!</p>
-                         </div>
-                         <div class="comments" *ngIf="totalReviews > 0">
-                              <div class="rate-stars">
-                                   <mat-icon>stars</mat-icon>
-                                   <div>{{ averageStar }}</div>
-                              </div>
-                              <div>-</div>
-                              <div class="number-reviews">
-                                   <p>{{ totalReviews }} <span>reviews</span></p>
-                              </div>
-
-                         </div>
-                         <div class="reviewer " *ngIf="latestReview">
-                              <div class="avatar-wrapper">
-                                   <div class="avatar">
-                                        <img src="../../assets/images/main/staycation-details/avatarreviewer.png"
-                                             loading="lazy" alt="Avatar" [draggable]="false">
-                                   </div>
-                                   <div class="name-address-wrapper">
-                                        <div class="name">{{ latestReview.name }}</div>
-                                        <div class="address">{{ latestReview.address }}</div>
-                                   </div>
-                              </div>
-                              <div class="comments">
-                                   {{ latestReview.comment }}
-                              </div>
-                              <button>See more</button>
-                         </div>
-
+                  </label>
+                </div>
+              </div>
+              <div class="add-guest">
+                <div class="guest-wrapper">
+                  <div class="addguest">Add guest</div>
+                  <mat-icon
+                    aria-hidden="false"
+                    aria-label="people"
+                    fontIcon="people"
+                  ></mat-icon>
+                </div>
+                <hr />
+                <div class="addguest-inputs">
+                  <div class="addguest-inputs-add-guest-container">
+                    <div class="input-addguest">
+                      <label for="adults">Adults (13+ years):</label>
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_adults"
+                        name="adults"
+                        placeholder="0"
+                        [min]="1"
+                        [max]="details.details.guests - guest_children"
+                        required
+                      /><br />
                     </div>
-               </section>
-               <section class="reserve-sticky-column">
-                    <form>
-                         <div class="reserve-sticky-column-wrapper">
-                              <div class="rate-night">
-                                   <p>₱<span> {{ details.price }} </span>night</p>
-                              </div>
-                              <div class="date-checkin-out">
-                                   <mat-form-field>
-                                        <mat-label>Check-in | Check-out</mat-label>
-                                        <mat-date-range-input
-                                             [min]="minDate"
-                                             [formGroup]="checkInCheckOut"
-                                             [rangePicker]="cicoPicker">
-                                             <input matStartDate name="start" formControlName="start" class="custom-date-input">
-                                             <input matEndDate name="end" formControlName="end" class="custom-date-input" (dateChange)="handleDateChangeEnd($event)">
-                                        </mat-date-range-input>
-                                        <mat-datepicker-toggle matIconSuffix [for]="cicoPicker"></mat-datepicker-toggle>
-                                        <mat-date-range-picker #cicoPicker [calendarHeaderComponent]="customDatepickerHeader"></mat-date-range-picker>
-                                   </mat-form-field>
-                              </div>
-                              <div class="cancellation-policy" *ngIf="showCancelOpts">
-                                   <div class="title-wrapper">
-                                        <div class="title">Select Cancellation Policy</div>
-                                   </div>
-                                   <div class="cancellation-policy-wrapper">
-                                        <label class="custom-radio" *ngFor="let opt of cancellation">
-                                             <input type="radio" [value]="opt.code" (change)="selectCancellationOption($event, opt.price)" [checked]="selectedCancellationPolicy === opt.code"/>
-                                             <div class="radio-mark"></div>
-                                             <div class="wrapper">
-                                                  <div>{{ opt.title }}</div>
-                                                  <div class="price">₱ {{ opt.price }}</div>
-                                                  <div></div>
-                                             </div>
-                                        </label>
-                                   </div>
-                              </div>
-                              <div class="add-guest">
-                                   <div class="guest-wrapper">
-                                        <div class="addguest">Add guest</div>
-                                        <mat-icon aria-hidden="false" aria-label="people" fontIcon="people"></mat-icon>
-                                   </div>
-                                   <hr>
-                                   <div class="addguest-inputs">
-                                        <div class="addguest-inputs-add-guest-container">
-                                             <div class="input-addguest">
-                                                  <label for="adults">Adults (13+ years):</label>
-                                                  <input type="number" [(ngModel)]="guest_adults" name="adults" placeholder="0" [min]="1" [max]="details.details.guests - guest_children" required><br>
-                                             </div>
-                                             <div class="input-addguest">
-                                                  <label for="children">Children (2-12 years):</label>
-                                                  <input type="number" [(ngModel)]="guest_children" id="children" [max]="details.details.guests - guest_adults"
-                                                       name="children" min="0" placeholder="0" required><br>
-                                             </div>
-                                             <div class="input-addguest">
-                                                  <label for="infants">Infants (0-1 years):</label>
-                                                  <input type="number" [(ngModel)]="guest_infants" id="infants"
-                                                       name="infants" placeholder="0" [max]="5" required><br>
-                                             </div>
-                                             <div class="input-addguest">
-                                                  <label for="pets">Pets:</label>
-                                                  <input type="number" [(ngModel)]="guest_pets" id="pets" name="pets" max="1"
-                                                       min="0" placeholder="0" required><br>
-                                             </div>
-
-                                        </div>
-                                   </div>
-                              </div>
-                              <button (click)="navigateToBookStaycation()" [disabled]="!checkInCheckOut.valid">Reserve</button>
-                         </div>
-                    </form>
-                    <div class="total-computation-wrapper">
-                         <!-- <div class="note" *ngIf="details.bookingProcess === 'for_approval'">You won’t be charged yet</div> -->
-                         <div class="computation">
-                              <div class="comp">
-                                   <td><span>₱ {{ details.price }}</span> x {{ nights }} {{ nights === 1 ? 'night' : 'nights' }}</td>
-                                   <td>₱ {{ basePrice }}</td>
-                              </div>
-                              <div class="comp">
-                                   <td>Service Charge</td>
-                                   <td>₱ {{ serviceCharge }}</td>
-                              </div>
-
-                         </div>
-
+                    <div class="input-addguest">
+                      <label for="children">Children (2-12 years):</label>
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_children"
+                        id="children"
+                        [max]="details.details.guests - guest_adults"
+                        name="children"
+                        min="0"
+                        placeholder="0"
+                        required
+                      /><br />
                     </div>
-                    <div class="total">
-                         <div>Total before taxes</div>
-                         <div>₱ {{ totalBeforeTax }} total</div>
+                    <div class="input-addguest">
+                      <label for="infants">Infants (0-1 years):</label>
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_infants"
+                        id="infants"
+                        name="infants"
+                        placeholder="0"
+                        [max]="5"
+                        required
+                      /><br />
                     </div>
-               </section>
-
-          </section>
-     </div>
+                    <div class="input-addguest">
+                      <label for="pets">Pets:</label>
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_pets"
+                        id="pets"
+                        name="pets"
+                        max="1"
+                        min="0"
+                        placeholder="0"
+                        required
+                      /><br />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                (click)="navigateToBookStaycation()"
+                [disabled]="!checkInCheckOut.valid"
+              >
+                Reserve
+              </button>
+            </div>
+          </form>
+          <div class="total-computation-wrapper">
+            <!-- <div class="note" *ngIf="details.bookingProcess === 'for_approval'">You won’t be charged yet</div> -->
+            <div class="computation">
+              <div class="comp">
+                <td>
+                  <span>₱ {{ details.price }}</span> x {{ nights }}
+                  {{ nights === 1 ? "night" : "nights" }}
+                </td>
+                <td>₱ {{ basePrice }}</td>
+              </div>
+              <div class="comp">
+                <td>Service Charge</td>
+                <td>₱ {{ serviceCharge }}</td>
+              </div>
+            </div>
+          </div>
+          <div class="total">
+            <div>Total before taxes</div>
+            <div>₱ {{ totalBeforeTax }} total</div>
+          </div>
+        </div>
+        <div class="report-container">
+          <button (click)="handleSendReport()" mat-button>
+            <mat-icon>flag</mat-icon><span>Report this listing</span>
+          </button>
+        </div>
+      </section>
+    </section>
+  </div>
 </div>
