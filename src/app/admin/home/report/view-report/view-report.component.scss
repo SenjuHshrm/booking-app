@@ -1,0 +1,34 @@
+.report-modal {
+  position: relative;
+  padding: 1rem 2rem;
+
+  .report-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 2rem;
+    cursor: pointer;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+  .report-content {
+    margin: 0.75rem 0 0.5rem 0;
+    .input-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      .label {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .value {
+        margin: 0.5rem 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="faq-modal">
+  <mat-icon (click)="handleClose(false)" class="faq-close-btn">close</mat-icon>
+  <h2>Report Staycation Modal</h2>
+  <hr />
+  <div class="faq-form-container">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+      <div class="input-wrapper">
+        <div class="label">Report Description:</div>
+        <textarea
+          [disabled]="isLoading"
+          [readOnly]="isLoading"
+          name="description"
+          formControlName="description"
+          placeholder="Enter question here..."
+        ></textarea>
+        <app-input-error-message [errors]="reportErrors" [form]="createForm" />
+      </div>
+
+      <div class="input-wrapper button-wrapper">
+        <button [disabled]="isLoading" type="submit" mat-raised-button>
+          <span *ngIf="isLoading"><mat-spinner [diameter]="20" /></span>
+          <span *ngIf="!isLoading">Report</span>
+        </button>
+        <button
+          [disabled]="isLoading"
+          class="btn-danger"
+          (click)="handleClose(false)"
+          type="button"
+          mat-raised-button
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

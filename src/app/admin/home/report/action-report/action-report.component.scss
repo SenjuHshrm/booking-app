@@ -1,0 +1,56 @@
+.report-modal {
+  position: relative;
+  padding: 1rem 2rem;
+
+  .report-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 2rem;
+    cursor: pointer;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+  .report-content {
+    margin: 0.5rem 0;
+
+    h3 {
+      margin: 0;
+    }
+    .input-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      .label {
+      }
+
+      .value {
+        margin: 0 0.5rem;
+        font-weight: bold;
+      }
+    }
+
+    .button-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+
+      button {
+        background-color: #68a968;
+        color: white;
+        gap: 0.3rem;
+        padding: 0 2rem;
+        letter-spacing: 0.1rem;
+      }
+
+      .btn-danger {
+        background-color: rgb(243, 102, 102);
+      }
+    }
+  }
+}

@@ -10,15 +10,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SwiperModule } from 'swiper/angular';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomDatepickerHeader } from './custom-datepicker-header';
-
-
-
-
+import { ReportListingComponent } from './report-listing/report-listing.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GlobalsModule } from 'src/app/globals/globals.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     StaycationDetailsComponent,
-    CustomDatepickerHeader
+    CustomDatepickerHeader,
+    ReportListingComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +31,10 @@ import { CustomDatepickerHeader } from './custom-datepicker-header';
     MatDialogModule,
     MatDatepickerModule,
     MatInputModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    GlobalsModule,
+    MatSnackBarModule,
+  ],
 })
-export class StaycationDetailsModule { }
+export class StaycationDetailsModule {}
