@@ -38,8 +38,8 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="viewProfile(element.id)">View</button>
-        <button mat-menu-item>Suspend</button>
-        <button mat-menu-item>Terminate</button>
+        <button mat-menu-item (click)="openValidationModal('delete')">Delete</button>
+        <button mat-menu-item>Logout</button>
       </mat-menu>
     </td>
   </ng-container>

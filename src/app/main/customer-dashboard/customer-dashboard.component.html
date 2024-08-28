@@ -4,8 +4,8 @@
             Hey, Juan! Welcome.
         </div>
         <div class="tab-wrapper">
-            <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'today'}"
-                (click)="gotoToday('today')">Reservation</button>
+            <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'reservation'}"
+                (click)="gotoToday('reservation')">Reservation</button>
             <!-- pinalitan ko ng reservation imbis na today -->
             <button class="main-button custom-btn" [ngClass]="{'active': selectedTab === 'calendar'}"
                 (click)="gotoCalendar('calendar')">Calendar</button>

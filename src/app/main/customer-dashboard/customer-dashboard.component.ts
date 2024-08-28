@@ -14,18 +14,16 @@ export class CustomerDashboardComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.selectedTab = this.last_Url = this.router.url.split('/')[3];
-    if (this.selectedTab = this.last_Url || '') {
-      this.instro = true;
-    }
+
+ 
+
+
   }
   instro:boolean = false;
   
   isActive: boolean = false;
-
   last_Url: any;
   selectedTab: any;
-
   activeIndex:number = 0;
   isReservationPath = false;
 

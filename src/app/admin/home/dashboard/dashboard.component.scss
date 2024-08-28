@@ -1,5 +1,6 @@
 .dashboard-container{
     font-family: Poppins-Regular;
+    background-color: white;
     .dashboard-container-wrapper{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

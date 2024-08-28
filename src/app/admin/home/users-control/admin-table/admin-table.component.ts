@@ -14,6 +14,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateAdminComponent } from './create-admin/create-admin.component';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
+import { ValidationModalComponent } from '../validation-modal/validation-modal.component';
 
 @Component({
   selector: 'app-admin-table',
@@ -40,6 +41,11 @@ export class AdminTableComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     this._sub.unsubscribe();
   }
+
+  validationText:any = [
+    {suspend:'Are you sure you want to suspend this account?'},
+    {delete:'Are you sure you want to delete this account?'},
+  ]
 
   dataSource = new MatTableDataSource<any>([
     {
@@ -108,6 +114,17 @@ export class AdminTableComponent implements OnInit, OnDestroy, AfterViewInit {
       disableClose: true,
       panelClass: 'custom-view-profile-dialog',
       data: id,
+    });
+  }
+
+///modals function
+  openValidationModal(text:string): void {
+    this.dialog.open(ValidationModalComponent, {
+      width:'100%',
+      height:'100%',
+      maxHeight:'15rem',
+      maxWidth:'30rem',
+      data:{data:this.validationText, validateText:text}
     });
   }
 }

@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 
@@ -9,9 +10,14 @@ import { Router } from '@angular/router';
 })
 export class UsersControlComponent implements OnInit {
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+  ) { 
     this.selectedTab =  this.last_Url = this.router.url.split('/').pop();
     }
+
+  
  
   last_Url :any;
   selectedTab:any;
@@ -28,6 +34,9 @@ export class UsersControlComponent implements OnInit {
   }
 
 
+  
+
+  
 
 
 

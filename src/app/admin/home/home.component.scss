@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow-y: auto;
 
   &-header {
     height: 4rem;
@@ -15,9 +16,9 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      max-width: 1366px;
-      padding-left: 10px;
-      padding-right: 10px;
+      max-width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
       height: 100%;
       // border:1px solid black;
 
@@ -29,7 +30,7 @@
         align-items: center;
         gap: 1rem;
         height: 100%;
-        
+
         .img-container {
           img {
             width: 5rem;
@@ -170,9 +171,8 @@
     flex: 1;
     margin: auto;
     width: 100%;
-    max-width: 1366px;
-    padding-left: 10px;
-    padding-right: 10px;
+    max-width: 100%;
+    overflow-y: auto;
     position: relative;
 
     &-wrapper {
@@ -180,13 +180,15 @@
       height: 100%;
       display: flex;
       gap: 1rem;
+      overflow-y: auto;
 
       .content_sidebar {
-        transition: 0.5s ease;
-        width:100%;
-        max-width:15rem;
+        transition: all 0.5s ease-in-out;
+        width: 100%;
+        max-width: 18rem;
         background-color: black;
         text-align: center;
+
 
         .tablist_btn {
           ul {
@@ -207,11 +209,11 @@
               text-align: left;
               display: flex;
               align-items: center;
-              gap:1rem;
+              gap: 1rem;
 
-              mat-icon{
+              mat-icon {
                 margin: 0;
-                padding:0;
+                padding: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -229,28 +231,141 @@
       }
 
       .content_maincontent {
+        overflow-y: auto;
+        transition: all 0.5s ease-in-out !important;
         flex: 1;
-        transition: 0.5s ease;
+       
         // border:1px solid black;
       }
 
       .minimizedContent {
-        width: 100%;
-        transition: 0.5s ease;
-        // opacity: 100%;
+        transition: all 0.5s ease-in-out;
+        width: auto;
+
       }
 
       .minimizedSidebar {
-        width: 0%;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-500px);
         // opacity: 0;
-        transition: 0.5s ease;
+        transition: all 0.5s ease-in-out;
+      }
+
+
+    }
+
+
+
+  }
+}
+
+
+@media only screen and (max-width: 1400px) {
+  .home-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+
+    &-content {
+      // max-width:95%;
+    }
+  }
+}
+
+@media only screen and (max-width:1000px) {
+  .home-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+
+    &-content {
+      max-width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width:960px) {
+  .home-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+
+    &-content {
+      max-width: 100%;
+
+      &-wrapper {
+
+        .content_sidebar {
+          position: relative;
+          max-width: 0;
+
+          .minimizedContent {
+            width: 100%;
+            transition: all 0.5s ease-in-out;
+          }
+
+          .minimizedSidebar {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            transform: translateX(-500px);
+            // opacity: 0;
+            transition: all 0.5s ease-in-out;
+          }
+        }
       }
     }
+  }
+}
 
-    .minimizedGap {
-      gap: 0rem;
+@media only screen and (max-width:850px) {
+  .home-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+
+    &-content {
+      max-width: 100%;
+
+      &-wrapper {
+
+        .content_sidebar {
+          position: relative;
+          max-width:18rem;
+
+        }
+      }
     }
+  }
+}
 
 
+@media only screen and (max-width:600px) {
+  .home-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+
+    &-content {
+      max-width: 100%;
+
+      &-wrapper {
+
+        .content_sidebar {
+          position: relative;
+          max-width:0;
+
+        }
+      }
+    }
   }
 }
