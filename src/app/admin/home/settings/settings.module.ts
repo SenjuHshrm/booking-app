@@ -23,6 +23,13 @@ import { VisibleFaqModalComponent } from './faqs/visible-faq-modal/visible-faq-m
 import { GlobalsModule } from '../../../globals/globals.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HeaderCarouselComponent } from './img-carousel/header-carousel/header-carousel.component';
+import { DestinationCarouselComponent } from './img-carousel/destination-carousel/destination-carousel.component';
+import { CreateHeaderCarouselComponent } from './img-carousel/header-carousel/create-header-carousel/create-header-carousel.component';
+import { ViewHeaderCarouselComponent } from './img-carousel/header-carousel/view-header-carousel/view-header-carousel.component';
+import { UpdateHeaderCarouselComponent } from './img-carousel/header-carousel/update-header-carousel/update-header-carousel.component';
+import { DeleteHeaderCarouselComponent } from './img-carousel/header-carousel/delete-header-carousel/delete-header-carousel.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +43,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DeleteFaqModalComponent,
     ViewFaqModalComponent,
     VisibleFaqModalComponent,
+    HeaderCarouselComponent,
+    DestinationCarouselComponent,
+    CreateHeaderCarouselComponent,
+    ViewHeaderCarouselComponent,
+    UpdateHeaderCarouselComponent,
+    DeleteHeaderCarouselComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +65,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     GlobalsModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class SettingsModule {}

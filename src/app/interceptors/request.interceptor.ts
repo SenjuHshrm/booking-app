@@ -28,6 +28,8 @@ export class RequestInterceptor implements HttpInterceptor {
       `${environment.api}/api/user/post/add/admin`,
       `${environment.api}/api/user/put/update-profile`,
       `${environment.api}/api/user/post/upload-verification`,
+      `${environment.api}/api/user/post/upload-verification`,
+      `${environment.api}/api/img-carousel/post/add/[a-zA-Z0-9_-]+`,
     ];
   }
 
