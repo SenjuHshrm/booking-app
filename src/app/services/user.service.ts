@@ -112,9 +112,26 @@ export class UserService {
     );
   }
 
-  public getVerificationList(page: number, limit: number): Observable<any> {
+  public getVerificationList(
+    page: number,
+    limit: number,
+    filter?: string
+  ): Observable<any> {
+    let searchData: any = {};
+    if (filter && filter !== '') searchData.name = filter;
     return this._http.get(
-      `${environment.api}/api/user/get/user-identification/${page}/${limit}`
+      `${environment.api}/api/user/get/user-identification/${page}/${limit}`,
+      { params: { ...searchData } }
+    );
+  }
+
+  public updateVerificationStatus(
+    status: 'approved' | 'rejected',
+    id: string
+  ): Observable<any> {
+    return this._http.put(
+      `${environment.api}/api/user/put/update-user-verification/${id}`,
+      { status }
     );
   }
 }

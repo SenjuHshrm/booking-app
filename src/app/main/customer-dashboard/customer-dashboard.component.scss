@@ -49,13 +49,31 @@
 
         }
     }
-    .content{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+    .container {
+        position: relative;
+        width: 100%;
+        height:50rem;
+        overflow: hidden;
+      }
+      
+      .set {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
-  
-    }
+        opacity: 0;
+        transform: translateY(50rem);
+        transition: opacity 2s ease-in-out, transform 1s ease-in-out;
+        display: grid;
+       grid-template-columns: 1fr 1fr;
+     
+      }
+      
+      .set.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 }
 
 @media only screen and (max-width: 1080px) {

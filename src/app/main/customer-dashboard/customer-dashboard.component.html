@@ -16,6 +16,16 @@
         </div>
     </section>
     <div class="content">
-        <router-outlet></router-outlet>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+        <div class="container" *ngIf="instro">
+            <div class="set" *ngFor="let item of items; let i = index" [ngClass]="{'active': i === activeIndex}">
+                <div><img [src]="item.image" alt="Image {{i}}"></div>
+                <div>
+                    <p>{{ item.text }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

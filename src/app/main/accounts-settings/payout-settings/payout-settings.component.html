@@ -1,8 +1,65 @@
 <div class="payout-settings">
-    <div class="header">
-        <div>
-            <div class="title">Payout Settings</div>
-            <div class="sub_title">Add at least one payout method so we know where to send your money.</div>
+  <div class="header">
+      <div>
+          <div class="title">Payout Settings</div>
+          <div class="sub_title">Add payout method so we know where to send your money.</div>
+      </div>
+  </div>
+  <div class="content">
+      <!-- <div class="content_header">
+           <div>Debit/Credit</div>
+           <div>Wallet</div>
+      </div> -->
+      
+      
+      <div class="payment_container_list">
+          <!-- <ng-template [ngIf]="userPaymentMethods.length === 0">
+              <button class="main-button" (click)="addPaymentMethod()">Add payment method</button>
+          </ng-template> -->
+          <!-- <ng-template [ngIf]="userPaymentMethods.length > 0">
+          </ng-template> -->
+      
+              <div class="set_card_container" *ngIf="cardInfo.length > 0">
+                  <div class="set_card_wallet" *ngFor="let cardDetails of cardInfo; let i = index">
+                      <div class="card_wallet_icon">
+                          <img [src]="cardDetails.cardIcon" loading="lazy" alt="Avatar" [draggable]="false">
+                      </div>
+                      <div class="wrapper">
+                          <div class="card_number">
+                              <div>{{cardDetails.cardName}}:</div>
+                              <div>{{cardDetails.cardNum | maskCard}}</div>
+                          </div>
+                          <div class="card_expiration">
+                              <div>Expiration:</div>
+                              <div>{{cardDetails.cardExpi}}</div>
+                          </div>
+                      </div>
+                      <div class="label_default">
+                          <span *ngIf="cardDetails.default">Default</span>
+                      </div>
+                      <div class="btn_action">
+                          <button class="remove_default_button" mat-button [matMenuTriggerFor]="menu">
+                              <mat-icon>more_horiz</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)="setDefault(i)">Default</button>
+                              <button mat-menu-item (click)="removeItemById(cardDetails._id)">Remove</button>
+                          </mat-menu>
+                      </div>
+                  </div>
+              </div>
+              <ng-template class="placeholder-message" *ngIf="cardInfo.length === 0">
+                  Please add your payout method.
+              </ng-template>
+          </div>
+     
+          <div class="custom_add_btn" style="max-width:16rem;margin-top: 1rem;">
+            <button class="square_button" (click)="addPaymentMethod()" [disabled]="cardInfo.length === 3"
+                [ngStyle]="{'background-color': cardInfo.length === 3 ? 'gray' : ''}">
+                Add payout method
+            </button>
         </div>
-    </div>
-</div>
+          
+      </div>
+
+  </div>

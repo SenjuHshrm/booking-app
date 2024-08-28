@@ -5,11 +5,11 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-create-payment-method',
-  templateUrl: './create-payment-method.component.html',
-  styleUrls: ['./create-payment-method.component.scss']
+  selector: 'app-create-payout-method',
+  templateUrl: './create-payout-method.component.html',
+  styleUrls: ['./create-payout-method.component.scss']
 })
-export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
+export class CreatePayoutMethodComponent implements OnInit, OnDestroy {
 
   paymentForm: FormGroup = new FormGroup({}); // Initialize with an empty FormGroup
   bankList: string[] = ['Bank A', 'Bank B', 'Bank C']; // Example bank list
@@ -29,7 +29,7 @@ export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
   private _sub: Subscription = new Subscription()
 
   constructor(
-    private _md: MatDialogRef<CreatePaymentMethodComponent>,
+    private _md: MatDialogRef<CreatePayoutMethodComponent>,
     @Inject(MAT_DIALOG_DATA) private id: string,
     private _payment: PaymentService,
     private fb: FormBuilder

@@ -1,0 +1,42 @@
+<div class="modal">
+  <mat-icon (click)="handleClose(false)" class="modal-close-btn"
+    >close</mat-icon
+  >
+  <h2>
+    {{ data.action === "approve" ? "Approve" : "Disapprove" }} Verification
+    Modal
+  </h2>
+  <hr />
+  <div class="modal-content-container">
+    <h3>
+      Are you sure want to
+      {{ data.action === "approve" ? "approve" : "disapprove" }} this account?
+    </h3>
+    <div class="details">
+      <div class="label">Account Name:</div>
+      <div class="value">{{ fullName }}</div>
+    </div>
+    <div class="details">
+      <div class="label">ID Type:</div>
+      <div class="value">{{ data.type }}</div>
+    </div>
+    <hr />
+    <div class="btns">
+      <button type="button" (click)="handleChangeStatus()" mat-raised-button>
+        <span *ngIf="isLoading"><mat-spinner [diameter]="20" /></span>
+        <span *ngIf="!isLoading">{{
+          data.action === "approve" ? "Approve" : "Disapprove"
+        }}</span>
+      </button>
+      <button
+        [disabled]="isLoading"
+        class="btn-danger"
+        (click)="handleClose(false)"
+        type="button"
+        mat-raised-button
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

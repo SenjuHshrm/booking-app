@@ -34,8 +34,8 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
   public cardInfo: Item[] = [
     {
       _id: 1,
-      cardIcon: '../../assets/images/main/book-staycation/visa.png',
-      cardName: 'Visa',
+      cardIcon: '../../assets/images/main/account-settings/bankicon.png',
+      cardName: 'Bank Account',
       cardNum: '4111111516982364',
       cardExpi: '04/06/2025',
       ccvNum: 123,
@@ -43,16 +43,7 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
     },
     {
       _id: 2,
-      cardIcon: '../../assets/images/main/book-staycation/mastercard.png',
-      cardName: 'Master Card',
-      cardNum: '4111111516982364',
-      cardExpi: '04/06/2025',
-      ccvNum: 123,
-      default:false
-    },
-    {
-      _id: 3,
-      cardIcon: '../../assets/images/main/book-staycation/gcash.png',
+      cardIcon: '../../assets/images/main/account-settings/gcash.png',
       cardName: 'Gcash',
       cardNum: '4111111516982364',
       cardExpi: '04/06/2025',
@@ -60,8 +51,8 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
       default:false
     },
     {
-      _id: 4,
-      cardIcon: '../../assets/images/main/book-staycation/maya.png',
+      _id: 3,
+      cardIcon: '../../assets/images/main/account-settings/maya.png',
       cardName: 'Maya',
       cardNum: '4111111516982364',
       cardExpi: '04/06/2025',
@@ -100,7 +91,7 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
     this._md.open(CreatePaymentMethodComponent, {
       width: '100%',
       maxWidth: '35rem',
-      height: '35rem',
+      height: 'auto',
       data: this._t.sub,
     })
   }
