@@ -1,6 +1,6 @@
 <div *ngFor="let error of errors">
   <span
-    *ngIf="form.controls[error.field].errors?.[error.error]"
+    *ngIf="form.controls[error.field].errors?.[error.error] && (form.controls[error.field]?.dirty || form.controls[error.field]?.touched)"
     class="val-err-msg"
     >{{ error.message }}</span
   >
