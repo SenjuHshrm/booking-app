@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     title: 'TaraGo',
-    canActivate: [isAdminGuard],
+    // canActivate: [isAdminGuard],
     resolve: {
       isAuth: authResolver
     }
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    canActivate: [isAdminGuard],
+    // canActivate: [isAdminGuard],
     resolve: {
       isAuth: authResolver
     }

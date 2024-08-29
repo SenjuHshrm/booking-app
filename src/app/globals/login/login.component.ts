@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private _location: Location,
     private _fb: FormBuilder,
-    private _socAuth: SocialAuthService,
     private _auth: AuthService,
     private _token: TokenService
   ) {}

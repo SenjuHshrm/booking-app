@@ -1,3 +1,5 @@
+import { Location } from '@angular/common';
+import { TokenService } from './../../services/token.service';
 import { UserService } from './../../services/user.service';
 import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -14,15 +16,20 @@ export class SignupComponent implements OnInit {
 
   public signupForm!: FormGroup
 
+  private _redirect: string = ''
+
   constructor(
     public dialogSignup: MatDialogRef<SignupComponent>,
     private _fb: FormBuilder,
-    private _user: UserService
+    private _user: UserService,
+    private _token: TokenService,
+    private _loc: Location
     ) {
 
   }
 
   ngOnInit(): void {
+    this._redirect = this._loc.path()
     this.signupForm = this._fb.group({
       fName: new FormControl('', [Validators.required]),
       lName: new FormControl('', [Validators.required]),
@@ -43,7 +50,9 @@ export class SignupComponent implements OnInit {
    // Implement login logic here
    let data = fg.value
    this._user.register(data).subscribe({
-    next: () => {
+    next: (res: any) => {
+      this._token.saveToken(res.token)
+      window.location.href = this._redirect
       this.dialogSignup.close();
     }
    })

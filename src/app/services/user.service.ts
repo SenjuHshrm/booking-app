@@ -13,8 +13,8 @@ export class UserService {
     fName: string;
     lName: string;
     email: string;
-  }): Observable<null> {
-    return this._http.post<null>(`${environment.api}/api/user/post/add`, data);
+  }): Observable<any> {
+    return this._http.post<any>(`${environment.api}/api/user/post/add`, data);
   }
 
   public getUsersByAccess(
