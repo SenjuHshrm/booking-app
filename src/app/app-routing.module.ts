@@ -2,6 +2,7 @@ import { authGuard } from './guards/auth.guard';
 import { authResolver } from './resolvers/auth.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { isAdminGuard } from './guards/is-admin.guard';
 
 
 const routes: Routes = [
@@ -9,6 +10,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     title: 'TaraGo',
+    canActivate: [isAdminGuard],
     resolve: {
       isAuth: authResolver
     }
@@ -16,6 +18,7 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+    canActivate: [isAdminGuard],
     resolve: {
       isAuth: authResolver
     }
