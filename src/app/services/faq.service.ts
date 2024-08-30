@@ -27,4 +27,8 @@ export class FaqService {
   public deleteFaq(id: string): Observable<any> {
     return this._http.delete(`${environment.api}/api/faqs/delete/remove/${id}`);
   }
+
+  public getActiveFaq(): Observable<any> {
+    return this._http.get(`${environment.api}/api/faqs/get/list/active`);
+  }
 }
