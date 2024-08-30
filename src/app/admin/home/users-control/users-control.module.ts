@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ValidationModalComponent } from './validation-modal/validation-modal.component';
+import { ValidationModalComponent } from './admin-table/validation-modal/validation-modal.component';
 
 
 

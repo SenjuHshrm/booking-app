@@ -13,13 +13,15 @@ import { ProprietorApplicationComponent } from './proprietor-application.compone
 import { MatButtonModule } from '@angular/material/button';
 import { ListingsComponent } from './listings/listings.component';
 import { CheckListingInputComponent } from './check-listing-input/check-listing-input.component';
+import { ValidationModalComponent } from './validation-modal/validation-modal.component';
 
 
 @NgModule({
   declarations: [
     ProprietorApplicationComponent,
     ListingsComponent,
-    CheckListingInputComponent
+    CheckListingInputComponent,
+    ValidationModalComponent
   ],
   imports: [
     CommonModule,
