@@ -30,6 +30,10 @@ import { CreateHeaderCarouselComponent } from './img-carousel/header-carousel/cr
 import { ViewHeaderCarouselComponent } from './img-carousel/header-carousel/view-header-carousel/view-header-carousel.component';
 import { UpdateHeaderCarouselComponent } from './img-carousel/header-carousel/update-header-carousel/update-header-carousel.component';
 import { DeleteHeaderCarouselComponent } from './img-carousel/header-carousel/delete-header-carousel/delete-header-carousel.component';
+import { CreateDestinationCarouselComponent } from './img-carousel/destination-carousel/create-destination-carousel/create-destination-carousel.component';
+import { UpdateDestinationCarouselComponent } from './img-carousel/destination-carousel/update-destination-carousel/update-destination-carousel.component';
+import { DeleteDestinationCarouselComponent } from './img-carousel/destination-carousel/delete-destination-carousel/delete-destination-carousel.component';
+import { ViewDestinationCarouselComponent } from './img-carousel/destination-carousel/view-destination-carousel/view-destination-carousel.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,10 @@ import { DeleteHeaderCarouselComponent } from './img-carousel/header-carousel/de
     ViewHeaderCarouselComponent,
     UpdateHeaderCarouselComponent,
     DeleteHeaderCarouselComponent,
+    CreateDestinationCarouselComponent,
+    UpdateDestinationCarouselComponent,
+    DeleteDestinationCarouselComponent,
+    ViewDestinationCarouselComponent,
   ],
   imports: [
     CommonModule,

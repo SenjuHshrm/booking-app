@@ -1,1 +1,34 @@
-<p>view-header-carousel works!</p>
+<div class="faq-modal">
+  <div class="faq-close-btn" (click)="handleClose()">
+    <mat-icon>close</mat-icon>
+  </div>
+  <h2>View Header Carousel Image Modal</h2>
+  <hr />
+  <div class="faq-form-container">
+    <div class="image-preview">
+      <img
+        src="{{ imageUrl }}"
+        class="image"
+        alt="carousel-image-preview"
+        draggable="false"
+        loading="lazy"
+      />
+    </div>
+    <div class="input-wrapper">
+      <mat-checkbox disabled [checked]="data.isActive"
+        >Is active on front page?</mat-checkbox
+      >
+    </div>
+    <hr />
+    <div class="input-wrapper button-wrapper">
+      <button
+        class="btn-danger"
+        (click)="handleClose()"
+        type="button"
+        mat-raised-button
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

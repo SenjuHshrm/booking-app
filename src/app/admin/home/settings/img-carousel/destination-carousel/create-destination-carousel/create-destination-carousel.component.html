@@ -2,7 +2,7 @@
   <div class="faq-close-btn" (click)="handleClose(false)">
     <mat-icon>close</mat-icon>
   </div>
-  <h2>Update Header Carousel Image Modal</h2>
+  <h2>Create Destination Carousel Image Modal</h2>
   <hr />
   <div class="faq-form-container">
     <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
@@ -19,13 +19,21 @@
         <app-input-error-message [errors]="imageErrors" [form]="createForm" />
       </div>
 
-      <div class="image-preview">
+      <div class="image-preview" *ngIf="imageUrl !== ''">
         <img
-          src="{{ imageUrl || setImageUrl }}"
+          src="{{ imageUrl }}"
           class="image"
           alt="carousel-image-preview"
           draggable="false"
           loading="lazy"
+        />
+      </div>
+      <div class="input-wrapper">
+        <label>Description</label>
+        <input formControlName="description" type="text" />
+        <app-input-error-message
+          [errors]="descriptionErrors"
+          [form]="createForm"
         />
       </div>
       <div class="input-wrapper">

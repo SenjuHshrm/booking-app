@@ -12,11 +12,11 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { CarouselService } from 'src/app/services/carousel.service';
 
 @Component({
-  selector: 'app-update-header-carousel',
-  templateUrl: './update-header-carousel.component.html',
-  styleUrls: ['./update-header-carousel.component.scss'],
+  selector: 'app-update-destination-carousel',
+  templateUrl: './update-destination-carousel.component.html',
+  styleUrls: ['./update-destination-carousel.component.scss'],
 })
-export class UpdateHeaderCarouselComponent {
+export class UpdateDestinationCarouselComponent {
   public isLoading: boolean = false;
 
   createForm!: FormGroup;
@@ -29,6 +29,19 @@ export class UpdateHeaderCarouselComponent {
     },
   ];
 
+  descriptionErrors: FormErrorMessage[] = [
+    {
+      field: 'description',
+      error: 'required',
+      message: 'Description is required.',
+    },
+    {
+      field: 'description',
+      error: 'maxlength',
+      message: 'Description must not exceed 100 characters.',
+    },
+  ];
+
   fileToUpload!: File;
   imageUrl: string = '';
   filename: string = '';
@@ -37,7 +50,7 @@ export class UpdateHeaderCarouselComponent {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<UpdateHeaderCarouselComponent>,
+    private dialogRef: MatDialogRef<UpdateDestinationCarouselComponent>,
     private _carousel: CarouselService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _util: BasicUtilService
@@ -46,6 +59,9 @@ export class UpdateHeaderCarouselComponent {
   ngOnInit(): void {
     this.createForm = this.fb.group({
       image: new FormControl('', {}),
+      description: new FormControl(this.data.desc, {
+        validators: [Validators.required, Validators.maxLength(100)],
+      }),
       isActive: new FormControl(this.data.isActive),
     });
   }
@@ -77,6 +93,7 @@ export class UpdateHeaderCarouselComponent {
 
     const carouselData = new FormData();
     carouselData.append('isActive', imageData.isActive);
+    carouselData.append('desc', imageData.description);
     if (this.filename !== '') {
       carouselData.append('img', this.filename);
       carouselData.append('imgFile', imageData.image);
@@ -84,7 +101,7 @@ export class UpdateHeaderCarouselComponent {
 
     this.subscription.add(
       this._carousel
-        .updateCarouselImage('front', this.data._id, carouselData)
+        .updateCarouselImage('back', this.data._id, carouselData)
         .subscribe({
           next: (res) => {
             this.isLoading = false;
