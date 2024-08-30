@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -11,11 +11,11 @@ import { FormErrorMessage } from 'src/app/interfaces/input-error-message';
 import { CarouselService } from 'src/app/services/carousel.service';
 
 @Component({
-  selector: 'app-create-header-carousel',
-  templateUrl: './create-header-carousel.component.html',
-  styleUrls: ['./create-header-carousel.component.scss'],
+  selector: 'app-create-destination-carousel',
+  templateUrl: './create-destination-carousel.component.html',
+  styleUrls: ['./create-destination-carousel.component.scss'],
 })
-export class CreateHeaderCarouselComponent implements OnInit {
+export class CreateDestinationCarouselComponent {
   public isLoading: boolean = false;
 
   createForm!: FormGroup;
@@ -28,6 +28,19 @@ export class CreateHeaderCarouselComponent implements OnInit {
     },
   ];
 
+  descriptionErrors: FormErrorMessage[] = [
+    {
+      field: 'description',
+      error: 'required',
+      message: 'Description is required.',
+    },
+    {
+      field: 'description',
+      error: 'maxlength',
+      message: 'Description must not exceed 100 characters.',
+    },
+  ];
+
   fileToUpload!: File;
   imageUrl: string = '';
   filename: string = '';
@@ -36,12 +49,15 @@ export class CreateHeaderCarouselComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<CreateHeaderCarouselComponent>,
+    private dialogRef: MatDialogRef<CreateDestinationCarouselComponent>,
     private _carousel: CarouselService
   ) {}
 
   ngOnInit(): void {
     this.createForm = this.fb.group({
+      description: new FormControl('', {
+        validators: [Validators.required, Validators.maxLength(100)],
+      }),
       image: new FormControl('', {
         validators: [Validators.required],
       }),
@@ -68,17 +84,15 @@ export class CreateHeaderCarouselComponent implements OnInit {
 
   onSubmit(form: FormGroup): void {
     if (!form.valid) return;
-
     this.isLoading = true;
     const imageData = form.getRawValue();
-
     const carouselData = new FormData();
     carouselData.append('isActive', imageData.isActive);
+    carouselData.append('desc', imageData.description);
     carouselData.append('img', this.filename);
     carouselData.append('imgFile', imageData.image);
-
     this.subscription.add(
-      this._carousel.createCarouselImage('front', carouselData).subscribe({
+      this._carousel.createCarouselImage('back', carouselData).subscribe({
         next: (res) => {
           this.isLoading = false;
           this.handleClose(true);

@@ -30,6 +30,7 @@ export class RequestInterceptor implements HttpInterceptor {
       `${environment.api}/api/user/post/upload-verification`,
       `${environment.api}/api/user/post/upload-verification`,
       `${environment.api}/api/img-carousel/post/add/[a-zA-Z0-9_-]+`,
+      `${environment.api}/api/img-carousel/put/update/[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+`,
     ];
   }
 

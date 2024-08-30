@@ -3,14 +3,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 
 @Component({
-  selector: 'app-view-header-carousel',
-  templateUrl: './view-header-carousel.component.html',
-  styleUrls: ['./view-header-carousel.component.scss'],
+  selector: 'app-view-destination-carousel',
+  templateUrl: './view-destination-carousel.component.html',
+  styleUrls: ['./view-destination-carousel.component.scss'],
 })
-export class ViewHeaderCarouselComponent {
+export class ViewDestinationCarouselComponent {
   constructor(
     private _util: BasicUtilService,
-    private dialogRef: MatDialogRef<ViewHeaderCarouselComponent>,
+    private dialogRef: MatDialogRef<ViewDestinationCarouselComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
