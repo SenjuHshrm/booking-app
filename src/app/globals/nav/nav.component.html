@@ -1,24 +1,25 @@
+<mat-progress-bar value="50" mode="indeterminate" color="primary" *ngIf="isDisconnected"></mat-progress-bar>
 <nav>
     <div class="nav-wrapper">
         <div class="header-logo">
-            <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" (click)="goToHome()"/>
+            <img src="./assets/images/home/header/navigation/tarago.png" alt="logo" routerLink="/"/>
         </div>
 
         <div class="avatar-account-menu-wrapper" *ngIf="isAuth">
-            <div class="account-type-btn" (click)="goToProprietorReg()" *ngIf="!isHost">Become a proprietor</div>
+            <div class="account-type-btn" routerLink="/register-proprietorship" *ngIf="!isHost">Become a proprietor</div>
             <div class="avatar-account" [matMenuTriggerFor]="menu">
                 <button class="menu" mat-button><mat-icon>menu</mat-icon></button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item class="be_a_proprietor" (click)="goToProprietorReg()" *ngIf="!isHost">Become a proprietor</button>
-                    <button mat-menu-item (click)="goToUserProfile()">Profile</button>
-                    <button mat-menu-item (click)="goToMessage()">Messages</button>
-                    <button mat-menu-item (click)="goToNotification()">Notification</button>
-                    <button mat-menu-item (click)="goToYourTrips()">Trips</button>
-                    <button mat-menu-item (click)="goToWishlist()">Wishlist</button>
-                    <button mat-menu-item (click)="goToCustomerDashboard()" *ngIf="isHost">Manage Listing</button>
-                    <button mat-menu-item (click)="goToAccountSettings()">Account Setting</button>
-                    <button mat-menu-item>Help</button>
-                    <button mat-menu-item (click)="logout()">Logout</button>
+                    <button mat-menu-item class="be_a_proprietor" routerLink="/register-proprietorship" *ngIf="!isHost">Become a proprietor</button>
+                    <a mat-menu-item routerLink="/main/users-profile">Profile</a>
+                    <a mat-menu-item routerLink="/main/message">Messages</a>
+                    <a mat-menu-item routerLink="/main/notification">Notification</a>
+                    <a mat-menu-item routerLink="/main/trips">Trips</a>
+                    <a mat-menu-item routerLink="/main/wishlist">Wishlist</a>
+                    <a mat-menu-item routerLink="/main/dashboard" *ngIf="isHost">Manage Listing</a>
+                    <a mat-menu-item routerLink="/main/accounts-settings">Account Setting</a>
+                    <a mat-menu-item>Help</a>
+                    <a mat-menu-item (click)="logout()">Logout</a>
                 </mat-menu>
                 <img [src]="profileImg" loading="lazy" alt="Avatar" [draggable]="false">
             </div>

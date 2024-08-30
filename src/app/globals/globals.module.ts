@@ -1,3 +1,5 @@
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { SignupComponent } from './signup/signup.component';
@@ -62,7 +64,8 @@ import { MaskCardPipe } from './pipes/mask-card.pipe';
     GoogleSigninButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-  
+    RouterModule,
+    MatProgressBarModule
   ],
 
   providers: [GoogleSigninButtonDirective],

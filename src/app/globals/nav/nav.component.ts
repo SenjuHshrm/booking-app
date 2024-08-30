@@ -14,7 +14,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common'
 
 @Component({
@@ -30,6 +30,7 @@ export class NavComponent implements OnInit {
 
   public isHost!: boolean
   public profileImg: any
+  public isDisconnected: boolean = false;
   
   private _claims!: ITokenClaims | string
   private _redirectTo: string = ''
@@ -42,7 +43,8 @@ export class NavComponent implements OnInit {
     private _auth: AuthService,
     private _token: TokenService,
     private _user: UserService,
-    private _basicUtl: BasicUtilService
+    private _basicUtl: BasicUtilService,
+    private _socket: SocketService
   ) {}
 
   ngOnInit(): void {
@@ -51,69 +53,21 @@ export class NavComponent implements OnInit {
 
 
   public openLoginDialog(): void {
-    const dialogRefLogin = this.dialog.open(LoginComponent, {
+    this.dialog.open(LoginComponent, {
       panelClass: 'custom-login-modal'
     });
 
-    dialogRefLogin.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
-    });
   }
 
   public openSignupDialog(): void {
-    const dialogRefSignup = this.dialog.open(SignupComponent, {
+    this.dialog.open(SignupComponent, {
       panelClass: 'custom-signup-modal'
     });
 
-    dialogRefSignup.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
-    });
-  }
-
-
-
-  public goToHome() {
-    this.router.navigate(['']);
-  }
-
-
-  public goToCustomerDashboard() {
-    this.router.navigate(['main/dashboard']);
-  }
-
-  public goToUserProfile() {
-    this.router.navigate(['main/users-profile']);
-  }
-
-
-  public goToAccountSettings() {
-    this.router.navigate(['main/accounts-settings']);
-  }
-
-
-  public goToMessage() {
-    this.router.navigate(['main/message']);
-  }
-
-  public goToNotification() {
-    this.router.navigate(['main/notification']);
-  }
-
-  public goToYourTrips() {
-    this.router.navigate(['main/trips']);
-  }
-
-  public goToWishlist() {
-    this.router.navigate(['main/wishlist']);
-  }
-
-  public goToProprietorReg() {
-    this.router.navigate(['register-proprietorship']);
   }
 
   public logout() {
-    let _socket: SocketService = new SocketService()
-    _socket.disconnect()
+    this._socket.disconnectMain()
     this._auth.logout().subscribe({
       next: (res: { logout: boolean }) => {
         if(localStorage.getItem('GOOGLE_ID_TOKEN') !== null) {
@@ -130,13 +84,32 @@ export class NavComponent implements OnInit {
     this._claims = <ITokenClaims | string>this._token.decodedToken()
     if(this._claims !== '') {
       this.isHost = (<ITokenClaims>this._claims).access.indexOf('host') !== -1
-      // this.profileImg = this._user.getUserProfileImg((<ITokenClaims>this._claims).sub)
-      // this._getProfileImg((<ITokenClaims>this._claims).sub)
       this.profileImg = this._basicUtl.setImgUrl((<ITokenClaims>this._claims).img)
+      this._initSocket()
     } else {
       this.isHost = false
     }
     this._redirectTo = this._location.path()
+  }
+
+  private _initSocket() {
+    this._socket.initializeManager()
+    this._socket.initMain()
+    this._socket.emit('MainSocket', 'main:join', this._claims.sub)
+
+    this._socket.listen('MainSocket', 'disconnect').subscribe(() => {
+      this.isDisconnected = true
+    })
+
+    this._socket.defaultEventMain('reconnect_attempt').subscribe((attempt: number) => {
+      this.isDisconnected = true
+    })
+
+    this._socket.defaultEventMain('reconnect').subscribe(() => {
+      this.isDisconnected = false
+      this._socket.emit('MainSocket', 'main:join', this._claims.sub)
+    })
+    
   }
 
 }

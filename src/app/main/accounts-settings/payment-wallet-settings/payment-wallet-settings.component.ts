@@ -31,35 +31,7 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
   private _t!: ITokenClaims;
   private _sub: Subscription = new Subscription();
 
-  public cardInfo: Item[] = [
-    {
-      _id: 1,
-      cardIcon: '../../assets/images/main/account-settings/bankicon.png',
-      cardName: 'Bank Account',
-      cardNum: '4111111516982364',
-      cardExpi: '04/06/2025',
-      ccvNum: 123,
-      default:false
-    },
-    {
-      _id: 2,
-      cardIcon: '../../assets/images/main/account-settings/gcash.png',
-      cardName: 'Gcash',
-      cardNum: '4111111516982364',
-      cardExpi: '04/06/2025',
-      ccvNum: 123,
-      default:false
-    },
-    {
-      _id: 3,
-      cardIcon: '../../assets/images/main/account-settings/maya.png',
-      cardName: 'Maya',
-      cardNum: '4111111516982364',
-      cardExpi: '04/06/2025',
-      ccvNum: 123,
-      default:false
-    }
-  ];
+  public cardInfo: Item[] = [];
 
   constructor(
     private _md: MatDialog,
