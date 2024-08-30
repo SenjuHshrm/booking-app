@@ -5,6 +5,8 @@ import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ValidationModalComponent } from './validation-modal/validation-modal.component';
+import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
 
 @Component({
   selector: 'app-proprietor-table',
@@ -21,7 +23,7 @@ export class ProprietorTableComponent implements OnInit, AfterViewInit, OnDestro
   private _sub: Subscription = new Subscription()
 
   constructor(
-    public createlistingDialog:MatDialog,
+    public dialog:MatDialog,
     private _user: UserService,
     private _basicUtil: BasicUtilService
   ) {
@@ -81,5 +83,25 @@ export class ProprietorTableComponent implements OnInit, AfterViewInit, OnDestro
         this.dataSource = new MatTableDataSource<any>(this.userList)
       }
     }))
+  }
+
+  public viewProfile(id: string): void {
+    const profileDialog = this.dialog.open(ViewProfileModalComponent, {
+      disableClose: true,
+      panelClass: 'custom-view-profile-dialog',
+      data: id,
+    });
+  }
+
+
+
+  openValidationModal(text:string): void {
+    this.dialog.open(ValidationModalComponent, {
+      width:'100%',
+      height:'100%',
+      maxHeight:'15rem',
+      maxWidth:'30rem',
+      data:{}
+    });
   }
 }

@@ -8,12 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { ValidationModalComponent } from './validation-modal/validation-modal.component';
 
 
 
 @NgModule({
   declarations: [
-    ProprietorTableComponent
+    ProprietorTableComponent,
+    ValidationModalComponent
   ],
   imports: [
     CommonModule,
