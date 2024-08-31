@@ -171,12 +171,15 @@
                     .expiration-style {
                         width: 100%;
                         display: flex;
-                        align-items: center;
+                        align-items: flex-start;
                         gap: .5rem;
                         background-color: white;
-                        padding-left: 15px;
                         border-radius: 10px;
-                        border: 2px solid #68A968;
+
+                        :nth-child(1),:nth-child(2){
+                           width: 100%;
+                        }
+                      
 
 
                         .custom-date-input {

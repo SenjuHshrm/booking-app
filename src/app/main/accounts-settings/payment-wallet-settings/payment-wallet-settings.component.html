@@ -53,8 +53,8 @@
             </ng-template>
         </div>
         <div class="custom_add_btn" style="max-width:16rem;margin-top: 1rem;">
-            <button class="square_button" (click)="addPaymentMethod()" [disabled]="cardInfo.length === 3"
-                [ngStyle]="{'background-color': cardInfo.length === 3 ? 'gray' : ''}">
+            <button class="square_button" (click)="addPaymentMethod()" [disabled]="cardInfo.length === 2"
+                [ngStyle]="{'background-color': cardInfo.length === 2 ? 'gray' : ''}">
                 Add payment method
             </button>
         </div>

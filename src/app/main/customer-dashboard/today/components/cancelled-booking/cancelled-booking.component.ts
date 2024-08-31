@@ -2,74 +2,132 @@ import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { ReservationsViewComponent } from 'src/app/globals/modals/reservations-view/reservations-view.component';
+import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
+import { MessageGuestModalComponent } from '../modal/message-guest-modal/message-guest-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface UserData {
   id: string;
   propertyimage: any;
   nameofproperty: any;
-  guestimage:any;
+  guestimage: any;
   guestnames: string;
   cancelleddate: Date;
-  reasons:string;
+  reasons: string;
 }
 
-const PROPERTIES: any[] = [
-  { image: '../assets/images/main/staycation-details/gallery1.png', nameofproperty: "Alabang Condo Unit" },
-  { image: '../assets/images/main/staycation-details/gallery1.png', nameofproperty: "Muntinlupa Condo Unit" },
-
+const USER_DATA: UserData[] = [
+  {
+    id: '1',
+    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
+    nameofproperty: 'Alabang Condo Unit',
+    guestimage: '../assets/images/avatars/placeholder.png',
+    guestnames: 'Maia B. Bernal',
+    cancelleddate: new Date(),
+    reasons: 'Lorem ipsum dolor'
+  },
+  {
+    id: '2',
+    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
+    nameofproperty: 'Muntinlupa Condo Unit',
+    guestimage: '../assets/images/avatars/placeholder.png',
+    guestnames: 'Olivia B. Agustin',
+    cancelleddate: new Date(),
+    reasons: 'Lorem ipsum dolor'
+  },
+  {
+    id: '3',
+    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
+    nameofproperty: 'Muntinlupa Condo Unit',
+    guestimage: '../assets/images/avatars/placeholder.png',
+    guestnames: 'Atticus B. Belen',
+    cancelleddate: new Date(),
+    reasons: 'Lorem ipsum dolor'
+  },
+  {
+    id: '4',
+    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
+    nameofproperty: 'Muntinlupa Condo Unit',
+    guestimage: '../assets/images/avatars/placeholder.png',
+    guestnames: 'Jack B. Acosta',
+    cancelleddate: new Date(),
+    reasons: 'Lorem ipsum dolor'
+  },
+  {
+    id: '5',
+    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
+    nameofproperty: 'Muntinlupa Condo Unit',
+    guestimage: '../assets/images/avatars/placeholder.png',
+    guestnames: 'Charlotte B. Delacruz',
+    cancelleddate: new Date(),
+    reasons: 'Lorem ipsum dolor'
+  },
 ];
-const GUESTNAMES: any[] = [
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Maia B. Bernal'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Olivia B. Agustin'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Atticus B. Belen'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Jack B. Acosta'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Charlotte B. Delacruz'},
-
-];
-
-const REASONS: any[] = ['Lorem ipsum dolor','Lorem ipsum dolor','Lorem ipsum dolor'];
-
-const DATE: any[] = [
-  {cancelleddate:new Date()}
-];
-
-
 
 @Component({
   selector: 'app-cancelled-booking',
   templateUrl: './cancelled-booking.component.html',
   styleUrls: ['./cancelled-booking.component.scss'],
   animations: [fadeInAnimation],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class CancelledBookingComponent implements OnInit {
-  
-  dateToday:any = new Date();
+    title:string = 'Cancelled'
+  dateToday: any = new Date();
   displayedColumns: string[] = [
-    'id', 
-    'property', 
+    'id',
+    'property',
     'guestnames',
     'date',
     'reasons',
-    'action'
+    'action',
   ];
 
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
-
-
-  constructor() {
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-    this.dataSource = new MatTableDataSource(users);
+  constructor(public dialog:MatDialog) {
+    this.dataSource = new MatTableDataSource(USER_DATA);
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
+  viewDetails(): void {
+    this.dialog.open(ReservationsViewComponent, {
+      width: '99vw',
+      maxWidth:'60rem', 
+      height: '99vh',
+      maxHeight: '50rem',
+      data:this.title
+    
+    });
+  }
 
+
+  viewProfile(): void {
+    this.dialog.open(ViewProfileModalComponent, {
+      width: '99vw',
+      maxWidth:'80rem', 
+      height: '99vh',
+      maxHeight: '50rem',
+      data:''
+    
+    });
+  }
+
+  messageGuest():void{
+    this.dialog.open(MessageGuestModalComponent, {
+      width: '99vw',
+      maxWidth:'33rem', 
+      height: '99vh',
+      maxHeight: '24rem',
+      data:''
+    
+    });
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -78,25 +136,4 @@ export class CancelledBookingComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-
-function createNewUser(id: number): UserData {
-
-  let propertyImage = PROPERTIES[Math.floor(Math.random() * PROPERTIES.length)].image;
-  let propertyName = PROPERTIES[Math.floor(Math.random() * PROPERTIES.length)].nameofproperty;
-  let guestImage = GUESTNAMES[Math.floor(Math.random() * GUESTNAMES.length)].image;
-  let guestName = GUESTNAMES[Math.floor(Math.random() * GUESTNAMES.length)].nameofguest;
-  let cancelledDate = DATE[Math.floor(Math.random() * DATE.length)].cancelleddate;
-  let reaSons = REASONS[Math.floor(Math.random() * REASONS.length)];
- 
-  return {
-    id: id.toString(),
-    propertyimage: propertyImage,
-    nameofproperty: propertyName,
-    guestimage: guestImage,
-    guestnames: guestName,
-    cancelleddate:cancelledDate,
-    reasons: reaSons
-
-  };
 }

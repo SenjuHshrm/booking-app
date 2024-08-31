@@ -45,7 +45,7 @@ const USER_DATA: UserData[] = [
     guestimage: '../assets/images/avatars/placeholder.png',
     guestnames: 'Maia B. Bernal',
     numofguest: '1',
-    instantbook: 'On',
+    instantbook: 'Off',
     bookingdate: new Date(),
     interval: '1',
     intervalunit: 'day',
@@ -87,14 +87,13 @@ const USER_DATA: UserData[] = [
 ];
 
 @Component({
-  selector: 'app-checking-out',
-  templateUrl: './checking-out.component.html',
-  styleUrls: ['./checking-out.component.scss'],
-  animations: [fadeInAnimation],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-for-approval',
+  templateUrl: './for-approval.component.html',
+  styleUrls: ['./for-approval.component.scss'],
+  animations:[fadeInAnimation]
 })
-export class CheckingOutComponent  implements OnInit {
-  title:string = 'Check-out'
+export class ForApprovalComponent  implements OnInit {
+  title:string = 'For Approval'
   dateToday: any = new Date();
   displayedColumns: string[] = [
     'id',
@@ -176,7 +175,7 @@ export class CheckingOutComponent  implements OnInit {
     this.dialog.open(ValidationModalComponent, {
       width:'100%',
       height:'100%',
-      maxHeight:'15rem',
+      maxHeight:'17rem',
       maxWidth:'30rem',
       data:''
     });

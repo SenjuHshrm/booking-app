@@ -1,87 +1,90 @@
+
+
+
+
+
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { ReservationsViewComponent } from 'src/app/globals/reservations-view/reservations-view.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
+import { MessageGuestModalComponent } from '../modal/message-guest-modal/message-guest-modal.component';
+import { ValidationModalComponent } from '../modal/validation-modal/validation-modal.component';
+import { ReservationsViewComponent } from 'src/app/globals/modals/reservations-view/reservations-view.component';
 
 export interface UserData {
-
   id: string;
-  property: any;
+  propertyimage: any;
   nameofproperty: any;
-  guest:any;
+  guestimage: any;
   guestnames: string;
-  numofguest:any;
+  numofguest: any;
+  instantbook: any; 
   bookingdate: Date;
-  checkindate: Date;
-  checkoutdate:Date;
-  interval:any;
-  intervalunit:any;
+  checkintime: any;
+  checkouttime: any;
+  reservationindate: any;
+  reseservationoutdate: any;
+  interval: any;
+  intervalunit: any;
+  checkindate: any;
+  checkoutdate: any;
+  remainingtime: any;
   paymenttype: string;
   paidamount: number;
   balanceamount: number;
-
+  totalearnings: number;
 }
 
-const PROPERTIES: any[] = [
-  { image: '../assets/images/main/staycation-details/gallery1.png', nameofproperty: "Alabang Condo Unit" },
-  { image: '../assets/images/main/staycation-details/gallery1.png', nameofproperty: "Muntinlupa Condo Unit" },
-
+const USER_DATA: UserData[] = [
+  {
+    id: '1',
+    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
+    nameofproperty: 'Alabang Condo Unit',
+    guestimage: '../assets/images/avatars/placeholder.png',
+    guestnames: 'Maia B. Bernal',
+    numofguest: '1',
+    instantbook: 'Off',
+    bookingdate: new Date(),
+    interval: '1',
+    intervalunit: 'day',
+    reservationindate: new Date(),
+    reseservationoutdate: new Date(),
+    checkindate: new Date(),
+    checkoutdate: new Date(),
+    checkintime: '8',
+    checkouttime: '10',
+    remainingtime: '0',
+    paymenttype: 'Fully paid',
+    paidamount: 684,
+    balanceamount: 200,
+    totalearnings: 0
+  },
+  {
+    id: '2',
+    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
+    nameofproperty: 'Muntinlupa Condo Unit',
+    guestimage: '../assets/images/avatars/placeholder.png',
+    guestnames: 'Olivia B. Agustin',
+    numofguest: '1',
+    instantbook: 'Off', 
+    bookingdate: new Date(),
+    interval: '1',
+    intervalunit: 'month',
+    reservationindate: new Date(),
+    reseservationoutdate: new Date(),
+    checkindate: new Date(),
+    checkoutdate: new Date(),
+    checkintime: '8',
+    checkouttime: '10',
+    remainingtime: '0',
+    paymenttype: 'Partial pay',
+    paidamount: 626,
+    balanceamount: 300,
+    totalearnings: 300
+  },
 ];
-const GUESTNAMES: any[] = [
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Maia B. Bernal'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Olivia B. Agustin'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Atticus B. Belen'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Jack B. Acosta'},
-  {image:'../assets/images/avatars/placeholder.png', nameofguest:'Charlotte B. Delacruz'},
-
-];
-const NUMBEROFGUEST: string[] = ['1'];
-const BOOKINGDATE: string[] = [''];
-
-const CHECKINOUTDATE:any[] = [
-  {checkin:new Date()},
-  {checkout:new Date()}
-];
-
-const INTERVAL: any[] = [
-  {interval:'1', unit:'day'},
-  {interval:'1', unit:'month'},
-  {interval:'2', unit:'day'},
-  {interval:'2', unit:'month'},
-  {interval:'3', unit:'day'},
-  {interval:'3', unit:'month'}
-];
-
-const PAYMENTTYPE: string[] = [
-  'Awaiting payment', 
-  'Fully paid', 
-  'Partial pay'
-];
-
-
-const PAIDAMOUNT: any[] = [
-  { price: '684' }, 
-  { price: '626' }, 
-  { price: '624' }, 
-  { price: '595' }, 
-  { price: '591' }, 
-  { price: '595' }, 
-  { price: '624' },
-];
-
-const BALANCEAMOUNT: any[] = [
-  { price: '200' }, 
-  { price: '300' }, 
-  { price: '400' }, 
-  { price: '500' }, 
-  { price: '150' }, 
-  { price: '300' }, 
-  { price: '100' },
-];
-
 
 @Component({
   selector: 'app-pending-review',
@@ -90,55 +93,41 @@ const BALANCEAMOUNT: any[] = [
   animations: [fadeInAnimation],
   encapsulation: ViewEncapsulation.None
 })
-export class PendingReviewComponent implements OnInit {
-
-  public title:string = 'Upcoming';
-
+export class PendingReviewComponent   implements OnInit {
+  title:string = 'Pending review'
+  dateToday: any = new Date();
   displayedColumns: string[] = [
-    'id', 
-    'property', 
+    'id',
+    'property',
     'guestnames',
-    'numofguest', 
-    'bookingdate', 
-    'checkinoutdate', 
+    'numofguest',
+    'instantbook',
+    'bookingdate',
+    'reservationdate',
     'interval',
-    'paymenttype', 
-    'paidamount', 
+    'checkindate',
+    'checkoutdate',
+    'checkintime',
+    'checkouttime',
+    'remainingtime',
+    'paymenttype',
+    'paidamount',
     'balanceamount',
-    'action'
+    'totalearnings',
+    'action',
   ];
 
   dataSource: MatTableDataSource<UserData>;
+
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
-
-
   constructor(public dialog:MatDialog) {
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource(USER_DATA);
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
-
-
-  viewUpcoming(): void {
-    const dialogRef = this.dialog.open(ReservationsViewComponent, {
-      width: '99vw',
-      maxWidth:'60rem', 
-      height: '99vh',
-      maxHeight: '47rem',
-      data:this.title
-    
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
-  }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -148,46 +137,50 @@ export class PendingReviewComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-function createNewUser(id: number): UserData {
+  viewForApprovalDetails(): void {
+    this.dialog.open(ReservationsViewComponent, {
+      width: '99vw',
+      maxWidth:'60rem', 
+      height: '99vh',
+      maxHeight: '50rem',
+      data:this.title
+    
+    });
+  }
 
-  let property = PROPERTIES[Math.floor(Math.random() * PROPERTIES.length)].image;
-  let propertyName = PROPERTIES[Math.floor(Math.random() * PROPERTIES.length)].nameofproperty;
-  let guest = GUESTNAMES[Math.floor(Math.random() * GUESTNAMES.length)].image;
-  let guestName = GUESTNAMES[Math.floor(Math.random() * GUESTNAMES.length)].nameofguest;
-  let guestNumber = NUMBEROFGUEST[0];
-  let checkInDate = CHECKINOUTDATE[0].checkin;
-  let checkOutDate = CHECKINOUTDATE[1].checkout;
-  let interVal = INTERVAL[Math.floor(Math.random() * INTERVAL.length)].interval;
-  let interValUnit = INTERVAL[Math.floor(Math.random() * INTERVAL.length)].unit;
-  let paytype = PAYMENTTYPE[Math.floor(Math.random() * PAYMENTTYPE.length)];
-  let paidAmount = PAIDAMOUNT[Math.floor(Math.random() * PAIDAMOUNT.length)].price;
-  let balanceAmount = BALANCEAMOUNT[Math.floor(Math.random() * BALANCEAMOUNT.length)].price;
+
+  viewProfile(): void {
+    this.dialog.open(ViewProfileModalComponent, {
+      width: '99vw',
+      maxWidth:'80rem', 
+      height: '99vh',
+      maxHeight: '50rem',
+      data:''
+    
+    });
+  }
+
+  messageGuest():void{
+    this.dialog.open(MessageGuestModalComponent, {
+      width: '99vw',
+      maxWidth:'33rem', 
+      height: '99vh',
+      maxHeight: '24rem',
+      data:''
+    
+    });
+  }
+
+  openValidationModal(): void {
+    this.dialog.open(ValidationModalComponent, {
+      width:'100%',
+      height:'100%',
+      maxHeight:'15rem',
+      maxWidth:'30rem',
+      data:''
+    });
+  }
+
   
-  if(paytype !== 'Partial pay'){
-    balanceAmount = 0;
-  }
-
-  if (paytype === "Awaiting payment") {
-    paidAmount = 0;
-  }
-
-  return {
-    id: id.toString(),
-    property: property,
-    nameofproperty: propertyName,
-    guest: guest,
-    guestnames: guestName,
-    numofguest:guestNumber,
-    bookingdate: new Date(),
-    checkindate:checkInDate,
-    checkoutdate:checkOutDate,
-    interval:interVal,
-    intervalunit:interValUnit,
-    paymenttype: paytype,
-    paidamount: paidAmount,
-    balanceamount:balanceAmount
-  };
 }
-

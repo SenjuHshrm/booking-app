@@ -27,18 +27,15 @@
         <div class="title-wrapper">
             <!-- <div class="title">Pay with</div> -->
             <div class="wallet-icons">
-                <div *ngIf="defaultPaymentMethod === 0"><img
-                        src="../../assets/images/main/book-staycation/visa.png" loading="lazy" alt="Avatar"
-                        [draggable]="false"></div>
+                <div *ngIf="defaultPaymentMethod === 0"><img src="../../assets/images/main/book-staycation/visa.png"
+                        loading="lazy" alt="Avatar" [draggable]="false"></div>
                 <div *ngIf="defaultPaymentMethod === 0"><img
                         src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy" alt="Avatar"
                         [draggable]="false"></div>
-                <div *ngIf="defaultPaymentMethod === 1"><img
-                        src="../../assets/images/main/book-staycation/gcash.png" loading="lazy" alt="Avatar"
-                        [draggable]="false"></div>
-                <div *ngIf="defaultPaymentMethod === 2"><img
-                        src="../../assets/images/main/book-staycation/maya.png" loading="lazy" alt="Avatar"
-                        [draggable]="false"></div>
+                <div *ngIf="defaultPaymentMethod === 1"><img src="../../assets/images/main/book-staycation/gcash.png"
+                        loading="lazy" alt="Avatar" [draggable]="false"></div>
+                <div *ngIf="defaultPaymentMethod === 2"><img src="../../assets/images/main/book-staycation/maya.png"
+                        loading="lazy" alt="Avatar" [draggable]="false"></div>
             </div>
         </div>
         <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
@@ -53,7 +50,8 @@
                         </option>
                     </select>
                 </div>
-                <div *ngIf="defaultPaymentMethod === 0">
+
+                <div class="__card-form" *ngIf="defaultPaymentMethod === 0">
                     <div class="custom-select">
                         <div class="label">Bank Name</div>
                         <select formControlName="paymentBank" class="" required>
@@ -75,12 +73,34 @@
                         <div>
                             <div class="label">Expiration Date</div>
                             <div class="expiration-style">
-                                <input class="custom-date-input" type="date" formControlName="expirationDate" />
+                                <div class="expiri_wrapper">
+                                    <select formControlName="expiryMonth" class="form-control">
+                                        <option value="">Month</option>
+                                        <option *ngFor="let month of [1,2,3,4,5,6,7,8,9,10,11,12]" [value]="month">
+                                          {{ formatMonth(month) }}
+                                        </option>
+                                      </select>
+                                    <ng-container
+                                        *ngIf="paymentForm.get('expiryMonth')?.invalid && (paymentForm.get('expiryMonth')?.dirty || paymentForm.get('expiryMonth')?.touched)">
+                                        <span class="val-err-msg">Month is required.</span>
+                                    </ng-container>
+                                </div>
+                                <div class="expiri_wrapper">
+                                    <select formControlName="expiryYear" class="form-control">
+                                        <option value="">Year</option>
+                                        <option *ngFor="let year of [2023,2024,2025,2026,2027,2028,2029,2030]"
+                                            [value]="year">
+                                            {{ year }}
+                                        </option>
+                                    </select>
+                                    <ng-container
+                                        *ngIf="paymentForm.get('expiryYear')?.invalid && (paymentForm.get('expiryYear')?.dirty || paymentForm.get('expiryYear')?.touched)">
+                                        <span class="val-err-msg">Year is required.</span>
+                                    </ng-container>
+                                </div>
                             </div>
-                            <ng-container
-                                *ngIf="paymentForm.get('expirationDate')?.invalid && (paymentForm.get('expirationDate')?.dirty || paymentForm.get('expirationDate')?.touched)">
-                                <span class="val-err-msg">Expiration date is required.</span>
-                            </ng-container>
+
+
                         </div>
 
                         <div class="ccv-input">
@@ -91,6 +111,34 @@
                                 <span class="val-err-msg">CCV is required and must be 3 or 4 digits long.</span>
                             </ng-container>
                         </div>
+                    </div>
+
+                    <div class="input_num">
+                        <div class="label">Mobile number</div>
+                        <input type="text" formControlName="mobileNumber" placeholder="Enter mobile number" />
+                        <ng-container
+                            *ngIf="paymentForm.get('mobileNumber')?.invalid && (paymentForm.get('mobileNumber')?.dirty || paymentForm.get('mobileNumber')?.touched)">
+                            <span class="val-err-msg">Please enter a valid 11-digit mobile number.</span>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="__wallet-form" *ngIf="defaultPaymentMethod === 1">
+                    <div class="input_num">
+                        <div class="label">Account Name</div>
+                        <input type="text" formControlName="accountName" placeholder="Account name" />
+                        <ng-container
+                            *ngIf="paymentForm.get('accountName')?.invalid && (paymentForm.get('accountName')?.dirty || paymentForm.get('accountName')?.touched)">
+                            <span class="val-err-msg">Input your GCash account name.</span>
+                        </ng-container>
+                    </div>
+                    <div class="input_num">
+                        <div class="label">Mobile number</div>
+                        <input type="text" formControlName="mobileNumber" placeholder="Enter mobile number" />
+                        <ng-container
+                            *ngIf="paymentForm.get('mobileNumber')?.invalid && (paymentForm.get('mobileNumber')?.dirty || paymentForm.get('mobileNumber')?.touched)">
+                            <span class="val-err-msg">Please enter a valid 11-digit mobile number.</span>
+                        </ng-container>
                     </div>
                 </div>
 
@@ -103,6 +151,8 @@
                 </div>
             </div>
         </form>
+
+
 
     </div>
 

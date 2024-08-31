@@ -117,7 +117,7 @@ export class AdminTableComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-///modals function
+
   openValidationModal(text:string): void {
     this.dialog.open(ValidationModalComponent, {
       width:'100%',

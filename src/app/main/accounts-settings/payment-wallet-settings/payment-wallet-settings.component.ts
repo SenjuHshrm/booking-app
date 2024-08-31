@@ -50,15 +50,15 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
       ccvNum: 123,
       default:false
     },
-    {
-      _id: 3,
-      cardIcon: '../../assets/images/main/account-settings/maya.png',
-      cardName: 'Maya',
-      cardNum: '4111111516982364',
-      cardExpi: '04/06/2025',
-      ccvNum: 123,
-      default:false
-    }
+    // {
+    //   _id: 3,
+    //   cardIcon: '../../assets/images/main/account-settings/maya.png',
+    //   cardName: 'Maya',
+    //   cardNum: '4111111516982364',
+    //   cardExpi: '04/06/2025',
+    //   ccvNum: 123,
+    //   default:false
+    // }
   ];
 
   constructor(

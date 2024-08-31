@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TodayComponent {
   
-  selectedTab: string = 'tab1';
+  selectedTab: string = 'tab0';
 
   selectTab(tabName: string) {
     this.selectedTab = tabName;
