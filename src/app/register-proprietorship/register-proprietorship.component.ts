@@ -1,3 +1,5 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from 'src/app/services/user.service';
 import { BasicUtilService } from './../services/basic-util.service';
 import { StaycationService } from './../services/staycation.service';
 import { Subscription } from 'rxjs';
@@ -40,6 +42,10 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
   @ViewChild('regPropFormDir') public regPropFormDir!: FormGroupDirective
   public regPropForm!: FormGroup<RegisterProprietorshipForm>;
 
+  public proceedReg: boolean = false;
+  public verificationMsg: string = ''
+  public showAcctSettingLink: boolean = false;
+
   public isLinear = false;
   public isAuth!: boolean;
   public isHiddenintro = false;
@@ -59,11 +65,35 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     private _changeDetector: ChangeDetectorRef,
     private _token: TokenService,
     private _staycation: StaycationService,
-    private _basicUtil: BasicUtilService
+    private _basicUtil: BasicUtilService,
+    private _user: UserService
   ) {}
 
   ngOnInit(): void {
     this._tokenClaims = <ITokenClaims>this._token.decodedToken()
+    this.sub.add(this._user.checkVerificationStatus(this._tokenClaims.sub).subscribe({
+      next: (res: any) => {
+        // if(res.status === 'pending'){
+        
+        // } else if(res.)
+        switch(res.status) {
+          case 'pending':
+            this.proceedReg = false
+            this.verificationMsg = 'Your account is still in process for verification. Please wait.'
+            break;
+          case 'approved':
+            this.proceedReg = true
+            break;
+        }
+      },
+      error: (e: HttpErrorResponse) => {
+        if(e.status === 404) {
+          this.proceedReg = false
+          this.showAcctSettingLink = true
+          this.verificationMsg = `${e.error.msg}. You must first verify your account in order to register as proprietor.`
+        }
+      }
+    }))
     this.regPropForm = this._formBuilder.group<RegisterProprietorshipForm>({
       step2: this._formBuilder.group<Step2Form>({
         placeType: new FormControl('', [Validators.required]),

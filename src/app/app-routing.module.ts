@@ -44,10 +44,16 @@ const routes: Routes = [
     }
   },
   {
+    path: 'supporting-docs',
+    loadChildren: () => import('./supporting-docs/supporting-docs.module').then(m => m.SupportingDocsModule),
+    title: 'Tarago | Upload supporting documents'
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  }
+  },
+  
   // {
   //   path: '**',
 

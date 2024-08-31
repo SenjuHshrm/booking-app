@@ -15,9 +15,11 @@ const routes: Routes = [
       { path: 'global-statics', loadChildren: () => import('./global-statics/global-statics.module').then(m => m.GlobalStaticsModule) },
       { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
       { path: 'proprietor-application', loadChildren: () => import('./proprietor-application/proprietor-application.module').then(m => m.ProprietorApplicationModule) },
+      { path: 'listing-application', loadChildren: () => import('./listing-application/listing-application.module').then(m => m.ListingApplicationModule) },
       { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' }
     ]
   },
+  
   
 ];
 

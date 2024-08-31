@@ -33,8 +33,13 @@
                         <p class="subinfo">Choose if you'd like to start with an experienced
                             guest, set a starting price, and publish your listing.</p>
                     </div>
-                    <div class="custom_btn_" (click)="toggleGetStarted()">
+                    <div class="custom_btn_" (click)="toggleGetStarted()" *ngIf="proceedReg">
                         <div class="custom_button ">Get Started</div>
+                    </div>
+                    <br>
+                    <div *ngIf="!proceedReg">
+                        <p>{{ verificationMsg }}</p>
+                        <p *ngIf="showAcctSettingLink">Click <a routerLink="/main/accounts-settings/account-verification">here</a> to verify your account.</p>
                     </div>
                 </div>
             </div>
