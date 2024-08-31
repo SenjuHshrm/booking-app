@@ -20,30 +20,44 @@
             </ng-template> -->
 
             <div class="set_card_container" *ngIf="cardInfo.length > 0">
-                <div class="set_card_wallet" *ngFor="let cardDetails of cardInfo; let i = index">
+                <div class="set_card_wallet" *ngFor="let card of cardInfo; let i = index">
                     <div class="card_wallet_icon">
-                        <img [src]="cardDetails.cardIcon" loading="lazy" alt="Avatar" [draggable]="false">
+                        <img [src]="card.cardIcon" loading="lazy" alt="Avatar" [draggable]="false">
                     </div>
-                    <div class="wrapper">
+                    <div class="wrapper" *ngIf="card.type === 'card'">
                         <div class="card_number">
-                            <div>{{cardDetails.cardName}}:</div>
-                            <div>{{cardDetails.cardNum | maskCard}}</div>
+                            <div>Name:</div>
+                            <div>{{card.billing.name}}</div>
+                        </div>
+                        <div class="card_number">
+                            <div>Card Number:</div>
+                            <div>{{card.details.last4 | maskCard}}</div>
                         </div>
                         <div class="card_expiration">
-                            <div>Expiration:</div>
-                            <div>{{cardDetails.cardExpi}}</div>
+                            <div>Expiration: </div>
+                            <div>{{card.details.exp_month}}/{{card.details.exp_year}}</div>
+                        </div>
+                    </div>
+                    <div class="wrapper" *ngIf="card.type === 'gcash'">
+                        <div class="card_number">
+                            <div>Account Name:</div>
+                            <div>{{card.billing.name}}</div>
+                        </div>
+                        <div class="card_number">
+                            <div>Account Number:</div>
+                            <div>{{card.billing.phone }}</div>
                         </div>
                     </div>
                     <div class="label_default">
-                        <span *ngIf="cardDetails.default">Default</span>
+                        <span *ngIf="card.default">Default</span>
                     </div>
                     <div class="btn_action">
                         <button class="remove_default_button" mat-button [matMenuTriggerFor]="menu">
                             <mat-icon>more_horiz</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="setDefault(i)">Default</button>
-                            <button mat-menu-item (click)="removeItemById(cardDetails._id)">Remove</button>
+                            <button mat-menu-item (click)="setDefault(card._id)">Default</button>
+                            <button mat-menu-item (click)="removeItemById(card._id)">Remove</button>
                         </mat-menu>
                     </div>
                 </div>
@@ -53,7 +67,7 @@
             </ng-template>
         </div>
         <div class="custom_add_btn" style="max-width:16rem;margin-top: 1rem;">
-            <button class="square_button" (click)="addPaymentMethod()" [disabled]="cardInfo.length === 2"
+            <button class="square_button" (click)="addPaymentMethod()"
                 [ngStyle]="{'background-color': cardInfo.length === 2 ? 'gray' : ''}">
                 Add payment method
             </button>
