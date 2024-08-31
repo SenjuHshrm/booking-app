@@ -80,8 +80,8 @@ export class CreateHeaderCarouselComponent implements OnInit {
     this.subscription.add(
       this._carousel.createCarouselImage('front', carouselData).subscribe({
         next: (res) => {
-          console.log(res);
           this.isLoading = false;
+          this.handleClose(true);
         },
         error: (error) => {
           console.log(error);

@@ -30,9 +30,9 @@
                 <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>View</button>
-                <button mat-menu-item>Suspend</button>
-                <button mat-menu-item>Terminate</button>
+                <button mat-menu-item (click)="viewProfile(element.id)">View</button>
+                <button mat-menu-item (click)="openValidationModal('suspend')">Suspend</button>
+                <button mat-menu-item (click)="openValidationModal('terminate')">Terminate</button>
             </mat-menu>
         </td>
     </ng-container>

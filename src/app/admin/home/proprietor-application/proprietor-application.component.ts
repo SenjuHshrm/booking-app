@@ -14,6 +14,8 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
+import { ValidationModalComponent } from './validation-modal/validation-modal.component';
+
 
 @Component({
   selector: 'app-proprietor-application',
@@ -37,6 +39,14 @@ export class ProprietorApplicationComponent
     'staycation',
     'action',
   ];
+
+  
+  validationText:any = [
+    {suspend:'Are you sure you want to suspend this account?'},
+    {delete:'Are you sure you want to delete this account?'},
+    {logout:'Are you sure you want to logout this account?'},
+  ]
+
   // public displayedColumns: string[] = ['profile', 'firstname', 'lastname', 'action']
 
   private _sub: Subscription = new Subscription();
@@ -134,6 +144,18 @@ export class ProprietorApplicationComponent
       disableClose: true,
       panelClass: 'custom-view-profile-dialog',
       data: id,
+    });
+  }
+
+
+
+  openValidationModal(text:string): void {
+    this.dialog.open(ValidationModalComponent, {
+      width:'100%',
+      height:'100%',
+      maxHeight:'15rem',
+      maxWidth:'30rem',
+      data:{data:this.validationText, label:text}
     });
   }
 }

@@ -1,0 +1,61 @@
+<div class="faq-modal">
+  <div class="faq-close-btn" (click)="handleClose(false)">
+    <mat-icon>close</mat-icon>
+  </div>
+  <h2>Update Destination Carousel Image Modal</h2>
+  <hr />
+  <div class="faq-form-container">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+      <div class="input-wrapper">
+        <div class="label">Image:</div>
+        <input
+          [disabled]="isLoading"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          type="file"
+          formControlName="image"
+          id="header-image"
+        />
+        <app-input-error-message [errors]="imageErrors" [form]="createForm" />
+      </div>
+
+      <div class="image-preview">
+        <img
+          src="{{ imageUrl || setImageUrl }}"
+          class="image"
+          alt="carousel-image-preview"
+          draggable="false"
+          loading="lazy"
+        />
+      </div>
+      <div class="input-wrapper">
+        <label>Description</label>
+        <input formControlName="description" type="text" />
+        <app-input-error-message
+          [errors]="descriptionErrors"
+          [form]="createForm"
+        />
+      </div>
+      <div class="input-wrapper">
+        <mat-checkbox [disabled]="isLoading" formControlName="isActive"
+          >Is active on front page?</mat-checkbox
+        >
+      </div>
+      <div class="input-wrapper button-wrapper">
+        <button [disabled]="isLoading" type="submit" mat-raised-button>
+          <span *ngIf="isLoading"><mat-spinner [diameter]="20" /></span>
+          <span *ngIf="!isLoading">Save</span>
+        </button>
+        <button
+          [disabled]="isLoading"
+          class="btn-danger"
+          (click)="handleClose(false)"
+          type="button"
+          mat-raised-button
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

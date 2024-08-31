@@ -14,7 +14,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateAdminComponent } from './create-admin/create-admin.component';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
-import { ValidationModalComponent } from '../validation-modal/validation-modal.component';
+import { ValidationModalComponent } from './validation-modal/validation-modal.component';
 
 @Component({
   selector: 'app-admin-table',
@@ -45,6 +45,7 @@ export class AdminTableComponent implements OnInit, OnDestroy, AfterViewInit {
   validationText:any = [
     {suspend:'Are you sure you want to suspend this account?'},
     {delete:'Are you sure you want to delete this account?'},
+    {logout:'Are you sure you want to logout this account?'},
   ]
 
   dataSource = new MatTableDataSource<any>([
@@ -124,7 +125,7 @@ export class AdminTableComponent implements OnInit, OnDestroy, AfterViewInit {
       height:'100%',
       maxHeight:'15rem',
       maxWidth:'30rem',
-      data:{data:this.validationText, validateText:text}
+      data:{data:this.validationText, title:text}
     });
   }
 }

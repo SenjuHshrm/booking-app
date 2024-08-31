@@ -1,3 +1,4 @@
+import { SocketService } from './../../../services/socket.service';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -29,7 +30,8 @@ export class MessageFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _message: MessageService,
-    private _token: TokenService
+    private _token: TokenService,
+    private _socket: SocketService
   ) {}
 
   public messageForm!: FormGroup;

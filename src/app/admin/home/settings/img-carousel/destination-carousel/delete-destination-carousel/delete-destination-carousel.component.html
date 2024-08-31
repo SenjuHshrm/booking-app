@@ -1,0 +1,49 @@
+<div class="faq-modal">
+  <div class="faq-close-btn" (click)="handleClose(false)">
+    <mat-icon>close</mat-icon>
+  </div>
+  <h2>Delete Header Carousel Image Modal</h2>
+  <hr />
+  <div class="faq-form-container">
+    <h3>Are you sure you want to delete this image?</h3>
+    <div class="details">
+      <div class="label">Description:</div>
+      <div class="value">{{ data.desc }}</div>
+    </div>
+    <div class="image-preview">
+      <img
+        src="{{ imageUrl }}"
+        class="image"
+        alt="carousel-image-preview"
+        draggable="false"
+        loading="lazy"
+      />
+    </div>
+    <div class="input-wrapper">
+      <mat-checkbox disabled [checked]="data.isActive"
+        >Is active on front page?</mat-checkbox
+      >
+    </div>
+    <hr />
+    <div class="input-wrapper button-wrapper">
+      <button
+        (click)="handleDelete()"
+        [disabled]="isLoading"
+        type="button"
+        mat-raised-button
+      >
+        <span *ngIf="isLoading"><mat-spinner [diameter]="20" /></span>
+        <span *ngIf="!isLoading">Proceed</span>
+      </button>
+      <button
+        [disabled]="isLoading"
+        class="btn-danger"
+        (click)="handleClose(false)"
+        type="button"
+        mat-raised-button
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

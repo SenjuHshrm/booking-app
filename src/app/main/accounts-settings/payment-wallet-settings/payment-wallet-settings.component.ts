@@ -31,6 +31,7 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
   private _t!: ITokenClaims;
   private _sub: Subscription = new Subscription();
 
+
   public cardInfo: Item[] = [
     {
       _id: 1,

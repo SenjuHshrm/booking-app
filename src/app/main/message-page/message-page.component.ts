@@ -1,3 +1,4 @@
+import { SocketService } from './../../services/socket.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -26,11 +27,13 @@ export class MessagePageComponent implements OnInit, OnDestroy {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private _util: BasicUtilService,
-    private _token: TokenService
+    private _token: TokenService,
+    private _socket: SocketService
   ) {}
 
   ngOnInit(): void {
     this.token = <ITokenClaims>this._token.decodedToken();
+    this._initSocket()
     this.subscription = this.breakpointObserver
       .observe([Breakpoints.Handset])
       .subscribe((result) => {
@@ -39,6 +42,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this._socket.disconnectMsg()
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
@@ -75,5 +79,22 @@ export class MessagePageComponent implements OnInit, OnDestroy {
 
   public duration(date: string): string {
     return this._util.calculateMessageDuration(date);
+  }
+
+  private _initSocket() {
+    this._socket.initMsg()
+    this._socket.emit('MsgSocket', 'msg:join', this.token.sub)
+
+    this.subscription.add(this._socket.listen('MsgSocket', 'disconnect').subscribe(() => {}))
+
+    this.subscription.add(this._socket.defaultEventMsg('reconnect_attempt').subscribe((attempt: number) => {}))
+
+    this.subscription.add(this._socket.listen('MsgSocket', 'msg:chat:receive').subscribe((res) => {
+      console.log(res)
+    }))
+
+    this.subscription.add(this._socket.defaultEventMsg('reconnect').subscribe(() => {
+      this._socket.emit('MsgSocket', 'msg:join', this.token.sub)
+    }))
   }
 }

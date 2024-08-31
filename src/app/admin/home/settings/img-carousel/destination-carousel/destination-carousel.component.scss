@@ -1,0 +1,60 @@
+.carousel {
+  margin: 0.5rem 0 0.75rem 0;
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .carousels {
+    &-add {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0.5rem 0;
+      &-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #68a968;
+        font-weight: bold;
+        color: white;
+        gap: 0.3rem;
+        padding: 0 3rem;
+        letter-spacing: 0.1rem;
+        mat-icon {
+          scale: 0.9;
+        }
+      }
+    }
+
+    &-table {
+      &-td {
+        max-width: 12rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        img {
+          width: 4rem;
+          min-width: 4rem;
+          max-width: 4rem;
+          height: 4rem;
+          min-height: 4rem;
+          max-height: 4rem;
+          object-fit: cover;
+          margin: 0.5rem 0.5rem 0 0.5rem;
+          border: 1px solid lightgray;
+        }
+      }
+      .td-no-value {
+        padding: 1rem 0;
+        text-align: center;
+      }
+    }
+  }
+
+  .table-pagination {
+    padding-top: 0.25rem;
+    border-top: 1px solid lightgray;
+  }
+}

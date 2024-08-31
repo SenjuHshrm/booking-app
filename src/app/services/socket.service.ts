@@ -24,30 +24,31 @@ export enum SocketNamespace {
 })
 export class SocketService {
 
-  public socketNamspace: { namespace: 'MainSocket' | 'NotifSocket' | 'MsgSocket', eventPrefix: string }[] = [
-    {
-      namespace: 'MainSocket',
-      eventPrefix: 'main'
-    },
-    {
-      namespace: 'NotifSocket',
-      eventPrefix: 'notif'
-    },
-    {
-      namespace: 'MsgSocket',
-      eventPrefix: 'msg'
-    }
-  ]
-
-  private manager: Manager = new Manager(environment.api, {
-    autoConnect: true,
-    transports: ['websocket', 'polling']
-  });
-  private MainSocket: Socket = this.manager.socket('/')
-  private NotifSocket: Socket = this.manager.socket('/notification')
-  private MsgSocket: Socket = this.manager.socket('/message')
+  private manager!: Manager;
+  private MainSocket!: Socket;
+  private NotifSocket!: Socket;
+  private MsgSocket!: Socket;
 
   constructor() { }
+
+  public initializeManager() {
+    this.manager = new Manager(environment.api, {
+      autoConnect: true,
+      transports: ['websocket', 'polling']
+    })
+  }
+
+  public initMain() {
+    this.MainSocket = this.manager.socket('/')
+  }
+
+  public initNotif() {
+    this.NotifSocket = this.manager.socket('/notification')
+  }
+
+  public initMsg() {
+    this.MsgSocket = this.manager.socket('/message')
+  }
 
   public listen(namespace: keyof typeof SocketNamespace, e: string): Observable<any> {
     return new Observable((sub: any) => {
@@ -57,18 +58,8 @@ export class SocketService {
     })
   }
 
-  public defaultEvent(event: keyof typeof DefaultEventName): Observable<any> {
-    return new Observable((sub: any) => {
-      this.MainSocket.io.on(event, (attempt: number) => {
-        sub.next(attempt)
-      })
-      this.NotifSocket.io.on(event, (attempt: number) => {
-        sub.next(attempt)
-      })
-      this.MsgSocket.io.on(event, (attempt: number) => {
-        sub.next(attempt)
-      })
-    })
+  public emit(namespace: keyof typeof SocketNamespace, e: string, data: any): void {
+    this[namespace].emit(e, data)
   }
 
   public defaultEventMain(e: keyof typeof DefaultEventName): Observable<any> {
@@ -95,21 +86,16 @@ export class SocketService {
     })
   }
 
-  public emit(namespace: keyof typeof SocketNamespace, e: string, data: any): void {
-    this[namespace].emit(e, data)
-  }
-
-  public isConnected(): boolean {
-    return this.MainSocket.connected
-  }
-
-  public disconnected(): boolean {
-    return this.MainSocket.disconnected;
-  }
-
-  public disconnect(): void {
+  public disconnectMain() {
     this.MainSocket.disconnect()
+  }
+
+  public disconnectNotif() {
     this.NotifSocket.disconnect()
+  }
+
+  public disconnectMsg() {
     this.MsgSocket.disconnect()
   }
+
 }

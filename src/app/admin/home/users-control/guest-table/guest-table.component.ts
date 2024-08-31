@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
-import { ValidationModalComponent } from '../validation-modal/validation-modal.component';
+import { ValidationModalComponent } from '../admin-table/validation-modal/validation-modal.component';
 
 @Component({
   selector: 'app-guest-table',
@@ -140,7 +140,7 @@ export class GuestTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  ///modals function
+
   openValidationModal(text:string): void {
     this.dialog.open(ValidationModalComponent, {
       width:'100%',
