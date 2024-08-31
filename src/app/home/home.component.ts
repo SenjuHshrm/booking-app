@@ -15,6 +15,9 @@ import { HomeImageGalleryComponent } from '../globals/home-image-gallery/home-im
 import { FaqService } from '../services/faq.service';
 import { Subscription } from 'rxjs';
 import { IFAQItem } from '../interfaces/faq';
+import { CarouselService } from '../services/carousel.service';
+import { ICarousel } from '../interfaces/carousel';
+import { BasicUtilService } from '../services/basic-util.service';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -31,7 +34,9 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private _faq: FaqService
+    private _faq: FaqService,
+    private _carousel: CarouselService,
+    private _util: BasicUtilService
   ) {}
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
@@ -44,12 +49,17 @@ export class HomeComponent implements OnInit {
   currentImageIndex = 0;
   intervalId: any;
   public descriptions: any = 'Customer Inquiry';
+
   public faqs: IFAQItem[] = [];
+  public frontCarousels: ICarousel[] = [];
+  public backCarousels: ICarousel[] = [];
 
   private _subs: Subscription = new Subscription();
 
   ngOnInit() {
     this.handleActiveFAQ();
+    this.handleGetCarouselByType('front');
+    this.handleGetCarouselByType('back');
     this.activatedRoute.data.subscribe({
       next: (res: any) => {
         this.isAuth = res.isAuth;
@@ -73,6 +83,32 @@ export class HomeComponent implements OnInit {
         },
       })
     );
+  }
+
+  handleGetCarouselByType(type: string): void {
+    this._subs.add(
+      this._carousel.getActiveCarouselByType(type).subscribe({
+        next: (res) => {
+          if (type === 'front') {
+            this.frontCarousels =
+              res.length > 0 ? <ICarousel[]>res : this.heroImages;
+            return;
+          }
+          this.backCarousels =
+            res.length > 0 ? <ICarousel[]>res : this.destinations;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      })
+    );
+  }
+
+  setSrc(carousel: ICarousel): string {
+    if (carousel.isActive) {
+      return this._util.setImgUrl('/' + carousel.img);
+    }
+    return carousel.img;
   }
 
   startSlideshow() {
@@ -104,49 +140,38 @@ export class HomeComponent implements OnInit {
     this.selectedValue = inputElement.value;
   }
 
-  heroImages: any = [
-    { images: '../assets/images/home/header/hero/0.jpg' },
-    { images: '../assets/images/home/header/hero/1.jpg' },
-    { images: '../assets/images/home/header/hero/2.jpg' },
-    { images: '../assets/images/home/header/hero/3.jpg' },
+  heroImages: ICarousel[] = [
+    { img: '../assets/images/home/header/hero/0.jpg', isActive: false },
+    { img: '../assets/images/home/header/hero/1.jpg', isActive: false },
+    { img: '../assets/images/home/header/hero/2.jpg', isActive: false },
+    { img: '../assets/images/home/header/hero/3.jpg', isActive: false },
   ];
 
-  destinations: any = [
+  destinations: ICarousel[] = [
     {
-      images: '../assets/images/home/section1/Manila.jpg',
-      description: 'Manila',
+      img: '../assets/images/home/section1/Manila.jpg',
+      desc: 'Manila',
+      isActive: false,
     },
     {
-      images: '../assets/images/home/section1/Batangas.jpg',
-      description: 'Batangas',
+      img: '../assets/images/home/section1/Batangas.jpg',
+      desc: 'Batangas',
+      isActive: false,
     },
     {
-      images: '../assets/images/home/section1/Boracay.jpg',
-      description: 'Boracay',
+      img: '../assets/images/home/section1/Boracay.jpg',
+      desc: 'Boracay',
+      isActive: false,
     },
     {
-      images: '../assets/images/home/section1/Manila.jpg',
-      description: 'Manila',
+      img: '../assets/images/home/section1/Manila.jpg',
+      desc: 'Manila',
+      isActive: false,
     },
     {
-      images: '../assets/images/home/section1/Batangas.jpg',
-      description: 'Batangas',
-    },
-    {
-      images: '../assets/images/home/section1/Boracay.jpg',
-      description: 'Boracay',
-    },
-    {
-      images: '../assets/images/home/section1/Manila.jpg',
-      description: 'Manila',
-    },
-    {
-      images: '../assets/images/home/section1/Batangas.jpg',
-      description: 'Batangas',
-    },
-    {
-      images: '../assets/images/home/section1/Boracay.jpg',
-      description: 'Boracay',
+      img: '../assets/images/home/section1/Batangas.jpg',
+      desc: 'Batangas',
+      isActive: false,
     },
   ];
 
