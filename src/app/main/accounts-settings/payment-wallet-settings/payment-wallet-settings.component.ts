@@ -4,7 +4,7 @@ import { PaymentService } from './../../../services/payment.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ITokenClaims } from './../../../interfaces/token';
 import { TokenService } from './../../../services/token.service';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin, Observable } from 'rxjs';
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
@@ -30,37 +30,10 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
 
   private _t!: ITokenClaims;
   private _sub: Subscription = new Subscription();
+  private _email!: string;
 
 
-  public cardInfo: Item[] = [
-    {
-      _id: 1,
-      cardIcon: '../../assets/images/main/account-settings/bankicon.png',
-      cardName: 'Bank Account',
-      cardNum: '4111111516982364',
-      cardExpi: '04/06/2025',
-      ccvNum: 123,
-      default:false
-    },
-    {
-      _id: 2,
-      cardIcon: '../../assets/images/main/account-settings/gcash.png',
-      cardName: 'Gcash',
-      cardNum: '4111111516982364',
-      cardExpi: '04/06/2025',
-      ccvNum: 123,
-      default:false
-    },
-    // {
-    //   _id: 3,
-    //   cardIcon: '../../assets/images/main/account-settings/maya.png',
-    //   cardName: 'Maya',
-    //   cardNum: '4111111516982364',
-    //   cardExpi: '04/06/2025',
-    //   ccvNum: 123,
-    //   default:false
-    // }
-  ];
+  public cardInfo: any[] = [];
 
   constructor(
     private _md: MatDialog,
@@ -72,20 +45,33 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._t = <ITokenClaims>this._token.decodedToken()
     this._retrievePaymentMethods()
+    this._getUserData()
   }
 
   ngOnDestroy(): void {
     this._sub.unsubscribe()
   }
 
-  removeItemById(id: number) {
-    this.cardInfo = this.cardInfo.filter(cardInfo => cardInfo._id !== id);
+  removeItemById(id: string) {
+    // this.cardInfo = this.cardInfo.filter(cardInfo => cardInfo._id !== id);
+    this._sub.add(this._payment.removePaymentMethod(id).subscribe({
+      next: (res: any) => {
+        this.cardInfo = this.cardInfo.filter((ci: any) => ci._id !== id)
+      }
+    }))
   }
 
-  setDefault(index: any): void {
-    this.cardInfo.forEach((card, i) => {
-      card.default = i === index;
-    });
+  setDefault(id: string): void {
+    this._sub.add(this._payment.setAsDefaultPaymentMethod(this._t.sub, id).subscribe({
+      next: (res: any) => {
+        this.cardInfo.forEach((ci: any) => {
+          ci.default = ci._id === id
+        })
+      },
+      error: ({ error }) => {
+
+      }
+    }))
   }
 
   public addPaymentMethod() {
@@ -93,21 +79,55 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
       width: '100%',
       maxWidth: '35rem',
       height: 'auto',
-      data: this._t.sub,
+      data: { email: this._email, userId: this._t.sub },
     })
   }
 
   private _retrievePaymentMethods() {
+    this.userPaymentMethods = []
     this._sub.add(this._payment.getUserPaymentMethod(this._t.sub).subscribe({
       next: (res: any) => {
         if (res.length > 0) {
-          this.userPaymentMethods = res
+          res.forEach((pm: any) => {
+            this.userPaymentMethods.push({
+              ...pm,
+              details: this._payment.getPaymentMethod(pm.pmId)
+            })
+          })
+          this._getPaymentMethodDetails()
         }
       },
       error: ({ error }: HttpErrorResponse) => {
         console.log(error)
       }
     }))
+  }
+
+  private _getUserData() {
+    this._sub.add(this._user.getUserProfile(this._t.sub).subscribe({
+      next: (res: any) => {
+        this._email = res.auth.email
+      }
+    }))
+  }
+
+  private _getPaymentMethodDetails() {
+    this.cardInfo = []
+    let obs$: Observable<any>[]= this.userPaymentMethods.map((pm: any) => pm.details)
+    forkJoin(obs$).subscribe(([...obs]) => {
+      obs.forEach((ob: any) => {
+        let i = this.userPaymentMethods.findIndex((pm: any) => pm.pmId === ob.data.id)
+        let { data } = ob
+        this.cardInfo.push({
+          _id: this.userPaymentMethods[i]._id,
+          type: data.attributes.type,
+          cardIcon: (data.attributes.type === 'gcash') ? '../../assets/images/main/account-settings/gcash.png' : '../../assets/images/main/account-settings/bankicon.png',
+          details: data.attributes.details,
+          billing: data.attributes.billing,
+          default: this.userPaymentMethods[i].isDefault
+        })
+      })
+    })
   }
 
 }

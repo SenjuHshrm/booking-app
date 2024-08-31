@@ -6,26 +6,8 @@
         <div class="title">Payment details</div>
         <div class="subtitle"></div>
     </div>
-    <!-- <form>
-          <div class="your-information-about-your-info">
-              <div class="your-likes">
-                  <div class="info">
-                      <div class="input-wrapper">
-                        <div class="label">Type</div>
-                        <select>
-                          <option *ngFor="let type of piTypes" [value]="type.val">{{ type.txt }}</option>
-                        </select>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="btn-sec">
-              <button class="main-button">Done</button>
-          </div>
-      </form> -->
-    <div class="payment-method">
+    <!-- <div class="payment-method">
         <div class="title-wrapper">
-            <!-- <div class="title">Pay with</div> -->
             <div class="wallet-icons">
                 <div *ngIf="defaultPaymentMethod === 0"><img src="../../assets/images/main/book-staycation/visa.png"
                         loading="lazy" alt="Avatar" [draggable]="false"></div>
@@ -52,17 +34,10 @@
                 </div>
 
                 <div class="__card-form" *ngIf="defaultPaymentMethod === 0">
-                    <div class="custom-select">
-                        <div class="label">Bank Name</div>
-                        <select formControlName="paymentBank" class="" required>
-                            <option value="" disabled>Select Bank Name</option>
-                            <option *ngFor="let bank of bankList" [value]="bank">{{ bank }}</option>
-                        </select>
-                    </div>
 
                     <div class="input_num">
                         <div class="label">Card Number</div>
-                        <input type="text" formControlName="cardNumber" placeholder="Card number" />
+                        <input type="text" formControlName="cardNumber" placeholder="Card number" pattern="^[0-9]{16}$" maxlength="16" (keypress)="checkChar($event)"/>
                         <ng-container
                             *ngIf="paymentForm.get('cardNumber')?.invalid && (paymentForm.get('cardNumber')?.dirty || paymentForm.get('cardNumber')?.touched)">
                             <span class="val-err-msg">Card number is required and must be 16 digits long.</span>
@@ -80,6 +55,7 @@
                                           {{ formatMonth(month) }}
                                         </option>
                                       </select>
+                                    <input type="text" class="input_num" name="exp_month" formControlName="expiryMonth" (keypress)="checkChar($event)" maxlength="2"/>
                                     <ng-container
                                         *ngIf="paymentForm.get('expiryMonth')?.invalid && (paymentForm.get('expiryMonth')?.dirty || paymentForm.get('expiryMonth')?.touched)">
                                         <span class="val-err-msg">Month is required.</span>
@@ -93,6 +69,7 @@
                                             {{ year }}
                                         </option>
                                     </select>
+                                    <input type="text" name="exp_yr" formControlName="expiryYear" (keypress)="checkChar($event)" maxlength="2"/>
                                     <ng-container
                                         *ngIf="paymentForm.get('expiryYear')?.invalid && (paymentForm.get('expiryYear')?.dirty || paymentForm.get('expiryYear')?.touched)">
                                         <span class="val-err-msg">Year is required.</span>
@@ -104,13 +81,18 @@
                         </div>
 
                         <div class="ccv-input">
-                            <div class="label">CCV</div>
-                            <input type="text" formControlName="ccv" placeholder="CCV" />
+                            <div class="label">CVC</div>
+                            <input type="text" formControlName="cvc" placeholder="cvc" (keypress)="checkChar($event)" maxlength="4"/>
                             <ng-container
                                 *ngIf="paymentForm.get('ccv')?.invalid && (paymentForm.get('ccv')?.dirty || paymentForm.get('ccv')?.touched)">
-                                <span class="val-err-msg">CCV is required and must be 3 or 4 digits long.</span>
+                                <span class="val-err-msg">CVC is required and must be 3 or 4 digits long.</span>
                             </ng-container>
                         </div>
+                    </div>
+
+                    <div class="input_num">
+                        <div class="label">Name on Card</div>
+                        <input type="text" formControlName="cardName" name="cardName" placeholder="Enter name on card" />
                     </div>
 
                     <div class="input_num">
@@ -126,7 +108,7 @@
                 <div class="__wallet-form" *ngIf="defaultPaymentMethod === 1">
                     <div class="input_num">
                         <div class="label">Account Name</div>
-                        <input type="text" formControlName="accountName" placeholder="Account name" />
+                        <input type="text" formControlName="gcashName" placeholder="Account name" />
                         <ng-container
                             *ngIf="paymentForm.get('accountName')?.invalid && (paymentForm.get('accountName')?.dirty || paymentForm.get('accountName')?.touched)">
                             <span class="val-err-msg">Input your GCash account name.</span>
@@ -134,7 +116,7 @@
                     </div>
                     <div class="input_num">
                         <div class="label">Mobile number</div>
-                        <input type="text" formControlName="mobileNumber" placeholder="Enter mobile number" />
+                        <input type="text" formControlName="gcashAcctNo" placeholder="Enter mobile number" />
                         <ng-container
                             *ngIf="paymentForm.get('mobileNumber')?.invalid && (paymentForm.get('mobileNumber')?.dirty || paymentForm.get('mobileNumber')?.touched)">
                             <span class="val-err-msg">Please enter a valid 11-digit mobile number.</span>
@@ -144,9 +126,7 @@
 
                 <div class="form_footer">
                     <button class="main-button" type="submit" [disabled]="paymentForm.invalid">
-                        <span *ngIf="defaultPaymentMethod ===  0">Done</span>
-                        <span *ngIf="defaultPaymentMethod === 1">Go to Gcash</span>
-                        <span *ngIf="defaultPaymentMethod === 2">Go to Maya</span>
+                        <span>Done</span>
                     </button>
                 </div>
             </div>
@@ -154,6 +134,58 @@
 
 
 
-    </div>
+    </div> -->
 
+    <div class="payment-method">
+        <label for="select-type">Select Payment Type</label>
+        <select name="select-type" [(ngModel)]="selectedType" (change)="resetForms()">
+            <option *ngFor="let t of paymentMethodName" [value]="t.value">{{ t.payMethod }}</option>
+        </select>
+
+        <!-- form (card)-->
+        <form *ngIf="selectedType === 'card'" [formGroup]="addCardForm" (ngSubmit)="onSubmit('card')">
+            <div>
+                <label>Card Number</label>
+                <input type="text" name="card" formControlName="card" maxlength="16" (keypress)="checkChar($event)" required/>
+            </div>
+            <div>
+                Expiration
+                <div>
+                    <label>Month</label>
+                    <input type="text" name="expiryMonth" formControlName="expiryMonth" maxlength="2" (keypress)="checkChar($event)" required/>
+                </div>
+                <div>
+                    <label>Year</label>
+                    <input type="text" name="expiryYr" formControlName="expiryYear" maxlength="2" (keypress)="checkChar($event)" required/>
+                </div>
+            </div>
+            <div>
+                <label>CVC/CVV</label>
+                <input type="text" name="cvc" formControlName="cvc" maxlength="4" (keypress)="checkChar($event)" required/>
+            </div>
+            <div>
+                <label>Name on Card</label>
+                <input type="text" name="cardName" formControlName="cardName" required/>
+            </div>
+            <div>
+                <label>Contact Number</label>
+                <input type="text" name="mobileNumber" formControlName="mobileNumber" (keypress)="checkChar($event)" maxlength="11" required/>
+            </div>
+            <button type="submit" [disabled]="!addCardForm.valid">Save</button>
+        </form>
+
+
+        <!-- form (gcash) -->
+        <form *ngIf="selectedType === 'gcash'" [formGroup]="addGCashForm" (ngSubmit)="onSubmit('gcash')">
+            <div>
+                <label>Account Name</label>
+                <input type="text" name="name" formControlName="name" />
+            </div>
+            <div>
+                <label>Accout Number</label>
+                <input type="text" name="number" formControlName="number" (keypress)="checkChar($event)" maxlength="11"/>
+            </div>
+            <button type="submit" [disabled]="!addGCashForm.valid">Save</button>
+        </form>
+    </div>
 </div>
