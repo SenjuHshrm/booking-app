@@ -4,7 +4,7 @@
             <div class="section-1">
                 <div class="profile-picture">
                     <div class="wrapper">
-                        <div class="profile-picture-img">
+                        <div class="profile-picture-img" >
                             <img [src]="profile.img" loading="lazy"
                                 alt="Avatar" [draggable]="false">
                         </div>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div class="say-something" [ngStyle]="{'color': (profile.desc && profile.desc.description) ? 'initial' : 'rgb(170, 170, 170)'}">
+                    <div class="say-something"  [ngStyle]="{'color': (profile.desc && profile.desc.description) ? 'initial' : 'rgb(170, 170, 170)'}">
                         {{ profile.desc && profile.desc.description ? profile.desc.description : 'Say something about your profile.' }}
                     </div>
                     

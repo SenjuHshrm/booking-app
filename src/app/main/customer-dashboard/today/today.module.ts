@@ -17,7 +17,6 @@ import {MatTabsModule} from '@angular/material/tabs';
   imports: [
     CommonModule,
     TodayRoutingModule,
-    ComponentsModule,
     MatTabsModule,
     ComponentsModule
   

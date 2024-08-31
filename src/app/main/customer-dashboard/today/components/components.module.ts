@@ -13,9 +13,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CurrentlyGuestComponent } from './currently-guest/currently-guest.component';
 import { TimeFormatPipe } from './time-format.pipe';
 import { PluralizePipe } from './pluralize-interval.pipe';
-import { ReviewsComponent } from './reviews/reviews.component';
 import { CancelledBookingComponent } from './cancelled-booking/cancelled-booking.component';
 import { PendingReviewComponent } from './pending-review/pending-review.component';
+import { ForApprovalComponent } from './for-approval/for-approval.component';
+import { ValidationModalComponent } from './modal/validation-modal/validation-modal.component';
+import { MessageGuestModalComponent } from './modal/message-guest-modal/message-guest-modal.component';
 
 
 @NgModule({
@@ -26,9 +28,11 @@ import { PendingReviewComponent } from './pending-review/pending-review.componen
     CheckingOutComponent,
     TimeFormatPipe,
     PluralizePipe,
-    ReviewsComponent,
     CancelledBookingComponent,
-    PendingReviewComponent
+    PendingReviewComponent,
+    ForApprovalComponent,
+    ValidationModalComponent,
+    MessageGuestModalComponent
   ],
   imports: [
     CommonModule,
@@ -46,8 +50,9 @@ import { PendingReviewComponent } from './pending-review/pending-review.componen
     ArrivingSoonComponent,
     UpcomingComponent,
     CurrentlyGuestComponent,
-    ReviewsComponent,
-    CancelledBookingComponent
+    CancelledBookingComponent,
+    PendingReviewComponent,
+    ForApprovalComponent
   ]
 })
 export class ComponentsModule { }

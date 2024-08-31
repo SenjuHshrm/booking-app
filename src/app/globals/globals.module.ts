@@ -16,7 +16,7 @@ import {
   GoogleSigninButtonModule,
 } from '@abacritt/angularx-social-login';
 import { BookingTermsComponent } from './booking-terms/booking-terms.component';
-import { ReservationsViewComponent } from './reservations-view/reservations-view.component';
+import { ReservationsViewComponent } from './modals/reservations-view/reservations-view.component';
 import { LoaderStateComponent } from './loader-state/loader-state.component';
 import { GalleryViewComponent } from './gallery/gallery-view/gallery-view.component';
 import { MessageProprietorComponent } from './message-proprietor/message-proprietor.component';
@@ -30,6 +30,7 @@ import { InputErrorMessageComponent } from './input-error-message/input-error-me
 import { ViewProfileModalComponent } from './modals/view-profile-modal/view-profile-modal.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MaskCardPipe } from './pipes/mask-card.pipe';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { MaskCardPipe } from './pipes/mask-card.pipe';
     HomeImageGalleryComponent,
     InputErrorMessageComponent,
     ViewProfileModalComponent,
-    MaskCardPipe
+    MaskCardPipe,
+
+    
   ],
 
   imports: [

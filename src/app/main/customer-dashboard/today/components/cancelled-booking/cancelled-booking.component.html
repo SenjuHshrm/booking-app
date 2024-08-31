@@ -41,7 +41,7 @@
 
                        <ng-container matColumnDef="date">
                         <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Date</th>
-                        <td mat-cell *matCellDef="let element">{{element.cancelleddate | date:'shortDate'}}</td>
+                        <td mat-cell *matCellDef="let element">{{element.cancelleddate | date:'MMMM d, y'}}</td>
                      </ng-container>
 
                        <ng-container matColumnDef="reasons">
@@ -58,8 +58,9 @@
                                 <mat-icon>more_horiz</mat-icon>
                              </button>
                              <mat-menu #menu="matMenu">
-                                <button mat-menu-item>View</button>
-                                <button mat-menu-item>Message guest</button>
+                              <button mat-menu-item (click)="viewDetails()">View Details</button>
+                              <button mat-menu-item (click)="viewProfile()">View Guest Profile</button>
+                              <button mat-menu-item (click)="messageGuest()">Message Guest</button>
                              </mat-menu>
                           </td>
                        </ng-container>

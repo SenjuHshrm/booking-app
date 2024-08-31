@@ -213,7 +213,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       width: '100%',
       height: '100%',
       maxWidth: '35rem',
-      maxHeight: '35rem',
+      maxHeight: '23rem',
       data: { proprietorHost: this.details.host, usersProfile: '' },
       disableClose: true,
     });

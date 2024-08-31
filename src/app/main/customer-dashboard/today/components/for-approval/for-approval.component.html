@@ -2,7 +2,7 @@
    <div class="today-tabs-today-tabs-wrapper">
       <div class="content">
          <div class="mat-elevation-z3">
-            <div class="title">Upcoming</div>
+            <div class="title">For approval</div>
             <div class="search">
                <input matInput (keyup)="applyFilter($event)" placeholder="Search here..">
                <mat-icon>search</mat-icon>
@@ -133,7 +133,9 @@
                         <mat-menu #menu="matMenu">
                            <button mat-menu-item (click)="viewForApprovalDetails()">View Details</button>
                            <button mat-menu-item (click)="viewProfile()">View Guest Profile</button>
-                           <button mat-menu-item>Message guest</button>
+                           <button mat-menu-item (click)="messageGuest()">Message Guest</button>
+                           <button mat-menu-item (click)="openValidationModal()">Approved</button>
+                           <button mat-menu-item (click)="openValidationModal()">Disapproved</button>
                         </mat-menu>
                      </td>
                   </ng-container>
