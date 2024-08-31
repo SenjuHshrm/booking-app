@@ -90,6 +90,14 @@
               routerLink="/admin/home/proprietor-application"
             >
               <span><mat-icon>people</mat-icon></span
+              >Host Application
+            </li>
+            <li
+              [ngClass]="{ active: selectedTab === 'listing-application' }"
+              (click)="gotoPage('listing-application')"
+              routerLink="/admin/home/listing-application"
+            >
+              <span><mat-icon>people</mat-icon></span
               >Listing Application
             </li>
             <li
