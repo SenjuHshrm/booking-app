@@ -1,191 +1,144 @@
 <div class="payment-wallet">
-    <div class="header">
-        <div class="close-button" (click)="close()">
-            <mat-icon style="margin-top:3px">close</mat-icon>
-        </div>
-        <div class="title">Payment details</div>
-        <div class="subtitle"></div>
+  <div class="header">
+    <div class="close-button" (click)="close()">
+      <mat-icon style="margin-top: 3px">close</mat-icon>
     </div>
-    <!-- <div class="payment-method">
-        <div class="title-wrapper">
-            <div class="wallet-icons">
-                <div *ngIf="defaultPaymentMethod === 0"><img src="../../assets/images/main/book-staycation/visa.png"
-                        loading="lazy" alt="Avatar" [draggable]="false"></div>
-                <div *ngIf="defaultPaymentMethod === 0"><img
-                        src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy" alt="Avatar"
-                        [draggable]="false"></div>
-                <div *ngIf="defaultPaymentMethod === 1"><img src="../../assets/images/main/book-staycation/gcash.png"
-                        loading="lazy" alt="Avatar" [draggable]="false"></div>
-                <div *ngIf="defaultPaymentMethod === 2"><img src="../../assets/images/main/book-staycation/maya.png"
-                        loading="lazy" alt="Avatar" [draggable]="false"></div>
-            </div>
-        </div>
-        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-            <div class="form_content">
-                <div class="custom-select">
-                    <div class="label">Payment Method</div>
-                    <select #selectElement formControlName="paymentMethod" (change)="setPayMethod(selectElement)"
-                        required>
-                        <option *ngFor="let paymentMethod of paymentMethodName; let i = index" [value]="i"
-                            [selected]="i === 0">
-                            {{paymentMethod.payMethod}}
-                        </option>
-                    </select>
-                </div>
+    <h2>Add Payment Method Modal</h2>
+    <hr />
+  </div>
 
-                <div class="__card-form" *ngIf="defaultPaymentMethod === 0">
-
-                    <div class="input_num">
-                        <div class="label">Card Number</div>
-                        <input type="text" formControlName="cardNumber" placeholder="Card number" pattern="^[0-9]{16}$" maxlength="16" (keypress)="checkChar($event)"/>
-                        <ng-container
-                            *ngIf="paymentForm.get('cardNumber')?.invalid && (paymentForm.get('cardNumber')?.dirty || paymentForm.get('cardNumber')?.touched)">
-                            <span class="val-err-msg">Card number is required and must be 16 digits long.</span>
-                        </ng-container>
-                    </div>
-
-                    <div class="wrapper">
-                        <div>
-                            <div class="label">Expiration Date</div>
-                            <div class="expiration-style">
-                                <div class="expiri_wrapper">
-                                    <select formControlName="expiryMonth" class="form-control">
-                                        <option value="">Month</option>
-                                        <option *ngFor="let month of [1,2,3,4,5,6,7,8,9,10,11,12]" [value]="month">
-                                          {{ formatMonth(month) }}
-                                        </option>
-                                      </select>
-                                    <input type="text" class="input_num" name="exp_month" formControlName="expiryMonth" (keypress)="checkChar($event)" maxlength="2"/>
-                                    <ng-container
-                                        *ngIf="paymentForm.get('expiryMonth')?.invalid && (paymentForm.get('expiryMonth')?.dirty || paymentForm.get('expiryMonth')?.touched)">
-                                        <span class="val-err-msg">Month is required.</span>
-                                    </ng-container>
-                                </div>
-                                <div class="expiri_wrapper">
-                                    <select formControlName="expiryYear" class="form-control">
-                                        <option value="">Year</option>
-                                        <option *ngFor="let year of [2023,2024,2025,2026,2027,2028,2029,2030]"
-                                            [value]="year">
-                                            {{ year }}
-                                        </option>
-                                    </select>
-                                    <input type="text" name="exp_yr" formControlName="expiryYear" (keypress)="checkChar($event)" maxlength="2"/>
-                                    <ng-container
-                                        *ngIf="paymentForm.get('expiryYear')?.invalid && (paymentForm.get('expiryYear')?.dirty || paymentForm.get('expiryYear')?.touched)">
-                                        <span class="val-err-msg">Year is required.</span>
-                                    </ng-container>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="ccv-input">
-                            <div class="label">CVC</div>
-                            <input type="text" formControlName="cvc" placeholder="cvc" (keypress)="checkChar($event)" maxlength="4"/>
-                            <ng-container
-                                *ngIf="paymentForm.get('ccv')?.invalid && (paymentForm.get('ccv')?.dirty || paymentForm.get('ccv')?.touched)">
-                                <span class="val-err-msg">CVC is required and must be 3 or 4 digits long.</span>
-                            </ng-container>
-                        </div>
-                    </div>
-
-                    <div class="input_num">
-                        <div class="label">Name on Card</div>
-                        <input type="text" formControlName="cardName" name="cardName" placeholder="Enter name on card" />
-                    </div>
-
-                    <div class="input_num">
-                        <div class="label">Mobile number</div>
-                        <input type="text" formControlName="mobileNumber" placeholder="Enter mobile number" />
-                        <ng-container
-                            *ngIf="paymentForm.get('mobileNumber')?.invalid && (paymentForm.get('mobileNumber')?.dirty || paymentForm.get('mobileNumber')?.touched)">
-                            <span class="val-err-msg">Please enter a valid 11-digit mobile number.</span>
-                        </ng-container>
-                    </div>
-                </div>
-
-                <div class="__wallet-form" *ngIf="defaultPaymentMethod === 1">
-                    <div class="input_num">
-                        <div class="label">Account Name</div>
-                        <input type="text" formControlName="gcashName" placeholder="Account name" />
-                        <ng-container
-                            *ngIf="paymentForm.get('accountName')?.invalid && (paymentForm.get('accountName')?.dirty || paymentForm.get('accountName')?.touched)">
-                            <span class="val-err-msg">Input your GCash account name.</span>
-                        </ng-container>
-                    </div>
-                    <div class="input_num">
-                        <div class="label">Mobile number</div>
-                        <input type="text" formControlName="gcashAcctNo" placeholder="Enter mobile number" />
-                        <ng-container
-                            *ngIf="paymentForm.get('mobileNumber')?.invalid && (paymentForm.get('mobileNumber')?.dirty || paymentForm.get('mobileNumber')?.touched)">
-                            <span class="val-err-msg">Please enter a valid 11-digit mobile number.</span>
-                        </ng-container>
-                    </div>
-                </div>
-
-                <div class="form_footer">
-                    <button class="main-button" type="submit" [disabled]="paymentForm.invalid">
-                        <span>Done</span>
-                    </button>
-                </div>
-            </div>
-        </form>
-
-
-
-    </div> -->
-
-    <div class="payment-method">
-        <label for="select-type">Select Payment Type</label>
-        <select name="select-type" [(ngModel)]="selectedType" (change)="resetForms()">
-            <option *ngFor="let t of paymentMethodName" [value]="t.value">{{ t.payMethod }}</option>
-        </select>
-
-        <!-- form (card)-->
-        <form *ngIf="selectedType === 'card'" [formGroup]="addCardForm" (ngSubmit)="onSubmit('card')">
-            <div>
-                <label>Card Number</label>
-                <input type="text" name="card" formControlName="card" maxlength="16" (keypress)="checkChar($event)" required/>
-            </div>
-            <div>
-                Expiration
-                <div>
-                    <label>Month</label>
-                    <input type="text" name="expiryMonth" formControlName="expiryMonth" maxlength="2" (keypress)="checkChar($event)" required/>
-                </div>
-                <div>
-                    <label>Year</label>
-                    <input type="text" name="expiryYr" formControlName="expiryYear" maxlength="2" (keypress)="checkChar($event)" required/>
-                </div>
-            </div>
-            <div>
-                <label>CVC/CVV</label>
-                <input type="text" name="cvc" formControlName="cvc" maxlength="4" (keypress)="checkChar($event)" required/>
-            </div>
-            <div>
-                <label>Name on Card</label>
-                <input type="text" name="cardName" formControlName="cardName" required/>
-            </div>
-            <div>
-                <label>Contact Number</label>
-                <input type="text" name="mobileNumber" formControlName="mobileNumber" (keypress)="checkChar($event)" maxlength="11" required/>
-            </div>
-            <button type="submit" [disabled]="!addCardForm.valid">Save</button>
-        </form>
-
-
-        <!-- form (gcash) -->
-        <form *ngIf="selectedType === 'gcash'" [formGroup]="addGCashForm" (ngSubmit)="onSubmit('gcash')">
-            <div>
-                <label>Account Name</label>
-                <input type="text" name="name" formControlName="name" />
-            </div>
-            <div>
-                <label>Accout Number</label>
-                <input type="text" name="number" formControlName="number" (keypress)="checkChar($event)" maxlength="11"/>
-            </div>
-            <button type="submit" [disabled]="!addGCashForm.valid">Save</button>
-        </form>
+  <div class="payment-content">
+    <div class="payment-method input-wrapper">
+      <label for="select-type">Select Payment Type</label>
+      <select
+        name="select-type"
+        [(ngModel)]="selectedType"
+        (change)="resetForms()"
+      >
+        <option *ngFor="let t of paymentMethodName" [value]="t.value">
+          {{ t.payMethod }}
+        </option>
+      </select>
     </div>
+
+    <!-- form (card)-->
+    <form
+      class="card-form"
+      *ngIf="selectedType === 'card'"
+      [formGroup]="addCardForm"
+      (ngSubmit)="onSubmit('card')"
+    >
+      <div class="input-wrapper">
+        <label>Card Number</label>
+        <input
+          type="text"
+          name="card"
+          formControlName="card"
+          maxlength="16"
+          (keypress)="checkChar($event)"
+          required
+        />
+      </div>
+      <div class="expiration">
+        <h4>Expiration</h4>
+
+        <div class="inputs">
+          <div class="input-wrapper">
+            <label>Month</label>
+            <input
+              type="text"
+              name="expiryMonth"
+              formControlName="expiryMonth"
+              maxlength="2"
+              (keypress)="checkChar($event)"
+              required
+            />
+          </div>
+          <div class="input-wrapper">
+            <label>Year</label>
+            <input
+              type="text"
+              name="expiryYr"
+              formControlName="expiryYear"
+              maxlength="2"
+              (keypress)="checkChar($event)"
+              required
+            />
+          </div>
+          <div class="input-wrapper">
+            <label>CVC/CVV</label>
+            <input
+              type="text"
+              name="cvc"
+              formControlName="cvc"
+              maxlength="4"
+              (keypress)="checkChar($event)"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="details">
+        <h4>Card Details</h4>
+
+        <div class="input-wrapper">
+          <label>Name on Card</label>
+          <input
+            type="text"
+            name="cardName"
+            formControlName="cardName"
+            required
+          />
+        </div>
+        <div class="input-wrapper">
+          <label>Contact Number</label>
+          <input
+            type="text"
+            name="mobileNumber"
+            formControlName="mobileNumber"
+            (keypress)="checkChar($event)"
+            maxlength="11"
+            required
+          />
+        </div>
+      </div>
+      <div class="input-wrapper button-wrapper">
+        <button mat-raised-button type="submit" [disabled]="!addCardForm.valid">
+          Save
+        </button>
+      </div>
+    </form>
+
+    <!-- form (gcash) -->
+    <form
+      *ngIf="selectedType === 'gcash'"
+      [formGroup]="addGCashForm"
+      (ngSubmit)="onSubmit('gcash')"
+    >
+      <div class="input-wrapper">
+        <label>Account Name</label>
+        <input type="text" name="name" formControlName="name" />
+      </div>
+      <div class="input-wrapper">
+        <label>Accout Number</label>
+        <input
+          type="text"
+          name="number"
+          formControlName="number"
+          (keypress)="checkChar($event)"
+          maxlength="11"
+        />
+      </div>
+      <div class="input-wrapper button-wrapper">
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="!addGCashForm.valid"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

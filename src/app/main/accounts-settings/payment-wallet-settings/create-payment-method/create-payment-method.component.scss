@@ -1,304 +1,82 @@
-// .payment-wallet {
-//   background-color: white;
-//   &-payment-wallet-wrapper {
-//       padding:2rem;
-//       form{
-//       .your-information-about-your-info {
-//           margin: 1rem 0 1rem;
-
-//           .your-likes {
-//               .title {
-//                   font-size: clamp(1rem, 1vw, 8rem);
-//               }
-
-//               .info {
-//                   display: flex;
-//                   flex-direction: column;
-//                   gap: .5rem;
-//                   width: 100%;
-
-//                   .input-wrapper {
-//                       .label {
-//                           margin-bottom: .3rem;
-//                       }
-
-//                       input, select {
-//                           padding: 1rem;
-//                           border: 2px solid #63AB68;
-//                           width: 100%;
-//                           border-radius: 10px;
-//                           font-family: Poppins-Medium;
-//                           font-size: 15px;
-
-//                       }
-//                   }
-//               }
-//           }
-
-//       }
-//       .btn-sec{
-//           display: grid;
-//           place-content: center;
-//           // border:1px solid black;
-//         }
-//   }
-//   }
-// }
-
 .payment-wallet {
-    padding: 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    gap: 1rem;
+  padding: 1rem 2rem;
+  position: relative;
 
-    .header {
-        flex-basis:15%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+  .close-button {
+    position: absolute;
+    top: 15px;
+    right: 2rem;
+    cursor: pointer;
+  }
 
-        .title {
-            font-size: clamp(1rem, 1.2vw, 8rem);
-            font-weight: bolder;
-            color: black;
-            padding-top: .5rem;
+  h2 {
+    margin-bottom: 0;
+  }
 
-        }
+  .input-wrapper {
+    width: 100%;
+    margin-bottom: 0.75rem;
 
-        .sub_title {
-            color: #8f8f8f;
-            margin-top: .5rem;
-        }
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
     }
+
+    input,
+    select {
+      padding: 0.75rem;
+      border: 2px solid #63ab68;
+      width: 100%;
+      border-radius: 10px;
+      font-family: Poppins-Medium;
+      font-size: 15px;
+    }
+
+    input::placeholder,
+    select::placeholder {
+      color: #d1d1d1;
+      font-weight: normal;
+      font-size: 0.8rem;
+    }
+
+    button {
+      background-color: #68a968;
+      color: white;
+      gap: 0.3rem;
+      padding: 0 2rem;
+      letter-spacing: 0.1rem;
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .payment-content {
+    margin-top: 0.5rem;
 
     .payment-method {
-        flex-basis: 90%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        .title-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-
-            .title {
-                font-size: clamp(1rem, 1.2vw, 8rem);
-                margin: 1rem 0 1rem;
-            }
-
-            .wallet-icons {
-                display: flex;
-                gap: 1rem;
-
-                div {
-                    max-width: 5rem;
-
-                    img {
-                        width: 100%;
-                        height: 1.3rem;
-                    }
-
-                }
-            }
-        }
-
-        form {
-            flex-basis: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-
-            input{
-                font-family: Poppins-Regular !important;
-            }
-
-        
-
-            .form_content {
-                flex-basis: 80%;
-           
-                display: flex;
-                flex-direction: column;
-                gap: .5rem;
-
-                ///////
-                .custom-select {
-                    position: relative;
-                    font-family: Poppins-Regular !important;
-
-                }
-
-                select {
-                    appearance: none;
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    border: 2px solid #68A968;
-                    padding: 1rem;
-                    border-radius: 10px;
-                    width: 100%;
-                    cursor: pointer;
-                    font-family: Poppins-Regular !important;
-                }
-
-                select::-ms-expand {
-                    display: none;
-                }
-
-                .custom-select::after {
-                    content: '\25BC';
-                    /* Unicode character for down arrow */
-                    position: absolute;
-                    top:65%;
-                    right:15px;
-                    transform: translateY(-50%);
-                    pointer-events: none;
-                }
-
-                ///////
-                .wrapper {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 1rem;
-                    margin-top: 1rem;
-
-                    .expiration-style {
-                        width: 100%;
-                        display: flex;
-                        align-items: flex-start;
-                        gap: .5rem;
-                        background-color: white;
-                        border-radius: 10px;
-
-                        :nth-child(1),:nth-child(2){
-                           width: 100%;
-                        }
-                      
-
-
-                        .custom-date-input {
-                            // -webkit-appearance: none;
-                            //  -moz-appearance: none;
-                            // appearance: none;
-                            padding: 0.7rem 0 .7rem;
-                            border: none;
-                            outline: none;
-                            border-radius: 5px;
-                            background-color: #fff;
-                            color: #797979;
-                            font-family: Arial, sans-serif;
-                            width: 100%;
-                            height: fit-content;
-
-                        }
-
-                        /* Custom style for the dropdown arrow */
-                        .custom-date-input::-webkit-calendar-picker-indicator {
-                            cursor: pointer;
-                            padding: .5rem;
-                            padding-right:.5rem;
-                            background-color: transparent;
-                            // background-image: url('../../../../../assets/images/search-filters/v-icon.png'); // Replace with your pin icon
-                            /* You can use background-image here to add a custom image */
-
-                        }
-
-                        /* Custom style for the datepicker popup (Chrome, Safari) */
-                        .custom-date-input::-webkit-calendar-picker-popup {
-                            /* Add your custom styles for the popup */
-                            background-color: #68A968 !important;
-                            color: #68A968 !important;
-                            padding: 2rem;
-                        }
-
-                        /* Custom style for the datepicker popup (Firefox) */
-                        .custom-date-input[type="date"]::-moz-calendar-picker-indicator {
-                            /* Add your custom styles for the popup */
-                            background-color: #68A968 !important;
-                            color: #68A968 !important;
-                        }
-
-
-                        .calendar-icon {
-                            width: 45px;
-                            height: 45px;
-                            background-image: url('../../../../../assets/images/search-filters/calendaricon.png'); // Replace with your pin icon
-                            background-size: contain;
-                            background-repeat: no-repeat;
-                        }
-
-
-                    }
-
-                    .ccv-input {
-                        width: 100%;
-
-                        input {
-                            width: 100%;
-                            padding: 1rem;
-                            border-radius: 10px;
-                            border: 2px solid #68A968;
-                            outline: none;
-                        }
-                    }
-                }
-
-                .input_num{
-                    margin-top: 1rem;
-
-                    input {
-                        width: 100%;
-                        padding: 1rem;
-                        border-radius: 10px;
-                        border: 2px solid #68A968;
-                        outline: none;
-                    }
-                }
-
-                ///////////
-                /* Hide the spinners in Chrome, Safari, and Edge */
-                input[type="number"]::-webkit-outer-spin-button,
-                input[type="number"]::-webkit-inner-spin-button {
-                    -webkit-appearance: none;
-                    margin: 0;
-                }
-
-                /* Hide the spinner in Firefox */
-                input[type="number"] {
-                    -moz-appearance: textfield;
-                }
-            }
-
-            .form_footer {
-                flex-basis: 20%;
-                width: 100%;
-                margin-bottom:1rem;
-        
-                .main-button {
-                    margin: auto;
-                }
-            }
-        }
+      margin-bottom: 1.25rem;
     }
-
-}
-
-@media only screen and (max-width: 500px) {
-    .payment-wallet {
-        .payment-method {
-            form {
-                .form_content {
-                    .wrapper {
-                        grid-template-columns: repeat(1, 1fr);
-                    }
-                }
-            }
-        }
+    .details {
+      h4 {
+        margin: 0;
+        font-weight: 600;
+      }
     }
+    .expiration {
+      h4 {
+        margin: 0;
+        font-weight: 600;
+      }
+
+      .inputs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+    }
+  }
 }

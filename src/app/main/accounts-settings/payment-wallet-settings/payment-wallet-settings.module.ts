@@ -9,16 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GlobalsModule } from 'src/app/globals/globals.module';
-
-
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    PaymentWalletSettingsComponent, 
-    CreatePaymentMethodComponent, 
-
-  ],
+  declarations: [PaymentWalletSettingsComponent, CreatePaymentMethodComponent],
   imports: [
     CommonModule,
     PaymentWalletSettingsRoutingModule,
@@ -28,10 +22,8 @@ import { GlobalsModule } from 'src/app/globals/globals.module';
     MatIconModule,
     MatMenuModule,
     MatFormFieldModule,
-    GlobalsModule
- 
-
-
-  ]
+    GlobalsModule,
+    MatButtonModule,
+  ],
 })
-export class PaymentWalletSettingsModule { }
+export class PaymentWalletSettingsModule {}
