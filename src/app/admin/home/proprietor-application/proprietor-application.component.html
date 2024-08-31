@@ -18,7 +18,7 @@
   </ng-container>
 
   <ng-container matColumnDef="approved">
-    <th mat-header-cell *matHeaderCellDef>Approved as Proprietor</th>
+    <th mat-header-cell *matHeaderCellDef>Status</th>
     <td mat-cell *matCellDef="let element">
       <mat-icon
         [fontIcon]="element.approved ? 'check_circle' : 'close'"
@@ -26,7 +26,7 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="staycation">
+  <!-- <ng-container matColumnDef="staycation">
     <th mat-header-cell *matHeaderCellDef>Listings</th>
     <td mat-cell *matCellDef="let element">
       <button
@@ -37,7 +37,7 @@
         View Listings
       </button>
     </td>
-  </ng-container>
+  </ng-container> -->
 
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef>Action</th>
@@ -60,7 +60,9 @@
         >
           Give Proprietor Privileges
         </button>
-        <button mat-menu-item (click)="openValidationModal('delete')">Decline</button>
+        <button mat-menu-item (click)="openValidationModal('delete')">
+          Decline
+        </button>
       </mat-menu>
     </td>
   </ng-container>
