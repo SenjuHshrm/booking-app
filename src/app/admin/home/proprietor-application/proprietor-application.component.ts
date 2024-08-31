@@ -16,7 +16,6 @@ import {
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
 import { ValidationModalComponent } from './validation-modal/validation-modal.component';
 
-
 @Component({
   selector: 'app-proprietor-application',
   templateUrl: './proprietor-application.component.html',
@@ -36,16 +35,14 @@ export class ProprietorApplicationComponent
     'firstname',
     'lastname',
     'approved',
-    'staycation',
     'action',
   ];
 
-  
-  validationText:any = [
-    {suspend:'Are you sure you want to suspend this account?'},
-    {delete:'Are you sure you want to delete this account?'},
-    {logout:'Are you sure you want to logout this account?'},
-  ]
+  validationText: any = [
+    { suspend: 'Are you sure you want to suspend this account?' },
+    { delete: 'Are you sure you want to delete this account?' },
+    { logout: 'Are you sure you want to logout this account?' },
+  ];
 
   // public displayedColumns: string[] = ['profile', 'firstname', 'lastname', 'action']
 
@@ -101,11 +98,12 @@ export class ProprietorApplicationComponent
   private _getApps(p: number, l: number) {
     this.appList = [];
     this.dataSource = new MatTableDataSource<any>();
+
     this._sub.add(
       this._user.getProprietorApplications(p, l).subscribe({
         next: (res: any) => {
-          let { paginatedResults, totalCount } = res[0];
-          // this.total = res.total
+          let { total, list } = res;
+
           // res.propApp.forEach((prop: any) => {
           //   this.appList.push({
           //     profile: this._basicUtil.setImgUrl(prop.userId.img),
@@ -114,21 +112,20 @@ export class ProprietorApplicationComponent
           //     staycation: prop.staycationId.name,
           //     userId: prop.userId._id,
           //     staycationId: prop.staycationId._id,
-          //     propAppId: prop._id
-          //   })
-          // })
+          //     propAppId: prop._id,
+          //   });
+          // });
 
-          this.total = totalCount[0].count;
-          paginatedResults.forEach((prop: any) => {
+          this.total = total;
+          list.forEach((prop: any) => {
             this.appList.push({
-              id: prop.userId,
-              profile: this._basicUtil.setImgUrl(prop.user[0].img),
-              firstname: prop.user[0].name.fName,
-              lastname: prop.user[0].name.lName,
+              id: prop.user._id,
+              profile: this._basicUtil.setImgUrl(prop.user.img),
+              firstname: prop.user.name.fName,
+              lastname: prop.user.name.lName,
               // staycation: prop.staycationId.name,
-              approved:
-                prop.user[0].approvedAsProprietorOn !== '' ? true : false,
-              userId: prop.userId,
+              approved: prop.status !== 'pending' ? true : false,
+              userId: prop.user._id,
               // staycationId: prop.staycationId._id,
               propAppId: prop._id,
             });
@@ -147,15 +144,13 @@ export class ProprietorApplicationComponent
     });
   }
 
-
-
-  openValidationModal(text:string): void {
+  openValidationModal(text: string): void {
     this.dialog.open(ValidationModalComponent, {
-      width:'100%',
-      height:'100%',
-      maxHeight:'15rem',
-      maxWidth:'30rem',
-      data:{data:this.validationText, label:text}
+      width: '100%',
+      height: '100%',
+      maxHeight: '15rem',
+      maxWidth: '30rem',
+      data: { data: this.validationText, label: text },
     });
   }
 }

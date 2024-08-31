@@ -1,1 +1,86 @@
-<p>listing-application works!</p>
+<div class="listing-container">
+  <div class="listing-container-wrapper">
+    <form>
+      <div class="listing-search card">
+        <div class="icon"><mat-icon>search</mat-icon></div>
+        <input type="text" name="search" placeholder="Search listing" />
+        <button type="submit" style="display: none"></button>
+      </div>
+    </form>
+    <div class="table">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="cover">
+          <th mat-header-cell *matHeaderCellDef>Cover Photo</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="custom-property">
+              <img *ngIf="element.cover !== ''" [src]="element.cover" />
+            </div>
+            <div *ngIf="element.cover === ''">No cover yet</div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.name }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="placeType">
+          <th mat-header-cell *matHeaderCellDef>Type</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.type }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="desc">
+          <th mat-header-cell *matHeaderCellDef>Description Filter</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.desc }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="approved">
+          <th mat-header-cell *matHeaderCellDef>Approved</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon
+              [fontIcon]="element.isApproved ? 'check_circle' : 'close'"
+            ></mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="listed">
+          <th mat-header-cell *matHeaderCellDef>Listed</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon
+              [fontIcon]="element.isListed ? 'check_circle' : 'close'"
+            ></mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="handleViewListing(element)">
+                View
+              </button>
+              <button mat-menu-item (click)="openListing(element._id)">
+                Warning
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell td-no-value" colspan="7">No Listing Found.</td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator
+      #paginator
+      [length]="10"
+      [pageSizeOptions]="[5, 10, 25]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
