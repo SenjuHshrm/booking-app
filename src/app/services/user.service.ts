@@ -1,7 +1,9 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { map, Observable } from 'rxjs';
+import { HttpClient, HttpEvent, HttpEventType, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
+import { BYPASS_LOG } from '../interceptors/request.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -133,5 +135,32 @@ export class UserService {
       `${environment.api}/api/user/put/update-user-verification/${id}`,
       { status }
     );
+  }
+
+  public requestSupportDocs(userId: string, staycationId: string, date: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/user/post/request-docs/${userId}/${staycationId}`, { date })
+  }
+
+  public uploadSupportDocs(fd: FormData, userId: string, token: string): Observable<any> {
+    return this._http.request('post', `${environment.api}/api/user/post/upload-docs/${userId}`, {
+      reportProgress: true,
+      observe: 'events',
+      context: new HttpContext().set(BYPASS_LOG, true),
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      body: fd
+    }).pipe(
+      map((e: HttpEvent<any>) => {
+        if(e !== undefined) {
+          if(e.type === HttpEventType.UploadProgress) {
+            return Math.round(e.loaded / <number>e.total * 100)
+          } else if(e.type === HttpEventType.Response) {
+            return e.body
+          }
+        }
+      }),
+      catchError((e) => { return e })
+    )
   }
 }

@@ -24,6 +24,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
 export class CustomErrorHandler implements ErrorHandler {
   handleError(error: any) {
     // Custom error handling logic
+    console.log(error)
   }
 }
 

@@ -60,4 +60,9 @@ export class StaycationService {
   public getRecentSearches(id: string): Observable<any> {
     return this._http.get(`${environment.api}/api/staycation/get/recent-search/${id}`)
   }
+
+  public getAllStaycations(page: number, limit: number, name?: string): Observable<any> {
+    let url: string = (name !== undefined) ? `${environment.api}/api/staycation/get/all/${page}/${limit}?name=${name}` : `${environment.api}/api/staycation/get/all/${page}/${limit}`;
+    return this._http.get(url)
+  }
 }

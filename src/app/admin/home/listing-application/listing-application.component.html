@@ -3,8 +3,8 @@
     <form>
       <div class="listing-search card">
         <div class="icon"><mat-icon>search</mat-icon></div>
-        <input type="text" name="search" placeholder="Search listing" />
-        <button type="submit" style="display: none"></button>
+        <input type="text" name="search" [(ngModel)]="searchInput" placeholder="Search listing" (input)="handleSearch($event)" />
+        <!-- <button type="submit" style="display: none"></button> -->
       </div>
     </form>
     <div class="table">
@@ -27,13 +27,13 @@
         <ng-container matColumnDef="placeType">
           <th mat-header-cell *matHeaderCellDef>Type</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.type }}
+            {{ element.placeType }}
           </td>
         </ng-container>
         <ng-container matColumnDef="desc">
           <th mat-header-cell *matHeaderCellDef>Description Filter</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.desc }}
+            {{ element.descriptionFilter }}
           </td>
         </ng-container>
         <ng-container matColumnDef="approved">
@@ -59,11 +59,29 @@
               <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="handleViewListing(element)">
+              <!-- <button mat-menu-item (click)="handleViewListing(element)">
                 View
-              </button>
+              </button> -->
               <button mat-menu-item (click)="openListing(element._id)">
-                Warning
+                View Details
+              </button>
+              <button mat-menu-item *ngIf="element.documents === null" (click)="handleReqSupportDocs(element.host._id, element._id)">
+                Request Supporting Documents
+              </button>
+              <button mat-menu-item *ngIf="element.documents !== null">
+                View Supporting Documents
+              </button>
+              <button mat-menu-item *ngIf="!element.isApproved">
+                Approve Listing
+              </button>
+              <button mat-menu-item *ngIf="element.isApproved">
+                Disapprove Listing
+              </button>
+              <button mat-menu-item *ngIf="!element.isListed">
+                Add to Listing
+              </button>
+              <button mat-menu-item *ngIf="element.isListed">
+                Remove from Listing
               </button>
             </mat-menu>
           </td>
@@ -78,9 +96,10 @@
     </div>
     <mat-paginator
       #paginator
-      [length]="10"
+      [length]="totalListings"
       [pageSizeOptions]="[5, 10, 25]"
       showFirstLastButtons
+      (page)="handlePageChange($event)"
     ></mat-paginator>
   </div>
 </div>

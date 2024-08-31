@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,6 +18,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatPaginatorModule,
     MatTableModule,
     MatMenuModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 })
 export class ListingApplicationModule {}

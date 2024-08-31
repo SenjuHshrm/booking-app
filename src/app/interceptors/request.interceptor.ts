@@ -38,7 +38,10 @@ export class RequestInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (request.context.get(BYPASS_LOG) === true) return next.handle(request);
+    if (request.context.get(BYPASS_LOG) === true) {
+      console.log('Interceptor Bypassed')
+      return next.handle(request);
+    }
     let authReq = this._addAuthToken(request);
     return next.handle(authReq).pipe(
       catchError((e: HttpErrorResponse): Observable<any> => {
