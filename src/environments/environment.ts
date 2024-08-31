@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
-  api: 'http://localhost:3000',
+  // api: 'https://e0f0-136-158-64-192.ngrok-free.app',
+  api: 'https://localhost:3000',
   google_client_id:
     '526624305554-jvbtrnjld0ihoagbkiahbo3865ng337m.apps.googleusercontent.com',
   maxImgSize: 5,

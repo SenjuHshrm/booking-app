@@ -11,7 +11,7 @@
                 <div class="tabs" [ngClass]="{'open':togglePanel === false, 'close':togglePanel === true}">
                     <button (click)="goToLoginSecurity()" [routerLinkActive]="'active'" routerLink="security-settings">Login & Security</button>
                     <button (click)="goToPaymentsWalletSetting()" [routerLinkActive]="'active'" routerLink="payment-wallet-settings">Payment Settings</button>
-                    <button (click)="goToPayoutSettings()" [routerLinkActive]="'active'" routerLink="payout-settings">Payout Settings</button>
+                    <!-- <button (click)="goToPayoutSettings()" [routerLinkActive]="'active'" routerLink="payout-settings">Payout Settings</button> -->
                     <button (click)="goToAccountVerification()" [routerLinkActive]="'active'" routerLink="account-verification">Account Verification</button>
                 </div>
                 <div class="backdrop" [ngStyle]="{'display':togglePanel? 'none':'block'}"  (click)="toggleSidePanel()"></div>
