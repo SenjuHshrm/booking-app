@@ -6,10 +6,11 @@ import { YourTripsComponent } from './your-trips.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { ValidationModalComponent } from './validation-modal/validation-modal.component';
 
 
 @NgModule({
-  declarations: [YourTripsComponent],
+  declarations: [YourTripsComponent, ValidationModalComponent],
   imports: [
     CommonModule,
     YourTripsRoutingModule,

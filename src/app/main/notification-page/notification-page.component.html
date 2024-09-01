@@ -9,26 +9,28 @@
             <div class="title">Notification</div>
         </div>
         <div class="content-wrapper">
-        <div *ngIf="avatar.length > 0">
-            <mat-card *ngFor="let avatar_img of avatar">
-                <div class="avatar">
-                    <img src="../../assets/images/main/staycation-details/avatarreviewer.png" loading="lazy"
-                        alt="Avatar" [draggable]="false">
-                </div>
-                <div class="desc_wrapper">
-                    <div class="title">Message</div>
-                    <div class="desc">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis, odio temporibus accusamus
-                            officia vero deleniti natus quo enim harum corporis itaque error eligendi consequatur
-                            nesciunt
-                            ad labore veritatis illo laudantium.</p>
+            <div *ngIf="dataNotif.length > 0">
+                <mat-card *ngFor="let booking of dataNotif; let i = index">
+                    <div class="avatar">
+                        <img src="{{booking.avatar}}" loading="lazy" alt="Avatar" [draggable]="false">
                     </div>
-                </div>
-            </mat-card>
-        </div>
-            <div class="not-found" *ngIf="avatar === 0">
+                    <div class="desc_wrapper">
+                        <div class="title">{{booking.title}}</div>
+                        <div class="desc">
+                            {{booking.desc}}
+                        </div>
+                        <div class="date">
+                            {{booking.date}}
+                        </div>
+                    </div>
+                    <button class="close-button-small" (click)="deleteCard(i)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-card>
+            </div>
+            <div class="not-found" *ngIf="dataNotif.length === 0">
                 You don't have notification right now.
             </div>
-    </div>
+        </div>
     </div>
 </div>

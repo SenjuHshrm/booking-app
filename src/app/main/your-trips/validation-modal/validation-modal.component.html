@@ -1,0 +1,21 @@
+<div class="validation-modal_trip">
+    <div class="header">
+        <div class="title">
+           Your Trips
+        </div>
+        <div class="close-button-normal" (click)="closeValidation()"><mat-icon>close</mat-icon></div>
+    </div>
+    <hr>
+
+    <div class="content">
+        <div class="name_info">
+            <p>Are you sure you want to remove this<br> <span style="font-weight:bold;">{{data.title}}</span>?</p>
+        </div>
+    </div>
+    <hr>
+
+    <div class="footer">
+        <button class="validate-button-green" (click)="closeValidation()">No</button>
+        <button class="validate-button-green" (click)="onConfirm()">Yes</button>
+    </div>
+</div>

@@ -41,7 +41,7 @@ body {
   src: url(./assets/fonts/Poppins-Bold.ttf);
 }
 
-////////Default Button//////
+////////Line//////
 hr {
   border: 0;
   height: 1px;
@@ -49,6 +49,8 @@ hr {
   padding: 0 !important;
   margin: 0 !important;
 }
+
+////////Circle White Close Button//////
 .button_white_circle {
   border: none;
   background-color: transparent;
@@ -70,6 +72,7 @@ hr {
   }
 }
 
+////////Square Close Button//////
 .square_button {
   font-family: Poppins-Regular;
   width: 100%;
@@ -88,6 +91,9 @@ hr {
   font-weight: bold;
 }
 
+//////
+
+////////Default Button//////
 .remove_default_button {
   border: none;
   background-color: transparent;
@@ -104,6 +110,8 @@ hr {
   }
 }
 
+
+////////Radius Close Button//////
 .square-radius-btn {
   border: none;
   border-radius: 5px;
@@ -132,6 +140,9 @@ hr {
   background-color: #63ab68b9;
 }
 
+/////
+
+////////Main Close Button//////
 .main-button {
   display: block;
   background-color: #63ab68;
@@ -151,6 +162,41 @@ hr {
   color: #63ab68;
 }
 
+////Close Button Small////
+.close-button-small{
+  border-radius: 100%;
+  position: absolute;
+  top:8px;
+  right:10px;
+  color: black;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #63ab68;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:18px;
+  }
+}
+
+.close-button-small:hover {
+  background-color: rgb(180, 180, 180);
+  color: #000000;
+}
+
+
+
+////////Main Close Button Outline//////
 .main-button-outline {
   display: block;
   background-color: transparent;
@@ -171,6 +217,9 @@ hr {
   border: 2px solid white;
 }
 
+////
+
+////////Main Close Button absolute//////
 .close-button {
   border-radius: 100%;
   position: absolute;
@@ -189,6 +238,9 @@ hr {
   mat-icon {
     margin: 0 !important;
     padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -197,6 +249,9 @@ hr {
   color: #63ab68;
 }
 
+////
+
+////////Main Close Button normal//////
 .close-button-normal {
   border-radius: 100%;
   color: black;
@@ -212,6 +267,9 @@ hr {
   mat-icon {
     margin: 0 !important;
     padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -220,12 +278,68 @@ hr {
   color: #63ab68;
 }
 
+////////validation modal btn//////
+.validate-button-green {
+  display: block;
+  background-color: #63ab68;
+  border: none;
+  max-width: fit-content;
+  padding: 0.6rem 3rem 0.6rem 3rem;
+  border-radius: 5rem;
+  font-family: Poppins-regular;
+  font-weight: bolder;
+  white-space: nowrap;
+  color: white;
+  cursor: pointer;
+
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.validate-button-green:hover {
+  background-color: #000000;
+  color: #63ab68;
+}
+
+.validate-button-green-outline {
+  display: block;
+  border: 2px solid #63ab68;
+  max-width: fit-content;
+  padding: 0.6rem 3rem 0.6rem 3rem;
+  border-radius: 5rem;
+  font-family: Poppins-regular;
+  font-weight: bolder;
+  white-space: nowrap;
+  color: #63ab68;
+  background-color: transparent;
+  cursor: pointer;
+
+  mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.validate-button-green-outline:hover {
+  background-color: #000000;
+  color: #63ab68;
+}
+
+
 mat-icon {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-////////Default Button//////
+
 
 .placeholder-message {
   font-size: clamp(1rem, 1vw, 5rem);
