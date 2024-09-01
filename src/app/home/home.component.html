@@ -46,11 +46,11 @@
             <ng-template
               class="custom-swiper-slide"
               swiperSlide
-              *ngFor="let heroimg of heroImages"
+              *ngFor="let heroImg of frontCarousels"
             >
               <div class="images">
                 <img
-                  src="{{ heroimg.images }}"
+                  src="{{ setSrc(heroImg) }}"
                   alt="hero-visual-1"
                   draggable="false"
                   loading="lazy"
@@ -136,16 +136,16 @@
               <ng-template
                 class="custom-swiper-slide"
                 swiperSlide
-                *ngFor="let dest of destinations"
+                *ngFor="let dest of backCarousels"
               >
                 <div class="images">
                   <img
-                    src="{{ dest.images }}"
+                    src="{{ setSrc(dest) }}"
                     alt="images"
                     draggable="false"
                     loading="lazy"
                   />
-                  <div class="desc">{{ dest.description }}</div>
+                  <div class="desc">{{ dest.desc }}</div>
                 </div>
               </ng-template>
             </swiper>

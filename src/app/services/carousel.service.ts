@@ -26,6 +26,12 @@ export class CarouselService {
     );
   }
 
+  public getActiveCarouselByType(type: string): Observable<any> {
+    return this._http.get(
+      `${environment.api}/api/img-carousel/get/list-active/${type}`
+    );
+  }
+
   public updateCarouselImage(
     type: string,
     id: string,
