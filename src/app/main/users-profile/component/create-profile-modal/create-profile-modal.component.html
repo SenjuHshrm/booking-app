@@ -55,6 +55,10 @@
                   formControlName="fName"
                   required
                 />
+                <app-input-error-message
+                  [errors]="fNameErrors"
+                  [form]="userProfileForm"
+                />
               </div>
               <div class="input-wrapper">
                 <div class="label">Middle name</div>
@@ -68,6 +72,10 @@
                   formControlName="lName"
                   required
                 />
+                <app-input-error-message
+                  [errors]="lNameErrors"
+                  [form]="userProfileForm"
+                />
               </div>
               <div class="input-wrapper">
                 <div class="label">Ext. name</div>
@@ -75,7 +83,83 @@
               </div>
               <div class="input-wrapper">
                 <div class="label">Contact Number +63</div>
-                <input type="number" name="contact" formControlName="contact" />
+                <input
+                  type="number"
+                  name="contact"
+                  formControlName="contact"
+                /><app-input-error-message
+                  [errors]="contactErrors"
+                  [form]="userProfileForm"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="your-information-about-your-info">
+          <div class="your-likes">
+            <div class="title">Address Information</div>
+            <div class="info">
+              <div class="input-wrapper">
+                <div class="label">Unit</div>
+                <input type="text" formControlName="unit" required />
+                <app-input-error-message
+                  [errors]="unitErrors"
+                  [form]="userProfileForm"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <div class="label">Street</div>
+                <input type="text" formControlName="street" required />
+                <app-input-error-message
+                  [errors]="streetErrors"
+                  [form]="userProfileForm"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <div class="label">Barangay</div>
+                <input type="text" formControlName="brgy" required />
+                <app-input-error-message
+                  [errors]="brgyErrors"
+                  [form]="userProfileForm"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <div class="label">City</div>
+                <input type="text" formControlName="city" required />
+                <app-input-error-message
+                  [errors]="cityErrors"
+                  [form]="userProfileForm"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <div class="label">Province</div>
+                <input type="text" formControlName="province" required />
+                <app-input-error-message
+                  [errors]="provinceErrors"
+                  [form]="userProfileForm"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <div class="label">Country</div>
+                <input type="text" formControlName="country" required />
+                <app-input-error-message
+                  [errors]="countryErrors"
+                  [form]="userProfileForm"
+                />
+              </div>
+
+              <div class="input-wrapper">
+                <div class="label">Zip</div>
+                <input type="text" formControlName="zip" required />
+                <app-input-error-message
+                  [errors]="zipErrors"
+                  [form]="userProfileForm"
+                />
               </div>
             </div>
           </div>
@@ -108,13 +192,7 @@
             </div>
           </div>
         </div>
-        <button
-          class="main-button"
-          type="submit"
-          [disabled]="!userProfileForm.valid"
-        >
-          Save
-        </button>
+        <button class="main-button" type="submit">Save</button>
       </section>
     </form>
   </div>
