@@ -5,19 +5,17 @@ import { UsersProfileRoutingModule } from './users-profile-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersProfileComponent } from './users-profile.component';
 import { CreateProfileModalComponent } from './component/create-profile-modal/create-profile-modal.component';
-
+import { GlobalsModule } from '../../globals/globals.module';
 
 @NgModule({
-  declarations: [
-    UsersProfileComponent,
-    CreateProfileModalComponent
-  ],
+  declarations: [UsersProfileComponent, CreateProfileModalComponent],
   imports: [
     CommonModule,
     UsersProfileRoutingModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    GlobalsModule,
+  ],
 })
-export class UsersProfileModule { }
+export class UsersProfileModule {}
