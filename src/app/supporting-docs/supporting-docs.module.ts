@@ -6,19 +6,18 @@ import { CommonModule } from '@angular/common';
 
 import { SupportingDocsRoutingModule } from './supporting-docs-routing.module';
 import { SupportingDocsComponent } from './supporting-docs.component';
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    SupportingDocsComponent
-  ],
+  declarations: [SupportingDocsComponent],
   imports: [
     CommonModule,
     SupportingDocsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
-  ]
+    MatSnackBarModule,
+    MatButtonModule,
+  ],
 })
-export class SupportingDocsModule { }
+export class SupportingDocsModule {}

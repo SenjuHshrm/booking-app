@@ -1,10 +1,41 @@
-<div>
-  <h1>Upload supporting documents</h1>
-  <span>Upload any supporting documents pertaining to your added listing. Files can be a proof of ownership of property, or authorization/permit to rent property from you.</span>
-  <form [formGroup]="addDocForm" (ngSubmit)="uploadDocs(addDocForm)">
-    <label for="docs">Upload file</label>
-    <input type="file" name="docs" (change)="onFileSelected($event)" multiple required/>
-    <button type="submit" [disabled]="!addDocForm.valid" *ngIf="!uploading">Upload</button>
-    <mat-progress-spinner [value]="uploadProgress" *ngIf="uploading" mode="determinate" color="primary"></mat-progress-spinner>
-  </form>
+<div class="supporting-documents">
+  <div class="supporting-documents-wrapper">
+    <img src="assets/images/home/header/navigation/tarago.png" />
+    <div class="supporting-form">
+      <h1>Upload supporting documents</h1>
+      <span
+        >Upload any supporting documents pertaining to your added listing. Files
+        can be a proof of ownership of property, or authorization/permit to rent
+        property from you.</span
+      >
+      <form [formGroup]="addDocForm" (ngSubmit)="uploadDocs(addDocForm)">
+        <div class="input-wrapper">
+          <label for="docs">Upload file</label>
+          <input
+            type="file"
+            name="docs"
+            (change)="onFileSelected($event)"
+            multiple
+            required
+          />
+        </div>
+        <div class="button-wrapper">
+          <button
+            mat-raised-button
+            type="submit"
+            [disabled]="!addDocForm.valid"
+            *ngIf="!uploading"
+          >
+            Upload
+          </button>
+        </div>
+        <mat-progress-spinner
+          [value]="uploadProgress"
+          *ngIf="uploading"
+          mode="determinate"
+          color="primary"
+        ></mat-progress-spinner>
+      </form>
+    </div>
+  </div>
 </div>
