@@ -71,23 +71,12 @@ export class MessageFormComponent implements OnInit {
     this.isLoading = true;
     const formData = form.getRawValue();
     const messageData: IMessageInput = {
+      roomId: <string>this.roomDetails?._id,
       from: this.token.sub,
       type: 'text',
       text: formData.message,
     };
 
-    const notMe = this.getOtherMember(this.roomDetails?.members);
-    const id = notMe?._id;
-
-    this.subscription.add(
-      this._message.sendMessage(messageData, id).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-        },
-        error: (error) => {
-          this.isLoading = false;
-        },
-      })
-    );
+    this._socket.emit('MsgSocket', 'msg:chat:receive', messageData);
   }
 }

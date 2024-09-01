@@ -10,6 +10,7 @@ import { Message, RoomMember } from 'src/app/interfaces/message';
 import { Fullname } from 'src/app/interfaces/profile';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
+import { SocketService } from 'src/app/services/socket.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -22,10 +23,20 @@ export class MessageContentComponent implements OnInit {
 
   public token!: ITokenClaims;
 
-  constructor(private _token: TokenService, private _util: BasicUtilService) {}
+  constructor(
+    private _token: TokenService,
+    private _util: BasicUtilService,
+    private _socket: SocketService
+  ) {}
 
   ngOnInit(): void {
     this.token = <ITokenClaims>this._token.decodedToken();
+    // this._socket.listen('MsgSocket', 'msg:chat:send').subscribe({
+    //   next: (res) => {
+    //     console.log(res);
+    //   },
+    //   error: (error) => {},
+    // });
   }
 
   public fullName(name: Fullname): string {

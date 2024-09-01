@@ -1,6 +1,7 @@
 import { Fullname } from './profile';
 
 export interface IMessageInput {
+  roomId?: string;
   from: string;
   type: 'text' | 'media';
   text?: string;
