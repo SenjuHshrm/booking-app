@@ -11,6 +11,8 @@
       (setMessages)="updateMessages($event)"
       (setSelectedId)="updateSelectedRoomId($event)"
       (setRoomDetails)="updateRoomDetails($event)"
+      [limit]="limit"
+      [page]="page"
     />
   </mat-drawer>
   <main class="message-content">
@@ -39,12 +41,16 @@
       <app-message-content
         *ngIf="selectedRoomId !== ''"
         [messageList]="messageList"
-        style="flex: 1; overflow: auto"
+        class="messages-wrapper"
+        (scroll)="handleContentScroll($event)"
+        [messageLoading]="isLoading"
       />
       <div *ngIf="selectedRoomId === ''" class="no-message-found">
-        No Message Found.
+        Select conversation.
       </div>
       <app-message-form
+        *ngIf="roomDetails"
+        (setNewMessage)="handleUpdateMessageList($event)"
         [roomDetails]="roomDetails"
         [selectedRoomId]="selectedRoomId"
       />

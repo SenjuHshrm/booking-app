@@ -14,9 +14,13 @@
 
   <div class="list-card-message">
     <div
-      class="list-card card-list-message"
       *ngFor="let room of messageList"
-      (click)="handleGetRoomMessages(room._id)"
+      [ngClass]="{
+        'active-card-list':
+          activeRoomDetails && activeRoomDetails._id === room?._id
+      }"
+      class="list-card card-list-message"
+      (click)="handleGetRoomMessages(room._id, limit, 1)"
     >
       <div class="time-sent">{{ duration(room.lastMsg) }}</div>
       <div class="list-card-content">
@@ -31,7 +35,7 @@
         <div class="message-name">
           <div class="name">{{ fullName(room.members) }}</div>
           <div class="message">
-            {{ room.msgPrev }}
+            <span *ngIf="isAuthor(room)">You: </span>{{ room.msgPrev }}
           </div>
         </div>
       </div>

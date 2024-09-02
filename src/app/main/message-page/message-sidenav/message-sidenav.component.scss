@@ -120,6 +120,12 @@
     flex-direction: column;
     gap: 0.5rem;
 
+    .active-card-list {
+      background-color: rgba(211, 211, 211, 0.377);
+      border-color: #68a86a;
+      border-width: 2px;
+    }
+
     .list-card {
       height: 6.5rem;
       min-height: 6.5rem;

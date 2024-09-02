@@ -159,46 +159,25 @@ export class BasicUtilService {
 
   public calculateMessageDuration(createdAt: string): string {
     let res: string = 'New Message';
-    let start = moment(createdAt);
-    let end = moment(new Date());
-    let durationDays = end.diff(start, 'days');
-    let durationWeeks = end.diff(start, 'weeks');
-    let durationMonths = end.diff(start, 'months');
-    let durationYears = end.diff(start, 'years');
-    if (
-      durationDays >= 1 &&
-      durationWeeks === 0 &&
-      durationMonths === 0 &&
-      durationYears === 0
-    ) {
-      res = `${durationDays} ${durationDays > 1 ? 'days' : 'day'} on TaraGo`;
-    } else if (
-      durationDays > 1 &&
-      durationWeeks >= 1 &&
-      durationMonths === 0 &&
-      durationYears === 0
-    ) {
-      res = `${durationWeeks} ${
-        durationWeeks > 1 ? 'weeks' : 'week'
-      } on TaraGo`;
-    } else if (
-      durationDays > 1 &&
-      durationWeeks > 4 &&
-      durationMonths >= 1 &&
-      durationYears === 0
-    ) {
-      res = `${durationMonths} ${
-        durationMonths > 1 ? 'months' : 'month'
-      } on TaraGo`;
-    } else if (
-      durationDays > 1 &&
-      durationWeeks > 4 &&
-      durationMonths > 1 &&
-      durationYears >= 1
-    ) {
-      res = `${durationYears} ${
-        durationYears > 1 ? 'years' : 'year'
-      } on TaraGo`;
+    const now = moment();
+    const created = moment(createdAt);
+    const diffSeconds = now.diff(created, 'seconds');
+    const diffMinutes = now.diff(created, 'minutes');
+    const diffHours = now.diff(created, 'hours');
+    const diffDays = now.diff(created, 'days');
+
+    let returnPlural = (num: number): string => {
+      return num > 1 ? 's' : '';
+    };
+
+    if (diffSeconds < 60) {
+      res = `${diffSeconds} second${returnPlural(diffSeconds)} ago`;
+    } else if (diffMinutes < 60) {
+      res = `${diffMinutes} minute${returnPlural(diffMinutes)} ago`;
+    } else if (diffHours < 24) {
+      return `${diffHours} hour${returnPlural(diffHours)} ago`;
+    } else {
+      res = `${diffDays} day${returnPlural(diffDays)} ago`;
     }
     return res;
   }

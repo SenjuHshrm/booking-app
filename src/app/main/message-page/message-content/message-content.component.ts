@@ -20,23 +20,14 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class MessageContentComponent implements OnInit {
   @Input() messageList: Message[] = [];
+  @Input() messageLoading: boolean = false;
 
   public token!: ITokenClaims;
 
-  constructor(
-    private _token: TokenService,
-    private _util: BasicUtilService,
-    private _socket: SocketService
-  ) {}
+  constructor(private _token: TokenService, private _util: BasicUtilService) {}
 
   ngOnInit(): void {
     this.token = <ITokenClaims>this._token.decodedToken();
-    // this._socket.listen('MsgSocket', 'msg:chat:send').subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //   },
-    //   error: (error) => {},
-    // });
   }
 
   public fullName(name: Fullname): string {

@@ -19,6 +19,7 @@ export interface MessageList {
   lastMsg: string;
   members: RoomMember[];
   msgPrev: string;
+  from: string;
 }
 
 export interface MessageFrom {
