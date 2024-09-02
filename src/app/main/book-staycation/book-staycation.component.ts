@@ -1,3 +1,7 @@
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { catchError, switchMap } from 'rxjs/operators';
+import { ITokenClaims } from './../../interfaces/token';
+import { TokenService } from './../../services/token.service';
 import { ProceedPaymentComponent } from './proceed-payment/proceed-payment.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from './../../../environments/environment';
@@ -16,7 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MoreInfoComponent } from './more-info/more-info.component';
 import { BookingTermsComponent } from 'src/app/globals/booking-terms/booking-terms.component';
 import { CancelPolicyLearnmoreComponent } from 'src/app/globals/cancel-policy-learnmore/cancel-policy-learnmore.component';
-import { forkJoin } from 'rxjs';
+import { concat, concatWith, forkJoin, interval, map, Observable, of, take } from 'rxjs';
 import * as moment from 'moment';
 
 @Component({
@@ -35,31 +39,116 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
   public totalBeforeTax: number = 0;
   public staycationDetails: any;
   public selectedCancellation: any;
+  public _claims!: ITokenClaims;
+  public userPaymentMethods: any = [];
+  public cardInfo: any = []
+  public selectedPaymentMethod: string = ''
 
   public selectedPaymentType: string = ''
-  public cardPayment: any = {
-    cardNumber: '',
-    expiration: {
-      month: '',
-      year: ''
-    },
-    cvv: '',
-    address: {
-      line1: '',
-      line2: '',
-      city: '',
-      state: '',
-      country: 'PH',
-      zip: ''
-    },
-    name: '',
-    email: '',
-    phone: ''
+  // public cardPayment: any = {
+  //   cardNumber: '',
+  //   expiration: {
+  //     month: '',
+  //     year: ''
+  //   },
+  //   cvv: '',
+  //   name: '',
+  //   contact: ''
+  // }
+  // public gcashPayment: any = {
+  //   fullName: '',
+  //   acctNum: ''
+  // }
+
+  public cardPaymentForm!: FormGroup
+  public gcashPaymentForm!: FormGroup
+
+  public cardPaymentFormValidation: any = {
+    card: [
+      { type: 'required', msg: 'Card number required' },
+      { type: 'maxLength', msg: 'Maximum length should be 16' },
+      { type: 'luhnCheck', msg: 'Card number invalid' }
+    ],
+    expiryMonth: [
+      { type: 'required', msg: 'Expiry Month required' },
+      { type: 'max', msg: 'Maximum should be 12' },
+    ],
+    expiryYear: [
+      { type: 'required', msg: 'Expiry Year required' },
+      { type: 'max', msg: 'Maximum should be 99' }
+    ],
+    cvv: [
+      { type: 'required', msg: 'CVV required' },
+      { type: 'max', msg: 'Maximum should be 999' },
+    ],
+    name: [
+      { type: 'required', msg: 'Name on card required' }
+    ],
+    contact: [
+      { type: 'required', msg: 'Contact number required' }
+    ],
+  }
+  
+  options = [
+    { label: 'Pay now', price:2500, duedate:'February 13,2024', value: '1' },
+    { label: 'Pay part now, part later', price:1250, duedate:'February 30,2024', value: '2' },
+  ];
+
+  discount: any;
+
+  
+
+  constructor(
+    private router: Router,
+    private _activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    private _staycation: StaycationService,
+    private _gs: GlobalStaticService,
+    private _basicUtil: BasicUtilService,
+    private _discount: DiscountService,
+    private _cancellation: CancellationService,
+    private _payment: PaymentService,
+    private _sb: MatSnackBar,
+    private _token: TokenService,
+    private _fb: FormBuilder,
+    private _book: BookingService
+  ) { }
+
+  ngOnInit(): void {
+    this._claims = <ITokenClaims>this._token.decodedToken()
+    this._activatedRoute.queryParamMap.subscribe({
+      next: (v: ParamMap) => {
+        this.guests = JSON.parse(<string>v.get('guests'))
+        this.duration = JSON.parse(<string>v.get('duration'))
+        this._calculateDuration()
+        this._getStaycationDetailsAndTaxes(<string>v.get('staycationId'))
+        this.selectedCancellation = JSON.parse(<string>v.get('cancellation'))
+
+        this.initForm()
+
+        // this._getPaymentMethod()
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
     
   }
-  public gcashPayment: any = {
-    fullName: '',
-    acctNum: ''
+
+  public initForm() {
+    this.cardPaymentForm = this._fb.group({
+      card: ['', [Validators.required, Validators.maxLength(16), this._luhnValidator]],
+      expiryMonth: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
+      expiryYear: ['', [Validators.required, Validators.min(1), Validators.max(99)]],
+      cvv: ['', [Validators.required, Validators.max(999)]],
+      name: ['', Validators.required],
+      contact: ['', Validators.required]
+    })
+
+    this.gcashPaymentForm = this._fb.group({
+      acctName: ['', [Validators.required]],
+      acctNumber: ['', [Validators.required]]
+    })
   }
 
   onClickMore(): void {
@@ -94,137 +183,94 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
     const inputElement = event.target as HTMLInputElement;
     this.selectedValue = inputElement.value;
   }
-  
-  options = [
-    { label: 'Pay now', price:2500, duedate:'February 13,2024', value: '1' },
-    { label: 'Pay part now, part later', price:1250, duedate:'February 30,2024', value: '2' },
-  ];
 
-  discount: any;
-
-  constructor(
-    private router: Router,
-    private _activatedRoute: ActivatedRoute,
-    public dialog: MatDialog,
-    private _staycation: StaycationService,
-    private _gs: GlobalStaticService,
-    private _basicUtil: BasicUtilService,
-    private _discount: DiscountService,
-    private _cancellation: CancellationService,
-    private _payment: PaymentService,
-    private _sb: MatSnackBar
-  ) {
-
+  onSelectPaymentMethod(event: Event) {
+    const inputElement = <HTMLInputElement>(event.target)
+    this.selectedPaymentMethod = inputElement.value
   }
 
-  ngOnInit(): void {
-    this._activatedRoute.queryParamMap.subscribe({
-      next: (v: ParamMap) => {
-        this.guests = JSON.parse(<string>v.get('guests'))
-        this.duration = JSON.parse(<string>v.get('duration'))
-        this._calculateDuration()
-        this._getStaycationDetailsAndTaxes(<string>v.get('staycationId'))
-        this.selectedCancellation = JSON.parse(<string>v.get('cancellation'))
+  private _initiatePaymentIntent() {
+    let i = this.options.findIndex((o: any) => o.value === this.selectedValue)
+    let j = this.userPaymentMethods.findIndex((c: any) => c._id === this.selectedPaymentMethod)
+    let k = this.cardInfo.findIndex((x: any) => x._id === this.selectedPaymentMethod)
+    let initPaymentIntent = {
+      paymentOpt: (this.selectedValue === '1') ? 'full' : 'downpayment',
+      amount: this.options[i].price,
+      staycationId: this.staycationDetails._id,
+      paymentType: this.cardInfo[k].type,
+      remainingBal: (this.selectedValue === '2') ? this.options[i].price : 0,
+      remainingBalDue: (this.selectedValue === '2') ? this.options[i].duedate : '',
+    }
+    let createPaymentIntent$ = this._payment.createPaymentIntent(initPaymentIntent)
+    createPaymentIntent$.pipe(
+      switchMap((x) => {
+        let att = {
+          id: this.userPaymentMethods[j].pmId,
+          checkInDate: moment(this.duration.start).format('MM/DD/YYYY'),
+          cancellationPolicy: this.selectedCancellation.value,
+          bookingProcess: this.staycationDetails.bookingProcess
+        }
+        return this._payment.attachToPaymentIntent(att, x.data.id)
+      }),
+      catchError(err => {
+        return err
+      })
+    ).subscribe({
+      next: (res: any) => {
+        console.log(res)
+      },
+      error: (e: any) => {
+        console.log(e)
       }
     })
   }
 
-  ngOnDestroy(): void {
-    
-  }
+  public initiateBooking() {
+    // this._initiatePaymentIntent()
 
-  public initiatePaymentIntent() {
-    let data: any;
+    // if(this.staycationDetails.bookingProcess === 'for_approval') {
+
+    // } else {
+    //   // this._initiatePaymentIntent()
+    // }
+    // console.log(this.cardPaymentForm.getRawValue())
     let i = this.options.findIndex((o: any) => o.value === this.selectedValue)
-    data = {
-      paymentOpt: (this.selectedValue === '1') ? 'full' : 'downpayment',
-      price: this.options[i].price,
-      secondPayment: (this.selectedValue === '2') ? this.options[i].price : 0,
-      secondPaymentDue: (this.selectedValue === '2') ? this.options[i].duedate : '',
-      paymentMethod: this.selectedPaymentType,
-      info: (this.selectedPaymentType === 'card') ? this.cardPayment : this.gcashPayment
-    }
-    let initPaymentIntent = {
-      paymentOpt: (this.selectedValue === '1') ? 'full' : 'downpayment',
-      paymentType: this.selectedPaymentType,
-      staycationId: this.staycationDetails._id,
-      amount: this.options[i].price,
-      remainingBal: (this.selectedValue === '2') ? this.options[i].price : 0,
-      remainingBalDue: (this.selectedValue === '2') ? this.options[i].duedate : ''
-    }
-    this._payment.createPaymentIntent(initPaymentIntent).subscribe({
-      next: (res: any) => {
-        let pm = (this.selectedPaymentType === 'card') ? {
-          type: this.selectedPaymentType,
-          details: {
-            card_number: this.cardPayment.cardNumber,
-            exp_month: parseInt(this.cardPayment.expiration.month),
-            exp_year: parseInt(this.cardPayment.expiration.year),
-            cvc: this.cardPayment.cvv
-          },
-          billing: {
-            address: {
-              line1: this.cardPayment.address.line1,
-              line2: this.cardPayment.address.line2,
-              city: this.cardPayment.address.city,
-              state: this.cardPayment.address.state,
-              postal_code: this.cardPayment.address.zip,
-              country: this.cardPayment.address.country
-            },
-            name: this.cardPayment.name,
-            email: this.cardPayment.email,
-            phone: this.cardPayment.phone
-          }
-        } : {
-          type: this.selectedPaymentType,
-          billing: {
-            address: {
-              line1: this.cardPayment.address.line1,
-              line2: this.cardPayment.address.line2,
-              city: this.cardPayment.address.city,
-              state: this.cardPayment.address.state,
-              postal_code: this.cardPayment.address.zip,
-              country: this.cardPayment.address.country
-            },
-            name: this.cardPayment.name,
-            email: this.cardPayment.email,
-            phone: this.cardPayment.phone
-          }
-        }
-        this._payment.createPaymentMethod({ data: { attributes: pm } }).subscribe({
-          next: (resp: any) => {
-            console.log(resp)
-            let att = {
-              id: resp.data.id,
-              checkInDate: moment(this.duration.start).format('MM/DD/YYYY'),
-              cancellationPolicy: this.selectedCancellation.value,
-              bookingProcess: this.staycationDetails.bookingProcess
-            }
-            this._payment.attachToPaymentIntent(att, res.data.id).subscribe({
-              next: (y: any) => {
-                switch(this.staycationDetails.bookingProcess) {
-                  case "for_approval":
-                    this._sb.open('Booking requested sucessfully', 'OK', { duration: 2500 })
-                    this.router.navigate(['/main'])
-                    break;
-                  case "instant":
-                    this.dialog.open(ProceedPaymentComponent, {
-                      width: '90vw',
-                      height: '90vh',
-                      data: y.data.attributes,
-                      disableClose: true
-                    })
-                    break;
-                }
-              }
-            })
-          }
-        })
+    let data = {
+      booking: {
+        initiatedBy: this._claims.sub,
+        bookTo: this.staycationDetails._id,
+        arrivalDate: moment(this.duration.start).format('MM/DD/YYYY'),
+        details: this.guests,
+        isCancelled: false,
+        cancellationPolicy: this.selectedCancellation.value,
+        isApproved: this.staycationDetails.bookingProcess === 'instant'
       },
-      error: ({ error }) => {
+      transaction: {
+        userId: this._claims.sub,
+        staycationId: this.staycationDetails._id,
+        piId: 'temp_payment_intent_id',
+        amount: this.totalBeforeTax,
+        paymentType: this.selectedValue === '1' ? 'full' : 'downpayment',
+        remainingBal: this.selectedValue === '2' ? this.options[i].price : 0,
+        remainingBalDue: this.selectedValue === '2' ? this.options[i].duedate : '',
+        clientKey: 'temp_client_key',
+        status: '',
+        checkoutURL: ''
+      }
+    }
+    this._book.tempBooking(data).subscribe({
+      next: (res: any) => {
+        console.log(res)
+      },
+      error: ({error}) => {
         console.log(error)
       }
     })
+  }
+
+  public checkNumberInput(e: Event): any {
+    let match = new RegExp(/^[0-9]/, 'ig')
+    if(!(<KeyboardEvent>e).key.match(match)) return false;
   }
 
   private _calculateDuration() {
@@ -239,7 +285,7 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
     forkJoin([staycation$, taxes$]).subscribe(([staycation, taxes]) => {
       this.staycationDetails = { ...staycation, cover: `${environment.api}${staycation.cover}` }
       this.serviceCharge = this._basicUtil.taxTotal(staycation.price, taxes.data) * this.nights
-      this.totalBeforeTax = (staycation.price * this.nights) + this.serviceCharge
+      this.totalBeforeTax = parseFloat(((staycation.price * this.nights) + this.serviceCharge).toFixed(2))
       
       this._setDiscount()
       this._setOptions()
@@ -256,7 +302,7 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
     if(range > 12) {
       this.options.push({
         label: 'Pay part now, pay later',
-        price: this.totalBeforeTax * .5,
+        price: parseFloat((this.totalBeforeTax * .5).toFixed(2)),
         duedate: checkInDay.subtract(12, 'days').format('MMMM DD, YYYY'),
         value: '2'
       })
@@ -269,7 +315,66 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
     let dsc = (this.selectedCancellation.code === '2') ? (dscVal + 10) / 100 : dscVal / 100;
     this.discount = { ...this._discount.discounts[i], value: dsc }
     let discountPrice = this.totalBeforeTax * this.discount.value
-    this.totalBeforeTax = this.totalBeforeTax - discountPrice
+    this.totalBeforeTax = parseFloat((this.totalBeforeTax - discountPrice).toFixed(2))
   }
+
+  private _luhnValidator = (): ValidatorFn => {
+    return (ctl: AbstractControl) => {
+      const isValid = this._luhnCheck(ctl.value)
+      return isValid ? null : { 'luhnCheck': isValid }
+    }
+  }
+
+  private _luhnCheck = (cardNumber: string): boolean => {
+    if(!cardNumber.length) return false;
+    cardNumber = cardNumber.replace(/\s/g, '');
+    const lastDigit = Number(cardNumber[cardNumber.length - 1])
+    const reverseCardNumber = cardNumber.slice(0, cardNumber.length - 1).split('').reverse().map(x => Number(x));
+    let sum = 0;
+    for(let i = 0; i <= reverseCardNumber.length - 1; i += 2) {
+      reverseCardNumber[i] = reverseCardNumber[i] * 2
+      if(reverseCardNumber[i] > 9) {
+        reverseCardNumber[i] = reverseCardNumber[i] - 9
+      }
+    }
+    sum = reverseCardNumber.reduce((acc, currValue) => (acc + currValue), 0)
+    return ((sum + lastDigit) % 10 === 0);
+  }
+
+  // private _getPaymentMethod() {
+  //   this.userPaymentMethods = []
+  //   this._payment.getUserPaymentMethod(this._claims.sub).subscribe({
+  //     next: (res: any) => {
+  //       if(res.length > 0) {
+  //         res.forEach((pm: any) => {
+  //           this.userPaymentMethods.push({
+  //             ...pm,
+  //             details: this._payment.getPaymentMethod(pm.pmId)
+  //           })
+  //         })
+  //         this._getPMDetails()
+  //       }
+  //     }
+  //   })
+  // }
+
+  // private _getPMDetails() {
+  //   this.cardInfo = []
+  //   let obs$: Observable<any>[] = this.userPaymentMethods.map((pm: any) => pm.details)
+  //   forkJoin(obs$).subscribe(([...obs]) => {
+  //     obs.forEach((ob: any) => {
+  //       let i = this.userPaymentMethods.findIndex((pm: any) => pm.pmId === ob.data.id)
+  //       let { data } = ob
+  //       this.cardInfo.push({
+  //         _id: this.userPaymentMethods[i]._id,
+  //         type: data.attributes.type,
+  //         cardIcon: (data.attributes.type === 'gcash') ? '../../assets/images/main/account-settings/gcash.png' : '../../assets/images/main/account-settings/bankicon.png',
+  //         details: data.attributes.details,
+  //         billing: data.attributes.billing,
+  //         default: this.userPaymentMethods[i].isDefault
+  //       })
+  //     })
+  //   })
+  // }
 
 }

@@ -1,4 +1,4 @@
-<div class="book-staycation" [@fadeInAnimation]>
+<div class="book-staycation" [@fadeInAnimation] *ngIf="staycationDetails">
     <div class="book-staycation-book-staycation-wrapper">
         <header class="booking-header">
             <button (click)="backToBookingDetails()">
@@ -54,67 +54,67 @@
                             <div class="title">Pay with</div>
                             <div class="wallet-icons">
                                 <div><img src="../../assets/images/main/book-staycation/visa.png" loading="lazy"
-                                        alt="Avatar" [draggable]="false"></div>
+                                        alt="Avatar" [draggable]="false" *ngIf="selectedPaymentType === 'card'"></div>
                                 <div><img src="../../assets/images/main/book-staycation/mastercard.png" loading="lazy"
-                                        alt="Avatar" [draggable]="false"></div>
+                                        alt="Avatar" [draggable]="false" *ngIf="selectedPaymentType === 'card'"></div>
                                 <div><img src="../../assets/images/main/book-staycation/gcash.png" loading="lazy"
-                                        alt="Avatar" [draggable]="false"></div>
+                                        alt="Avatar" [draggable]="false" *ngIf="selectedPaymentType === 'gcash'"></div>
                             </div>
                         </div>
                         <div class="payment-card-select custom-select">
-                            <select id="treats" name="treats" [(ngModel)]="selectedPaymentType">
+                            <select id="treats" name="treats" [(ngModel)]="selectedPaymentType" (change)="initForm()">
                                 <option value="card">Credit Card or debit card</option>
                                 <option value="gcash">Gcash</option>
                             </select>
                         </div>
-                        <ng-template [ngIf]="selectedPaymentType === 'card'">
+                        <ng-template [ngIf]="selectedPaymentType === 'card'" [formGroup]="cardPaymentForm">
                             <div class="zip-code">
-                                <input type="text" alt="ccv" name="cardNumber" [(ngModel)]="cardPayment.cardNumber" pattern="[0-9]{16}" placeholder="Card Number" maxlength="16" />
+                                <input type="text" alt="ccv" name="cardNumber" formControlName="card" pattern="[0-9]{16}" placeholder="Card Number" maxlength="16" (keypress)="checkNumberInput($event)" />
+                                <!-- <ng-container *ngFor="let v of cardPaymentFormValidation.card">
+                                    <span class="val-err-msg" *ngIf="cardPaymentForm.get('card')?.hasError(v.type) && (cardPaymentForm.get('card')?.dirty || cardPaymentForm.get('card')?.touched)">{{ v.msg }}</span>
+                                </ng-container> -->
                             </div>
                             <div class="wrapper">
     
                                 <div class="expiration-style date-cvv">
                                     <div>Expiration</div>
-                                    <input type="text" name="expirationMonth" class="custom-date-input" [(ngModel)]="cardPayment.expiration.month" pattern="[0-9]{2}" placeholder="MM" maxlength="2" min="12" />
-                                    <input type="text" name="expirationYear" class="custom-date-input" [(ngModel)]="cardPayment.expiration.year" pattern="[0-9]{2}" placeholder="YY" maxlength="2" min="99" />
+                                    <input type="text" name="expirationMonth" class="custom-date-input" formControlName="expiryMonth" pattern="[0-9]{2}" placeholder="MM" maxlength="2" max="12" (keypress)="checkNumberInput($event)" />
+                                    <!-- <ng-container *ngFor="let v of cardPaymentFormValidation.expiryMonth">
+                                        <span class="val-err-msg" *ngIf="cardPaymentForm.get('expiryMonth')?.hasError(v.type) && (cardPaymentForm.get('expiryMonth')?.dirty || cardPaymentForm.get('expiryMonth')?.touched)">{{ v.msg }}</span>
+                                    </ng-container> -->
+                                    <input type="text" name="expirationYear" class="custom-date-input" formControlName="expiryYear" pattern="[0-9]{2}" placeholder="YY" maxlength="2" max="99" (keypress)="checkNumberInput($event)" />
+                                    <!-- <ng-container *ngFor="let v of cardPaymentFormValidation.expiryYear">
+                                        <span class="val-err-msg" *ngIf="cardPaymentForm.get('expiryYear')?.hasError(v.type) && (cardPaymentForm.get('expiryYear')?.dirty || cardPaymentForm.get('expiryYear')?.touched)">{{ v.msg }}</span>
+                                    </ng-container> -->
                                 </div>
     
                                 <div class="ccv-input">
-                                    <input type="text" name="ccv" [(ngModel)]="cardPayment.cvv" pattern="[0-9]{3}" placeholder="CVV" max="999" maxlength="3"/>
+                                    <input type="text" name="cvv" formControlName="cvv" pattern="[0-9]{3}" placeholder="CVV" max="999" maxlength="3" (keypress)="checkNumberInput($event)" />
+                                    <!-- <ng-container *ngFor="let v of cardPaymentFormValidation.cvv">
+                                        <span class="val-err-msg" *ngIf="cardPaymentForm.get('cvv')?.hasError(v.type) && (cardPaymentForm.get('cvv')?.dirty || cardPaymentForm.get('cvv')?.touched)">{{ v.msg }}</span>
+                                    </ng-container> -->
                                 </div>
                             </div>
                             <div class="zip-code">
-                                <input type="text" name="addressLine1" [(ngModel)]="cardPayment.address.line1" placeholder="Address (Line 1)" />
+                                <input type="text" name="name" formControlName="name" placeholder="Name on Card" />
+                                <!-- <ng-container *ngFor="let v of cardPaymentFormValidation.name">
+                                    <span class="val-err-msg" *ngIf="cardPaymentForm.get('name')?.hasError(v.type) && (cardPaymentForm.get('name')?.dirty || cardPaymentForm.get('name')?.touched)">{{ v.msg }}</span>
+                                </ng-container> -->
                             </div>
                             <div class="zip-code">
-                                <input type="text" name="addressLine2" [(ngModel)]="cardPayment.address.line2" placeholder="Address (Line 2)" />
-                            </div>
-                            <div class="zip-code">
-                                <input type="text" name="addressCity" [(ngModel)]="cardPayment.address.city" placeholder="City" />
-                            </div>
-                            <div class="zip-code">
-                                <input type="text" name="addressState" [(ngModel)]="cardPayment.address.state" placeholder="State" />
-                            </div>
-                            <div class="zip-code">
-                                <input type="number" name="addressZip" [(ngModel)]="cardPayment.address.zip" placeholder="Zipcode" />
-                            </div>
-                            <div class="zip-code">
-                                <input type="text" name="name" [(ngModel)]="cardPayment.name" placeholder="Name on Card" />
-                            </div>
-                            <div class="zip-code">
-                                <input type="text" name="email" [(ngModel)]="cardPayment.email" placeholder="Email" />
-                            </div>
-                            <div class="zip-code">
-                                <input type="text" name="contact" [(ngModel)]="cardPayment.phone" placeholder="Phone Number" />
+                                <input type="text" name="name" formControlName="contact" placeholder="Contact Number" />
+                                <!-- <ng-container *ngFor="let v of cardPaymentFormValidation.contact">
+                                    <span class="val-err-msg" *ngIf="cardPaymentForm.get('contact')?.hasError(v.type) && (cardPaymentForm.get('contact')?.dirty || cardPaymentForm.get('contact')?.touched)">{{ v.msg }}</span>
+                                </ng-container> -->
                             </div>
                         </ng-template>
 
-                        <ng-template [ngIf]="selectedPaymentType === 'gcash'">
+                        <ng-template [ngIf]="selectedPaymentType === 'gcash'" [formGroup]="gcashPaymentForm">
                             <div class="zip-code">
-                                <input type="text" name="fullname" [(ngModel)]="gcashPayment.fullName" placeholder="Account name"/>
+                                <input type="text" name="fullname" formControlName="acctName" placeholder="Account name"/>
                             </div>
                             <div class="zip-code">
-                                <input type="tel" name="cellnum" [(ngModel)]="gcashPayment.acctNum" placeholder="Account number"/>
+                                <input type="tel" name="cellnum" formControlName="acctNumber" placeholder="Account number"/>
                             </div>
                         </ng-template>
 
@@ -154,7 +154,7 @@
                             booking
                             request.</p>
                     </div>
-                    <button (click)="initiatePaymentIntent()">Request to book</button>
+                    <button (click)="initiateBooking()" [disabled]="(!cardPaymentForm.valid && !gcashPaymentForm.valid) || selectedValue === ''">Request to book</button>
                 </div>
             </div>
             <div class="price-details">

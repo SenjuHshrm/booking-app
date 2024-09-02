@@ -147,7 +147,7 @@ export class BasicUtilService {
       }
     });
     // return Math.ceil(res)
-    return res;
+    return parseFloat((res).toFixed(2));
   }
 
   public isFormInputValid(form: FormGroup, field: string): boolean {
