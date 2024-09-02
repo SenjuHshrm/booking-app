@@ -1,16 +1,18 @@
 import { SocketService } from './../../../services/socket.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { FormErrorMessage } from 'src/app/interfaces/input-error-message';
-import { IMessageInput, MessageList } from 'src/app/interfaces/message';
+import {
+  IMessageInput,
+  Message,
+  MessageList,
+} from 'src/app/interfaces/message';
 import { ITokenClaims } from 'src/app/interfaces/token';
-import { MessageService } from 'src/app/services/message.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -21,15 +23,13 @@ import { TokenService } from 'src/app/services/token.service';
 export class MessageFormComponent implements OnInit {
   @Input() roomDetails: MessageList | null = null;
   @Input() selectedRoomId: string = '';
+  @Output() setNewMessage = new EventEmitter<Message>();
 
   public token!: ITokenClaims;
   public isLoading: boolean = false;
 
-  private subscription: Subscription = new Subscription();
-
   constructor(
     private fb: FormBuilder,
-    private _message: MessageService,
     private _token: TokenService,
     private _socket: SocketService
   ) {}
@@ -58,9 +58,9 @@ export class MessageFormComponent implements OnInit {
     });
   }
 
-  private getOtherMember(members: any): any {
+  private getMyName(members: any): any {
     const notMe: any = members.find(
-      (member: any) => member._id !== this.token.sub
+      (member: any) => member._id === this.token.sub
     );
     return notMe;
   }
@@ -68,7 +68,7 @@ export class MessageFormComponent implements OnInit {
   onSubmit(form: FormGroup): void {
     if (this.selectedRoomId === '') return;
     if (!form.valid) return;
-    this.isLoading = true;
+
     const formData = form.getRawValue();
     const messageData: IMessageInput = {
       roomId: <string>this.roomDetails?._id,
@@ -76,7 +76,26 @@ export class MessageFormComponent implements OnInit {
       type: 'text',
       text: formData.message,
     };
-
     this._socket.emit('MsgSocket', 'msg:chat:receive', messageData);
+
+    const newMessage: Message = {
+      _id: '',
+      roomId: <string>this.roomDetails?._id,
+      from: {
+        _id: this.token.sub,
+        name: this.getMyName(this.roomDetails?.members)?.name,
+        img: this.token.img,
+      },
+      type: messageData.type,
+      isRead: false,
+      createdAt: new Date().toISOString(),
+    };
+    if (messageData.type === 'text') {
+      newMessage.text = messageData.text;
+    } else {
+      // newMessage.media = res.media;
+    }
+    this.setNewMessage.emit(newMessage);
+    form.reset();
   }
 }

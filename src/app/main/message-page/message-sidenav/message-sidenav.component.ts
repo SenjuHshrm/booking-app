@@ -21,12 +21,15 @@ import { TokenService } from 'src/app/services/token.service';
 export class MessageSidenavComponent implements OnInit, OnDestroy {
   @Input() isMobile: boolean = false;
   @Input() togleDrawer!: () => void;
+  @Input() limit: number = 20;
+  @Input() page: number = 1;
 
   @Output() setMessages = new EventEmitter<Message[]>();
   @Output() setSelectedId = new EventEmitter<string>();
   @Output() setRoomDetails = new EventEmitter<MessageList>();
 
   public messageList: MessageList[] = [];
+  public activeRoomDetails!: MessageList;
 
   private subscription: Subscription = new Subscription();
   private token!: ITokenClaims;
@@ -42,7 +45,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this._message.getMessageRoomsByUserId(this.token.sub).subscribe({
         next: (res) => {
-          this.messageList = <MessageList[]>res;
+          this.messageList = this.sortMessageList(<MessageList[]>res);
         },
         error: (error) => {
           console.log(error);
@@ -51,23 +54,34 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
     );
   }
 
+  private sortMessageList(data: MessageList[]): MessageList[] {
+    return data.sort(
+      (a: MessageList, b: MessageList) =>
+        new Date(b.lastMsg).getTime() - new Date(a.lastMsg).getTime()
+    );
+  }
+
   ngOnDestroy(): void {
-    if (this.subscription.closed && !this.subscription) return;
+    if (!this.subscription) return;
     this.subscription.unsubscribe();
   }
 
-  public handleGetRoomMessages(id: string): void {
+  public handleGetRoomMessages(id: string, limit: number, page: number): void {
+    if (page === 1) this.setMessages.emit([]);
+
     this.subscription.add(
-      this._message.getRoomMessages(id, 20, 1).subscribe({
+      this._message.getRoomMessages(id, limit, page).subscribe({
         next: (res) => {
           if (res.length > 0) {
             const details: MessageList | undefined = this.messageList.find(
               (detail) => detail._id === id
             );
-            const data: Message[] = <Message[]>res;
+            const data: Message[] = this.sortMessage(<Message[]>res);
             this.setMessages.emit(data);
             this.setSelectedId.emit(data[0]._id);
             this.setRoomDetails.emit(details);
+            this.activeRoomDetails = <MessageList>details;
+            this.page = page;
           }
         },
         error: (error) => {
@@ -75,6 +89,26 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
         },
       })
     );
+  }
+
+  private sortMessage(data: Message[]): Message[] {
+    return data.sort(
+      (a: Message, b: Message) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }
+
+  public updateRoomData(item: Message): void {
+    if (item.type === 'text') {
+      this.activeRoomDetails.msgPrev = <string>item.text;
+    }
+
+    if (item.type === 'media') {
+    }
+
+    this.activeRoomDetails.lastMsg = item.createdAt;
+    this.activeRoomDetails.from = item.from._id;
+    this.messageList = this.sortMessageList(this.messageList);
   }
 
   private getOtherMember(members: RoomMember[]): RoomMember {
@@ -86,7 +120,6 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
 
   public fullName(members: RoomMember[]): string {
     const notMe: any = this.getOtherMember(members);
-    console.log(members);
     return this._util.constructName(notMe?.name);
   }
 
@@ -97,5 +130,9 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
 
   public duration(date: string): string {
     return this._util.calculateMessageDuration(date);
+  }
+
+  public isAuthor(data: MessageList): boolean {
+    return data.from === this.token.sub;
   }
 }
