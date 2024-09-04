@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { CarouselService } from 'src/app/services/carousel.service';
@@ -9,6 +9,7 @@ import { DeleteDestinationCarouselComponent } from './delete-destination-carouse
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-destination-carousel',
@@ -26,6 +27,7 @@ export class DestinationCarouselComponent {
   public isLoading: boolean = false;
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private dialog: MatDialog,
@@ -54,8 +56,8 @@ export class DestinationCarouselComponent {
           this.isLoading = false;
         },
         error: (error) => {
-          console.log(error);
           this.isLoading = false;
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

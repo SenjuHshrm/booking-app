@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,6 +15,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface NameUpdateForm {
   firstname: FormData;
@@ -29,6 +30,7 @@ export interface NameUpdateForm {
 export class LegalNameComponent implements OnInit, OnDestroy {
   private token!: ITokenClaims;
   private _sub: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   public verifiedInfo: { fName: string; lName: string };
   public updateForm!: FormGroup;
@@ -102,7 +104,7 @@ export class LegalNameComponent implements OnInit, OnDestroy {
           });
         },
         error: (error: HttpErrorResponse) => {
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
         complete: () => {
           this.isLoading = false;

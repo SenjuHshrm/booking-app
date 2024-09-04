@@ -10,14 +10,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { CreateAdminComponent } from './create-admin/create-admin.component';
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    AdminTableComponent,
-    CreateAdminComponent
-  ],
+  declarations: [AdminTableComponent, CreateAdminComponent],
   imports: [
     CommonModule,
     AdminTableRoutingModule,
@@ -28,7 +24,8 @@ import { CreateAdminComponent } from './create-admin/create-admin.component';
     MatIconModule,
     MatMenuModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MatSnackBarModule,
+  ],
 })
-export class AdminTableModule { }
+export class AdminTableModule {}

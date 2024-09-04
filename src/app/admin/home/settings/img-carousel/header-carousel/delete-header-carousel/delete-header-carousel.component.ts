@@ -1,9 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { ViewHeaderCarouselComponent } from '../view-header-carousel/view-header-carousel.component';
 import { Subscription } from 'rxjs';
 import { CarouselService } from 'src/app/services/carousel.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-delete-header-carousel',
@@ -14,6 +15,7 @@ export class DeleteHeaderCarouselComponent {
   isLoading: boolean = false;
 
   subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private _util: BasicUtilService,
@@ -37,7 +39,7 @@ export class DeleteHeaderCarouselComponent {
         },
         error: (error) => {
           this.isLoading = false;
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

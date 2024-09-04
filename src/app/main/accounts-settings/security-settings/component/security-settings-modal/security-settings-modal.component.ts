@@ -8,33 +8,28 @@ import { TokenService } from './../../../../../services/token.service';
 import { AuthService } from './../../../../../services/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ITokenClaims } from './../../../../../interfaces/token';
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 
 @Component({
   selector: 'app-security-settings-modal',
   templateUrl: './security-settings-modal.component.html',
-  styleUrls: ['./security-settings-modal.component.scss']
+  styleUrls: ['./security-settings-modal.component.scss'],
 })
 export class SecuritySettingsModalComponent implements OnInit, OnDestroy {
-
   public pwForm!: FormGroup;
   public validation: any = {
-    currentPassword: [
-      { type: 'required', msg: 'Type your current password' }
-    ],
-    newPassword: [
-      { type: 'required', msg: 'Type your new password' }
-    ],
+    currentPassword: [{ type: 'required', msg: 'Type your current password' }],
+    newPassword: [{ type: 'required', msg: 'Type your new password' }],
     confirmPassword: [
       { type: 'required', msg: 'Confirm your new password' },
-      { type: 'equal', msg: 'Password did\'t match your new password' }
-    ]
-  }
+      { type: 'equal', msg: "Password did't match your new password" },
+    ],
+  };
 
-  private _t!: ITokenClaims
-  private _sub: Subscription = new Subscription()
+  private _t!: ITokenClaims;
+  private _sub: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private _fb: FormBuilder,
@@ -43,50 +38,53 @@ export class SecuritySettingsModalComponent implements OnInit, OnDestroy {
     private _sb: MatSnackBar,
     private _auth: AuthService,
     private _token: TokenService,
-    public dialogLogin: MatDialogRef<SecuritySettingsModalComponent>,
-  ) { }
+    public dialogLogin: MatDialogRef<SecuritySettingsModalComponent>
+  ) {}
 
   ngOnInit(): void {
-    this._t = <ITokenClaims>this._token.decodedToken()
-    this.pwForm = this._fb.group({
-      currentPassword: new FormControl('', [Validators.required]),
-      newPassword: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required])
-    }, {
-      validators: (ctrl: AbstractControl): ValidationErrors | null => {
-        let p = ctrl!.get('newPassword')?.value,
-            c = ctrl!.get('confirmPassword')?.value
-        if(p !== c) ctrl!.get('confirmPassword')?.setErrors({ equal: true })
-        return (p === c) ? null : { equal: true }
+    this._t = <ITokenClaims>this._token.decodedToken();
+    this.pwForm = this._fb.group(
+      {
+        currentPassword: new FormControl('', [Validators.required]),
+        newPassword: new FormControl('', [Validators.required]),
+        confirmPassword: new FormControl('', [Validators.required]),
+      },
+      {
+        validators: (ctrl: AbstractControl): ValidationErrors | null => {
+          let p = ctrl!.get('newPassword')?.value,
+            c = ctrl!.get('confirmPassword')?.value;
+          if (p !== c) ctrl!.get('confirmPassword')?.setErrors({ equal: true });
+          return p === c ? null : { equal: true };
+        },
       }
-    })
+    );
   }
 
   ngOnDestroy(): void {
-    this._sub.unsubscribe()
+    this._sub.unsubscribe();
   }
-
 
   closeDialog(): void {
     this.dialogLogin.close();
   }
 
   public handleSubmit(fg: FormGroup) {
-    this._sub.add(this._auth.updatePassword(this.id, fg.value.newPassword).subscribe({
-      next: (res: { success: boolean }) => {
-        this._showSnackbar('Password updated successfully')
-        this._d.close()
-      },
-      error: ({ error }: HttpErrorResponse) => {
-        console.log(error)
-      }
-    }))
+    this._sub.add(
+      this._auth.updatePassword(this.id, fg.value.newPassword).subscribe({
+        next: (res: { success: boolean }) => {
+          this._showSnackbar('Password updated successfully');
+          this._d.close();
+        },
+        error: ({ error }: HttpErrorResponse) => {
+          this._snack.open(error.code, '', { duration: 1000 });
+        },
+      })
+    );
   }
 
   private _showSnackbar(msg: string) {
     this._sb.open(msg, 'OK', {
-      duration: 1500
-    })
+      duration: 1500,
+    });
   }
-
 }

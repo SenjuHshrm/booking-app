@@ -3,25 +3,35 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { StaycationService } from './../../../services/staycation.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Subscription, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  AfterViewInit,
+  inject,
+} from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { CheckListingInputComponent } from '../proprietor-application/check-listing-input/check-listing-input.component';
 import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listing-application',
   templateUrl: './listing-application.component.html',
   styleUrls: ['./listing-application.component.scss'],
 })
-export class ListingApplicationComponent implements OnInit, AfterViewInit, OnDestroy {
-
+export class ListingApplicationComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  public totalListings: number = 0
-  public searchInput: string = ''
-  public currentPageList: any = []
+  private _snack: MatSnackBar = inject(MatSnackBar);
+  public totalListings: number = 0;
+  public searchInput: string = '';
+  public currentPageList: any = [];
   public dataSource = new MatTableDataSource<any>([]);
   public displayedColumns: string[] = [
     'cover',
@@ -33,9 +43,9 @@ export class ListingApplicationComponent implements OnInit, AfterViewInit, OnDes
     'action',
   ];
 
-  private _sub: Subscription = new Subscription()
+  private _sub: Subscription = new Subscription();
   private _modelChanged: Subject<string> = new Subject<string>();
-  private debTime = 500
+  private debTime = 500;
 
   constructor(
     private _md: MatDialog,
@@ -45,40 +55,46 @@ export class ListingApplicationComponent implements OnInit, AfterViewInit, OnDes
   ) {}
 
   ngOnInit(): void {
-    this._sub.add(this._modelChanged.pipe(debounceTime(this.debTime)).subscribe(() => {
-      this._getList(this.paginator.pageIndex + 1, this.paginator.pageSize)
-    }))
+    this._sub.add(
+      this._modelChanged.pipe(debounceTime(this.debTime)).subscribe(() => {
+        this._getList(this.paginator.pageIndex + 1, this.paginator.pageSize);
+      })
+    );
   }
 
   ngAfterViewInit(): void {
-    this._getList(this.paginator.pageIndex + 1, this.paginator.pageSize)
+    this._getList(this.paginator.pageIndex + 1, this.paginator.pageSize);
   }
 
   ngOnDestroy(): void {
-    this._sub.unsubscribe()
+    this._sub.unsubscribe();
   }
 
   public handleViewListing(data: any): void {}
 
   public handleSearch(e: any) {
-    this._modelChanged.next(e.target.value)
+    this._modelChanged.next(e.target.value);
   }
 
   public handleReqSupportDocs(userId: string, staycationId: string) {
     // console.log(userId, staycationId)
-    let currentDate = moment().format('MM/DD/YYYY')
-    this._sub.add(this._user.requestSupportDocs(userId, staycationId, currentDate).subscribe({
-      next: (res: any) => {
-        console.log(res)
-      },
-      error: ({error}) => {
-        console.log(error)
-      }
-    }))
+    let currentDate = moment().format('MM/DD/YYYY');
+    this._sub.add(
+      this._user
+        .requestSupportDocs(userId, staycationId, currentDate)
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+          },
+          error: (error) => {
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
+    );
   }
 
   public handlePageChange(e: PageEvent) {
-    this._getList(e.pageIndex + 1, e.pageSize)
+    this._getList(e.pageIndex + 1, e.pageSize);
   }
 
   public openListing(id: string) {
@@ -102,23 +118,23 @@ export class ListingApplicationComponent implements OnInit, AfterViewInit, OnDes
   }
 
   private _getList(p: number, l: number) {
-    this.currentPageList = []
-    this._sub.add(this._staycation.getAllStaycations(p, l, this.searchInput).subscribe({
-      next: (res: any) => {
-        console.log(res)
-        this.totalListings = res.total
-        res.list.forEach((st: any) => {
-          this.currentPageList.push({
-            ...st,
-            cover: this._basicUtil.setImgUrl(st.cover)
-          })
-        })
-        this.dataSource = new MatTableDataSource<any>(this.currentPageList)
-        this.dataSource.paginator = this.paginator
-      },
-      error: ({error}) => {
-
-      }
-    }))
+    this.currentPageList = [];
+    this._sub.add(
+      this._staycation.getAllStaycations(p, l, this.searchInput).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.totalListings = res.total;
+          res.list.forEach((st: any) => {
+            this.currentPageList.push({
+              ...st,
+              cover: this._basicUtil.setImgUrl(st.cover),
+            });
+          });
+          this.dataSource = new MatTableDataSource<any>(this.currentPageList);
+          this.dataSource.paginator = this.paginator;
+        },
+        error: ({ error }) => {},
+      })
+    );
   }
 }

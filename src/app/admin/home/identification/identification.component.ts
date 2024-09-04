@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -14,6 +20,7 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { UserService } from 'src/app/services/user.service';
 import { ViewVerificationComponent } from './view-verification/view-verification.component';
 import { ApproveDisapproveComponent } from './approve-disapprove/approve-disapprove.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-identification',
@@ -24,6 +31,7 @@ export class IdentificationComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable) table!: MatTable<any>;
 
+  private _snack: MatSnackBar = inject(MatSnackBar);
   public subscription: Subscription = new Subscription();
   public total: number = 0;
 
@@ -79,7 +87,7 @@ export class IdentificationComponent implements OnInit {
           this.dataSource = new MatTableDataSource<any>(paginatedResults);
         },
         error: (error) => {
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

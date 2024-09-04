@@ -10,7 +10,7 @@ import { GlobalStaticService } from './../../services/global-static.service';
 import { BasicUtilService } from './../../services/basic-util.service';
 import { StaycationService } from './../../services/staycation.service';
 import { Subscription, forkJoin } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { limit } from './limit'; // Adjust the path as necessary
@@ -30,6 +30,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { CustomDatepickerHeader } from './custom-datepicker-header';
 import * as moment from 'moment';
 import { ReportListingComponent } from './report-listing/report-listing.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -89,6 +90,8 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   });
 
   public refundOpts: any = [];
+
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private router: Router,
@@ -156,7 +159,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
         this._getCancellationPolicy(staycation.cancellationPolicy);
       },
       error: ({ error }: HttpErrorResponse) => {
-        console.log(error);
+        this._snack.open(error.code, '', { duration: 1000 });
       },
     });
   }

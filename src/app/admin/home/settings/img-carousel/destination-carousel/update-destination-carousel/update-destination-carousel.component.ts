@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { FormErrorMessage } from 'src/app/interfaces/input-error-message';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
@@ -47,6 +48,7 @@ export class UpdateDestinationCarouselComponent {
   filename: string = '';
 
   subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private fb: FormBuilder,
@@ -108,8 +110,8 @@ export class UpdateDestinationCarouselComponent {
             this.handleClose(true);
           },
           error: (error) => {
-            console.log(error);
             this.isLoading = false;
+            this._snack.open(error.error.code, '', { duration: 1000 });
           },
         })
     );

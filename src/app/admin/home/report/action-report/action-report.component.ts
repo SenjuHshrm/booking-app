@@ -1,10 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ViewReportComponent } from '../view-report/view-report.component';
 import { Fullname } from 'src/app/interfaces/profile';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { Subscription } from 'rxjs';
 import { ReportService } from 'src/app/services/report.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-action-report',
@@ -15,6 +16,7 @@ export class ActionReportComponent {
   isLoading: boolean = false;
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private dialogRef: MatDialogRef<ViewReportComponent>,
@@ -46,8 +48,8 @@ export class ActionReportComponent {
           this.handleClose(true, this.data.type);
         },
         error: (error) => {
-          console.log(error);
           this.isLoading = false;
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

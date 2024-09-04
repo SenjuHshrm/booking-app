@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  inject,
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +15,7 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { ViewHeaderCarouselComponent } from './view-header-carousel/view-header-carousel.component';
 import { UpdateHeaderCarouselComponent } from './update-header-carousel/update-header-carousel.component';
 import { DeleteHeaderCarouselComponent } from './delete-header-carousel/delete-header-carousel.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header-carousel',
@@ -31,6 +33,7 @@ export class HeaderCarouselComponent implements AfterViewInit {
   public isLoading: boolean = false;
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private dialog: MatDialog,
@@ -59,8 +62,8 @@ export class HeaderCarouselComponent implements AfterViewInit {
           this.isLoading = false;
         },
         error: (error) => {
-          console.log(error);
           this.isLoading = false;
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );
