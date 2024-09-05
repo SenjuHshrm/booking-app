@@ -12,6 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ViewReportComponent } from './view-report/view-report.component';
 import { ActionReportComponent } from './action-report/action-report.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ReportComponent, ViewReportComponent, ActionReportComponent],
@@ -26,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
 })
 export class ReportModule {}

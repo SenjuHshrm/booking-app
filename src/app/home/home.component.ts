@@ -1,4 +1,10 @@
-import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ViewEncapsulation,
+  OnInit,
+  inject,
+} from '@angular/core';
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -18,6 +24,7 @@ import { IFAQItem } from '../interfaces/faq';
 import { CarouselService } from '../services/carousel.service';
 import { ICarousel } from '../interfaces/carousel';
 import { BasicUtilService } from '../services/basic-util.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -30,6 +37,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   animations: [fadeInAnimation],
 })
 export class HomeComponent implements OnInit {
+  private _snack: MatSnackBar = inject(MatSnackBar);
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -79,7 +88,7 @@ export class HomeComponent implements OnInit {
           this.faqs = <IFAQItem[]>res;
         },
         error: (error) => {
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );
@@ -98,7 +107,7 @@ export class HomeComponent implements OnInit {
             res.length > 0 ? <ICarousel[]>res : this.destinations;
         },
         error: (error) => {
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

@@ -22,6 +22,7 @@ import { GlobalsModule } from 'src/app/globals/globals.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CameraComponent } from './government-id/camera/camera.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatButtonModule } from '@angular/material/button';
     GlobalsModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
 })
 export class AccountVerificationModule {}

@@ -10,15 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { CreatePayoutMethodComponent } from './create-payout-method/create-payout-method.component';
 import { GlobalsModule } from 'src/app/globals/globals.module';
-
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    PayoutSettingsComponent, 
-    CreatePayoutMethodComponent, 
-  ],
+  declarations: [PayoutSettingsComponent, CreatePayoutMethodComponent],
   imports: [
     CommonModule,
     PayoutSettingsRoutingModule,
@@ -28,7 +23,8 @@ import { GlobalsModule } from 'src/app/globals/globals.module';
     MatIconModule,
     MatMenuModule,
     MatFormFieldModule,
-    GlobalsModule
-  ]
+    GlobalsModule,
+    MatSnackBarModule,
+  ],
 })
-export class PayoutSettingsModule { }
+export class PayoutSettingsModule {}

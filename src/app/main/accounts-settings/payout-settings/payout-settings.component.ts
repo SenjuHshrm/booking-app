@@ -5,31 +5,31 @@ import { ITokenClaims } from './../../../interfaces/token';
 import { TokenService } from './../../../services/token.service';
 import { Subscription } from 'rxjs';
 import { UserService } from './../../../services/user.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CreatePayoutMethodComponent } from './create-payout-method/create-payout-method.component';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Item {
-  _id:number;
+  _id: number;
   cardIcon: any;
   cardName: string;
   cardNum: any;
   cardExpi: any;
   ccvNum: number;
-  default:boolean
+  default: boolean;
 }
 
 @Component({
   selector: 'app-payout-settings',
   templateUrl: './payout-settings.component.html',
-  styleUrls: ['./payout-settings.component.scss']
+  styleUrls: ['./payout-settings.component.scss'],
 })
 export class PayoutSettingsComponent implements OnInit, OnDestroy {
-
   public userPaymentMethods: any = [];
 
   private _t!: ITokenClaims;
   private _sub: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   public cardInfo: Item[] = [
     {
@@ -39,7 +39,7 @@ export class PayoutSettingsComponent implements OnInit, OnDestroy {
       cardNum: '4111111516982364',
       cardExpi: '04/06/2025',
       ccvNum: 123,
-      default:false
+      default: false,
     },
     {
       _id: 2,
@@ -48,7 +48,7 @@ export class PayoutSettingsComponent implements OnInit, OnDestroy {
       cardNum: '4111111516982364',
       cardExpi: '04/06/2025',
       ccvNum: 123,
-      default:false
+      default: false,
     },
     {
       _id: 3,
@@ -57,8 +57,8 @@ export class PayoutSettingsComponent implements OnInit, OnDestroy {
       cardNum: '4111111516982364',
       cardExpi: '04/06/2025',
       ccvNum: 123,
-      default:false
-    }
+      default: false,
+    },
   ];
 
   constructor(
@@ -66,19 +66,19 @@ export class PayoutSettingsComponent implements OnInit, OnDestroy {
     private _user: UserService,
     private _token: TokenService,
     private _payment: PaymentService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this._t = <ITokenClaims>this._token.decodedToken()
-    this._retrievePaymentMethods()
+    this._t = <ITokenClaims>this._token.decodedToken();
+    this._retrievePaymentMethods();
   }
 
   ngOnDestroy(): void {
-    this._sub.unsubscribe()
+    this._sub.unsubscribe();
   }
 
   removeItemById(id: number) {
-    this.cardInfo = this.cardInfo.filter(cardInfo => cardInfo._id !== id);
+    this.cardInfo = this.cardInfo.filter((cardInfo) => cardInfo._id !== id);
   }
 
   setDefault(index: any): void {
@@ -93,20 +93,21 @@ export class PayoutSettingsComponent implements OnInit, OnDestroy {
       maxWidth: '35rem',
       height: 'auto',
       data: this._t.sub,
-    })
+    });
   }
 
   private _retrievePaymentMethods() {
-    this._sub.add(this._payment.getUserPaymentMethod(this._t.sub).subscribe({
-      next: (res: any) => {
-        if (res.length > 0) {
-          this.userPaymentMethods = res
-        }
-      },
-      error: ({ error }: HttpErrorResponse) => {
-        console.log(error)
-      }
-    }))
+    this._sub.add(
+      this._payment.getUserPaymentMethod(this._t.sub).subscribe({
+        next: (res: any) => {
+          if (res.length > 0) {
+            this.userPaymentMethods = res;
+          }
+        },
+        error: ({ error }: HttpErrorResponse) => {
+          this._snack.open(error.code, '', { duration: 1000 });
+        },
+      })
+    );
   }
-
 }

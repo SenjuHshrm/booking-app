@@ -1,10 +1,12 @@
 import {
   Component,
   EventEmitter,
+  inject,
   OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import { TokenService } from 'src/app/services/token.service';
@@ -34,6 +36,7 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
   backFilename: string = '';
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   isLoading: boolean = false;
 
@@ -96,7 +99,7 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
             this.setNewStatus.emit('pending');
           },
           error: (error) => {
-            console.log(error);
+            this._snack.open(error.error.code, '', { duration: 1000 });
             this.isLoading = false;
             this.setIsLoading.emit(false);
           },

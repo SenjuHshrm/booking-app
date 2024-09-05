@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import {
@@ -23,6 +23,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface AddressUpdateForm {
   unit: string;
@@ -55,6 +56,7 @@ export class AddressComponent implements OnInit {
   public zipErrors: FormErrorMessage[] = zipErrors;
 
   private _sub: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private fb: FormBuilder,
@@ -134,7 +136,7 @@ export class AddressComponent implements OnInit {
           });
         },
         error: (error: HttpErrorResponse) => {
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
         complete: () => {
           this.isLoading = false;

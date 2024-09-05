@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { IAuthForm, IAuth } from '../../interfaces/auth';
@@ -14,6 +14,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { SignupComponent } from '../signup/signup.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private _redirectTo: string = '';
   private _sub: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   private _successLogin = (res: { token: string }) => {
     this._token.saveToken(res.token);
@@ -57,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private _failedLogin = ({ error }: HttpErrorResponse) => {
     this.isLoading = false;
-    console.log(error);
+    this._snack.open(error.code, '', { duration: 1000 });
   };
 
   constructor(

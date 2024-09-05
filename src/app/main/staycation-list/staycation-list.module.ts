@@ -10,15 +10,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { StaycationlistAddguestModalComponent } from './component/staycationlist-addguest-modal/staycationlist-addguest-modal.component';
 import { StaycationlistLocationModalComponent } from './component/staycationlist-location-modal/staycationlist-location-modal.component';
 import { SwiperModule } from 'swiper/angular';
-
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-  StaycationListComponent,
-  StaycationlistAddguestModalComponent,
-  StaycationlistLocationModalComponent
+    StaycationListComponent,
+    StaycationlistAddguestModalComponent,
+    StaycationlistLocationModalComponent,
   ],
   imports: [
     CommonModule,
@@ -29,10 +27,8 @@ import { SwiperModule } from 'swiper/angular';
     ReactiveFormsModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule,
   ],
-
-
-
 })
-export class StaycationListModule { }
+export class StaycationListModule {}

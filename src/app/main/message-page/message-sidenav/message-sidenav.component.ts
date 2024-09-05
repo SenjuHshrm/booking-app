@@ -1,11 +1,13 @@
 import {
   Component,
   EventEmitter,
+  inject,
   Input,
   OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Message, MessageList, RoomMember } from 'src/app/interfaces/message';
 import { ITokenClaims } from 'src/app/interfaces/token';
@@ -32,6 +34,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
   public activeRoomDetails!: MessageList;
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
   private token!: ITokenClaims;
 
   constructor(
@@ -48,7 +51,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
           this.messageList = this.sortMessageList(<MessageList[]>res);
         },
         error: (error) => {
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );
@@ -85,7 +88,7 @@ export class MessageSidenavComponent implements OnInit, OnDestroy {
           }
         },
         error: (error) => {
-          console.log(error);
+          this._snack.open(error.code, '', { duration: 1000 });
         },
       })
     );

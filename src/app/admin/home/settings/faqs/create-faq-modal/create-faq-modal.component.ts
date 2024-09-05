@@ -107,8 +107,8 @@ export class CreateFaqModalComponent implements OnInit, OnDestroy {
         }
       },
       error: (error) => {
-        console.log(error);
         this.isLoading = false;
+        this._snack.open(error.error.code, '', { duration: 1000 });
       },
     });
   }
