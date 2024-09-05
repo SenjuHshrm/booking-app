@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +14,7 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { ReportService } from 'src/app/services/report.service';
 import { ViewReportComponent } from './view-report/view-report.component';
 import { ActionReportComponent } from './action-report/action-report.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-report',
@@ -16,6 +23,7 @@ import { ActionReportComponent } from './action-report/action-report.component';
 })
 export class ReportComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   dataSource = new MatTableDataSource<any>([]);
   displayedColumns: string[] = [
@@ -61,8 +69,8 @@ export class ReportComponent implements OnInit {
           this.isLoading = false;
         },
         error: (error) => {
-          console.log(error);
           this.isLoading = false;
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

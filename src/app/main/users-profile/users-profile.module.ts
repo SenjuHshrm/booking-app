@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UsersProfileComponent } from './users-profile.component';
 import { CreateProfileModalComponent } from './component/create-profile-modal/create-profile-modal.component';
 import { GlobalsModule } from '../../globals/globals.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [UsersProfileComponent, CreateProfileModalComponent],
@@ -16,6 +17,7 @@ import { GlobalsModule } from '../../globals/globals.module';
     FormsModule,
     ReactiveFormsModule,
     GlobalsModule,
+    MatSnackBarModule,
   ],
 })
 export class UsersProfileModule {}

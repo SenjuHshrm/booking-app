@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LegalNameComponent } from './legal-name/legal-name.component';
 import { PereferedNameComponent } from './perefered-name/perefered-name.component';
@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface LegalName {
   fName: string;
@@ -57,6 +58,7 @@ export class AccountVerificationComponent implements OnInit {
   public governmentId: string = '';
 
   private _sub: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     public dialog: MatDialog,
@@ -75,7 +77,7 @@ export class AccountVerificationComponent implements OnInit {
           this.status = res.status ? res.status : 'invalid';
         },
         error: (error) => {
-          console.log(error);
+          this._snack.open(error.error.code, '', { duration: 1000 });
           this.status = 'invalid';
         },
       })
@@ -111,7 +113,7 @@ export class AccountVerificationComponent implements OnInit {
           }
         },
         error: ({ error }: HttpErrorResponse) => {
-          console.log(error);
+          this._snack.open(error.code, '', { duration: 1000 });
         },
       })
     );

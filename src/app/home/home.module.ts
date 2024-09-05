@@ -13,15 +13,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { SwiperModule } from 'swiper/angular';
 import { GlobalsModule } from './../globals/globals.module';
-
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-   
-  ],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -37,12 +32,8 @@ import { GlobalsModule } from './../globals/globals.module';
     ReactiveFormsModule,
     SwiperModule,
     GlobalsModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule,
   ],
-
-
-
-
-
 })
-export class HomeModule { }
+export class HomeModule {}

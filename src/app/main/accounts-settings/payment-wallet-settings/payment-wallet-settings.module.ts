@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GlobalsModule } from 'src/app/globals/globals.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [PaymentWalletSettingsComponent, CreatePaymentMethodComponent],
@@ -24,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     GlobalsModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
 })
 export class PaymentWalletSettingsModule {}

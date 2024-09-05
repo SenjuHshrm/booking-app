@@ -10,9 +10,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormErrorMessage } from 'src/app/interfaces/input-error-message';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-profile-modal',
@@ -29,6 +30,7 @@ export class CreateProfileModalComponent implements OnInit, OnDestroy {
 
   private _claims!: ITokenClaims;
   private _sub: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   fNameErrors: FormErrorMessage[] = [
     {
@@ -222,7 +224,7 @@ export class CreateProfileModalComponent implements OnInit, OnDestroy {
           this.closeDialogCreateProfile();
         },
         error: ({ error }: HttpErrorResponse) => {
-          console.log(error);
+          this._snack.open(error.code, '', { duration: 1000 });
         },
       })
     );

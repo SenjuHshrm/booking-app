@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  inject,
   OnDestroy,
   OnInit,
   Output,
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
 import { TokenService } from 'src/app/services/token.service';
 import { ITokenClaims } from 'src/app/interfaces/token';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-capture-photo',
@@ -40,6 +42,7 @@ export class CapturePhotoComponent implements OnInit, OnDestroy {
   imgPlaceholder: string = `assets/images/customer-dashboard/create-listing/cameraadd.png`;
 
   subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
   token!: ITokenClaims;
 
   isLoading: boolean = false;
@@ -111,8 +114,7 @@ export class CapturePhotoComponent implements OnInit, OnDestroy {
           error: (error) => {
             this.isLoading = false;
             this.setIsLoading.emit(false);
-
-            console.log(error);
+            this._snack.open(error.error.code, '', { duration: 1000 });
           },
         })
       );

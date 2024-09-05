@@ -1,5 +1,6 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, inject, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { IFAQItem } from 'src/app/interfaces/faq';
 import { FaqService } from 'src/app/services/faq.service';
@@ -12,6 +13,7 @@ import { FaqService } from 'src/app/services/faq.service';
 export class DeleteFaqModalComponent implements OnDestroy {
   public isLoading: boolean = false;
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IFAQItem,
@@ -40,8 +42,8 @@ export class DeleteFaqModalComponent implements OnDestroy {
           }
         },
         error: (error) => {
-          console.log(error);
           this.isLoading = false;
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

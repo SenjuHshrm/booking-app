@@ -14,14 +14,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { ListingsComponent } from './listings/listings.component';
 import { CheckListingInputComponent } from './check-listing-input/check-listing-input.component';
 import { ValidationModalComponent } from './validation-modal/validation-modal.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     ProprietorApplicationComponent,
     ListingsComponent,
     CheckListingInputComponent,
-    ValidationModalComponent
+    ValidationModalComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +33,8 @@ import { ValidationModalComponent } from './validation-modal/validation-modal.co
     MatIconModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MatSnackBarModule,
+  ],
 })
-export class ProprietorApplicationModule { }
+export class ProprietorApplicationModule {}

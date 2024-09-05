@@ -13,6 +13,7 @@ import { ApproveDisapproveComponent } from './approve-disapprove/approve-disappr
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatButtonModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
 })
 export class IdentificationModule {}

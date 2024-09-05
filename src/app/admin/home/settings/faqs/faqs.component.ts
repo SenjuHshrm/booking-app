@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -16,6 +17,7 @@ import { FaqService } from 'src/app/services/faq.service';
 import { Subscription } from 'rxjs';
 import { IFAQ, IFAQItem } from 'src/app/interfaces/faq';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-faqs',
@@ -35,6 +37,7 @@ export class FaqsComponent implements OnInit, AfterViewInit {
   public faqList: IFAQItem[] = [];
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private dialog: MatDialog,
@@ -61,8 +64,8 @@ export class FaqsComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         },
         error: (error) => {
-          console.log(error);
           this.isLoading = false;
+          this._snack.open(error.error.code, '', { duration: 1000 });
         },
       })
     );

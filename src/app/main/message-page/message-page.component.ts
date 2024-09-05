@@ -1,6 +1,6 @@
 import { SocketService } from './../../services/socket.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { last, Subscription } from 'rxjs';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { Message, MessageList, RoomMember } from 'src/app/interfaces/message';
@@ -9,6 +9,7 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { TokenService } from 'src/app/services/token.service';
 import { MessageSidenavComponent } from './message-sidenav/message-sidenav.component';
 import { MessageService } from 'src/app/services/message.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-message-page',
@@ -25,6 +26,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
   isLastPage: boolean = false;
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
   public selectedRoomId: string = '';
   public roomDetails: MessageList | null = null;
   public token!: ITokenClaims;
@@ -178,7 +180,7 @@ export class MessagePageComponent implements OnInit, OnDestroy {
               this.isLoading = false;
             },
             error: (error) => {
-              console.log(error);
+              this._snack.open(error.error.code, '', { duration: 1000 });
               this.isLoading = false;
             },
           })
