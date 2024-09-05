@@ -30,6 +30,7 @@ import { InputErrorMessageComponent } from './input-error-message/input-error-me
 import { ViewProfileModalComponent } from './modals/view-profile-modal/view-profile-modal.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MaskCardPipe } from './pipes/mask-card.pipe';
+import { ViewGuestCheckoutModalComponent } from './modals/view-guest-checkout-modal/view-guest-checkout-modal.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { MaskCardPipe } from './pipes/mask-card.pipe';
     HomeImageGalleryComponent,
     InputErrorMessageComponent,
     ViewProfileModalComponent,
+    ViewGuestCheckoutModalComponent,
     MaskCardPipe,
 
     
