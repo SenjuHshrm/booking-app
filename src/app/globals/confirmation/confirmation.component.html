@@ -1,0 +1,25 @@
+<div class="more-info">
+  <div class="header">
+    <div class="title">{{ data.title }}</div>
+    <div class="close-button-normal" (click)="closeValidation(false)">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <hr />
+
+  <div class="content">
+    <div class="title">
+      {{ data.description }}
+    </div>
+  </div>
+  <hr />
+
+  <div class="footer">
+    <button class="main-button custom_btn" (click)="closeValidation(true)">
+      {{ data.yesBtnText }}
+    </button>
+    <button class="main-button" (click)="closeValidation(false)">
+      {{ data.noBtnText }}
+    </button>
+  </div>
+</div>

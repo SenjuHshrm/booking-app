@@ -19,7 +19,8 @@ import { ForApprovalComponent } from './for-approval/for-approval.component';
 import { ValidationModalComponent } from './modal/validation-modal/validation-modal.component';
 import { MessageGuestModalComponent } from './modal/message-guest-modal/message-guest-modal.component';
 import { GlobalsModule } from 'src/app/globals/globals.module';
-
+import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -34,9 +35,6 @@ import { GlobalsModule } from 'src/app/globals/globals.module';
     ForApprovalComponent,
     ValidationModalComponent,
     MessageGuestModalComponent,
-    
-
-
   ],
   imports: [
     CommonModule,
@@ -47,17 +45,19 @@ import { GlobalsModule } from 'src/app/globals/globals.module';
     MatInputModule,
     MatIconModule,
     MatMenuModule,
-    GlobalsModule
+    GlobalsModule,
+    FormsModule,
+    MatProgressSpinnerModule,
   ],
 
-  exports:[
+  exports: [
     CheckingOutComponent,
     ArrivingSoonComponent,
     UpcomingComponent,
     CurrentlyGuestComponent,
     CancelledBookingComponent,
     PendingReviewComponent,
-    ForApprovalComponent
-  ]
+    ForApprovalComponent,
+  ],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}
