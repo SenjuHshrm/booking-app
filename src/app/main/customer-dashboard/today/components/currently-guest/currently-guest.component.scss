@@ -103,6 +103,14 @@
           align-items: center;
           gap: 5px;
         }
+
+        .custom_guest_btn{
+          background-color: black;
+          color: white;
+          padding: .3rem .5rem .3rem;
+          border-radius: 3px;
+          cursor: pointer;
+        }
       }
       
       .action_btn {

@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'today',
+        redirectTo: 'reservation',
         pathMatch: 'prefix'
       }
     ]
