@@ -271,24 +271,28 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
       booking: {
         initiatedBy: this._claims.sub,
         bookTo: this.staycationDetails._id,
-        arrivalDate: moment(this.duration.start).format('MM/DD/YYYY'),
+        duration: {
+          start: moment(this.duration.start).format('MM/DD/YYYY'),
+          end: moment(this.duration.end).format('MM/DD/YYYY')
+        },
         details: this.guests,
         isCancelled: false,
         cancellationPolicy: this.selectedCancellation.value,
-        isApproved: this.staycationDetails.bookingProcess === 'instant',
+        status: this.staycationDetails.bookingProcess === 'instant' ? 'upcoming' : 'for_approval',
       },
       transaction: {
         userId: this._claims.sub,
         staycationId: this.staycationDetails._id,
         piId: 'temp_payment_intent_id',
-        amount: this.totalBeforeTax,
+        total: this.totalBeforeTax,
         paymentType: this.selectedValue === '1' ? 'full' : 'downpayment',
-        remainingBal: this.selectedValue === '2' ? this.options[i].price : 0,
-        remainingBalDue:
-          this.selectedValue === '2' ? this.options[i].duedate : '',
-        clientKey: 'temp_client_key',
-        status: '',
-        checkoutURL: '',
+        history: [{
+          clientKey: 'temp_client_key',
+          amount: this.selectedValue === '1' ? this.totalBeforeTax : this.options[i].price,
+          datePaid: moment().format('MM/DD/YYYY'),
+          checkoutURL: 'temp_checkout_url'
+        }],
+        status: this.selectedValue === '1' ? 'paid' : 'pending',
       },
     };
     this._book.tempBooking(data).subscribe({
