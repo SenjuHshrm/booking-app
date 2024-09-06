@@ -1,0 +1,59 @@
+<div class="more-info">
+  <div class="header">
+    <div class="title">Add Guest</div>
+    <div class="close-button-normal" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <hr />
+
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+    <div class="content">
+      <div class="input-wrapper">
+        <div class="label">Name</div>
+        <input formControlName="name" type="text" name="name" />
+        <app-input-error-message [form]="createForm" [errors]="nameErrors" />
+      </div>
+      <div class="input-wrapper">
+        <div class="label">Check In Date ( MM/DD/YYYY )</div>
+        <div class="input-wrapper-time">
+          <input
+            [(ngModel)]="date"
+            formControlName="date"
+            type="text"
+            name="checkIn"
+            readonly
+          />
+          <button type="button" mat-raised-button (click)="getCurrentDate()">
+            <mat-icon>calendar_month</mat-icon>
+          </button>
+        </div>
+        <app-input-error-message [form]="createForm" [errors]="dateErrors" />
+      </div>
+      <div class="input-wrapper">
+        <div class="label">Check In Time</div>
+        <div class="input-wrapper-time">
+          <input
+            [(ngModel)]="time"
+            formControlName="time"
+            type="text"
+            name="checkIn"
+            readonly
+          />
+          <button type="button" mat-raised-button (click)="getCurrentTime()">
+            <mat-icon>access_time</mat-icon>
+          </button>
+        </div>
+        <app-input-error-message [form]="createForm" [errors]="timeErrors" />
+      </div>
+    </div>
+    <hr />
+
+    <div class="footer">
+      <button type="submit" class="main-button custom_btn">Save</button>
+      <button type="button" class="main-button" (click)="closeDialog()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
