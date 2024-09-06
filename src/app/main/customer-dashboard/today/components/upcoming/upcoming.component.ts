@@ -11,7 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
 import { MessageGuestModalComponent } from '../modal/message-guest-modal/message-guest-modal.component';
 import { ValidationModalComponent } from '../modal/validation-modal/validation-modal.component';
-import { ReservationsViewComponent } from 'src/app/globals/modals/reservations-view/reservations-view.component';
+import { ViewReservationModalComponent } from 'src/app/globals/modals/view-reservation-modal/view-reservation-modal.component';
+
 
 export interface UserData {
   propertyimage: any;
@@ -64,7 +65,7 @@ const USER_DATA: UserData[] = [
   encapsulation: ViewEncapsulation.None
 })
 export class UpcomingComponent  implements OnInit {
-  title:string = 'Upcoming'
+  status:string = 'Upcoming'
   dateToday: any = new Date();
   displayedColumns: string[] = [
     'property',
@@ -97,13 +98,15 @@ export class UpcomingComponent  implements OnInit {
     }
   }
 
-  viewForApprovalDetails(): void {
-    this.dialog.open(ReservationsViewComponent, {
+  viewDetails(): void {
+    this.dialog.open(ViewReservationModalComponent, {
       width: '99vw',
       maxWidth:'60rem', 
       height: '99vh',
       maxHeight: '50rem',
-      data:this.title
+      data:{
+        status:this.status
+      }
     
     });
   }

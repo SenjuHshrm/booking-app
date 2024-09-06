@@ -18,6 +18,14 @@
                 </div>
                 <div class="verification">
 
+                    <div class="info_status">
+                        <div class="title">This person is verified</div>
+                        <div class="info-not-verified"
+                            [ngStyle]="{'display': !verifiedIdCard || !verifiedMobileNumber ? 'block' : 'none'}">
+                            This person is not verified.
+                        </div>
+                    </div>
+
                     <div class="info-verified"
                         [ngStyle]="{'display': verifiedIdCard || verifiedMobileNumber ? 'block' : 'none'}">
                         <div class="info-verified-wrapper">
@@ -38,36 +46,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="info_status">
-                        <div class="info-not-verified"
-                            [ngStyle]="{'display': !verifiedIdCard || !verifiedMobileNumber ? 'block' : 'none'}">
-                            This person is not verified.
-                        </div>
-                        <div class="title">Verification</div>
-                    </div>
+              
+            
                     <!-- <div class="btn_view">
                         <button class="square_button">View Guest</button>
                         <button class="square_button">View Listing</button>
                     </div> -->
                 </div>
+                <div class="info_action_button" *ngIf="status === 'For Approval'">
+                    <button class="square_button">Approved</button>
+                    <button class="square_button">Decline</button>
+                 </div>
+                 
             </div>
             <div class="section-2">
                 <div class="header">
-                    <div class="title">{{titleComponent}}</div>
-                    <div class="create-profile" *ngIf="titleComponent === 'For Approval'">
-                        <button>
-                            <span><mat-icon>close</mat-icon></span>
-                            <span class="profile-text">
-                                Cancel
-                            </span>
-                        </button>
-                        <button>
-                            <span><mat-icon>check</mat-icon></span>
-                            <span class="profile-text">
-                                Accept
-                            </span>
-                        </button>
-                    </div>
+                    <div class="title">{{status}}</div>
+                    <div><hr></div>
                 </div>
 
                 <div class="content">

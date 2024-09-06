@@ -16,7 +16,6 @@ import {
   GoogleSigninButtonModule,
 } from '@abacritt/angularx-social-login';
 import { BookingTermsComponent } from './booking-terms/booking-terms.component';
-import { ReservationsViewComponent } from './modals/reservations-view/reservations-view.component';
 import { LoaderStateComponent } from './loader-state/loader-state.component';
 import { GalleryViewComponent } from './gallery/gallery-view/gallery-view.component';
 import { MessageProprietorComponent } from './message-proprietor/message-proprietor.component';
@@ -31,6 +30,9 @@ import { ViewProfileModalComponent } from './modals/view-profile-modal/view-prof
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MaskCardPipe } from './pipes/mask-card.pipe';
 import { ViewGuestCheckoutModalComponent } from './modals/view-guest-checkout-modal/view-guest-checkout-modal.component';
+import { ViewReservationModalComponent } from './modals/view-reservation-modal/view-reservation-modal.component';
+import { ViewGuestListModalComponent } from './modals/view-guest-list-modal/view-guest-list-modal.component';
+import { ViewCheckinModalComponent } from './modals/view-checkin-modal/view-checkin-modal.component';
 
 
 @NgModule({
@@ -43,7 +45,6 @@ import { ViewGuestCheckoutModalComponent } from './modals/view-guest-checkout-mo
     SignupComponent,
     CreateListingComponent,
     BookingTermsComponent,
-    ReservationsViewComponent,
     LoaderStateComponent,
     GalleryViewComponent,
     MessageProprietorComponent,
@@ -56,6 +57,10 @@ import { ViewGuestCheckoutModalComponent } from './modals/view-guest-checkout-mo
     ViewProfileModalComponent,
     ViewGuestCheckoutModalComponent,
     MaskCardPipe,
+    ViewReservationModalComponent,
+    ViewGuestListModalComponent,
+    ViewCheckinModalComponent,
+
 
     
   ],
@@ -88,7 +93,12 @@ import { ViewGuestCheckoutModalComponent } from './modals/view-guest-checkout-mo
     UsersProfileComponent,
     HomeImageGalleryComponent,
     InputErrorMessageComponent,
-    MaskCardPipe
+    MaskCardPipe,
+    ViewReservationModalComponent,
+    ViewGuestListModalComponent,
+    ViewCheckinModalComponent,
+
+
   ],
 
 })

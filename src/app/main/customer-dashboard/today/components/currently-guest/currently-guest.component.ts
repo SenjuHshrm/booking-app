@@ -5,9 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
 import { MessageGuestModalComponent } from '../modal/message-guest-modal/message-guest-modal.component';
-import { ValidationModalComponent } from '../modal/validation-modal/validation-modal.component';
-import { ReservationsViewComponent } from 'src/app/globals/modals/reservations-view/reservations-view.component';
 import { ViewGuestCheckoutModalComponent } from 'src/app/globals/modals/view-guest-checkout-modal/view-guest-checkout-modal.component';
+import { ViewReservationModalComponent } from 'src/app/globals/modals/view-reservation-modal/view-reservation-modal.component';
 
 export interface UserData {
  
@@ -96,7 +95,7 @@ export class CurrentlyGuestComponent implements OnInit {
   }
 
   viewDetails(): void {
-    this.dialog.open(ReservationsViewComponent, {
+    this.dialog.open(ViewReservationModalComponent, {
       width: '99vw',
       maxWidth:'60rem', 
       height: '99vh',
@@ -123,7 +122,7 @@ export class CurrentlyGuestComponent implements OnInit {
       width: '99vw',
       maxWidth:'33rem', 
       height: '99vh',
-      maxHeight: '24rem',
+      maxHeight: '27rem',
       data:''
     
     });

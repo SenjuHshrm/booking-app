@@ -11,7 +11,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
 import { MessageGuestModalComponent } from '../modal/message-guest-modal/message-guest-modal.component';
 import { ValidationModalComponent } from '../modal/validation-modal/validation-modal.component';
-import { ReservationsViewComponent } from 'src/app/globals/modals/reservations-view/reservations-view.component';
+import { ViewReservationModalComponent } from 'src/app/globals/modals/view-reservation-modal/view-reservation-modal.component';
+import { ViewCheckinModalComponent } from 'src/app/globals/modals/view-checkin-modal/view-checkin-modal.component';
+import { ViewGuestListModalComponent } from 'src/app/globals/modals/view-guest-list-modal/view-guest-list-modal.component';
+
 
 export interface UserData {
 
@@ -63,7 +66,7 @@ const USER_DATA: UserData[] = [
   encapsulation: ViewEncapsulation.None
 })
 export class ArrivingSoonComponent  implements OnInit {
-  title:string = 'Current guest'
+  status:string = 'Current guest'
   dateToday: any = new Date();
   displayedColumns: string[] = [
     'property',
@@ -96,13 +99,15 @@ export class ArrivingSoonComponent  implements OnInit {
     }
   }
 
-  viewForApprovalDetails(): void {
-    this.dialog.open(ReservationsViewComponent, {
+  viewDetails(): void {
+    this.dialog.open(ViewReservationModalComponent, {
       width: '99vw',
       maxWidth:'60rem', 
       height: '99vh',
       maxHeight: '50rem',
-      data:this.title
+      data:{
+        status:this.status
+      }
     
     });
   }
@@ -119,16 +124,45 @@ export class ArrivingSoonComponent  implements OnInit {
     });
   }
 
+
+
   messageGuest():void{
     this.dialog.open(MessageGuestModalComponent, {
       width: '99vw',
       maxWidth:'33rem', 
       height: '99vh',
-      maxHeight: '24rem',
+      maxHeight: '27rem',
       data:''
     
     });
   }
+
+
+
+  checkinGuest(): void {
+    this.dialog.open(ViewCheckinModalComponent, {
+      width: '99vw',
+      maxWidth:'60rem', 
+      height: 'auto',
+      maxHeight: '50rem',
+      data:'',
+
+    
+    });
+  }
+
+  guestListGuest(): void {
+    this.dialog.open(ViewGuestListModalComponent, {
+      width: '99vw',
+      maxWidth:'60rem', 
+      height: 'auto',
+      maxHeight: '50rem',
+      data:'',
+
+    
+    });
+  }
+
 
   openValidationModal(): void {
     this.dialog.open(ValidationModalComponent, {

@@ -3,32 +3,22 @@
     flex-direction: column;
     height: 100%;
     position: relative;
+    padding: 0rem 1rem 1rem;
+   
 
     .header {
-        position: absolute;
-        right: 0rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-        .closeBtn {
-            margin: 1.5rem;
-            cursor: pointer;
-            padding: .3rem;
-
-            mat-icon {
-                color: white;
-                font-size: 2rem;
-                padding: 0;
-                margin: 0;
-                display: block;
-                width: 100%;
-                height: 100%;
-            }
+        .title {
+            font-size: clamp(1rem, 1vw, 5rem);
         }
 
-        .closeBtn:hover {
-            background-color: rgba(255, 255, 255, 0.178);
-            border-radius: 100%;
-            padding: .3rem;
+        .close-button-normal {
+            margin: 1rem
         }
+
     }
 
     .content {
@@ -38,7 +28,7 @@
         flex-direction: column;
         width: 100%;
         height: 100%;
-        margin-top: 5rem;
+      
 
 
         .wrapper {

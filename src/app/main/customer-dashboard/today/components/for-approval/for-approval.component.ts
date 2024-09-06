@@ -1,8 +1,4 @@
 
-
-
-
-
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewProfileModalComponent } from 'src/app/globals/modals/view-profile-modal/view-profile-modal.component';
 import { MessageGuestModalComponent } from '../modal/message-guest-modal/message-guest-modal.component';
 import { ValidationModalComponent } from '../modal/validation-modal/validation-modal.component';
-import { ReservationsViewComponent } from 'src/app/globals/modals/reservations-view/reservations-view.component';
+import { ViewReservationModalComponent } from 'src/app/globals/modals/view-reservation-modal/view-reservation-modal.component';
 
 export interface UserData {
   propertyimage: any;
@@ -62,7 +58,7 @@ const USER_DATA: UserData[] = [
   animations:[fadeInAnimation]
 })
 export class ForApprovalComponent  implements OnInit {
-  title:string = 'For Approval'
+  status:string = 'For Approval'
   dateToday: any = new Date();
   displayedColumns: string[] = [
     'property',
@@ -77,6 +73,7 @@ export class ForApprovalComponent  implements OnInit {
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  UserData: any;
 
   constructor(public dialog:MatDialog) {
     this.dataSource = new MatTableDataSource(USER_DATA);
@@ -96,12 +93,14 @@ export class ForApprovalComponent  implements OnInit {
   }
 
   viewForApprovalDetails(): void {
-    this.dialog.open(ReservationsViewComponent, {
+    this.dialog.open(ViewReservationModalComponent, {
       width: '99vw',
       maxWidth:'60rem', 
       height: '99vh',
       maxHeight: '50rem',
-      data:this.title
+      data:{
+        status:this.status
+      }
     
     });
   }

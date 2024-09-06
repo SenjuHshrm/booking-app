@@ -18,6 +18,7 @@ import { PendingReviewComponent } from './pending-review/pending-review.componen
 import { ForApprovalComponent } from './for-approval/for-approval.component';
 import { ValidationModalComponent } from './modal/validation-modal/validation-modal.component';
 import { MessageGuestModalComponent } from './modal/message-guest-modal/message-guest-modal.component';
+import { GlobalsModule } from 'src/app/globals/globals.module';
 
 
 @NgModule({
@@ -32,7 +33,10 @@ import { MessageGuestModalComponent } from './modal/message-guest-modal/message-
     PendingReviewComponent,
     ForApprovalComponent,
     ValidationModalComponent,
-    MessageGuestModalComponent
+    MessageGuestModalComponent,
+    
+
+
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,8 @@ import { MessageGuestModalComponent } from './modal/message-guest-modal/message-
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    GlobalsModule
   ],
 
   exports:[

@@ -11,9 +11,7 @@
                </div>
 
                 <div class="table-container">
-                 
                     <table mat-table [dataSource]="dataSource"  class="mat-table-responsive" style="table-layout: auto;">
-     
                        <ng-container matColumnDef="id">
                           <th mat-header-cell *matHeaderCellDef style="white-space: pre;">ID</th>
                           <td mat-cell *matCellDef="let element">{{element.id}}</td>
@@ -28,6 +26,14 @@
                              </div>
                           </td>
                        </ng-container>
+
+                       <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Cancellation Status</th>
+                        <td mat-cell *matCellDef="let element">
+                          <div>{{ element.status }}</div>
+                        </td>
+                      </ng-container>
+
      
                        <ng-container matColumnDef="guestnames">
                           <th mat-header-cell *matHeaderCellDef style="white-space: pre; width:17rem;">Booked guest</th>
@@ -39,11 +45,7 @@
                           </td>
                        </ng-container>
 
-                       <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Date</th>
-                        <td mat-cell *matCellDef="let element">{{element.cancelleddate | date:'MMMM d, y'}}</td>
-                     </ng-container>
-
+                   
                        <ng-container matColumnDef="reasons">
                         <th mat-header-cell *matHeaderCellDef style="white-space:pre;">Reasons</th>
                         <td mat-cell  class="name" *matCellDef="let element" style="white-space:pre;">
@@ -52,13 +54,17 @@
                      </ng-container>
      
                        <ng-container matColumnDef="action">
-                          <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Action</th>
-                          <td mat-cell *matCellDef="let element">
-                             <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
+                        <th mat-header-cell *matHeaderCellDef style="white-space: pre;text-align: center;">Action</th>
+                        <td mat-cell *matCellDef="let element" style="width: fit-content">
+                           <div class="action_btn">
+                             <button  mat-button [matMenuTriggerFor]="menu">
                                 <mat-icon>more_horiz</mat-icon>
                              </button>
+                           </div>
                              <mat-menu #menu="matMenu">
                               <button mat-menu-item (click)="viewDetails()">View Details</button>
+                              <button mat-menu-item (click)="openValidationModal()">Approve</button>
+                              <button mat-menu-item (click)="openValidationModal()">Disapproved</button>
                               <button mat-menu-item (click)="viewProfile()">View Guest Profile</button>
                               <button mat-menu-item (click)="messageGuest()">Message Guest</button>
                              </mat-menu>

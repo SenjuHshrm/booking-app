@@ -203,10 +203,10 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
   public viewImageBedroom(img: string): void {
     this.dialog.open(WheretoSleepViewComponent, {
-      width: '100%',
-      height: '100%',
-      maxWidth: '100%',
-      maxHeight: '100%',
+      width: 'auto',
+      height: 'auto',
+      maxWidth: 'fit-content',
+      maxHeight: 'fit-content',
       data: img,
     });
   }
@@ -216,7 +216,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       width: '100%',
       height: '100%',
       maxWidth: '35rem',
-      maxHeight: '23rem',
+      maxHeight: '27rem',
       data: { proprietorHost: this.details.host, usersProfile: '' },
       disableClose: true,
     });

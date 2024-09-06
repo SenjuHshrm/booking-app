@@ -1,31 +1,16 @@
 .today-tabs {
   &-today-tabs-wrapper {
+
     .content {
       height: 50vh;
       max-height: 40rem;
       margin: 1rem 0 1rem;
       border-radius: 20px;
 
-      .header_title_date {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+      .title {
+        font-size: 1.2rem;
+        font-weight: bold;
         padding: 1rem 1rem 0;
-
-        .title {
-          margin: 0;
-          padding: 0;
-        }
-
-        .date {
-          display: flex;
-          gap: 1rem;
-
-          .dates {
-            font-weight: bold;
-          }
-        }
       }
 
       .search {
@@ -54,36 +39,99 @@
         max-width: 100%;
         width: 100%;
         overflow: auto;
-
-
-
+        
       }
 
       .mat-table-responsive {
+   
         width: 100%;
         overflow-x: auto;
         padding-bottom: 1rem !important;
+
+        .custom-property {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+ 
+
+          .img {
+            width: 2.3rem;
+            height: 2.3rem;
+            object-fit: cover;
+            border: 1px solid #a0a0a0;
+            border-radius: 5px;
+          }
+
+          .name {
+            flex: none;
+            width: auto;
+            max-width: 15rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+        }
+
+
+        .custom-guest {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          .img {
+            width: 2.3rem;
+            height: 2.3rem;
+            object-fit: cover;
+            border: 1px solid #a0a0a0;
+            border-radius: 100%;
+          }
+
+          .name {
+            flex: none;
+            width: auto;
+            max-width: 12rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+        }
 
         .custom-checkinout {
           display: flex;
           align-items: center;
           gap: 5px;
         }
-
-
       }
 
-      .img {
-        width: 2rem;
-        height: 2rem;
-        object-fit: cover;
-      }
+      .action_btn {
+        width: fit-content;
+        margin:auto;
+        display: flex;
+        gap: .5rem;
 
-      .action-btn {
-        border: none;
-        background-color: transparent;
-        outline: none;
-        cursor: pointer;
+        button {
+          width: fit-content;
+          border: none;
+          background-color: transparent;
+          outline: none;
+          cursor: pointer;
+          margin: auto;
+          color: white;
+          padding: 0 .5rem 0;
+          background-color: black;
+          border-radius: 3px;
+          cursor: pointer;
+
+          mat-icon {
+            margin: auto;
+            display: grid;
+            place-content: center;
+            font-size: 20px;
+          }
+        }
+
       }
 
 
@@ -95,6 +143,8 @@
       }
 
 
+
+
     }
   }
 }
@@ -104,20 +154,14 @@
     &-today-tabs-wrapper {
 
       .content {
-
-        .header_title_date {
-          display: flex;
-          flex-direction: column;
-
-          .title {}
+        .title {
+          margin: auto;
+          width: fit-content;
         }
 
-        .table-container {
-
-          .search {
-            margin: auto;
-            margin-top: 1rem;
-          }
+        .search {
+          margin: auto;
+          margin-top: 1rem;
         }
 
         .mat-table-responsive {

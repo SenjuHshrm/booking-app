@@ -34,7 +34,7 @@
                      <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Guest</th>
                      <td mat-cell *matCellDef="let element" class="numberofguest">
                         <span *ngIf="element.numofguest > 0">{{element.numofguest}}</span>
-                        <span class="custom_guest_btn" *ngIf="element.numofguest > 0" (click)="viewGuestCheckout()" >Check-Out Guest</span>
+                        <span class="custom_guest_btn" *ngIf="element.numofguest > 0" (click)="viewGuestCheckout()" >Check-all Out</span>
                      </td>
                   </ng-container>
 
@@ -65,16 +65,19 @@
                   </ng-container> -->
 
                   <ng-container matColumnDef="action">
-                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;">Action</th>
+                     <th mat-header-cell *matHeaderCellDef style="white-space: pre;text-align: center;">Action</th>
                      <td mat-cell *matCellDef="let element">
-                        <button class="action-btn" mat-button [matMenuTriggerFor]="menu">
-                           <mat-icon>more_horiz</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu">
-                           <button mat-menu-item (click)="viewDetails()">View Details</button>
-                           <button mat-menu-item (click)="viewProfile()">View Guest Profile</button>
-                           <button mat-menu-item (click)="messageGuest()">Message Guest</button>
-                        </mat-menu>
+                        <div class="action_btn">
+                           <button (click)="viewDetails()">
+                              <mat-icon>remove_red_eye</mat-icon>
+                           </button>
+                           <button (click)="viewProfile()">
+                              <mat-icon> person_pin</mat-icon>
+                           </button>
+                           <button (click)="messageGuest()">
+                              <mat-icon> message</mat-icon>
+                           </button>
+                        </div>
                      </td>
                   </ng-container>
                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
