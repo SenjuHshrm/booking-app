@@ -14,75 +14,44 @@ import { ValidationModalComponent } from '../modal/validation-modal/validation-m
 import { ReservationsViewComponent } from 'src/app/globals/modals/reservations-view/reservations-view.component';
 
 export interface UserData {
-  id: string;
+
   propertyimage: any;
   nameofproperty: any;
   guestimage: any;
   guestnames: string;
   numofguest: any;
-  instantbook: any; 
   bookingdate: Date;
-  checkintime: any;
-  checkouttime: any;
   reservationindate: any;
   reseservationoutdate: any;
   interval: any;
   intervalunit: any;
-  checkindate: any;
-  checkoutdate: any;
-  remainingtime: any;
-  paymenttype: string;
-  paidamount: number;
-  balanceamount: number;
-  totalearnings: number;
 }
 
 const USER_DATA: UserData[] = [
   {
-    id: '1',
     propertyimage: '../assets/images/main/staycation-details/gallery1.png',
     nameofproperty: 'Alabang Condo Unit',
     guestimage: '../assets/images/avatars/placeholder.png',
     guestnames: 'Maia B. Bernal',
     numofguest: '1',
-    instantbook: 'On',
     bookingdate: new Date(),
     interval: '1',
     intervalunit: 'day',
     reservationindate: new Date(),
     reseservationoutdate: new Date(),
-    checkindate: new Date(),
-    checkoutdate: new Date(),
-    checkintime: '8',
-    checkouttime: '10',
-    remainingtime: '0',
-    paymenttype: 'Fully paid',
-    paidamount: 684,
-    balanceamount: 200,
-    totalearnings: 0
   },
   {
-    id: '2',
+
     propertyimage: '../assets/images/main/staycation-details/gallery1.png',
     nameofproperty: 'Muntinlupa Condo Unit',
     guestimage: '../assets/images/avatars/placeholder.png',
     guestnames: 'Olivia B. Agustin',
     numofguest: '1',
-    instantbook: 'Off', 
     bookingdate: new Date(),
     interval: '1',
     intervalunit: 'month',
     reservationindate: new Date(),
     reseservationoutdate: new Date(),
-    checkindate: new Date(),
-    checkoutdate: new Date(),
-    checkintime: '8',
-    checkouttime: '10',
-    remainingtime: '0',
-    paymenttype: 'Partial pay',
-    paidamount: 626,
-    balanceamount: 300,
-    totalearnings: 300
   },
 ];
 
@@ -97,23 +66,12 @@ export class ArrivingSoonComponent  implements OnInit {
   title:string = 'Current guest'
   dateToday: any = new Date();
   displayedColumns: string[] = [
-    'id',
     'property',
     'guestnames',
     'numofguest',
-    'instantbook',
     'bookingdate',
     'reservationdate',
     'interval',
-    'checkindate',
-    'checkoutdate',
-    'checkintime',
-    'checkouttime',
-    'remainingtime',
-    'paymenttype',
-    'paidamount',
-    'balanceamount',
-    'totalearnings',
     'action',
   ];
 

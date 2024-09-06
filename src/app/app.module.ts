@@ -19,7 +19,8 @@ import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 export class CustomErrorHandler implements ErrorHandler {
   handleError(error: any) {
@@ -32,7 +33,7 @@ export class CustomErrorHandler implements ErrorHandler {
 
 
   declarations: [
-    AppComponent
+    AppComponent,
   ],
 
   imports: [
