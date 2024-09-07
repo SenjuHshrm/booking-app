@@ -145,6 +145,14 @@
                 }
 
             }
+
+                            
+            .alignHero{
+                display: grid;
+                place-content: center;
+                text-align: center;
+              }
+
         }
 
         &-section_1 {

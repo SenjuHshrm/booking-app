@@ -14,12 +14,14 @@ import { ReportListingComponent } from './report-listing/report-listing.componen
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GlobalsModule } from 'src/app/globals/globals.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RateAndCommentComponent } from './rate-and-comment/rate-and-comment.component';
 
 @NgModule({
   declarations: [
     StaycationDetailsComponent,
     CustomDatepickerHeader,
     ReportListingComponent,
+    RateAndCommentComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     GlobalsModule,
     MatSnackBarModule,
+    FormsModule
   ],
 })
 export class StaycationDetailsModule {}
