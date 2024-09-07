@@ -4,7 +4,9 @@
   </header>
   <section class="home-container-body">
     <section class="home-container-body-hero_section">
-      <div class="hero-wrapper">
+      <div class="hero-wrapper" 
+      [ngClass]="{'alignHero': frontCarousels.length === 0}"
+      >
         <div class="title" [@fadeInAnimation]>
           <div>
             <h1>
@@ -25,13 +27,19 @@
             </p>
           </div>
 
-          <div class="custom-main-button">
+          <div class="custom-main-button"   
+          [ngStyle]="{
+            'margin': frontCarousels.length === 0? 'auto':'',
+            'margin-top': frontCarousels.length === 0? '2rem':''
+             }"
+          
+          >
             <button class="main-button" (click)="navigateToMain()">
               View More
             </button>
           </div>
         </div>
-        <div class="main-image" [@fadeInAnimation]>
+        <div class="main-image" [@fadeInAnimation] >
           <swiper
             class="swiper-container"
             #swiper

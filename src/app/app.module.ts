@@ -22,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
+
 export class CustomErrorHandler implements ErrorHandler {
   handleError(error: any) {
     // Custom error handling logic
@@ -33,7 +34,7 @@ export class CustomErrorHandler implements ErrorHandler {
 
 
   declarations: [
-    AppComponent,
+    AppComponent
   ],
 
   imports: [

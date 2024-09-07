@@ -31,6 +31,9 @@ import { CustomDatepickerHeader } from './custom-datepicker-header';
 import * as moment from 'moment';
 import { ReportListingComponent } from './report-listing/report-listing.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
+import { RateAndCommentComponent } from './rate-and-comment/rate-and-comment.component';
+import { Input } from '@angular/core';
 
 SwiperCore.use([Autoplay]);
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -53,26 +56,21 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public averageStar: number = 0;
   public totalReviews: number = 0;
   public latestReview: any;
-
   public guest_adults: number = 1;
   public guest_children: number = 0;
   public guest_infants: number = 0;
   public guest_pets: number = 0;
-
   public wishlistIcons: boolean = false;
   public wishlistId!: string;
-
   public discount: any = {};
   public cancellation: any = [];
-
-  public isExpanded: boolean = false;
+  public isExpandedDescriptiontext: boolean = false;
 
   public basePrice: number = 0;
   public baseServiceCharge: number = 0;
   public nights: number = 1;
   public serviceCharge: number = 0;
   public totalBeforeTax: number = 0;
-
   public today = new Date();
   public month = this.today.getMonth();
   public year = this.today.getFullYear();
@@ -82,6 +80,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public showCancelOpts: boolean = false;
   public selectedCancellationPolicy: string = '1';
 
+ 
   public checkInCheckOut = new FormGroup({
     // start: new FormControl(new Date(this.year, this.month, this.day)),
     // end: new FormControl(new Date(this.year, this.month, this.day))
@@ -90,6 +89,13 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   });
 
   public refundOpts: any = [];
+  public sampleDataReviews:any =[
+    {avatarImg:'../../assets/images/main/staycation-details/avatarreviewer.png', name:'Juan DelaCruz', address:'San Pablo City', taragoDuartion:'2 years in TaraGo',expand:false,rateStar:5 ,comment:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.'},
+    {avatarImg:'../../assets/images/main/staycation-details/avatarreviewer.png',name:'Juan DelaCruz', address:'San Pablo City', taragoDuartion:'2 years in TaraGo',expand:false,rateStar:3 ,comment:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.'},
+    {avatarImg:'../../assets/images/main/staycation-details/avatarreviewer.png',name:'Juan DelaCruz', address:'San Pablo City', taragoDuartion:'2 years in TaraGo',expand:false,rateStar:1 ,comment:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.'},
+    {avatarImg:'../../assets/images/main/staycation-details/avatarreviewer.png',name:'Juan DelaCruz', address:'San Pablo City', taragoDuartion:'2 years in TaraGo',expand:false,rateStar:5 ,comment:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.'},
+    {avatarImg:'../../assets/images/main/staycation-details/avatarreviewer.png',name:'Juan DelaCruz', address:'San Pablo City', taragoDuartion:'2 years in TaraGo',expand:false,rateStar:5 ,comment:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.'},
+  ]
 
   private _snack: MatSnackBar = inject(MatSnackBar);
 
@@ -103,7 +109,8 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     private _token: TokenService,
     private _discount: DiscountService,
     private _cancellation: CancellationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -115,6 +122,8 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       },
     });
     // this._getGlobalStaticFee();
+
+    
   }
 
   ngOnDestroy(): void {
@@ -175,8 +184,12 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   }
   //Swiper
 
-  seemoreText() {
-    this.isExpanded = !this.isExpanded;
+  seemoreDescriptionText() {
+    this.isExpandedDescriptiontext = !this.isExpandedDescriptiontext;
+  }
+
+  seemoreReviewsText(index:number) {
+    this.sampleDataReviews[index].expand = !this.sampleDataReviews[index].expand;
   }
 
   public handleDateChangeStart(e: MatDatepickerInputEvent<any, any>) {
@@ -213,11 +226,22 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
   public messageProprietor(): void {
     this.dialog.open(MessageProprietorComponent, {
-      width: '100%',
-      height: '100%',
-      maxWidth: '35rem',
-      maxHeight: '27rem',
+      panelClass:'custom-messagehost-dialog',
       data: { proprietorHost: this.details.host, usersProfile: '' },
+      disableClose: true,
+    });
+  }
+  public addrateComment(): void {
+    this.dialog.open(RateAndCommentComponent, {
+      panelClass:'custom-addrate-dialog',
+      data: { },
+    });
+  }
+
+  public addRateandComment(): void {
+    this.dialog.open(RateAndCommentComponent, {
+      panelClass: 'custom-dialog-container',
+      data: {},
       disableClose: true,
     });
   }

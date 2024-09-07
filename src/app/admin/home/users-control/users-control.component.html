@@ -3,24 +3,19 @@
 
 
         <div class="users_account_menu_wrapper ">
-            <div class="custom_users_account" [matMenuTriggerFor]="menu">
-                <button class="menu">
-                    <span><mat-icon>supervisor_account</mat-icon></span>
-                    <span class="select">{{btnNames}}</span>
-                    <span><mat-icon> keyboard_arrow_down</mat-icon></span>
-                </button>
-                <mat-menu #menu="matMenu" class="menu_btn">
-                    <button mat-menu-item class="" [ngClass]="{'active': selectedTab === 'admin'}"
+            <div class="tab-header">
+                <div class="tab-wrapper">
+                    <button class="custom-btn" [ngClass]="{'active': selectedTab === 'admin'}"
                         (click)="gotoNavigatePage('Admin','admin')">Admin</button>
-                    <button mat-menu-item class="" [ngClass]="{'active': selectedTab === 'guest'}"
+                    <button class="custom-btn" [ngClass]="{'active': selectedTab === 'guest'}"
                         (click)="gotoNavigatePage('Guest','guest')">Guest</button>
-                    <button mat-menu-item class="" [ngClass]="{'active': selectedTab === 'proprietor'}"
+                    <button class="custom-btn" [ngClass]="{'active': selectedTab === 'proprietor'}"
                         (click)="gotoNavigatePage('Proprietor','proprietor')">Proprietor</button>
-                </mat-menu>
+                </div>
             </div>
         </div>
-        <section class="userscontrol-container-wrapper-content">
+        <div class="userscontrol-container-wrapper-content">
             <router-outlet></router-outlet>
-        </section>
+        </div>
     </div>
 </div>

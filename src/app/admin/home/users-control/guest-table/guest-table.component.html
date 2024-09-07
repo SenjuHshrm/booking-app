@@ -1,3 +1,4 @@
+<div class="guest_table_container">
 <div class="listing-search card">
   <div class="icon"><mat-icon>search</mat-icon></div>
   <input
@@ -7,7 +8,7 @@
     value=""
   />
 </div>
-
+<div class="table_wrapper">
 <table mat-table [dataSource]="dataSource">
   <!-- Define your table columns -->
   <ng-container matColumnDef="profile">
@@ -51,6 +52,8 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+</div>
+<div>
 <mat-paginator
   class="table-pagination"
   #paginator
@@ -59,4 +62,7 @@
   aria-label="select page"
   showFirstLastButtons
   (page)="handlePageChange($event)"
-></mat-paginator>
+>
+</mat-paginator>
+</div>
+</div>

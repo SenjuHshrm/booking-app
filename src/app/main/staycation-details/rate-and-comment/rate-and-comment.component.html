@@ -1,0 +1,35 @@
+<form>
+  <div class="rateandcomment_modal">
+    <div class="header">
+      <div class="title">Review and rate this listing</div>
+      <div class="close-button-normal" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+
+    <hr />
+    <div class="rateandcomment_modal-content">
+      <div class="review-rate-container">
+        <h2>Rate your stay at Juan Dela Cruz's place</h2>
+
+        <!-- Star Rating System using mat-icon -->
+        <div class="star-rating">
+          <span *ngFor="let star of stars; let i = index" (click)="rate(i + 1)" (mouseover)="hoverRating(i + 1)"
+            (mouseleave)="hoverRating(0)">
+            <mat-icon>
+              {{ i < rating ? 'star' : 'star_border' }} </mat-icon>
+          </span>
+        </div>
+
+        <h3>You just checked out of <span class="host_name">Juan Dela Cruz's</span> place. Now, take a minute to reflect
+          on the stay and leave a quick review.</h3>
+        <textarea placeholder="Write your public comments here..." [(ngModel)]="publicComments"></textarea>
+      </div>
+    </div>
+    <div class="footer">
+      <button type="submit" class="main-button" (click)="submitReview()">
+        <span>Submit <mat-icon> rate_review</mat-icon></span>
+      </button>
+    </div>
+  </div>
+</form>
