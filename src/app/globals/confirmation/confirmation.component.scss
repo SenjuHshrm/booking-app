@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: auto;
 
   .header {
     flex: 0;
@@ -28,13 +27,13 @@
     display: grid;
     place-content: center;
     height: 100%;
-    overflow-y: auto;
-    text-align: center;
+    text-align: start;
 
     .title {
-      font-size: clamp(1rem, 1.1vw, 4rem);
+      font-size: 1.25rem;
       line-height: 2rem;
       padding: 0.7rem;
+      white-space: pre-line;
     }
   }
 

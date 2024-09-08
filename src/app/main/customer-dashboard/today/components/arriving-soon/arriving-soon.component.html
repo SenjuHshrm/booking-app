@@ -107,25 +107,46 @@
                   <button (click)="viewDetails(element)">
                     <mat-icon>remove_red_eye</mat-icon>
                   </button>
-                  <!-- <button (click)="viewProfile()">
-                              <mat-icon> person_pin</mat-icon>
-                           </button> -->
-
                   <button (click)="guestListGuest(element)">
                     <mat-icon>assignment_ind</mat-icon>
                   </button>
-                  <button (click)="messageGuest()">
+                  <button (click)="messageGuest(element.initiatedBy)">
                     <mat-icon> message</mat-icon>
+                  </button>
+                  <button
+                    [disabled]="statusLoading"
+                    (click)="checkInModal(element)"
+                  >
+                    <mat-spinner [diameter]="20" *ngIf="statusLoading" />
+                    <mat-icon *ngIf="!statusLoading">fact_check</mat-icon>
                   </button>
                 </div>
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell td-no-value" colspan="7">
+                <span *ngIf="!isLoading">No Booking Found</span>
+                <span
+                  *ngIf="isLoading"
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                  "
+                  ><mat-spinner [diameter]="15" /> Loading data...</span
+                >
+              </td>
+            </tr>
           </table>
           <mat-paginator
+            [length]="total"
             [pageSizeOptions]="[5, 10, 25, 100]"
             showFirstLastButtons
+            (page)="handlePageChange($event)"
           ></mat-paginator>
         </div>
       </div>

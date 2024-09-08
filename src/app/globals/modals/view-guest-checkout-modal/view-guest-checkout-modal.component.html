@@ -6,24 +6,65 @@
   </div>
   <div class="info-details_header">
     <div class="title">Check Out Guest Members</div>
-    <div class="subtitle">Manage and review the details of guests who have checked out.</div>
+    <div class="subtitle">
+      Manage and review the details of guests who have checked out.
+    </div>
   </div>
   <div class="table-container">
     <table class="airbnb-table">
       <thead>
         <tr>
           <th>Guest Name</th>
-          <th>Status</th>
-          <th>Date Checkout</th>
-          <th>Time Checkout</th>
+          <th>Check-In Date</th>
+          <th>Check-In Time</th>
+          <th>Check-Out Date</th>
+          <th>Check-Out Time</th>
+          <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="!isLoading && guests.length > 0">
         <tr *ngFor="let guest of guests">
-          <td>{{ guest.guestName }}</td>
-          <td>{{ guest.status }}</td>
-          <td>{{ guest.dateCheckout | date:'shortDate' }}</td>
-          <td>{{ guest.timeCheckout }}</td>
+          <td>{{ guest.name }}</td>
+          <td>{{ guest.checkInDate | date : "shortDate" }}</td>
+          <td>{{ formatTime(guest.checkInTime) }}</td>
+          <td>{{ guest.checkOutDate | date : "shortDate" }}</td>
+          <td>
+            {{ guest.checkOutTime ? formatTime(guest.checkOutTime) : "" }}
+          </td>
+          <td>
+            <div class="action_btn">
+              <button
+                *ngIf="!guest.checkOutDate && !guest.checkOutTime"
+                [disabled]="outLoading"
+                (click)="checkOutGuest(guest._id, guest.name)"
+              >
+                <mat-spinner [diameter]="20" *ngIf="outLoading" />
+                <mat-icon *ngIf="!outLoading">outbox</mat-icon>
+              </button>
+              <div
+                *ngIf="guest.checkOutDate && guest.checkOutTime"
+                class="badge"
+              >
+                Checked Out
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!isLoading && guests.length < 1">
+        <tr>
+          <td colspan="5">No Guest Found</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="isLoading">
+        <tr>
+          <td colspan="5">
+            <div style="display: grid; place-items: center">
+              <span style="display: flex; align-items: center; gap: 0.25rem"
+                ><mat-spinner [diameter]="15" /> Loading...</span
+              >
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>

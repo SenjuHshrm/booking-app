@@ -19,7 +19,7 @@ import { ForApprovalComponent } from './for-approval/for-approval.component';
 import { ValidationModalComponent } from './modal/validation-modal/validation-modal.component';
 import { MessageGuestModalComponent } from './modal/message-guest-modal/message-guest-modal.component';
 import { GlobalsModule } from 'src/app/globals/globals.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
@@ -48,6 +48,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     GlobalsModule,
     FormsModule,
     MatProgressSpinnerModule,
+    ReactiveFormsModule,
   ],
 
   exports: [
