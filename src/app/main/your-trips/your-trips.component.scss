@@ -2,308 +2,426 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 90vh;
-    overflow-y: auto;
-    
+    position: relative;
 
     .property-title {
-        margin-top: 1rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-     
+        // flex-basis: 5%;
+        // display: grid;
+        // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        // gap: 1rem;
+        // padding-left: 1rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #cacaca;
+        padding: .5rem 0 .5rem;
+        background-color: white;
+        position: sticky;
+        top: 0;
+        bottom: 0;
+        z-index:7;
+ 
+
+        .humburger-btn {
+            background-color: white;
+            border-radius: 100%;
+            box-shadow: 1px 1px 5px #88888877;
+            width: fit-content;
+            height: fit-content;
+            padding: .5rem .3rem .3rem;
+            margin-left: 1rem;
+
+        }
 
 
         .title-wrapper {
             display: flex;
             align-items: center;
-            padding: 0 1rem 0;
             padding-left: 0;
             font-weight: bold;
-            font-size: clamp(1.5rem, 1.5vw, 8rem);
+
 
             .title {
+                margin-left: 1rem;
                 font-weight: bold;
-                font-size: clamp(1.5rem, 1.5vw, 8rem);
+                font-size: clamp(1rem, 1.5vw, 8rem);
             }
 
         }
 
 
-        .filter_search {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin: 0 .5rem 0;
-            gap: 1rem;
+        // .filter_search {
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: flex-end;
+        //     margin: 0 .5rem 0;
+        //     gap: 1rem;
 
-            .filter-option {
+        //     .filter-option {
 
 
-                button {
-                    background-color: transparent;
-                    border: none;
-                    display: flex;
-                    align-items: center;
-                    gap: .3;
-                    text-decoration: underline;
-                    cursor: pointer;
-                    background-color: #68A968;
-                    border-radius: 20px;
-                    padding: 0 1rem 0;
-                    display: flex;
-                    gap: 5px;
-                    color: white !important;
-                    text-decoration: none;
-                }
+        //         button {
+        //             background-color: transparent;
+        //             border: none;
+        //             display: flex;
+        //             align-items: center;
+        //             gap: .3;
+        //             text-decoration: underline;
+        //             cursor: pointer;
+        //             background-color: #68A968;
+        //             border-radius: 20px;
+        //             padding: 0 1rem 0;
+        //             display: flex;
+        //             gap: 5px;
+        //             color: white !important;
+        //             text-decoration: none;
+        //         }
 
-                mat-icon {
-                    margin: 0;
-                    padding: 0;
-                }
+        //         mat-icon {
+        //             margin: 0;
+        //             padding: 0;
+        //         }
 
-            }
+        //     }
 
-            .search {
-                display: flex;
-                width: 100%;
-                max-width: 20rem;
-                min-width: 15rem;
-                padding: .5rem 1rem .5rem;
-                border: 1px solid rgb(190, 190, 190);
-                border-radius: 10px;
+        //     .search {
+        //         display: flex;
+        //         width: 100%;
+        //         max-width: 20rem;
+        //         min-width: 15rem;
+        //         padding: .5rem 1rem .5rem;
+        //         border: 1px solid rgb(190, 190, 190);
+        //         border-radius: 10px;
 
-                input {
-                    width: 100%;
-                    border: none;
-                    outline: none;
+        //         input {
+        //             width: 100%;
+        //             border: none;
+        //             outline: none;
 
-                }
+        //         }
 
-                mat-icon {
-                    color: #63AB68;
-                }
-            }
-        }
-    }
-    .filter_cat {
-        font-size: clamp(.8rem, 1vw, 8rem);
-        font-weight: bold;
-        text-align: left;
-        color: #63AB68;
-        margin-top: 1rem;
+        //         mat-icon {
+        //             color: #63AB68;
+        //         }
+        //     }
+        // }
     }
 
-    .custom-tabs {
-        display: flex;
-        overflow-x: auto;
-        padding: 1rem 0 0
-      
-      }
-  
-      .tab {
-        padding: 10px 20px;
-        cursor: pointer;
-  
-        white-space: pre;
-        // border: 1px solid #ccc;
-        border-bottom: none;
-        border-radius: 5px 5px 0 0;
-        margin-right: 10px;
-      }
-  
-      .tab.active {
-        font-weight: bold;
-        color: #63AB68;
-      }
-  
-      .tab:hover {
-        font-weight: bold;
-        color: #63AB68;
-      }
-  
-      .tab-content {
-        // border: 1px solid #ccc;
-        border-radius: 0 0 5px 5px;
-        // padding: 20px;
-  
-      }
-  
-      .animated-border {
-        border-bottom: none;
-        /* Remove default border */
-        position: relative;
-        /* Required for pseudo-element positioning */
-        cursor: pointer;
-        /* Optional for hover effect */
-  
-        &::after {
-          content: "";
-          display: block;
-          width: 0;
-          height: 2px;
-          /* Adjust border thickness here */
-          background-color: #63AB68;
-          /* Adjust border color */
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          transition: width 0.3s ease-in-out;
-        }
-  
-        &:hover::after,
-        &.active::after {
-          /* Target both active and hover states */
-          width: 100%;
-          /* Animate width to full width */
-        }
-      }
-    .content {
-        max-width: 93%;
+    .burgerHide {
+        display: none;
+    }
 
-        overflow-y: auto;
-        flex: 1;
+    .hero_header {
+        flex-basis:12rem;
         display: flex;
-        flex-direction: column;
-        margin-top: 1rem;
-        height: 100%;
+        justify-content: space-between;
+        height: 12rem;
+        padding: .3rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease;
+        border-bottom: 1px solid #ececec;
+        margin-left: 15.7rem;
+        transition: all 0.3s ease;
 
-        .custom-not_found {
-            flex: 1;
-            text-align: center;
+        .info_hero {
             display: grid;
-            place-content: center;
-            height: 100vh;
-          
-          
-    
-    
-            .title {
-                font-size: calc(1.2em + .2vw);
-                font-weight: bold;
-                margin: .5rem;
+            place-content: center start;
+            width: 100%;
+            padding-left: 1rem;
+            position: relative;
+
+            .info_hero_wrapper {
+                .title {
+                    font-size: clamp(1rem, 1.3vw, 8rem);
+                    font-weight: bold;
+                    margin-top: .5rem;
+                }
+
+                .subtitle {
+                    font-size: calc(.8em + .2vw);
+                    margin-top: 1rem;
+                }
+
+                .btn {
+                    padding: 1rem 0 1rem;
+                    width: 100%;
+
+                    .main-button {
+                        font-size: clamp(.7rem, .7vw, 8rem);
+                    }
+                }
             }
-    
-            .subtitle {
-                font-size: calc(.8em + .2vw);
-            }
-    
-            .btn {
+        }
+
+        .display_image {
+            flex-basis: 70%;
+
+            img {
+                object-fit: cover;
+                object-position: left;
                 width: 100%;
+                height: 100%;
+                transform: scaleX(-1)
+            }
+        }
+    }
+
+    .margin_hero_header{
+        margin-left:0rem;
+        transition: all 0.3s ease;
+    }
+
+    .main_content {
+        flex-basis:100%;
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        flex-flow: row;
+        top: 0;
+        bottom: 0;
+
+   
+       
+        ////tabs-start//// 
+
+        .custom-tabs {
+            border-right: 1px solid #cacaca;
+            position: fixed;
+            top:7.75rem;
+            bottom: 0;
+            z-index: 7;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            overflow-x: auto;
+            padding: 0;
+            width:16rem;
+            transform: translateX(0%);
+            transition: all 0.3s ease;
+        }
+
+        .isMinimizedSidebar {
+            width:16rem;
+            transform: translateX(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .tab {
+            padding: 20px 20px;
+            cursor: pointer;
+
+            white-space: pre;
+            // border: 1px solid #ccc;
+            border-bottom: none;
+            border-radius: 0;
+            font-size: clamp(.9rem, .9vw, 8rem);
+        }
+
+        .tab.active {
+            font-weight: bold;
+            color: #63AB68;
+            background-color: #f7f7f7;
+        }
+
+        .tab:hover {
+            font-weight: bold;
+            color: #63AB68;
+
+        }
+
+        .tab-content {
+            // border: 1px solid #ccc;
+            border-radius: 0;
+            // padding: 20px;
+
+        }
+
+        .animated-border {
+            border-bottom: none;
+            /* Remove default border */
+            position: relative;
+            /* Required for pseudo-element positioning */
+            cursor: pointer;
+            /* Optional for hover effect */
+
+            &::after {
+                content: "";
+                display: block;
+                width: 0;
+                height: 2px;
+                /* Adjust border thickness here */
+                background-color: #63AB68;
+                /* Adjust border color */
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: width 0.3s ease-in-out;
+            }
+
+            // &:hover::after,
+            &.active::after {
+                /* Target both active and hover states */
+                width: 100%;
+                /* Animate width to full width */
+            }
+        }
+        ////tabs-end////
+
+
+        .hr_vertical {
+            background-color: #cacaca;
+            height: 100%;
+            width: 1px;
+            margin: 0 1rem 0;
+            margin-left: 0;
+            position: sticky;
+            top: 0;
+            bottom: 0;
+
+        }
+
+
+        .content {
+            position: relative;
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            margin-left: 16rem;
+            transition: all 0.3s ease;
+
+
+
+            .custom-not_found {
+                flex: 1;
+                text-align: center;
                 display: grid;
                 place-content: center;
-                margin-top: 1rem;
-            }
-        }
-    }
-
-  
-}
-
-@media only screen and (max-width: 780px) {
-    .your-trips-container {
-
-        .content {
-            .content_wrapper {
-                .card {
-                    max-width: 13rem;
-
-                    .status {}
-
-                    .content__card {
-                        .info {
-                            .title {}
-
-                            .description {}
-
-                            .permonth {}
-                        }
-
-                    }
-
-                    .image {
-                        max-width: 13rem;
-
-                        img {
-                            max-width: 13rem;
-                        }
-
-                        .close-button {}
-
-                    }
+                height: 100vh;
 
 
+
+
+                .title {
+                    font-size: calc(1.2em + .2vw);
+                    font-weight: bold;
+                    margin: .5rem;
 
                 }
 
-                .trip_card_wrapper {
-                    place-items: center;
-                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                    gap: auto;
+                .subtitle {
+                    font-size: calc(.8em + .2vw);
                 }
 
+                .btn {
+                    width: 100%;
+                    display: grid;
+                    place-content: center;
+                    margin-top: 1rem;
+                }
             }
         }
+
+        .isMinimizedContent {
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-left:0rem;
+        }
+
     }
 
 }
 
-@media only screen and (max-width: 550px) {
-    .your-trips-container {
-
-        .content {
-            .content_wrapper {
-                .card {
-                    max-width: 10rem;
-                    grid-template-rows: 10rem auto;
-
-                    .status {}
-
-                    .content__card {
-                        .info {
-                            .title {}
-
-                            .description {}
-
-                            .permonth {}
-                        }
-
-                    }
-
-                    .image {
-                        img {
-                            max-width: 10rem;
-                            max-height: 12rem;
-                        }
-
-                        .close-button {}
-
-                    }
-
-                }
-
-                .trip_card_wrapper {
-                    place-items: center;
-                    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                    gap: auto;
-                    overflow-x: hidden;
-                }
-
-            }
-        }
-    }
-
-}
-
-// @media only screen and (max-width: 400px) {
+// @media only screen and (max-width:900px) {
 //     .your-trips-container {
-//         .property-title {
-//             .filter_search {
-//                 display: flex;
-//                 flex-direction: column;
+//         .hero_header {
+//             flex-direction: column;
+//             height: fit-content;
+//         }
 
-//                 .filter-option {}
+//         .main_content {
+
+//             .custom-tabs {}
+
+//             .tabs {}
+
+//             .hr_vertical {
+//                 display: none;
+//             }
+
+//             .content {
+                
+//                 .content_wrapper {
+
+//                     .card {
+//                         max-width: 13rem;
+
+//                         .status {}
+
+//                         .content__card {
+//                             .info {
+//                                 .title {}
+
+//                                 .description {}
+
+//                                 .permonth {}
+//                             }
+
+//                         }
+
+//                         .image {
+//                             max-width: 13rem;
+
+//                             img {
+//                                 max-width: 13rem;
+//                             }
+
+//                             .close-button {}
+
+//                         }
+
+
+
+//                     }
+
+//                     .trip_card_wrapper {
+//                         place-items: start;
+//                         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+//                         gap: auto;
+//                     }
+
+//                 }
 //             }
 //         }
 //     }
+
 // }
+
+@media only screen and (max-width:600px){
+    .your-trips-container {
+        .main_content {
+            // .backdrop{
+            //     background-color: rgba(0, 0, 0, 0.753);
+            //     transition: all 0.3s ease;
+            //     position: absolute;
+            //     z-index:7;
+            //     inset: 0;
+            // }
+            .custom-tabs {
+                top:3.98rem;
+            }
+            .isMinimizedSidebar {
+
+            }
+            .content {
+                margin-left: 0rem;
+                transition: all 0.3s ease;
+            }
+            .isMinimizedContent {
+
+            }
+        }
+    }
+}
+

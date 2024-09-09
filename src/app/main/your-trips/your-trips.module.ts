@@ -8,9 +8,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { ValidationModalComponent } from './modal/validation-modal/validation-modal.component';
 import { GlobalsModule } from "../../globals/globals.module";
-import { ViewDetailsModalComponent } from './modal/view-details-modal/view-details-modal.component';
+import { ViewDetailsModalComponent } from '../../globals/modals/view-details-modal/view-details-modal.component';
 import { CancelReasonModalComponent } from './modal/cancel-reason-modal/cancel-reason-modal.component';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { CancelReasonModalComponent } from './modal/cancel-reason-modal/cancel-r
     MatIconModule,
     MatMenuModule,
     FormsModule,
+    MatButtonModule,
+    MatSidenavModule,
     GlobalsModule
 ]
 })

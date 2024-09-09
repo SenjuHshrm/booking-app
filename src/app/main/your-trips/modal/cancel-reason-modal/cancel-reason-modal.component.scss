@@ -1,0 +1,98 @@
+
+.property-image-header {
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top:1rem;
+  }
+
+  .btn{
+    background-color: white;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+
+  }
+  
+  .cancellation-container {
+    max-width:45rem;
+    max-height:45rem;
+    overflow-y: auto;
+    margin: 20px auto;
+    padding: 20px;
+    padding-top: 0;
+    position: relative;
+
+  }
+  
+  /* General Section Styles */
+  .section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  h3 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    color: #444;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 5px;
+  }
+  
+  .details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .details-table th, 
+  .details-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .details-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .details-table td {
+    color: #666;
+  }
+
+  .cancell_action_btn{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0 0;
+}
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .property-image-header {
+      font-size: 1.5em;
+      height: 200px;
+    }
+    
+    .details-table th, .details-table td {
+      font-size: 0.9em;
+    }
+  }
+  
+  
+
+
+ 

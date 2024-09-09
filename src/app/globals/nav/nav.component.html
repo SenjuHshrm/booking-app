@@ -8,7 +8,9 @@
         <div class="avatar-account-menu-wrapper" *ngIf="isAuth">
             <div class="account-type-btn" routerLink="/register-proprietorship" *ngIf="!isHost">Become a proprietor</div>
             <div class="avatar-account" [matMenuTriggerFor]="menu">
-                <button class="menu" mat-button><mat-icon>menu</mat-icon></button>
+                <button class="_menu">
+                    <mat-icon>menu</mat-icon>
+                </button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item class="be_a_proprietor" routerLink="/register-proprietorship" *ngIf="!isHost">Become a proprietor</button>
                     <a mat-menu-item routerLink="/main/users-profile">Profile</a>
