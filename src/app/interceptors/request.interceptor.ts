@@ -25,6 +25,7 @@ export class RequestInterceptor implements HttpInterceptor {
   constructor(private _token: TokenService, private _auth: AuthService) {
     this.exemptedURL = [
       `${environment.api}/api/staycation/post/apply`,
+      `${environment.api}/api/staycation/post/review-staycation/[a-zA-Z0-9_-]+`,
       `${environment.api}/api/user/post/add/admin`,
       `${environment.api}/api/user/put/update-profile`,
       `${environment.api}/api/user/post/upload-verification`,
@@ -39,7 +40,7 @@ export class RequestInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     if (request.context.get(BYPASS_LOG) === true) {
-      console.log('Interceptor Bypassed')
+      console.log('Interceptor Bypassed');
       return next.handle(request);
     }
     let authReq = this._addAuthToken(request);
