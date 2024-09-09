@@ -11,7 +11,12 @@
     <div class="content">
       <div class="input-wrapper">
         <div class="label">Name</div>
-        <input formControlName="name" type="text" name="name" />
+        <input
+          [disabled]="isLoading"
+          formControlName="name"
+          type="text"
+          name="name"
+        />
         <app-input-error-message [form]="createForm" [errors]="nameErrors" />
       </div>
       <div class="input-wrapper">
@@ -24,7 +29,12 @@
             name="checkIn"
             readonly
           />
-          <button type="button" mat-raised-button (click)="getCurrentDate()">
+          <button
+            [disabled]="isLoading"
+            type="button"
+            mat-raised-button
+            (click)="getCurrentDate()"
+          >
             <mat-icon>calendar_month</mat-icon>
           </button>
         </div>
@@ -40,7 +50,12 @@
             name="checkIn"
             readonly
           />
-          <button type="button" mat-raised-button (click)="getCurrentTime()">
+          <button
+            [disabled]="isLoading"
+            type="button"
+            mat-raised-button
+            (click)="getCurrentTime()"
+          >
             <mat-icon>access_time</mat-icon>
           </button>
         </div>
@@ -50,8 +65,20 @@
     <hr />
 
     <div class="footer">
-      <button type="submit" class="main-button custom_btn">Save</button>
-      <button type="button" class="main-button" (click)="closeDialog()">
+      <button
+        type="submit"
+        [disabled]="isLoading"
+        class="main-button custom_btn"
+      >
+        <span *ngIf="isLoading"><mat-spinner [diameter]="20" /></span>
+        <span *ngIf="!isLoading">Save</span>
+      </button>
+      <button
+        type="button"
+        [disabled]="isLoading"
+        class="main-button"
+        (click)="closeDialog()"
+      >
         Cancel
       </button>
     </div>

@@ -18,17 +18,31 @@
       <thead>
         <tr>
           <th>Guest Name</th>
-          <th>Status</th>
-          <th>Date Checkout</th>
-          <th>Time Checkout</th>
+          <th>Check-In Date</th>
+          <th>Check-In Time</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="!isLoading && guests.length > 0">
         <tr *ngFor="let guest of guests">
-          <td>{{ guest.guestName }}</td>
-          <td>{{ guest.status }}</td>
-          <td>{{ guest.dateCheckout | date : "shortDate" }}</td>
-          <td>{{ guest.timeCheckout }}</td>
+          <td>{{ guest.name }}</td>
+          <td>{{ guest.checkInDate | date : "shortDate" }}</td>
+          <td>{{ guest.checkInTime }}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!isLoading && guests.length < 1">
+        <tr>
+          <td colspan="3">No Guest Found</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="isLoading">
+        <tr>
+          <td colspan="3">
+            <div style="display: grid; place-items: center">
+              <span style="display: flex; align-items: center; gap: 0.25rem"
+                ><mat-spinner [diameter]="15" /> Loading...</span
+              >
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>

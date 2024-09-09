@@ -1,75 +1,83 @@
 <form (ngSubmit)="onSubmit(messageForm)">
-    <div class="message_modal">
-      <div class="header">
-        <div class="title">Message Guest</div>
-        <div class="close-button-normal" (click)="closeDialogMessage()">
-          <mat-icon>close</mat-icon>
-        </div>
-      </div>
-  
-      <hr />
-      <div class="message_modal-content">
-        <div class="details-user-avatar">
-          <div class="wrapper">
-            <div class="image-avatar">
-              <img
-                src="../assets/images/avatars/placeholder.png"
-                loading="lazy"
-                alt="Avatar"
-                [draggable]="false"
-              />
-            </div>
-            <div>
-              <div class="name">Guest Name</div>
-              <div>Guest</div>
-            </div>
-          </div>
-          <!-- <div class="forward_icon"><mat-icon>forward</mat-icon></div> -->
-          <!-- <div class="wrapper">
-            <div class="image-avatar">
-              <img
-                src="{{ data.proprietorHost.img }}"
-                loading="lazy"
-                alt="Avatar"
-                [draggable]="false"
-              />
-            </div>
-            <div>
-              <div class="name">{{ data.proprietorHost.name }}</div>
-              <div>Proprietor</div>
-            </div>
-          </div> -->
-        </div>
-  
-        <div class="message_modal_input">
-          <div class="input-wrapper">
-            <div class="label">Type your message to this guest</div>
-            <textarea
-              [disabled]="isLoading"
-              formControlName="message"
-              type="text"
-              name="street"
-              placeholder="Type here.."
-            >
-            </textarea>
-            <!-- <app-input-error-message
-              [form]="messageForm"
-              [errors]="messageErrors"
-            /> -->
-          </div>
-        </div>
-      </div>
-  
-      <div class="footer">
-        <button [disabled]="isLoading" type="submit" class="main-button">
-          <!-- <span *ngIf="isLoading === true"><mat-spinner [diameter]="20" /></span> -->
-          <span
-            style="display: block; display: flex; align-items: center; gap: 10px"
-            *ngIf="isLoading === false"
-            >Send Message <mat-icon>send</mat-icon></span
-          >
-        </button>
+  <div class="message_modal">
+    <div class="header">
+      <div class="title">Message Guest</div>
+      <div class="close-button-normal" (click)="closeDialogMessage()">
+        <mat-icon>close</mat-icon>
       </div>
     </div>
-  </form>
-  
+
+    <hr />
+    <div class="message_modal-content">
+      <div class="details-user-avatar" *ngIf="!isDataLoading">
+        <div class="wrapper">
+          <div class="image-avatar">
+            <img
+              src="{{ proprietorImage }}"
+              loading="lazy"
+              alt="Avatar"
+              [draggable]="false"
+            />
+          </div>
+          <div>
+            <div class="name">{{ proprietorName }}</div>
+            <div>Proprietor</div>
+          </div>
+        </div>
+        <div class="forward_icon"><mat-icon>forward</mat-icon></div>
+        <div class="wrapper">
+          <div class="image-avatar">
+            <img
+              src="{{ guestImage }}"
+              loading="lazy"
+              alt="Avatar"
+              [draggable]="false"
+            />
+          </div>
+          <div>
+            <div class="name">{{ guestName }}</div>
+            <div>Guest</div>
+          </div>
+        </div>
+      </div>
+      <div style="display: grid; place-items: center" *ngIf="isDataLoading">
+        <span style="display: flex; align-items: center; gap: 0.25rem"
+          ><mat-spinner [diameter]="15" /> Loading User Data...</span
+        >
+      </div>
+
+      <div class="message_modal_input">
+        <div class="input-wrapper">
+          <div class="label">Type your message to this guest</div>
+          <textarea
+            [readonly]="isLoading || isDataLoading"
+            formControlName="message"
+            type="text"
+            name="street"
+            placeholder="Type here.."
+          >
+          </textarea>
+          <app-input-error-message
+            [form]="messageForm"
+            [errors]="messageErrors"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button
+        [disabled]="isLoading || isDataLoading"
+        type="submit"
+        class="main-button"
+      >
+        <span *ngIf="isLoading === true"><mat-spinner [diameter]="20" /></span>
+        <span
+          style="display: block; display: flex; align-items: center; gap: 10px"
+          *ngIf="isLoading === false"
+          >Send Message <mat-icon>send</mat-icon></span
+        >
+      </button>
+    </div>
+  </div>
+</form>

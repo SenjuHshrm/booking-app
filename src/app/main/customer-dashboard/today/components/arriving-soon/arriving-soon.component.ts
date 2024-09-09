@@ -23,6 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounceTime, Subject, Subscription } from 'rxjs';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import * as moment from 'moment';
+import { ConfirmationComponent } from 'src/app/globals/confirmation/confirmation.component';
 
 export interface UserData {
   propertyimage: any;
@@ -96,6 +97,7 @@ export class ArrivingSoonComponent implements OnInit {
 
   public total: number = 0;
   public isLoading: boolean = false;
+  public statusLoading: boolean = false;
   public searchKey: string = '';
 
   constructor(
@@ -173,13 +175,13 @@ export class ArrivingSoonComponent implements OnInit {
     });
   }
 
-  messageGuest(): void {
+  messageGuest(guest: any): void {
     this.dialog.open(MessageGuestModalComponent, {
       width: '99vw',
       maxWidth: '33rem',
       height: '99vh',
       maxHeight: '27rem',
-      data: '',
+      data: guest,
     });
   }
 
@@ -193,13 +195,44 @@ export class ArrivingSoonComponent implements OnInit {
     });
   }
 
-  openValidationModal(): void {
-    this.dialog.open(ValidationModalComponent, {
+  checkInModal(data: any): void {
+    const checkIn = this.dialog.open(ConfirmationComponent, {
       width: '100%',
-      height: '100%',
-      maxHeight: '15rem',
       maxWidth: '30rem',
-      data: '',
+      data: {
+        title: 'Guest Check In',
+        description: `Do you want to confirm this guest check-in?
+        Guest: ${data.initiatedBy?.fullName}
+        Property: ${data.bookTo?.name}`,
+        yesBtnText: 'Yes',
+        noBtnText: 'No',
+      },
+    });
+
+    checkIn.afterClosed().subscribe(({ confirm }) => {
+      if (confirm) {
+        this.statusLoading = true;
+        this._subs.add(
+          this._booking
+            .updateBookingStatus(data._id, 'current_guest')
+            .subscribe({
+              next: (res) => {
+                this._getBookings(
+                  this.paginator.pageSize,
+                  this.paginator.pageIndex + 1
+                );
+                this.statusLoading = false;
+                this._snack.open('Checked-in successfully!', '', {
+                  duration: 1000,
+                });
+              },
+              error: ({ error }) => {
+                this._snack.open(error.code, '', { duration: 1000 });
+                this.statusLoading = false;
+              },
+            })
+        );
+      }
     });
   }
 

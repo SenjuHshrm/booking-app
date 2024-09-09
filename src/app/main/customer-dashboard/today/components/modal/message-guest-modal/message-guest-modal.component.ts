@@ -1,6 +1,4 @@
-
-
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -19,16 +17,16 @@ import { MessageService } from 'src/app/services/message.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
-
 @Component({
   selector: 'app-message-guest-modal',
   templateUrl: './message-guest-modal.component.html',
-  styleUrls: ['./message-guest-modal.component.scss']
+  styleUrls: ['./message-guest-modal.component.scss'],
 })
-export class MessageGuestModalComponent  implements OnInit, OnDestroy {
+export class MessageGuestModalComponent implements OnInit, OnDestroy {
   public token!: ITokenClaims;
   public authData!: any;
   public isLoading: boolean = false;
+  public isDataLoading: boolean = false;
 
   private subscription: Subscription = new Subscription();
 
@@ -47,6 +45,8 @@ export class MessageGuestModalComponent  implements OnInit, OnDestroy {
     },
   ];
 
+  private _snack: MatSnackBar = inject(MatSnackBar);
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<MessageGuestModalComponent>,
@@ -60,10 +60,16 @@ export class MessageGuestModalComponent  implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.isDataLoading = true;
     this.subscription.add(
       this.userService.getUserProfile(this.token.sub).subscribe({
         next: (res) => {
           this.authData = res;
+          this.isDataLoading = false;
+        },
+        error: ({ error }) => {
+          this.isDataLoading = false;
+          this._snack.open(error.code, '', { duration: 1000 });
         },
       })
     );
@@ -86,7 +92,10 @@ export class MessageGuestModalComponent  implements OnInit, OnDestroy {
   }
 
   onSubmit(form: FormGroup): void {
-    if (!form.valid) return;
+    if (!form.valid) {
+      form.markAllAsTouched();
+      return;
+    }
     this.isLoading = true;
     const formData = form.getRawValue();
     const messageData: IMessageInput = {
@@ -95,7 +104,7 @@ export class MessageGuestModalComponent  implements OnInit, OnDestroy {
       text: formData.message,
     };
 
-    const id: string = <string>this.data.proprietorHost._id;
+    const id: string = <string>this.data._id;
 
     this.subscription.add(
       this.messageService.messageProprietor(messageData, id).subscribe({
@@ -110,11 +119,23 @@ export class MessageGuestModalComponent  implements OnInit, OnDestroy {
     );
   }
 
-  get fullName(): string {
+  get proprietorName(): string {
     return this.util.constructName(this.authData.profile.name);
   }
 
-  get authImage(): string {
-    return this.token.img;
+  get proprietorImage(): string {
+    const src = this.token.img;
+    const haveGravatar = src.includes('gravatar.com');
+    return haveGravatar ? src : this.util.setImgUrl(src);
+  }
+
+  get guestName(): string {
+    return this.data.fullName;
+  }
+
+  get guestImage(): string {
+    const src = this.data.img;
+    const haveGravatar = src.includes('gravatar.com');
+    return haveGravatar ? src : this.util.setImgUrl(src);
   }
 }

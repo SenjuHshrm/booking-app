@@ -39,4 +39,24 @@ export class BookingService {
       { status }
     );
   }
+
+  public getBookingGuests(id: string): Observable<any> {
+    return this._http.get(
+      `${environment.api}/api/booking/get/guest-list/${id}`
+    );
+  }
+
+  public addGuest(id: string, data: any): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/booking/post/add-guest/${id}`,
+      data
+    );
+  }
+
+  public checkOutGuest(id: string, data: any): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/booking/post/checkout-guest/${id}`,
+      data
+    );
+  }
 }

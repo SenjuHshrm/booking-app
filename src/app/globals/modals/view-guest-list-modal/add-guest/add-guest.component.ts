@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,15 +6,18 @@ import {
   Validators,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 import { FormErrorMessage } from 'src/app/interfaces/input-error-message';
+import { BookingService } from 'src/app/services/booking.service';
 
 @Component({
   selector: 'app-add-guest',
   templateUrl: './add-guest.component.html',
   styleUrls: ['./add-guest.component.scss'],
 })
-export class AddGuestComponent implements OnInit {
+export class AddGuestComponent implements OnInit, OnDestroy {
   public date: string = '';
   public time: string = '';
 
@@ -61,10 +64,15 @@ export class AddGuestComponent implements OnInit {
     },
   ];
 
+  public isLoading: boolean = false;
+  private _snack: MatSnackBar = inject(MatSnackBar);
+  private _sub: Subscription = new Subscription();
+
   constructor(
     private dialogRef: MatDialogRef<AddGuestComponent>,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private _booking: BookingService
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +87,11 @@ export class AddGuestComponent implements OnInit {
         validators: [Validators.required, Validators.maxLength(100)],
       }),
     });
+  }
+
+  ngOnDestroy(): void {
+    if (!this._sub) return;
+    this._sub.unsubscribe();
   }
 
   getCurrentTime(): void {
@@ -104,10 +117,28 @@ export class AddGuestComponent implements OnInit {
       checkInDate: data.date,
       checkInTime: this.timeValue,
     };
-    console.log(guestData, bookingId);
+    this.isLoading = true;
+    this._sub.add(
+      this._booking.addGuest(bookingId, guestData).subscribe({
+        next: (res) => {
+          if (res.success) {
+            this._snack.open('Guest successfully added.', '', {
+              duration: 1000,
+            });
+            this.isLoading = false;
+            this.closeDialog(res.success);
+          }
+        },
+        error: ({ error }) => {
+          this._snack.open(error.code, '', { duration: 1000 });
+          this.isLoading = false;
+        },
+      })
+    );
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
+  closeDialog(success = false): void {
+    if (this.isLoading) return;
+    this.dialogRef.close(success);
   }
 }
