@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+  
 
     .property-title {
         // flex-basis: 5%;
@@ -14,14 +15,16 @@
         align-items: center;
         border-bottom: 1px solid #cacaca;
         padding: .5rem 0 .5rem;
+        height:60px;
         background-color: white;
         position: sticky;
         top: 0;
         bottom: 0;
-        z-index:7;
- 
+        z-index: 6;
+
 
         .humburger-btn {
+      
             background-color: white;
             border-radius: 100%;
             box-shadow: 1px 1px 5px #88888877;
@@ -29,6 +32,8 @@
             height: fit-content;
             padding: .5rem .3rem .3rem;
             margin-left: 1rem;
+            display: none;
+         
 
         }
 
@@ -105,233 +110,236 @@
         //     }
         // }
     }
-
     .burgerHide {
         display: none;
     }
+        .hero_header {
+            flex-basis: 12rem;
+            display: flex;
+            justify-content: space-between;
+            height: 12rem;
+            padding: .3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease;
+            border-bottom: 1px solid #ececec;
+            margin-left: 15.7rem;
+            transition: all 0.3s ease;
+            gap: 1rem;
 
-    .hero_header {
-        flex-basis:12rem;
-        display: flex;
-        justify-content: space-between;
-        height: 12rem;
-        padding: .3rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-        transition: box-shadow 0.3s ease;
-        border-bottom: 1px solid #ececec;
-        margin-left: 15.7rem;
-        transition: all 0.3s ease;
+            .info_hero {
+                display: grid;
+                place-content: center start;
+                width: 100%;
+                padding-left: 1rem;
+                position: relative;
 
-        .info_hero {
-            display: grid;
-            place-content: center start;
-            width: 100%;
-            padding-left: 1rem;
-            position: relative;
+                .info_hero_wrapper {
+                    .title {
+                        font-size: clamp(1rem, 1.3vw, 8rem);
+                        font-weight: bold;
+                        margin-top: .5rem;
+                    }
 
-            .info_hero_wrapper {
-                .title {
-                    font-size: clamp(1rem, 1.3vw, 8rem);
-                    font-weight: bold;
-                    margin-top: .5rem;
-                }
+                    .subtitle {
+                        font-size: calc(.8em + .2vw);
+                        margin-top: 1rem;
+                    }
 
-                .subtitle {
-                    font-size: calc(.8em + .2vw);
-                    margin-top: 1rem;
-                }
+                    .btn {
+                        width: 100%;
+                        margin-top: 1rem;
 
-                .btn {
-                    padding: 1rem 0 1rem;
-                    width: 100%;
-
-                    .main-button {
-                        font-size: clamp(.7rem, .7vw, 8rem);
+                        .main-button {
+                            font-size: clamp(.7rem, .7vw, 8rem);
+                            padding: .5rem 1rem .5rem;
+                        }
                     }
                 }
             }
-        }
 
-        .display_image {
-            flex-basis: 70%;
+            .display_image {
+                flex-basis: 70%;
 
-            img {
-                object-fit: cover;
-                object-position: left;
-                width: 100%;
-                height: 100%;
-                transform: scaleX(-1)
+                img {
+                    object-fit: cover;
+                    object-position: left center;
+                    width: 100%;
+                    height: 100%;
+                    transform: scaleX(-1)
+                }
             }
         }
-    }
 
-    .margin_hero_header{
-        margin-left:0rem;
-        transition: all 0.3s ease;
-    }
+        .margin_hero_header {
+            margin-left: 0rem;
+            transition: all 0.3s ease;
+        }
 
-    .main_content {
-        flex-basis:100%;
-        flex: 1;
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
-        flex-flow: row;
-        top: 0;
-        bottom: 0;
-
-   
-       
-        ////tabs-start//// 
-
-        .custom-tabs {
-            border-right: 1px solid #cacaca;
-            position: fixed;
-            top:7.75rem;
-            bottom: 0;
-            z-index: 7;
-            background-color: white;
+        .main_content {
+            flex-basis: 100%;
+            flex: 1;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            overflow-x: auto;
-            padding: 0;
-            width:16rem;
-            transform: translateX(0%);
-            transition: all 0.3s ease;
-        }
-
-        .isMinimizedSidebar {
-            width:16rem;
-            transform: translateX(-100%);
-            transition: all 0.3s ease;
-        }
-
-        .tab {
-            padding: 20px 20px;
-            cursor: pointer;
-
-            white-space: pre;
-            // border: 1px solid #ccc;
-            border-bottom: none;
-            border-radius: 0;
-            font-size: clamp(.9rem, .9vw, 8rem);
-        }
-
-        .tab.active {
-            font-weight: bold;
-            color: #63AB68;
-            background-color: #f7f7f7;
-        }
-
-        .tab:hover {
-            font-weight: bold;
-            color: #63AB68;
-
-        }
-
-        .tab-content {
-            // border: 1px solid #ccc;
-            border-radius: 0;
-            // padding: 20px;
-
-        }
-
-        .animated-border {
-            border-bottom: none;
-            /* Remove default border */
-            position: relative;
-            /* Required for pseudo-element positioning */
-            cursor: pointer;
-            /* Optional for hover effect */
-
-            &::after {
-                content: "";
-                display: block;
-                width: 0;
-                height: 2px;
-                /* Adjust border thickness here */
-                background-color: #63AB68;
-                /* Adjust border color */
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                transition: width 0.3s ease-in-out;
-            }
-
-            // &:hover::after,
-            &.active::after {
-                /* Target both active and hover states */
-                width: 100%;
-                /* Animate width to full width */
-            }
-        }
-        ////tabs-end////
-
-
-        .hr_vertical {
-            background-color: #cacaca;
-            height: 100%;
-            width: 1px;
-            margin: 0 1rem 0;
-            margin-left: 0;
-            position: sticky;
+            flex-direction: row;
+            flex-flow: row;
             top: 0;
             bottom: 0;
 
-        }
 
 
-        .content {
-            position: relative;
-            flex: 1;
-            height: 100%;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            margin-left: 16rem;
-            transition: all 0.3s ease;
+            ////tabs-start//// 
+            ///       .custom-tabs {
 
 
+            .custom-tabs {
+                border-right: 1px solid #cacaca;
+                position: fixed;
+                top: 7.75rem;
+                bottom: 0;
+                z-index: 7;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                overflow-x: auto;
+                padding: 0;
+                width: 16rem;
+                transform: translateX(0%);
+                transition: all 0.3s ease;
+            }
 
-            .custom-not_found {
-                flex: 1;
-                text-align: center;
-                display: grid;
-                place-content: center;
-                height: 100vh;
+            .isMinimizedSidebar {
+                width: 16rem;
+                transform: translateX(-100%);
+                transition: all 0.3s ease;
+            }
 
+            .tab {
+                padding: 20px 20px;
+                cursor: pointer;
 
+                white-space: pre;
+                // border: 1px solid #ccc;
+                border-bottom: none;
+                border-radius: 0;
+                font-size: clamp(.9rem, .9vw, 8rem);
+            }
 
+            .tab.active {
+                font-weight: bold;
+                color: #63AB68;
+                background-color: #f7f7f7;
+            }
 
-                .title {
-                    font-size: calc(1.2em + .2vw);
-                    font-weight: bold;
-                    margin: .5rem;
+            .tab:hover {
+                font-weight: bold;
+                color: #63AB68;
 
+            }
+
+            .tab-content {
+                // border: 1px solid #ccc;
+                border-radius: 0;
+                // padding: 20px;
+
+            }
+
+            .animated-border {
+                border-bottom: none;
+                /* Remove default border */
+                position: relative;
+                /* Required for pseudo-element positioning */
+                cursor: pointer;
+                /* Optional for hover effect */
+
+                &::after {
+                    content: "";
+                    display: block;
+                    width: 0;
+                    height: 2px;
+                    /* Adjust border thickness here */
+                    background-color: #63AB68;
+                    /* Adjust border color */
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    transition: width 0.3s ease-in-out;
                 }
 
-                .subtitle {
-                    font-size: calc(.8em + .2vw);
-                }
-
-                .btn {
+                // &:hover::after,
+                &.active::after {
+                    /* Target both active and hover states */
                     width: 100%;
-                    display: grid;
-                    place-content: center;
-                    margin-top: 1rem;
+                    /* Animate width to full width */
                 }
             }
-        }
 
-        .isMinimizedContent {
-            width: 100%;
-            transition: all 0.3s ease;
-            margin-left:0rem;
-        }
+            ////tabs-end////
 
+
+            .hr_vertical {
+                background-color: #cacaca;
+                height: 100%;
+                width: 1px;
+                margin: 0 1rem 0;
+                margin-left: 0;
+                position: sticky;
+                top: 0;
+                bottom: 0;
+
+            }
+
+
+            .content {
+                position: relative;
+                flex: 1;
+                height: 100%;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                margin-left: 16rem;
+                transition: all 0.3s ease;
+
+
+
+                .custom-not_found {
+                    flex: 1;
+                    text-align: center;
+                    display: grid;
+                    place-content: center;
+                    height: 100vh;
+
+
+
+
+                    .title {
+                        font-size: calc(1.2em + .2vw);
+                        font-weight: bold;
+                        margin: .5rem;
+
+                    }
+
+                    .subtitle {
+                        font-size: calc(.8em + .2vw);
+                    }
+
+                    .btn {
+                        width: 100%;
+                        display: grid;
+                        place-content: center;
+                        margin-top: 1rem;
+                    }
+                }
+            }
+
+            .isMinimizedContent {
+                width: 100%;
+                transition: all 0.3s ease;
+                margin-left: 0rem;
+            }
+
+        }
     }
 
-}
 
 // @media only screen and (max-width:900px) {
 //     .your-trips-container {
@@ -351,7 +359,7 @@
 //             }
 
 //             .content {
-                
+
 //                 .content_wrapper {
 
 //                     .card {
@@ -398,30 +406,63 @@
 
 // }
 
-@media only screen and (max-width:600px){
+
+
+@media only screen and (max-width:581px) {
     .your-trips-container {
-        .main_content {
-            // .backdrop{
-            //     background-color: rgba(0, 0, 0, 0.753);
-            //     transition: all 0.3s ease;
-            //     position: absolute;
-            //     z-index:7;
-            //     inset: 0;
-            // }
-            .custom-tabs {
-                top:3.98rem;
-            }
-            .isMinimizedSidebar {
 
+            .property-title {
+                .humburger-btn {
+                 
+                 display: block;
+                }
             }
-            .content {
-                margin-left: 0rem;
+    
+            .hero_header {
+                margin-left: 0;
+            }
+
+            .main_content {
+                .custom-tabs {
+                    top:4rem;
+                    width: 100%;
+                    border:none;
+                    background-color: transparent;
+
+                    .wrapper {
+                        position: fixed;
+                        width: 100%;
+                        max-width: 16rem;
+                        height: 100%;
+                        background-color: white;
+
+                    }
+                }
+
+                .isMinimizedSidebar {
+
+                }
+
+                .content {
+                    margin-left: 0rem;
+                    transition: all 0.3s ease;
+                }
+
+                .isMinimizedContent {
+
+                }
+            }
+
+            .backdrop {
+                
+                background-color: rgba(0, 0, 0, 0.753);
                 transition: all 0.3s ease;
+                position: fixed;
+                width: 100%;
+                z-index:6;
+                inset: 0;
+                top: 4rem;
             }
-            .isMinimizedContent {
 
-            }
         }
     }
-}
-

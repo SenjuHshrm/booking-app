@@ -1,89 +1,30 @@
-<div class="cancellation-container">
-    <div class="btn">
-        <button class="close-button-normal" (click)="closeDialog()">
-            <mat-icon>close</mat-icon>
-        </button>
-    </div>
-    <!-- Property Image Header -->
-    <div class="property-image-header" [style.background-image]="'url(' + propertyImageUrl + ')'">
-        <h1>{{ cancellationData.property.property_name }}</h1>
-    </div>
-
-    <!-- Booking Details Section -->
-    <div class="section">
-        <h3>Booking Information</h3>
-        <table class="details-table">
-            <tr>
-                <th>Booking ID:</th>
-                <td>{{ cancellationData.booking_id }}</td>
-            </tr>
-            <tr>
-                <th>Check-in Date:</th>
-                <td>{{ cancellationData.booking_details.check_in_date }}</td>
-            </tr>
-            <tr>
-                <th>Check-out Date:</th>
-                <td>{{ cancellationData.booking_details.check_out_date }}</td>
-            </tr>
-            <tr>
-                <th>Total Amount:</th>
-                <td>{{ getFormattedCurrency(cancellationData.booking_details.booking_total_amount) }}</td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- Guest Information Section -->
-    <div class="section">
-        <h3>Guest Information</h3>
-        <table class="details-table">
-            <tr>
-                <th>Guest Name:</th>
-                <td>{{ cancellationData.guest.guest_name }}</td>
-            </tr>
-            <tr>
-                <th>Contact:</th>
-                <td>{{ cancellationData.guest.guest_contact }}</td>
-            </tr>
-            <tr>
-                <th>Previous Cancellations:</th>
-                <td>{{ cancellationData.guest.previous_cancellations }}</td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- Cancellation Information Section -->
-    <div class="section">
-        <h3>Cancellation Information</h3>
-        <table class="details-table">
-            <tr>
-                <th>Cancellation Date:</th>
-                <td>{{ cancellationData.cancellation.cancellation_date }}</td>
-            </tr>
-            <tr>
-                <th>Reason:</th>
-                <td>{{ cancellationData.cancellation.cancellation_reason }}</td>
-            </tr>
-            <tr>
-                <th>Refund Amount:</th>
-                <td>{{ getFormattedCurrency(cancellationData.cancellation.refund_amount) }}</td>
-            </tr>
-            <tr>
-                <th>Cancellation Fee:</th>
-                <td>{{ getFormattedCurrency(cancellationData.cancellation.cancellation_fee) }}</td>
-            </tr>
-            <tr>
-                <th>Refund Eligibility:</th>
-                <td>{{ isRefundEligible() }}</td>
-            </tr>
-            <tr>
-                <th>Status:</th>
-                <td>{{ cancellationData.cancellation.status }}</td>
-            </tr>
-        </table>
-        <div class="cancell_action_btn">
-            <button class="main-button" (click)="closeDialog()">Cancell</button>
-            <button class="main-button">Refund</button>
+<div class="cancel-container">
+    <div class="header">
+        <div class="title">
+          Warning
         </div>
+        <div class="close-button-normal" (click)="closeDialog()"><mat-icon>close</mat-icon></div>
     </div>
+    
+    <form (ngSubmit)="onSubmit()" #cancelForm="ngForm">
+        <div class="select-container">
+            <select name="cancelReason" id="cancel-reason" class="cancel-select" [(ngModel)]="selectedReason" required>
+                <option value="" disabled selected>Select a reason</option>
+                <option value="">I no longer need accommodations.</option>
+                <option value="">I made the reservation by accident.</option>
+                <option value="">I'm uncomfortable with the host</option>
+                <option value="">My travel dates changed</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
 
+        <div *ngIf="selectedReason === 'Other'" class="other-reason-container">
+            <textarea type="text" class="other-reason-input" name="otherReason" [(ngModel)]="otherReason"
+                placeholder="Please specify the reason" required></textarea>
+        </div>
+        <div class="btn_reason">
+            <button type="submit" class="cancel-btn">Cancel</button>
+            <button type="submit" class="cancel-btn" [disabled]="cancelForm.invalid">Submit</button>
+        </div>
+    </form>
 </div>

@@ -28,7 +28,6 @@
 
         </div>
     </div>
-
     <div class="content">
         <div class="content_wrapper">
             <div class="trip_card_wrapper">
@@ -39,40 +38,39 @@
                         </div> -->
                         <div class="image">
                             <img src="{{list.image}}" alt="image" loading="lazy" draggable="false"
-                                (click)="gotoStaycationDetails()" />
+                                (click)="viewDetails()" />
                             <!-- <button class="close-button">
                                 <mat-icon>close</mat-icon>
                             </button> -->
-                            <button class="close-button" [matMenuTriggerFor]="menu" >
+                            <!-- <button class="close-button" [matMenuTriggerFor]="menu" >
                                 <mat-icon>more_vert</mat-icon>
                             </button>
 
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item (click)="viewDeatils()">View Details</button>
+                                <button mat-menu-item>View Details</button>
                                 <button mat-menu-item>Change Reservation</button>
-                                <button mat-menu-item (click)="removeTrip(list._id,list.title)">Cancel Booking</button>
-                            </mat-menu>
+                                <button mat-menu-item >Cancel Booking</button>
+                            </mat-menu> -->
                         </div>
-                        <div class="content__card">
-                            <div class="info">
-                                <div class="title">{{list.title}} </div>
-                                <div class="subtitle">
-                                    {{list.address}}
-                                </div>
-                                <div class="check-inout-date">
-                                    <span>{{ list.startdate | date: 'MMM d, y' }}</span> - <span>{{ list.enddate | date:
-                                        'MMM d, y' }}</span>
-                                </div>
-                            </div>
-                        </div>
+                       
 
                     </div>
-
+                    <div class="content__card">
+                        <div class="info">
+                            <div class="title">{{list.title}} </div>
+                            <div class="subtitle">
+                                {{list.address}}
+                            </div>
+                            <div class="check-inout-date">
+                                <span>{{ list.startdate | date: 'MMM d, y' }}</span> - <span>{{ list.enddate | date:
+                                    'MMM d, y' }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="not-found custom-not_found" *ngIf="notFound">
         <div>Pending trips not found!</div>
     </div>

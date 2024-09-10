@@ -4,9 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { MatDialog } from '@angular/material/dialog';
-import { ValidationModalComponent } from '../modal/validation-modal/validation-modal.component';
-import { ViewDetailsModalComponent } from '../../../globals/modals/view-details-modal/view-details-modal.component';
+
 import { CancelReasonModalComponent } from '../modal/cancel-reason-modal/cancel-reason-modal.component';
+import { ViewtripsReservationModalComponent } from 'src/app/globals/modals/viewtrips-reservation-modal/viewtrips-reservation-modal.component';
 
 interface DataItem {
   _id: string;
@@ -172,9 +172,6 @@ export class PendingTripComponent implements OnInit {
 
 
 
-  public goToSearchList(): void {
-    this.router.navigate(['main/staycation-list']);
-  }
 
   public gotoStaycationDetails():void{
     this.router.navigate(['/main/staycation-details/66d71c6d4cb5d6b2e0360398']);
@@ -182,33 +179,34 @@ export class PendingTripComponent implements OnInit {
 }
 
 
-  public removeTrip(_index: string, title: string): void {
-    this.openValidationModal(_index, title);
-  }
+  // public removeTrip(_index: string, title: string): void {
+  //   this.openValidationModal(_index, title);
+  // }
 
-  private openValidationModal(_index: string, title: string): void {
-    const dialogRef = this.dialog.open(ValidationModalComponent, {
-      width: '100%',
-      height: '100%',
-      maxHeight: '20rem',
-      maxWidth: '30rem',
-      data: { title: title }
-    });
+  // private openValidationModal(_index: string, title: string): void {
+  //   const dialogRef = this.dialog.open(ValidationModalComponent, {
+  //     width: '100%',
+  //     height: '100%',
+  //     maxHeight: '20rem',
+  //     maxWidth: '30rem',
+  //     data: { title: title }
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // if (result === 'confirm') {
-      //   this.confirmRemoveTrip(_index);
-      // }
-      if(result === 'confirm'){
-        this.cancellBook();
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if(result === 'confirm'){
+  //       this.cancellBook();
+  //     }
+  //   });
+  // }
 
 
-  public viewDeatils(): void {
-    const dialogRef = this.dialog.open(ViewDetailsModalComponent, {
-      panelClass:'custom-viewdetails-dialog',
+  public viewDetails(): void {
+    const dialogRef = this.dialog.open(ViewtripsReservationModalComponent, {
+      width:'100%',
+      height:'100%',
+      maxHeight:'57rem',
+      maxWidth:'57rem',
+      panelClass:'custom-viewdetrips-dialog',
       data: { }
     });
 
