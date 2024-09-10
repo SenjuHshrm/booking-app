@@ -102,4 +102,20 @@ export class StaycationService {
       formData
     );
   }
+
+  public didCheckOut(id: string): Observable<any> {
+    return this._http.get(
+      `${environment.api}/api/staycation/get/did-checkout/${id}`
+    );
+  }
+
+  public getReviewList(
+    id: string,
+    limit: number,
+    page: number
+  ): Observable<any> {
+    return this._http.get(
+      `${environment.api}/api/staycation/get/reviews/${id}/${page}/${limit}`
+    );
+  }
 }

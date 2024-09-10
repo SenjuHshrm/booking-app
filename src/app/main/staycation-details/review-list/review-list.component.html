@@ -1,0 +1,80 @@
+<div class="_header_reviews">
+  <div>
+    <div class="title">Reviews</div>
+    <div class="_all_reviews">
+      <p>
+        This listing receive <span>{{ reviewCount }}</span>
+      </p>
+    </div>
+  </div>
+  <div class="comments">
+    <p class="not-available">No reviews yet!</p>
+  </div>
+  <div *ngIf="didCheckOut" class="__create_reviews" (click)="addrateComment()">
+    <button>
+      <mat-icon> add_comment</mat-icon>
+      Add Comment here
+    </button>
+  </div>
+</div>
+
+<div *ngIf="!initialLoading && reviews.length > 0">
+  <div class="reviewer_container">
+    <div class="__reviewer" *ngFor="let review of reviews; let i = index">
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          <img
+            src="{{ setSrc(review.user.img) }}"
+            loading="lazy"
+            alt="Avatar"
+            [draggable]="false"
+          />
+        </div>
+        <div class="info-wrapper">
+          <div class="__name">
+            <p>{{ setFullname(review.user.name) }}</p>
+          </div>
+          <div class="__address">
+            {{ review.user.address ? setAddress(review.user.address) : "N/A" }}
+          </div>
+          <div class="rate-stars">
+            <mat-icon *ngFor="let rate of ratings; let i = index">
+              {{ i + 1 < review.rating ? "star" : "star_border" }}
+            </mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="comments">
+        <p *ngIf="review.comment">
+          {{
+            review.comment.length > 100
+              ? review.expand
+                ? review.comment
+                : (review.comment | slice : 0 : 400) + "..."
+              : review.comment
+          }}
+        </p>
+        <button
+          (click)="seeMoreReviewText(review._id)"
+          *ngIf="review.comment && review.comment.length > 100"
+        >
+          {{ review.expand ? "See less" : "See more" }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="hasNextPage"
+    (click)="seeMoreReviews()"
+    class="__btn_seemore_reviews"
+  >
+    <span *ngIf="!seeMoreLoading">See more reviews</span>
+    <span *ngIf="seeMoreLoading" style="display: block; padding: 0 2rem"
+      ><mat-spinner [diameter]="17"
+    /></span>
+  </div>
+</div>
+<div class="empty-reviews" *ngIf="!initialLoading && reviews.length < 1"></div>
+<div class="empty-reviews" *ngIf="initialLoading">
+  <span><mat-spinner [diameter]="15" /> Loading reviews...</span>
+</div>

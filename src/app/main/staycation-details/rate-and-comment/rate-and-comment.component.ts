@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { FormErrorMessage } from 'src/app/interfaces/input-error-message';
+import { Review } from 'src/app/interfaces/review';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { StaycationService } from 'src/app/services/staycation.service';
@@ -82,9 +83,11 @@ export class RateAndCommentComponent implements OnInit, OnDestroy {
     this._subs.unsubscribe();
   }
 
-  closeDialog(success: boolean = false): void {
+  closeDialog(success: boolean = false, data?: Review): void {
     if (this.isLoading) return;
-    this.dialogRef.close(success);
+    const rData: { success: boolean; data?: Review } = { success };
+    if (data) rData.data = data;
+    this.dialogRef.close({ success, data });
   }
 
   rate(star: number): void {
@@ -121,7 +124,7 @@ export class RateAndCommentComponent implements OnInit, OnDestroy {
           next: (res) => {
             this.isLoading = false;
             form.enable();
-            this.closeDialog(true);
+            this.closeDialog(true, res.review as Review);
           },
           error: ({ error }) => {
             this._snack.open(

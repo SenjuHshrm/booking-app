@@ -15,13 +15,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GlobalsModule } from 'src/app/globals/globals.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RateAndCommentComponent } from './rate-and-comment/rate-and-comment.component';
+import { ReviewListComponent } from './review-list/review-list.component';
 
 @NgModule({
   declarations: [
     StaycationDetailsComponent,
     CustomDatepickerHeader,
     ReportListingComponent,
-    RateAndCommentComponent
+    RateAndCommentComponent,
+    ReviewListComponent
   ],
   imports: [
     CommonModule,
