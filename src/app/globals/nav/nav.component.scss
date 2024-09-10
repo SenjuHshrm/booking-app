@@ -17,6 +17,7 @@ nav {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+ 
 
         .header-logo {
             cursor: pointer;
@@ -62,6 +63,7 @@ nav {
                 box-shadow: 1px 1px 5px #88888877;
                 padding: 3px 10px 3px;
                 border-radius: 100px;
+              
   
                 img {
                     height: 35px;
@@ -70,18 +72,22 @@ nav {
                     border: 1px solid #63AB68;
                 }
 
-                .menu {
+                button {
                     cursor: pointer;
-                    padding: 7px 7px 3px;
+                    flex: none;
                     border-radius: 100%;
                     color: black;
-                    border: none;
                     outline: none;
                     background-color: transparent;
+                    border:none;
+                    width:auto;
+                    padding-top:7px;
+                   
 
                     mat-icon {
                         margin: 0;
                         color: #63AB68;
+                     
                     }
 
      

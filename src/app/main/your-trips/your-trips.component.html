@@ -1,37 +1,67 @@
-<section class="your-trips-container">
+<section class="your-trips-container" [@fadeInAnimation]>
     <div class="property-title header">
+        <div class="humburger-btn">
+            <button class="remove_default_button " (click)="toggleSidebar()"
+                [ngClass]="{ burgerHide: isMinimizedSidebar === true }">
+                <mat-icon> format_indent_increase</mat-icon>
+            </button>
+            <button class="remove_default_button " (click)="toggleSidebar()"
+                [ngClass]="{ burgerHide: isMinimizedSidebar === false }">
+                <mat-icon> view_headline</mat-icon>
+            </button>
+        </div>
         <div class="title-wrapper">
             <div class="title">Your Trips</div>
         </div>
     </div>
 
-    <div class="custom-tabs">
-        <div class="tab animated-border" [ngClass]="{'active': isActive('pending-trip')}"
-            (click)="selectTab('pending-trip')">
-            Pending Trips
+    <div class="hero_header"  [ngClass]="{'margin_hero_header':isMinimizedSidebar}">
+        <div class="info_hero" *ngIf="yourTrips.length !== 0">
+            <div class="info_hero_wrapper">
+                <div class="title">
+                    No trips booked...yet?
+                </div>
+                <div class="subtitle">
+                    Time to dust off your bags and start planning your next adventure.
+                </div>
+                <div class="btn">
+                    <button class="main-button" (click)="goToSearchList()">Start Searching</button>
+                </div>
+            </div>
         </div>
-        <div class="tab animated-border" [ngClass]="{'active': isActive('upcoming-trip')}"
-            (click)="selectTab('upcoming-trip')">
-            Upcoming Trips
-        </div>
-        <div class="tab animated-border" [ngClass]="{'active': isActive('in-progress-trip')}"
-            (click)="selectTab('in-progress-trip')">
-            In Progress
-        </div>
-        <div class="tab animated-border" [ngClass]="{'active': isActive('completed-trip')}"
-            (click)="selectTab('completed-trip')">
-            Completed Trips
-        </div>
-        <div class="tab animated-border" [ngClass]="{'active': isActive('cancelled-trip')}"
-            (click)="selectTab('cancelled-trip')">
-            Cancelled Trips
+        <div class="display_image">
+            <img src="../assets/images/main/trips/tripsheader.jpg" alt="" loading="lazy" draggable="false" />
         </div>
     </div>
+    <div class="main_content">
+        <div [ngClass]="{'backdrop':isMinimizedSidebar}"  (click)="toggleSidebar()"></div>
+        <div class="custom-tabs " [ngClass]="{'isMinimizedSidebar':isMinimizedSidebar}">
+            <div class="tab animated-border" [ngClass]="{'active': isActive('pending-trip')}"
+                (click)="selectTab('pending-trip')">
+                Pending
+            </div>
+            <div class="tab animated-border" [ngClass]="{'active': isActive('upcoming-trip')}"
+                (click)="selectTab('upcoming-trip')">
+                Upcoming
+            </div>
+            <div class="tab animated-border" [ngClass]="{'active': isActive('in-progress-trip')}"
+                (click)="selectTab('in-progress-trip')">
+                In Progress
+            </div>
+            <div class="tab animated-border" [ngClass]="{'active': isActive('completed-trip')}"
+                (click)="selectTab('completed-trip')">
+                Completed
+            </div>
+            <div class="tab animated-border" [ngClass]="{'active': isActive('cancelled-trip')}"
+                (click)="selectTab('cancelled-trip')">
+                Cancelled
+            </div>
+        </div>
 
-    <div class="content">
-        <router-outlet></router-outlet>
+        <div class="content" [ngClass]="{'isMinimizedContent':isMinimizedSidebar}">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-
     <!-- <div class="footer">
         <app-footer></app-footer>
     </div> -->
