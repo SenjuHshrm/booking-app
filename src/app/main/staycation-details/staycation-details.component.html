@@ -16,8 +16,16 @@
     </section>
 
     <section class="image-grid" (click)="gotoGalleryPage(details._id)">
-      <img [src]="img" *ngFor="let img of imageSets; let i = index" alt="images" loading="lazy" draggable="false"
-        [class.image-grid-col-2]="i === 0" [class.image-grid-row-2]="i === 0" [class.other]="i !== 0" />
+      <img
+        [src]="img"
+        *ngFor="let img of imageSets; let i = index"
+        alt="images"
+        loading="lazy"
+        draggable="false"
+        [class.image-grid-col-2]="i === 0"
+        [class.image-grid-row-2]="i === 0"
+        [class.other]="i !== 0"
+      />
     </section>
 
     <section class="details-reserve-wrapper">
@@ -39,7 +47,12 @@
         <div class="details-user-avatar">
           <div class="wrapper">
             <div class="image-avatar">
-              <img [src]="details.host.img" loading="lazy" alt="Avatar" [draggable]="false" />
+              <img
+                [src]="details.host.img"
+                loading="lazy"
+                alt="Avatar"
+                [draggable]="false"
+              />
             </div>
             <div>
               <div class="name">{{ details.host.name }}</div>
@@ -94,9 +107,11 @@
             <div class="title">Discount Offer</div>
             <div class="description">
               <div>
-                <span>{{ details.discounts.value }} % &nbsp;{{
-                  discount.desc
-                  }}</span>
+                <span
+                  >{{ details.discounts.value }} % &nbsp;{{
+                    discount.desc
+                  }}</span
+                >
               </div>
             </div>
             <!-- <div *ngFor="let discount of discountedOffer" class="description">
@@ -135,15 +150,18 @@
               <div>
                 <p *ngIf="details.detailedDescription.length > 100">
                   {{
-                  isExpandedDescriptiontext
-                  ? details.detailedDescription
-                  : (details.detailedDescription | slice : 0 : 500) + "..."
+                    isExpandedDescriptiontext
+                      ? details.detailedDescription
+                      : (details.detailedDescription | slice : 0 : 500) + "..."
                   }}
                 </p>
                 <p *ngIf="details.detailedDescription.length < 100">
                   {{ details.detailedDescription }}
                 </p>
-                <button (click)="seemoreDescriptionText()" *ngIf="details.detailedDescription.length > 100">
+                <button
+                  (click)="seemoreDescriptionText()"
+                  *ngIf="details.detailedDescription.length > 100"
+                >
                   {{ isExpandedDescriptiontext ? "See less" : "See more" }}
                 </button>
               </div>
@@ -152,15 +170,28 @@
         </div>
         <hr />
 
-        <div class="details-where-you-sleep" style="display: block" *ngIf="details.bedroomList.length > 0">
+        <div
+          class="details-where-you-sleep"
+          style="display: block"
+          *ngIf="details.bedroomList.length > 0"
+        >
           <div class="title-wrapper">
             <div class="title">Where you'll sleep</div>
           </div>
           <div class="section-1-wrapper">
             <div class="wrapper" style="display: block">
               <div class="swiper-main-container">
-                <swiper class="swiper-container" style="display: block" #swiper [slidesPerView]="3" [spaceBetween]="30"
-                  [navigation]="false" (autoplayPause)="(true)" [draggable]="true" [loop]="true" [breakpoints]="{
+                <swiper
+                  class="swiper-container"
+                  style="display: block"
+                  #swiper
+                  [slidesPerView]="3"
+                  [spaceBetween]="30"
+                  [navigation]="false"
+                  (autoplayPause)="(true)"
+                  [draggable]="true"
+                  [loop]="true"
+                  [breakpoints]="{
                                        '200': {
                                            slidesPerView: 1,
                                            spaceBetween: 10,
@@ -195,21 +226,37 @@
                                            slidesPerView: 3,
                                            spaceBetween: 30,
                                        }
-                                   }">
-                  <ng-template class="custom_swiper_slide" style="display: block" swiperSlide
-                    *ngFor="let dest of details.bedroomList; let i = index">
+                                   }"
+                >
+                  <ng-template
+                    class="custom_swiper_slide"
+                    style="display: block"
+                    swiperSlide
+                    *ngFor="let dest of details.bedroomList; let i = index"
+                  >
                     <div class="_images" (click)="viewImageBedroom(dest)">
-                      <img src="{{ dest }}" alt="images" draggable="false" loading="lazy" />
+                      <img
+                        src="{{ dest }}"
+                        alt="images"
+                        draggable="false"
+                        loading="lazy"
+                      />
                       <!-- <div class="label">{{dest.label}}</div>
                                                             <div class="desc">{{dest.description}}</div> -->
                     </div>
                   </ng-template>
                 </swiper>
                 <div class="_buttons">
-                  <button (click)="slidePrev()" class="custom-prev-button custom_prev">
+                  <button
+                    (click)="slidePrev()"
+                    class="custom-prev-button custom_prev"
+                  >
                     <mat-icon>navigate_before</mat-icon>
                   </button>
-                  <button (click)="slideNext()" class="custom-next-button custom_next">
+                  <button
+                    (click)="slideNext()"
+                    class="custom-next-button custom_next"
+                  >
                     <mat-icon>navigate_next</mat-icon>
                   </button>
                 </div>
@@ -221,111 +268,15 @@
         <div class="details-whats-offer">
           <div class="title">What this place offers</div>
           <div class="description">
-            <!-- <div class="offers" *ngFor="let offers of details.amenities.split(' ')">
-                                   <mat-icon *ngIf="offers !== ''">done_outline</mat-icon>
-                                  <div>{{offers}}</div>
-                              </div> -->
             {{ details.amenities }}
           </div>
         </div>
         <hr />
-        <!-- <div class="details-reviews">
-          <div class="title">Reviews</div>
-          <div
-            class="comments"
-            *ngIf="totalReviews === 0 || latestReview === 0"
-          >
-            <p class="not-available">No reviews yet!</p>
-          </div>
-          <div class="comments" *ngIf="totalReviews > 0">
-            <div class="rate-stars">
-              <mat-icon>stars</mat-icon>
-              <div>{{ averageStar }}</div>
-            </div>
-            <div>-</div>
-            <div class="number-reviews">
-              <p>{{ totalReviews }} <span>reviews</span></p>
-            </div>
-          </div>
-          <div class="reviewer" *ngIf="latestReview">
-            <div class="avatar-wrapper">
-              <div class="avatar">
-                <img
-                  src="../../assets/images/main/staycation-details/avatarreviewer.png"
-                  loading="lazy"
-                  alt="Avatar"
-                  [draggable]="false"
-                />
-              </div>
-              <div class="name-address-wrapper">
-                <div class="name">{{ latestReview.name }}</div>
-                <div class="address">{{ latestReview.address }}</div>
-              </div>
-            </div>
-            <div class="comments">
-              {{ latestReview.comment }}
-            </div>
-            <button>See more</button>
-          </div>
-        </div> -->
-        <div class="details-reviews">
-          <div class="_header_reviews">
-            <div>
-              <div class="title">Reviews</div>
-              <div class="_all_reviews">
-                <p>This listing receive <span>400 reviews</span></p>
-              </div>
-            </div>
-            <div class="comments">
-              <p class="not-available">No reviews yet!</p>
-            </div>
-            <div class="__create_reviews " (click)="addrateComment()">
-              <button>
-                <mat-icon> add_comment</mat-icon>
-                Add Comment here
-              </button>
-            </div>
-          </div>
-          <div class="reviewer_container">
-            <div class="__reviewer" *ngFor="let reviewer of sampleDataReviews; let i  = index">
-              <div class="avatar-wrapper">
-                <div class="avatar">
-                  <img src="{{reviewer.avatarImg}}" loading="lazy" alt="Avatar" [draggable]="false" />
-                </div>
-                <div class="info-wrapper">
-                  <div class="__name">
-                    <p>{{reviewer.name}}</p>
-                  </div>
-                  <div class="__address">{{reviewer.address}}</div>
-                  <div class="rate-stars">
-                    <mat-icon>star</mat-icon>
-                    <mat-icon>star</mat-icon>
-                    <mat-icon>star</mat-icon>
-                  </div>
-                </div>
-
-              </div>
-              <div class="comments">
-                <p *ngIf="reviewer.comment.length > 100">
-                  {{
-                  reviewer.expand
-                  ? reviewer.comment
-                  : (reviewer.comment| slice : 0 : 400) + "..."
-                  }}
-                </p>
-                <p *ngIf="details.detailedDescription.length < 100">
-                  {{ reviewer.comment}}
-                </p>
-                <button (click)="seemoreReviewsText(i)" *ngIf="reviewer.comment.length > 100">
-                  {{ reviewer.expand ? "See less" : "See more" }}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="__btn_seemore_reviews">
-            See more reviews
-          </div>
-        </div>
+        <app-review-list
+          [didCheckOut]="didCheckOut"
+          [details]="details"
+          class="details-reviews"
+        />
       </section>
       <section class="reserve-sticky-column">
         <div class="column-container">
@@ -339,14 +290,33 @@
               <div class="date-checkin-out">
                 <mat-form-field>
                   <mat-label>Check-in | Check-out</mat-label>
-                  <mat-date-range-input [min]="minDate" [formGroup]="checkInCheckOut" [rangePicker]="cicoPicker">
-                    <input matStartDate name="start" formControlName="start" class="custom-date-input" />
-                    <input matEndDate name="end" formControlName="end" class="custom-date-input"
-                      (dateChange)="handleDateChangeEnd($event)" />
+                  <mat-date-range-input
+                    [min]="minDate"
+                    [formGroup]="checkInCheckOut"
+                    [rangePicker]="cicoPicker"
+                  >
+                    <input
+                      matStartDate
+                      name="start"
+                      formControlName="start"
+                      class="custom-date-input"
+                    />
+                    <input
+                      matEndDate
+                      name="end"
+                      formControlName="end"
+                      class="custom-date-input"
+                      (dateChange)="handleDateChangeEnd($event)"
+                    />
                   </mat-date-range-input>
-                  <mat-datepicker-toggle matIconSuffix [for]="cicoPicker"></mat-datepicker-toggle>
-                  <mat-date-range-picker #cicoPicker
-                    [calendarHeaderComponent]="customDatepickerHeader"></mat-date-range-picker>
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="cicoPicker"
+                  ></mat-datepicker-toggle>
+                  <mat-date-range-picker
+                    #cicoPicker
+                    [calendarHeaderComponent]="customDatepickerHeader"
+                  ></mat-date-range-picker>
                 </mat-form-field>
               </div>
               <div class="cancellation-policy" *ngIf="showCancelOpts">
@@ -355,8 +325,12 @@
                 </div>
                 <div class="cancellation-policy-wrapper">
                   <label class="custom-radio" *ngFor="let opt of cancellation">
-                    <input type="radio" [value]="opt.code" (change)="selectCancellationOption($event, opt.price)"
-                      [checked]="selectedCancellationPolicy === opt.code" />
+                    <input
+                      type="radio"
+                      [value]="opt.code"
+                      (change)="selectCancellationOption($event, opt.price)"
+                      [checked]="selectedCancellationPolicy === opt.code"
+                    />
                     <div class="radio-mark"></div>
                     <div class="wrapper">
                       <div>{{ opt.title }}</div>
@@ -369,36 +343,72 @@
               <div class="add-guest">
                 <div class="guest-wrapper">
                   <div class="addguest">Add guest</div>
-                  <mat-icon aria-hidden="false" aria-label="people" fontIcon="people"></mat-icon>
+                  <mat-icon
+                    aria-hidden="false"
+                    aria-label="people"
+                    fontIcon="people"
+                  ></mat-icon>
                 </div>
                 <hr />
                 <div class="addguest-inputs">
                   <div class="addguest-inputs-add-guest-container">
                     <div class="input-addguest">
                       <label for="adults">Adults (13+ years):</label>
-                      <input type="number" [(ngModel)]="guest_adults" name="adults" placeholder="0" [min]="1"
-                        [max]="details.details.guests - guest_children" required /><br />
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_adults"
+                        name="adults"
+                        placeholder="0"
+                        [min]="1"
+                        [max]="details.details.guests - guest_children"
+                        required
+                      /><br />
                     </div>
                     <div class="input-addguest">
                       <label for="children">Children (2-12 years):</label>
-                      <input type="number" [(ngModel)]="guest_children" id="children"
-                        [max]="details.details.guests - guest_adults" name="children" min="0" placeholder="0"
-                        required /><br />
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_children"
+                        id="children"
+                        [max]="details.details.guests - guest_adults"
+                        name="children"
+                        min="0"
+                        placeholder="0"
+                        required
+                      /><br />
                     </div>
                     <div class="input-addguest">
                       <label for="infants">Infants (0-1 years):</label>
-                      <input type="number" [(ngModel)]="guest_infants" id="infants" name="infants" placeholder="0"
-                        [max]="5" required /><br />
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_infants"
+                        id="infants"
+                        name="infants"
+                        placeholder="0"
+                        [max]="5"
+                        required
+                      /><br />
                     </div>
                     <div class="input-addguest">
                       <label for="pets">Pets:</label>
-                      <input type="number" [(ngModel)]="guest_pets" id="pets" name="pets" max="1" min="0"
-                        placeholder="0" required /><br />
+                      <input
+                        type="number"
+                        [(ngModel)]="guest_pets"
+                        id="pets"
+                        name="pets"
+                        max="1"
+                        min="0"
+                        placeholder="0"
+                        required
+                      /><br />
                     </div>
                   </div>
                 </div>
               </div>
-              <button (click)="navigateToBookStaycation()" [disabled]="!checkInCheckOut.valid">
+              <button
+                (click)="navigateToBookStaycation()"
+                [disabled]="!checkInCheckOut.valid"
+              >
                 Reserve
               </button>
             </div>

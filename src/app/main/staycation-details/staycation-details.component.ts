@@ -88,65 +88,9 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   });
 
   public refundOpts: any = [];
-  public sampleDataReviews: any = [
-    {
-      avatarImg:
-        '../../assets/images/main/staycation-details/avatarreviewer.png',
-      name: 'Juan DelaCruz',
-      address: 'San Pablo City',
-      taragoDuartion: '2 years in TaraGo',
-      expand: false,
-      rateStar: 5,
-      comment:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.',
-    },
-    {
-      avatarImg:
-        '../../assets/images/main/staycation-details/avatarreviewer.png',
-      name: 'Juan DelaCruz',
-      address: 'San Pablo City',
-      taragoDuartion: '2 years in TaraGo',
-      expand: false,
-      rateStar: 3,
-      comment:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.',
-    },
-    {
-      avatarImg:
-        '../../assets/images/main/staycation-details/avatarreviewer.png',
-      name: 'Juan DelaCruz',
-      address: 'San Pablo City',
-      taragoDuartion: '2 years in TaraGo',
-      expand: false,
-      rateStar: 1,
-      comment:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.',
-    },
-    {
-      avatarImg:
-        '../../assets/images/main/staycation-details/avatarreviewer.png',
-      name: 'Juan DelaCruz',
-      address: 'San Pablo City',
-      taragoDuartion: '2 years in TaraGo',
-      expand: false,
-      rateStar: 5,
-      comment:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.',
-    },
-    {
-      avatarImg:
-        '../../assets/images/main/staycation-details/avatarreviewer.png',
-      name: 'Juan DelaCruz',
-      address: 'San Pablo City',
-      taragoDuartion: '2 years in TaraGo',
-      expand: false,
-      rateStar: 5,
-      comment:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci expedita modi harum tempora beatae excepturi eum accusantium accusamus cumque! Similique maiores libero fugiat, facere cupiditate repellendus quia voluptatem itaque reiciendis.',
-    },
-  ];
 
   private _snack: MatSnackBar = inject(MatSnackBar);
+  public didCheckOut: boolean = false;
 
   constructor(
     private router: Router,
@@ -168,6 +112,7 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       next: (v: ParamMap) => {
         // this._getStaycationDetails(<string>v.get('id'))
         this._getDetailsAndTax(<string>v.get('id'));
+        this._checkDidCheckOut(<string>v.get('id'));
       },
     });
     // this._getGlobalStaticFee();
@@ -175,6 +120,18 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._sub.unsubscribe();
+  }
+
+  private _checkDidCheckOut(id: string) {
+    this._t &&
+      this._staycation.didCheckOut(id).subscribe({
+        next: (res) => {
+          this.didCheckOut = res.didCheckOut;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   private _getDetailsAndTax(id: string) {
@@ -235,11 +192,6 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     this.isExpandedDescriptiontext = !this.isExpandedDescriptiontext;
   }
 
-  seemoreReviewsText(index: number) {
-    this.sampleDataReviews[index].expand =
-      !this.sampleDataReviews[index].expand;
-  }
-
   public handleDateChangeStart(e: MatDatepickerInputEvent<any, any>) {
     console.log(e);
   }
@@ -277,15 +229,6 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
       panelClass: 'custom-messagehost-dialog',
       data: { proprietorHost: this.details.host, usersProfile: '' },
       disableClose: true,
-    });
-  }
-  public addrateComment(): void {
-    this.dialog.open(RateAndCommentComponent, {
-      panelClass: 'custom-addrate-dialog',
-      data: {
-        host: this.details.host,
-        staycationId: this.details._id,
-      },
     });
   }
 
