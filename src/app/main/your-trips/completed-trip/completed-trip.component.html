@@ -1,85 +1,82 @@
-<div class="your-trips-container ">
-    <div class="property-title">
+<div class="your-trips-container" [ngStyle]="{'height': notFound || yourTrips.length === 0? '60vh' : 'auto'}">
+    <div style="position: absolute;z-index: 6;top:0">
+        <button mat-button (click)="addNewItem(
+              '../assets/images/main/staycation-details/gallery1.png',
+              'This is new booking',
+              'Condominium',
+               1000,
+              'Pending Trips',
+              '2024-08-1',
+              '2024-12-1',
+              '2024-12-30',
+              5,
+              'This place is really good',
+              'San Pablo City'
+              
+        )">Push data here</button>
+    </div>
+    <div class="status-title">
         <div class="title-wrapper">
-            <!-- <div class="title">Upcoming Trips</div> -->
+            <div class="title">Completed Reservation</div>
         </div>
-
         <div class="filter_search" *ngIf="yourTrips.length !== 0">
             <div class="search">
                 <input type="text" placeholder="Search..." [(ngModel)]="searchInputs"
                     (input)="filterItems(searchInputs)">
                 <mat-icon>search</mat-icon>
             </div>
-            <div>
-                <button mat-button (click)="addNewItem(
-                      '../assets/images/main/staycation-details/gallery1.png',
-                      'This is new booking',
-                      'Condominium',
-                       1000,
-                      'Upcoming',
-                      '2024-08-1',
-                      '2024-12-1',
-                      '2024-12-30',
-                      5,
-                      'This place is really good'
-                      
-                )">Push data here</button>
-            </div>
+
         </div>
     </div>
     <div class="content">
         <div class="content_wrapper">
             <div class="trip_card_wrapper">
-                <div class="trip_card" *ngFor="let item of filteredItems; let i = index ">
+                <div class="trip_card" *ngFor="let list of filteredItems; let i = index ">
                     <div class=" card stacked">
-                        <div class="status">
-                            <div>{{item.status}}</div>
-                        </div>
+                        <!-- <div class="status">
+                            <div>{{list.status}}</div>
+                        </div> -->
                         <div class="image">
-                            <img src="{{item.image}}" alt="image" loading="lazy" draggable="false" />
+                            <img src="{{list.image}}" alt="image" loading="lazy" draggable="false"
+                                (click)="viewDetails()" />
                             <!-- <button class="close-button">
                                 <mat-icon>close</mat-icon>
                             </button> -->
-                            <button class="close-button" [matMenuTriggerFor]="menu">
+                            <!-- <button class="close-button" [matMenuTriggerFor]="menu" >
                                 <mat-icon>more_vert</mat-icon>
                             </button>
 
                             <mat-menu #menu="matMenu">
+                                <button mat-menu-item>View Details</button>
                                 <button mat-menu-item>Change Reservation</button>
-                                <button mat-menu-item (click)="removeTrip(item._id,item.title)" >Cancel Booking</button>
-                            </mat-menu>
+                                <button mat-menu-item >Cancel Booking</button>
+                            </mat-menu> -->
                         </div>
-                        <div class="content__card">
-                            <div class="info">
-                                <div class="title">{{item.title}} </div>
-                                <div class="date">
-                                    <span>{{item.startdate | date: 'MMM d'}}</span> - <span>{{item.enddate | date: 'MMMd'}}</span>
-                                </div>
-                                <div class="permonth">
-                                    <div>₱&nbsp;{{item.price_per_night}} monthly</div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
+                       
 
                     </div>
-
+                    <div class="content__card">
+                        <div class="info">
+                            <div class="title">{{list.title}} </div>
+                            <div class="subtitle">
+                                {{list.address}}
+                            </div>
+                            <div class="check-inout-date">
+                                <span>{{ list.startdate | date: 'MMM d, y' }}</span> - <span>{{ list.enddate | date:
+                                    'MMM d, y' }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="not-found custom-not_found" *ngIf="notFound">
-        <div>No trips found!</div>
+        <div>Pending trips not found!</div>
     </div>
-    <div class="custom-not_found" *ngIf="yourTrips.length === 0">
-        <div class="title">
-            No trips booked...yet!
-        </div>
-        <div class="subtitle">
-            Time to dust off your bags and start planning your next adventure.
-        </div>
-        <div class="btn ">
-            <button class="main-button" (click)="goToSearchList()">Start Searching</button>
+    <div class="not-found custom-not_found" *ngIf="yourTrips.length === 0">
+        <div>
+                No pending trips yet!
         </div>
     </div>
 </div>

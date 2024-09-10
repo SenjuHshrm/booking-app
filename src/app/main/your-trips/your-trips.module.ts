@@ -6,7 +6,6 @@ import { YourTripsComponent } from './your-trips.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
-import { ValidationModalComponent } from './modal/validation-modal/validation-modal.component';
 import { GlobalsModule } from "../../globals/globals.module";
 import { ViewDetailsModalComponent } from '../../globals/modals/view-details-modal/view-details-modal.component';
 import { CancelReasonModalComponent } from './modal/cancel-reason-modal/cancel-reason-modal.component';
@@ -16,7 +15,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 @NgModule({
   declarations: [
     YourTripsComponent, 
-    ValidationModalComponent, ViewDetailsModalComponent, CancelReasonModalComponent, 
+    ViewDetailsModalComponent, CancelReasonModalComponent, 
   ],
   imports: [
     CommonModule,

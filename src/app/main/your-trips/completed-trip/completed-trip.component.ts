@@ -1,8 +1,13 @@
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import { MatDialog } from '@angular/material/dialog';
-import { ValidationModalComponent } from '../modal/validation-modal/validation-modal.component';
+
+import { CancelReasonModalComponent } from '../modal/cancel-reason-modal/cancel-reason-modal.component';
+import { ViewtripsReservationModalComponent } from 'src/app/globals/modals/viewtrips-reservation-modal/viewtrips-reservation-modal.component';
 
 interface DataItem {
   _id: string;
@@ -16,6 +21,7 @@ interface DataItem {
   enddate:string;
   rating:any;
   reviews:any;
+  address:any;
 }
 
 @Component({
@@ -26,8 +32,8 @@ interface DataItem {
 })
 export class CompletedTripComponent implements OnInit {
   
-  filteredItems: DataItem[] = [];
-  notFound: boolean = false;
+  public filteredItems: DataItem[] = [];
+  public notFound: boolean = false;
   public searchInputs: string = '';
  
 
@@ -43,13 +49,99 @@ export class CompletedTripComponent implements OnInit {
       enddate:'2024-11-30',
       rating:5,
       reviews:100,
-      status: 'Upcoming Trips',
-    }
-  
+      status: 'Pending Trips',
+      address:'San Pablo City. Laguna'
+    },
+    { 
+      _id: '0', 
+      image: '../assets/images/main/staycation-details/gallery1.png', 
+      title: 'Our house in Tagaytay', 
+      description: 'Our condo', 
+      price_per_night: 1200, 
+      bookedDate:'2021-9-1',
+      startdate: '2024-10-30', 
+      enddate:'2024-11-30',
+      rating:5,
+      reviews:100,
+      status: 'Pending Trips',
+      address:'San Pablo City. Laguna'
+    },
+    { 
+      _id: '0', 
+      image: '../assets/images/main/staycation-details/gallery1.png', 
+      title: 'Our house in Tagaytay', 
+      description: 'Our condo', 
+      price_per_night: 1200, 
+      bookedDate:'2021-9-1',
+      startdate: '2024-10-30', 
+      enddate:'2024-11-30',
+      rating:5,
+      reviews:100,
+      status: 'Pending Trips',
+      address:'San Pablo City. Laguna'
+    },
+    { 
+      _id: '0', 
+      image: '../assets/images/main/staycation-details/gallery1.png', 
+      title: 'Our house in Tagaytay', 
+      description: 'Our condo', 
+      price_per_night: 1200, 
+      bookedDate:'2021-9-1',
+      startdate: '2024-10-30', 
+      enddate:'2024-11-30',
+      rating:5,
+      reviews:100,
+      status: 'Pending Trips',
+      address:'San Pablo City. Laguna'
+    },
+    { 
+      _id: '0', 
+      image: '../assets/images/main/staycation-details/gallery1.png', 
+      title: 'Our house in Tagaytay', 
+      description: 'Our condo', 
+      price_per_night: 1200, 
+      bookedDate:'2021-9-1',
+      startdate: '2024-10-30', 
+      enddate:'2024-11-30',
+      rating:5,
+      reviews:100,
+      status: 'Pending Trips',
+      address:'San Pablo City. Laguna'
+    },
+    { 
+      _id: '0', 
+      image: '../assets/images/main/staycation-details/gallery1.png', 
+      title: 'Our house in Tagaytay', 
+      description: 'Our condo', 
+      price_per_night: 1200, 
+      bookedDate:'2021-9-1',
+      startdate: '2024-10-30', 
+      enddate:'2024-11-30',
+      rating:5,
+      reviews:100,
+      status: 'Pending Trips',
+      address:'San Pablo City. Laguna'
+    },
+    { 
+      _id: '0', 
+      image: '../assets/images/main/staycation-details/gallery1.png', 
+      title: 'Our house in Tagaytay', 
+      description: 'Our condo', 
+      price_per_night: 1200, 
+      bookedDate:'2021-9-1',
+      startdate: '2024-10-30', 
+      enddate:'2024-11-30',
+      rating:5,
+      reviews:100,
+      status: 'Pending Trips',
+      address:'San Pablo City. Laguna'
+    },
+
+
 
   ];
 
-  originalItems: DataItem[] = [...this.yourTrips];
+  public originalItems: DataItem[] = [...this.yourTrips];
 
 
   constructor(private router: Router, public dialog: MatDialog) {}
@@ -58,7 +150,7 @@ export class CompletedTripComponent implements OnInit {
     this.filteredItems = [...this.yourTrips];
   }
 
-  filterItems(query: string): void {
+  public filterItems(query: string): void {
     console.log('Filtering with query:', query);
     if (query) {
       const lowerCaseQuery = query.toLowerCase();
@@ -73,33 +165,71 @@ export class CompletedTripComponent implements OnInit {
       this.notFound = false;
     }
   }
-  navigateToBookStaycation(id: string): void {
+
+  public navigateToBookStaycation(id: string): void {
     this.router.navigate(['main/staycation-details', id]);
   }
 
-  public goToSearchList(): void {
-    this.router.navigate(['main/staycation-list']);
-  }
 
-  public removeTrip(_index: string, title: string): void {
-    this.openValidationModal(_index, title);
-  }
 
-  private openValidationModal(_index: string, title: string): void {
-    const dialogRef = this.dialog.open(ValidationModalComponent, {
-      width: '100%',
-      height: '100%',
-      maxHeight: '20rem',
-      maxWidth: '30rem',
-      data: { title: title }
+
+
+  public gotoStaycationDetails():void{
+    this.router.navigate(['/main/staycation-details/66d71c6d4cb5d6b2e0360398']);
+    console.log("Active")
+}
+
+
+  // public removeTrip(_index: string, title: string): void {
+  //   this.openValidationModal(_index, title);
+  // }
+
+  // private openValidationModal(_index: string, title: string): void {
+  //   const dialogRef = this.dialog.open(ValidationModalComponent, {
+  //     width: '100%',
+  //     height: '100%',
+  //     maxHeight: '20rem',
+  //     maxWidth: '30rem',
+  //     data: { title: title }
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if(result === 'confirm'){
+  //       this.cancellBook();
+  //     }
+  //   });
+  // }
+
+
+  public viewDetails(): void {
+    const dialogRef = this.dialog.open(ViewtripsReservationModalComponent, {
+      width:'100%',
+      height:'100%',
+      maxHeight:'57rem',
+      maxWidth:'57rem',
+      panelClass:'custom-viewdetrips-dialog',
+      data: { }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'confirm') {
-        this.confirmRemoveTrip(_index);
-      }
+
     });
   }
+
+  
+  private cancellBook(): void {
+    const dialogRef = this.dialog.open(CancelReasonModalComponent,{
+      panelClass:'custom-cancell-dialog',
+      width:'100%',
+      maxWidth:'45rem',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+    
+  }
+
 
   private confirmRemoveTrip(_index: string): void {
     this.yourTrips = this.yourTrips.filter(item => item._id !== _index);
@@ -109,7 +239,7 @@ export class CompletedTripComponent implements OnInit {
 
 
 
-  addNewItem(
+  public addNewItem(
     image: string,
     title: string,
     description: string,
@@ -119,7 +249,9 @@ export class CompletedTripComponent implements OnInit {
     startdate: string,
     enddate:string,
     rating:any,
-    reviews:any
+    reviews:any,
+    address:any
+
   ): void {
     const newId = (this.yourTrips.length + 1).toString();
     // const today = new Date().toISOString().split('T')[0];
@@ -134,9 +266,13 @@ export class CompletedTripComponent implements OnInit {
       startdate:startdate,
       enddate:enddate,
       rating:rating,
-      reviews:reviews
+      reviews:reviews,
+      address:address
     });
     this.filteredItems = [...this.yourTrips];
   }
+
+
+
  
 }
