@@ -1,6 +1,7 @@
+import { HttpXsrfInterceptor } from './interceptors/http-xsrf.interceptor';
 import { GlobalsModule } from './globals/globals.module';
 import { environment } from './../environments/environment';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,9 +51,19 @@ export class CustomErrorHandler implements ErrorHandler {
     GlobalsModule,
     SocialLoginModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    HttpClientXsrfModule.disable(),
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN'
+    })
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpXsrfInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
