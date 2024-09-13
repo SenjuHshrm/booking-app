@@ -21,6 +21,7 @@ import { MessageGuestModalComponent } from './modal/message-guest-modal/message-
 import { GlobalsModule } from 'src/app/globals/globals.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TripMessageHostComponent } from './modal/trip-message-host/trip-message-host.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ForApprovalComponent,
     ValidationModalComponent,
     MessageGuestModalComponent,
+    TripMessageHostComponent,
   ],
   imports: [
     CommonModule,

@@ -1,30 +1,59 @@
 <div class="cancel-container">
-    <div class="header">
-        <div class="title">
-          Warning
-        </div>
-        <div class="close-button-normal" (click)="closeDialog()"><mat-icon>close</mat-icon></div>
+  <div class="header">
+    <div class="title">Cancellation Reason</div>
+    <div class="close-button-normal" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
     </div>
-    
-    <form (ngSubmit)="onSubmit()" #cancelForm="ngForm">
-        <div class="select-container">
-            <select name="cancelReason" id="cancel-reason" class="cancel-select" [(ngModel)]="selectedReason" required>
-                <option value="" disabled selected>Select a reason</option>
-                <option value="">I no longer need accommodations.</option>
-                <option value="">I made the reservation by accident.</option>
-                <option value="">I'm uncomfortable with the host</option>
-                <option value="">My travel dates changed</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
+  </div>
 
-        <div *ngIf="selectedReason === 'Other'" class="other-reason-container">
-            <textarea type="text" class="other-reason-input" name="otherReason" [(ngModel)]="otherReason"
-                placeholder="Please specify the reason" required></textarea>
-        </div>
-        <div class="btn_reason">
-            <button type="submit" class="cancel-btn">Cancel</button>
-            <button type="submit" class="cancel-btn" [disabled]="cancelForm.invalid">Submit</button>
-        </div>
-    </form>
+  <form (ngSubmit)="onSubmit(cancelForm)" [formGroup]="cancelForm">
+    <div class="select-container">
+      <select
+        name="selection"
+        formControlName="selection"
+        id="cancel-reason"
+        class="cancel-select"
+        required
+      >
+        <option value="" disabled selected>Select a reason</option>
+        <option value="I no longer need accommodations.">
+          I no longer need accommodations.
+        </option>
+        <option value="I made the reservation by accident.">
+          I made the reservation by accident.
+        </option>
+        <option value="I'm uncomfortable with the host">
+          I'm uncomfortable with the host
+        </option>
+        <option value="My travel dates changed">My travel dates changed</option>
+        <option value="Other">Other</option>
+      </select>
+      <app-input-error-message [form]="cancelForm" [errors]="selErrors" />
+    </div>
+
+    <div
+      *ngIf="this.cancelForm.get('selection')?.value === 'Other'"
+      class="other-reason-container"
+    >
+      <textarea
+        class="other-reason-input"
+        name="otherReason"
+        placeholder="Please specify the reason"
+        formControlName="reason"
+        required
+      ></textarea>
+      <app-input-error-message [form]="cancelForm" [errors]="reaErrors" />
+    </div>
+    <div class="btn_reason">
+      <button [disabled]="isLoading" type="button" class="cancel-btn">
+        Cancel
+      </button>
+      <button [disabled]="isLoading" type="submit" class="cancel-btn">
+        <span *ngIf="!isLoading">Submit</span>
+        <span *ngIf="isLoading" style="display: block; padding: 0 1.5rem"
+          ><mat-spinner [diameter]="20"
+        /></span>
+      </button>
+    </div>
+  </form>
 </div>

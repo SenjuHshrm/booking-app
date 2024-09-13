@@ -88,7 +88,7 @@ export class ForApprovalComponent implements OnInit {
     this.isLoading = true;
     this._subs.add(
       this._booking
-        .getBookingByType(this.token.sub, 'for-approval', p, l, this.searchKey)
+        .getBookingByType(this.token.sub, 'for_approval', p, l, this.searchKey)
         .subscribe({
           next: (res) => {
             this.dataSource = res.bookings;

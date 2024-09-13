@@ -126,7 +126,7 @@ export class ViewReservationModalComponent implements OnInit, OnDestroy {
 
   get status(): string {
     switch (this.data.status) {
-      case 'for-approval':
+      case 'for_approval':
         return 'For Approval';
 
       case 'upcoming':

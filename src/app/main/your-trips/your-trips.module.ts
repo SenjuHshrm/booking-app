@@ -5,17 +5,19 @@ import { YourTripsRoutingModule } from './your-trips-routing.module';
 import { YourTripsComponent } from './your-trips.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { FormsModule } from '@angular/forms';
-import { GlobalsModule } from "../../globals/globals.module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GlobalsModule } from '../../globals/globals.module';
 import { ViewDetailsModalComponent } from '../../globals/modals/view-details-modal/view-details-modal.component';
 import { CancelReasonModalComponent } from './modal/cancel-reason-modal/cancel-reason-modal.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
-    YourTripsComponent, 
-    ViewDetailsModalComponent, CancelReasonModalComponent, 
+    YourTripsComponent,
+    ViewDetailsModalComponent,
+    CancelReasonModalComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     FormsModule,
     MatButtonModule,
     MatSidenavModule,
-    GlobalsModule
-]
+    GlobalsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+  ],
 })
-export class YourTripsModule { }
+export class YourTripsModule {}

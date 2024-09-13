@@ -1,82 +1,68 @@
-<div class="your-trips-container" [ngStyle]="{'height': notFound || yourTrips.length === 0? '60vh' : 'auto'}">
-    <div style="position: absolute;z-index: 6;top:0">
-        <button mat-button (click)="addNewItem(
-              '../assets/images/main/staycation-details/gallery1.png',
-              'This is new booking',
-              'Condominium',
-               1000,
-              'Pending Trips',
-              '2024-08-1',
-              '2024-12-1',
-              '2024-12-30',
-              5,
-              'This place is really good',
-              'San Pablo City'
-              
-        )">Push data here</button>
+<div class="your-trips-container">
+  <div class="status-title">
+    <div class="title-wrapper">
+      <div class="title">Pending Reservation</div>
     </div>
-    <div class="status-title">
-        <div class="title-wrapper">
-            <div class="title">Completed Reservation</div>
-        </div>
-        <div class="filter_search" *ngIf="yourTrips.length !== 0">
-            <div class="search">
-                <input type="text" placeholder="Search..." [(ngModel)]="searchInputs"
-                    (input)="filterItems(searchInputs)">
-                <mat-icon>search</mat-icon>
+    <div class="filter_search">
+      <div class="search">
+        <input
+          type="search"
+          placeholder="Search..."
+          [(ngModel)]="searchKey"
+          (input)="handleSearch($event)"
+        />
+        <mat-icon>search</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content_wrapper">
+      <div *ngIf="!initialLoading" class="trip_card_wrapper">
+        <div class="trip_card" *ngFor="let book of bookings; let i = index">
+          <div class="card stacked">
+            <div class="image">
+              <img
+                src="{{ setSrc(book.bookTo.cover) }}"
+                alt="image"
+                loading="lazy"
+                draggable="false"
+                (click)="viewDetails(book)"
+              />
             </div>
-
-        </div>
-    </div>
-    <div class="content">
-        <div class="content_wrapper">
-            <div class="trip_card_wrapper">
-                <div class="trip_card" *ngFor="let list of filteredItems; let i = index ">
-                    <div class=" card stacked">
-                        <!-- <div class="status">
-                            <div>{{list.status}}</div>
-                        </div> -->
-                        <div class="image">
-                            <img src="{{list.image}}" alt="image" loading="lazy" draggable="false"
-                                (click)="viewDetails()" />
-                            <!-- <button class="close-button">
-                                <mat-icon>close</mat-icon>
-                            </button> -->
-                            <!-- <button class="close-button" [matMenuTriggerFor]="menu" >
-                                <mat-icon>more_vert</mat-icon>
-                            </button>
-
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>View Details</button>
-                                <button mat-menu-item>Change Reservation</button>
-                                <button mat-menu-item >Cancel Booking</button>
-                            </mat-menu> -->
-                        </div>
-                       
-
-                    </div>
-                    <div class="content__card">
-                        <div class="info">
-                            <div class="title">{{list.title}} </div>
-                            <div class="subtitle">
-                                {{list.address}}
-                            </div>
-                            <div class="check-inout-date">
-                                <span>{{ list.startdate | date: 'MMM d, y' }}</span> - <span>{{ list.enddate | date:
-                                    'MMM d, y' }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="content__card">
+            <div class="info">
+              <div class="title">{{ book.bookTo.name }}</div>
+              <div class="subtitle">
+                {{ book.bookTo.address.city }}
+              </div>
+              <div class="check-inout-date">
+                <span>{{ book.duration.start | date : "MMM d, y" }}</span> -
+                <span>{{ book.duration.end | date : "MMM d, y" }}</span>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div *ngIf="initialLoading" class="loading-wrapper">
+        <app-booking-loader />
+        <app-booking-loader />
+        <app-booking-loader />
+        <app-booking-loader />
+      </div>
+      <div *ngIf="!initialLoading && bookings.length < 1" class="empty-wrapper">
+        <span>No Completed Trip</span>
+      </div>
     </div>
-    <div class="not-found custom-not_found" *ngIf="notFound">
-        <div>Pending trips not found!</div>
+    <div class="see-more-container" *ngIf="hasNextPage">
+      <button
+        (click)="seeMoreBookings()"
+        [disabled]="seeMoreLoading"
+        mat-raised-button
+      >
+        <span *ngIf="!seeMoreLoading">See More</span>
+        <span *ngIf="seeMoreLoading"><mat-spinner [diameter]="20" /></span>
+      </button>
     </div>
-    <div class="not-found custom-not_found" *ngIf="yourTrips.length === 0">
-        <div>
-                No pending trips yet!
-        </div>
-    </div>
+  </div>
 </div>
