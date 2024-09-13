@@ -39,6 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ViewtripsReservationModalComponent } from './modals/viewtrips-reservation-modal/viewtrips-reservation-modal.component';
 import { SwiperModule } from 'swiper/angular';
 import { ValidationTripsModalComponent } from '../main/your-trips/modal/validation-trips-modal/validation-trips-modal.component';
+import { BookingLoaderComponent } from './loader/booking-loader/booking-loader.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ValidationTripsModalComponent } from '../main/your-trips/modal/validati
     AddGuestComponent,
     ViewtripsReservationModalComponent,
     ValidationTripsModalComponent,
+    BookingLoaderComponent,
   ],
 
   imports: [
@@ -83,7 +85,7 @@ import { ValidationTripsModalComponent } from '../main/your-trips/modal/validati
     RouterModule,
     MatProgressBarModule,
     MatButtonModule,
-    SwiperModule
+    SwiperModule,
   ],
 
   providers: [GoogleSigninButtonDirective],
@@ -105,7 +107,8 @@ import { ValidationTripsModalComponent } from '../main/your-trips/modal/validati
     ViewReservationModalComponent,
     ViewGuestListModalComponent,
     ViewCheckinModalComponent,
-    ViewtripsReservationModalComponent
+    ViewtripsReservationModalComponent,
+    BookingLoaderComponent,
   ],
 })
 export class GlobalsModule {}

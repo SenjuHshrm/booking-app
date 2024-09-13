@@ -1,152 +1,168 @@
 <div class="__viewTrips">
-    <div class="header">
-        <div class="title">Pending</div>
-        <div class="close-button-normal" (click)="closeDialog()">
-            <mat-icon>close</mat-icon>
-        </div>
+  <div class="header">
+    <div class="title">{{ title }}</div>
+    <div class="close-button-normal" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
     </div>
-    <hr>
-    <div class="content">
-        <div class="main-image" [@fadeInAnimation]>
-            <swiper class="swiper-container" #swiper [slidesPerView]="1" [spaceBetween]="25" [pagination]="true"
-                [draggable]="false" [loop]="true" [autoplay]="true" [navigation]="true">
-                <ng-template class="custom-swiper-slide" swiperSlide *ngFor="let tripImg of yourTrips">
-                    <div class="images">
-                        <img src="{{ tripImg.image }}" alt="hero-visual-1" draggable="false" loading="lazy" />
-                    </div>
-                </ng-template>
+  </div>
+  <hr />
+  <div class="content">
+    <div class="main-image" [@fadeInAnimation]>
+      <swiper
+        class="swiper-container"
+        #swiper
+        [slidesPerView]="1"
+        [spaceBetween]="25"
+        [pagination]="true"
+        [draggable]="false"
+        [loop]="true"
+        [autoplay]="true"
+        [navigation]="true"
+      >
+        <ng-template
+          class="custom-swiper-slide"
+          swiperSlide
+          *ngFor="let tripImg of data.bookTo.bedroomList"
+        >
+          <div class="images">
+            <img
+              src="{{ setSrc(tripImg) }}"
+              alt="hero-visual-1"
+              draggable="false"
+              loading="lazy"
+            />
+          </div>
+        </ng-template>
 
-                <!-- Custom navigation buttons -->
-                <div class="swiper-button-prev custom-prev"></div>
-                <div class="swiper-button-next custom-next"></div>
-            </swiper>
-
-        </div>
-
-        <div class="title_listing">
-            <div class="title">This hotel in Manila</div>
-            <div class="subtitle">Quezon City, Manila</div>
-        </div>
-
-        <div class="btn_listing">
-            <div class="__btn">
-                <div>
-                    <mat-icon>message</mat-icon>
-                    Message Proprietor
-                </div>
-                <div>
-                    <mat-icon>navigate_next</mat-icon>
-                </div>
-
-            </div>
-            <div class="__btn" (click)="goToSearchList()">
-                <div>
-                    <mat-icon>view_day</mat-icon>
-                    View Listing
-                </div>
-                <div>
-                    <mat-icon>navigate_next</mat-icon>
-                </div>
-            </div>
-            <div class="__btn">
-                <div>
-                    <mat-icon>star</mat-icon>
-                    Rate this listing
-                </div>
-                <div>
-                    <mat-icon>navigate_next</mat-icon>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="reservation_details">
-            <div class="title">Reservation Details</div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Booked Guest</div>
-                <div class="info-details-content">
-                    Juan DelaCruz
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Booked Date</div>
-                <div class="info-details-content">
-                    September 15, 2024
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Check-in</div>
-                <div class="info-details-content">
-                    <span>Sept 15, 2024</span><span>8:00 AM</span>
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Check-in</div>
-                <div class="info-details-content">
-                    <span>Sept 15, 2024</span><span>8:00 PM</span>
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Number of Guest</div>
-                <div class="info-details-content">
-                    10
-                </div>
-            </div>
-        </div>
-        <div class="reservation_details">
-            <div class="title">Payment Details</div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Payment Status</div>
-                <div class="info-details-content">
-                    Awaiting Payment
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Discounted Offer</div>
-                <div class="info-details-content">
-                    20% Off
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Service Charge</div>
-                <div class="info-details-content">
-                    250
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Taxed</div>
-                <div class="info-details-content">
-                    10%
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Balance</div>
-                <div class="info-details-content">
-                    1000
-                </div>
-            </div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Total Amount</div>
-                <div class="info-details-content">
-                    5000
-                </div>
-            </div>
-
-        </div>
-        <div class="reservation_details">
-            <div class="title">Cancellation Policy</div>
-            <div class="info-details-wrapper">
-                <div class="info-details-label">Flexible</div>
-                <div class="info-details-content">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, magni enim exercitationem eius
-                    ullam ad sapiente placeat totam repudiandae, sed autem! Quaerat incidunt excepturi accusantium eaque
-                    sint tenetur officiis officia.
-                </div>
-            </div>
-        </div>
+        <!-- Custom navigation buttons -->
+        <div class="swiper-button-prev custom-prev"></div>
+        <div class="swiper-button-next custom-next"></div>
+      </swiper>
     </div>
-    <div class="footer">
-        <button class="square-radius-btn" (click)="closeDialog()">Exit</button>
-        <button class="square-radius-btn" (click)="validCancel()">Request Cancellation</button>
+
+    <div class="title_listing">
+      <div class="title">{{ data.bookTo.name }}</div>
+      <div class="subtitle">Quezon City, Manila</div>
     </div>
+
+    <div class="btn_listing">
+      <div class="__btn">
+        <div (click)="messageProprietor()">
+          <mat-icon>message</mat-icon>
+          Message Proprietor
+        </div>
+        <div>
+          <mat-icon>navigate_next</mat-icon>
+        </div>
+      </div>
+      <div class="__btn" (click)="goToSearchList()">
+        <div>
+          <mat-icon>view_day</mat-icon>
+          View Listing
+        </div>
+        <div>
+          <mat-icon>navigate_next</mat-icon>
+        </div>
+      </div>
+      <div *ngIf="data.status === 'check_out'" class="__btn">
+        <div (click)="rateAndComment()">
+          <mat-icon>star</mat-icon>
+          Rate this listing
+        </div>
+        <div>
+          <mat-icon>navigate_next</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="reservation_details">
+      <div class="title">Reservation Details</div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Booked Guest</div>
+        <div class="info-details-content">{{ guestName }}</div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Booked Date</div>
+        <div class="info-details-content">
+          {{ data.createdAt | date : "MMMM dd, YYYY" }}
+        </div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Check-in</div>
+        <div class="info-details-content">
+          <span>{{ data.duration.start | date : "MMMM dd, YYYY" }}</span>
+        </div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Check-out</div>
+        <div class="info-details-content">
+          <span>{{ data.duration.end | date : "MMMM dd, YYYY" }}</span>
+        </div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Number of Guest</div>
+        <div class="info-details-content">{{ totalGuest }}</div>
+      </div>
+    </div>
+    <div class="reservation_details">
+      <div class="title">Payment Details</div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Payment Status</div>
+        <div class="info-details-content">Awaiting Payment</div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Discounted Offer</div>
+        <div class="info-details-content">20% Off</div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Service Charge</div>
+        <div class="info-details-content">250</div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Taxed</div>
+        <div class="info-details-content">10%</div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Balance</div>
+        <div class="info-details-content">1000</div>
+      </div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">Total Amount</div>
+        <div class="info-details-content">5000</div>
+      </div>
+    </div>
+    <div class="reservation_details">
+      <div class="title">Cancellation Policy</div>
+      <div class="info-details-wrapper">
+        <div class="info-details-label">{{ cancellationPolicyTitle }}</div>
+        <div class="info-details-content">
+          {{ cancellationPolicy }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <button
+      [disabled]="isLoading"
+      class="square-radius-btn"
+      (click)="closeDialog()"
+    >
+      Exit
+    </button>
+    <button
+      *ngIf="['for_approval', 'arriving', 'upcoming'].includes(data.status)"
+      [disabled]="isLoading"
+      class="square-radius-btn"
+      (click)="validCancel()"
+    >
+      <span *ngIf="!isLoading">{{
+        data.status === "for_approval"
+          ? "Cancel Booking"
+          : "Request Cancellation"
+      }}</span>
+      <span *ngIf="isLoading" style="display: block; padding: 0 3rem"
+        ><mat-spinner [diameter]="15"
+      /></span>
+    </button>
+  </div>
 </div>

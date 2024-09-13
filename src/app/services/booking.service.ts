@@ -59,4 +59,31 @@ export class BookingService {
       data
     );
   }
+
+  public getBookingsByGuestId(
+    limit: number,
+    page: number,
+    type: string,
+    search: string
+  ): Observable<any> {
+    let params: { search?: string; limit: number; page: number; type: string } =
+      {
+        limit,
+        page,
+        type,
+      };
+    if (search !== '') {
+      params.search = search;
+    }
+    return this._http.get(`${environment.api}/api/booking/get/trips`, {
+      params: { ...params },
+    });
+  }
+
+  public cancelBooking(data: any): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/booking/post/cancel-booking`,
+      data
+    );
+  }
 }

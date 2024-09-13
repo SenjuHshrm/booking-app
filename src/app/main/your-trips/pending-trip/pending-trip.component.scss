@@ -1,502 +1,499 @@
 .your-trips-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+
+  .status-title {
+    background-color: white;
+    // margin-top: 1rem;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    // gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem 1rem;
+    position: sticky;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+
+    .title-wrapper {
+      .title {
+        font-weight: bold;
+        font-size: clamp(1rem, 1vw, 8rem);
+      }
+    }
+
+    .filter_search {
+      flex: none;
+      width: 100%;
+      max-width: 22rem;
+      .search {
+        display: flex;
+        width: 100%;
+        padding: 0.5rem 1rem 0.5rem;
+        border: 1px solid rgb(190, 190, 190);
+        border-radius: 10px;
+
+        input {
+          width: 100%;
+          border: none;
+          outline: none;
+        }
+
+        mat-icon {
+          color: #63ab68;
+        }
+      }
+    }
+  }
+
+  .content {
+    flex-basis: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
-    position: relative;
-    width:100%;
-    
+    width: 100%;
 
-    .status-title {
-        background-color: white;
-        // margin-top: 1rem;
-        // display: grid;
-        // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        // gap: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 1rem 1rem;
-        position: sticky;
-        z-index: 5;
-        top: 0;
-        bottom: 0;
-        
+    .content_wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem 0;
 
+      .date_title {
+        font-size: clamp(0.8rem, 0.8vw, 8rem);
+        padding: 1rem 0 1rem;
+        color: grey;
+      }
 
-        .title-wrapper {
-            .title {
-                font-weight: bold;
-                font-size: clamp(1rem, 1vw, 8rem);
-            }
-        }
-
-
-        .filter_search {
-            flex: none;
-            width: 100%;
-            max-width:22rem;
-            .search {
-                display: flex;
-                width: 100%;
-                padding: .5rem 1rem .5rem;
-                border: 1px solid rgb(190, 190, 190);
-                border-radius: 10px;
-
-                input {
-                    width: 100%;
-                    border: none;
-                    outline: none;
-
-                }
-
-                mat-icon {
-                    color: #63AB68;
-                }
-            }
-        }
-    }
-
-    .content {
-        flex-basis:100%;
+      .trip_card_wrapper {
+        margin: 0rem 0 1rem;
         flex: 1;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.5rem;
+        position: relative;
         width: 100%;
 
+        overflow: hidden;
+      }
 
-        .content_wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 0 1rem 0;
-    
+      .trip_card {
+        width: 100%;
+      }
 
+      // .stacked {
+      //     display: grid;
 
+      //     * {
+      //         grid-column: 1 /.5;
+      //         grid-row: 1/.5;
+      //     }
+      // }
 
-            .date_title {
-                font-size: clamp(.8rem, .8vw, 8rem);
-                padding: 1rem 0 1rem;
-                color: grey;
-            }
+      .card {
+        text-align: center;
+        margin: auto;
+        margin-top: 0;
+        display: grid;
+        gap: 1rem;
+        width: 100%;
+        cursor: pointer;
+        position: relative;
 
-            .trip_card_wrapper {
-                margin: 0rem 0 1rem;
-                flex: 1;
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-                gap: 1.5rem;
-                position: relative;
-                width: 100%;
-              
-                overflow: hidden;
-         
-
-
-            }
-
-            .trip_card {
-                width: 100%;
-
-            }
-
-            // .stacked {
-            //     display: grid;
-
-            //     * {
-            //         grid-column: 1 /.5;
-            //         grid-row: 1/.5;
-            //     }
-            // }
-
-            .card {
-                text-align: center;
-                margin: auto;
-                margin-top: 0;
-                display: grid;
-                gap: 1rem;
-                width: 100%;
-                cursor: pointer;
-                position: relative;
-
-
-                .status {
-                    background-color: white;
-                    border-radius: 10px;
-                    max-width: fit-content;
-                    height: fit-content;
-                    position: absolute;
-                    top: 10px;
-                    left: 10px;
-                    padding: 2px 7px;
-                    color: #68A968;
-                    box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.281);
-                    font-size: clamp(.7rem, .8vw, 8rem);
-                }
-
-        
-
-                .image {
-                    box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.1);
-                    border-radius: 15px;
-                    cursor: pointer;
-                 
-                    img {
-                      
-                        border-radius: 15px;
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-
-                    }
-
-                    .close-button {
-                        top: .5rem;
-                        right: .5rem;
-                        width: 1.9rem;
-                        height: 1.9rem;
-
-                        mat-icon {
-                            font-size: 15px;
-                        }
-                    }
-
-                }
-
-
-
-            }
-            .content__card {
-                position: relative;
-                z-index: 2;
-                align-self: end;
-                // padding-top: 2rem;
-                // border:2px solid black;
-
-                .info {
-                    height: fit-content;
-                    text-align: left;
-                    max-width: 100%;
-
-                    .title {
-                        align-items: center;
-                        font-weight: bold;
-                        font-size: calc(1em + .2vw);
-                        color: black;
-                        word-break: break-words;
-                        white-space-collapse: break-spaces;
-                        display: -webkit-box;
-                        -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 2;
-                        /* Number of lines to show */
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        line-height: 1.5;
-                        /* Adjust based on your font-size */
-                        max-height: calc(1.5em * 3);
-                        /* line-height * number of lines */
-                    }
-
-                    .subtitle {
-                        font-size: calc(.8em + .2vw);
-                        display: -webkit-box;
-                        /* Enables the flexbox layout model */
-                        -webkit-box-orient: vertical;
-                        /* Sets the orientation to vertical */
-                        -webkit-line-clamp: 3;
-                        /* Limits the text to 3 lines */
-                        overflow: hidden;
-                        /* Hides overflowing content */
-                        text-overflow: ellipsis;
-
-                        max-width: 17rem;
-
-                    }
-
-                    .check-inout-date {
-                        font-size: calc(.7em + .1vw);
-                        color: #68A968;
-                    }
-
-                    .permonth {
-                        font-size: calc(1em + .1vw);
-                        color: #68A968;
-                        font-weight: bold;
-
-                    }
-                }
-
-            }
-            .card:hover {
-                opacity: 90%;
-            }
-
-        
+        .status {
+          background-color: white;
+          border-radius: 10px;
+          max-width: fit-content;
+          height: fit-content;
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          padding: 2px 7px;
+          color: #68a968;
+          box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.281);
+          font-size: clamp(0.7rem, 0.8vw, 8rem);
         }
 
-        .custom-not_found {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        .image {
+          box-shadow: -1px 2px 15px rgba(0, 0, 0, 0.1);
+          border-radius: 15px;
+          cursor: pointer;
+
+          img {
+            border-radius: 15px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+
+          .close-button {
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 1.9rem;
+            height: 1.9rem;
+
+            mat-icon {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .content__card {
+        position: relative;
+        z-index: 2;
+        align-self: end;
+        // padding-top: 2rem;
+        // border:2px solid black;
+
+        .info {
+          height: fit-content;
+          text-align: left;
+          max-width: 100%;
+
+          .title {
             align-items: center;
-            background-color: red;
-       
+            font-weight: bold;
+            font-size: calc(1em + 0.2vw);
+            color: black;
+            word-break: break-words;
+            white-space-collapse: break-spaces;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* Number of lines to show */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.5;
+            /* Adjust based on your font-size */
+            max-height: calc(1.5em * 3);
+            /* line-height * number of lines */
+          }
 
+          .subtitle {
+            font-size: calc(0.8em + 0.2vw);
+            display: -webkit-box;
+            /* Enables the flexbox layout model */
+            -webkit-box-orient: vertical;
+            /* Sets the orientation to vertical */
+            -webkit-line-clamp: 3;
+            /* Limits the text to 3 lines */
+            overflow: hidden;
+            /* Hides overflowing content */
+            text-overflow: ellipsis;
 
-            // .title {
-            //     font-size: calc(1.2em + .2vw);
-            //     font-weight: bold;
-            //     margin: .5rem;
-            //     text-align: center;
-            // }
+            max-width: 17rem;
+          }
 
-            // .subtitle {
-            //     font-size: calc(.8em + .2vw);
-            // }
+          .check-inout-date {
+            font-size: calc(0.7em + 0.1vw);
+            color: #68a968;
+          }
 
-            // .btn {
-            //     width: 100%;
-            //     display: grid;
-            //     place-content: center;
-            //     margin-top: 1rem;
-            // }
+          .permonth {
+            font-size: calc(1em + 0.1vw);
+            color: #68a968;
+            font-weight: bold;
+          }
         }
+      }
+      .card:hover {
+        opacity: 90%;
+      }
     }
 
+    .custom-not_found {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: red;
 
+      // .title {
+      //     font-size: calc(1.2em + .2vw);
+      //     font-weight: bold;
+      //     margin: .5rem;
+      //     text-align: center;
+      // }
+
+      // .subtitle {
+      //     font-size: calc(.8em + .2vw);
+      // }
+
+      // .btn {
+      //     width: 100%;
+      //     display: grid;
+      //     place-content: center;
+      //     margin-top: 1rem;
+      // }
+    }
+  }
 }
 
-
-.custom-cancell-dialog{
-    height: fit-content;
-    overflow-y: auto;
+.custom-cancell-dialog {
+  height: fit-content;
+  overflow-y: auto;
 }
-
 
 @media only screen and (max-width: 1400px) {
-    .your-trips-container {
+  .your-trips-container {
+    .content {
+      .content_wrapper {
+        .card {
+          .status {
+          }
 
-        .content {
-            .content_wrapper {
+          .content__card {
+            .info {
+              .title {
+              }
 
-                .card {
+              .description {
+              }
 
-
-                    .status {}
-
-                    .content__card {
-                        .info {
-                            .title {}
-
-                            .description {}
-
-                            .permonth {}
-                        }
-
-                    }
-
-                    .image {
-                        img {
-                            // max-width: 13rem;
-                            // max-height: 13rem;
-                        }
-
-                        .close-button {}
-
-                    }
-
-                }
-
-                .trip_card_wrapper {
-                    width: 100%;
-                    place-items: flex-start;
-                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                    gap: auto;
-                    overflow-x: hidden;
-
-                }
-
+              .permonth {
+              }
             }
-        }
-    }
+          }
 
+          .image {
+            img {
+              // max-width: 13rem;
+              // max-height: 13rem;
+            }
+
+            .close-button {
+            }
+          }
+        }
+
+        .trip_card_wrapper {
+          width: 100%;
+          place-items: flex-start;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: auto;
+          overflow-x: hidden;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 900px) {
-    .your-trips-container {
+  .your-trips-container {
+    .content {
+      .content_wrapper {
+        .card {
+          .status {
+          }
 
-        .content {
-            .content_wrapper {
+          .content__card {
+            border: 2px sold blue;
+            .info {
+              .title {
+              }
 
-                .card {
-               
+              .description {
+              }
 
-                    .status {}
-
-                    .content__card {
-                        border: 2px sold blue;
-                        .info {
-                            .title {}
-
-                            .description {}
-
-                            .permonth {}
-                        }
-
-                    }
-
-                    .image {
-                        img {
-                            // max-width: 10rem;
-                            // max-height: 12rem;
-                        }
-
-                        .close-button {}
-
-                    }
-
-                }
-
-                .trip_card_wrapper {
-                    place-items: center;
-                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                    gap: auto;
-                    overflow-x: hidden;
-                }
-
+              .permonth {
+              }
             }
-        }
-    }
+          }
 
+          .image {
+            img {
+              // max-width: 10rem;
+              // max-height: 12rem;
+            }
+
+            .close-button {
+            }
+          }
+        }
+
+        .trip_card_wrapper {
+          place-items: center;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: auto;
+          overflow-x: hidden;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 780px) {
-    .your-trips-container {
+  .your-trips-container {
+    .content {
+      .content_wrapper {
+        .card {
+          .status {
+          }
 
-        .content {
-            .content_wrapper {
-                .card {
-                 
+          .content__card {
+            .info {
+              .title {
+              }
 
-                    .status {}
+              .description {
+              }
 
-                    .content__card {
-                        .info {
-                            .title {}
-
-                            .description {}
-
-                            .permonth {}
-                        }
-
-                    }
-
-                    .image {
-                      
-
-                        img {
-                            // max-width: 10rem;
-                        }
-
-                        .close-button {}
-
-                    }
-
-
-
-                }
-
-                .trip_card_wrapper {
-                    margin:0;
-                    place-items: center;
-                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                    gap: auto;
-
-                }
-
+              .permonth {
+              }
             }
-        }
-    }
+          }
 
+          .image {
+            img {
+              // max-width: 10rem;
+            }
+
+            .close-button {
+            }
+          }
+        }
+
+        .trip_card_wrapper {
+          margin: 0;
+          place-items: center;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: auto;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 580px) {
-    .your-trips-container {
-        .status-title {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+  .your-trips-container {
+    .status-title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
 
-
-            .title-wrapper {
-                .title {
-                    font-weight: normal;
-                    color: #63AB68;
-                }
-            }
-
-            .filter_search {
-                width: 100%;
-                margin-top: 1rem;
-
-                .search {
-                    display: flex;
-                    width: 100%;
-                    max-width: 100%;
-                    min-width: auto;
-                }
-            }
+      .title-wrapper {
+        .title {
+          font-weight: normal;
+          color: #63ab68;
         }
+      }
 
+      .filter_search {
+        width: 100%;
+        margin-top: 1rem;
 
+        .search {
+          display: flex;
+          width: 100%;
+          max-width: 100%;
+          min-width: auto;
+        }
+      }
     }
+  }
 }
 
 @media only screen and (max-width: 400px) {
-    .your-trips-container {
-        .content {
-            .content_wrapper {
-                .card {
-                width: 100%;
-                    .status {}
+  .your-trips-container {
+    .content {
+      .content_wrapper {
+        .card {
+          width: 100%;
+          .status {
+          }
 
-                    .content__card {
-                        .info {
-                            .title {}
+          .content__card {
+            .info {
+              .title {
+              }
 
-                            .description {}
+              .description {
+              }
 
-                            .permonth {}
-                        }
-
-                    }
-
-                    .image {
-                 
-                        img {
-                        
-                        }
-
-                        .close-button {}
-
-                    }
-
-
-
-                }
-
-                .trip_card_wrapper {
-                    place-items: center;
-                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                    width: 100%;
-                    gap: auto;
-
-                }
-
+              .permonth {
+              }
             }
-        }
-    }
+          }
 
+          .image {
+            img {
+            }
+
+            .close-button {
+            }
+          }
+        }
+
+        .trip_card_wrapper {
+          place-items: center;
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          width: 100%;
+          gap: auto;
+        }
+      }
+    }
+  }
 }
 
+.empty-wrapper {
+  height: 10rem;
+  display: grid;
+  place-items: center;
+  color: #80808075;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+}
 
+.loading-wrapper {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.see-more-container {
+  margin: 0.5rem;
+  button {
+    width: 100%;
+  }
+}
+
+// sm
+@media (min-width: 640px) {
+  .loading-wrapper {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+// md
+@media (min-width: 768px) {
+  .loading-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// lg
+@media (min-width: 1024px) {
+  .loading-wrapper {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+// xl
+@media (min-width: 1280px) {
+  .loading-wrapper {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+  .loading-wrapper {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

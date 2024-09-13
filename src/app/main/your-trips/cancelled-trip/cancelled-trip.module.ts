@@ -6,7 +6,8 @@ import { CancelledTripComponent } from './cancelled-trip.component';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GlobalsModule } from 'src/app/globals/globals.module';
 
 @NgModule({
   declarations: [CancelledTripComponent],
@@ -15,7 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
     CancelledTripRoutingModule,
     MatIconModule,
     MatMenuModule,
-    FormsModule
-  ]
+    FormsModule,
+    MatProgressSpinnerModule,
+    GlobalsModule,
+  ],
 })
-export class CancelledTripModule { }
+export class CancelledTripModule {}
