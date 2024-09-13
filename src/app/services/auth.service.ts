@@ -13,8 +13,9 @@ export class AuthService {
     private _http: HttpClient
   ) { }
 
-  public login(data: IAuth): Observable<{ token: string }> {
-    return this._http.post<{ token: string }>(`${environment.api}/api/auth/post/login`, data)
+  public login(data: IAuth, _csrf: string): Observable<{ token: string }> {
+    return this._http.post<{ token: string }>(`${environment.api}/api/auth/post/login`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
+    // return this._http.post<{ token: string }>(`${environment.api}/api/auth/post/login`, data, { withCredentials: true })
   }
 
   public googleLogin(data: { authData: any, userData: any }): Observable<{ token: string }> {
@@ -36,6 +37,10 @@ export class AuthService {
 
   public updatePassword(id: string, password: string): Observable<{ success: boolean }> {
     return this._http.put<{ success: boolean }>(`${environment.api}/api/auth/put/update-password/${id}`, { password })
+  }
+
+  public csrfToken(): Observable<any> {
+    return this._http.get(`${environment.api}/token`, { withCredentials: true })
   }
 
 }

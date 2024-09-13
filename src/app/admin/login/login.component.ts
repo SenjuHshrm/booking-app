@@ -1,3 +1,4 @@
+import { catchError, switchMap } from 'rxjs/operators';
 import { TokenService } from './../../services/token.service';
 import { FormControl, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -46,12 +47,24 @@ export class LoginComponent implements OnInit {
       currentDate: moment(new Date).format('MM/DD/YYYY'),
       role: 'admin'
     }
-    this._auth.login(data).subscribe({
-      next: (res: { token: string }) => {
-        this._token.saveToken(res.token),
-        window.location.href = '/admin/home'
-      }
-    })
+    this._auth.csrfToken()
+      .pipe(
+        switchMap((x) => {
+          return this._auth.login(data, x.token)
+        }),
+        catchError((e) => e)
+      ).subscribe({
+        next: (res: any) => {
+          this._token.saveToken(res.token)
+          window.location.href = '/admin/home'
+        }
+      })
+    // this._auth.login(data).subscribe({
+    //   next: (res: { token: string }) => {
+    //     this._token.saveToken(res.token),
+    //     window.location.href = '/admin/home'
+    //   }
+    // })
   }
 
   togglePasswordVisibility(): void {
