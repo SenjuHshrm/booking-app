@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../../../services/auth.service';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -39,7 +41,8 @@ export class CreateHeaderCarouselComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateHeaderCarouselComponent>,
-    private _carousel: CarouselService
+    private _carousel: CarouselService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -80,16 +83,21 @@ export class CreateHeaderCarouselComponent implements OnInit {
     carouselData.append('imgFile', imageData.image);
 
     this.subscription.add(
-      this._carousel.createCarouselImage('front', carouselData).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-          this.handleClose(true);
-        },
-        error: (error) => {
-          this.isLoading = false;
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._carousel.createCarouselImage('front', carouselData, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            this.handleClose(true);
+          },
+          error: (error) => {
+            this.isLoading = false;
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
     );
   }
 }

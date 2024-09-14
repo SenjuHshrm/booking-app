@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import { ListingsComponent } from './listings/listings.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -53,7 +55,8 @@ export class ProprietorApplicationComponent
     private _user: UserService,
     private _basicUtil: BasicUtilService,
     private _changeDetector: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -87,12 +90,22 @@ export class ProprietorApplicationComponent
     propApp: string
   ) {
     this._sub.add(
-      this._user.setAsHost(userId, staycationId, propApp).subscribe({
-        next: (res: { success: boolean }) => {
-          this._getApps(this.paginator.pageIndex + 1, this.paginator.pageSize);
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap((x) => this._user.setAsHost(userId, staycationId, propApp, x.token)),
+          catchError((e) => e)
+        ).subscribe({
+          next: (res: any) => {
+            this._getApps(this.paginator.pageIndex + 1, this.paginator.pageSize);
+          },
+        })
     );
+
+    // this._user.setAsHost(userId, staycationId, propApp).subscribe({
+    //   next: (res: { success: boolean }) => {
+    //     this._getApps(this.paginator.pageIndex + 1, this.paginator.pageSize);
+    //   },
+    // })
   }
 
   private _getApps(p: number, l: number) {

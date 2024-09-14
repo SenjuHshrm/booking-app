@@ -1,9 +1,10 @@
+import { AuthService } from './../../../services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { StaycationService } from './../../../services/staycation.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Subscription, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import {
   Component,
   OnInit,
@@ -51,7 +52,8 @@ export class ListingApplicationComponent
     private _md: MatDialog,
     private _staycation: StaycationService,
     private _user: UserService,
-    private _basicUtil: BasicUtilService
+    private _basicUtil: BasicUtilService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -80,15 +82,17 @@ export class ListingApplicationComponent
     // console.log(userId, staycationId)
     let currentDate = moment().format('MM/DD/YYYY');
     this._sub.add(
-      this._user
-        .requestSupportDocs(userId, staycationId, currentDate)
-        .subscribe({
+      this._auth.csrfToken()
+        .pipe(
+          switchMap((x) => this._user.requestSupportDocs(userId, staycationId, currentDate, x.token)),
+          catchError((e) => e)
+        ).subscribe({
           next: (res: any) => {
-            console.log(res);
+            console.log(res)
           },
-          error: (error) => {
-            this._snack.open(error.error.code, '', { duration: 1000 });
-          },
+          error: ({ error }) => {
+            this._snack.open(error.code)
+          }
         })
     );
   }

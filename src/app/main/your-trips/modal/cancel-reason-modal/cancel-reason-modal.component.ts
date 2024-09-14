@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
@@ -45,7 +47,8 @@ export class CancelReasonModalComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CancelReasonModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _booking: BookingService
+    private _booking: BookingService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -84,7 +87,12 @@ export class CancelReasonModalComponent implements OnInit {
     form.disable();
 
     this._subs.add(
-      this._booking.cancelBooking(cancelData).subscribe({
+      this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._booking.cancelBooking(cancelData, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
         next: () => {
           this.isLoading = false;
           form.enable();

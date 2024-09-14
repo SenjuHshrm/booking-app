@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../../services/auth.service';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
 import {
   ChangeDetectorRef,
@@ -66,7 +68,8 @@ export class CurrentlyGuestComponent implements OnInit {
     private _util: BasicUtilService,
     private _changeDetector: ChangeDetectorRef,
     private _booking: BookingService,
-    private _token: TokenService
+    private _token: TokenService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -204,8 +207,11 @@ export class CurrentlyGuestComponent implements OnInit {
                   this.statusLoading = false;
                   return;
                 }
-                this._booking
-                  .updateBookingStatus(data._id, 'check_out')
+                this._auth.csrfToken()
+                  .pipe(
+                    switchMap(x => this._booking.updateBookingStatus(data._id, 'check_out', x.token)),
+                    catchError(e => e)
+                  )
                   .subscribe({
                     next: (res) => {
                       this._getBookings(

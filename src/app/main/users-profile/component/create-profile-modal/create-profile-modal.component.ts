@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TokenService } from './../../../../services/token.service';
 import { ITokenClaims } from './../../../../interfaces/token';
@@ -110,7 +112,8 @@ export class CreateProfileModalComponent implements OnInit, OnDestroy {
     private _fb: FormBuilder,
     private _user: UserService,
     private _basicUtil: BasicUtilService,
-    private _token: TokenService
+    private _token: TokenService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -219,7 +222,12 @@ export class CreateProfileModalComponent implements OnInit, OnDestroy {
       fd.append('img', data.img, this._basicUtil.profileImgFilename(data.img));
     }
     this._sub.add(
-      this._user.updateUserProfile(fd, this._claims.sub).subscribe({
+      this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._user.updateUserProfile(fd, this._claims.sub, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
         next: (res: any) => {
           this.closeDialogCreateProfile();
         },

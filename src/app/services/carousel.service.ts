@@ -9,10 +9,11 @@ import { environment } from 'src/environments/environment';
 export class CarouselService {
   constructor(private _http: HttpClient) {}
 
-  public createCarouselImage(type: string, data: FormData): Observable<any> {
+  public createCarouselImage(type: string, data: FormData, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/img-carousel/post/add/${type}`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -35,17 +36,20 @@ export class CarouselService {
   public updateCarouselImage(
     type: string,
     id: string,
-    data: FormData
+    data: FormData,
+    _csrf: string
   ): Observable<any> {
     return this._http.put(
       `${environment.api}/api/img-carousel/put/update/${type}/${id}`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
-  public deleteCarouselImage(type: string, id: string): Observable<any> {
+  public deleteCarouselImage(type: string, id: string, _csrf: string): Observable<any> {
     return this._http.delete(
-      `${environment.api}/api/img-carousel/delete/${type}/${id}`
+      `${environment.api}/api/img-carousel/delete/${type}/${id}`,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 }

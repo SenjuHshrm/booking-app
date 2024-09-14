@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../../../services/auth.service';
 import { Component, inject, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -20,7 +22,8 @@ export class DeleteDestinationCarouselComponent {
     private _util: BasicUtilService,
     private dialogRef: MatDialogRef<DeleteDestinationCarouselComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _carousel: CarouselService
+    private _carousel: CarouselService,
+    private _auth: AuthService
   ) {}
 
   handleClose(success: boolean): void {
@@ -31,16 +34,20 @@ export class DeleteDestinationCarouselComponent {
   handleDelete(): void {
     this.isLoading = true;
     this.subscription.add(
-      this._carousel.deleteCarouselImage('back', this.data._id).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-          this.handleClose(true);
-        },
-        error: (error) => {
-          this.isLoading = false;
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._carousel.deleteCarouselImage('back', this.data._id, x.token)),
+          catchError(e => e)
+        ).subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            this.handleClose(true);
+          },
+          error: (error) => {
+            this.isLoading = false;
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
     );
   }
 

@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../../services/auth.service';
 import { Component, Inject, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -58,7 +60,8 @@ export class UpdateFaqModalComponent implements OnDestroy, OnInit {
     private dialogRef: MatDialogRef<UpdateFaqModalComponent>,
     private _token: TokenService,
     private _faq: FaqService,
-    @Inject(MAT_DIALOG_DATA) public data: IFAQItem
+    @Inject(MAT_DIALOG_DATA) public data: IFAQItem,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -95,21 +98,26 @@ export class UpdateFaqModalComponent implements OnDestroy, OnInit {
       isActive: data.isActive,
       addedBy: this.token.sub,
     };
-
-    this.subscription = this._faq.updateFaq(fqData, this.data._id).subscribe({
-      next: (res) => {
-        this.isLoading = false;
-        if (res.success === true) {
-          this._snack.open('FAQ successfully updated!.', '', {
-            duration: 1500,
-          });
-          this.handleClose(true);
-        }
-      },
-      error: (error) => {
-        this.isLoading = false;
-        this._snack.open(error.error.code, '', { duration: 1000 });
-      },
-    });
+    this.subscription.add(
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._faq.updateFaq(fqData, this.data._id, x.token)),
+          catchError(e => e)
+        ).subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            if (res.success === true) {
+              this._snack.open('FAQ successfully updated!.', '', {
+                duration: 1500,
+              });
+              this.handleClose(true);
+            }
+          },
+          error: (error) => {
+            this.isLoading = false;
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
+    )
   }
 }

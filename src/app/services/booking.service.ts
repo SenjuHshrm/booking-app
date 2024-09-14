@@ -9,10 +9,11 @@ import { environment } from './../../environments/environment';
 export class BookingService {
   constructor(private _http: HttpClient) {}
 
-  public tempBooking(data: any): Observable<any> {
+  public tempBooking(data: any, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/booking/post/temp-add-booking`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -33,10 +34,11 @@ export class BookingService {
     );
   }
 
-  public updateBookingStatus(id: string, status: string): Observable<any> {
+  public updateBookingStatus(id: string, status: string, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/booking/post/update-booking-status/${id}`,
-      { status }
+      { status },
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -46,17 +48,19 @@ export class BookingService {
     );
   }
 
-  public addGuest(id: string, data: any): Observable<any> {
+  public addGuest(id: string, data: any, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/booking/post/add-guest/${id}`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
-  public checkOutGuest(id: string, data: any): Observable<any> {
+  public checkOutGuest(id: string, data: any, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/booking/post/checkout-guest/${id}`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -80,10 +84,11 @@ export class BookingService {
     });
   }
 
-  public cancelBooking(data: any): Observable<any> {
+  public cancelBooking(data: any, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/booking/post/cancel-booking`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 }

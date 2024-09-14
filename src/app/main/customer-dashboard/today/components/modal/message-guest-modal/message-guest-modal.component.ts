@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../../../services/auth.service';
 import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -54,7 +56,8 @@ export class MessageGuestModalComponent implements OnInit, OnDestroy {
     private _token: TokenService,
     private userService: UserService,
     public util: BasicUtilService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private _auth: AuthService
   ) {
     this.token = <ITokenClaims>this._token.decodedToken();
   }
@@ -107,15 +110,20 @@ export class MessageGuestModalComponent implements OnInit, OnDestroy {
     const id: string = <string>this.data._id;
 
     this.subscription.add(
-      this.messageService.messageProprietor(messageData, id).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-          this.closeDialogMessage();
-        },
-        error: (error) => {
-          this.isLoading = false;
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this.messageService.messageProprietor(messageData, id, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            this.closeDialogMessage();
+          },
+          error: (error) => {
+            this.isLoading = false;
+          },
+        })
     );
   }
 

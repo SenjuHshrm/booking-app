@@ -21,8 +21,8 @@ export class PaymentService {
     return this._http.get(`${environment.api}/api/payment/get/merchant/payment-methods`)
   }
 
-  public createPaymentIntent(data: any): Observable<any> {
-    return this._http.post(`${environment.api}/api/payment/post/create-payment-intent`, data)
+  public createPaymentIntent(data: any, _csrf: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/payment/post/create-payment-intent`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
   }
 
   public createPaymentMethod(data: any): Observable<any> {
@@ -45,12 +45,12 @@ export class PaymentService {
     })
   }
 
-  public removePaymentMethod(id: string): Observable<any> {
-    return this._http.delete(`${environment.api}/api/payment/delete/${id}`)
+  public removePaymentMethod(id: string, _csrf: string): Observable<any> {
+    return this._http.delete(`${environment.api}/api/payment/delete/${id}`,{ withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
   }
 
-  public savePaymentMethodId(data: { userId: string, pmId: string }): Observable<any> {
-    return this._http.post(`${environment.api}/api/payment/post/save-pm-id`, data)
+  public savePaymentMethodId(data: { userId: string, pmId: string }, _csrf: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/payment/post/save-pm-id`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
   }
 
   public getPaymentMethod(pmId: string): Observable<any> {
@@ -64,11 +64,11 @@ export class PaymentService {
     })
   }
 
-  public setAsDefaultPaymentMethod(userId: string, pmId: string): Observable<any> {
-    return this._http.put(`${environment.api}/api/payment/put/set-as-default/${userId}/${pmId}`, {})
+  public setAsDefaultPaymentMethod(userId: string, pmId: string, _csrf: string): Observable<any> {
+    return this._http.put(`${environment.api}/api/payment/put/set-as-default/${userId}/${pmId}`, {}, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
   }
 
-  public attachToPaymentIntent(data: any, piId: string): Observable<any> {
-    return this._http.post(`${environment.api}/api/payment/post/attach-to-payment-intent/${piId}`, data)
+  public attachToPaymentIntent(data: any, piId: string, _csrf: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/payment/post/attach-to-payment-intent/${piId}`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
   }
 }

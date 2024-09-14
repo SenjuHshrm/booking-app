@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../services/auth.service';
 import { Location } from '@angular/common';
 import { TokenService } from './../../services/token.service';
 import { UserService } from './../../services/user.service';
@@ -23,7 +25,8 @@ export class SignupComponent implements OnInit {
     private _fb: FormBuilder,
     private _user: UserService,
     private _token: TokenService,
-    private _loc: Location
+    private _loc: Location,
+    private _auth: AuthService
     ) {
 
   }
@@ -49,13 +52,18 @@ export class SignupComponent implements OnInit {
  signup(fg: FormGroup): void {
    // Implement login logic here
    let data = fg.value
-   this._user.register(data).subscribe({
-    next: (res: any) => {
-      this._token.saveToken(res.token)
-      window.location.href = this._redirect
-      this.dialogSignup.close();
-    }
-   })
+   this._auth.csrfToken()
+    .pipe(
+      switchMap(x => this._user.register(data, x.token)),
+      catchError(e => e)
+    )
+    .subscribe({
+      next: (res: any) => {
+        this._token.saveToken(res.token)
+        window.location.href = this._redirect
+        this.dialogSignup.close();
+      }
+    })
  }
  
  

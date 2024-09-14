@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../services/auth.service';
 import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { CancellationService } from './../../services/cancellation.service';
@@ -103,7 +105,8 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     private _discount: DiscountService,
     private _cancellation: CancellationService,
     public dialog: MatDialog,
-    private location: Location
+    private location: Location,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -283,7 +286,12 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
   private _addToWishlist() {
     this._sub.add(
-      this._user.addToWishlist(this._t.sub, this.details._id).subscribe({
+      this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._user.addToWishlist(this._t.sub, this.details._id, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
         next: (res: any) => {
           this.wishlistIcons = true;
         },
@@ -293,7 +301,12 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
 
   private _removeFromWishlist() {
     this._sub.add(
-      this._user.removeToWishlist(this._t.sub, this.details._id).subscribe({
+      this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._user.removeToWishlist(this._t.sub, this.details._id, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
         next: (res: any) => {
           this.wishlistIcons = false;
         },

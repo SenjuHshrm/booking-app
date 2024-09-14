@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { BasicUtilService } from './../../../../services/basic-util.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StaycationService } from './../../../../services/staycation.service';
@@ -25,7 +27,8 @@ export class CheckListingInputComponent implements OnInit, OnDestroy {
     private _mdRef: MatDialogRef<CheckListingInputComponent>,
     @Inject(MAT_DIALOG_DATA) private id: string,
     private _staycation: StaycationService,
-    private _basicUtil: BasicUtilService
+    private _basicUtil: BasicUtilService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -57,15 +60,27 @@ export class CheckListingInputComponent implements OnInit, OnDestroy {
         update.isListed = true;
     }
     this._sub.add(
-      this._staycation.updateStaycation(this.id, update).subscribe({
-        next: (res: any) => {
-          this._mdRef.close({ ...update, id: this.id });
-        },
-        error: (error) => {
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap((x) => this._staycation.updateStaycation(this.id, update, x.token)),
+          catchError((e) => e)
+        ).subscribe({
+          next: (res: any) => {
+            this._mdRef.close({ ...update, id: this.id });
+          },
+          error: (error) => {
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
     );
+    // this._staycation.updateStaycation(this.id, update).subscribe({
+    //   next: (res: any) => {
+    //     this._mdRef.close({ ...update, id: this.id });
+    //   },
+    //   error: (error) => {
+    //     this._snack.open(error.error.code, '', { duration: 1000 });
+    //   },
+    // })
   }
 
   private _getListingDetails(id: string) {

@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -72,7 +74,8 @@ export class AddGuestComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<AddGuestComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private _booking: BookingService
+    private _booking: BookingService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -119,21 +122,26 @@ export class AddGuestComponent implements OnInit, OnDestroy {
     };
     this.isLoading = true;
     this._sub.add(
-      this._booking.addGuest(bookingId, guestData).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this._snack.open('Guest successfully added.', '', {
-              duration: 1000,
-            });
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._booking.addGuest(bookingId, guestData, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            if (res.success) {
+              this._snack.open('Guest successfully added.', '', {
+                duration: 1000,
+              });
+              this.isLoading = false;
+              this.closeDialog(res.success);
+            }
+          },
+          error: ({ error }) => {
+            this._snack.open(error.code, '', { duration: 1000 });
             this.isLoading = false;
-            this.closeDialog(res.success);
-          }
-        },
-        error: ({ error }) => {
-          this._snack.open(error.code, '', { duration: 1000 });
-          this.isLoading = false;
-        },
-      })
+          },
+        })
     );
   }
 

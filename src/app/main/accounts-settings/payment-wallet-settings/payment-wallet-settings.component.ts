@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import { CreatePaymentMethodComponent } from './../../accounts-settings/payment-wallet-settings/create-payment-method/create-payment-method.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentService } from './../../../services/payment.service';
@@ -38,7 +40,8 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
     private _md: MatDialog,
     private _user: UserService,
     private _token: TokenService,
-    private _payment: PaymentService
+    private _payment: PaymentService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -54,24 +57,34 @@ export class PaymentWalletSettingsComponent implements OnInit, OnDestroy {
   removeItemById(id: string) {
     // this.cardInfo = this.cardInfo.filter(cardInfo => cardInfo._id !== id);
     this._sub.add(
-      this._payment.removePaymentMethod(id).subscribe({
-        next: (res: any) => {
-          this.cardInfo = this.cardInfo.filter((ci: any) => ci._id !== id);
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._payment.removePaymentMethod(id, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res: any) => {
+            this.cardInfo = this.cardInfo.filter((ci: any) => ci._id !== id);
+          },
+        })
     );
   }
 
   setDefault(id: string): void {
     this._sub.add(
-      this._payment.setAsDefaultPaymentMethod(this._t.sub, id).subscribe({
-        next: (res: any) => {
-          this.cardInfo.forEach((ci: any) => {
-            ci.default = ci._id === id;
-          });
-        },
-        error: ({ error }) => {},
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._payment.setAsDefaultPaymentMethod(this._t.sub, id, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res: any) => {
+            this.cardInfo.forEach((ci: any) => {
+              ci.default = ci._id === id;
+            });
+          },
+          error: ({ error }) => {},
+        })
     );
   }
 

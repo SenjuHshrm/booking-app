@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../../../services/auth.service';
 import {
   AfterViewInit,
   Component,
@@ -61,7 +63,8 @@ export class TripMessageHostComponent implements OnInit, OnDestroy {
     private _token: TokenService,
     private userService: UserService,
     public util: BasicUtilService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private _auth: AuthService
   ) {
     this.token = <ITokenClaims>this._token.decodedToken();
   }
@@ -119,15 +122,20 @@ export class TripMessageHostComponent implements OnInit, OnDestroy {
     const id: string = <string>this.data;
 
     this.subscription.add(
-      this.messageService.messageProprietor(messageData, id).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-          this.closeDialogMessage();
-        },
-        error: (error) => {
-          this.isLoading = false;
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this.messageService.messageProprietor(messageData, id, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            this.closeDialogMessage();
+          },
+          error: (error) => {
+            this.isLoading = false;
+          },
+        })
     );
   }
 

@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import { BasicUtilService } from './../../../services/basic-util.service';
 import { TokenService } from './../../../services/token.service';
 import { ITokenClaims } from './../../../interfaces/token';
@@ -35,7 +37,8 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
     public createlistingDialog:MatDialog,
     private _staycation: StaycationService,
     private _token: TokenService,
-    private _basicUtil: BasicUtilService
+    private _basicUtil: BasicUtilService,
+    private _auth: AuthService
   ) {
     this.paginator = {} as MatPaginator;
   }
@@ -100,11 +103,18 @@ export class ListingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public handleToggleListing(id: string, isListed: boolean) {
-    this._sub.add(this._staycation.updateListing(id, !isListed).subscribe({
-      next: (res: any) => {
-        this._getListings(this.paginator.pageIndex + 1, this.paginator.pageSize)
-      }
-    }))
+    this._sub.add(
+      this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._staycation.updateListing(id, !isListed, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
+        next: (res: any) => {
+          this._getListings(this.paginator.pageIndex + 1, this.paginator.pageSize)
+        }
+      })
+    )
   }
 
   private _getListings(p: number, l: number) {

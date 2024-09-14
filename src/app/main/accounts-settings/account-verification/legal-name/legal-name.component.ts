@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -47,7 +49,8 @@ export class LegalNameComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA)
     public data: { fName: string; lName: string },
     private userService: UserService,
-    private _token: TokenService
+    private _token: TokenService,
+    private _auth: AuthService
   ) {
     this.verifiedInfo = data;
     this.token = <ITokenClaims>this._token.decodedToken();
@@ -96,20 +99,24 @@ export class LegalNameComponent implements OnInit, OnDestroy {
 
     const id: string = this.token.sub;
     this._sub.add(
-      this.userService.verificationProfileUpdate(userData, id).subscribe({
-        next: (res) => {
-          this.dialog.close({
-            fName: res.profile.name.fName,
-            lName: res.profile.name.lName,
-          });
-        },
-        error: (error: HttpErrorResponse) => {
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-        complete: () => {
-          this.isLoading = false;
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this.userService.verificationProfileUpdate(userData, id, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            this.dialog.close({
+              fName: res.profile.name.fName,
+              lName: res.profile.name.lName,
+            });
+          },
+          error: (error: HttpErrorResponse) => {
+            this.isLoading = false;
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          }
+        })
     );
   }
 }

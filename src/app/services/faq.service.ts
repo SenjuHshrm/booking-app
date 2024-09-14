@@ -10,12 +10,12 @@ import { environment } from 'src/environments/environment';
 export class FaqService {
   constructor(private _http: HttpClient) {}
 
-  public createFaq(data: IFAQ): Observable<any> {
-    return this._http.post(`${environment.api}/api/faqs/post/add`, data);
+  public createFaq(data: IFAQ, _csrf: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/faqs/post/add`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } });
   }
 
-  public updateFaq(data: IFAQ, id: string): Observable<any> {
-    return this._http.put(`${environment.api}/api/faqs/put/update/${id}`, data);
+  public updateFaq(data: IFAQ, id: string, _csrf: string): Observable<any> {
+    return this._http.put(`${environment.api}/api/faqs/put/update/${id}`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } });
   }
 
   public getFAQs(page: number, limit: number): Observable<any> {
@@ -24,8 +24,8 @@ export class FaqService {
     );
   }
 
-  public deleteFaq(id: string): Observable<any> {
-    return this._http.delete(`${environment.api}/api/faqs/delete/remove/${id}`);
+  public deleteFaq(id: string, _csrf: string): Observable<any> {
+    return this._http.delete(`${environment.api}/api/faqs/delete/remove/${id}`, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } });
   }
 
   public getActiveFaq(): Observable<any> {

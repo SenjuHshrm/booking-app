@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -63,7 +65,8 @@ export class RateAndCommentComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<RateAndCommentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _token: TokenService,
-    private _staycation: StaycationService
+    private _staycation: StaycationService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -118,8 +121,11 @@ export class RateAndCommentComponent implements OnInit, OnDestroy {
     form.disable();
 
     this._subs.add(
-      this._staycation
-        .reviewStaycation(this.data.staycationId, reviewData)
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._staycation.reviewStaycation(this.data.staycationId, reviewData, x.token)),
+          catchError(e => e)
+        )
         .subscribe({
           next: (res) => {
             this.isLoading = false;

@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import { Component, inject, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -48,7 +50,8 @@ export class ReportListingComponent implements OnInit {
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _token: TokenService,
-    private _report: ReportService
+    private _report: ReportService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +79,12 @@ export class ReportListingComponent implements OnInit {
     };
     this.isLoading = true;
     this.subscription.add(
-      this._report.sendReport(reportData).subscribe({
+      this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._report.sendReport(reportData, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
         next: (res) => {
           console.log('NEXT: ', res);
           this.isLoading = false;

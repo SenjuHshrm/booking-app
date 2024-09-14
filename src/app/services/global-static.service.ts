@@ -16,11 +16,11 @@ export class GlobalStaticService {
     return this._http.get<{ data: any }>(`${environment.api}/api/global-statics/get/statics/type/${type}`)
   }
 
-  public addStatic(data: any): Observable<any> {
-    return this._http.post(`${environment.api}/api/global-statics/post/add-static`, data)
+  public addStatic(data: any, _csrf: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/global-statics/post/add-static`, data,{ withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
   }
 
-  public deleteValueFromStatic(data: any, type: string): Observable<any> {
-    return this._http.delete(`${environment.api}/api/global-statics/delete/static/${type}`, { body: data })
+  public deleteValueFromStatic(data: any, type: string, _csrf: string): Observable<any> {
+    return this._http.delete(`${environment.api}/api/global-statics/delete/static/${type}`, { body: data, headers: { 'X-XSRF-TOKEN': _csrf }, withCredentials: true })
   }
 }

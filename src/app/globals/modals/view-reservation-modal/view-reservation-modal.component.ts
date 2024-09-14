@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
@@ -36,7 +38,8 @@ export class ViewReservationModalComponent implements OnInit, OnDestroy {
     private _util: BasicUtilService,
     private _user: UserService,
     private _token: TokenService,
-    private _booking: BookingService
+    private _booking: BookingService,
+    private _auth: AuthService
   ) {
     this.token = <ITokenClaims>this._token.decodedToken();
   }
@@ -108,19 +111,24 @@ export class ViewReservationModalComponent implements OnInit, OnDestroy {
   handleUpdateStatus(status: string): void {
     this.statusLoading = true;
     this._sub.add(
-      this._booking.updateBookingStatus(this.data._id, status).subscribe({
-        next: (res) => {
-          this.statusLoading = false;
-          this._snack.open('Booking approved successfully!.', '', {
-            duration: 1000,
-          });
-          this.closeDialog(true);
-        },
-        error: ({ error }) => {
-          this._snack.open(error.code, '', { duration: 1000 });
-          this.statusLoading = false;
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._booking.updateBookingStatus(this.data._id, status, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this.statusLoading = false;
+            this._snack.open('Booking approved successfully!.', '', {
+              duration: 1000,
+            });
+            this.closeDialog(true);
+          },
+          error: ({ error }) => {
+            this._snack.open(error.code, '', { duration: 1000 });
+            this.statusLoading = false;
+          },
+        })
     );
   }
 

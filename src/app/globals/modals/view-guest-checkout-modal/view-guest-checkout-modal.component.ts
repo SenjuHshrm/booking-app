@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
@@ -35,7 +37,8 @@ export class ViewGuestCheckoutModalComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ViewGuestCheckoutModalComponent>,
     private _booking: BookingService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -90,16 +93,21 @@ export class ViewGuestCheckoutModalComponent implements OnInit, OnDestroy {
           checkOutTime: currentTime,
         };
         this._subs.add(
-          this._booking.checkOutGuest(id, checkOutData).subscribe({
-            next: (res) => {
-              this.outLoading = false;
-              this.handleGetGuests();
-            },
-            error: ({ error }) => {
-              this._snack.open(error.code, '', { duration: 1000 });
-              this.outLoading = false;
-            },
-          })
+          this._auth.csrfToken()
+            .pipe(
+              switchMap(x => this._booking.checkOutGuest(id, checkOutData, x.token)),
+              catchError(e => e)
+            )
+            .subscribe({
+              next: (res) => {
+                this.outLoading = false;
+                this.handleGetGuests();
+              },
+              error: ({ error }) => {
+                this._snack.open(error.code, '', { duration: 1000 });
+                this.outLoading = false;
+              },
+            })
         );
       }
     });

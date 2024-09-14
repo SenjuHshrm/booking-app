@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../../../services/auth.service';
 import { Component, inject, Inject } from '@angular/core';
 import {
   FormBuilder,
@@ -42,7 +44,8 @@ export class UpdateHeaderCarouselComponent {
     private dialogRef: MatDialogRef<UpdateHeaderCarouselComponent>,
     private _carousel: CarouselService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _util: BasicUtilService
+    private _util: BasicUtilService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -85,8 +88,11 @@ export class UpdateHeaderCarouselComponent {
     }
 
     this.subscription.add(
-      this._carousel
-        .updateCarouselImage('front', this.data._id, carouselData)
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._carousel.updateCarouselImage('front', this.data._id, carouselData, x.token)),
+          catchError(e => e)
+        )
         .subscribe({
           next: (res) => {
             this.isLoading = false;

@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { Component, inject, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -64,7 +66,8 @@ export class AddressComponent implements OnInit {
     public dialog: MatDialogRef<AddressComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AddressUpdateForm,
     public _token: TokenService,
-    public userService: UserService
+    public userService: UserService,
+    private _auth: AuthService
   ) {
     this.verifiedInfo = data;
     this.token = <ITokenClaims>this._token.decodedToken();
@@ -123,25 +126,30 @@ export class AddressComponent implements OnInit {
 
     const id: string = this.token.sub;
     this._sub.add(
-      this.userService.verificationProfileUpdate(addressData, id).subscribe({
-        next: (res) => {
-          this.dialog.close({
-            unit: res.profile.address.unit,
-            street: res.profile.address.street,
-            brgy: res.profile.address.brgy,
-            city: res.profile.address.city,
-            province: res.profile.address.province,
-            country: res.profile.address.country,
-            zip: res.profile.address.zip,
-          });
-        },
-        error: (error: HttpErrorResponse) => {
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-        complete: () => {
-          this.isLoading = false;
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this.userService.verificationProfileUpdate(addressData, id, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this.dialog.close({
+              unit: res.profile.address.unit,
+              street: res.profile.address.street,
+              brgy: res.profile.address.brgy,
+              city: res.profile.address.city,
+              province: res.profile.address.province,
+              country: res.profile.address.country,
+              zip: res.profile.address.zip,
+            });
+          },
+          error: (error: HttpErrorResponse) => {
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+          complete: () => {
+            this.isLoading = false;
+          },
+        })
     );
   }
 

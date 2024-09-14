@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { BasicUtilService } from './../services/basic-util.service';
@@ -66,7 +68,8 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     private _token: TokenService,
     private _staycation: StaycationService,
     private _basicUtil: BasicUtilService,
-    private _user: UserService
+    private _user: UserService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -257,18 +260,25 @@ export class RegisterProprietorshipComponent implements OnInit, AfterViewInit, O
     for(let i: number = 0; i < data.step6.bedroom.length; i++) {
       fd.append('bedroom', data.step6.bedroom[i], bedroom[i])
     }
-    this.sub.add(this._staycation.apply(fd).subscribe({
-      next: (e: any) => {
-        if(typeof e === 'number') {
-          this.uploadProgress = e
-        } else {
-          if(e !== undefined) {
-            this.showProgress = false
-            stepper.next()
+    this.sub.add(
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._staycation.apply(fd, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (e: any) => {
+            if(typeof e === 'number') {
+              this.uploadProgress = e
+            } else {
+              if(e !== undefined) {
+                this.showProgress = false
+                stepper.next()
+              }
+            }
           }
-        }
-      }
-    }))
+        })
+    )
   }
 
   public handleRemoveCover() {

@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy, Input, inject } from '@angular/core';
 import {
@@ -31,7 +33,8 @@ export class TaxComponent implements OnInit, OnDestroy {
   constructor(
     private _fb: FormBuilder,
     private _gs: GlobalStaticService,
-    private _basicUtil: BasicUtilService
+    private _basicUtil: BasicUtilService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -54,31 +57,41 @@ export class TaxComponent implements OnInit, OnDestroy {
       values: [val],
     };
     this._sub.add(
-      this._gs.addStatic(data).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          this.taxTableList.push({ ...val, name: val.feeName });
-          this.taxTableDS = new MatTableDataSource<any>(this.taxTableList);
-        },
-        error: (error) => {
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._gs.addStatic(data, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+            this.taxTableList.push({ ...val, name: val.feeName });
+            this.taxTableDS = new MatTableDataSource<any>(this.taxTableList);
+          },
+          error: (error) => {
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
     );
   }
 
   public removeTax(data: any, i: number) {
     // let fee = { t }
     this._sub.add(
-      this._gs.deleteValueFromStatic(data, 'service_fee').subscribe({
-        next: (res: any) => {
-          this.taxTableList.splice(i, 1);
-          this.taxTableDS = new MatTableDataSource<any>(this.taxTableList);
-        },
-        error: (error) => {
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._gs.deleteValueFromStatic(data, 'service_fee', x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res: any) => {
+            this.taxTableList.splice(i, 1);
+            this.taxTableDS = new MatTableDataSource<any>(this.taxTableList);
+          },
+          error: (error) => {
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
     );
   }
 

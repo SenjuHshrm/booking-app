@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 export class ReportService {
   constructor(private _http: HttpClient) {}
 
-  public sendReport(data: IReport): Observable<any> {
-    return this._http.post(`${environment.api}/api/report/post/add`, data);
+  public sendReport(data: IReport, _csrf: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/report/post/add`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } });
   }
 
   public getReports(
@@ -27,10 +27,10 @@ export class ReportService {
     );
   }
 
-  public setActions(id: string, action: string): Observable<any> {
+  public setActions(id: string, action: string, _csrf: string): Observable<any> {
     return this._http.put(
       `${environment.api}/api/report/put/set-action/${id}`,
-      { action }
+      { action }, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 }

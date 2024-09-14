@@ -1,3 +1,4 @@
+import { catchError, switchMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
@@ -70,15 +71,20 @@ export class SecuritySettingsModalComponent implements OnInit, OnDestroy {
 
   public handleSubmit(fg: FormGroup) {
     this._sub.add(
-      this._auth.updatePassword(this.id, fg.value.newPassword).subscribe({
-        next: (res: { success: boolean }) => {
-          this._showSnackbar('Password updated successfully');
-          this._d.close();
-        },
-        error: ({ error }: HttpErrorResponse) => {
-          this._snack.open(error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._auth.updatePassword(this.id, fg.value.newPassword, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this._showSnackbar('Password updated successfully');
+            this._d.close();
+          },
+          error: ({ error }: HttpErrorResponse) => {
+            this._snack.open(error.code, '', { duration: 1000 });
+          },
+        })
     );
   }
 

@@ -10,11 +10,15 @@ import { map, Observable } from 'rxjs';
 export class StaycationService {
   constructor(private _http: HttpClient) {}
 
-  public apply(fd: FormData): Observable<any> {
+  public apply(fd: FormData, _csrf: string): Observable<any> {
     return this._http
       .post(`${environment.api}/api/staycation/post/apply`, fd, {
         reportProgress: true,
         observe: 'events',
+        withCredentials: true,
+        headers: {
+          'X-XSRF-TOKEN': _csrf
+        }
       })
       .pipe(
         map((e: HttpEvent<any>) => {
@@ -42,17 +46,19 @@ export class StaycationService {
     );
   }
 
-  public updateListing(id: string, isListed: boolean): Observable<any> {
+  public updateListing(id: string, isListed: boolean, _csrf: string): Observable<any> {
     return this._http.put(
       `${environment.api}/api/staycation/put/update-listing/${id}`,
-      { isListed }
+      { isListed },
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
-  public updateStaycation(id: string, form: any): Observable<any> {
+  public updateStaycation(id: string, form: any, _csrf: string): Observable<any> {
     return this._http.put(
       `${environment.api}/api/staycation/put/update-from-admin/${id}`,
-      form
+      form,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -96,10 +102,11 @@ export class StaycationService {
     return this._http.get(url);
   }
 
-  public reviewStaycation(id: string, formData: FormData): Observable<any> {
+  public reviewStaycation(id: string, formData: FormData, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/staycation/post/review-staycation/${id}`,
-      formData
+      formData,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 

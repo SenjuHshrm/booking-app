@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GlobalStaticService } from './../../../../services/global-static.service';
@@ -22,7 +24,8 @@ export class HostEarningComponent implements OnInit, OnDestroy {
   constructor(
     private _fb: FormBuilder,
     private _sb: MatSnackBar,
-    private _gs: GlobalStaticService
+    private _gs: GlobalStaticService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -37,9 +40,11 @@ export class HostEarningComponent implements OnInit, OnDestroy {
   public setFeePercentage(f: FormGroup) {
     console.log({ ...f.value });
     this._sub.add(
-      this._gs
-        .addStatic({ type: 'earning_fee', values: [{ ...f.value }] })
-        .subscribe({
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._gs.addStatic({ type: 'earning_fee', values: [{ ...f.value }] }, x.token)),
+          catchError(e => e)
+        ).subscribe({
           next: (res: any) => {
             this.perc = this.fg.controls['percentage'].value;
             this._sb.open(`Earning Fee set to ${this.perc}%`, 'OK', {

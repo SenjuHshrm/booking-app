@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../../services/auth.service';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -58,7 +60,8 @@ export class CreateFaqModalComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateFaqModalComponent>,
     private _token: TokenService,
-    private _faq: FaqService
+    private _faq: FaqService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -95,21 +98,26 @@ export class CreateFaqModalComponent implements OnInit, OnDestroy {
       isActive: data.isActive,
       addedBy: this.token.sub,
     };
-
-    this.subscription = this._faq.createFaq(fqData).subscribe({
-      next: (res) => {
-        this.isLoading = false;
-        if (res.success === true) {
-          this._snack.open('FAQ successfully created!.', '', {
-            duration: 1500,
-          });
-          this.handleClose(true);
-        }
-      },
-      error: (error) => {
-        this.isLoading = false;
-        this._snack.open(error.error.code, '', { duration: 1000 });
-      },
-    });
+    this.subscription.add(
+      this._auth.csrfToken()
+        .pipe(
+          switchMap((x) => this._faq.createFaq(fqData, x.token)),
+          catchError((e) => e)
+        ).subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            if (res.success === true) {
+              this._snack.open('FAQ successfully created!.', '', {
+                duration: 1500,
+              });
+              this.handleClose(true);
+            }
+          },
+          error: (error) => {
+            this.isLoading = false;
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
+    )
   }
 }

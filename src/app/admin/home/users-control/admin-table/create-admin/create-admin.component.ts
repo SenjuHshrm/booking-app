@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { BasicUtilService } from './../../../../../services/basic-util.service';
@@ -64,7 +66,8 @@ export class CreateAdminComponent implements OnInit, OnDestroy {
     public dialogCreateProfileModal: MatDialogRef<CreateAdminComponent>,
     private _fb: FormBuilder,
     private _user: UserService,
-    private _basicUtl: BasicUtilService
+    private _basicUtl: BasicUtilService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -108,14 +111,19 @@ export class CreateAdminComponent implements OnInit, OnDestroy {
     fd.append('password', data.password),
       fd.append('img', data.img, this._basicUtl.profileImgFilename(data.img));
     this._sub.add(
-      this._user.addAdminAcct(fd).subscribe({
-        next: (res: { success: boolean }) => {
-          this.dialogCreateProfileModal.close();
-        },
-        error: (error) => {
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap(x => this._user.addAdminAcct(fd, x.token)),
+          catchError(e => e)
+        )
+        .subscribe({
+          next: (res) => {
+            this.dialogCreateProfileModal.close();
+          },
+          error: (error) => {
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
     );
   }
 

@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -18,7 +20,8 @@ export class ApproveDisapproveComponent {
     private dialogRef: MatDialogRef<ApproveDisapproveComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _util: BasicUtilService,
-    private _user: UserService
+    private _user: UserService,
+    private _auth: AuthService
   ) {}
 
   handleClose(success: boolean, data?: any, status?: any): void {
@@ -35,16 +38,32 @@ export class ApproveDisapproveComponent {
     this.isLoading = true;
     const status = this.data.action === 'approve' ? 'approved' : 'rejected';
     this.subscription.add(
-      this._user.updateVerificationStatus(status, this.data._id).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-          this.handleClose(true, this.data, status);
-        },
-        error: (error) => {
-          this.isLoading = false;
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap((x) => this._user.updateVerificationStatus(status, this.data._id, x.token)),
+          catchError((e) => e)
+        )
+        .subscribe({
+          next: (res: any) => {
+            this.isLoading = false
+            this.handleClose(true, this.data, status)
+          },
+          error: (e) => {
+            this.isLoading = false
+          }
+        })
     );
+    // this.subscription.add(
+    //   this._user.updateVerificationStatus(status, this.data._id).subscribe({
+    //     next: (res) => {
+    //       this.isLoading = false;
+    //       this.handleClose(true, this.data, status);
+    //     },
+    //     error: (error) => {
+    //       this.isLoading = false;
+    //     },
+    //   })
+    // );
   }
 
   get frontIdSrc(): string {

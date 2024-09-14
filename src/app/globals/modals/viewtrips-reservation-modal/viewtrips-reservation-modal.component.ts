@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../services/auth.service';
 import {
   Component,
   ViewChild,
@@ -65,7 +67,8 @@ export class ViewtripsReservationModalComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _util: BasicUtilService,
     private _cp: CancellationService,
-    private _booking: BookingService
+    private _booking: BookingService,
+    private _auth: AuthService
   ) {}
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
@@ -100,23 +103,28 @@ export class ViewtripsReservationModalComponent implements OnInit, OnDestroy {
           };
           this.isLoading = true;
           this._subs.add(
-            this._booking.cancelBooking(cancelData).subscribe({
-              next: () => {
-                this.isLoading = false;
-                this._snack.open('Booking successfully cancelled.', '', {
-                  duration: 1000,
-                });
-                this.closeDialog(true);
-              },
-              error: ({ error }) => {
-                this._snack.open(
-                  error?.msg || error?.code || 'Failed to cancel the booking.',
-                  '',
-                  { duration: 1000 }
-                );
-                this.isLoading = false;
-              },
-            })
+            this._auth.csrfToken()
+              .pipe(
+                switchMap(x => this._booking.cancelBooking(cancelData, x.token)),
+                catchError(e => e)
+              )
+              .subscribe({
+                next: () => {
+                  this.isLoading = false;
+                  this._snack.open('Booking successfully cancelled.', '', {
+                    duration: 1000,
+                  });
+                  this.closeDialog(true);
+                },
+                error: ({ error }) => {
+                  this._snack.open(
+                    error?.msg || error?.code || 'Failed to cancel the booking.',
+                    '',
+                    { duration: 1000 }
+                  );
+                  this.isLoading = false;
+                },
+              })
           );
         } else {
           this.reasonCancel();

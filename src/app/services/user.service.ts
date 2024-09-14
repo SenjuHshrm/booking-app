@@ -15,8 +15,8 @@ export class UserService {
     fName: string;
     lName: string;
     email: string;
-  }): Observable<any> {
-    return this._http.post<any>(`${environment.api}/api/user/post/add`, data);
+  }, _csrf: string): Observable<any> {
+    return this._http.post<any>(`${environment.api}/api/user/post/add`, data, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } });
   }
 
   public getUsersByAccess(
@@ -41,18 +41,21 @@ export class UserService {
   public setAsHost(
     userId: string,
     staycationId: string,
-    propAppId: string
+    propAppId: string,
+    _csrf: string
   ): Observable<{ success: boolean }> {
     return this._http.put<{ success: boolean }>(
       `${environment.api}/api/user/put/set-as-host/${propAppId}`,
-      { userId, staycationId }
+      { userId, staycationId },
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
-  public addAdminAcct(fd: FormData): Observable<{ success: boolean }> {
+  public addAdminAcct(fd: FormData, _csrf: string): Observable<{ success: boolean }> {
     return this._http.post<{ success: boolean }>(
       `${environment.api}/api/user/post/add/admin`,
-      fd
+      fd,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -60,10 +63,11 @@ export class UserService {
     return this._http.get(`${environment.api}/api/user/get/profile/${id}`);
   }
 
-  public updateUserProfile(fd: FormData, id: string): Observable<any> {
+  public updateUserProfile(fd: FormData, id: string, _csrf: string): Observable<any> {
     return this._http.put(
       `${environment.api}/api/user/put/update-profile/${id}`,
-      fd
+      fd,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -75,16 +79,17 @@ export class UserService {
     return this._http.get(`${environment.api}/api/user/get/profile-img/${id}`);
   }
 
-  public addToWishlist(user: string, staycation: string): Observable<any> {
+  public addToWishlist(user: string, staycation: string, _csrf: string): Observable<any> {
     return this._http.post(`${environment.api}/api/user/post/add-to-wishlist`, {
       user,
       staycation,
-    });
+    }, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } });
   }
 
-  public removeToWishlist(user: string, staycation: string): Observable<any> {
+  public removeToWishlist(user: string, staycation: string, _csrf: string): Observable<any> {
     return this._http.delete(
-      `${environment.api}/api/user/delete/remove-to-wishlist/${user}/${staycation}`
+      `${environment.api}/api/user/delete/remove-to-wishlist/${user}/${staycation}`,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -94,17 +99,19 @@ export class UserService {
     );
   }
 
-  public verificationProfileUpdate(formData: any, id: string): Observable<any> {
+  public verificationProfileUpdate(formData: any, id: string, _csrf: string): Observable<any> {
     return this._http.put(
       `${environment.api}/api/user/put/verification/update-profile/${id}`,
-      formData
+      formData,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
-  public verifyAccountById(formData: FormData): Observable<any> {
+  public verifyAccountById(formData: FormData, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/user/post/upload-verification`,
-      formData
+      formData,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
@@ -129,27 +136,31 @@ export class UserService {
 
   public updateVerificationStatus(
     status: 'approved' | 'rejected',
-    id: string
+    id: string,
+    _csrf: string
   ): Observable<any> {
     return this._http.put(
       `${environment.api}/api/user/put/update-user-verification/${id}`,
-      { status }
+      { status },
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
-  public requestSupportDocs(userId: string, staycationId: string, date: string): Observable<any> {
-    return this._http.post(`${environment.api}/api/user/post/request-docs/${userId}/${staycationId}`, { date })
+  public requestSupportDocs(userId: string, staycationId: string, date: string, _csrf: string): Observable<any> {
+    return this._http.post(`${environment.api}/api/user/post/request-docs/${userId}/${staycationId}`, { date }, { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } })
   }
 
-  public uploadSupportDocs(fd: FormData, userId: string, token: string): Observable<any> {
+  public uploadSupportDocs(fd: FormData, userId: string, token: string, _csrf: string): Observable<any> {
     return this._http.request('post', `${environment.api}/api/user/post/upload-docs/${userId}`, {
       reportProgress: true,
       observe: 'events',
       context: new HttpContext().set(BYPASS_LOG, true),
       headers: {
         authorization: `Bearer ${token}`,
+        'X-XSRF-TOKEN': _csrf
       },
-      body: fd
+      body: fd,
+      withCredentials: true
     }).pipe(
       map((e: HttpEvent<any>) => {
         if(e !== undefined) {

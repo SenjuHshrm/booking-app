@@ -1,3 +1,5 @@
+import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from './../../../../../services/auth.service';
 import { Component, inject, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +20,8 @@ export class DeleteFaqModalComponent implements OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IFAQItem,
     private dialogRef: MatDialogRef<DeleteFaqModalComponent>,
-    private _faq: FaqService
+    private _faq: FaqService,
+    private _auth: AuthService
   ) {}
 
   ngOnDestroy(): void {
@@ -34,18 +37,22 @@ export class DeleteFaqModalComponent implements OnDestroy {
   handleDelete(): void {
     this.isLoading = true;
     this.subscription.add(
-      this._faq.deleteFaq(this.data._id).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-          if (res.success) {
-            this.handleClose(true);
-          }
-        },
-        error: (error) => {
-          this.isLoading = false;
-          this._snack.open(error.error.code, '', { duration: 1000 });
-        },
-      })
+      this._auth.csrfToken()
+        .pipe(
+          switchMap((x) => this._faq.deleteFaq(this.data._id, x.token)),
+          catchError(e => e)
+        ).subscribe({
+          next: (res) => {
+            this.isLoading = false;
+            if (res.success) {
+              this.handleClose(true);
+            }
+          },
+          error: (error) => {
+            this.isLoading = false;
+            this._snack.open(error.error.code, '', { duration: 1000 });
+          },
+        })
     );
   }
 }

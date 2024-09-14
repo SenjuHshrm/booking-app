@@ -12,18 +12,21 @@ export class MessageService {
 
   public messageProprietor(
     data: IMessageInput,
-    receiverId: string
+    receiverId: string,
+    _csrf: string
   ): Observable<any> {
     return this._http.post(
       `${environment.api}/api/message/post/send-msg/${receiverId}`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 
-  public sendMessage(data: IMessageInput, receiverId: string): Observable<any> {
+  public sendMessage(data: IMessageInput, receiverId: string, _csrf: string): Observable<any> {
     return this._http.post(
       `${environment.api}/api/message/post/send-msg/${receiverId}`,
-      data
+      data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
 

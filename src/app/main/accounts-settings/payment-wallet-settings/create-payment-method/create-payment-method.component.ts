@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../services/auth.service';
 import { PaymentService } from './../../../../services/payment.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -35,7 +37,8 @@ export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
     private _md: MatDialogRef<CreatePaymentMethodComponent>,
     @Inject(MAT_DIALOG_DATA) private _userData: { email: string, userId: string },
     private _payment: PaymentService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _auth: AuthService
 
   ) {
     this.currentYear = new Date().getFullYear();
@@ -132,11 +135,16 @@ export class CreatePaymentMethodComponent implements OnInit, OnDestroy {
   }
 
   private _savePaymentMethodId(pmId: string) {
-    this._sub.add(this._payment.savePaymentMethodId({ pmId, userId: this._userData.userId }).subscribe({
-      next: (res: any) => {
-        this._md.close()
-      }
-    }))
+    this._sub.add(this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._payment.savePaymentMethodId({ pmId, userId: this._userData.userId }, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
+        next: (res: any) => {
+          this._md.close()
+        }
+      }))
   }
 
   private _setCardData(data: any): any {

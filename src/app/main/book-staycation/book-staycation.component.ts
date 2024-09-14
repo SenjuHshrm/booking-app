@@ -1,3 +1,5 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from './../../services/auth.service';
 import {
   FormBuilder,
   FormGroup,
@@ -5,7 +7,7 @@ import {
   ValidatorFn,
   AbstractControl,
 } from '@angular/forms';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { ITokenClaims } from './../../interfaces/token';
 import { TokenService } from './../../services/token.service';
 import { ProceedPaymentComponent } from './proceed-payment/proceed-payment.component';
@@ -126,7 +128,8 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
     private _sb: MatSnackBar,
     private _token: TokenService,
     private _fb: FormBuilder,
-    private _book: BookingService
+    private _book: BookingService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -230,31 +233,30 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
       remainingBalDue:
         this.selectedValue === '2' ? this.options[i].duedate : '',
     };
-    let createPaymentIntent$ =
-      this._payment.createPaymentIntent(initPaymentIntent);
-    createPaymentIntent$
+    this._auth.csrfToken()
       .pipe(
-        switchMap((x) => {
+        mergeMap((csrf) => {
+          return this._payment.createPaymentIntent(initPaymentIntent, csrf.token).pipe(map((cpi) => ({ cpi, csrf })))
+        }),
+        switchMap((val) => {
           let att = {
             id: this.userPaymentMethods[j].pmId,
             checkInDate: moment(this.duration.start).format('MM/DD/YYYY'),
             cancellationPolicy: this.selectedCancellation.value,
             bookingProcess: this.staycationDetails.bookingProcess,
-          };
-          return this._payment.attachToPaymentIntent(att, x.data.id);
+          }
+          return this._payment.attachToPaymentIntent(att, val.cpi.data.id, val.csrf.token);
         }),
-        catchError((err) => {
-          return err;
-        })
+        catchError(e => e)
       )
       .subscribe({
-        next: (res: any) => {
-          console.log(res);
+        next: (res) => {
+          console.log(res)
         },
-        error: (e: any) => {
-          console.log(e);
-        },
-      });
+        error: ({ error }: HttpErrorResponse) => {
+          console.log(error)
+        }
+      })
   }
 
   public initiateBooking() {
@@ -295,14 +297,19 @@ export class BookStaycationComponent implements OnInit, OnDestroy {
         status: this.selectedValue === '1' ? 'paid' : 'pending',
       },
     };
-    this._book.tempBooking(data).subscribe({
-      next: (res: any) => {
-        console.log(res);
-      },
-      error: ({ error }) => {
-        this._snack.open(error.code, '', { duration: 1000 });
-      },
-    });
+    this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._book.tempBooking(data, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
+        next: (res: any) => {
+          console.log(res);
+        },
+        error: ({ error }) => {
+          this._snack.open(error.code, '', { duration: 1000 });
+        },
+      });
   }
 
   public checkNumberInput(e: Event): any {

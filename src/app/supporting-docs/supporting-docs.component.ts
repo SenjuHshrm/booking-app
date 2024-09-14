@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import {
   FormBuilder,
@@ -30,7 +32,8 @@ export class SupportingDocsComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _fb: FormBuilder,
-    private _user: UserService
+    private _user: UserService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -74,7 +77,12 @@ export class SupportingDocsComponent implements OnInit, OnDestroy {
       fd.append('docs', fg.value.docs[i], filenames[i]);
     }
     this._sub.add(
-      this._user.uploadSupportDocs(fd, this._userId, this._token).subscribe({
+      this._auth.csrfToken()
+      .pipe(
+        switchMap(x => this._user.uploadSupportDocs(fd, this._userId, this._token, x.token)),
+        catchError(e => e)
+      )
+      .subscribe({
         next: (e: any) => {
           if (typeof e === 'number') {
             this.uploadProgress = e;

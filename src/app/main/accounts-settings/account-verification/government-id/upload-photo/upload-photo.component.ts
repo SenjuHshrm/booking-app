@@ -1,3 +1,5 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from './../../../../../services/auth.service';
 import {
   Component,
   EventEmitter,
@@ -40,7 +42,7 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = false;
 
-  constructor(private _token: TokenService, private _user: UserService) {}
+  constructor(private _token: TokenService, private _user: UserService, private _auth: AuthService) {}
 
   ngOnInit(): void {
     this.token = <ITokenClaims>this._token.decodedToken();
@@ -92,18 +94,23 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
       idFormData.append('idBack', this.backFile);
 
       this.subscription.add(
-        this._user.verifyAccountById(idFormData).subscribe({
-          next: (res) => {
-            this.isLoading = false;
-            this.setIsLoading.emit(false);
-            this.setNewStatus.emit('pending');
-          },
-          error: (error) => {
-            this._snack.open(error.error.code, '', { duration: 1000 });
-            this.isLoading = false;
-            this.setIsLoading.emit(false);
-          },
-        })
+        this._auth.csrfToken()
+          .pipe(
+            switchMap(x => this._user.verifyAccountById(idFormData, x.token)),
+            catchError(e => e)
+          )
+          .subscribe({
+            next: (res) => {
+              this.isLoading = false;
+              this.setIsLoading.emit(false);
+              this.setNewStatus.emit('pending');
+            },
+            error: (error) => {
+              this._snack.open(error.error.code, '', { duration: 1000 });
+              this.isLoading = false;
+              this.setIsLoading.emit(false);
+            },
+          })
       );
     } else {
       alert('Please upload both front and back views of the ID.');
