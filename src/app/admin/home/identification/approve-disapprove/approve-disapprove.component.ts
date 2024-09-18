@@ -1,10 +1,11 @@
 import { catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from './../../../../services/auth.service';
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-approve-disapprove',
@@ -15,6 +16,7 @@ export class ApproveDisapproveComponent {
   public isLoading: boolean = false;
 
   private subscription: Subscription = new Subscription();
+  private _snack: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private dialogRef: MatDialogRef<ApproveDisapproveComponent>,
@@ -38,19 +40,26 @@ export class ApproveDisapproveComponent {
     this.isLoading = true;
     const status = this.data.action === 'approve' ? 'approved' : 'rejected';
     this.subscription.add(
-      this._auth.csrfToken()
+      this._auth
+        .csrfToken()
         .pipe(
-          switchMap((x) => this._user.updateVerificationStatus(status, this.data._id, x.token)),
-          catchError((e) => e)
+          switchMap((x) =>
+            this._user.updateVerificationStatus(status, this.data._id, x.token)
+          ),
+          catchError((e) => throwError(() => e))
         )
         .subscribe({
           next: (res: any) => {
-            this.isLoading = false
-            this.handleClose(true, this.data, status)
+            this.isLoading = false;
+            this.handleClose(true, this.data, status);
           },
-          error: (e) => {
-            this.isLoading = false
-          }
+          error: ({ error }) => {
+            this.isLoading = false;
+            this._snack.open(
+              error.msg || error.code || 'Failed to change the status.',
+              'Ok'
+            );
+          },
         })
     );
     // this.subscription.add(

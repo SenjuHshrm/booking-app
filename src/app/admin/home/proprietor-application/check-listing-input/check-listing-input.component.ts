@@ -4,7 +4,7 @@ import { BasicUtilService } from './../../../../services/basic-util.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StaycationService } from './../../../../services/staycation.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { Component, OnInit, OnDestroy, Inject, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -60,11 +60,15 @@ export class CheckListingInputComponent implements OnInit, OnDestroy {
         update.isListed = true;
     }
     this._sub.add(
-      this._auth.csrfToken()
+      this._auth
+        .csrfToken()
         .pipe(
-          switchMap((x) => this._staycation.updateStaycation(this.id, update, x.token)),
-          catchError((e) => e)
-        ).subscribe({
+          switchMap((x) =>
+            this._staycation.updateStaycation(this.id, update, x.token)
+          ),
+          catchError((e) => throwError(() => e))
+        )
+        .subscribe({
           next: (res: any) => {
             this._mdRef.close({ ...update, id: this.id });
           },

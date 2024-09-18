@@ -22,7 +22,7 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { BookingService } from 'src/app/services/booking.service';
 import { TokenService } from 'src/app/services/token.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { debounceTime, Subject, Subscription } from 'rxjs';
+import { debounceTime, Subject, Subscription, throwError } from 'rxjs';
 import { ITokenClaims } from 'src/app/interfaces/token';
 import * as moment from 'moment';
 import { ConfirmationComponent } from 'src/app/globals/confirmation/confirmation.component';
@@ -39,33 +39,6 @@ export interface UserData {
   interval: any;
   intervalunit: any;
 }
-
-const USER_DATA: UserData[] = [
-  {
-    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
-    nameofproperty: 'Alabang Condo Unit',
-    guestimage: '../assets/images/avatars/placeholder.png',
-    guestnames: 'Maia B. Bernal',
-    numofguest: '1',
-    bookingdate: new Date(),
-    interval: '1',
-    intervalunit: 'day',
-    reservationindate: new Date(),
-    reseservationoutdate: new Date(),
-  },
-  {
-    propertyimage: '../assets/images/main/staycation-details/gallery1.png',
-    nameofproperty: 'Muntinlupa Condo Unit',
-    guestimage: '../assets/images/avatars/placeholder.png',
-    guestnames: 'Olivia B. Agustin',
-    numofguest: '1',
-    bookingdate: new Date(),
-    interval: '1',
-    intervalunit: 'month',
-    reservationindate: new Date(),
-    reseservationoutdate: new Date(),
-  },
-];
 
 @Component({
   selector: 'app-arriving-soon',
@@ -216,10 +189,11 @@ export class ArrivingSoonComponent implements OnInit {
       if (confirm) {
         this.statusLoading = true;
         this._subs.add(
-          this._auth.csrfToken()
+          this._auth
+            .csrfToken()
             .pipe(
-              switchMap(x => this._booking.updateBookingStatus(data._id, 'current_guest', x.token)),
-              catchError(e => e)
+              switchMap((x) => this._booking.bookingCheckIn(data._id, x.token)),
+              catchError((e) => throwError(() => e))
             )
             .subscribe({
               next: (res) => {
@@ -233,7 +207,12 @@ export class ArrivingSoonComponent implements OnInit {
                 });
               },
               error: ({ error }) => {
-                this._snack.open(error.code, '', { duration: 1000 });
+                this._snack.open(
+                  error.msg ||
+                    error.code ||
+                    'Failed to complete the check-in process.',
+                  'Ok'
+                );
                 this.statusLoading = false;
               },
             })

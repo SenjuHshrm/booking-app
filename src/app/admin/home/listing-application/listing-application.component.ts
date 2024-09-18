@@ -3,8 +3,13 @@ import { UserService } from 'src/app/services/user.service';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { StaycationService } from './../../../services/staycation.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Subscription, Subject } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subscription, Subject, throwError } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs/operators';
 import {
   Component,
   OnInit,
@@ -82,17 +87,31 @@ export class ListingApplicationComponent
     // console.log(userId, staycationId)
     let currentDate = moment().format('MM/DD/YYYY');
     this._sub.add(
-      this._auth.csrfToken()
+      this._auth
+        .csrfToken()
         .pipe(
-          switchMap((x) => this._user.requestSupportDocs(userId, staycationId, currentDate, x.token)),
-          catchError((e) => e)
-        ).subscribe({
+          switchMap((x) =>
+            this._user.requestSupportDocs(
+              userId,
+              staycationId,
+              currentDate,
+              x.token
+            )
+          ),
+          catchError((e) => throwError(() => e))
+        )
+        .subscribe({
           next: (res: any) => {
-            console.log(res)
+            console.log(res);
           },
           error: ({ error }) => {
-            this._snack.open(error.code)
-          }
+            this._snack.open(
+              error.msg ||
+                error.code ||
+                'Failed to request supporting documents.',
+              'Ok'
+            );
+          },
         })
     );
   }

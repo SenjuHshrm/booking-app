@@ -1,10 +1,17 @@
 import { switchMap, catchError } from 'rxjs/operators';
 import { TokenService } from './../../services/token.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subscription, of } from 'rxjs';
+import { Observable, Subscription, of, throwError } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit, OnDestroy, Injector, ChangeDetectorRef, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Injector,
+  ChangeDetectorRef,
+  inject,
+} from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { IAuthForm, IAuth } from '../../interfaces/auth';
@@ -27,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   password: string = '';
   showPassword: boolean = false;
 
-  public csrfToken$!: Observable<any>
+  public csrfToken$!: Observable<any>;
   public loginForm!: FormGroup<IAuthForm>;
   public validation: any = {
     email: [
@@ -77,8 +84,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     // this.csrfToken$.subscribe({})
     this._redirectTo = this._location.path();
     this.loginForm = this._fb.group<IAuthForm>({
-      email: new FormControl({ value: '', disabled: false }, [Validators.required, Validators.email]),
-      password: new FormControl({ value: '', disabled: false }, [Validators.required]),
+      email: new FormControl({ value: '', disabled: false }, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl({ value: '', disabled: false }, [
+        Validators.required,
+      ]),
     });
     // this._socAuth.authState.subscribe({
     //   next: (res: any) => {
@@ -107,34 +119,32 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(fg: FormGroup<IAuthForm>): void {
     // Implement login logic here
-    this.loginForm.disable()
+    this.loginForm.disable();
     this.isLoading = true;
     let data: IAuth = <IAuth>fg.value;
-    this._auth.csrfToken()
+    this._auth
+      .csrfToken()
       .pipe(
         switchMap((x) => {
-          return this._auth.login(data, x.token)
+          return this._auth.login(data, x.token);
         }),
-        catchError((e) => {
-          return e
-        })
+        catchError((e) => throwError(() => e))
       )
       .subscribe({
         next: (res: any) => {
           this._token.saveToken(res.token);
           window.location.href = this._redirectTo;
         },
-        error: ({ error }: HttpErrorResponse) => {
+        error: (error) => {
           this.isLoading = false;
-          this._snack.open(error.code, '', { duration: 1000 });
-        }
-      })
+          this.loginForm.enable();
+          this._snack.open('Invalid credentials.', '', { duration: 1000 });
+        },
+      });
     // this.csrfToken$.subscribe((xsrf: {token: string}) => {
-      
+
     // })
-    
-    
-    
+
     // this._sub.add(
     //   this._auth.login(data).subscribe({
     //     next: this._successLogin,

@@ -1,6 +1,5 @@
 .today-tabs {
   &-today-tabs-wrapper {
-
     .content {
       height: 50vh;
       max-height: 40rem;
@@ -18,7 +17,7 @@
         margin: 1rem 1rem 1rem;
         width: 100%;
         max-width: 20rem;
-        padding: .5rem 1rem .5rem;
+        padding: 0.5rem 1rem 0.5rem;
         border: 1px solid rgb(190, 190, 190);
         border-radius: 10px;
 
@@ -26,11 +25,10 @@
           width: 100%;
           border: none;
           outline: none;
-
         }
 
         mat-icon {
-          color: #63AB68;
+          color: #63ab68;
         }
       }
 
@@ -39,11 +37,15 @@
         max-width: 100%;
         width: 100%;
         overflow: auto;
-        
+        tr {
+          td.td-no-value {
+            padding: 1rem 0;
+            text-align: center;
+          }
+        }
       }
 
       .mat-table-responsive {
-   
         width: 100%;
         overflow-x: auto;
         padding-bottom: 1rem !important;
@@ -52,7 +54,6 @@
           display: flex;
           align-items: center;
           gap: 1rem;
- 
 
           .img {
             width: 2.3rem;
@@ -70,9 +71,7 @@
             white-space: nowrap;
             text-overflow: ellipsis;
           }
-
         }
-
 
         .custom-guest {
           display: flex;
@@ -95,7 +94,6 @@
             white-space: nowrap;
             text-overflow: ellipsis;
           }
-
         }
 
         .custom-checkinout {
@@ -107,9 +105,9 @@
 
       .action_btn {
         width: fit-content;
-        margin:auto;
+        margin: auto;
         display: flex;
-        gap: .5rem;
+        gap: 0.5rem;
 
         button {
           width: fit-content;
@@ -119,7 +117,7 @@
           cursor: pointer;
           margin: auto;
           color: white;
-          padding: 0 .5rem 0;
+          padding: 0 0.5rem 0;
           background-color: black;
           border-radius: 3px;
           cursor: pointer;
@@ -131,9 +129,7 @@
             font-size: 20px;
           }
         }
-
       }
-
 
       .no-checking {
         display: flex;
@@ -141,10 +137,6 @@
         align-items: center;
         height: 100%;
       }
-
-
-
-
     }
   }
 }
@@ -152,7 +144,6 @@
 @media only screen and (max-width: 500px) {
   .today-tabs {
     &-today-tabs-wrapper {
-
       .content {
         .title {
           margin: auto;
@@ -166,7 +157,6 @@
 
         .mat-table-responsive {
           display: block;
-
         }
       }
     }

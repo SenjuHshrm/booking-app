@@ -18,6 +18,7 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { MessageService } from 'src/app/services/message.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
+import { IUserFullName } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-message-proprietor',
@@ -98,10 +99,13 @@ export class MessageProprietorComponent implements OnInit, OnDestroy {
     const id: string = <string>this.data.proprietorHost._id;
 
     this.subscription.add(
-      this._auth.csrfToken()
+      this._auth
+        .csrfToken()
         .pipe(
-          switchMap(x => this.messageService.messageProprietor(messageData, id, x.token)),
-          catchError(e => e)
+          switchMap((x) =>
+            this.messageService.messageProprietor(messageData, id, x.token)
+          ),
+          catchError((e) => e)
         )
         .subscribe({
           next: (res) => {
@@ -116,10 +120,14 @@ export class MessageProprietorComponent implements OnInit, OnDestroy {
   }
 
   get fullName(): string {
-    return this.util.constructName(this.authData.profile.name);
+    return this.util.constructName(
+      this.authData?.profile?.name as IUserFullName
+    );
   }
 
   get authImage(): string {
-    return this.token.img;
+    const src = this.authData?.profile.img;
+    const haveGravatar = src.includes('gravatar.com');
+    return haveGravatar ? src : this.util.setImgUrl(src);
   }
 }
