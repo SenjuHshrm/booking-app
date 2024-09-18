@@ -307,6 +307,7 @@
                       formControlName="end"
                       class="custom-date-input"
                       (dateChange)="handleDateChangeEnd($event)"
+                      [errorStateMatcher]="matcher"
                     />
                   </mat-date-range-input>
                   <mat-datepicker-toggle
@@ -317,6 +318,9 @@
                     #cicoPicker
                     [calendarHeaderComponent]="customDatepickerHeader"
                   ></mat-date-range-picker>
+                  <mat-error *ngIf="checkInCheckOut.get('start')?.hasError('required')">Start date is required</mat-error>
+                  <mat-error *ngIf="checkInCheckOut.get('end')?.hasError('required')">End date is required</mat-error>
+                  <mat-error *ngIf="checkInCheckOut.hasError('equal')">Dates should not be equal</mat-error>
                 </mat-form-field>
               </div>
               <div class="cancellation-policy" *ngIf="showCancelOpts">

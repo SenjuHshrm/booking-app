@@ -1,6 +1,7 @@
+import { DateInputErrorMatcher } from './date-input-error-matcher';
 import { switchMap, catchError } from 'rxjs/operators';
 import { AuthService } from './../../services/auth.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, AbstractControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { CancellationService } from './../../services/cancellation.service';
 import { DiscountService } from './../../services/discount.service';
@@ -11,7 +12,7 @@ import { UserService } from './../../services/user.service';
 import { GlobalStaticService } from './../../services/global-static.service';
 import { BasicUtilService } from './../../services/basic-util.service';
 import { StaycationService } from './../../services/staycation.service';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription, forkJoin, range } from 'rxjs';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { fadeInAnimation } from 'src/app/globals/fadein-animations';
@@ -82,11 +83,18 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
   public showCancelOpts: boolean = false;
   public selectedCancellationPolicy: string = '1';
 
+  public matcher = new DateInputErrorMatcher()
+  private rangeVal = (c: AbstractControl) => {
+    let s = c.get('start')?.value || null, e = c.get('end')?.value || null
+    return s && e && e.getTime() === s.getTime() ? { equal: true } : null
+  }
   public checkInCheckOut = new FormGroup({
     // start: new FormControl(new Date(this.year, this.month, this.day)),
     // end: new FormControl(new Date(this.year, this.month, this.day))
     start: new FormControl('', [Validators.required]),
     end: new FormControl('', [Validators.required]),
+  }, {
+    validators: this.rangeVal
   });
 
   public refundOpts: any = [];
@@ -205,10 +213,12 @@ export class StaycationDetailsComponent implements OnInit, OnDestroy {
     let ci = moment(start);
     let co = moment(end);
     let diff = co.diff(ci, 'days');
-    this.nights = !isNaN(diff) && diff !== 0 ? diff : 1;
-    this._calculateTotal();
-    this._getCancellationPolicy(this.details.cancellationPolicy);
-    if (ci.diff(moment(new Date())) >= 1) this.showCancelOpts = true;
+    if(!isNaN(diff) && diff !== 0) {
+      this.nights =  diff;
+      this._calculateTotal();
+      this._getCancellationPolicy(this.details.cancellationPolicy);
+      if (ci.diff(moment(new Date())) >= 1) this.showCancelOpts = true;
+    }
   }
 
   public selectCancellationOption(e: Event, price: number) {
