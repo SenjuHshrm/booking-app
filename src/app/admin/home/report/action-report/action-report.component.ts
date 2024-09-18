@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ViewReportComponent } from '../view-report/view-report.component';
 import { Fullname } from 'src/app/interfaces/profile';
 import { BasicUtilService } from 'src/app/services/basic-util.service';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { ReportService } from 'src/app/services/report.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -45,11 +45,15 @@ export class ActionReportComponent {
   handleGiveAction(): void {
     this.isLoading = true;
     this.subscription.add(
-      this._auth.csrfToken()
+      this._auth
+        .csrfToken()
         .pipe(
-          switchMap((x) => this._report.setActions(this.data._id, this.data.type, x.token)),
-          catchError((e) => e)
-        ).subscribe({
+          switchMap((x) =>
+            this._report.setActions(this.data._id, this.data.type, x.token)
+          ),
+          catchError((e) => throwError(() => e))
+        )
+        .subscribe({
           next: (res) => {
             this.isLoading = false;
             this.handleClose(true, this.data.type);

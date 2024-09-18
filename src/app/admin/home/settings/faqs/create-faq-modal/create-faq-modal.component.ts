@@ -10,7 +10,7 @@ import {
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { duration } from 'moment';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { IFAQ } from 'src/app/interfaces/faq';
 import { FormErrorMessage } from 'src/app/interfaces/input-error-message';
 import { ITokenClaims } from 'src/app/interfaces/token';
@@ -99,11 +99,13 @@ export class CreateFaqModalComponent implements OnInit, OnDestroy {
       addedBy: this.token.sub,
     };
     this.subscription.add(
-      this._auth.csrfToken()
+      this._auth
+        .csrfToken()
         .pipe(
           switchMap((x) => this._faq.createFaq(fqData, x.token)),
-          catchError((e) => e)
-        ).subscribe({
+          catchError((e) => throwError(() => e))
+        )
+        .subscribe({
           next: (res) => {
             this.isLoading = false;
             if (res.success === true) {
@@ -118,6 +120,6 @@ export class CreateFaqModalComponent implements OnInit, OnDestroy {
             this._snack.open(error.error.code, '', { duration: 1000 });
           },
         })
-    )
+    );
   }
 }

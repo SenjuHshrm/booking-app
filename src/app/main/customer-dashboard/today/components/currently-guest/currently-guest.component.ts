@@ -23,7 +23,7 @@ import { BasicUtilService } from 'src/app/services/basic-util.service';
 import { BookingService } from 'src/app/services/booking.service';
 import { TokenService } from 'src/app/services/token.service';
 import { ITokenClaims } from 'src/app/interfaces/token';
-import { debounceTime, Subject, Subscription } from 'rxjs';
+import { debounceTime, Subject, Subscription, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
 import { ConfirmationComponent } from 'src/app/globals/confirmation/confirmation.component';
@@ -192,48 +192,35 @@ export class CurrentlyGuestComponent implements OnInit {
       if (confirm) {
         this.statusLoading = true;
         this._subs.add(
-          this._booking.getBookingGuests(data._id).subscribe({
-            next: (res) => {
-              if (res.length > 0) {
-                let count = 0;
-                res.map((guest: Guest) => {
-                  if (guest.checkOutDate && guest.checkOutTime) count++;
+          this._auth
+            .csrfToken()
+            .pipe(
+              switchMap((x) =>
+                this._booking.bookingCheckOut(data._id, x.token)
+              ),
+              catchError((e) => throwError(() => e))
+            )
+            .subscribe({
+              next: (res) => {
+                this._getBookings(
+                  this.paginator.pageSize,
+                  this.paginator.pageIndex + 1
+                );
+                this.statusLoading = false;
+                this._snack.open('Checked-out successfully!', '', {
+                  duration: 1000,
                 });
-                if (res.length !== count) {
-                  this._snack.open(
-                    'Kindly ensure all guests have completed the check-out process.',
-                    'Ok'
-                  );
-                  this.statusLoading = false;
-                  return;
-                }
-                this._auth.csrfToken()
-                  .pipe(
-                    switchMap(x => this._booking.updateBookingStatus(data._id, 'check_out', x.token)),
-                    catchError(e => e)
-                  )
-                  .subscribe({
-                    next: (res) => {
-                      this._getBookings(
-                        this.paginator.pageSize,
-                        this.paginator.pageIndex + 1
-                      );
-                      this.statusLoading = false;
-                      this._snack.open('Checked-out successfully!', '', {
-                        duration: 1000,
-                      });
-                    },
-                    error: ({ error }) => {
-                      this._snack.open(error.code, '', { duration: 1000 });
-                      this.statusLoading = false;
-                    },
-                  });
-              }
-            },
-            error: ({ error }) => {
-              this._snack.open(error.code, '', { duration: 1000 });
-            },
-          })
+              },
+              error: ({ error }) => {
+                this._snack.open(
+                  error.msg ||
+                    error.code ||
+                    'Failed to complete the check-out process.',
+                  'Ok'
+                );
+                this.statusLoading = false;
+              },
+            })
         );
       }
     });

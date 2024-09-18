@@ -34,7 +34,11 @@ export class BookingService {
     );
   }
 
-  public updateBookingStatus(id: string, status: string, _csrf: string): Observable<any> {
+  public updateBookingStatus(
+    id: string,
+    status: string,
+    _csrf: string
+  ): Observable<any> {
     return this._http.post(
       `${environment.api}/api/booking/post/update-booking-status/${id}`,
       { status },
@@ -88,6 +92,62 @@ export class BookingService {
     return this._http.post(
       `${environment.api}/api/booking/post/cancel-booking`,
       data,
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
+    );
+  }
+
+  public bookingCheckIn(id: string, _csrf: string): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/booking/post/check-in/${id}`,
+      {},
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
+    );
+  }
+
+  public bookingCheckOut(id: string, _csrf: string): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/booking/post/check-out/${id}`,
+      {},
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
+    );
+  }
+
+  public getCancelledBookings(
+    id: string,
+    page: number,
+    limit: number,
+    search?: string
+  ): Observable<any> {
+    let searchKey: { search?: string } = {};
+    if (search !== '') {
+      searchKey.search = search;
+    }
+    return this._http.get(
+      `${environment.api}/api/booking/get/cancelled/${id}/${page}/${limit}`,
+      { params: { ...searchKey } }
+    );
+  }
+
+  public approveCancellation(
+    bookingId: string,
+    cancelId: string,
+    _csrf: string
+  ): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/booking/post/approve-cancel/${bookingId}/${cancelId}`,
+      {},
+      { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
+    );
+  }
+
+  public denyCancellation(
+    bookingId: string,
+    cancelId: string,
+    _csrf: string
+  ): Observable<any> {
+    return this._http.post(
+      `${environment.api}/api/booking/post/deny-cancel/${bookingId}/${cancelId}`,
+      {},
       { withCredentials: true, headers: { 'X-XSRF-TOKEN': _csrf } }
     );
   }
